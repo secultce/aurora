@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php:
-    container_name: secult-php
+    container_name: mapas-php
     build:
       context: ./docker/php
       dockerfile: Dockerfile
@@ -15,7 +15,7 @@ services:
       - setup-secult_network
 
   nginx:
-    container_name: secult_nginx
+    container_name: mapas-nginx
     build:
       context: ./docker/nginx
       dockerfile: Dockerfile
@@ -31,7 +31,7 @@ services:
       - setup-secult_network
 
   postgres:
-    container_name: secult_postgres
+    container_name: mapas-postgres
     image: postgres:13
     restart: always
     tty: true

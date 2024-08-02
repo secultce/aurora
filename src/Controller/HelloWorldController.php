@@ -7,11 +7,11 @@ namespace App\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 
-class AgentApiController
+class HelloWorldController
 {
-    #[Route('/agent', name: 'rota_exemplo')]
+    #[Route('/hello', name: 'rota_exemplo')]
     public function exemplo(): Response
     {
-        return new Response('oi som');
+        return new Response('Bem vinde ao Mapas Culturais CE');
     }
 }
