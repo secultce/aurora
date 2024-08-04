@@ -2,7 +2,7 @@ version: '3'
 
 services:
   php:
-    container_name: mapas-php
+    container_name: mapinha-php
     build:
       context: ./docker/php
       dockerfile: Dockerfile
@@ -12,10 +12,10 @@ services:
       - ./:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - setup-secult_network
+      - setup-mapinha_network
 
   nginx:
-    container_name: mapas-nginx
+    container_name: mapinha-nginx
     build:
       context: ./docker/nginx
       dockerfile: Dockerfile
@@ -28,27 +28,31 @@ services:
       - ./:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - setup-secult_network
+      - setup-mapinha_network
 
   postgres:
-    container_name: mapas-postgres
-    image: postgres:13
-    restart: always
+    container_name: mapinha-postgres
+    image: postgres:${POSTGRES_VERSION:-16}-alpine
     tty: true
     volumes:
-      - setup-data:/var/lib/postgresql/data
+      - setup-data:/var/lib/postgresql/data:rw
       - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
     networks:
-      - setup-secult_network
+      - setup-mapinha_network
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_DB: db_secult
-      POSTGRES_USER: secult
-      POSTGRES_PASSWORD: meianoiteeuteconto
+      POSTGRES_DB: ${POSTGRES_DB:-app}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
+      POSTGRES_USER: ${POSTGRES_USER:-app}
+    healthcheck:
+      test: [ "CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}" ]
+      timeout: 5s
+      retries: 5
+      start_period: 60s
 
 networks:
-  setup-secult_network:
+  setup-mapinha_network:
     driver: bridge
 
 volumes:

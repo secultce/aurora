@@ -1,0 +1,4 @@
+get:
+  path: /example
+  controller: App\Controller\Api\ExampleApiController::getList
+  methods: ['GET']

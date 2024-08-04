@@ -1,0 +1,4 @@
+admin_example:
+  resource: 'admin/example.yaml'
+  prefix: /admin
+  name_prefix: admin_example_

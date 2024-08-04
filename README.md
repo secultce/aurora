@@ -1,6 +1,6 @@
-# Estrutura inicial Mapas Culturais CE
+# Estrutura inicial Mapinha CE
 
-Este repositório fornece uma configuração base de aplicação Symfony com Docker, Nginx e PostgreSQL para o projeto Mapas Culturais CE.
+Este repositório fornece uma configuração base de aplicação Symfony com Docker, Nginx e PostgreSQL para o projeto Mapa Cultural CE.
 
 A configuração já está dockerizada, então você só precisa ter o Docker Compose rodando na sua máquina para que tudo funcione corretamente.
 
@@ -18,18 +18,18 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 Primeiro, clone o repositório usando SSH ou HTTPS:
 
 ```bash
-git clone git@github.com:TalysonSoares/setup-symfony-docker.git
+git clone git@github.com:secultce/mapinha.git
 ```
 ou
 ```bash
-git clone https://github.com/TalysonSoares/setup-symfony-docker.git
+git clone https://github.com/secultce/mapinha.git
 ```
 
 ### Navegar para o Diretório do Projeto
 Mude para o diretório do projeto:
 
 ```bash
-cd setup-symfony-docker
+cd mapinha
 ```
 
 ### Iniciar os Contêineres Docker
@@ -43,7 +43,7 @@ docker-compose up -d
 ### Entrar no Contêiner PHP
 Para instalar as dependências do projeto, entre no contêiner PHP:
 ```bash
-docker-compose exec -it secult-php bash
+docker-compose exec -it mapinha-php bash
 ```
 
 ### Instalar Dependências
