@@ -1,0 +1,23 @@
+name: Code Style
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  code-style:
+    name: Run PHP-CS-Fixer
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up PHP
+        uses: erkenes/php-cs-fixer-action@main
+        with:
+          args: '--dry-run --diff -vvv'
