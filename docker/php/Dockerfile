@@ -2,9 +2,7 @@ FROM php:8.3-fpm
 
 WORKDIR /var/www
 
-RUN rm -rf /var/www/html
-
-RUN apt-get update && apt-get install -y \
+RUN rm -rf /var/www/html && apt-get update && apt-get install -y \
     build-essential \
     libpng-dev \
     libjpeg62-turbo-dev \
@@ -18,20 +16,20 @@ RUN apt-get update && apt-get install -y \
     curl \
     libzip-dev \
     apt-utils \
-    libonig-dev
-
-RUN apt-get update && apt-get install -y \
+    libonig-dev \
     libpq-dev \
-    && docker-php-ext-install pdo_pgsql
-
-RUN docker-php-ext-install zip pdo_mysql mbstring exif
-RUN docker-php-ext-configure gd --with-freetype=/usr/include/ --with-jpeg=/usr/include/
-RUN docker-php-ext-install gd
+    libssl-dev \
+    pkg-config \
+    && docker-php-ext-install pdo_pgsql zip mbstring exif \
+    && docker-php-ext-configure gd --with-freetype --with-jpeg \
+    && docker-php-ext-install gd \
+    && pecl install mongodb \
+    && docker-php-ext-enable mongodb \
+    && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN groupadd -g 1000 developer
-RUN useradd -u 1000 -ms /bin/bash -g developer user
+RUN groupadd -g 1000 developer && useradd -u 1000 -ms /bin/bash -g developer user
 
 COPY --chown=user:developer . /var/www
 

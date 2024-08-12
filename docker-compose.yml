@@ -1,5 +1,3 @@
-version: '3'
-
 services:
   php:
     container_name: mapinha-php
@@ -12,7 +10,7 @@ services:
       - ./:/var/www
       - ./docker/php/local.ini:/usr/local/etc/php/conf.d/local.ini
     networks:
-      - setup-mapinha_network
+      - mapinha_network
 
   nginx:
     container_name: mapinha-nginx
@@ -28,32 +26,45 @@ services:
       - ./:/var/www
       - ./docker/nginx/default.conf:/etc/nginx/conf.d/default.conf
     networks:
-      - setup-mapinha_network
+      - mapinha_network
 
   postgres:
     container_name: mapinha-postgres
     image: postgres:${POSTGRES_VERSION:-16}-alpine
     tty: true
     volumes:
-      - setup-data:/var/lib/postgresql/data:rw
-      - ./docker/postgres/postgresql.conf:/etc/postgresql/postgresql.conf
+      - mapinha_psql_data:/var/lib/postgresql/data:rw
     networks:
-      - setup-mapinha_network
+      - mapinha_network
     ports:
       - '5432:5432'
     environment:
-      POSTGRES_DB: ${POSTGRES_DB:-app}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-!ChangeMe!}
-      POSTGRES_USER: ${POSTGRES_USER:-app}
-    healthcheck:
-      test: [ "CMD", "pg_isready", "-d", "${POSTGRES_DB:-app}", "-U", "${POSTGRES_USER:-app}" ]
-      timeout: 5s
-      retries: 5
-      start_period: 60s
+      POSTGRES_DB: ${POSTGRES_DB:-mapinha_psql}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-password}
+      POSTGRES_USER: ${POSTGRES_USER:-mapinha}
+
+  mongo:
+    container_name: mapinha-mongo
+    image: mongo:7.0
+    tty: true
+    restart: unless-stopped
+    networks:
+      - mapinha_network
+    ports:
+      - '27017:27017'
+    environment:
+      MONGO_INITDB_DATABASE: ${MONGO_INITDB_DATABASE:-mapinha_nosql}
+      MONGO_INITDB_ROOT_USERNAME: ${MONGO_INITDB_ROOT_USERNAME:-root}
+      MONGO_INITDB_ROOT_PASSWORD: ${MONGO_INITDB_ROOT_PASSWORD:-password}
+      MONGODB_DB: ${MONGODB_DB:-mapinha_nosql}
+      MONGODB_USER: ${MONGODB_USER:-mapinha}
+      MONGODB_PASSWORD: ${MONGODB_PASSWORD:-password}
+    volumes:
+      - ./docker/mongo/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
 
 networks:
-  setup-mapinha_network:
+  mapinha_network:
     driver: bridge
 
 volumes:
-  setup-data:
+  mapinha_psql_data:
