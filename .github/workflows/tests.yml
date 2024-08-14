@@ -1,4 +1,4 @@
-name: Code Style
+name: Tests
 
 on:
   push:
@@ -21,3 +21,22 @@ jobs:
         uses: erkenes/php-cs-fixer-action@main
         with:
           args: '--dry-run --diff -vvv'
+
+  php-unit:
+    name: Run PHPUnit
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start the mapinha
+        run: docker compose up -d --build
+
+      - name: Install dependencies
+        run: docker compose exec --user root php composer install
+
+      - name: Start the PHPUnit
+        uses: php-actions/phpunit@master
+        with:
+          version: 11.3.1
+          php_version: 8.3.10
+          bootstrap: vendor/autoload.php
