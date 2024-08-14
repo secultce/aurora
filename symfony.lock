@@ -13,6 +13,18 @@
             "src/Repository/.gitignore"
         ]
     },
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.6",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "1f5514cfa15b947298df4d771e694e578d4c204d"
+        },
+        "files": [
+            "src/DataFixtures/AppFixtures.php"
+        ]
+    },
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.3",
         "recipe": {
@@ -26,18 +38,6 @@
             "migrations/.gitignore"
         ]
     },
-    "friendsofphp/php-cs-fixer": {
-        "version": "3.62",
-        "recipe": {
-            "repo": "github.com/symfony/recipes",
-            "branch": "main",
-            "version": "3.0",
-            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
-        },
-        "files": [
-            ".php-cs-fixer.dist.php"
-        ]
-    },
     "doctrine/mongodb-odm-bundle": {
         "version": "5.0",
         "recipe": {
@@ -49,6 +49,18 @@
         "files": [
             "config/packages/doctrine_mongodb.yaml",
             "src/Document/.gitignore"
+        ]
+    },
+    "friendsofphp/php-cs-fixer": {
+        "version": "3.62",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "main",
+            "version": "3.0",
+            "ref": "be2103eb4a20942e28a6dd87736669b757132435"
+        },
+        "files": [
+            ".php-cs-fixer.dist.php"
         ]
     },
     "symfony/console": {
