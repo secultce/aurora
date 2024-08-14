@@ -38,6 +38,19 @@
             ".php-cs-fixer.dist.php"
         ]
     },
+    "doctrine/mongodb-odm-bundle": {
+        "version": "5.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "5.0",
+            "ref": "ed0a2da4b9351025c9e6e3837a0677d73f20e424"
+        },
+        "files": [
+            "config/packages/doctrine_mongodb.yaml",
+            "src/Document/.gitignore"
+        ]
+    },
     "symfony/console": {
         "version": "7.1",
         "recipe": {

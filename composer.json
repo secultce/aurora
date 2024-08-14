@@ -10,6 +10,7 @@
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "^2.12",
         "doctrine/doctrine-migrations-bundle": "^3.3",
+        "doctrine/mongodb-odm-bundle": "^5.0",
         "doctrine/orm": "^3.2",
         "symfony/console": "7.1.*",
         "symfony/dotenv": "7.1.*",
