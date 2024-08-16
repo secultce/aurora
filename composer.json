@@ -75,6 +75,10 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^3.6",
         "friendsofphp/php-cs-fixer": "^3.62",
-        "symfony/maker-bundle": "^1.60"
+        "phpunit/phpunit": "^11.3",
+        "symfony/browser-kit": "7.1.*",
+        "symfony/css-selector": "7.1.*",
+        "symfony/maker-bundle": "^1.60",
+        "symfony/phpunit-bridge": "^7.1"
     }
 }
