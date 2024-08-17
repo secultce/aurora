@@ -1,1 +1,10 @@
 hello world: Hello world
+Home: Home
+Email: Email
+Password: Contraseña
+Login: Iniciar sesión
+
+authentication.login.form.welcome: Bienvenido
+authentication.login.form.paragraph: Inicie sesión com su cuenta
+authentication.login.form.forgot_password: Olvidé mi contraseña
+authentication.login.form.register: Registrarse

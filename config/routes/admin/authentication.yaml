@@ -1,0 +1,4 @@
+login:
+  path: /login
+  controller: App\Controller\Admin\AuthenticationAdminController::login
+  methods: ['GET', 'POST']
