@@ -1,0 +1,77 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top px-4 py-4">
+    <div class="container-fluid">
+        <div class="navbar-brand-toogle">
+            <button class="navbar-toggler" type="button"
+                    data-bs-toggle="offcanvas"
+                    data-bs-target="#offcanvasNavbar"
+                    aria-controls="offcanvasNavbar"
+                    aria-label="Toggle navigation"
+            >
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <a class="navbar-brand" href="#">
+                <img src="{{ asset('img/logo.png') }}" alt="">
+            </a>
+        </div>
+
+        <div class="offcanvas offcanvas-start text-white" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+            <div class="offcanvas-header">
+                <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+
+            <div class="offcanvas-body">
+                <ul class="navbar-nav nav-entities fs-5 flex-grow-1 pe-3">
+                    <li class="nav-item">
+                        <a class="nav-link home" aria-current="page" href="#">
+                            <i class="material-icons ">home</i>
+                            <p>Inicio</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link opportunity" aria-current="page" href="#">
+                            <i class="material-icons">lightbulb</i>
+                            <p>Oportunidades</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link agent" aria-current="page" href="#">
+                            <i class="material-icons">group</i>
+                            <p>Agentes</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link event" aria-current="page" href="#">
+                            <i class="material-icons">event</i>
+                            <p>Eventos</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link space" aria-current="page" href="#">
+                            <i class="material-icons">domain</i>
+                            <p>Espaços</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link project" aria-current="page" href="#">
+                            <i class="material-icons">article</i>
+                            <p>Projetos</p>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="notifications-login">
+            <div class="d-flex align-items-center gap-2">
+                <span class="fw-semibold">Notificações</span>
+                <div class="position-relative">
+                    <i class="material-icons icon-size-1 icon-bg-primary">notifications_none</i>
+                    <span class="badge-notification">1</span>
+                </div>
+            </div>
+            <a href="#login" class="nav-btn-login">Entrar</a>
+        </div>
+    </div>
+</nav>

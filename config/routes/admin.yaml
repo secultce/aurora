@@ -2,3 +2,7 @@ admin_example:
   resource: 'admin/example.yaml'
   prefix: /admin
   name_prefix: admin_example_
+admin_auth:
+  resource: 'admin/authentication.yaml'
+  prefix: /
+  name_prefix: admin_auth_
