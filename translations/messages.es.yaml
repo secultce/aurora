@@ -4,6 +4,15 @@ Email: Email
 Password: Senha
 Login: Entrar
 
+home: Hogar
+opportunity: Oportunidades
+agents: Agentes
+events: Eventos
+spaces: Espacios
+projects: Proyectos
+notifications: Notificaciones
+login: Entrar
+
 authentication.login.form.welcome: Welcome
 authentication.login.form.paragraph: Enter with your access data
 authentication.login.form.forgot_password: I forgot my password
