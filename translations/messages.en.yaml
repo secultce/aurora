@@ -1,8 +1,8 @@
 hello world: Hello world
 Home: Home
 Email: Email
-Password: Contraseña
-Login: Iniciar sesión
+Password: Password
+Login: Login
 
 home: Home
 opportunities: Opportunities
@@ -12,8 +12,33 @@ spaces: Spaces
 projects: Projects
 notifications: Notifications
 login: Login
+check: Check out
+logo: Logo
 
-authentication.login.form.welcome: Bienvenido
-authentication.login.form.paragraph: Inicie sesión com su cuenta
-authentication.login.form.forgot_password: Olvidé mi contraseña
-authentication.login.form.register: Registrarse
+authentication.login.form.welcome: Welcome
+authentication.login.form.paragraph: Log in with your account
+authentication.login.form.forgot_password: Forgot my password
+authentication.login.form.register: Register
+
+homepage.welcome_mapas.title: Welcome, you have arrived at Mapas Culturais
+homepage.welcome_mapas.subtitle: Find culture in every corner of the city and promote your own culture. Participate in the artistic production of your territory with a free, open, and collaborative platform.
+homepage.create_account: Create account
+homepage.registration_info: Registration is essential to organize information and facilitate access to services and opportunities within the cultural map.
+homepage.check_opportunities: Check out the opportunities
+homepage.discover_open_notice: Discover the latest public notices, workshops, awards and competitions that are currently open.
+homepage.formed_by_entities: Mapas Culturais is made up of Entities
+homepage.register_access: Register and access the results of notices, workshops, awards and competitions. You can also create your own form and advertise an opportunity.
+homepage.search_calendar: Search the calendar of cultural activities happening in your region. Or create and promote your events for free on the platform.
+homepage.discover_places: Discover the places where cultural activities happen. And take the opportunity to register your space on the artistic and cultural radar.
+homepage.register_artists: Get to know or register artists, managers, producers, groups, collectives, bands, institutions, and companies in the artistic and cultural scene of the region.
+homepage.find_initiatives: Find funding laws, calls for proposals, exhibitions, and open calls of your interest, or publish your initiatives for the whole community.
+homepage.happening_now: Happening now
+homepage.cultural_scene: Stay updated on everything happening in the cultural scene of Ceará!
+homepage.contribute_maps: Contribute to Mapas
+homepage.add_events: Add your events, spaces, projects, and opportunities like notices and contests to the cultural radar, so people can participate in what's happening in the region. With Mapas, you do all this in a collaborative and interactive way, democratizing access to culture.
+homepage.start_now: START NOW
+homepage.locate_on_map: Locate on the map
+homepage.find_nearby: Find activities near you.
+homepage.free_software_info: Did you know that Mapas Culturais is free software?
+homepage.api_info: You can use the API to access public data in our database and use it to develop external applications. Additionally, you can also contribute to the free Mapas Culturais software directly on GitHub.
+homepage.explore_repository: Explore the repository
