@@ -1,0 +1,21 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %} {{ 'Home'|trans}} {% endblock %}
+
+{% block content %}
+<div class="jumbotron bg-primary">
+    <div class="row align-items-center justify-content-end p-3">
+        <div class="col-md-4 text-white me-5">
+            <h1><strong>{{ 'homepage.welcome_mapas.title'|trans }}</strong></h1><br>
+            <h4>{{ 'homepage.welcome_mapas.subtitle'|trans }}</h4>
+        </div>
+        <div class="col-md-6">
+            <img src="{{ asset('img/pessoas-home.png') }}" alt="Ilustração" class="img-fluid">
+        </div>
+    </div>
+</div>
+<div class="jumbotron text-center bg-success">
+
+    <a class="btn btn-primary btn-lg" href="#" role="button">{{ 'homepage.create_account'|trans }}</a>
+</div>
+{% endblock %}

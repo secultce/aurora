@@ -1,7 +1,7 @@
 hello world: Hola mundo
 Home: Hogar
 Email: Email
-Password: Senha
+Password: Contraseña
 Login: Entrar
 
 home: Hogar
@@ -12,8 +12,33 @@ spaces: Espacios
 projects: Proyectos
 notifications: Notificaciones
 login: Entrar
+check: Consultar
+logo: logo
 
-authentication.login.form.welcome: Welcome
-authentication.login.form.paragraph: Enter with your access data
-authentication.login.form.forgot_password: I forgot my password
-authentication.login.form.register: Register
+authentication.login.form.welcome: Bienvenido
+authentication.login.form.paragraph: Inicie sesión con sus datos de acceso
+authentication.login.form.forgot_password: Olvidé mi contraseña
+authentication.login.form.register: Registrarse
+
+homepage.welcome_mapas.title: Bienvenido, has llegado a Mapas Culturales
+homepage.welcome_mapas.subtitle: Encuentra cultura en cada rincón de la ciudad y promueve tu propia cultura. Participa en la producción artística de tu territorio con una plataforma libre, gratuita y colaborativa.
+homepage.create_account: Crear cuenta
+homepage.registration_info: El registro es fundamental para organizar la información y facilitar el acceso a servicios y oportunidades dentro del mapa cultural.
+homepage.check_opportunities: Echa un vistazo as las oportunidades
+homepage.discover_open_notice: Infórmese sobre los últimos avisos públicos, talleres, premios y concursos abiertos en la actualidad.
+homepage.formed_by_entities: el Mapa Cultura es compuesto por Entidades
+homepage.register_access: Inscríbete y accede a los resultados de avisos públicos, talleres, premios y concursos. También puedes crear tu propio formulario y divulgar una oportunidad.
+homepage.search_calendar: Busca el calendario de actividades culturales que están sucediendo en tu región. O crea y divulga tus eventos gratuitamente en la plataforma.
+homepage.discover_places: Descubre los lugares donde suceden las actividades culturales. Y aprovecha para registrar tu espacio en el radar artístico y cultural.
+homepage.register_artists: Conoce o registra a artistas, gestores y productores, grupos, colectivos, bandas, instituciones y empresas de la escena artística y cultural de la región.
+homepage.find_initiatives: Encuentre leyes de financiación, avisos públicos de propuestas, exposiciones y anuncios públicos que le interesen o publique sus iniciativas para toda la comunidad.
+homepage.happening_now: Ocurriendo ahora
+homepage.cultural_scene: Mantente al tanto de todo lo que está ocurriendo en el escenario cultural de Ceará!
+homepage.contribute_maps: Contribuye con Mapas
+homepage.add_events: Pon tus eventos, espacios, proyectos y oportunidades como avisos públicos y concursos en el radar cultural, para que las personas participen de lo que está sucediendo en la región. Con Mapas haces todo esto de manera colaborativa e interactiva, democratizando el acceso a la cultura.
+homepage.start_now: EMPEZAR AHORA
+homepage.locate_on_map: Localiza en el mapa
+homepage.find_nearby: Encuentra las actividades cercanas a ti.
+homepage.free_software_info: ¿Sabías que Mapas Culturales es un software libre?
+homepage.api_info: Puedes usar la API para acceder a los datos públicos en nuestra base de datos y utilizarlos para desarrollar aplicaciones externas. Además, también es posible contribuir al software libre Mapas Culturales directamente en GitHub.
+homepage.explore_repository: Conoce el repositorio

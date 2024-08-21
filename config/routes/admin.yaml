@@ -6,3 +6,7 @@ admin_auth:
   resource: 'admin/authentication.yaml'
   prefix: /
   name_prefix: admin_auth_
+admin_home:
+  resource: 'admin/homepage.yaml'
+  prefix: /
+  name_prefix: admin_home_

@@ -14,13 +14,13 @@
     </head>
     <body>
         <div class="wrapper">
-            {% include "_components/navbar.html.twig" %}
+            {% include "_components/navbar-not-logged.html.twig" %}
 
             <main class="content">
                 {% block content %}{% endblock %}
             </main>
 
-            {% include "_components/footer.html.twig" %}
+            {% include "_components/footer-not-logged.html.twig" %}
         </div>
     </body>
 </html>
