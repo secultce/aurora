@@ -40,3 +40,18 @@ jobs:
           version: 11.3.1
           php_version: 8.3.10
           bootstrap: vendor/autoload.php
+
+  cypress-run:
+    name: Run Cypress
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Start the mapinha
+        run: docker compose up -d --build
+
+      - name: Install dependencies
+        run: docker compose exec --user root php composer install
+
+      - name: Instala as dependências, cria configs e executa testes
+        run: npm install && npx cypress run --spec "cypress/e2e/**/*.js"
