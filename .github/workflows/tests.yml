@@ -50,8 +50,8 @@ jobs:
       - name: Start the mapinha
         run: docker compose up -d --build
 
-      - name: Install dependencies
+      - name: Install application dependencies
         run: docker compose exec --user root php composer install
 
-      - name: Instala as dependências, cria configs e executa testes
+      - name: Install dependencies and run frontend tests
         run: npm install && npx cypress run --spec "cypress/e2e/**/*.js"
