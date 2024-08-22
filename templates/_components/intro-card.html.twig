@@ -1,0 +1,21 @@
+<div class="card intro-card col-md-12 mt-4">
+    <div class="row">
+        <div class="col-md-7 side-image" style="background-image: url('{{ urlImg }}')">
+            <span class="icon-bg-dark" style="background-color: {{ entityColor }}">
+                <i class="material-icons">home</i>
+            </span>
+            <span>{{ entity }}</span>
+        </div>
+        <div class="col-md-5 side-text">
+            <div class="card-body">
+                <p class="card-text">{{ textEntity }}</p>
+                <a href="#">
+                  <span style="color: {{ entityColor }}">
+                    {{ 'check'|trans }}
+                    <i class="material-icons">keyboard_arrow_right</i>
+                  </span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
