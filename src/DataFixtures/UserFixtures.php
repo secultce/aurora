@@ -49,7 +49,7 @@ final class UserFixtures extends Fixture
         ],
         [
             'id' => self::USER_ID_3,
-            'firstname' => 'Anna Kelly ',
+            'firstname' => 'Anna Kelly',
             'lastname' => 'Moura Balbino',
             'socialName' => 'Kelly Moura',
             'email' => 'kellymoura@example.com',
