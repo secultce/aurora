@@ -6,16 +6,65 @@
 <div class="jumbotron bg-primary">
     <div class="row align-items-center justify-content-end p-3">
         <div class="col-md-4 text-white me-5">
-            <h1><strong>{{ 'homepage.welcome_mapas.title'|trans }}</strong></h1><br>
-            <h4>{{ 'homepage.welcome_mapas.subtitle'|trans }}</h4>
+            <h1><strong>{{ 'homepage.welcome_mapas.title'|trans }}</strong></h1>
+            <p class="lead mt-5">{{ 'homepage.welcome_mapas.subtitle'|trans }}</p>
         </div>
         <div class="col-md-6">
             <img src="{{ asset('img/pessoas-home.png') }}" alt="Ilustração" class="img-fluid">
         </div>
     </div>
 </div>
-<div class="jumbotron text-center bg-success">
+<div class="jumbotron bg-success text-white py-5">
+    <div class="container pb-5">
+        <div class="row text-start">
+            <div class="col-md-auto">
+                <h1 class="fw-bold mt-4">{{ 'homepage.create_account'|trans }}</h1>
+                <p class="lead mt-4">{{ 'homepage.registration_info'|trans }}</p>
+                <a href="#" class="col-5 mx-auto btn btn-light btn-lg text-success icon-link justify-content-between mt-5">
+                    <h4 class="fw-bold mt-2">{{ 'homepage.sign_up'|trans }}</h4>
+                    <span class="material-icons fs-2">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron bg-body py-5">
+    <div class="container pb-5">
+        <div class="row text-start">
 
-    <a class="btn btn-primary btn-lg" href="#" role="button">{{ 'homepage.create_account'|trans }}</a>
+            <h1 class="fw-bold mt-4 text-dark">{{ 'homepage.formed_by_entities'|trans }}</h1>
+            {% include "_components/intro-card.html.twig" with {
+                'urlImg': asset('img/home-opportunities.png'),
+                'entity': 'opportunities'|trans,
+                'entityColor': 'var(--navlink-opportunity)',
+                'textEntity': 'homepage.register_access'|trans
+            } %}
+            {% include "_components/intro-card.html.twig" with {
+                'urlImg': asset('img/home-events.png'),
+                'entity': 'events'|trans,
+                'entityColor': 'var(--navlink-event)',
+                'textEntity': 'homepage.search_calendar'|trans
+            } %}
+            {% include "_components/intro-card.html.twig" with {
+                'urlImg': asset('img/home-spaces.png'),
+                'entity': 'spaces'|trans,
+                'entityColor': 'var(--navlink-space)',
+                'textEntity': 'homepage.discover_places'|trans
+            } %}
+            {% include "_components/intro-card.html.twig" with {
+                'urlImg': asset('img/home-agents.png'),
+                'entity': 'agents'|trans,
+                'entityColor': 'var(--navlink-agent)',
+                'textEntity': 'homepage.register_artists'|trans
+            } %}
+            {% include "_components/intro-card.html.twig" with {
+                'urlImg': asset('img/home-projects.png'),
+                'entity': 'projects'|trans,
+                'entityColor': 'var(--navlink-project)',
+                'textEntity': 'homepage.find_initiatives'|trans
+            } %}
+
+        </div>
+    </div>
 </div>
 {% endblock %}
