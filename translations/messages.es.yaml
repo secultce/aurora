@@ -43,3 +43,23 @@ homepage.find_nearby: Encuentra las actividades cercanas a ti.
 homepage.free_software_info: ¿Sabías que Mapas Culturales es un software libre?
 homepage.api_info: Puedes usar la API para acceder a los datos públicos en nuestra base de datos y utilizarlos para desarrollar aplicaciones externas. Además, también es posible contribuir al software libre Mapas Culturales directamente en GitHub.
 homepage.explore_repository: Conoce el repositorio
+
+footer.help: ¿Necesitas ayuda?
+footer.click_here: Haz clic aquí
+footer.contact_support: para hablar con nuestro equipo de soporte por chat.
+footer.send_email: O envía un email a
+discover: Descubrir
+footer.control_panel: Panel de Control
+footer.opportunities: Mis Oportunidades
+footer.events: Mis Eventos
+footer.agents: Mis Agentes
+footer.spaces: Mis Espacios
+footer.help_privacy: Ayuda y Privacidad
+faq: Ayuda y Preguntas Frecuentes (FAQ)
+footer.privacy_policy: Términos de uso y Política de privacidad
+footer.image_authorization: Autorización de uso de imagen
+lgpd: Entiende la LGPD
+footer.platform_created: plataforma creada por la comunidad
+footer.and_developed: y desarrollada por
+footer.visit_repository: visita el repositorio
+

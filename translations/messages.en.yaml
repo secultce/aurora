@@ -43,3 +43,23 @@ homepage.find_nearby: Find activities near you.
 homepage.free_software_info: Did you know that Mapas Culturais is free software?
 homepage.api_info: You can use the API to access public data in our database and use it to develop external applications. Additionally, you can also contribute to the free Mapas Culturais software directly on GitHub.
 homepage.explore_repository: Explore the repository
+
+footer.help: Need help?
+footer.click_here: Click here
+footer.contact_support: to contact our support team via chat.
+footer.send_email: Or send an email to
+discover: Discover
+footer.control_panel: Control Panel
+footer.notices_opportunities: Public Notices and Opportunities
+footer.opportunities: My Opportunities
+footer.events: My Events
+footer.agents: My Agents
+footer.spaces: My Spaces
+footer.help_privacy: Help and Privacy
+faq: Help and FAQ
+footer.privacy_policy: Terms of Use and Privacy Policy
+footer.image_authorization: Image Usage Authorization
+lgpd: Understand LGPD
+footer.platform_created: platform created by the community
+footer.and_developed: and developed by
+footer.visit_repository: visit the repository
