@@ -34,12 +34,11 @@ jobs:
       - name: Install dependencies
         run: docker compose exec --user root php composer install
 
+      - name: Create the phpunit.xml
+        run: docker compose exec --user root php cp phpunit.xml.dist phpunit.xml
+
       - name: Start the PHPUnit
-        uses: php-actions/phpunit@master
-        with:
-          version: 11.3.1
-          php_version: 8.3.10
-          bootstrap: vendor/autoload.php
+        run: docker compose exec php bin/phpunit
 
   cypress-run:
     name: Run Cypress
