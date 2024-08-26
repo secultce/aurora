@@ -31,12 +31,10 @@ final class Version20240819123854 extends AbstractMigration
             )
         ');
 
-        $this->addSql('COMMENT ON COLUMN "app_user".id IS \'(DC2Type:uuid)\'');
-        $this->addSql('COMMENT ON COLUMN "app_user".created_at IS \'(DC2Type:datetime_immutable)\'');
-        $this->addSql('COMMENT ON COLUMN "app_user".updated_at IS \'(DC2Type:datetime_mutable)\'');
-        $this->addSql('COMMENT ON COLUMN "app_user".deleted_at IS \'(DC2Type:datetime_mutable)\'');
+        $this->addSql('COMMENT ON COLUMN app_user.id IS \'(DC2Type:uuid)\'');
+        $this->addSql('COMMENT ON COLUMN app_user.created_at IS \'(DC2Type:datetime_immutable)\'');
 
-        $this->addSql('CREATE UNIQUE INDEX UNIQ_1483A5E9E7927C74 ON app_user (email)');
+        $this->addSql('CREATE UNIQUE INDEX UNIQ_88BDF3E9E7927C74 ON app_user (email)');
     }
 
     public function down(Schema $schema): void
