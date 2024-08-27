@@ -30,7 +30,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(length: 100, nullable: true)]
     private ?string $socialName = null;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column(length: 100, unique: true)]
     private string $email;
 
     #[ORM\Column(length: 255)]

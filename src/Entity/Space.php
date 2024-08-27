@@ -21,6 +21,14 @@ class Space extends AbstractEntity
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\ManyToOne(targetEntity: Agent::class)]
+    #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
+    private Agent $createdBy;
+
+    #[ORM\ManyToOne(targetEntity: self::class)]
+    #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    private ?Space $parent = null;
+
     #[ORM\Column]
     private DateTimeImmutable $createdAt;
 
@@ -48,6 +56,26 @@ class Space extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getCreatedBy(): Agent
+    {
+        return $this->createdBy;
+    }
+
+    public function setCreatedBy(Agent $createdBy): void
+    {
+        $this->createdBy = $createdBy;
+    }
+
+    public function getParent(): ?Space
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?Space $parent): void
+    {
+        $this->parent = $parent;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable

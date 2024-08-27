@@ -30,7 +30,7 @@ final class ProjectFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Vozes do Sertão',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
-            'space' => null,
+            'space' => SpaceFixtures::SPACE_ID_4,
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -50,7 +50,7 @@ final class ProjectFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Ritmos do Mundo',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
-            'space' => null,
+            'space' => SpaceFixtures::SPACE_ID_5,
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -70,7 +70,7 @@ final class ProjectFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Repente e Viola',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
-            'space' => null,
+            'space' => SpaceFixtures::SPACE_ID_5,
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -80,7 +80,7 @@ final class ProjectFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Pé de Serra Cultural',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
-            'space' => null,
+            'space' => SpaceFixtures::SPACE_ID_6,
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -110,7 +110,7 @@ final class ProjectFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Retalhos do Nordeste',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::PROJECT_ID_8,
-            'space' => null,
+            'space' => SpaceFixtures::SPACE_ID_6,
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -120,7 +120,7 @@ final class ProjectFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Arte da Caatinga',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::PROJECT_ID_9,
-            'space' => null,
+            'space' => SpaceFixtures::SPACE_ID_3,
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -137,7 +137,18 @@ final class ProjectFixtures extends Fixture implements DependentFixtureInterface
         foreach (self::PROJECTS as $projectData) {
             /* @var Project $project */
             $project = $this->serializer->denormalize($projectData, Project::class);
+
             $project->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $projectData['createdBy'])));
+
+            if (null !== $projectData['parent']) {
+                $parent = $this->getReference(sprintf('%s-%s', self::PROJECT_ID_PREFIX, $projectData['parent']));
+                $project->setParent($parent);
+            }
+
+            if (null !== $projectData['space']) {
+                $parent = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $projectData['space']));
+                $project->setSpace($parent);
+            }
 
             $this->setReference(sprintf('%s-%s', self::PROJECT_ID_PREFIX, $projectData['id']), $project);
 

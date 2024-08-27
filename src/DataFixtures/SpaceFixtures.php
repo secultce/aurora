@@ -6,10 +6,11 @@ namespace App\DataFixtures;
 
 use App\Entity\Space;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class SpaceFixtures extends Fixture
+final class SpaceFixtures extends Fixture implements DependentFixtureInterface
 {
     public const string SPACE_ID_PREFIX = 'space';
     public const string SPACE_ID_1 = '69461af3-52f2-4c6b-ad30-ce92e478e9bd';
@@ -27,6 +28,8 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_1,
             'name' => 'SECULT',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -34,13 +37,17 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_2,
             'name' => 'Sítio das Artes',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
             'id' => self::SPACE_ID_3,
-            'name' => 'Ritmos do Mundo',
+            'name' => 'Galeria Caatinga',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -48,13 +55,17 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_4,
             'name' => 'Recanto do Cordel',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => self::SPACE_ID_3,
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
             'id' => self::SPACE_ID_5,
-            'name' => 'Galeria Caatinga',
+            'name' => 'Ritmos do Mundo',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => self::SPACE_ID_3,
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -62,6 +73,8 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_6,
             'name' => 'Casa do Sertão',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => self::SPACE_ID_3,
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -69,6 +82,8 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_7,
             'name' => 'Vila do Baião',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => self::SPACE_ID_3,
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -76,6 +91,8 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_8,
             'name' => 'Centro Cultural Asa Branca',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -83,6 +100,8 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_9,
             'name' => 'Casa da Capoeira',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -90,6 +109,8 @@ final class SpaceFixtures extends Fixture
         [
             'id' => self::SPACE_ID_10,
             'name' => 'Dragão do Mar',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -107,11 +128,25 @@ final class SpaceFixtures extends Fixture
             /* @var Space $space */
             $space = $this->serializer->denormalize($spaceData, Space::class);
 
+            $space->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $spaceData['createdBy'])));
+
+            if (null !== $spaceData['parent']) {
+                $parent = $this->getReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['parent']));
+                $space->setParent($parent);
+            }
+
             $this->setReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['id']), $space);
 
             $manager->persist($space);
         }
 
         $manager->flush();
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            AgentFixtures::class,
+        ];
     }
 }

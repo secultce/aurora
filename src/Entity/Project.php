@@ -21,8 +21,16 @@ class Project extends AbstractEntity
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\ManyToOne(targetEntity: self::class)]
+    #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    private ?Project $parent = null;
+
+    #[ORM\ManyToOne(targetEntity: Space::class)]
+    #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    private ?Space $space = null;
+
     #[ORM\ManyToOne(targetEntity: Agent::class)]
-    #[ORM\JoinColumn(name: 'created_by', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
+    #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     private Agent $createdBy;
 
     #[ORM\Column]
@@ -52,6 +60,26 @@ class Project extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getParent(): ?Project
+    {
+        return $this->parent;
+    }
+
+    public function setParent(?Project $parent): void
+    {
+        $this->parent = $parent;
+    }
+
+    public function getSpace(): ?Space
+    {
+        return $this->space;
+    }
+
+    public function setSpace(?Space $space): void
+    {
+        $this->space = $space;
     }
 
     public function getCreatedBy(): Agent
