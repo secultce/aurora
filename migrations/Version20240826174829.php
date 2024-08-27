@@ -16,7 +16,7 @@ final class Version20240826174829 extends AbstractMigration
 
     public function up(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE space ADD created_by_id UUID');
+        $this->addSql('ALTER TABLE space ADD created_by_id UUID NOT NULL');
         $this->addSql('ALTER TABLE space ADD parent_id UUID DEFAULT NULL');
 
         $this->addSql('COMMENT ON COLUMN space.created_by_id IS \'(DC2Type:uuid)\'');
