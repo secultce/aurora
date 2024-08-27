@@ -3,24 +3,26 @@
 {% block title %} {{ 'Home'|trans}} {% endblock %}
 
 {% block content %}
-<div class="jumbotron bg-primary">
-    <div class="row align-items-center justify-content-end p-3">
-        <div class="col-md-4 text-white me-5">
-            <h1><strong>{{ 'homepage.welcome_mapas.title'|trans }}</strong></h1>
-            <p class="lead mt-5">{{ 'homepage.welcome_mapas.subtitle'|trans }}</p>
-        </div>
-        <div class="col-md-6">
-            <img src="{{ asset('img/pessoas-home.png') }}" alt="Ilustração" class="img-fluid">
+<div class="bg-primary">
+    <div class="container">
+        <div class="row align-items-center justify-content-center p-3">
+            <div class="col-md-5 text-white ">
+                <h1><strong>{{ 'homepage.welcome_mapas.title'|trans }}</strong></h1>
+                <p class="lead mt-5">{{ 'homepage.welcome_mapas.subtitle'|trans }}</p>
+            </div>
+            <div class="col-md-7 mt-4">
+                <img src="{{ asset('img/pessoas-home.png') }}" alt="Ilustração" class="img-fluid">
+            </div>
         </div>
     </div>
 </div>
-<div class="jumbotron bg-success text-white py-5">
+<div class=" bg-green text-white py-5">
     <div class="container pb-5">
         <div class="row text-start">
             <div class="col-md-auto">
                 <h1 class="fw-bold mt-4">{{ 'homepage.create_account'|trans }}</h1>
-                <p class="lead mt-4">{{ 'homepage.registration_info'|trans }}</p>
-                <a href="#" class="col-5 mx-auto btn btn-light btn-lg text-success icon-link justify-content-between mt-5">
+                <p class="lead mt-3">{{ 'homepage.registration_info'|trans }}</p>
+                <a href="#" class="col-5 mx-auto btn btn-light btn-lg text-green icon-link justify-content-between mt-5">
                     <h4 class="fw-bold mt-2">{{ 'homepage.sign_up'|trans }}</h4>
                     <span class="material-icons fs-2">arrow_forward</span>
                 </a>
@@ -28,10 +30,69 @@
         </div>
     </div>
 </div>
-<div class="jumbotron bg-body py-5">
+<div class="bg-rose text-dark py-5">
     <div class="container pb-5">
         <div class="row text-start">
+            <div class="col-md-12 d-flex align-items-center justify-content-between">
+                <div>
+                    <h1 class="fw-bold mt-4">{{ 'homepage.check_opportunities'|trans }}</h1>
+                    <p class="lead mt-3">{{ 'homepage.discover_open_notice'|trans }}</p>
+                </div>
 
+                <div class="mt-4">
+                    <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle me-2" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="prev">
+                        <i class="material-icons">chevron_left</i>
+                    </button>
+                    <button id="btn-carousel-homepage" class="btn btn-light text-primary" style="border-radius: 80%" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="next">
+                        <i class="material-icons">chevron_right</i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-center align-items-center mt-4">
+                <div class="d-flex align-items-center">
+                    <div class="input-group me-3">
+                        <input type="text" class="form-control border-0 rounded-start-pill" placeholder="Buscar" aria-label="Buscar">
+                        <div class="input-group-append">
+                            <button class="btn bg-white text-dark border-0 rounded-end-pill">
+                                <i class="material-icons">search</i>
+                            </button>
+                        </div>
+                    </div>
+                    <button class="btn btn-light text-primary d-flex align-items-center me-3 rounded-pill">
+                        <i class="material-icons me-1">filter_alt</i> Filtrar
+                    </button>
+                </div>
+            </div>
+
+            {% include "_components/oportunity-card-home.html.twig" with {
+                'status_icon': 'check_circle',
+                'status_text': 'Inscrições abertas',
+                'image_url': asset('img/img.png'),
+                'image_alt': 'Mostra de Cinema Independente',
+                'title': 'Mostra de Cinema Independente - Edição 2024',
+                'registration_period': 'Inscrições de 15/09/2024 até 30/09/2024 às 18:00',
+                'description': 'Uma vitrine para cineastas independentes exibirem seus filmes e documentários. O evento contará com debates, workshops e prêmios para as melhores produções.',
+                'interest_areas_count': 2,
+                'interest_areas': 'Cinema, Produção Independente',
+                'tags_count': 3,
+                'tags': 'Cinema, Independente, Mostra 2024',
+                'badges_count': 1,
+                'badges': '+1',
+                'link_url': 'https://exemplo.com/mostra-cinema-2024',
+            } %}
+        </div>
+
+        <div id="opportunitiesCarousel" class="carousel slide" data-bs-ride="carousel">
+
+        </div>
+
+    </div>
+</div>
+
+<div class=" py-5">
+    <div class="container pb-5">
+        <div class="row text-start">
             <h1 class="fw-bold mt-4 text-dark">{{ 'homepage.formed_by_entities'|trans }}</h1>
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-opportunities.png'),
@@ -63,7 +124,157 @@
                 'entityColor': 'var(--navlink-project)',
                 'textEntity': 'homepage.find_initiatives'|trans
             } %}
+        </div>
+    </div>
+</div>
 
+<div class="bg-aqua text-dark py-5">
+    <div class="container pb-5">
+        <div class="row text-start">
+            <div class="col-md-12 d-flex align-items-center justify-content-between">
+                <div>
+                    <h1 class="fw-bold mt-4">{{ 'homepage.happening_now'|trans }}</h1>
+                    <p class="lead mt-3">{{ 'homepage.cultural_scene'|trans }}</p>
+                </div>
+
+                <div class="mt-4">
+                    <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle me-2" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="prev">
+                        <i class="material-icons">chevron_left</i>
+                    </button>
+                    <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="next">
+                        <i class="material-icons">chevron_right</i>
+                    </button>
+                </div>
+            </div>
+
+            {% set tabs = [
+                {
+                    'id': '1',
+                    'title': 'all'|trans,
+                    'content': [
+                        include('_components/oportunity-card-home.html.twig', {
+                            'status_icon': 'event',
+                            'status_text': 'Evento em andamento',
+                            'image_url': asset('img/img.png'),
+                            'image_alt': 'Festival de Música Regional',
+                            'title': 'Festival de Música Regional - Edição 2024',
+                            'registration_period': 'Inscrições de 10/08/2024 até 20/08/2024 às 23:59',
+                            'description': 'O Festival de Música Regional traz as melhores bandas locais para uma celebração da cultura e tradição musical. Participe de oficinas, shows e rodas de conversa com músicos renomados.',
+                            'interest_areas_count': 3,
+                            'interest_areas': 'Música, Cultura Popular, Tradições Locais',
+                            'tags_count': 4,
+                            'tags': 'Festival, Música, Cultura, Edição 2024',
+                            'badges_count': 2,
+                            'badges': '+2',
+                            'link_url': 'https://exemplo.com/festival-musica-2024',
+                        }),
+                        include('_components/oportunity-card-home.html.twig', {
+                            'status_icon': 'check_circle',
+                            'status_text': 'Inscrições abertas',
+                            'image_url': asset('img/img.png'),
+                            'image_alt': 'Mostra de Cinema Independente',
+                            'title': 'Mostra de Cinema Independente - Edição 2024',
+                            'registration_period': 'Inscrições de 15/09/2024 até 30/09/2024 às 18:00',
+                            'description': 'Uma vitrine para cineastas independentes exibirem seus filmes e documentários. O evento contará com debates, workshops e prêmios para as melhores produções.',
+                            'interest_areas_count': 2,
+                            'interest_areas': 'Cinema, Produção Independente',
+                            'tags_count': 3,
+                            'tags': 'Cinema, Independente, Mostra 2024',
+                            'badges_count': 1,
+                            'badges': '+1',
+                            'link_url': 'https://exemplo.com/mostra-cinema-2024',
+                        }),
+                        include('_components/oportunity-card-home.html.twig', {
+                            'status_icon': 'visibility',
+                            'status_text': 'Próximo evento',
+                            'image_url': asset('img/img.png'),
+                            'image_alt': 'Exposição de Arte Contemporânea',
+                            'title': 'Exposição de Arte Contemporânea - 2024',
+                            'registration_period': 'Inscrições de 01/10/2024 até 15/10/2024 às 20:00',
+                            'description': 'A Exposição de Arte Contemporânea apresenta as obras de artistas emergentes e consagrados. Participe de visitas guiadas e palestras com curadores.',
+                            'interest_areas_count': 4,
+                            'interest_areas': 'Arte Contemporânea, Escultura, Pintura, Fotografia',
+                            'tags_count': 5,
+                            'tags': 'Arte, Contemporânea, Exposição, Cultura, 2024',
+                            'badges_count': 3,
+                            'badges': '+3',
+                            'link_url': 'https://exemplo.com/exposicao-arte-2024',
+                        }),
+                        include('_components/oportunity-card-home.html.twig'),
+                    ]
+                },
+                {
+                    'id': '2',
+                    'title': 'events'|trans,
+                    'content': include('_components/oportunity-card-home.html.twig'),
+                },
+                {
+                    'id': '3',
+                    'title': 'spaces'|trans,
+                    'content': [
+                        include('_components/oportunity-card-home.html.twig'),
+                        include('_components/oportunity-card-home.html.twig'),
+                    ]
+                },
+                {
+                    'id': '4',
+                    'title': 'agents'|trans,
+                    'content': [
+                        include('_components/oportunity-card-home.html.twig'),
+                        include('_components/oportunity-card-home.html.twig'),
+                        include('_components/oportunity-card-home.html.twig'),
+                    ]
+                },
+                {
+                    'id': '5',
+                    'title': 'projects'|trans,
+                    'content': 'Conteúdo 5'
+                }
+            ] %}
+            {% include '_components/tabs.html.twig' with { 'tabs': tabs } %}
+        </div>
+    </div>
+</div>
+
+<div id="" class="contribute-maps text-white py-5">
+    <div class="container pb-5">
+        <div class="row text-start">
+            <div class="col-md-auto">
+                <h1 class="fw-bold mt-4">{{ 'homepage.contribute_maps'|trans }}</h1>
+                <p class="lead mt-3">{{ 'homepage.add_events'|trans }}</p>
+                <a href="#" class="col-5 mx-auto btn btn-light btn-lg text-red-dark icon-link justify-content-between mt-5">
+                    <h4 class="fw-bold mt-2">{{ 'homepage.start_now'|trans }}</h4>
+                    <span class="material-icons fs-2">arrow_forward</span>
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="bg-body text-dark py-5">
+    <div class="container pb-5">
+        <div class="row text-start">
+            <div class="col-md-auto">
+                <h1 class="fw-bold mt-4">{{ 'homepage.locate_on_map'|trans }}</h1>
+                <p class="lead mt-3">{{ 'homepage.find_nearby'|trans }}</p>
+            </div>
+            <div class="col-md-12 mt-5">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19678.79535967018!2d-38.537474138432515!3d-3.727265727545027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1724612249783!5m2!1spt-BR!2sbr" width="1320" height="389" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</div>
+<div class=" text-dark align-items-center justify-content-center py-5">
+    <div class="container pb-5">
+        <div class="text-center">
+            <div class="col-md-auto">
+                <span class="material-icons fw-bold fs-1 mt-2">code</span>
+                <h1 class="fw-bold mt-2">{{ 'homepage.free_software_info'|trans }}</h1>
+                <p class="lead mt-4">{{ 'homepage.api_info'|trans }}</p>
+                <a href="https://github.com/secultce/mapinha" target="_blank" class="centered-icon-text nav-link text-moss mt-4">
+                    <span class="ms-3 font-size-14 me-2">{{ 'homepage.explore_repository'|trans }}</span>
+                    <img src="{{ asset('img/icone-github-dark.png') }}">
+                </a>
+            </div>
         </div>
     </div>
 </div>

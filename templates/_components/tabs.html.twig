@@ -1,0 +1,39 @@
+<ul class="nav nav-pills mb-4" id="pills-tab" role="tablist">
+    {% for tab in tabs %}
+        <li class="nav-item" role="presentation">
+            <a class="nav-link {% if loop.first %}active{% endif %}" id="pills-{{ tab.id }}-tab" data-bs-toggle="pill" href="#pills-{{ tab.id }}" role="tab" aria-controls="pills-{{ tab.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">{{ tab.title }}</a>
+        </li>
+    {% endfor %}
+</ul>
+
+<div class="tab-content" id="pills-tabContent">
+    {% for tab in tabs %}
+        <div class="tab-pane fade {% if loop.first %}show active{% endif %}" id="pills-{{ tab.id }}" role="tabpanel" aria-labelledby="pills-{{ tab.id }}-tab" tabindex="0">
+            <div class="row">
+                {% if tab.content is iterable %}
+                    {% for content in tab.content %}
+                        <div class="col-md-3">
+                            {{ content|raw }}
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="col-md-12">
+                        {{ tab.content|raw }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script>
+    document.querySelectorAll('#pills-tab .nav-link').forEach(tab => {
+        tab.addEventListener('click', function() {
+            document.querySelectorAll('.tab-pane').forEach(pane => {
+                pane.classList.remove('show', 'active');
+            });
+            const target = document.querySelector(this.getAttribute('href'));
+            target.classList.add('show', 'active');
+        });
+    });
+</script>

@@ -1,10 +1,8 @@
-@import "colors.css";
+@import url(colors.css);
 
 body {
     background-color: var(--bg-color);
     height: 100%;
-    margin: 0;
-    padding: 0;
 }
 
 main {
@@ -19,4 +17,98 @@ main {
 
 .content{
     flex: 1;
+}
+
+.bg-rose {
+    background-color: var(--bg-rose);
+}
+
+.text-rose {
+    color: var(--bg-rose);
+}
+
+.bg-green {
+    background-color: var(--bg-green);
+}
+
+.text-green {
+    color: var(--bg-green);
+}
+
+.bg-aqua {
+    background-color: var(--bg-aqua);
+}
+
+.text-red-dark {
+    color: var(--bg-red-dark);
+}
+
+.text-moss{
+    color: var(--color-moss);
+}
+
+.search-input-group {
+    max-width: 30rem;
+}
+
+.contribute-maps {
+    background-size: cover !important;
+    background: linear-gradient(rgba(0, 43, 71, 0.85), rgba(0, 43, 71, 0.85)), url('../img/home-contribua-mapas.png') center;
+    display: flex;
+}
+
+#btn-carousel-homepage {
+    width: 48px;
+    height: 48px;
+}
+
+.custom-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
+
+.custom-card img {
+    width: 72px;
+    height: 72px;
+    max-width: 100%;
+    margin-right: 10px;
+}
+
+.custom-card .badge {
+    display: inline-flex;
+    align-items: center;
+    font-size: 0.9rem;
+    line-height: 1.2rem;
+}
+
+.custom-card .btn-primary {
+    padding: 10px 10px;
+    width: 100%;
+    max-width: 30rem;
+    align-items: center;
+    justify-content: center;
+    margin: 0;
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+}
+
+@media (max-width: 768px) {
+    .custom-card .btn-primary {
+        width: 90%;
+        bottom: 5px;
+        right: 5px;
+    }
+}
+
+@media (max-width: 576px) {
+    .custom-card .btn-primary {
+        width: 100%;
+        position: static;
+        margin-top: 1rem;
+    }
 }
