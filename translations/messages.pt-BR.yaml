@@ -14,6 +14,7 @@ notifications: Notificações
 login: Entrar
 check: Conferir
 logo: Lôgo
+all: Tudo
 
 authentication.login.form.welcome: Boas vindas
 authentication.login.form.paragraph: Entre com a sua conta
