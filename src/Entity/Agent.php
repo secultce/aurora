@@ -7,6 +7,8 @@ namespace App\Entity;
 use App\Repository\AgentRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
@@ -21,6 +23,9 @@ class Agent extends AbstractEntity
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\ManyToMany(targetEntity: Organization::class, mappedBy: 'agents')]
+    private Collection $organizations;
+
     #[ORM\Column]
     private DateTimeImmutable $createdAt;
 
@@ -29,6 +34,11 @@ class Agent extends AbstractEntity
 
     #[ORM\Column(nullable: true)]
     private ?DateTime $deletedAt = null;
+
+    public function __construct()
+    {
+        $this->organizations = new ArrayCollection();
+    }
 
     public function getId(): ?Uuid
     {
@@ -48,6 +58,16 @@ class Agent extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getOrganizations(): Collection
+    {
+        return $this->organizations;
+    }
+
+    public function addOrganization(Organization $organization): void
+    {
+        $this->organizations->add($organization);
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
