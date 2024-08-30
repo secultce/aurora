@@ -23,6 +23,15 @@ class Agent extends AbstractEntity
     #[ORM\Column(length: 100)]
     private ?string $name = null;
 
+    #[ORM\Column(length: 100)]
+    private string $shortBio;
+
+    #[ORM\Column(length: 255)]
+    private string $longBio;
+
+    #[ORM\Column(length: 100)]
+    private bool $culture;
+
     #[ORM\ManyToMany(targetEntity: Organization::class, mappedBy: 'agents')]
     private Collection $organizations;
 
@@ -58,6 +67,36 @@ class Agent extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getShortBio(): string
+    {
+        return $this->shortBio;
+    }
+
+    public function setShortBio(string $shortBio): void
+    {
+        $this->shortBio = $shortBio;
+    }
+
+    public function getLongBio(): string
+    {
+        return $this->longBio;
+    }
+
+    public function setLongBio(string $longBio): void
+    {
+        $this->longBio = $longBio;
+    }
+
+    public function isCulture(): bool
+    {
+        return $this->culture;
+    }
+
+    public function setCulture(bool $culture): void
+    {
+        $this->culture = $culture;
     }
 
     public function getOrganizations(): Collection
