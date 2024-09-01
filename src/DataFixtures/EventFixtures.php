@@ -30,7 +30,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Festival Sertão Criativo',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_3,
-            'project' => ProjectFixtures::PROJECT_ID_2,
+            'project' => InitiativeFixtures::INITIATIVE_ID_2,
             'parent' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'createdAt' => '2024-07-10T11:30:00+00:00',
@@ -54,7 +54,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Músical o vento da Caatinga',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
-            'project' => ProjectFixtures::PROJECT_ID_7,
+            'project' => InitiativeFixtures::INITIATIVE_ID_7,
             'parent' => null,
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'createdAt' => '2024-07-16T17:22:00+00:00',
@@ -66,7 +66,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Encontro de Saberes',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
-            'project' => ProjectFixtures::PROJECT_ID_9,
+            'project' => InitiativeFixtures::INITIATIVE_ID_9,
             'parent' => self::EVENT_ID_3,
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'createdAt' => '2024-07-17T15:12:00+00:00',
@@ -78,7 +78,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Vozes do Interior',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
-            'project' => ProjectFixtures::PROJECT_ID_5,
+            'project' => InitiativeFixtures::INITIATIVE_ID_5,
             'parent' => self::EVENT_ID_3,
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'createdAt' => '2024-07-22T16:20:00+00:00',
@@ -90,7 +90,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Cores do Sertão',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_3,
-            'project' => ProjectFixtures::PROJECT_ID_10,
+            'project' => InitiativeFixtures::INITIATIVE_ID_10,
             'parent' => self::EVENT_ID_3,
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'createdAt' => '2024-08-10T11:26:00+00:00',
@@ -102,7 +102,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Raízes do Sertão',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
-            'project' => ProjectFixtures::PROJECT_ID_1,
+            'project' => InitiativeFixtures::INITIATIVE_ID_1,
             'parent' => self::EVENT_ID_3,
             'createdBy' => AgentFixtures::AGENT_ID_4,
             'createdAt' => '2024-08-11T15:54:00+00:00',
@@ -114,7 +114,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Festival da Rapadura',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
-            'project' => ProjectFixtures::PROJECT_ID_2,
+            'project' => InitiativeFixtures::INITIATIVE_ID_2,
             'parent' => null,
             'createdBy' => AgentFixtures::AGENT_ID_4,
             'createdAt' => '2024-08-12T14:24:00+00:00',
@@ -126,7 +126,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Cultura em ação',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_10,
-            'project' => ProjectFixtures::PROJECT_ID_4,
+            'project' => InitiativeFixtures::INITIATIVE_ID_4,
             'parent' => null,
             'createdBy' => AgentFixtures::AGENT_ID_5,
             'createdAt' => '2024-08-13T20:25:00+00:00',
@@ -138,7 +138,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'name' => 'Nordeste Literário',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
-            'project' => ProjectFixtures::PROJECT_ID_1,
+            'project' => InitiativeFixtures::INITIATIVE_ID_1,
             'parent' => null,
             'createdBy' => AgentFixtures::AGENT_ID_5,
             'createdAt' => '2024-08-14T10:00:00+00:00',
@@ -171,7 +171,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             }
 
             if (null !== $eventData['project']) {
-                $project = $this->getReference(sprintf('%s-%s', ProjectFixtures::PROJECT_ID_PREFIX, $eventData['project']));
+                $project = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $eventData['project']));
                 $event->setProject($project);
             }
 
@@ -193,7 +193,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
         return [
             AgentFixtures::class,
             SpaceFixtures::class,
-            ProjectFixtures::class,
+            InitiativeFixtures::class,
         ];
     }
 }

@@ -10,6 +10,7 @@ agents: Agentes
 events: Eventos
 spaces: Espacios
 projects: Proyectos
+initiatives: Iniciativas
 notifications: Notificaciones
 login: Entrar
 check: Consultar
@@ -37,7 +38,7 @@ homepage.find_initiatives: Encuentre leyes de financiación, avisos públicos de
 homepage.happening_now: Ocurriendo ahora
 homepage.cultural_scene: Mantente al tanto de todo lo que está ocurriendo en el escenario cultural de Ceará!
 homepage.contribute_maps: Contribuye con Mapas
-homepage.add_events: Pon tus eventos, espacios, proyectos y oportunidades como avisos públicos y concursos en el radar cultural, para que las personas participen de lo que está sucediendo en la región. Con Mapas haces todo esto de manera colaborativa e interactiva, democratizando el acceso a la cultura.
+homepage.add_events: Pon tus eventos, espacios, iniciativas y oportunidades como avisos públicos y concursos en el radar cultural, para que las personas participen de lo que está sucediendo en la región. Con Mapas haces todo esto de manera colaborativa e interactiva, democratizando el acceso a la cultura.
 homepage.start_now: EMPEZAR AHORA
 homepage.locate_on_map: Localiza en el mapa
 homepage.find_nearby: Encuentra las actividades cercanas a ti.
