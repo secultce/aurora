@@ -1,0 +1,33 @@
+openapi: 3.0.2
+info:
+  title: API Mapinha
+  description: |-
+    API responsável por praticamente todas as funcionalidades de gerenciamento:
+    - Agentes
+    - Organizações
+    - Oportunidades
+    - Iniciativas
+    - Eventos
+    - Espaços
+    - Usuários
+
+    Links Importantes:
+    - [Github](https://github.com/secultce/mapinha)
+
+  license:
+    name: GPLv3
+  version: 0.0.1
+externalDocs:
+  description: Find out more about Swagger
+  url: http://swagger.io
+servers:
+  - url: /api
+tags:
+  - name: Exemplo
+    description: Um grupo de endpoints de exemplo
+paths:
+  /example:
+    $ref: './components/paths/example/get.yaml'
+
+components:
+  schemas:
