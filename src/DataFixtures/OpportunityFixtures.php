@@ -32,7 +32,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_1,
-            'project' => ProjectFixtures::PROJECT_ID_1,
+            'project' => InitiativeFixtures::INITIATIVE_ID_1,
             'event' => EventFixtures::EVENT_ID_1,
             'createdAt' => '2024-09-06T10:00:00+00:00',
             'updatedAt' => null,
@@ -45,7 +45,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_2,
-            'project' => ProjectFixtures::PROJECT_ID_2,
+            'project' => InitiativeFixtures::INITIATIVE_ID_2,
             'event' => EventFixtures::EVENT_ID_2,
             'createdAt' => '2024-09-07T11:00:00+00:00',
             'updatedAt' => null,
@@ -58,7 +58,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_3,
-            'project' => ProjectFixtures::PROJECT_ID_3,
+            'project' => InitiativeFixtures::INITIATIVE_ID_3,
             'event' => EventFixtures::EVENT_ID_3,
             'createdAt' => '2024-09-08T12:00:00+00:00',
             'updatedAt' => null,
@@ -71,7 +71,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_4,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
-            'project' => ProjectFixtures::PROJECT_ID_4,
+            'project' => InitiativeFixtures::INITIATIVE_ID_4,
             'event' => EventFixtures::EVENT_ID_4,
             'createdAt' => '2024-09-09T13:00:00+00:00',
             'updatedAt' => null,
@@ -84,7 +84,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_5,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
-            'project' => ProjectFixtures::PROJECT_ID_5,
+            'project' => InitiativeFixtures::INITIATIVE_ID_5,
             'event' => EventFixtures::EVENT_ID_5,
             'createdAt' => '2024-09-10T14:00:00+00:00',
             'updatedAt' => null,
@@ -97,7 +97,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_6,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
-            'project' => ProjectFixtures::PROJECT_ID_6,
+            'project' => InitiativeFixtures::INITIATIVE_ID_6,
             'event' => EventFixtures::EVENT_ID_6,
             'createdAt' => '2024-09-11T15:00:00+00:00',
             'updatedAt' => null,
@@ -110,7 +110,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_7,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_7,
-            'project' => ProjectFixtures::PROJECT_ID_7,
+            'project' => InitiativeFixtures::INITIATIVE_ID_7,
             'event' => EventFixtures::EVENT_ID_7,
             'createdAt' => '2024-09-12T16:00:00+00:00',
             'updatedAt' => null,
@@ -123,7 +123,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_8,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_8,
-            'project' => ProjectFixtures::PROJECT_ID_8,
+            'project' => InitiativeFixtures::INITIATIVE_ID_8,
             'event' => EventFixtures::EVENT_ID_8,
             'createdAt' => '2024-09-13T17:00:00+00:00',
             'updatedAt' => null,
@@ -136,7 +136,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_9,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_9,
-            'project' => ProjectFixtures::PROJECT_ID_9,
+            'project' => InitiativeFixtures::INITIATIVE_ID_9,
             'event' => EventFixtures::EVENT_ID_9,
             'createdAt' => '2024-09-14T18:00:00+00:00',
             'updatedAt' => null,
@@ -149,7 +149,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'createdBy' => AgentFixtures::AGENT_ID_10,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_10,
-            'project' => ProjectFixtures::PROJECT_ID_10,
+            'project' => InitiativeFixtures::INITIATIVE_ID_10,
             'event' => EventFixtures::EVENT_ID_10,
             'createdAt' => '2024-09-15T19:00:00+00:00',
             'updatedAt' => null,
@@ -181,7 +181,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             }
 
             if (null !== $opportunityData['project']) {
-                $project = $this->getReference(sprintf('%s-%s', ProjectFixtures::PROJECT_ID_PREFIX, $opportunityData['project']));
+                $project = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $opportunityData['project']));
                 $opportunity->setProject($project);
             }
 
@@ -203,7 +203,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         return [
             AgentFixtures::class,
             SpaceFixtures::class,
-            ProjectFixtures::class,
+            InitiativeFixtures::class,
             EventFixtures::class,
         ];
     }

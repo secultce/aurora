@@ -8,7 +8,7 @@ describe('Pagina de Login do ambiente web', () => {
         cy.contains('Agentes');
         cy.contains('Eventos');
         cy.contains('Espaços');
-        cy.contains('Projetos');
+        cy.contains('Iniciativas');
 
         cy.get('p')
             .contains('Boas vindas!');

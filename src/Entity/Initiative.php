@@ -4,15 +4,15 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Repository\ProjectRepository;
+use App\Repository\InitiativeRepository;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: ProjectRepository::class)]
-class Project extends AbstractEntity
+#[ORM\Entity(repositoryClass: InitiativeRepository::class)]
+class Initiative extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
@@ -23,7 +23,7 @@ class Project extends AbstractEntity
 
     #[ORM\ManyToOne(targetEntity: self::class)]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    private ?Project $parent = null;
+    private ?Initiative $parent = null;
 
     #[ORM\ManyToOne(targetEntity: Space::class)]
     #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
@@ -62,12 +62,12 @@ class Project extends AbstractEntity
         $this->name = $name;
     }
 
-    public function getParent(): ?Project
+    public function getParent(): ?Initiative
     {
         return $this->parent;
     }
 
-    public function setParent(?Project $parent): void
+    public function setParent(?Initiative $parent): void
     {
         $this->parent = $parent;
     }

@@ -9,7 +9,7 @@ describe('Página de Home do ambiente web', () => {
         'Eventos',
         'Espaços',
         'Agentes',
-        'Projetos'
+        'Iniciativas'
     ];
 
     it('Garante que o navbar existe', () => {

@@ -10,6 +10,7 @@ agents: Agents
 events: Events
 spaces: Spaces
 projects: Projects
+initiatives: Initiatives
 notifications: Notifications
 login: Login
 check: Check out
@@ -37,7 +38,7 @@ homepage.find_initiatives: Find funding laws, calls for proposals, exhibitions, 
 homepage.happening_now: Happening now
 homepage.cultural_scene: Stay updated on everything happening in the cultural scene of Ceará!
 homepage.contribute_maps: Contribute to Mapas
-homepage.add_events: Add your events, spaces, projects, and opportunities like notices and contests to the cultural radar, so people can participate in what's happening in the region. With Mapas, you do all this in a collaborative and interactive way, democratizing access to culture.
+homepage.add_events: Add your events, spaces, initiatives, and opportunities like notices and contests to the cultural radar, so people can participate in what's happening in the region. With Mapas, you do all this in a collaborative and interactive way, democratizing access to culture.
 homepage.start_now: START NOW
 homepage.locate_on_map: Locate on the map
 homepage.find_nearby: Find activities near you.
