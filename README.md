@@ -7,10 +7,12 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 ## Tecnologias
 
 - **PHP** 8.3
-- **PostgreSQL** 13
-- **MongoDB**
-- **Nginx**
+- **PostgreSQL** 16
+- **MongoDB** 7
 - **Symfony** 7
+- **Bootstrap/MapaCulturalDesign** 5.3 
+
+[Acesse aqui para entender as decisões](./help/STACK)
 
 ## Instalação 
 <details>
@@ -81,7 +83,8 @@ flowchart TD
     CW --HTML/CSS/JS--> B
 ```
 
-Para saber mais sobre nossas decisões técnicas [acesse aqui](./help/README.md)
+- Para saber mais sobre nossas decisões técnicas [acesse aqui](./help/README.md)
+- Para entender nosso fluxo de desenvolvimento decisões técnicas [clique aqui](./help/DEV-FLOW.md)
 </details>
 
 ## Design UI/UX
