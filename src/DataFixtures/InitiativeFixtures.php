@@ -12,7 +12,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 
 final class InitiativeFixtures extends Fixture implements DependentFixtureInterface
 {
-    public const string INITIATIVE_ID_PREFIX = 'Initiative';
+    public const string INITIATIVE_ID_PREFIX = 'initiative';
     public const string INITIATIVE_ID_1 = 'f0774ecd-4860-4b8c-9607-32090dc31f71';
     public const string INITIATIVE_ID_2 = 'a65a9657-c527-4f33-a06e-60c2e219136e';
     public const string INITIATIVE_ID_3 = 'd12efd05-efc2-457a-a59e-8183147ed9ec';

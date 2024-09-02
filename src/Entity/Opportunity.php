@@ -29,9 +29,9 @@ class Opportunity extends AbstractEntity
     #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     private ?Space $space = null;
 
-    #[ORM\ManyToOne(targetEntity: Project::class)]
-    #[ORM\JoinColumn(name: 'project_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    private ?Project $project = null;
+    #[ORM\ManyToOne(targetEntity: Initiative::class)]
+    #[ORM\JoinColumn(name: 'initiative_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    private ?Initiative $initiative = null;
 
     #[ORM\ManyToOne(targetEntity: Event::class)]
     #[ORM\JoinColumn(name: 'event_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
@@ -90,14 +90,14 @@ class Opportunity extends AbstractEntity
         $this->space = $space;
     }
 
-    public function getProject(): ?Project
+    public function getInitiative(): ?Initiative
     {
-        return $this->project;
+        return $this->initiative;
     }
 
-    public function setProject(?Project $project): void
+    public function setInitiative(?Initiative $initiative): void
     {
-        $this->project = $project;
+        $this->initiative = $initiative;
     }
 
     public function getEvent(): ?Event
