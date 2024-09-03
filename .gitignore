@@ -26,7 +26,6 @@
 /assets/vendor/
 ###< symfony/asset-mapper ###
 
-###> symfony/phpunit-bridge ###
-.phpunit.result.cache
-/phpunit.xml
-###< symfony/phpunit-bridge ###
+###> league/flysystem-bundle ###
+/storage
+###> league/flysystem-bundle ###
