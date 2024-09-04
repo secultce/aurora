@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Espaços
+  summary: Recupera um único espaço
+  responses:
+    '200':
+      description: Espaço encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space/SpaceGetItemResponse.yaml'
+    '404':
+      description: Espaço não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space/SpaceNotFound.yaml'
