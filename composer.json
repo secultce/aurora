@@ -12,6 +12,7 @@
         "doctrine/doctrine-migrations-bundle": "^3.3",
         "doctrine/mongodb-odm-bundle": "^5.0",
         "doctrine/orm": "^3.2",
+        "league/flysystem-bundle": "^3.3",
         "symfony/asset": "7.1.*",
         "symfony/asset-mapper": "7.1.*",
         "symfony/console": "7.1.*",
