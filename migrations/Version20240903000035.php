@@ -89,6 +89,8 @@ final class Version20240903000035 extends AbstractMigration
         $this->addSql('ALTER TABLE initiative ADD CONSTRAINT fk_initiative_created_by_id_agent FOREIGN KEY (created_by_id) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE initiative ADD CONSTRAINT fk_initiative_parent_id_initiative FOREIGN KEY (parent_id) REFERENCES initiative (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE initiative ADD CONSTRAINT fk_initiative_space_id_space FOREIGN KEY (space_id) REFERENCES space (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE space ADD CONSTRAINT fk_space_created_by_id_agent FOREIGN KEY (created_by_id) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE space ADD CONSTRAINT fk_space_parent_id_space FOREIGN KEY (parent_id) REFERENCES space (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
 
         $this->addSql('
             CREATE TABLE event (
@@ -117,7 +119,7 @@ final class Version20240903000035 extends AbstractMigration
         $this->addSql('ALTER TABLE event ADD CONSTRAINT fk_event_space_id_space FOREIGN KEY (space_id) REFERENCES space (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE event ADD CONSTRAINT fk_event_initiative_id_initiative FOREIGN KEY (initiative_id) REFERENCES initiative (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE event ADD CONSTRAINT fk_event_parent_id_event FOREIGN KEY (parent_id) REFERENCES event (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE event ADD CONSTRAINT fk_event_created_by_id_agent FOREIGN KEY (created_by_id) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE event ADD CONSTRAINT fk_event_created_by_id_agent FOREIGN KEY (created_by_id) REFERENCES agent (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
 
         $this->addSql('
             CREATE TABLE opportunity (
@@ -165,7 +167,6 @@ final class Version20240903000035 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN organization.owner_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN organization.created_by IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN organization.created_at IS \'(DC2Type:datetime_immutable)\'');
-
         $this->addSql('CREATE TABLE organizations_agents (
             organization_id UUID NOT NULL,
             agent_id UUID NOT NULL,
@@ -175,7 +176,6 @@ final class Version20240903000035 extends AbstractMigration
         $this->addSql('CREATE INDEX IDX_FAEB3B73414710B ON organizations_agents (agent_id)');
         $this->addSql('COMMENT ON COLUMN organizations_agents.organization_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN organizations_agents.agent_id IS \'(DC2Type:uuid)\'');
-
         $this->addSql('ALTER TABLE organization ADD CONSTRAINT fk_organization_owner_id_agent FOREIGN KEY (owner_id) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE organization ADD CONSTRAINT fk_organization_agent_id_agent FOREIGN KEY (created_by) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE organizations_agents ADD CONSTRAINT fk_organizations_agents_organization_id_organization FOREIGN KEY (organization_id) REFERENCES organization (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
@@ -184,10 +184,10 @@ final class Version20240903000035 extends AbstractMigration
 
     public function down(Schema $schema): void
     {
-        $this->addSql('ALTER TABLE organization DROP CONSTRAINT fk_organization_owner_id_agent');
-        $this->addSql('ALTER TABLE organization DROP CONSTRAINT fk_organization_agent_id_agent');
         $this->addSql('ALTER TABLE organizations_agents DROP CONSTRAINT fk_organizations_agents_organization_id_organization');
         $this->addSql('ALTER TABLE organizations_agents DROP CONSTRAINT fk_organizations_agents_agent_id_agent');
+        $this->addSql('ALTER TABLE organization DROP CONSTRAINT fk_organization_owner_id_agent');
+        $this->addSql('ALTER TABLE organization DROP CONSTRAINT fk_organization_agent_id_agent');
         $this->addSql('ALTER TABLE opportunity DROP CONSTRAINT fk_opportunity_parent_id_opportunity');
         $this->addSql('ALTER TABLE opportunity DROP CONSTRAINT fk_opportunity_space_id_space');
         $this->addSql('ALTER TABLE opportunity DROP CONSTRAINT fk_opportunity_initiative_id_initiative');
@@ -201,14 +201,16 @@ final class Version20240903000035 extends AbstractMigration
         $this->addSql('ALTER TABLE initiative DROP CONSTRAINT fk_initiative_created_by_id_agent');
         $this->addSql('ALTER TABLE initiative DROP CONSTRAINT fk_initiative_parent_id_initiative');
         $this->addSql('ALTER TABLE initiative DROP CONSTRAINT fk_initiative_space_id_space');
+        $this->addSql('ALTER TABLE space DROP CONSTRAINT fk_space_created_by_id_agent');
+        $this->addSql('ALTER TABLE space DROP CONSTRAINT fk_space_parent_id_space');
 
-        $this->addSql('DROP TABLE agent');
-        $this->addSql('DROP TABLE "app_user"');
+        $this->addSql('DROP TABLE organizations_agents');
+        $this->addSql('DROP TABLE organization');
+        $this->addSql('DROP TABLE opportunity');
         $this->addSql('DROP TABLE event');
         $this->addSql('DROP TABLE initiative');
-        $this->addSql('DROP TABLE opportunity');
-        $this->addSql('DROP TABLE organization');
-        $this->addSql('DROP TABLE organizations_agents');
         $this->addSql('DROP TABLE space');
+        $this->addSql('DROP TABLE agent');
+        $this->addSql('DROP TABLE "app_user"');
     }
 }
