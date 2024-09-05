@@ -12,7 +12,9 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 - **Symfony** 7
 - **Bootstrap/MapaCulturalDesign** 5.3 
 
-[Acesse aqui para entender as decisões](./help/STACK)
+[Acesse aqui para entender as decisões](./help/STACK.md)
+
+[Acesse aqui os diagramas](./help/DIAGRAM.md)
 
 ## Instalação 
 <details>
