@@ -38,7 +38,7 @@ class Opportunity extends AbstractEntity
     private ?Event $event = null;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
-    #[ORM\JoinColumn(name: 'created_by', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
+    #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     private Agent $createdBy;
 
     #[ORM\Column]

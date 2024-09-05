@@ -32,6 +32,7 @@ final class Version20240903000035 extends AbstractMigration
         ');
         $this->addSql('COMMENT ON COLUMN app_user.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN app_user.created_at IS \'(DC2Type:datetime_immutable)\'');
+
         $this->addSql('CREATE UNIQUE INDEX UNIQ_88BDF3E9E7927C74 ON app_user (email)');
 
         $this->addSql('
@@ -129,7 +130,7 @@ final class Version20240903000035 extends AbstractMigration
                 space_id UUID DEFAULT NULL,
                 initiative_id UUID DEFAULT NULL,
                 event_id UUID DEFAULT NULL,
-                created_by UUID NOT NULL,
+                created_by_id UUID NOT NULL,
                 created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL DEFAULT NOW(),
                 updated_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL,
                 deleted_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL,
@@ -141,19 +142,19 @@ final class Version20240903000035 extends AbstractMigration
         $this->addSql('COMMENT ON COLUMN opportunity.space_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN opportunity.initiative_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN opportunity.event_id IS \'(DC2Type:uuid)\'');
-        $this->addSql('COMMENT ON COLUMN opportunity.created_by IS \'(DC2Type:uuid)\'');
+        $this->addSql('COMMENT ON COLUMN opportunity.created_by_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN opportunity.created_at IS \'(DC2Type:datetime_immutable)\'');
 
         $this->addSql('ALTER TABLE opportunity ADD CONSTRAINT fk_opportunity_parent_id_opportunity FOREIGN KEY (parent_id) REFERENCES opportunity (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE opportunity ADD CONSTRAINT fk_opportunity_space_id_space FOREIGN KEY (space_id) REFERENCES space (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE opportunity ADD CONSTRAINT fk_opportunity_initiative_id_initiative FOREIGN KEY (initiative_id) REFERENCES initiative (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE opportunity ADD CONSTRAINT fk_opportunity_event_id_event FOREIGN KEY (event_id) REFERENCES event (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE opportunity ADD CONSTRAINT fk_opportunity_created_by_id_agent FOREIGN KEY (created_by) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE opportunity ADD CONSTRAINT fk_opportunity_created_by_id_agent FOREIGN KEY (created_by_id) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
 
         $this->addSql('CREATE TABLE organization (
             id UUID NOT NULL,
             owner_id UUID NOT NULL,
-            created_by UUID NOT NULL,
+            created_by_id UUID NOT NULL,
             name VARCHAR(100) NOT NULL,
             description VARCHAR(255) DEFAULT NULL,
             created_at TIMESTAMP(0) WITHOUT TIME ZONE NOT NULL,
@@ -161,23 +162,23 @@ final class Version20240903000035 extends AbstractMigration
             deleted_at TIMESTAMP(0) WITHOUT TIME ZONE DEFAULT NULL,
             PRIMARY KEY(id)
         )');
-        $this->addSql('CREATE INDEX IDX_C1EE637C7E3C61F9 ON organization (owner_id)');
-        $this->addSql('CREATE INDEX IDX_C1EE637CDE12AB56 ON organization (created_by)');
+
         $this->addSql('COMMENT ON COLUMN organization.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN organization.owner_id IS \'(DC2Type:uuid)\'');
-        $this->addSql('COMMENT ON COLUMN organization.created_by IS \'(DC2Type:uuid)\'');
+        $this->addSql('COMMENT ON COLUMN organization.created_by_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN organization.created_at IS \'(DC2Type:datetime_immutable)\'');
+
         $this->addSql('CREATE TABLE organizations_agents (
             organization_id UUID NOT NULL,
             agent_id UUID NOT NULL,
             PRIMARY KEY(organization_id, agent_id)
         )');
-        $this->addSql('CREATE INDEX IDX_FAEB3B732C8A3DE ON organizations_agents (organization_id)');
-        $this->addSql('CREATE INDEX IDX_FAEB3B73414710B ON organizations_agents (agent_id)');
+
         $this->addSql('COMMENT ON COLUMN organizations_agents.organization_id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN organizations_agents.agent_id IS \'(DC2Type:uuid)\'');
+
         $this->addSql('ALTER TABLE organization ADD CONSTRAINT fk_organization_owner_id_agent FOREIGN KEY (owner_id) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE organization ADD CONSTRAINT fk_organization_agent_id_agent FOREIGN KEY (created_by) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE organization ADD CONSTRAINT fk_organization_created_by_id_agent FOREIGN KEY (created_by_id) REFERENCES agent (id) ON DELETE SET NULL NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE organizations_agents ADD CONSTRAINT fk_organizations_agents_organization_id_organization FOREIGN KEY (organization_id) REFERENCES organization (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
         $this->addSql('ALTER TABLE organizations_agents ADD CONSTRAINT fk_organizations_agents_agent_id_agent FOREIGN KEY (agent_id) REFERENCES agent (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
@@ -187,7 +188,7 @@ final class Version20240903000035 extends AbstractMigration
         $this->addSql('ALTER TABLE organizations_agents DROP CONSTRAINT fk_organizations_agents_organization_id_organization');
         $this->addSql('ALTER TABLE organizations_agents DROP CONSTRAINT fk_organizations_agents_agent_id_agent');
         $this->addSql('ALTER TABLE organization DROP CONSTRAINT fk_organization_owner_id_agent');
-        $this->addSql('ALTER TABLE organization DROP CONSTRAINT fk_organization_agent_id_agent');
+        $this->addSql('ALTER TABLE organization DROP CONSTRAINT fk_organization_created_by_id_agent');
         $this->addSql('ALTER TABLE opportunity DROP CONSTRAINT fk_opportunity_parent_id_opportunity');
         $this->addSql('ALTER TABLE opportunity DROP CONSTRAINT fk_opportunity_space_id_space');
         $this->addSql('ALTER TABLE opportunity DROP CONSTRAINT fk_opportunity_initiative_id_initiative');
