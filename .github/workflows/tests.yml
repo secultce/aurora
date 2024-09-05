@@ -37,6 +37,12 @@ jobs:
       - name: Create the phpunit.xml
         run: docker compose exec --user root php cp phpunit.xml.dist phpunit.xml
 
+      - name: Run migrations
+        run: docker compose exec php bin/console d:m:migrate -n
+
+      - name: Run fixtures
+        run: docker compose exec php bin/console d:f:l -n
+
       - name: Start the PHPUnit
         run: docker compose exec php bin/phpunit
 

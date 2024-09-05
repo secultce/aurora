@@ -1,0 +1,38 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador do agente"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome do agente"
+    example: "Fulano"
+  shortBio:
+    type: string
+    maxLength: 100
+    description: "Descrição curta do agente"
+    example: "Um pouco sobre fulano"
+  longBio:
+    type: string
+    maxLength: 255
+    description: "Muito mais conteúdo sobre Fulano"
+  culture:
+    type: boolean
+    description: "Identificador se o agente é cultural ou não"
+    example: false
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação do agente"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização do agente"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão do agente"

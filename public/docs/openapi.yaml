@@ -23,11 +23,16 @@ externalDocs:
 servers:
   - url: /api
 tags:
-  - name: Exemplo
-    description: Um grupo de endpoints de exemplo
+  - name: Espaços
+    description: Endpoints relacionados aos espaços
 paths:
-  /example:
-    $ref: './components/paths/example/get.yaml'
-
+  /spaces:
+    $ref: './components/paths/space/Collection.yaml'
+  /spaces/{id}:
+    $ref: './components/paths/space/Item.yaml'
 components:
   schemas:
+    Agent:
+      $ref: './components/schemas/agent.yaml'
+    Space:
+      $ref: './components/schemas/space.yaml'

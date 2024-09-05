@@ -2,3 +2,10 @@ api_example:
   resource: 'api/example.yaml'
   prefix: /api
   name_prefix: api_example_
+
+api_space:
+  resource: 'api/space.yaml'
+  prefix: /api/spaces
+  name_prefix: api_space_
+  trailing_slash_on_root: false
+
