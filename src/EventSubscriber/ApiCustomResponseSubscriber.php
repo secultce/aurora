@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use App\Exception\ResourceNotFoundException;
+use App\Log\Log;
 use App\Response\ErrorGeneralResponse;
 use App\Response\ErrorNotFoundResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
@@ -36,6 +37,8 @@ class ApiCustomResponseSubscriber implements EventSubscriberInterface
 
             return;
         }
+
+        Log::critical('critical', ['message' => $exception->getMessage()]);
 
         $event->setResponse(
             new ErrorGeneralResponse(
