@@ -18,18 +18,18 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
-    'mapaculturaldesign' => [
-        'version' => '5.3.6',
+    'aurora-user-interface' => [
+        'version' => '5.3.8',
     ],
     '@popperjs/core' => [
         'version' => '2.11.8',
     ],
-    'mapaculturaldesign/dist/css/bootstrap.min.css' => [
-        'version' => '5.3.6',
+    'aurora-user-interface/dist/css/bootstrap.min.css' => [
+        'version' => '5.3.8',
         'type' => 'css',
     ],
-    'mapaculturaldesign/dist/css/custom.css' => [
-        'version' => '5.3.6',
+    'aurora-user-interface/dist/css/custom.css' => [
+        'version' => '5.3.8',
         'type' => 'css',
     ],
 ];
