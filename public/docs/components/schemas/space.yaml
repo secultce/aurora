@@ -18,16 +18,13 @@ properties:
         format: uuid
         description: "Identificador do espaço pai"
   createdAt:
-    type: string
-    format: date-time
+    $ref: '../common-types/date.yaml'
     description: "Data e hora da criação do espaço"
   updatedAt:
-    type: string
-    format: date-time
+    $ref: '../common-types/date.yaml'
     nullable: true
     description: "Data e hora da última atualização do espaço"
   deletedAt:
-    type: string
-    format: date-time
+    $ref: '../common-types/date.yaml'
     nullable: true
     description: "Data e hora da exclusão do espaço"

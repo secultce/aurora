@@ -23,9 +23,15 @@ externalDocs:
 servers:
   - url: /api
 tags:
+  - name: Agentes
+    description: Endpoints relacionados aos agentes
   - name: Espaços
     description: Endpoints relacionados aos espaços
 paths:
+  /agents:
+    $ref: './components/paths/agent/Collection.yaml'
+  /agents/{id}:
+    $ref: './components/paths/agent/Item.yaml'
   /spaces:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
@@ -34,5 +40,7 @@ components:
   schemas:
     Agent:
       $ref: './components/schemas/agent.yaml'
+    Organization:
+      $ref: './components/schemas/organization.yaml'
     Space:
       $ref: './components/schemas/space.yaml'

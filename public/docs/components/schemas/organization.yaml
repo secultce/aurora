@@ -1,0 +1,52 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da organização"
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da organização"
+    example: "Organização"
+  agents:
+    type: array
+    items:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: "Identificador do agente"
+          example: "123e4567-e89b-12d3-a456-426614174000"
+    description: "Lista de agentes da organização"
+  owner:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+        example: "123e4567-e89b-12d3-a456-426614174000"
+    description: "Proprietário da organização"
+  createdBy:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+        example: "123e4567-e89b-12d3-a456-426614174000"
+    description: "Criador da organização"
+  createdAt:
+    $ref: '../common-types/date.yaml'
+    description: "Data e hora da criação da organização"
+  updatedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da última atualização da organização"
+  deletedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da exclusão da organização"
