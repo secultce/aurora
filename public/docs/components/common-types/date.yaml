@@ -1,12 +1,3 @@
-type: object
-properties:
-  date:
-    type: string
-    example: '2023-12-31 23:59:59.00000'
-  timezone_type:
-    type: integer
-    example: 3
-  timezone:
-    type: string
-    example: America/Fortaleza
-description: Um objeto data
+type: string
+format: date-time
+example: "2024-07-10T11:30:00+00:00"

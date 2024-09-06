@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Agentes
+  summary: Recupera um único agente
+  responses:
+    '200':
+      description: Agente encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/agent/AgentGetItemResponse.yaml'
+    '404':
+      description: Agente não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/agent/AgentNotFound.yaml'

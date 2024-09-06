@@ -19,31 +19,39 @@ class Agent extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups('space.get')]
+    #[Groups(['agent.get', 'space.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['agent.get'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['agent.get'])]
     private string $shortBio;
 
     #[ORM\Column(length: 255)]
+    #[Groups(['agent.get'])]
     private string $longBio;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['agent.get'])]
     private bool $culture;
 
     #[ORM\ManyToMany(targetEntity: Organization::class, mappedBy: 'agents')]
+    #[Groups(['agent.get'])]
     private Collection $organizations;
 
     #[ORM\Column]
+    #[Groups(['agent.get'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['agent.get'])]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['agent.get'])]
     private ?DateTime $deletedAt = null;
 
     public function __construct()
