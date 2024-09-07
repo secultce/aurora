@@ -36,6 +36,10 @@ paths:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
     $ref: './components/paths/space/Item.yaml'
+  /organizations:
+    $ref: './components/paths/organization/Collection.yaml'
+  /organizations/{id}:
+    $ref: './components/paths/organization/Item.yaml'
 components:
   schemas:
     Agent:

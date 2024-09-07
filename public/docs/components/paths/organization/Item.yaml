@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Organizações
+  summary: Recupera um única organização
+  responses:
+    '200':
+      description: Organização encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/organization/OrganizationGetItemResponse.yaml'
+    '404':
+      description: Organização não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/organization/OrganizationNotFound.yaml'

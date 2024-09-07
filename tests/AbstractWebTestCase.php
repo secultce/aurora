@@ -19,6 +19,15 @@ abstract class AbstractWebTestCase extends WebTestCase
         self::assertSame($expectedContent, $content);
     }
 
+    protected function assertJsonContains(array $expectedContent): void
+    {
+        $response = $this->getCurrentResponse();
+
+        $content = json_decode($response->getContent(), true);
+
+        $this->assertContains($expectedContent, $content);
+    }
+
     protected function getCurrentResponse(): Response
     {
         $response = self::getClient()->getResponse();
