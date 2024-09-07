@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Organizações
+  summary: Recupera uma lista de organizações
+  responses:
+    '200':
+      description: Lista de organizações
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              allOf:
+                - $ref: '../../responses/organization/OrganizationGetCollectionResponse.yaml'

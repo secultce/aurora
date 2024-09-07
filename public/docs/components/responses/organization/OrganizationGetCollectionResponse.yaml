@@ -1,0 +1,30 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da organização"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da organização"
+  description:
+    type: string
+    maxLength: 255
+    description: "Descrição da organização"
+  createdBy:
+    $ref: '../../schemas/agent.yaml'
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação da organização"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização da organização"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão da organização"

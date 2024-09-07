@@ -10,6 +10,11 @@ properties:
     maxLength: 100
     description: "Nome da organização"
     example: "Organização"
+  description:
+    type: string
+    maxLength: 100
+    description: "Descrição da organização"
+    example: "Organização tal"
   agents:
     type: array
     items:

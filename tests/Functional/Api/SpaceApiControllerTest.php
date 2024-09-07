@@ -171,6 +171,21 @@ class SpaceApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
+    public function testGetAResourceWhenNotFound(): void
+    {
+        $client = static::createClient();
+
+        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_found',
+            'error_details' => [
+                'description' => 'The requested Space was not found.',
+            ],
+        ]);
+    }
+
     public function testDeleteAResourceWhenNotFound(): void
     {
         $client = static::createClient();

@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: OrganizationRepository::class)]
@@ -18,35 +19,44 @@ class Organization extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
+    #[Groups('organization.get')]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups('organization.get')]
     private string $name;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('organization.get')]
     private ?string $description = null;
 
     #[ORM\JoinTable(name: 'organizations_agents')]
     #[ORM\JoinColumn(name: 'organization_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'agent_id', referencedColumnName: 'id')]
     #[ORM\ManyToMany(targetEntity: Agent::class, inversedBy: 'organizations')]
+    #[Groups('organization.get')]
     private Collection $agents;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
+    #[Groups('organization.get')]
     private Agent $owner;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
+    #[Groups('organization.get')]
     private Agent $createdBy;
 
     #[ORM\Column]
+    #[Groups('organization.get')]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('organization.get')]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('organization.get')]
     private ?DateTime $deletedAt = null;
 
     public function __construct()
