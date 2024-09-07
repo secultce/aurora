@@ -12,4 +12,6 @@ interface SpaceServiceInterface
     public function get(Uuid $id): Space;
 
     public function list(): array;
+
+    public function remove(Uuid $id): void;
 }
