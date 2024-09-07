@@ -9,6 +9,12 @@ api_agents:
     name_prefix: api_agent_
     trailing_slash_on_root: false
 
+api_initiative:
+  resource: 'api/initiative.yaml'
+  prefix: /api/initiatives
+  name_prefix: api_initiative_
+  trailing_slash_on_root: false
+
 api_space:
   resource: 'api/space.yaml'
   prefix: /api/spaces

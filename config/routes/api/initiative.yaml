@@ -1,0 +1,9 @@
+get:
+  path: /{id}
+  controller: App\Controller\Api\InitiativeApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\InitiativeApiController::list
+  methods: ['GET']

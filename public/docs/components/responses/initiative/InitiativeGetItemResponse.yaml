@@ -1,0 +1,80 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da iniciativa"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da iniciativa"
+  parent:
+    description: "Iniciativa pai"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da iniciativa"
+      name:
+        type: string
+        maxLength: 100
+        description: "Nome da iniciativa"
+      space:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do espaço"
+      createdBy:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do agente"
+      createdAt:
+        type: string
+        format: date-time
+        description: "Data e hora da criação da iniciativa"
+      updatedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da última atualização da iniciativa"
+      deletedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da exclusão da iniciativa"
+  space:
+    description: "Espaço da iniciativa"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do espaço"
+  createdBy:
+    description: "Criador da iniciativa"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação da iniciativa"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização da iniciativa"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão da iniciativa"

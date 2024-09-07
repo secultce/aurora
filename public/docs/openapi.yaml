@@ -32,6 +32,10 @@ paths:
     $ref: './components/paths/agent/Collection.yaml'
   /agents/{id}:
     $ref: './components/paths/agent/Item.yaml'
+  /initiatives:
+    $ref: './components/paths/initiative/Collection.yaml'
+  /initiatives/{id}:
+    $ref: './components/paths/initiative/Item.yaml'
   /spaces:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
@@ -44,6 +48,8 @@ components:
   schemas:
     Agent:
       $ref: './components/schemas/agent.yaml'
+    Initiative:
+      $ref: './components/schemas/initiative.yaml'
     Organization:
       $ref: './components/schemas/organization.yaml'
     Space:
