@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Oportunidades
+  summary: Recupera um única oportunidade
+  responses:
+    '200':
+      description: Oportunidade encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/opportunity/OpportunityGetItemResponse.yaml'
+    '404':
+      description: Oportunidade não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/opportunity/OpportunityNotFound.yaml'

@@ -9,6 +9,7 @@ use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: OpportunityRepository::class)]
@@ -16,38 +17,48 @@ class Opportunity extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
+    #[Groups('opportunity.get')]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups('opportunity.get')]
     private ?string $name = null;
 
     #[ORM\ManyToOne(targetEntity: self::class)]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups('opportunity.get')]
     private ?Opportunity $parent = null;
 
     #[ORM\ManyToOne(targetEntity: Space::class)]
     #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups('opportunity.get')]
     private ?Space $space = null;
 
     #[ORM\ManyToOne(targetEntity: Initiative::class)]
     #[ORM\JoinColumn(name: 'initiative_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups('opportunity.get')]
     private ?Initiative $initiative = null;
 
     #[ORM\ManyToOne(targetEntity: Event::class)]
     #[ORM\JoinColumn(name: 'event_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups('opportunity.get')]
     private ?Event $event = null;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
+    #[Groups('opportunity.get')]
     private Agent $createdBy;
 
     #[ORM\Column]
+    #[Groups('opportunity.get')]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('opportunity.get')]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups('opportunity.get')]
     private ?DateTime $deletedAt = null;
 
     public function getId(): ?Uuid
