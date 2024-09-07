@@ -15,3 +15,19 @@ get:
         application/json:
           schema:
             $ref: '../../responses/space/SpaceNotFound.yaml'
+delete:
+  tags:
+    - Espaços
+  summary: Remove um único espaço
+  responses:
+    '204':
+      description: Não possui conteudo de resposta
+      content:
+        application/json: {}
+
+    '404':
+      description: Espaço não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space/SpaceNotFound.yaml'

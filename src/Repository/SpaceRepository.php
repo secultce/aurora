@@ -14,4 +14,12 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
     {
         parent::__construct($registry, Space::class);
     }
+
+    public function save(Space $space): Space
+    {
+        $this->getEntityManager()->persist($space);
+        $this->getEntityManager()->flush();
+
+        return $space;
+    }
 }

@@ -171,11 +171,11 @@ class SpaceApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function testResourceNotFound(): void
+    public function testDeleteAResourceWhenNotFound(): void
     {
         $client = static::createClient();
 
-        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
+        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         $this->assertResponseBodySame([
@@ -184,5 +184,19 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'description' => 'The requested Space was not found.',
             ],
         ]);
+    }
+
+    public function testDeleteASpaceItemWithSuccess(): void
+    {
+        $client = static::createClient();
+
+        $url = sprintf('%s/%s', self::BASE_URL, SpaceFixtures::SPACE_ID_3);
+
+        $client->request(Request::METHOD_DELETE, $url);
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+
+        $client->request(Request::METHOD_GET, $url);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 }

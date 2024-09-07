@@ -8,10 +8,15 @@ use App\Entity\Space;
 use App\Exception\Space\SpaceResourceNotFoundException;
 use App\Repository\Interface\SpaceRepositoryInterface;
 use App\Service\Interface\SpaceServiceInterface;
+use DateTime;
 use Symfony\Component\Uid\Uuid;
 
 readonly class SpaceService implements SpaceServiceInterface
 {
+    private const DEFAULT_FILTERS = [
+        'deletedAt' => null,
+    ];
+
     public function __construct(
         private SpaceRepositoryInterface $repository
     ) {
@@ -19,7 +24,10 @@ readonly class SpaceService implements SpaceServiceInterface
 
     public function get(Uuid $id): Space
     {
-        $space = $this->repository->find($id);
+        $space = $this->repository->findOneBy([
+            ...['id' => $id],
+            ...self::DEFAULT_FILTERS,
+        ]);
 
         if (null === $space) {
             throw new SpaceResourceNotFoundException();
@@ -30,6 +38,14 @@ readonly class SpaceService implements SpaceServiceInterface
 
     public function list(): array
     {
-        return $this->repository->findAll();
+        return $this->repository->findBy(self::DEFAULT_FILTERS);
+    }
+
+    public function remove(Uuid $id): void
+    {
+        $space = $this->get($id);
+        $space->setDeletedAt(new DateTime());
+
+        $this->repository->save($space);
     }
 }
