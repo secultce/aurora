@@ -1,0 +1,45 @@
+monolog:
+    handlers:
+        errors_5xx:
+            type: stream
+            path: '%kernel.logs_dir%/errors_5xx.log'
+            level: critical
+            channels: ["!event"]
+
+        errors_4xx:
+            type: stream
+            path: '%kernel.logs_dir%/errors_4xx.log'
+            level: error
+            channels: ["!event"]
+
+        debug_log:
+            type: stream
+            path: '%kernel.logs_dir%/debug.log'
+            level: debug
+            channels: ["!event"]
+
+        info_log:
+            type: stream
+            path: '%kernel.logs_dir%/info.log'
+            level: info
+            channels: ["!event"]
+
+        main:
+            type: stream
+            path: '%kernel.logs_dir%/%kernel.environment%.log'
+            level: debug
+
+when@test:
+    monolog:
+        handlers:
+            errors_5xx:
+                path: '%kernel.logs_dir%/tests/errors_5xx.log'
+
+            errors_4xx:
+                path: '%kernel.logs_dir%/tests/errors_4xx.log'
+
+            debug_log:
+                path: '%kernel.logs_dir%/tests/debug.log'
+
+            info_log:
+                path: '%kernel.logs_dir%/tests/info.log'

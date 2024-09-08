@@ -30,3 +30,7 @@ services:
         arguments:
             $filesystem: '@default.storage'
         public: true
+
+    App\EventSubscriber\LoggerInitializerSubscriber:
+        tags:
+            - { name: kernel.event_subscriber, priority: 100 }
