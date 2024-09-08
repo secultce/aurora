@@ -11,4 +11,4 @@ get:
             type: array
             items:
               allOf:
-                - $ref: '../..//responses/space/SpaceGetCollectionResponse.yaml'
+                - $ref: '../../responses/space/SpaceGetCollectionResponse.yaml'

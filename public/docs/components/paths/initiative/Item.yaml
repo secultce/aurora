@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Iniciativas
+  summary: Recupera uma única iniciativa
+  responses:
+    '200':
+      description: Iniciativa encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/initiative/InitiativeGetItemResponse.yaml'
+    '404':
+      description: Iniciativa não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/initiative/InitiativeNotFound.yaml'
