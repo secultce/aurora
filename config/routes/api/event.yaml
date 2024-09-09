@@ -1,0 +1,9 @@
+get:
+  path: /{id}
+  controller: App\Controller\Api\EventApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\EventApiController::list
+  methods: ['GET']

@@ -18,7 +18,7 @@ class Space extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['initiative.get', 'opportunity.get', 'space.get'])]
+    #[Groups(['event.get', 'initiative.get', 'opportunity.get', 'space.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]

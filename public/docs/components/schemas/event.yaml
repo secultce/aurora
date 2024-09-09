@@ -1,0 +1,114 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador do evento"
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome do evento"
+    example: "Evento de cultura"
+  agentGroup:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do grupo de agentes"
+        example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+  space:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do espaço"
+        example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+  initiative:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da iniciativa"
+        example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+  parentEvent:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do evento pai"
+        example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+      name:
+        type: string
+        maxLength: 100
+        description: "Nome do evento pai"
+        example: "Evento de cultura"
+      agentGroup:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do grupo de agentes"
+            example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+          space:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: "Identificador do espaço"
+                example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+          initiative:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: "Identificador da iniciativa"
+                example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+          parent:
+            type: object
+            example: null
+          createby:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: "Identificador do criador do evento pai"
+                example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+          createdAt:
+            $ref: '../common-types/date.yaml'
+            description: "Data e hora da criação do evento"
+          updatedAt:
+            $ref: '../common-types/date.yaml'
+            nullable: true
+            description: "Data e hora da última atualização do evento"
+          deletedAt:
+            $ref: '../common-types/date.yaml'
+            nullable: true
+            description: "Data e hora da exclusão do evento"
+  createby:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do criador do evento"
+        example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+  createdAt:
+    $ref: '../common-types/date.yaml'
+    description: "Data e hora da criação do evento"
+  updatedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da última atualização do evento"
+  deletedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da exclusão do evento"
