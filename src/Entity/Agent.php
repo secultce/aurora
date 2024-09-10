@@ -19,7 +19,7 @@ class Agent extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['agent.get', 'initiative.get', 'space.get', 'organization.get'])]
+    #[Groups(['agent.get', 'initiative.get', 'opportunity.get', 'space.get', 'organization.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]

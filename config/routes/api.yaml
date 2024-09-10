@@ -15,6 +15,12 @@ api_initiative:
   name_prefix: api_initiative_
   trailing_slash_on_root: false
 
+api_opportunity:
+  resource: 'api/opportunity.yaml'
+  prefix: /api/opportunities
+  name_prefix: api_opportunity_
+  trailing_slash_on_root: false
+
 api_space:
   resource: 'api/space.yaml'
   prefix: /api/spaces

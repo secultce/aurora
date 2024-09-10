@@ -36,6 +36,10 @@ paths:
     $ref: './components/paths/initiative/Collection.yaml'
   /initiatives/{id}:
     $ref: './components/paths/initiative/Item.yaml'
+  /opportunities:
+    $ref: './components/paths/opportunity/Collection.yaml'
+  /opportunities/{id}:
+    $ref: './components/paths/opportunity/Item.yaml'
   /spaces:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
@@ -50,6 +54,8 @@ components:
       $ref: './components/schemas/agent.yaml'
     Initiative:
       $ref: './components/schemas/initiative.yaml'
+    Opportunity:
+      $ref: './components/schemas/opportunity.yaml'
     Organization:
       $ref: './components/schemas/organization.yaml'
     Space:
