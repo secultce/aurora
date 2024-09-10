@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\EventSubscriber;
 
 use App\Exception\ResourceNotFoundException;
+use App\Exception\ValidatorException;
 use App\Log\Log;
 use App\Response\ErrorGeneralResponse;
 use App\Response\ErrorNotFoundResponse;
@@ -38,12 +39,38 @@ class ApiCustomResponseSubscriber implements EventSubscriberInterface
             return;
         }
 
+        if ($exception instanceof ValidatorException) {
+            $this->generateValidationError($event);
+
+            return;
+        }
+
         Log::critical('critical', ['message' => $exception->getMessage()]);
 
         $event->setResponse(
             new ErrorGeneralResponse(
                 message: 'error_general',
                 details: ['description' => $exception->getMessage()],
+            )
+        );
+    }
+
+    private function generateValidationError(ExceptionEvent $event): void
+    {
+        $fields = [];
+
+        foreach ($event->getThrowable()->getConstraintViolationList() as $error) {
+            $fields[] = [
+                'field' => $error->getPropertyPath(),
+                'message' => $error->getMessage(),
+            ];
+        }
+
+        $event->setResponse(
+            new ErrorGeneralResponse(
+                'not_valid',
+                Response::HTTP_BAD_REQUEST,
+                $fields
             )
         );
     }

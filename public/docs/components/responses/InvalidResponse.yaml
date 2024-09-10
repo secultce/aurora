@@ -1,0 +1,14 @@
+type: object
+properties:
+  error_message:
+    type: string
+    default: "not_valid"
+  error_details:
+    type: array
+    items:
+      type: object
+      properties:
+        field:
+          type: string
+        message:
+          type: string

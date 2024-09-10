@@ -34,7 +34,7 @@ class ExampleApiTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
 
         $this->assertEquals(json_encode([
-            'message' => 'Olá mundo',
+            'message' => 'Hello world',
         ]), $response);
     }
 }

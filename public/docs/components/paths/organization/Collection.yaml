@@ -1,3 +1,28 @@
+post:
+  tags:
+    - Organizações
+  summary: Cria um única organização
+  requestBody:
+    description: Organização
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/organization/OrganizationPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Organização criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/organization/OrganizationPostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, organização não criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 get:
   tags:
     - Organizações
