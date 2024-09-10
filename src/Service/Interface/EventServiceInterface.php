@@ -12,4 +12,6 @@ interface EventServiceInterface
     public function get(Uuid $id): Event;
 
     public function list(): array;
+
+    public function remove(Uuid $id): void;
 }

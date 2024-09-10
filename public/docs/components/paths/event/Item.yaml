@@ -15,3 +15,18 @@ get:
         application/json:
           schema:
             $ref: '../../responses/event/EventNotFound.yaml'
+delete:
+  tags:
+    - Eventos
+  summary: Remove um único evento
+  responses:
+    '204':
+      description: Não possui conteudo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Evento não encontrado
+      content:
+          application/json:
+            schema:
+              $ref: '../../responses/event/EventNotFound.yaml'

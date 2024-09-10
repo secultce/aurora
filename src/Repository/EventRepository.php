@@ -14,4 +14,12 @@ class EventRepository extends AbstractRepository implements EventRepositoryInter
     {
         parent::__construct($registry, Event::class);
     }
+
+    public function save(Event $event): Event
+    {
+        $this->getEntityManager()->persist($event);
+        $this->getEntityManager()->flush();
+
+        return $event;
+    }
 }
