@@ -4,11 +4,11 @@ info:
   description: |-
     API responsável por praticamente todas as funcionalidades de gerenciamento:
     - Agentes
-    - Organizações
-    - Oportunidades
-    - Iniciativas
-    - Eventos
     - Espaços
+    - Eventos
+    - Iniciativas
+    - Oportunidades
+    - Organizações
     - Usuários
 
     Links Importantes:
@@ -27,11 +27,17 @@ tags:
     description: Endpoints relacionados aos agentes
   - name: Espaços
     description: Endpoints relacionados aos espaços
+  - name: Eventos
+    description: Endpoints relacionados aos eventos
 paths:
   /agents:
     $ref: './components/paths/agent/Collection.yaml'
   /agents/{id}:
     $ref: './components/paths/agent/Item.yaml'
+  /events:
+    $ref: './components/paths/event/Collection.yaml'
+  /events/{id}:
+    $ref: './components/paths/event/Item.yaml'
   /initiatives:
     $ref: './components/paths/initiative/Collection.yaml'
   /initiatives/{id}:
@@ -40,18 +46,20 @@ paths:
     $ref: './components/paths/opportunity/Collection.yaml'
   /opportunities/{id}:
     $ref: './components/paths/opportunity/Item.yaml'
-  /spaces:
-    $ref: './components/paths/space/Collection.yaml'
-  /spaces/{id}:
-    $ref: './components/paths/space/Item.yaml'
   /organizations:
     $ref: './components/paths/organization/Collection.yaml'
   /organizations/{id}:
     $ref: './components/paths/organization/Item.yaml'
+  /spaces:
+    $ref: './components/paths/space/Collection.yaml'
+  /spaces/{id}:
+    $ref: './components/paths/space/Item.yaml'
 components:
   schemas:
     Agent:
       $ref: './components/schemas/agent.yaml'
+    Event:
+      $ref: './components/schemas/event.yaml'
     Initiative:
       $ref: './components/schemas/initiative.yaml'
     Opportunity:

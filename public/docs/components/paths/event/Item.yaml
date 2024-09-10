@@ -1,0 +1,17 @@
+get:
+  tags:
+    - Eventos
+  summary: Recupera um único evento
+  responses:
+    '200':
+      description: Evento encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event/EventGetItemResponse.yaml'
+    '404':
+      description: Evento não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event/EventNotFound.yaml'

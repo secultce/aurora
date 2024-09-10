@@ -18,7 +18,7 @@ class Initiative extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['initiative.get', 'opportunity.get'])]
+    #[Groups(['event.get', 'initiative.get', 'opportunity.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]

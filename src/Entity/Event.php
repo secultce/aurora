@@ -17,39 +17,48 @@ class Event extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups('opportunity.get')]
+    #[Groups(['event.get', 'opportunity.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['event.get'])]
     private ?string $name = null;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'agent_group_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['event.get'])]
     private ?Agent $agentGroup;
 
     #[ORM\ManyToOne(targetEntity: Space::class)]
     #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['event.get'])]
     private ?Space $space;
 
     #[ORM\ManyToOne(targetEntity: Initiative::class)]
     #[ORM\JoinColumn(name: 'initiative_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['event.get'])]
     private ?Initiative $initiative;
 
     #[ORM\ManyToOne(targetEntity: self::class)]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['event.get'])]
     private ?Event $parent = null;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false)]
+    #[Groups(['event.get'])]
     private Agent $createdBy;
 
     #[ORM\Column]
+    #[Groups(['event.get'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['event.get'])]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['event.get'])]
     private ?DateTime $deletedAt = null;
 
     public function getId(): ?Uuid
