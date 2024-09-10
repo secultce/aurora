@@ -8,18 +8,26 @@ use App\Entity\Agent;
 use App\Exception\Agent\AgentResourceNotFoundException;
 use App\Repository\Interface\AgentRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
+use DateTime;
 use Symfony\Component\Uid\Uuid;
 
 readonly class AgentService implements AgentServiceInterface
 {
+    private const DEFAULT_FILTERS = [
+        'deletedAt' => null,
+    ];
+
     public function __construct(
-        private AgentRepositoryInterface $agentRepository,
+        private AgentRepositoryInterface $repository,
     ) {
     }
 
     public function get(Uuid $id): Agent
     {
-        $agent = $this->agentRepository->find($id);
+        $agent = $this->repository->findOneBy([
+            ...['id' => $id],
+            ...self::DEFAULT_FILTERS,
+        ]);
 
         if (null === $agent) {
             throw new AgentResourceNotFoundException();
@@ -30,6 +38,14 @@ readonly class AgentService implements AgentServiceInterface
 
     public function list(): array
     {
-        return $this->agentRepository->findAll();
+        return $this->repository->findBy(self::DEFAULT_FILTERS);
+    }
+
+    public function remove(Uuid $id): void
+    {
+        $agent = $this->get($id);
+        $agent->setDeletedAt(new DateTime());
+
+        $this->repository->save($agent);
     }
 }

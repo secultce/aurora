@@ -165,7 +165,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function testResourceNotFound(): void
+    public function testGetAResourceWhenNotFound(): void
     {
         $client = static::createClient();
 
@@ -178,5 +178,34 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 'description' => 'The requested Agent was not found.',
             ],
         ]);
+    }
+
+    public function testDeleteAResourceWhenNotFound(): void
+    {
+        $client = static::createClient();
+
+        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_found',
+            'error_details' => [
+                'description' => 'The requested Agent was not found.',
+            ],
+        ]);
+    }
+
+    public function testDeleteAnEventItemWithSuccess(): void
+    {
+        $client = static::createClient();
+
+        $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_4);
+
+        $client->request(Request::METHOD_DELETE, $url);
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+
+        $client->request(Request::METHOD_GET, $url);
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 }

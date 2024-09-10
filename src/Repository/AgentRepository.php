@@ -14,4 +14,12 @@ class AgentRepository extends AbstractRepository implements AgentRepositoryInter
     {
         parent::__construct($registry, Agent::class);
     }
+
+    public function save(Agent $agent): Agent
+    {
+        $this->getEntityManager()->persist($agent);
+        $this->getEntityManager()->flush();
+
+        return $agent;
+    }
 }
