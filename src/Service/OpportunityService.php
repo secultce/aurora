@@ -8,6 +8,7 @@ use App\Entity\Opportunity;
 use App\Exception\Opportunity\OpportunityResourceNotFoundException;
 use App\Repository\Interface\OpportunityRepositoryInterface;
 use App\Service\Interface\OpportunityServiceInterface;
+use DateTime;
 use Symfony\Component\Uid\Uuid;
 
 readonly class OpportunityService implements OpportunityServiceInterface
@@ -42,5 +43,9 @@ readonly class OpportunityService implements OpportunityServiceInterface
 
     public function remove(Uuid $id): void
     {
+        $organization = $this->get($id);
+        $organization->setDeletedAt(new DateTime());
+
+        $this->repository->save($organization);
     }
 }
