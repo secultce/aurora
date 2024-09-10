@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
-use App\DataFixtures\SpaceFixtures;
+use App\DataFixtures\Entity\SpaceFixtures;
 use App\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

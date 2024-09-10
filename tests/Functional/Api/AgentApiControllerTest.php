@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
-use App\DataFixtures\AgentFixtures;
+use App\DataFixtures\Entity\AgentFixtures;
 use App\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;

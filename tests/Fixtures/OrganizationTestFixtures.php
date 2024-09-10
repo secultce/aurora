@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Fixtures;
 
-use App\DataFixtures\AgentFixtures;
+use App\DataFixtures\Entity\AgentFixtures;
 use Symfony\Component\Uid\Uuid;
 
 class OrganizationTestFixtures implements TestFixtures

@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
-use App\DataFixtures\AgentFixtures;
-use App\DataFixtures\OrganizationFixtures;
+use App\DataFixtures\Entity\AgentFixtures;
+use App\DataFixtures\Entity\OrganizationFixtures;
 use App\Entity\Organization;
 use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\OrganizationTestFixtures;
@@ -180,7 +180,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
         ]);
     }

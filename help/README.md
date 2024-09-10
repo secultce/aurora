@@ -1,6 +1,6 @@
 # Mapinha - Arquitetura
 
-Essa é a documentação das decisões tećnicas, voltada para desenvolvedores e/ou entusiastas do código.
+Essa é a documentação das decisões técnicas, voltada para desenvolvedores e/ou entusiastas do código.
 
 <details>
     <summary>Acesso Rápido</summary>
@@ -104,7 +104,7 @@ Atente-se para seguir o padrão, um arquivo `.yaml` por controller
 
 #### 4 - Pronto
 
-Feito isso, seu endpoint deverá estar disponivel em:
+Feito isso, seu endpoint deverá estar disponível em:
 <http://localhost:8080/o-que-voce-definiu-como-path>
 
 E deve estar retornando um JSON ou uma página web, dependendo da action que você criou.
@@ -186,13 +186,62 @@ final class Version20241231235959 extends AbstractMigration
 }
 ```
 
-Note que o nome da classe deve informar o momento de sua criação, para que seja mantida uma sequencia temporal da evolução do esquema do banco de dados.
+Note que o nome da classe deve informar o momento de sua criação, para que seja mantida uma sequência temporal da evolução do esquema do banco de dados.
 
 > Documentação oficial das migrations do Doctrine: <https://www.doctrine-project.org/projects/doctrine-migrations/en/3.8/reference/generating-migrations.html>
 </details>
 
+### Migrations ODM
+Atualmente o Doctrine não fornece suporte para migrations em bancos de dados não relacionais, no entanto, foi criada uma estrutura simples para que esse gerenciamento seja exercido.
+
+<details>
+<summary>Como criar uma nova migration</summary>
+
+#### Passo 1 - Criar uma nova classe no diretório `/app/migrations-odm`
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace DoctrineMigrationsOdm;
+
+use Doctrine\ODM\MongoDB\DocumentManager;
+
+final class Version20241231235959
+{
+    public function up(DocumentManager $dm): void
+    {
+        // TODO: Implement the migration
+
+        // Example:
+        // \$dm->getDocumentCollection(YourDocument::class)->updateMany(
+        //     ['field' => 'value'],
+        //     ['\$set' => ['newField' => 'newValue']]
+        // );
+    }
+
+    public function down(DocumentManager $dm): void
+    {
+        // TODO: Implement the rollback
+
+        // Example:
+        // \$dm->getDocumentCollection(YourDocument::class)->updateMany(
+        //     ['field' => 'value'],
+        //     ['\$unset' => ['newField' => '']]
+        // );
+    }
+} 
+```
+Note que o nome da classe deve informar o momento de sua criação, para que seja mantida uma sequência temporal da evolução do esquema do banco de dados.
+
+> É recomendado gerar utilizado o comando `app:mongo:migrations:generate`
+
+</details>
+
+
 ## Command
-Comandos são entradas via CLI (linha de comando) que permitem automatizar alguns processos, como rodar testes, veririfcar estilo de código, e debugar rotas
+Comandos são entradas via CLI (linha de comando) que permitem automatizar alguns processos, como rodar testes, verificar estilo de código, e debugar rotas
 
 <details>
 <summary>Como criar um novo console command</summary>
@@ -232,7 +281,7 @@ php bin/console app:my-command
 Você deverá ver na tela o texto `Hello World!`
 
 #### Passo 3 - Documentação do pacote
-Para criar e gerenciar os nosso commands estamos utilizando o pacote `symfony/console`, para ver sua documentação acesse:
+Para criar e gerenciar os nossos commands estamos utilizando o pacote `symfony/console`, para ver sua documentação acesse:
 
 > Saiba mais em <https://symfony.com/doc/current/console.html>
 
@@ -296,7 +345,7 @@ Documentação do PHPUnit: <https://phpunit.de/index.html>
 <summary>Como criar um novo teste</summary>
 
 ### Criar um novo teste
-Para criar um no cenário de teste funcional, basta adicionar sua nova classe no diretório `/app/tests/functional/`, com o seguinte código:
+Para criar um novo cenário de teste funcional, basta adicionar sua nova classe no diretório `/app/tests/functional/`, com o seguinte código:
 
 ```php
 <?php
@@ -477,7 +526,7 @@ php bin/doctrine
 
 ----
 
-#### Migrations
+#### Migrations ORM
 
 1. **Gerar uma nova migration** com base em alterações no código:
    ```shell
@@ -488,13 +537,29 @@ php bin/doctrine
    php bin/console doctrine:migrations:migrate
    ```
 
+#### Migrations ODM
+
+1. **Gerar uma nova migration** com base em alterações no código:
+   ```shell
+   php bin/console app:mongo:migrations:generate
+   ```
+2. **Executar as migrations** para aplicar as alterações no banco:
+   ```shell
+   php bin/console app:mongo:migrations:execute
+   ```
+
 ----
 
 #### Data Fixtures
 
-1. **Carregar fixtures** (dados de teste) no banco de dados:
+1. **Carregar fixtures** (dados de teste) no banco de dados relacional:
    ```shell
    php bin/console doctrine:fixtures:load
+   ```
+
+2. **Carregar fixtures** (dados de teste) no banco de dados não relacional:
+   ```shell
+   php bin/console doctrine:mongodb:fixtures:load
    ```
 
 </details>

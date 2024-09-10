@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\DataFixtures\Entity;
 
 use App\Entity\Initiative;
 use Doctrine\Bundle\FixturesBundle\Fixture;
