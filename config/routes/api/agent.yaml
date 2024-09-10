@@ -7,3 +7,8 @@ list:
   path: /
   controller: App\Controller\Api\AgentApiController::list
   methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\AgentApiController::remove
+  methods: ['DELETE']
