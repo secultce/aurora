@@ -336,14 +336,60 @@ A injeção de dependência já acontece automaticamente pela própria estrutura
 ## Console Commands
 
 <details>
+<summary>DOCKER</summary>
+
+### Comandos Essenciais do Docker
+
+#### Subir os Containers
+
+Para iniciar todos os containers definidos no arquivo `docker-compose.yml`:
+
+```shell
+docker-compose up -d
+```
+
+A flag `-d` executa os containers em segundo plano (modo "detached").
+
+#### Derrubar os Containers
+
+Para parar e remover todos os containers definidos no `docker-compose.yml`:
+
+```shell
+docker-compose down
+```
+
+#### Verificar Containers Ativos
+
+Para listar todos os containers ativos:
+
+```shell
+docker ps
+```
+
+#### Acessar um Container
+
+Para acessar o shell de um container em execução:
+
+```shell
+docker exec -it <ID_DO_CONTAINER> bash
+```
+
+Substitua `<ID_DO_CONTAINER>` pelo ID do container, que você pode obter com o comando `docker ps`.
+
+</details>
+
+<details>
 <summary>CACHE CLEAR</summary>
 
 ### Limpar cache
-Para executar o comando de limpar cache basta entrar no container da aplicação e executar o seguinte comando:
+
+Para executar o comando de limpar cache basta entrar no container PHP e executar o seguinte comando:
 
 ```shell
 php bin/console cache:clear
 ```
+
+Esse comando remove o cache gerado pelo Symfony, útil para garantir que as alterações sejam refletidas.
 
 </details>
 
@@ -351,58 +397,105 @@ php bin/console cache:clear
 <summary>COMMAND SQL</summary>
 
 ### Executar código SQL
-Para executar um comando SQL basta entrar no container da aplicação e executar o seguinte comando:
+
+Para executar um comando SQL basta entrar no container PHP e executar o seguinte comando:
 
 ```shell
-php bin/console doctrin:query:sql {sql}
+php bin/console doctrine:query:sql {"SEU_COMANDO_SQL"}
 ```
-O argumento chamado de `sql` é requerido e é o comando a ser executar no banco de dados.
+
+Substitua `"SEU_COMANDO_SQL"` pelo comando SQL desejado.
+
 </details>
 
 <details>
-<summary>TESTS</summary>
+<summary>TESTES AUTOMATIZADOS</summary>
 
-### Testes Automatizados
-Para executar os testes, entre no container da aplicação e execute o seguinte comando:
+### Executar Testes Automatizados
+
+Para rodar os testes da aplicação, acesse o container PHP e execute:
 
 ```shell
 php bin/phpunit {path}
 ```
 
-O `path` é opcional, o padrão é "/tests"
+O parâmetro `path` é opcional e se refere ao diretório ou arquivo específico que você deseja testar. O caminho padrão é `/tests`.
+
 </details>
 
 <details>
 <summary>STYLE CODE</summary>
 
-### Style Code
-Para executar o PHP-CS-FIXER basta entrar no container da aplicação e executar
+### Verificar o Estilo do Código (PHP-CS-FIXER)
 
-```shwll
+Para rodar o PHP-CS-FIXER e garantir que o código siga os padrões de estilo definidos, execute:
+
+```shell
 php bin/console app:code-style
 ```
+
+Esse comando aplica correções de estilo e formatação no código da aplicação.
+
 </details>
 
 <details>
-<summary>DATA FIXTURES</summary>
+<summary>ROUTER DEBUG</summary>
 
-### Debug router
-Para listas as routas basta entrar no container da aplicação e executar
-```
+### Listar Rotas Disponíveis
+
+Para listar todas as rotas registradas na aplicação, entre no container PHP e execute:
+
+```shell
 php bin/console debug:router
 ```
 
-> Podemos usar as flags --show-actions e --show-controllers
+Você também pode usar as flags opcionais `--show-actions` e `--show-controllers` para obter mais detalhes sobre as rotas e seus controladores.
+
 </details>
 
 <details>
 <summary>DOCTRINE</summary>
 
-### Doctrine
-Para listas todos os comandos disponiveis para gerenciamento do banco de dados através do doctrine basta entrar no container da aplicação e executar
+#### Doctrine
+Para listas todos os comandos disponiveis para gerenciamento do banco de dados através do doctrine basta entrar no container PHP e executar
 ```
 php bin/doctrine
 ```
+
+----
+
+#### Gerenciamento do Banco de Dados
+
+1. **Remover o banco de dados**:
+   ```shell
+   php bin/console doctrine:database:drop --force
+   ```
+2. **Criar o banco de dados**:
+   ```shell
+   php bin/console doctrine:database:create
+   ```
+
+----
+
+#### Migrations
+
+1. **Gerar uma nova migration** com base em alterações no código:
+   ```shell
+   php bin/console doctrine:migrations:diff
+   ```
+2. **Executar as migrations** para aplicar as alterações no banco:
+   ```shell
+   php bin/console doctrine:migrations:migrate
+   ```
+
+----
+
+#### Data Fixtures
+
+1. **Carregar fixtures** (dados de teste) no banco de dados:
+   ```shell
+   php bin/console doctrine:fixtures:load
+   ```
 
 </details>
 
