@@ -7,3 +7,8 @@ list:
   path: /
   controller: App\Controller\Api\OpportunityApiController::list
   methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\OpportunityApiController::remove
+  methods: ['DELETE']

@@ -15,3 +15,18 @@ get:
         application/json:
           schema:
             $ref: '../../responses/opportunity/OpportunityNotFound.yaml'
+delete:
+  tags:
+    - Oportunidades
+  summary: Remove uma única oportunidade
+  responses:
+    '204':
+      description: Não possui conteudo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Oportunidade não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/opportunity/OpportunityNotFound.yaml'
