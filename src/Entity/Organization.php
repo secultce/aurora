@@ -61,6 +61,7 @@ class Organization extends AbstractEntity
 
     public function __construct()
     {
+        $this->createdAt = new DateTimeImmutable();
         $this->agents = new ArrayCollection();
     }
 

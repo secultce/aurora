@@ -1,3 +1,8 @@
+create:
+  path: /
+  controller: App\Controller\Api\OrganizationApiController::create
+  methods: ['POST']
+
 get:
   path: /{id}
   controller: App\Controller\Api\OrganizationApiController::get

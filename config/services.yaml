@@ -31,6 +31,10 @@ services:
             $filesystem: '@default.storage'
         public: true
 
+    App\EventSubscriber\ApiLocaleResolver:
+        tags:
+            - { name: kernel.event_subscriber }
+
     App\EventSubscriber\LoggerInitializerSubscriber:
         tags:
             - { name: kernel.event_subscriber, priority: 100 }

@@ -9,6 +9,8 @@ use Symfony\Component\Uid\Uuid;
 
 interface OrganizationServiceInterface
 {
+    public function create(array $organization): Organization;
+
     public function get(Uuid $id): Organization;
 
     public function list(): array;
