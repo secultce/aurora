@@ -33,6 +33,13 @@ class OrganizationApiController extends AbstractApiController
         return $this->json($organization, context: ['groups' => 'organization.get']);
     }
 
+    public function remove(?Uuid $id): JsonResponse
+    {
+        $this->service->remove($id);
+
+        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
     public function list(): JsonResponse
     {
         return $this->json($this->service->list(), context: [

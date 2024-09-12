@@ -10,6 +10,7 @@ use App\Exception\Organization\OrganizationResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\OrganizationRepositoryInterface;
 use App\Service\Interface\OrganizationServiceInterface;
+use DateTime;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -63,5 +64,9 @@ readonly class OrganizationService implements OrganizationServiceInterface
 
     public function remove(Uuid $id): void
     {
+        $organization = $this->get($id);
+        $organization->setDeletedAt(new DateTime());
+
+        $this->repository->save($organization);
     }
 }
