@@ -9,6 +9,8 @@ use Symfony\Component\Uid\Uuid;
 
 interface SpaceServiceInterface
 {
+    public function create(array $space): Space;
+
     public function get(Uuid $id): Space;
 
     public function list(): array;
