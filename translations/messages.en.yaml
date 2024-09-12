@@ -65,3 +65,37 @@ lgpd: Understand LGPD
 footer.platform_created: platform created by the community
 footer.and_developed: and developed by
 footer.visit_repository: visit the repository
+
+space.filter_first: Newest first
+space.filter_old: Oldest first
+space.filter: Space Filters
+space.accessibility: It has accessibility
+spaces.official: Official spaces
+spaces.types: Types of Spaces
+space.select: Space Types
+space.types_select: Select types
+space.gallery: Gallery
+space.theater: Theater
+space.area: Area of Activity
+space.area_select: Select areas
+space.arts: Visual Arts
+space.music: Music
+space.clear: Clear all filters
+space.search: Space Search
+space.type.card: Types
+space.access.card: Accessibility
+space.list: List
+space.map: Map
+space: Space
+space.start: Start
+space.view: View as
+space.order: Order by
+space.file: Private file
+space.access: Access
+space-filter.name: Space name
+space-filter.type: Space types
+space-all: All
+space-filter.access: It has accessibility
+space-yes: Yes
+space-no: No
+space-area.activity: Area of activity

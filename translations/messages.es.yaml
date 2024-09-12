@@ -65,3 +65,34 @@ footer.platform_created: plataforma creada por la comunidad
 footer.and_developed: y desarrollada por
 footer.visit_repository: visita el repositorio
 
+space.filter_first: Más reciente primero
+space.filter_old: Más antiguo primero
+space.filter: Filtros de espacio
+space.accessibility: Tiene accesibilidad
+spaces.official: Espacios oficiales
+space.select: Tipos de espacios
+space.types_select: Seleccionar tipos
+space.gallery: Galería
+space.theater: Teatro
+space.area: Área de actividad
+space.area_select: Seleccionar áreas
+space.arts: Artes visuales
+space.music: Música
+space.clear: Limpiar todos los filtros
+space.search: Búsqueda de Espacio
+space.type.card: Tipos
+space.access.card: Accesibilidad
+space.list: Lista
+space.map: Mapa
+space.start: Comenzar
+space.view: Ver como
+space.order: Ordenar por
+space.file: Archivo privado
+space.access: Acceder
+space-filter.name: Nombre del espacio
+space-filter.type: Tipos de espacio
+space-all: Todos
+space-filter.access: Tiene accesibilidad
+space-yes: Sí
+space-no: No
+space-area.activity: Área de actividad

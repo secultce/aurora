@@ -64,3 +64,34 @@ lgpd: Entenda a LGPD
 footer.platform_created: plataforma criada pela comunidade
 footer.and_developed: e desenvolvida por
 footer.visit_repository: visite o repositório
+
+space.filter_first: Mais recente primeiro
+space.filter_old: Mais antigo primeiro
+space.filter: Filtros
+space.accessibility: Tem acessibilidade
+space.select: Tipos de Espaços
+spaces.official: Espaços Oficias
+space.gallery: Galeria
+space.theater: Teatro
+space.area: Área de atividade
+space.area_select: Selecionar áreas
+space.arts: Artes visuais
+space.music: Música
+space.clear: Limpar todos os filtros
+space.search: Busca de Espaço
+space.type.card: Tipos
+space.access.card: Acessibilidade
+space.list: Lista
+space.map: Mapa
+space.start: Início
+space.view: Visualizar como
+space.order: Ordenar por
+space.file: Arquivo privado
+space.access: Acessar
+space-filter.name: Nome do espaço.
+space-filter.type: Tipos de espaço
+space-all: Todos
+space-filter.access: Possui acessibilidade
+space-yes: Sim
+space-no: Não
+space-area.activity: Área de atuação
