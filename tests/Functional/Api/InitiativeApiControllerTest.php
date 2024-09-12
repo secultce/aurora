@@ -83,4 +83,31 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
             ],
         ]);
     }
+
+    public function testDeleteAResourceWhenNotFound(): void
+    {
+        $client = static::createClient();
+
+        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_found',
+            'error_details' => [
+                'description' => 'The requested Initiative was not found.',
+            ],
+        ]);
+    }
+
+    public function testDeleteAnInitiativeItemWithSuccess(): void
+    {
+        $client = static::createClient();
+
+        $url = sprintf('%s/%s', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_4);
+
+        $client->request(Request::METHOD_DELETE, $url);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
+    }
 }
