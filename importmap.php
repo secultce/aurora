@@ -2,34 +2,63 @@
 
 declare(strict_types=1);
 
-/**
- * Returns the importmap for this application.
- *
- * - "path" is a path inside the asset mapper system. Use the
- *     "debug:asset-map" command to see the full list of paths.
- *
- * - "entrypoint" (JavaScript only) set to true for any module that will
- *     be used as an "entrypoint" (and passed to the importmap() Twig function).
- *
- * The "importmap:require" command can be used to add new entries to this file.
- */
 return [
     'app' => [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
     'aurora-user-interface' => [
-        'version' => '5.3.8',
+        'version' => '5.3.12',
     ],
     '@popperjs/core' => [
         'version' => '2.11.8',
     ],
     'aurora-user-interface/dist/css/bootstrap.min.css' => [
-        'version' => '5.3.8',
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/colors.css' => [
+        'version' => '5.3.12',
         'type' => 'css',
     ],
     'aurora-user-interface/dist/css/custom.css' => [
-        'version' => '5.3.8',
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/layout.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/card.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/accordion.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/faq.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/forms.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/navigation.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/timeline.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/side-filter.css' => [
+        'version' => '5.3.12',
+        'type' => 'css',
+    ],
+    'aurora-user-interface/dist/css/editor.css' => [
+        'version' => '5.3.12',
         'type' => 'css',
     ],
 ];
