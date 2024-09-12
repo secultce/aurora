@@ -15,3 +15,18 @@ get:
         application/json:
           schema:
             $ref: '../../responses/organization/OrganizationNotFound.yaml'
+delete:
+  tags:
+    - Organizações
+  summary: Remove uma única organização
+  responses:
+    '204':
+      description: Não possui conteudo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Organização não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/organization/OrganizationNotFound.yaml'
