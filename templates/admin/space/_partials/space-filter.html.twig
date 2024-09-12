@@ -1,0 +1,39 @@
+<div id="filter-sidebar" class="sidebar">
+    <div class="close-filter">
+                <span>
+                  <i class="material-icons text-primary">filter_alt</i>
+                  <span>{{ 'space.filter' | trans }}</span>
+                </span>
+        <i id="close-filter" class="material-icons close-filter-btn">close</i>
+    </div>
+
+    <div class="filter-fields">
+        <div class="form-group">
+            <label for="agent-name" class="filter-label">{{ 'space.search' | trans }}</label>
+            <input type="text" class="filter-form" id="agent-name" placeholder="Digite">
+        </div>
+
+        <div class="form-group">
+            <label for="agent-type" class="filter-label">{{ 'space.access.card' | trans }}</label>
+            <select class="filter-form" id="agent-type">
+                <option>Selecione</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="areas-of-activity" class="filter-label">{{ 'space-filter.type' | trans }}</label>
+            <select class="filter-form" id="areas-of-activity">
+                <option>Selecione</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="state" class="filter-label">{{ 'space-area.activity' | trans }}</label>
+            <select class="filter-form" id="state">
+                <option>Selecione</option>
+            </select>
+        </div>
+
+        <button id="clear-filters" class="clearFilters">{{ 'space.clear' | trans }}</button>
+    </div>
+</div>

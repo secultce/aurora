@@ -10,3 +10,7 @@ admin_home:
   resource: 'admin/homepage.yaml'
   prefix: /
   name_prefix: admin_home_
+admin_space:
+  resource: 'admin/space.yaml'
+  prefix: /
+  name_prefix: admin_space_
