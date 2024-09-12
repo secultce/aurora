@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\DataFixtures;
+namespace App\DataFixtures\Entity;
 
 use App\Entity\Organization;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -35,7 +35,7 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'parent' => null,
             'space' => null,
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
         ],
         [

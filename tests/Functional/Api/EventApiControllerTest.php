@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
-use App\DataFixtures\AgentFixtures;
-use App\DataFixtures\EventFixtures;
-use App\DataFixtures\InitiativeFixtures;
-use App\DataFixtures\SpaceFixtures;
+use App\DataFixtures\Entity\AgentFixtures;
+use App\DataFixtures\Entity\EventFixtures;
+use App\DataFixtures\Entity\InitiativeFixtures;
+use App\DataFixtures\Entity\SpaceFixtures;
 use App\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
