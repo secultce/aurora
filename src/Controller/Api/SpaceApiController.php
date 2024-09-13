@@ -7,6 +7,7 @@ namespace App\Controller\Api;
 use App\Helper\EntityIdNormalizerHelper;
 use App\Service\Interface\SpaceServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Uid\Uuid;
@@ -16,6 +17,13 @@ class SpaceApiController extends AbstractApiController
     public function __construct(
         private readonly SpaceServiceInterface $service,
     ) {
+    }
+
+    public function create(Request $request): JsonResponse
+    {
+        $space = $this->service->create($request->toArray());
+
+        return $this->json($space, status: Response::HTTP_CREATED, context: ['groups' => 'space.get']);
     }
 
     public function get(?Uuid $id): JsonResponse

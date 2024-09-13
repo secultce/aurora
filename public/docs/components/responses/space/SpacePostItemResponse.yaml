@@ -1,0 +1,68 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador do espaço"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome do espaço"
+  createdBy:
+    description: "Agente criador do espaço"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do criador do agente"
+  parent:
+    description: "Espaço pai"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do espaço"
+      name:
+        type: string
+        maxLength: 100
+        description: "Nome do espaço"
+      createdBy:
+        description: "Identificador do criador do espaço"
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do criador do agente"
+      parent:
+        type: object
+      createdAt:
+        type: string
+        format: date-time
+        description: "Data e hora da criação do espaço"
+      updatedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da última atualização do espaço"
+      deletedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da exclusão do espaço"
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação do espaço"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização do espaço"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão do espaço"

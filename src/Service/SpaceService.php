@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\DTO\SpaceDto;
 use App\Entity\Space;
 use App\Exception\Space\SpaceResourceNotFoundException;
+use App\Exception\ValidatorException;
 use App\Repository\Interface\SpaceRepositoryInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use DateTime;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class SpaceService implements SpaceServiceInterface
 {
@@ -18,8 +22,25 @@ readonly class SpaceService implements SpaceServiceInterface
     ];
 
     public function __construct(
-        private SpaceRepositoryInterface $repository
+        private SpaceRepositoryInterface $repository,
+        private SerializerInterface $serializer,
+        private ValidatorInterface $validator,
     ) {
+    }
+
+    public function create(array $space): Space
+    {
+        $spaceDto = $this->serializer->denormalize($space, SpaceDto::class);
+
+        $violations = $this->validator->validate($spaceDto);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $spaceObj = $this->serializer->denormalize($space, Space::class);
+
+        return $this->repository->save($spaceObj);
     }
 
     public function get(Uuid $id): Space

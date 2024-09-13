@@ -1,3 +1,27 @@
+post:
+  tags:
+    - Espaços
+  summary: Cria um único espaço
+  requestBody:
+    description: Espaço
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/space/SpacePostItemRequest.yaml'
+  responses:
+      '201':
+        description: Espaço criado
+        content:
+          application/json:
+            schema:
+              $ref: '../../responses/space/SpacePostItemResponse.yaml'
+      '400':
+        description: Dados inválidos, espaço não criado
+        content:
+          application/json:
+            schema:
+              $ref: '../../responses/InvalidResponse.yaml'
 get:
   tags:
     - Espaços
