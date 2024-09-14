@@ -1,0 +1,25 @@
+type: object
+properties:
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da organização"
+  description:
+    type: string
+    maxLength: 100
+    description: "Descrição da organização"
+  agents:
+    description: "Agentes relacionados a organização"
+    type: array
+    items:
+      type: string
+      format: uuid
+      description: "Identificador do agente"
+  owner:
+    description: "Identificado do agente dono da organização"
+    type: string
+    format: uuid
+  createdBy:
+    description: "Identificador do agente criador da organização"
+    type: string
+    format: uuid

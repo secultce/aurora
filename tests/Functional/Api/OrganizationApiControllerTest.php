@@ -252,4 +252,124 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
+
+    public function testCanUpdate(): void
+    {
+        $requestBody = OrganizationTestFixtures::complete();
+        unset($requestBody['id']);
+
+        $url = sprintf('%s/%s', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_4);
+        $client = self::createClient();
+
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Organization::class, OrganizationFixtures::ORGANIZATION_ID_4);
+
+        $this->assertResponseBodySame([
+            'id' => OrganizationFixtures::ORGANIZATION_ID_4,
+            'name' => $requestBody['name'],
+            'description' => $requestBody['description'],
+            'agents' => array_map(fn ($id) => ['id' => $id], $requestBody['agents']),
+            'owner' => ['id' => AgentFixtures::AGENT_ID_1],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateCases')]
+    public function testValidationUpdate(array $requestBody, array $expectedErrors): void
+    {
+        $client = self::createClient();
+        $url = sprintf('%s/%s', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_3);
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateCases(): array
+    {
+        $requestBody = OrganizationTestFixtures::partial();
+
+        return [
+            'name should be string' => [
+                'requestBody' => array_merge($requestBody, ['name' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'name too short' => [
+                'requestBody' => array_merge($requestBody, ['name' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'name too long' => [
+                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'description should be string' => [
+                'requestBody' => array_merge($requestBody, ['description' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'description', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'description too long' => [
+                'requestBody' => array_merge($requestBody, ['description' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'description', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'createdBy should exists' => [
+                'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'createdBy', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'owner should exists' => [
+                'requestBody' => array_merge($requestBody, ['owner' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'owner', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'agents should exists' => [
+                'requestBody' => array_merge($requestBody, [
+                    'agents' => [
+                        Uuid::v4()->toRfc4122(),
+                        Uuid::v4()->toRfc4122(),
+                    ],
+                ]),
+                'expectedErrors' => [
+                    ['field' => 'agents[0]', 'message' => 'This id does not exist.'],
+                    ['field' => 'agents[1]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'agents should be valid UUIDs' => [
+                'requestBody' => array_merge($requestBody, [
+                    'agents' => [
+                        'invalid-identifier',
+                        'invalid-identifier',
+                    ],
+                ]),
+                'expectedErrors' => [
+                    ['field' => 'agents[0]', 'message' => 'This value is not a valid UUID.'],
+                    ['field' => 'agents[1]', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+        ];
+    }
 }

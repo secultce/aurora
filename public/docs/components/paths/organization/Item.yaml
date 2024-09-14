@@ -15,13 +15,39 @@ get:
         application/json:
           schema:
             $ref: '../../responses/organization/OrganizationNotFound.yaml'
+
+patch:
+  tags:
+    - Organizações
+  summary: Atualiza um única organização
+  requestBody:
+    description: Organização
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/organization/OrganizationPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Organização atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/organization/OrganizationPatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, organização não atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 delete:
   tags:
     - Organizações
   summary: Remove uma única organização
   responses:
     '204':
-      description: Não possui conteudo de resposta
+      description: Não possui conteúdo de resposta
       content:
           application/json: {}
     '404':

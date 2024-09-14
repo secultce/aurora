@@ -32,7 +32,7 @@ readonly class OrganizationService implements OrganizationServiceInterface
     {
         $organizationDto = $this->serializer->denormalize($organization, OrganizationDto::class);
 
-        $violations = $this->validator->validate($organizationDto);
+        $violations = $this->validator->validate($organizationDto, groups: OrganizationDto::CREATE);
 
         if ($violations->count() > 0) {
             throw new ValidatorException(violations: $violations);
@@ -68,5 +68,26 @@ readonly class OrganizationService implements OrganizationServiceInterface
         $organization->setDeletedAt(new DateTime());
 
         $this->repository->save($organization);
+    }
+
+    public function update(Uuid $identifier, array $organization): Organization
+    {
+        $organizationFromDB = $this->get($identifier);
+
+        $organizationDto = $this->serializer->denormalize($organization, OrganizationDto::class);
+
+        $violations = $this->validator->validate($organizationDto, groups: OrganizationDto::UPDATE);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $organizationObj = $this->serializer->denormalize($organization, Organization::class, context: [
+            'object_to_populate' => $organizationFromDB,
+        ]);
+
+        $organizationObj->setUpdatedAt(new DateTime());
+
+        return $this->repository->save($organizationObj);
     }
 }

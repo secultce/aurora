@@ -17,3 +17,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\OrganizationApiController::remove
   methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\OrganizationApiController::update
+  methods: ['PATCH']

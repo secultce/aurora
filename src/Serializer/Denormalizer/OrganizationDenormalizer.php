@@ -6,6 +6,7 @@ namespace App\Serializer\Denormalizer;
 
 use App\Entity\Agent;
 use App\Entity\Organization;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -25,27 +26,36 @@ readonly class OrganizationDenormalizer implements DenormalizerInterface
             return $data;
         }
 
-        $agents = $data['agents'] ?? [];
-        unset($data['agents']);
+        $agents = array_map(
+            fn (string $id) => $this->entityManager->getRepository(Agent::class)->findOneBy(['id' => $id]),
+            $data['agents'] ?? []
+        );
 
-        $organization = $this->denormalizer->denormalize($data, $type, $format, $context);
+        /* @var Organization $organization */
+        $organization = $this->denormalizer->denormalize($this->filterData($data), $type, $format, $context);
 
-        foreach ($agents as $id) {
-            $agent = $this->entityManager->getRepository(Agent::class)->findOneBy(['id' => $id]);
-            $organization->addAgent($agent);
+        if (true === array_key_exists('agents', $data)) {
+            $organization->setAgents(new ArrayCollection($agents));
         }
 
-        if (isset($data['createdBy'])) {
-            $data['createdBy'] = $this->entityManager->getRepository(Agent::class)->find($data['createdBy']);
-            $organization->setCreatedBy($data['createdBy']);
+        if (true === array_key_exists('createdBy', $data)) {
+            $createdBy = $this->entityManager->getRepository(Agent::class)->find($data['createdBy']);
+            $organization->setCreatedBy($createdBy);
         }
 
-        if (isset($data['owner'])) {
-            $data['owner'] = $this->entityManager->getRepository(Agent::class)->find($data['owner']);
-            $organization->setOwner($data['owner']);
+        if (true === array_key_exists('owner', $data)) {
+            $owner = $this->entityManager->getRepository(Agent::class)->find($data['owner']);
+            $organization->setOwner($owner);
         }
 
         return $organization;
+    }
+
+    private function filterData(array $data): array
+    {
+        unset($data['agents']);
+
+        return $data;
     }
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
