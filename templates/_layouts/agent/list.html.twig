@@ -1,0 +1,10 @@
+<section class="wrapper">
+    {% include "agent/_partials/side-filter.html.twig" %}
+
+    <button id="open-filter" class="filter-btn">
+        <i class="material-icons">filter_alt</i>
+    </button>
+    <main id="main-content" class="content-agent">
+        {% block content %}{% endblock %}
+    </main>
+</section>

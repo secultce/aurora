@@ -99,3 +99,18 @@ space-filter.access: It has accessibility
 space-yes: Yes
 space-no: No
 space-area.activity: Area of activity
+
+
+agent.title: Agents
+agent.registered_agents: Registered Agents
+agent.individual_agents: Individual Agents
+agent.collective_agents: Collective Agents
+agent.registered_last_7_days: Registered in the last 7 days
+agent.view_as: View as
+agent.list: List
+agent.mapa: Map
+agent.agents_found: Agents found
+agent.sort_by: Sort by
+agent.most_recent: Most recent
+agent.oldest: Oldest
+agent.home: Home

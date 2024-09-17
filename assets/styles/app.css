@@ -6,14 +6,15 @@ body {
     height: 100%;
 }
 
-main {
-    margin-top: 5.2rem;
-}
-
 .wrapper {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+}
+
+.agent-wrapper {
+    position: relative;
+    margin-top: 47px;
 }
 
 .content{
@@ -96,6 +97,135 @@ main {
     bottom: 10px;
     right: 10px;
     display: flex;
+}
+
+.agent-panel {
+    background-color: var(--snow-mist);
+    padding: 0 8.75rem;
+    border: 1px solid transparent;
+}
+
+.navbar {
+    position: relative;
+}
+
+.navbar-icons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: .437rem;
+    border-radius: 50%;
+    color: var(--bs-white);
+    background-color: var(--color-text-grey-1);
+    font-size: 1.2rem;
+    transition: 150ms;
+}
+
+.dashboard-card {
+    width: 23rem;
+}
+
+.agent-dashboard {
+    display: flex;
+    gap: 1.75rem;
+    width: 96%;
+    margin: 25px 0;
+}
+
+.lock-icon {
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    font-size: 24px;
+    color: var(--favorite-icon-color);
+    padding: 10px;
+}
+
+.sidebar {
+    position: absolute;
+    top: 0;
+    left: -25.1875rem;
+    width: 25.1875rem;
+    height: 100%;
+    background-color: var(--snow-mist);
+    transition: left 0.3s ease;
+    padding: 20px;
+    margin-right: 50px;
+    padding: 13px 30px;
+}
+
+.sidebar.open {
+    left: 0;
+}
+
+.content-agent {
+    padding-left: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.agent-list {
+    width: 91.875rem;
+    justify-content: center;
+    transition: width 0.3s, transform 0.3s;
+    position: relative;
+}
+
+.agent-list.shifted {
+    width: 1240px;
+    transform: translateX(37px);
+}
+
+.breadcrumb-agent{
+    font-family: var(--font-open-sans);
+    font-weight: 600;
+    font-size: 14px;
+    color: #333;
+    margin-top: 23px;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.breadcrumb-agent span + span::before {
+    content: " > ";
+    margin: 0 5px;
+    color: var(--medium-gray);
+    cursor: auto;
+}
+
+.agent-dashboard-title {
+    font-weight: 700;
+    font-size: 32px;
+    margin-top: 33px;
+}
+
+.agent-tabs {
+    display: flex;
+    align-content: center;
+    gap: 0.625rem;
+}
+
+.agent-sort {
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 30px;
+}
+
+.agent-sort label {
+    text-wrap: nowrap;
+    align-self: center;
+}
+
+.agent-card {
+    width: 100%;
+}
+
+.access-profile {
+    background-color: var(--next-button-form);
+}
+
+.agent-options {
+    text-wrap: nowrap;
 }
 
 @media (max-width: 768px) {
