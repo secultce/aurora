@@ -33,7 +33,7 @@ final class UserFixtures extends Fixture
             'email' => 'alessandrofeitoza@example.com',
             'password' => 'feitoza',
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T11:35:00+00:00',
             'deletedAt' => null,
         ],
         [
