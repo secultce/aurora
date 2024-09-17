@@ -16,4 +16,6 @@ interface OrganizationServiceInterface
     public function list(): array;
 
     public function remove(Uuid $id): void;
+
+    public function update(Uuid $identifier, array $organization): Organization;
 }

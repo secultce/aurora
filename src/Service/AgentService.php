@@ -38,7 +38,7 @@ readonly class AgentService implements AgentServiceInterface
 
     public function list(): array
     {
-        return $this->repository->findBy(self::DEFAULT_FILTERS);
+        return $this->repository->findBy(self::DEFAULT_FILTERS, ['createdAt' => 'ASC']);
     }
 
     public function remove(Uuid $id): void
