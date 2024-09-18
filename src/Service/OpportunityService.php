@@ -38,7 +38,10 @@ readonly class OpportunityService implements OpportunityServiceInterface
 
     public function list(): array
     {
-        return $this->repository->findBy(self::DEFAULT_FILTERS);
+        return $this->repository->findBy(
+            self::DEFAULT_FILTERS,
+            ['createdAt' => 'DESC']
+        );
     }
 
     public function remove(Uuid $id): void
