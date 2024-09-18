@@ -4,12 +4,16 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\DTO\OpportunityDto;
 use App\Entity\Opportunity;
 use App\Exception\Opportunity\OpportunityResourceNotFoundException;
+use App\Exception\ValidatorException;
 use App\Repository\Interface\OpportunityRepositoryInterface;
 use App\Service\Interface\OpportunityServiceInterface;
 use DateTime;
+use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class OpportunityService implements OpportunityServiceInterface
 {
@@ -18,22 +22,39 @@ readonly class OpportunityService implements OpportunityServiceInterface
     ];
 
     public function __construct(
-        private OpportunityRepositoryInterface $repository
+        private OpportunityRepositoryInterface $repository,
+        private SerializerInterface $serializer,
+        private ValidatorInterface $validator,
     ) {
+    }
+
+    public function create(array $opportunity): Opportunity
+    {
+        $opportunityDto = $this->serializer->denormalize($opportunity, OpportunityDto::class);
+
+        $violations = $this->validator->validate($opportunityDto);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $opportunityObj = $this->serializer->denormalize($opportunity, Opportunity::class);
+
+        return $this->repository->save($opportunityObj);
     }
 
     public function get(Uuid $id): Opportunity
     {
-        $organization = $this->repository->findOneBy([
+        $opportunity = $this->repository->findOneBy([
             ...['id' => $id],
             ...self::DEFAULT_FILTERS,
         ]);
 
-        if (null === $organization) {
+        if (null === $opportunity) {
             throw new OpportunityResourceNotFoundException();
         }
 
-        return $organization;
+        return $opportunity;
     }
 
     public function list(): array
@@ -46,9 +67,9 @@ readonly class OpportunityService implements OpportunityServiceInterface
 
     public function remove(Uuid $id): void
     {
-        $organization = $this->get($id);
-        $organization->setDeletedAt(new DateTime());
+        $opportunity = $this->get($id);
+        $opportunity->setDeletedAt(new DateTime());
 
-        $this->repository->save($organization);
+        $this->repository->save($opportunity);
     }
 }

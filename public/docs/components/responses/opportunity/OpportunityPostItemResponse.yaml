@@ -1,0 +1,110 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da oportunidade"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da oportunidade"
+  parent:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da oportunidade"
+      name:
+        type: string
+        maxLength: 100
+        description: "Nome da oportunidade"
+      space:
+        description: "Espaço da oportunidade"
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador da oportunidade"
+      initiative:
+        description: "Iniciativa da oportunidade"
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador da iniciativa"
+      event:
+        description: "Evento da iniciativa"
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do evento"
+      createdBy:
+        description: "Criador da oportunidade"
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do agente"
+      createdAt:
+        type: string
+        format: date-time
+        description: "Data e hora da criação da oportunidade"
+      updatedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da última atualização da oportunidade"
+      deletedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da exclusão da oportunidade"
+  space:
+    description: "Espaço da oportunidade"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da oportunidade"
+  initiative:
+    description: "Iniciativa da oportunidade"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da iniciativa"
+  event:
+    description: "Evento da iniciativa"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do evento"
+  createdBy:
+    description: "Criador da oportunidade"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+  createdAt:
+    $ref: '../../common-types/date.yaml'
+    description: "Data e hora da criação da oportunidade"
+  updatedAt:
+    $ref: '../../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da última atualização da oportunidade"
+  deletedAt:
+    $ref: '../../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da exclusão da oportunidade"
