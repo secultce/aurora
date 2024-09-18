@@ -35,7 +35,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 [],
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T11:37:00+00:00',
             'deletedAt' => null,
         ]);
     }
