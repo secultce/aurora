@@ -46,7 +46,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
             'createdAt' => '2024-09-06T10:00:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-09-06T16:00:00+00:00',
             'deletedAt' => null,
         ]);
     }
