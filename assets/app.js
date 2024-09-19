@@ -8,7 +8,7 @@ import './vendor/aurora-user-interface/dist/css/bootstrap.min.css';
 import './vendor/aurora-user-interface/dist/css/colors.css';
 import './vendor/aurora-user-interface/dist/css/layout.css';
 
-import './vendor/aurora-user-interface/dist/css/accordion.css.css';
+import './vendor/aurora-user-interface/dist/css/accordion.css';
 import './vendor/aurora-user-interface/dist/css/card.css';
 import './vendor/aurora-user-interface/dist/css/editor.css';
 import './vendor/aurora-user-interface/dist/css/faq.css';
