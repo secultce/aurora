@@ -28,7 +28,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Start the mapinha
+      - name: Start the aurora
         run: docker compose up -d --build
 
       - name: Install dependencies
@@ -52,11 +52,26 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Start the mapinha
+      - name: Start the aurora
         run: docker compose up -d --build
 
       - name: Install application dependencies
         run: docker compose exec --user root php composer install
+
+      - name: Run generate mongodb proxies
+        run: docker compose exec --user root php bin/console doctrine:mongodb:generate:proxie
+
+      - name: Run migrations
+        run: docker compose exec --user root php bin/console d:m:migrate -n
+
+      - name: Run fixtures
+        run: docker compose exec --user root php bin/console d:f:l -n
+
+      - name: Install frontend dependencies
+        run: docker compose exec --user root php bin/console importmap:install
+
+      - name: Compile frontend dependencies
+        run: docker compose exec --user root php bin/console asset-map:compile
 
       - name: Install dependencies and run frontend tests
         run: npm install && npx cypress run --spec "cypress/e2e/**/*.js"

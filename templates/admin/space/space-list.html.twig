@@ -14,15 +14,14 @@
         {% include 'admin/space/_partials/view-options.html.twig' %}
     </div>
 
-        {% include 'admin/space/_partials/sort-dropdown.html.twig' %}
+    {% include 'admin/space/_partials/sort-dropdown.html.twig' %}
 
-        <div class="filter-and-spaces-container">
+    <div class="filter-and-spaces-container">
 
-            <div class="spaces-list">
-                {% for space in spaces %}
-                    {% include 'admin/space/_partials/space-card.html.twig' with { space: space } %}
-                {% endfor %}
-            </div>
+        <div class="spaces-list">
+            {% for space in spaces %}
+                {% include 'admin/space/_partials/space-card.html.twig' with { space: space } %}
+            {% endfor %}
         </div>
     </div>
 {% endblock %}

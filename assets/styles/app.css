@@ -121,7 +121,7 @@ main {
     margin-right: 15px;
     border: 1px solid var(--bg-all);
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    padding: 45px;
+    padding: 45px 0;
     position: relative;
 }
 
