@@ -14,3 +14,7 @@ admin_space:
   resource: 'admin/space.yaml'
   prefix: /
   name_prefix: admin_space_
+admin_initiative:
+  resource: 'admin/initiative.yaml'
+  prefix: /
+  name_prefix: admin_initiative_
