@@ -43,7 +43,7 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T11:35:00+00:00',
             'deletedAt' => null,
         ]);
     }
