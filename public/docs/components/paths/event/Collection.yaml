@@ -1,3 +1,27 @@
+post:
+  tags:
+    - Eventos
+  summary: Cria um único evento
+  requestBody:
+    description: Evento
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/event/EventPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Evento criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event/EventPostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, evento não criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
 get:
   tags:
     - Eventos
