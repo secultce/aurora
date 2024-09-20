@@ -17,3 +17,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\OpportunityApiController::remove
   methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\OpportunityApiController::update
+  methods: ['PATCH']

@@ -16,4 +16,6 @@ interface OpportunityServiceInterface
     public function list(): array;
 
     public function remove(Uuid $id): void;
+
+    public function update(Uuid $identifier, array $opportunity): Opportunity;
 }

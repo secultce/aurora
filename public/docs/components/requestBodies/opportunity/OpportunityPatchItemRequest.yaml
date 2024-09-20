@@ -1,9 +1,5 @@
 type: object
 properties:
-  id:
-    type: string
-    format: uuid
-    description: "Identificador da oportunidade"
   name:
     type: string
     maxLength: 100

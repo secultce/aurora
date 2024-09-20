@@ -1,4 +1,6 @@
 get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Oportunidades
   summary: Recupera um única oportunidade
@@ -15,7 +17,37 @@ get:
         application/json:
           schema:
             $ref: '../../responses/opportunity/OpportunityNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Oportunidades
+  summary: Atualiza um única oportunidade
+  requestBody:
+    description: Oportunidade
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/opportunity/OpportunityPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Oportunidade atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/opportunity/OpportunityPatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, oportunidade não atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Oportunidades
   summary: Remove uma única oportunidade

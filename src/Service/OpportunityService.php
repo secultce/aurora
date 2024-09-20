@@ -32,7 +32,7 @@ readonly class OpportunityService implements OpportunityServiceInterface
     {
         $opportunityDto = $this->serializer->denormalize($opportunity, OpportunityDto::class);
 
-        $violations = $this->validator->validate($opportunityDto);
+        $violations = $this->validator->validate($opportunityDto, groups: OpportunityDto::CREATE);
 
         if ($violations->count() > 0) {
             throw new ValidatorException(violations: $violations);
@@ -71,5 +71,26 @@ readonly class OpportunityService implements OpportunityServiceInterface
         $opportunity->setDeletedAt(new DateTime());
 
         $this->repository->save($opportunity);
+    }
+
+    public function update(Uuid $identifier, array $opportunity): Opportunity
+    {
+        $opportunityFromDB = $this->get($identifier);
+
+        $opportunityDto = $this->serializer->denormalize($opportunity, OpportunityDto::class);
+
+        $violations = $this->validator->validate($opportunityDto, groups: OpportunityDto::UPDATE);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $opportunityObj = $this->serializer->denormalize($opportunity, Opportunity::class, context: [
+            'object_to_populate' => $opportunityFromDB,
+        ]);
+
+        $opportunityObj->setUpdatedAt(new DateTime());
+
+        return $this->repository->save($opportunityObj);
     }
 }
