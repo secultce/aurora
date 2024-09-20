@@ -1,3 +1,28 @@
+post:
+  tags:
+    - Oportunidades
+  summary: Cria um única oportunidade
+  requestBody:
+    description: Oportunidade
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/opportunity/OpportunityPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Oportunidade criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/opportunity/OpportunityPostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, oportunidade não criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 get:
   tags:
     - Oportunidades

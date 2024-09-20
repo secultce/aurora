@@ -61,6 +61,11 @@ class Opportunity extends AbstractEntity
     #[Groups('opportunity.get')]
     private ?DateTime $deletedAt = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
+
     public function getId(): ?Uuid
     {
         return $this->id;
