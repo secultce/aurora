@@ -44,7 +44,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'name' => 'SECULT',
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
-                'updatedAt' => null,
+                'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -77,7 +77,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'name' => 'SECULT',
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
-                'updatedAt' => null,
+                'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -173,7 +173,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             ],
             'parent' => null,
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
         ]);
     }
