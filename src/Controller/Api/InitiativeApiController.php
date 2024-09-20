@@ -7,6 +7,7 @@ namespace App\Controller\Api;
 use App\Helper\EntityIdNormalizerHelper;
 use App\Service\Interface\InitiativeServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Uid\Uuid;
@@ -40,5 +41,12 @@ class InitiativeApiController extends AbstractApiController
                 'parent' => [EntityIdNormalizerHelper::class, 'normalizeEntityId'],
             ],
         ]);
+    }
+
+    public function create(Request $request): JsonResponse
+    {
+        $initiative = $this->service->create($request->toArray());
+
+        return $this->json($initiative, status: Response::HTTP_CREATED, context: ['groups' => 'initiative.get']);
     }
 }

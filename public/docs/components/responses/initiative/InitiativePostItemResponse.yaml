@@ -1,0 +1,82 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da iniciativa"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da iniciativa"
+  createdBy:
+    description: "Agente criador da iniciativa"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente criador"
+  parent:
+    description: "Iniciativa pai"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da iniciativa"
+      name:
+        type: string
+        maxLength: 100
+        description: "Nome da iniciativa"
+      space:
+        type: object
+        description: "Espaço da iniciativa"
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do espaço"
+      createdBy:
+        description: "Identificador do criador da iniciativa"
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do agente criador"
+      createdAt:
+        type: string
+        format: date-time
+        description: "Data e hora da criação da iniciativa"
+      updatedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da última atualização da iniciativa"
+      deletedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da exclusão da iniciativa"
+  space:
+    type: object
+    description: "Espaço da iniciativa"
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do espaço"
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação da iniciativa"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização da iniciativa"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão da iniciativa"
