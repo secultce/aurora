@@ -35,7 +35,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
             'event' => EventFixtures::EVENT_ID_1,
             'createdAt' => '2024-09-06T10:00:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-09-06T16:00:00+00:00',
             'deletedAt' => null,
         ],
         [
