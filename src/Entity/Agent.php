@@ -57,6 +57,7 @@ class Agent extends AbstractEntity
     public function __construct()
     {
         $this->organizations = new ArrayCollection();
+        $this->createdAt = new DateTimeImmutable();
     }
 
     public function getId(): ?Uuid
@@ -112,6 +113,11 @@ class Agent extends AbstractEntity
     public function getOrganizations(): Collection
     {
         return $this->organizations;
+    }
+
+    public function setOrganizations(Collection $organizations): void
+    {
+        $this->organizations = $organizations;
     }
 
     public function addOrganization(Organization $organization): void

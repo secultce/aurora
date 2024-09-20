@@ -1,3 +1,27 @@
+post:
+  tags:
+    - Agentes
+  summary: Cria um único agente
+  requestBody:
+    description: Agente
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/agent/AgentPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Agente criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/agent/AgentPostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, agente não criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
 get:
   tags:
     - Agentes

@@ -13,7 +13,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class OrganizationFixtures extends Fixture implements DependentFixtureInterface
 {
     public const string ORGANIZATION_ID_PREFIX = 'organization';
-    public const string ORGANIZATION_ID_1 = 'f077aecd-4830-1b8c-c607-72090dc31f71';
+    public const string ORGANIZATION_ID_1 = 'bc89ea8d-6ad7-4cb8-92a9-b56ce203c7dd';
     public const string ORGANIZATION_ID_2 = 'a65aa657-c537-1f33-c06e-31c2e219136e';
     public const string ORGANIZATION_ID_3 = 'd12ead05-ef32-157a-c59e-4a83147ed9ec';
     public const string ORGANIZATION_ID_4 = 'd68da96e-a834-1bb1-cb3d-5ac2c2dbae7b';
