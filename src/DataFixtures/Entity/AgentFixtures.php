@@ -31,7 +31,7 @@ final class AgentFixtures extends Fixture
             'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
             'culture' => false,
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T11:37:00+00:00',
             'deletedAt' => null,
         ],
         [

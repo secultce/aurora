@@ -31,7 +31,7 @@ class UserTimelineFixtures extends Fixture
             'userId' => UserFixtures::USER_ID_1,
             'resourceId' => UserFixtures::USER_ID_1,
             'priority' => 1,
-            'datetime' => '2024-07-10T12:20:00+00:00',
+            'datetime' => '2024-07-10T11:35:00+00:00',
             'device' => 'linux',
             'platform' => 'api',
             'from' => [
@@ -79,13 +79,13 @@ class UserTimelineFixtures extends Fixture
                 'to' => $userData,
             ];
 
-            /* @var UserTimeline $object */
+            /* @var UserTimeline $document */
             $document = $this->serializer->denormalize($documentData, UserTimeline::class);
             $manager->persist($document);
         }
 
         foreach (self::DOCUMENT_UPDATED as $documentData) {
-            /* @var UserTimeline $object */
+            /* @var UserTimeline $document */
             $document = $this->serializer->denormalize($documentData, UserTimeline::class);
             $manager->persist($document);
         }
