@@ -32,7 +32,7 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => null,
+            'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
         ],
         [
