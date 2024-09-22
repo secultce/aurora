@@ -9,6 +9,8 @@ use Symfony\Component\Uid\Uuid;
 
 interface AgentServiceInterface
 {
+    public function create(array $agent): Agent;
+
     public function get(Uuid $id): Agent;
 
     public function list(): array;
