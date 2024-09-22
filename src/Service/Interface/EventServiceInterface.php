@@ -9,6 +9,8 @@ use Symfony\Component\Uid\Uuid;
 
 interface EventServiceInterface
 {
+    public function create(array $event): Event;
+
     public function get(Uuid $id): Event;
 
     public function list(): array;

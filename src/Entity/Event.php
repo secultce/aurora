@@ -61,6 +61,11 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private ?DateTime $deletedAt = null;
 
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
+
     public function getId(): ?Uuid
     {
         return $this->id;
