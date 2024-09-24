@@ -254,4 +254,95 @@ class SpaceApiControllerTest extends AbstractWebTestCase
         $client->request(Request::METHOD_GET, $url);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
+
+    public function testCanUpdate(): void
+    {
+        $requestBody = SpaceTestFixtures::complete();
+        unset($requestBody['id']);
+
+        $url = sprintf('%s/%s', self::BASE_URL, SpaceFixtures::SPACE_ID_4);
+        $client = self::createClient();
+
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Space::class, SpaceFixtures::SPACE_ID_4);
+
+        $this->assertResponseBodySame([
+            'id' => SpaceFixtures::SPACE_ID_4,
+            'name' => $requestBody['name'],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'parent' => [
+                'id' => SpaceFixtures::SPACE_ID_1,
+                'name' => 'SECULT',
+                'createdBy' => [
+                    'id' => AgentFixtures::AGENT_ID_1,
+                ],
+                'createdAt' => '2024-07-10T11:30:00+00:00',
+                'updatedAt' => '2024-07-10T12:20:00+00:00',
+                'deletedAt' => null,
+            ],
+            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateCases')]
+    public function testValidationUpdate(array $requestBody, array $expectedErrors): void
+    {
+        $client = self::createClient();
+        $url = sprintf('%s/%s', self::BASE_URL, SpaceFixtures::SPACE_ID_3);
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateCases(): array
+    {
+        $requestBody = SpaceTestFixtures::partial();
+
+        return [
+            'name should be string' => [
+                'requestBody' => array_merge($requestBody, ['name' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'name too short' => [
+                'requestBody' => array_merge($requestBody, ['name' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'name too long' => [
+                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'parent should exists' => [
+                'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'parent', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'createdBy should exists' => [
+                'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'createdBy', 'message' => 'This id does not exist.'],
+                ],
+            ],
+        ];
+    }
 }

@@ -17,3 +17,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\SpaceApiController::remove
   methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\SpaceApiController::update
+  methods: ['PATCH']

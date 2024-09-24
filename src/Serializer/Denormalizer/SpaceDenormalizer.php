@@ -21,6 +21,10 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
+        if (false === is_array($data)) {
+            return $this->denormalizer->denormalize(['id' => $data], $type, $format, $context);
+        }
+
         if (Space::class !== $type) {
             return $data;
         }
