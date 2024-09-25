@@ -30,6 +30,7 @@ readonly class OpportunityDenormalizer implements DenormalizerInterface
 
         /* @var Opportunity $opportunity */
         $opportunity = $this->denormalizer->denormalize($this->filterData($data), $type, $format, $context);
+
         if (true === array_key_exists('parent', $data)) {
             $parent = (null !== $data['parent']) ? $this->entityManager->getRepository(Opportunity::class)->find($data['parent']) : null;
             $opportunity->setParent($parent);

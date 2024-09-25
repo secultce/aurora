@@ -284,4 +284,118 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
+
+    public function testCanUpdate(): void
+    {
+        $requestBody = OpportunityTestFixtures::complete();
+        unset($requestBody['id']);
+
+        $url = sprintf('%s/%s', self::BASE_URL, OpportunityFixtures::OPPORTUNITY_ID_4);
+        $client = self::createClient();
+
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Opportunity::class, OpportunityFixtures::OPPORTUNITY_ID_4);
+
+        $this->assertResponseBodySame([
+            'id' => OpportunityFixtures::OPPORTUNITY_ID_4,
+            'name' => $requestBody['name'],
+            'parent' => [
+                'id' => OpportunityFixtures::OPPORTUNITY_ID_1,
+                'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+                'parent' => null,
+                'space' => ['id' => SpaceFixtures::SPACE_ID_1],
+                'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
+                'event' => ['id' => EventFixtures::EVENT_ID_1],
+                'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'createdAt' => '2024-09-06T10:00:00+00:00',
+                'updatedAt' => '2024-09-06T16:00:00+00:00',
+                'deletedAt' => null,
+            ],
+            'space' => ['id' => $requestBody['space']],
+            'initiative' => ['id' => $requestBody['initiative']],
+            'event' => ['id' => $requestBody['event']],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $opportunity->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateCases')]
+    public function testValidationUpdate(array $requestBody, array $expectedErrors): void
+    {
+        $client = self::createClient();
+        $url = sprintf('%s/%s', self::BASE_URL, OpportunityFixtures::OPPORTUNITY_ID_3);
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateCases(): array
+    {
+        $requestBody = OpportunityTestFixtures::partial();
+
+        return [
+            'name should be string' => [
+                'requestBody' => array_merge($requestBody, ['name' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'name too short' => [
+                'requestBody' => array_merge($requestBody, ['name' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'name too long' => [
+                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'parent should exists' => [
+                'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'parent', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'space should exists' => [
+                'requestBody' => array_merge($requestBody, ['space' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'space', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'initiative should exists' => [
+                'requestBody' => array_merge($requestBody, ['initiative' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'initiative', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'event should exists' => [
+                'requestBody' => array_merge($requestBody, ['event' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'event', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'createdBy should exists' => [
+                'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'createdBy', 'message' => 'This id does not exist.'],
+                ],
+            ],
+        ];
+    }
 }

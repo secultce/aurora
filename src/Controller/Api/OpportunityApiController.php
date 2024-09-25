@@ -49,4 +49,11 @@ class OpportunityApiController extends AbstractApiController
             ],
         ]);
     }
+
+    public function update(?Uuid $id, Request $request): JsonResponse
+    {
+        $opportunity = $this->service->update($id, $request->toArray());
+
+        return $this->json($opportunity, Response::HTTP_OK, context: ['groups' => 'opportunity.get']);
+    }
 }
