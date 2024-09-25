@@ -216,16 +216,21 @@ body {
     align-self: center;
 }
 
-.agent-card {
-    width: 100%;
-}
-
 .access-profile {
     background-color: var(--next-button-form);
 }
 
 .agent-options {
     text-wrap: nowrap;
+}
+
+.my-account {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-account span:first-child {
+    color: white;
 }
 
 @media (max-width: 768px) {
