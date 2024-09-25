@@ -1,0 +1,66 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador do espaço"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome do espaço"
+  parent:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do espaço"
+      name:
+        type: string
+        maxLength: 100
+        description: "Nome do espaço"
+      createdBy:
+        $ref: '../../schemas/agent.yaml'
+      parent:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do espaço pai"
+      createdAt:
+        type: string
+        format: date-time
+        description: "Data e hora da criação do espaço"
+      updatedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da última atualização do espaço"
+      deletedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da exclusão do espaço"
+  createdBy:
+    description: "Criador do espaço"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação do espaço"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização do espaço"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão do espaço"

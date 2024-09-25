@@ -49,4 +49,11 @@ class SpaceApiController extends AbstractApiController
             ],
         ]);
     }
+
+    public function update(?Uuid $id, Request $request): JsonResponse
+    {
+        $organization = $this->service->update($id, $request->toArray());
+
+        return $this->json($organization, Response::HTTP_OK, context: ['groups' => 'space.get']);
+    }
 }

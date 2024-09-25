@@ -32,7 +32,7 @@ readonly class SpaceService implements SpaceServiceInterface
     {
         $spaceDto = $this->serializer->denormalize($space, SpaceDto::class);
 
-        $violations = $this->validator->validate($spaceDto);
+        $violations = $this->validator->validate($spaceDto, groups: SpaceDto::CREATE);
 
         if ($violations->count() > 0) {
             throw new ValidatorException(violations: $violations);
@@ -71,5 +71,26 @@ readonly class SpaceService implements SpaceServiceInterface
         $space->setDeletedAt(new DateTime());
 
         $this->repository->save($space);
+    }
+
+    public function update(Uuid $identifier, array $space): Space
+    {
+        $spaceFromDB = $this->get($identifier);
+
+        $spaceDto = $this->serializer->denormalize($space, SpaceDto::class);
+
+        $violations = $this->validator->validate($spaceDto, groups: SpaceDto::UPDATE);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $spaceObj = $this->serializer->denormalize($space, Space::class, context: [
+            'object_to_populate' => $spaceFromDB,
+        ]);
+
+        $spaceObj->setUpdatedAt(new DateTime());
+
+        return $this->repository->save($spaceObj);
     }
 }

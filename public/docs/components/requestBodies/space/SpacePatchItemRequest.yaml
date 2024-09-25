@@ -1,0 +1,14 @@
+type: object
+properties:
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome do espaço"
+  parent:
+    description: "Identificado do espaço pai"
+    type: string
+    format: uuid
+  createdBy:
+    description: "Identificador do agente criador do espaço"
+    type: string
+    format: uuid
