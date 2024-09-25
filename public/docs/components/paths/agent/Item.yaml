@@ -1,4 +1,6 @@
 get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Agentes
   summary: Recupera um único agente
@@ -15,7 +17,36 @@ get:
         application/json:
           schema:
             $ref: '../../responses/agent/AgentNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Agentes
+  summary: Atualiza um único agente
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/agent/AgentPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Agente atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/agent/AgentPatchItemResponse.yaml'
+    '404':
+      description: Agente não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/agent/AgentNotFound.yaml'
+
 delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Agentes
   summary: Remove um único agente

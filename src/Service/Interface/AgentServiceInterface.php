@@ -16,4 +16,6 @@ interface AgentServiceInterface
     public function list(): array;
 
     public function remove(Uuid $id): void;
+
+    public function update(Uuid $id, array $agent): Agent;
 }
