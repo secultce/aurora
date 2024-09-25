@@ -230,7 +230,26 @@ body {
 }
 
 .my-account span:first-child {
-    color: white;
+    color: var(--deep-teal);
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.my-account :nth-child(2) {
+    color: var(--deep-teal);
+    font-weight: 400;
+    font-size: 12px;
+    text-decoration: none;
+}
+
+.my-account :nth-child(2):hover {
+    text-decoration: underline;
+}
+
+.profile-picture {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
 }
 
 @media (max-width: 768px) {

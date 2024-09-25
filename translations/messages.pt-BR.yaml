@@ -104,8 +104,12 @@ agent.registered_last_7_days: Cadastrados nos últimos 7 dias
 agent.view_as: Visualizar como
 agent.list: Lista
 agent.mapa: Mapa
+agent.chart: Indicadores
 agent.agents_found: Agentes encontrados
 agent.sort_by: Ordenar por
 agent.most_recent: Mais Recente
 agent.oldest: Mais Antigo
 agent.home: Inicio
+
+my-account: Minha Conta
+profile-picture: Foto de Perfil

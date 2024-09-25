@@ -109,8 +109,12 @@ agent.registered_last_7_days: Registered in the last 7 days
 agent.view_as: View as
 agent.list: List
 agent.mapa: Map
+agent.chart: Indicators
 agent.agents_found: Agents found
 agent.sort_by: Sort by
 agent.most_recent: Most recent
 agent.oldest: Oldest
 agent.home: Home
+
+my-account: My Account
+profile-picture: Profile Picture
