@@ -117,6 +117,7 @@ space-yes: Yes
 space-no: No
 space-area.activity: Area of activity
 
+
 agent.title: Agents
 agent.registered_agents: Registered Agents
 agent.individual_agents: Individual Agents
@@ -127,6 +128,9 @@ agent.list: List
 agent.mapa: Map
 agent.chart: Indicators
 agent.agents_found: Agents found
+agent.sort_by: Sort by
+agent.most_recent: Most recent
+agent.oldest: Oldest
 agent.home: Home
 
 sort_by: Sort by
@@ -208,3 +212,23 @@ register.birth_date: Your date of birth
 register.password-required: The password must have
 register.password-requirements: at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.
 register.password-strength: Password strength
+
+
+faq-suggestions: Top suggestions
+faq-notices: Registration for notices and opportunities
+faq-find: Here you will find answers about notices and opportunities on the cultural map.
+faq-map: Map Registration
+faq-information: Here you will find information about registering on the Cultural Map.
+faq-registration: Registration for Notices and Opportunities
+faq-results: Here you will find information on how to participate and track results.
+faq-questions: Do you have any questions?
+faq-checks: Check out our FAQs
+faq-categories: Check out all the most frequently asked questions grouped into available categories for you to consult.
+faq-opportunity: Registration for notices and opportunities
+faq-access: How do I recover my access?
+faq-looking: Didn't find what you were looking for?
+faq-click: Click here
+faq-support: to speak to our support team via chat.
+faq-send: Or send an email to
+faq-illustration: Illustration
+faq-keys: Search by keywords

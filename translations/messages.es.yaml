@@ -127,6 +127,9 @@ agent.list: Lista
 agent.mapa: Mapa
 agent.chart: Indicadores
 agent.agents_found: Agentes encontrados
+agent.sort_by: Ordenar por
+agent.most_recent: Más reciente
+agent.oldest: Más antiguo
 agent.home: Inicio
 
 sort_by: Ordenar por
@@ -207,3 +210,22 @@ register.birth_date: Tu fecha de nacimiento
 register.password-required: La contraseña debe tener
 register.password-requirements: al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.
 register.password-strength: Fuerza de la contraseña
+
+faq-suggestions: Sugerencias principales
+faq-notices: Inscripción para avisos y oportunidades
+faq-find: Aquí encontrará respuestas sobre los avisos y oportunidades en el mapa cultural.
+faq-map: Registro en el mapa
+faq-information: Aquí encontrarás información sobre cómo registrarte en el Mapa Cultural.
+faq-registration: Inscripción en Avisos y Oportunidades
+faq-results: Aquí encontrará información sobre cómo participar y realizar un seguimiento de los resultados.
+faq-questions: ¿Tiene preguntas?
+faq-checks: Consulta nuestras preguntas frecuentes
+faq-categories: Consulta todas las preguntas más frecuentes agrupadas en categorías disponibles para que puedas consultar.
+faq-opportunity: Inscripción para avisos y oportunidades.
+faq-access: ¿Cómo recupero mi acceso?
+faq-looking: ¿No encontraste lo que buscabas?
+faq-click: Haga clic aquí
+faq-support: para hablar con nuestro equipo de soporte por chat.
+faq-send: O enviar un correo electrónico a
+faq-illustration: Ilustración
+faq-keys: Buscar por palabras clave

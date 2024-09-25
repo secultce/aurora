@@ -186,6 +186,24 @@ event.card.entry: Valor da entrada
 event.card.participants: Número de participantes
 event.card.button: Acessar evento
 
+faq-suggestions: Principais sugestões
+faq-notices: Inscrições em editais e oportunidades
+faq-find: Aqui você encontra respostas sobre os editais e oportunidades no mapa cultural.
+faq-map: Cadastro no Mapa
+faq-information: Aqui você encontra informações sobre o cadastro no Mapa Cultural.
+faq-registration: Inscrições em Editais e Oportunidades
+faq-results: Aqui você encontra informações sobre como participar e acompanhar resultados.
+faq-questions: Está com dúvidas?
+faq-checks: Confira nossas perguntas frequentes
+faq-categories: Confira todas as dúvidas mais frequentes agrupadas em categorias disponíveis para que você possa consultar.
+faq-opportunity: Inscrições em editais e oportunidades
+faq-access: Como recuperar meu acesso?
+faq-looking: Não encontrou o que procurava?
+faq-click: Clique aqui
+faq-support: para falar com nossa equipe de suporte por chat.
+faq-send:  Ou envie um email para
+faq-illustration: Ilustração
+faq-keys: Pesquise por palavras-chaves
 register.title: Criar uma conta
 register.subtitle: Siga os passos para finalizar o seu cadastro na plataforma Aurora.
 register.name: Seu nome completo
