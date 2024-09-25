@@ -17,3 +17,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\EventApiController::remove
   methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\EventApiController::update
+  methods: ['PATCH']

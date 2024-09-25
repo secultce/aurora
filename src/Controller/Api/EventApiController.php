@@ -49,4 +49,11 @@ class EventApiController extends AbstractApiController
             ],
         ]);
     }
+
+    public function update(Uuid $id, Request $request): JsonResponse
+    {
+        $event = $this->service->update($id, $request->toArray());
+
+        return $this->json($event, Response::HTTP_OK, context: ['groups' => 'event.get']);
+    }
 }

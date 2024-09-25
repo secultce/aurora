@@ -72,4 +72,25 @@ readonly class EventService implements EventServiceInterface
 
         $this->repository->save($event);
     }
+
+    public function update(Uuid $identifier, array $event): Event
+    {
+        $eventFromDB = $this->get($identifier);
+
+        $eventDto = $this->serializer->denormalize($event, EventDto::class);
+
+        $violations = $this->validator->validate($eventDto, groups: EventDto::UPDATE);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $eventObj = $this->serializer->denormalize($event, Event::class, context: [
+            'object_to_populate' => $eventFromDB,
+        ]);
+
+        $eventObj->setUpdatedAt(new DateTime());
+
+        return $this->repository->save($eventObj);
+    }
 }

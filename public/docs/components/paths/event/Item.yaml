@@ -1,4 +1,6 @@
 get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Eventos
   summary: Recupera um único evento
@@ -15,7 +17,37 @@ get:
         application/json:
           schema:
             $ref: '../../responses/event/EventNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Eventos
+  summary: Atualiza um único evento
+  requestBody:
+    description: Evento
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/event/EventPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Evento atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event/EventPatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, evento não atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Eventos
   summary: Remove um único evento
