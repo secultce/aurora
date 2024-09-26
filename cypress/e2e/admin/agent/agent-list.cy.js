@@ -7,7 +7,7 @@ describe('Página de Listar de Agentes', () => {
     it('Garante que a página de lista de agentes existe', () => {
         cy.get('.breadcrumb-agent > :nth-child(1)').contains('Inicio').should('be.visible');
         cy.get('.breadcrumb-agent > :nth-child(2)').contains('Agentes').should('be.visible');
-        cy.get('.agent-dashboard-title').contains('Agentes').should('be.visible');
+        cy.get('.entity-dashboard-title').contains('Agentes').should('be.visible');
     });
 
     it('Garante que as opções de visualização estão presentes', () => {
