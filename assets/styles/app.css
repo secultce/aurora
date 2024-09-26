@@ -125,7 +125,7 @@ body {
     width: 23rem;
 }
 
-.agent-dashboard {
+.entity-dashboard {
     display: flex;
     gap: 1.75rem;
     width: 96%;
@@ -193,7 +193,7 @@ body {
     cursor: auto;
 }
 
-.agent-dashboard-title {
+.entity-dashboard-title {
     font-weight: 700;
     font-size: 32px;
     margin-top: 33px;
