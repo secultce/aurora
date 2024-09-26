@@ -1,0 +1,4 @@
+initiative:
+  path: /iniciativas
+  controller: App\Controller\Admin\InitiativeAdminController::initiative
+  methods: ['GET']
