@@ -18,7 +18,7 @@ properties:
     description: "Descrição longa do agente"
   culture:
     type: boolean
-    description: "Identificador se o agente é cultural ou não"
+    description: "Se o agente é cultural"
   organization:
     type: object
     properties:

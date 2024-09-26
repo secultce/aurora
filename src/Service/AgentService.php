@@ -72,4 +72,25 @@ readonly class AgentService implements AgentServiceInterface
 
         $this->repository->save($agent);
     }
+
+    public function update(Uuid $identifier, array $agent): Agent
+    {
+        $agentObj = $this->get($identifier);
+
+        $agentDto = $this->serializer->denormalize($agent, AgentDto::class);
+
+        $violations = $this->validator->validate($agentDto, groups: AgentDto::UPDATE);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $agentObj = $this->serializer->denormalize($agent, Agent::class, context: [
+            'object_to_populate' => $agentObj,
+        ]);
+
+        $agentObj->setUpdatedAt(new DateTime());
+
+        return $this->repository->save($agentObj);
+    }
 }

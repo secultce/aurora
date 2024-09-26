@@ -49,4 +49,11 @@ class AgentApiController extends AbstractApiController
             ],
         ]);
     }
+
+    public function update(Uuid $id, Request $request): JsonResponse
+    {
+        $agent = $this->service->update($id, $request->toArray());
+
+        return $this->json($agent, context: ['groups' => 'agent.get']);
+    }
 }
