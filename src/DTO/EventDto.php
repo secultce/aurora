@@ -35,36 +35,36 @@ class EventDto
 
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
-        new Uuid(groups: [self::CREATE]),
-        new Exists(Agent::class, groups: [self::CREATE]),
+        new Uuid(groups: [self::CREATE, self::UPDATE]),
+        new Exists(Agent::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $agentGroup;
 
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
-        new Uuid(groups: [self::CREATE]),
-        new Exists(Space::class, groups: [self::CREATE]),
+        new Uuid(groups: [self::CREATE, self::UPDATE]),
+        new Exists(Space::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $space;
 
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
-        new Uuid(groups: [self::CREATE]),
-        new Exists(Initiative::class, groups: [self::CREATE]),
+        new Uuid(groups: [self::CREATE, self::UPDATE]),
+        new Exists(Initiative::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $initiative;
 
     #[Sequentially([
-        new Uuid(groups: [self::CREATE]),
-        new Exists(Event::class, groups: [self::CREATE]),
+        new Uuid(groups: [self::CREATE, self::UPDATE]),
+        new Exists(Event::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $parent;
 
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
         new NotNull(groups: [self::UPDATE]),
-        new Uuid(groups: [self::CREATE]),
-        new Exists(Agent::class, groups: [self::CREATE]),
+        new Uuid(groups: [self::CREATE, self::UPDATE]),
+        new Exists(Agent::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $createdBy;
 }
