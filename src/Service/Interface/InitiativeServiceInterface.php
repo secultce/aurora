@@ -14,4 +14,6 @@ interface InitiativeServiceInterface
     public function list(): array;
 
     public function remove(Uuid $id): void;
+
+    public function create(array $initiative): Initiative;
 }

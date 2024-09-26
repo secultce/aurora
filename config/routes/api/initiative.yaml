@@ -12,3 +12,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\InitiativeApiController::remove
   methods: ['DELETE']
+
+create:
+  path: /
+  controller: App\Controller\Api\InitiativeApiController::create
+  methods: ['POST']

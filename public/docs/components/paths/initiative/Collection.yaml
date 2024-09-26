@@ -12,3 +12,27 @@ get:
             items:
               allOf:
                 - $ref: '../../responses/initiative/InitiativeGetCollectionResponse.yaml'
+post:
+  tags:
+    - Iniciativas
+  summary: Cria uma única iniciativa
+  requestBody:
+    description: Iniciativa
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/initiative/InitiativePostItemRequest.yaml'
+  responses:
+    '201':
+      description: Iniciativa criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/initiative/InitiativePostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, Iniciativa não criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'

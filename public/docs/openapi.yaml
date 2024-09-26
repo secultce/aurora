@@ -29,6 +29,8 @@ tags:
     description: Endpoints relacionados aos espaços
   - name: Eventos
     description: Endpoints relacionados aos eventos
+  - name: Iniciativas
+    description: Endpoints relacionados às iniciativas
 paths:
   /agents:
     $ref: './components/paths/agent/Collection.yaml'
