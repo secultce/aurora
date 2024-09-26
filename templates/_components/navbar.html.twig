@@ -25,7 +25,7 @@
                 <ul class="navbar-nav nav-entities fs-5 flex-grow-1 pe-3">
                     <li class="nav-item">
                         <a class="nav-link home" aria-current="page" href="#">
-                            <i class="material-icons">home</i>
+                            <i class="material-icons navbar-icons">home</i>
                             <p>{{ 'home'|trans }}</p>
                         </a>
                     </li>
@@ -71,7 +71,13 @@
                     <span class="badge-notification">1</span>
                 </div>
             </div>
-            <a href="#login" class="nav-btn-login">{{ 'login'|trans }}</a>
+            <div class="d-flex gap-3 align-content-center">
+                <div class="my-account">
+                    <span>Alan Turing</span>
+                    <a href="#">{{ 'my-account'|trans }}</a>
+                </div>
+                <img src="{{ asset('img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
+            </div>
         </div>
     </div>
 </nav>

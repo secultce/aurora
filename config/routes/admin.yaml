@@ -14,3 +14,7 @@ admin_space:
   resource: 'admin/space.yaml'
   prefix: /
   name_prefix: admin_space_
+admin_agent:
+  resource: 'admin/agent.yaml'
+  prefix: /
+  name_prefix: admin_agent_

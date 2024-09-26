@@ -96,3 +96,20 @@ space-filter.access: Tiene accesibilidad
 space-yes: Sí
 space-no: No
 space-area.activity: Área de actividad
+agent.title: Agentes
+agent.registered_agents: Agentes Registrados
+agent.individual_agents: Agentes Individuales
+agent.collective_agents: Agentes Colectivos
+agent.registered_last_7_days: Registrados en los últimos 7 días
+agent.view_as: Ver como
+agent.list: Lista
+agent.mapa: Mapa
+agent.chart: Indicadores
+agent.agents_found: Agentes encontrados
+agent.sort_by: Ordenar por
+agent.most_recent: Más reciente
+agent.oldest: Más antiguo
+agent.home: Inicio
+
+my-account: Mi cuenta
+profile-picture: Foto de perfil

@@ -1,0 +1,11 @@
+{% extends "_layouts/agent/agent.html.twig" %}
+
+{% block navbar %} {% include "_components/navbar.html.twig" %} {% endblock %}
+
+{% block panel %}{% include "admin/agent/_partials/panel.html.twig" %}{% endblock %}
+
+{% block content %}
+    <div class="agent-list">
+        {% include "admin/agent/_partials/cards.html.twig" %}
+    </div>
+{% endblock %}
