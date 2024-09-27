@@ -1,4 +1,6 @@
 get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Iniciativas
   summary: Recupera uma única iniciativa
@@ -15,7 +17,37 @@ get:
         application/json:
           schema:
             $ref: '../../responses/initiative/InitiativeNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Iniciativas
+  summary: Atualiza uma única iniciativa
+  requestBody:
+    description: Iniciativa
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/initiative/InitiativePatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Iniciativa atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/initiative/InitiativePatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, iniciativa não atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
   tags:
     - Iniciativas
   summary: Remove uma única iniciativa

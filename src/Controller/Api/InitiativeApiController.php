@@ -49,4 +49,11 @@ class InitiativeApiController extends AbstractApiController
 
         return $this->json($initiative, status: Response::HTTP_CREATED, context: ['groups' => 'initiative.get']);
     }
+
+    public function update(?Uuid $id, Request $request): JsonResponse
+    {
+        $initiative = $this->service->update($id, $request->toArray());
+
+        return $this->json($initiative, Response::HTTP_OK, context: ['groups' => 'initiative.get']);
+    }
 }
