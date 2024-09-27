@@ -12,6 +12,7 @@ use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\InitiativeTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
+use PHPUnit\Framework\Attributes\DataProvider;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -179,7 +180,23 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function provideValidationCreateCases(): array
+    #[DataProvider('provideValidationCreateCases')]
+    public function testValidationCreate(array $requestBody, array $expectedErrors): void
+    {
+        $client = static::createClient();
+
+        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationCreateCases(): array
     {
         $requestBody = InitiativeTestFixtures::partial();
 
@@ -241,6 +258,123 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 ],
             ],
             'space should exist' => [
+                'requestBody' => array_merge($requestBody, ['space' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'space', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'space is not a valid UUID' => [
+                'requestBody' => array_merge($requestBody, ['space' => 'invalid-uuid']),
+                'expectedErrors' => [
+                    ['field' => 'space', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+        ];
+    }
+
+    public function testCanUpdate(): void
+    {
+        $requestBody = InitiativeTestFixtures::complete();
+        unset($requestBody['id']);
+
+        $url = sprintf('%s/%s', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_8);
+        $client = self::createClient();
+
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $initiative = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Initiative::class, InitiativeFixtures::INITIATIVE_ID_8);
+
+        $this->assertResponseBodySame([
+            'id' => InitiativeFixtures::INITIATIVE_ID_8,
+            'name' => $requestBody['name'],
+            'parent' => [
+                'id' => InitiativeFixtures::INITIATIVE_ID_2,
+                'name' => 'Raízes e Tradições',
+                'space' => null,
+                'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'createdAt' => '2024-07-11T10:49:00+00:00',
+                'updatedAt' => null,
+                'deletedAt' => null,
+            ],
+            'space' => [
+                'id' => SpaceFixtures::SPACE_ID_4,
+            ],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $initiative->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateCases')]
+    public function testValidationUpdate(array $requestBody, array $expectedErrors): void
+    {
+        $client = self::createClient();
+        $url = sprintf('%s/%s', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_8);
+        $client->request(Request::METHOD_PATCH, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateCases(): array
+    {
+        $requestBody = InitiativeTestFixtures::partial();
+
+        return [
+            'name should be string' => [
+                'requestBody' => array_merge($requestBody, ['name' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'name too short' => [
+                'requestBody' => array_merge($requestBody, ['name' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'name too long' => [
+                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'parent should exists' => [
+                'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'parent', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'parent is not a valid UUID' => [
+                'requestBody' => array_merge($requestBody, ['parent' => 'invalid-uuid']),
+                'expectedErrors' => [
+                    ['field' => 'parent', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'createdBy should exists' => [
+                'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'createdBy', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'createdBy is not a valid UUID' => [
+                'requestBody' => array_merge($requestBody, ['createdBy' => 'invalid-uuid']),
+                'expectedErrors' => [
+                    ['field' => 'createdBy', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'space should exists' => [
                 'requestBody' => array_merge($requestBody, ['space' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
                     ['field' => 'space', 'message' => 'This id does not exist.'],

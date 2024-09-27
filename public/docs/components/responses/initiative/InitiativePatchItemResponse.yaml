@@ -1,0 +1,86 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da iniciativa"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da iniciativa"
+  parent:
+    type: object
+    description: "Iniciativa pai"
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da iniciativa pai "
+      name:
+        type: string
+        maxLength: 100
+        description: "Nome da iniciativa"
+      createdBy:
+        $ref: '../../schemas/agent.yaml'
+      parent:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador da iniciativa pai"
+          name:
+            type: string
+            maxLength: 100
+            description: "Nome da iniciativa"
+          space:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+                description: "Identificador do espaço ao qual a iniciativa pertence"
+      createdAt:
+        type: string
+        format: date-time
+        description: "Data e hora da criação da iniciativa"
+      updatedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da última atualização da iniciativa"
+      deletedAt:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora da exclusão da iniciativa"
+  space:
+    type: object
+    description: "Espaço ao qual a iniciativa pertence"
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do espaço ao qual a iniciativa pertence"
+  createdBy:
+    description: "Criador da iniciativa"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação da iniciativa"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização da iniciativa"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão da iniciativa"

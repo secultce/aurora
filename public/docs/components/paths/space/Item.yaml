@@ -25,7 +25,7 @@ patch:
     - Espaços
   summary: Atualiza um único espaço
   requestBody:
-    description: Organização
+    description: Espaço
     required: true
     content:
       application/json:
@@ -39,7 +39,7 @@ patch:
           schema:
             $ref: '../../responses/space/SpacePatchItemResponse.yaml'
     '400':
-      description: Dados inválidos, organização não atualizada
+      description: Dados inválidos, espaço não atualizada
       content:
         application/json:
           schema:

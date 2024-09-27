@@ -17,3 +17,8 @@ create:
   path: /
   controller: App\Controller\Api\InitiativeApiController::create
   methods: ['POST']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\InitiativeApiController::update
+  methods: ['PATCH']

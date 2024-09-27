@@ -72,4 +72,25 @@ readonly class InitiativeService implements InitiativeServiceInterface
 
         return $this->repository->save($initiativeObj);
     }
+
+    public function update(Uuid $id, array $initiative): Initiative
+    {
+        $initiativeFromDB = $this->get($id);
+
+        $initiativeDto = $this->serializer->denormalize($initiative, InitiativeDto::class);
+
+        $violations = $this->validator->validate($initiativeDto, groups: InitiativeDto::UPDATE);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $initiativeObj = $this->serializer->denormalize($initiative, Initiative::class, context: [
+            'object_to_populate' => $initiativeFromDB,
+        ]);
+
+        $initiativeObj->setUpdatedAt(new DateTime());
+
+        return $this->repository->save($initiativeObj);
+    }
 }
