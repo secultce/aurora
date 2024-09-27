@@ -15,8 +15,13 @@ security:
             security: false
         main:
             lazy: true
-            provider: users_in_memory
-
+            provider: app_user_provider
+            form_login:
+                login_path: admin_auth_login
+                check_path: admin_auth_login
+                username_parameter: email
+                password_parameter: password
+                default_target_path: admin_home_homepage
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
