@@ -34,6 +34,9 @@ jobs:
       - name: Install dependencies
         run: docker compose exec --user root php composer install
 
+      - name: Generate public/private keys for use in your application.
+        run: docker compose exec --user root php bin/console lexik:jwt:generate-keypair
+
       - name: Create the phpunit.xml
         run: docker compose exec --user root php cp phpunit.xml.dist phpunit.xml
 
@@ -57,6 +60,9 @@ jobs:
 
       - name: Install application dependencies
         run: docker compose exec --user root php composer install
+
+      - name: Generate public/private keys for use in your application.
+        run: docker compose exec --user root php bin/console lexik:jwt:generate-keypair
 
       - name: Run generate mongodb proxies
         run: docker compose exec --user root php bin/console doctrine:mongodb:generate:proxie

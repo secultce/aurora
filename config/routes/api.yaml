@@ -3,6 +3,11 @@ api_example:
   prefix: /api
   name_prefix: api_example_
 
+api_auth:
+  resource: 'api/authentication.yaml'
+  prefix: /api
+  name_prefix: api_auth_
+
 api_agents:
     resource: 'api/agent.yaml'
     prefix: /api/agents

@@ -8,12 +8,20 @@ security:
             entity:
                 class: App\Entity\User
                 property: email
-        users_in_memory: { memory: null }
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-        main:
+        json_login:
+            pattern: ^/api/login
+            stateless: true
+            json_login:
+                check_path: api_auth_login
+        api:
+            pattern: ^/api
+            stateless: true
+            jwt: ~
+        web:
             lazy: true
             provider: app_user_provider
             form_login:
@@ -22,6 +30,7 @@ security:
                 username_parameter: email
                 password_parameter: password
                 default_target_path: admin_home_homepage
+
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall
 
@@ -31,6 +40,8 @@ security:
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
+        # - { path: ^/api/login, roles: PUBLIC_ACCESS }
+        # - { path: ^/api, roles: IS_AUTHENTICATED_FULLY }
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
 

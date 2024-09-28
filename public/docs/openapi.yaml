@@ -23,6 +23,8 @@ externalDocs:
 servers:
   - url: /api
 tags:
+  - name: Autorização
+    description: Endpoints relacionados a autorização
   - name: Agentes
     description: Endpoints relacionados aos agentes
   - name: Espaços
@@ -44,6 +46,8 @@ paths:
     $ref: './components/paths/initiative/Collection.yaml'
   /initiatives/{id}:
     $ref: './components/paths/initiative/Item.yaml'
+  /login:
+    $ref: './components/paths/login/Item.yaml'
   /opportunities:
     $ref: './components/paths/opportunity/Collection.yaml'
   /opportunities/{id}:

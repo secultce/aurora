@@ -1,0 +1,4 @@
+login:
+  path: /login
+  controller: App\Controller\Api\AuthenticationApiController::login
+  methods: ['POST']
