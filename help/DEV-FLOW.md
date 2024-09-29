@@ -33,7 +33,7 @@ Cada tipo de issue define o tipo de implementação a ser feita no código
 - **Discovery:** Dificilmente envolvem código, mas sim, levantamento de informações sobre alguma biblioteca e/ou abordagem técnica a ser utilizada, por exemplo, uso da autenticação com GovBr
 - **Docs:** Tarefas que envolvem criação e/ou melhoria exclusivamente da documentação, como a criação deste fluxo
 
-> Para abrir uma nova issue, [clique aqui](https://github.com/secultce/mapinha/issues/new)
+> Para abrir uma nova issue, [clique aqui](https://github.com/secultce/aurora/issues/new)
 
 --- 
 

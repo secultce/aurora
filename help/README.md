@@ -1,4 +1,4 @@
-# Mapinha - Arquitetura
+# Aurora - Arquitetura
 
 Essa é a documentação das decisões técnicas, voltada para desenvolvedores e/ou entusiastas do código.
 

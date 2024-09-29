@@ -39,6 +39,6 @@ describe('Pagina de Login do ambiente web', () => {
 
         cy.get('[data-cy="submit"]').click();
 
-        cy.url().should('include', '/home');
+        cy.url().should('include', '/');
     })
 })
