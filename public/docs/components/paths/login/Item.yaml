@@ -1,0 +1,52 @@
+post:
+  tags:
+    - Autorização
+  summary: Autorizar
+  requestBody:
+    description: Evento
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            username:
+              type: string
+              description: "Email do usuário"
+            password:
+              type: string
+              description: "Senha do usuário"
+  responses:
+    '200':
+      description: Login efetuado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              token:
+                type: string
+                description: "Token do usuário"
+              username:
+                type: string
+                description: "Email do usuário"
+    '401':
+      description: Não autorizado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              error_message:
+                type: string
+                default: "unauthorized"
+              error_details:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    field:
+                      type: string
+                    message:
+                      type: string
+
