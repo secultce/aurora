@@ -1,6 +1,6 @@
 openapi: 3.0.2
 info:
-  title: API Mapinha
+  title: API Aurora
   description: |-
     API responsável por praticamente todas as funcionalidades de gerenciamento:
     - Agentes
@@ -12,7 +12,7 @@ info:
     - Usuários
 
     Links Importantes:
-    - [Github](https://github.com/secultce/mapinha)
+    - [Github](https://github.com/secultce/aurora)
 
   license:
     name: GPLv3

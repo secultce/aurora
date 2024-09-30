@@ -4,7 +4,7 @@
 
 1 - Navegue até a aba de issues:
 
-Você pode acessar diretamente por aqui https://github.com/secultce/mapinha/issues
+Você pode acessar diretamente por aqui https://github.com/secultce/aurora/issues
 
 2 - Escolha o tipo de issue
 

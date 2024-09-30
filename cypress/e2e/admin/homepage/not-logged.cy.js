@@ -1,7 +1,7 @@
 describe('Página de Home do ambiente web', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
-        cy.visit('/home');
+        cy.visit('/');
     });
 
     const entities = [

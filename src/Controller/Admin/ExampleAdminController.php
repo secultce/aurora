@@ -11,7 +11,7 @@ class ExampleAdminController extends AbstractAdminController
     public function action(): Response
     {
         return $this->render('example/action.html.twig', [
-            'name' => 'Mapinha',
+            'name' => 'Aurora',
         ]);
     }
 }

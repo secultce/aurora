@@ -1,6 +1,6 @@
-# Estrutura inicial Mapinha CE
+# Estrutura inicial Aurora
 
-Este repositório fornece uma configuração base de aplicação Symfony com Docker, Nginx e PostgreSQL para o projeto Mapa Cultural CE.
+Este repositório fornece uma configuração base de aplicação Symfony com Docker, Nginx e PostgreSQL para substituir o projeto Mapa Cultural utilizado no Ceará.
 
 A configuração já está dockerizada, então você só precisa ter o Docker Compose rodando na sua máquina para que tudo funcione corretamente.
 
@@ -10,7 +10,7 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 - **PostgreSQL** 16
 - **MongoDB** 7
 - **Symfony** 7
-- **Bootstrap/MapaCulturalDesign** 5.3 
+- **Aurora User Interface** 5.3 
 
 [Acesse aqui para entender as decisões](./help/STACK.md)
 
@@ -25,42 +25,73 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 Primeiro, clone o repositório usando SSH ou HTTPS:
 
 ```bash
-git clone git@github.com:secultce/mapinha.git
+git clone git@github.com:secultce/aurora.git
 ```
 ou
 ```bash
-git clone https://github.com/secultce/mapinha.git
+git clone https://github.com/secultce/aurora.git
 ```
 
 ### Navegar para o Diretório do Projeto
 Mude para o diretório do projeto:
 
 ```bash
-cd mapinha
+cd aurora
 ```
 
 ### Iniciar os Contêineres Docker
 Execute o Docker Compose para iniciar os contêineres:
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Instalar Dependências
 Para instalar as dependências do projeto, entre no contêiner PHP:
 ```bash
-docker-compose exec -it mapinha-php bash
+docker compose exec -it php bash
 ```
+**Agora é necessário executar alguns passos, nessa ordem, dentro do contêiner:**
 
-Dentro do contêiner, execute:
+1 - Instalação das dependências do PHP:
 ```bash
 composer install
+```
+
+2 - Gerar os arquivos de Proxies do MongoDB:
+```bash
+php bin/console doctrine:mongodb:generate:proxie
+```
+
+3 - Executar as migrations do banco de dados
+```bash
+php bin/console doctrine:migrations:migrate -n
+```
+
+4 - Executar as fixtures (dados de teste) do banco de dados
+```bash
+php bin/console doctrine:fixtures:load -n
+```
+
+5 - Instalação das dependêncis do frontend:
+```bash
+php bin/console importmap:install
+```
+
+6 - Compilar os arquivos do frontend
+```bash
+php bin/console asset-map:compile
+```
+
+7 - Gerar as chaves de autenticação
+```bash
+php bin/console lexik:jwt:generate-keypair
 ```
 
 ### Uso
 
 Depois que tudo estiver configurado e as dependências instaladas, você pode acessar sua aplicação Symfony em [http://localhost:8080](http://localhost:8080).
 
-Também criei uma rota de teste. Você pode acessá-la em [http://localhost:8080/hello](http://localhost:8080/hello). Esta rota está definida no controller `HelloWorldController` e retorna a mensagem "Bem vind@ ao Mapas Culturais CE".
+Há também uma rota de teste para a API. Você pode acessá-la em [http://localhost:8080/api/example](http://localhost:8080/api/example). Esta rota está definida no controller `ExampleController` e retorna a mensagem de sucesso.
 
 </details>
 
@@ -97,9 +128,9 @@ flowchart TD
 A prototipagem das telas é feita por outro time, do RedeMapas, e se encontra [neste link do Figma](https://www.figma.com/design/HkR1qdfHPn4riffcBBOQwR/Prot%C3%B3tipos-%7C-Prioriza%C3%A7%C3%B5es?node-id=0-1&t=n23kLvhTSbEMELhz-0) 
 
 ### Componentes web
-Há um fork do Bootstrap (framework css) com a implementação dos protótipos acima, se encontra [neste repositório](https://github.com/secultce/mapaculturaldesign)
+Há um fork do Bootstrap (framework css) com a implementação dos protótipos acima, se encontra [neste repositório](https://github.com/secultce/aurora-ui)
 
 ### Decisões de Design
-Alguns protótipos implementados não estão seguindo a risca o design sugerido, por decisões totalmente técnicas que estão [documentadas aqui](https://github.com/secultce/mapaculturaldesign/blob/main/help/design-decisions.md)
+Alguns protótipos implementados não estão seguindo a risca o design sugerido, por decisões totalmente técnicas que estão [documentadas aqui](https://github.com/secultce/aurora-ui/blob/main/help/design-decisions.md)
 </details>
 

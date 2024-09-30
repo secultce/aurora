@@ -1,4 +1,4 @@
-# Mapinha E2E Tests
+# Aurora E2E Tests
 
 Este repositório contém os testes End-to-End (E2E) para a aplicação, integrados ao código principal.
 
@@ -9,10 +9,10 @@ Este repositório contém os testes End-to-End (E2E) para a aplicação, integra
 
 ## Instalação
 
-1. Entre no diretório em que o repositório do mapinha foi clonado:
+1. Entre no diretório em que o repositório do aurora foi clonado:
 
    ```sh
-   cd seu-diretorio/mapinha
+   cd seu-diretorio/aurora
    ```
 
 2. Instale os pacotes NPM necessários:

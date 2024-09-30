@@ -2,7 +2,7 @@
 
 1 - Escolha uma issue
 
-Acesse <https://github.com/secultce/mapinha/issues> e escolha em qual issue quer trabalhar
+Acesse <https://github.com/secultce/aurora/issues> e escolha em qual issue quer trabalhar
 
 2 - Atualize o seu branch principal (develop)
 
@@ -41,6 +41,6 @@ A regra, para melhor organização do repositório, é apenas 1 (um) commit por 
 
 7 - Abra o pull request
 
-Abra o pull request para o projeto `secultce/mapinha` e na descrição do PR informe se há algo a ser levado em consideração, bem como, especifique qual issue aquele pull request está atrelado.
+Abra o pull request para o projeto `secultce/aurora` e na descrição do PR informe se há algo a ser levado em consideração, bem como, especifique qual issue aquele pull request está atrelado.
 
 > Pronto, agora é só esperar o seu PR passar pelas validações de testes e code style, e depois ter 2 approves
