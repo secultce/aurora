@@ -1,0 +1,81 @@
+<div class="d-flex align-content-center justify-content-between">
+    <p class="fw-bold">182 {{ 'event.events_found' | trans }}</p>
+    <div class="d-flex g-4 event-sort">
+        <label class="event-options" for="sort-options">{{ 'event.sort_by' | trans }}:</label>
+        <select id="sort-options" class="form-select">
+            <option value="recent">{{ 'event.most_recent' | trans }}</option>
+            <option value="old">{{ 'event.oldest' | trans }}</option>
+        </select>
+    </div>
+</div>
+
+{% for event in events %}
+    <div class="card mw-100 event-card mt-3">
+        <div class="event-card-header d-flex justify-content-between">
+
+            <div class="d-flex align-items-center">
+                <img src="/assets/img/home-events.png" alt="Foto do evento" class="rounded-circle event-image">
+                <div class="ms-3">
+                    <h5 class="event-name">{{ event.name }}</h5>
+                    <p class="event-subtitle">Subtítulo do evento</p>
+                </div>
+            </div>
+            <div class="event-id">
+                {{ 'event.card.id' | trans }}: {{ event.id }}
+            </div>
+        </div>
+
+        <div class="event-card-body">
+            <p class="event-date fw-bold">
+                <i class="material-icons">event</i>
+                00/00/0000 às 00:00
+            </p>
+
+            <p class="event-location">
+                <i class="material-icons">location_on</i>
+                {% if event.space %}
+                    <span class="location-name fw-bold">{{ event.space.name }}</span> | SCTS – Zona Cívico Administrativa – Brasília/DF – CEP: 70070-150
+                {% else %}
+                    {{ 'event.card.location' | trans }}
+                {% endif %}
+            </p>
+
+            <p class="event-languages">
+                <strong>{{ 'event.card.language' | trans }} (3):</strong>
+                <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
+                <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
+                <a href="#" class="language-link fw-bold">LINGUAGEM</a>
+            </p>
+
+            <div class="event-details d-flex align-items-center">
+                <p class="entry-fee">
+                    <i class="material-icons">monetization_on</i>
+                    <strong>{{ 'event.card.entry' | trans }}: </strong> Gratuito
+                </p>
+                <p class="participants">
+                    <i class="material-icons">people</i>
+                    <strong>{{ 'event.card.participants' | trans }}: </strong> 0 participantes
+                </p>
+            </div>
+
+            <div class="d-flex event-seals">
+                <strong>{{ 'Selos'| trans }}:</strong>
+                <p class="badge seal">Nome do selo</p>
+                <p class="badge seal">Nome do selo</p>
+                <p class="badge seal">Nome do selo</p>
+            </div>
+
+            <div class="text-end mt-3">
+                <button class="btn btn-primary access-event">{{ 'event.card.button' | trans }}</button>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="container align-items-center mt-5 mb-5">
+    <div class="centered-icon-text card-view-more">
+        <i class="material-icons">add_circle_outline</i>
+        <button class="btn fw-bold">{{ 'list.view.more' | trans }}</button>
+    </div>
+</div>
+

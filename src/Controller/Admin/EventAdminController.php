@@ -16,6 +16,8 @@ class EventAdminController extends AbstractAdminController
 
     public function list(): Response
     {
+        $events = $this->service->list();
+
         $entity = [
             'color' => '#8E46B4',
             'items' => [
@@ -28,6 +30,7 @@ class EventAdminController extends AbstractAdminController
 
         return $this->render('event/list.html.twig', [
             'event' => $entity,
+            'events' => $events,
         ]);
     }
 }

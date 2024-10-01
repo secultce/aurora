@@ -16,6 +16,9 @@ login: Entrar
 check: Consultar
 logo: logo
 all: Todo
+page.view: Ver como
+seals: Sellos
+list.view.more: Ver más
 
 authentication.login.form.welcome: Bienvenido
 authentication.login.form.paragraph: Inicie sesión con sus datos de acceso
@@ -145,3 +148,21 @@ initiative.completed: iniciativa completada
 initiative.days: registrado en los últimos 7 días
 
 event.create: Crear evento
+event.dashboard.registered: Eventos registrados
+event.dashboard.realized: Eventos realizados
+event.dashboard.finished: Eventos finalizados
+event.dashboard.seven.days.registered: Eventos registrados en los últimos 7 días
+event.tabs.list: Lista
+event.tabs.calendar: Calendario
+event.tabs.map: Mapa
+event.tabs.indicators: Indicadores
+event.events_found: eventos encontrados
+event.sort_by: Ordenar por
+event.most_recent: Más recientes
+event.oldest: Más antiguos
+event.card.id: número identificador
+event.card.location: Ubicación no informada
+event.card.language: Idiomas
+event.card.entry: Valor de la entrada
+event.card.participants: Número de participantes
+event.card.button: Acceder al evento
