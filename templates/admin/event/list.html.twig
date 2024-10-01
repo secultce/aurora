@@ -5,13 +5,19 @@
 {% endblock %}
 
 {% block content %}
-    <div class="white-square">
-            {% include 'admin/event/_partials/breadcrumb.html.twig' %}
+    <section class="white-square">
+        {% include 'admin/event/_partials/breadcrumb.html.twig' %}
 
-            {% include 'admin/event/_partials/title.html.twig' %}
+        {% include 'admin/event/_partials/title.html.twig' %}
 
-            {% include '_components/entity-dashboard.html.twig' with { 'entity': event} %}
+        {% include '_components/entity-dashboard.html.twig' with { 'entity': event } %}
 
-    </div>
+        {% include 'admin/event/_partials/tabs/tabs.html.twig' %}
+    </section>
 
+    <section class="wrapper agent-wrapper">
+        <div class="container">
+            {% include 'admin/event/_partials/tabs/content-tabs.html.twig' %}
+        </div>
+    </section>
 {% endblock %}

@@ -16,6 +16,9 @@ login: Login
 check: Check out
 logo: Logo
 all: All
+page.view: View as
+seals: Seals
+list.view.more: View more
 
 authentication.login.form.welcome: Welcome
 authentication.login.form.paragraph: Log in with your account
@@ -150,3 +153,21 @@ initiative.completed: initiatives completed
 initiative.days: registered in the last 7 days
 
 event.create: Create event
+event.dashboard.registered: Registered events
+event.dashboard.realized: Realized events
+event.dashboard.finished: Finished events
+event.dashboard.seven.days.registered: Events registered in the last 7 days
+event.tabs.list: List
+event.tabs.calendar: Calendar
+event.tabs.map: Map
+event.tabs.indicators: Indicators
+event.events_found: events found
+event.sort_by: Sort by
+event.most_recent: Most recent
+event.oldest: Oldest
+event.card.id: identifier number
+event.card.location: Location not informed
+event.card.language: Languages
+event.card.entry: Entry fee
+event.card.participants: Number of participants
+event.card.button: Access event

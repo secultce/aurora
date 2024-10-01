@@ -1,0 +1,16 @@
+<ul class="nav nav-pills" id="pills-tab" role="tablist">
+    {% for tab in tabs %}
+        <li class="nav-item mb-1 me-3" role="presentation">
+            <div class="">
+                <a class="centered-icon-text nav-link {% if loop.first %}active{% endif %}" id="pills-{{ tab.id }}-tab" data-bs-toggle="pill" href="#pills-{{ tab.id }}" role="tab" aria-controls="pills-{{ tab.id }}" aria-selected="{{ loop.first ? 'true' : 'false' }}">
+                    {% if tab.icon is defined and tab.icon is not empty %}
+                        <i class="material-icons">{{ tab.icon }}</i>
+                        <span class="ms-2 fs-6 font-title">{{ tab.title }}</span>
+                    {% else %}
+                        {{ tab.title }}
+                    {% endif %}
+                </a>
+            </div>
+        </li>
+    {% endfor %}
+</ul>

@@ -16,6 +16,9 @@ login: Entrar
 check: Conferir
 logo: Lôgo
 all: Tudo
+page.view: Visualizar como
+seals: Selos
+list.view.more: Ver mais
 
 authentication.login.form.welcome: Boas vindas
 authentication.login.form.paragraph: Entre com a sua conta
@@ -135,7 +138,6 @@ initiative.dropdown.popular: Mais populares
 initiative.count.found: iniciativas encontradas
 initiative.search.placeholder: Pesquisar por Iniciativas
 initiative.create: Criar iniciativa
-initiative.view: Visualizar como
 initiative.list: Lista
 initiative.chart: Indicadores
 initiative.found: Iniciativas encontradas
@@ -149,3 +151,17 @@ event.dashboard.registered: Eventos cadastrados
 event.dashboard.realized: Eventos realizados
 event.dashboard.finished: Eventos finalizados
 event.dashboard.seven.days.registered: Eventos cadastrados nos últimos 7 dias
+event.tabs.list: Lista
+event.tabs.calendar: Calendário
+event.tabs.map: Mapa
+event.tabs.indicators: Indicadores
+event.events_found: eventos encontrados
+event.sort_by: Ordenar por
+event.most_recent: Mais recentes
+event.oldest: Mais antigos
+event.card.id: número identificador
+event.card.location: Local não informado
+event.card.language: Linguagens
+event.card.entry: Valor da entrada
+event.card.participants: Número de participantes
+event.card.button: Acessar evento

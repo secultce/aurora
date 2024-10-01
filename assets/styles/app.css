@@ -309,7 +309,6 @@ body {
     text-align: left;
     color: var(--main-font-color);
     margin-left: 207px;
-    margin-top: 26px;
     margin-bottom: 45px;
 }
 
@@ -469,12 +468,11 @@ body {
 }
 
 .seal {
-    background-color: var(--bg-color);
-    padding: 15px 10px;
+    padding: 7px 26px;
     border-radius: 20px;
-    margin-right: 10px;
+    margin-right: 36px;
     margin-bottom: 5px;
-    font-size: 12px;
+    font-size: 13px;
     font-weight: bold;
     color: var(--color-subtitle-gray);
 }
@@ -737,13 +735,8 @@ initiative-title-container {
     padding: 10px;
 }
 
-.initiative-tabs {
+.entity-page-tabs {
     display: flex;
-    flex-direction: initial;
-    align-items: center;
-    justify-content: left;
-    text-align: center;
-    margin-top: -5px;
     margin-left: 13rem;
 }
 
@@ -772,3 +765,104 @@ initiative-title-container {
     align-items: center;
 }
 
+.event-sort {
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 30px;
+}
+
+.event-options {
+    text-wrap: nowrap;
+}
+
+.event-card {
+    border-radius: 10px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.event-card-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+.event-image {
+    width: 50px;
+    height: 50px;
+}
+
+.event-name {
+    font-weight: bold;
+    color: var(--deep-teal);
+}
+
+.event-subtitle {
+    color: var(--main-font-color);
+    margin: 0;
+}
+
+.event-id {
+    color: var(--medium-gray);
+    font-size: 0.85rem;
+    text-align: right;
+}
+
+.event-card-body {
+    margin-top: 15px;
+}
+
+.event-date, .event-location {
+    color: var(--main-font-color);
+    display: flex;
+    align-items: center;
+}
+
+.event-date i, .event-location i {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+.location-name {
+    color: var(--deep-teal);
+}
+
+.event-languages .language-link {
+    color: var(--bg-initiative);
+}
+
+.event-details {
+    margin-top: 10px;
+}
+
+.entry-fee, .participants {
+    margin-right: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.entry-fee i, .participants i {
+    font-size: 1.2rem;
+    margin-right: 5px;
+}
+
+.event-seals .seal {
+    color: var(--main-font-color);
+    margin-right: 0rem;
+}
+
+.access-event {
+    background-color: var(--next-button-form);
+    color: var(--card-bg-color);
+    font-family: var(--font-open-sans);
+    font-weight: bold;
+    border: none;
+    padding: 13px 55px;
+    border-radius: 8px;
+    cursor: pointer;
+    display: inline-block;
+    text-align: center;
+}
+
+.card-view-more  {
+    color: var(--deep-teal)
+}

@@ -151,87 +151,106 @@
                 {
                     'id': '1',
                     'title': 'all'|trans,
-                    'content': [
-                        include('_components/oportunity-card-home.html.twig', {
-                            'status_icon': 'event',
-                            'status_text': 'Evento em andamento',
-                            'image_url': asset('img/img.png'),
-                            'image_alt': 'Festival de Música Regional',
-                            'title': 'Festival de Música Regional - Edição 2024',
-                            'registration_period': 'Inscrições de 10/08/2024 até 20/08/2024 às 23:59',
-                            'description': 'O Festival de Música Regional traz as melhores bandas locais para uma celebração da cultura e tradição musical. Participe de oficinas, shows e rodas de conversa com músicos renomados.',
-                            'interest_areas_count': 3,
-                            'interest_areas': 'Música, Cultura Popular, Tradições Locais',
-                            'tags_count': 4,
-                            'tags': 'Festival, Música, Cultura, Edição 2024',
-                            'badges_count': 2,
-                            'badges': '+2',
-                            'link_url': 'https://exemplo.com/festival-musica-2024',
-                        }),
-                        include('_components/oportunity-card-home.html.twig', {
-                            'status_icon': 'check_circle',
-                            'status_text': 'Inscrições abertas',
-                            'image_url': asset('img/img.png'),
-                            'image_alt': 'Mostra de Cinema Independente',
-                            'title': 'Mostra de Cinema Independente - Edição 2024',
-                            'registration_period': 'Inscrições de 15/09/2024 até 30/09/2024 às 18:00',
-                            'description': 'Uma vitrine para cineastas independentes exibirem seus filmes e documentários. O evento contará com debates, workshops e prêmios para as melhores produções.',
-                            'interest_areas_count': 2,
-                            'interest_areas': 'Cinema, Produção Independente',
-                            'tags_count': 3,
-                            'tags': 'Cinema, Independente, Mostra 2024',
-                            'badges_count': 1,
-                            'badges': '+1',
-                            'link_url': 'https://exemplo.com/mostra-cinema-2024',
-                        }),
-                        include('_components/oportunity-card-home.html.twig', {
-                            'status_icon': 'visibility',
-                            'status_text': 'Próximo evento',
-                            'image_url': asset('img/img.png'),
-                            'image_alt': 'Exposição de Arte Contemporânea',
-                            'title': 'Exposição de Arte Contemporânea - 2024',
-                            'registration_period': 'Inscrições de 01/10/2024 até 15/10/2024 às 20:00',
-                            'description': 'A Exposição de Arte Contemporânea apresenta as obras de artistas emergentes e consagrados. Participe de visitas guiadas e palestras com curadores.',
-                            'interest_areas_count': 4,
-                            'interest_areas': 'Arte Contemporânea, Escultura, Pintura, Fotografia',
-                            'tags_count': 5,
-                            'tags': 'Arte, Contemporânea, Exposição, Cultura, 2024',
-                            'badges_count': 3,
-                            'badges': '+3',
-                            'link_url': 'https://exemplo.com/exposicao-arte-2024',
-                        }),
-                        include('_components/oportunity-card-home.html.twig'),
-                    ]
                 },
                 {
                     'id': '2',
                     'title': 'events'|trans,
-                    'content': include('_components/oportunity-card-home.html.twig'),
                 },
                 {
                     'id': '3',
                     'title': 'spaces'|trans,
-                    'content': [
-                        include('_components/oportunity-card-home.html.twig'),
-                        include('_components/oportunity-card-home.html.twig'),
-                    ]
                 },
                 {
                     'id': '4',
                     'title': 'agents'|trans,
-                    'content': [
-                        include('_components/oportunity-card-home.html.twig'),
-                        include('_components/oportunity-card-home.html.twig'),
-                        include('_components/oportunity-card-home.html.twig'),
-                    ]
                 },
                 {
                     'id': '5',
                     'title': 'initiatives'|trans,
+                }
+            ] %}
+            {% include '_components/tabs/tab.html.twig' with { 'tabs': tabs } %}
+
+            {% set tabs = [
+                {
+                    'id': '1',
+                    'content': [
+                    include('_components/oportunity-card-home.html.twig', {
+                        'status_icon': 'event',
+                        'status_text': 'Evento em andamento',
+                        'image_url': asset('img/img.png'),
+                        'image_alt': 'Festival de Música Regional',
+                        'title': 'Festival de Música Regional - Edição 2024',
+                        'registration_period': 'Inscrições de 10/08/2024 até 20/08/2024 às 23:59',
+                        'description': 'O Festival de Música Regional traz as melhores bandas locais para uma celebração da cultura e tradição musical. Participe de oficinas, shows e rodas de conversa com músicos renomados.',
+                        'interest_areas_count': 3,
+                        'interest_areas': 'Música, Cultura Popular, Tradições Locais',
+                        'tags_count': 4,
+                        'tags': 'Festival, Música, Cultura, Edição 2024',
+                        'badges_count': 2,
+                        'badges': '+2',
+                        'link_url': 'https://exemplo.com/festival-musica-2024',
+                    }),
+                    include('_components/oportunity-card-home.html.twig', {
+                        'status_icon': 'check_circle',
+                        'status_text': 'Inscrições abertas',
+                        'image_url': asset('img/img.png'),
+                        'image_alt': 'Mostra de Cinema Independente',
+                        'title': 'Mostra de Cinema Independente - Edição 2024',
+                        'registration_period': 'Inscrições de 15/09/2024 até 30/09/2024 às 18:00',
+                        'description': 'Uma vitrine para cineastas independentes exibirem seus filmes e documentários. O evento contará com debates, workshops e prêmios para as melhores produções.',
+                        'interest_areas_count': 2,
+                        'interest_areas': 'Cinema, Produção Independente',
+                        'tags_count': 3,
+                        'tags': 'Cinema, Independente, Mostra 2024',
+                        'badges_count': 1,
+                        'badges': '+1',
+                        'link_url': 'https://exemplo.com/mostra-cinema-2024',
+                    }),
+                    include('_components/oportunity-card-home.html.twig', {
+                        'status_icon': 'visibility',
+                        'status_text': 'Próximo evento',
+                        'image_url': asset('img/img.png'),
+                        'image_alt': 'Exposição de Arte Contemporânea',
+                        'title': 'Exposição de Arte Contemporânea - 2024',
+                        'registration_period': 'Inscrições de 01/10/2024 até 15/10/2024 às 20:00',
+                        'description': 'A Exposição de Arte Contemporânea apresenta as obras de artistas emergentes e consagrados. Participe de visitas guiadas e palestras com curadores.',
+                        'interest_areas_count': 4,
+                        'interest_areas': 'Arte Contemporânea, Escultura, Pintura, Fotografia',
+                        'tags_count': 5,
+                        'tags': 'Arte, Contemporânea, Exposição, Cultura, 2024',
+                        'badges_count': 3,
+                        'badges': '+3',
+                        'link_url': 'https://exemplo.com/exposicao-arte-2024',
+                    }),
+                    include('_components/oportunity-card-home.html.twig'),
+                ]
+                },
+                {
+                    'id': '2',
+                    'content': include('_components/oportunity-card-home.html.twig'),
+                },
+                {
+                    'id': '3',
+                    'content': [
+                    include('_components/oportunity-card-home.html.twig'),
+                    include('_components/oportunity-card-home.html.twig'),
+                ]
+                },
+                {
+                    'id': '4',
+                    'content': [
+                    include('_components/oportunity-card-home.html.twig'),
+                    include('_components/oportunity-card-home.html.twig'),
+                    include('_components/oportunity-card-home.html.twig'),
+                ]
+                },
+                {
+                    'id': '5',
                     'content': 'Conteúdo 5'
                 }
             ] %}
-            {% include '_components/tabs.html.twig' with { 'tabs': tabs } %}
+            {% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}
         </div>
     </div>
 </div>
