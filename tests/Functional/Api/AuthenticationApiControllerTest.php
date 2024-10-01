@@ -23,6 +23,7 @@ class AuthenticationApiControllerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_POST, self::BASE_URL, server: [
             'HTTP_ACCEPT' => 'application/json',
+            'CONTENT_TYPE' => 'application/json',
         ], content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -44,6 +45,7 @@ class AuthenticationApiControllerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_POST, self::BASE_URL, server: [
             'HTTP_ACCEPT' => 'application/json',
+            'CONTENT_TYPE' => 'application/json',
         ], content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_UNAUTHORIZED);

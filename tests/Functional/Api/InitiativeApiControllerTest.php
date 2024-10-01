@@ -25,7 +25,10 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
     {
         $client = static::createClient();
 
-        $client->request(Request::METHOD_GET, self::BASE_URL);
+        $client->request(Request::METHOD_GET, self::BASE_URL, server: [
+            'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
+        ]);
         $response = $client->getResponse()->getContent();
 
         $this->assertResponseIsSuccessful();
@@ -54,7 +57,10 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $url = sprintf('%s/%s', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_1);
 
-        $client->request(Request::METHOD_GET, $url);
+        $client->request(Request::METHOD_GET, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
+        ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -78,7 +84,10 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
     {
         $client = static::createClient();
 
-        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
+        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()), server: [
+            'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
+        ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         $this->assertResponseBodySame([
@@ -93,7 +102,10 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
     {
         $client = static::createClient();
 
-        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
+        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()), server: [
+            'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
+        ]);
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         $this->assertResponseBodySame([
@@ -110,7 +122,10 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $url = sprintf('%s/%s', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_4);
 
-        $client->request(Request::METHOD_DELETE, $url);
+        $client->request(Request::METHOD_DELETE, $url, server: [
+            'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
+        ]);
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
@@ -124,6 +139,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_POST, self::BASE_URL, server: [
             'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
         ], content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
@@ -151,6 +167,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_POST, self::BASE_URL, server: [
             'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
         ], content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
@@ -187,6 +204,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_POST, self::BASE_URL, server: [
             'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
         ], content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
@@ -282,6 +300,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_PATCH, $url, server: [
             'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
         ], content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -318,6 +337,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $url = sprintf('%s/%s', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_8);
         $client->request(Request::METHOD_PATCH, $url, server: [
             'HTTP_ACCEPT' => 'application/json',
+            'HTTP_AUTHORIZATION' => self::getToken(),
         ], content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
