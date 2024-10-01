@@ -1,0 +1,13 @@
+<form class="form-stepper" id="registrationForm">
+    <div class="progressbar">
+        <div class="progress" id="progress"></div>
+        <div class="progress-step progress-step-active"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+        <div class="progress-step"></div>
+    </div>
+
+    {% include 'admin/authentication/_partials/cards-registration/registration-stage-1.html.twig' %}
+    {% include 'admin/authentication/_partials/cards-registration/registration-stage-2.html.twig' %}
+    {% include 'admin/authentication/_partials/cards-registration/registration-stage-3.html.twig' %}
+</form>

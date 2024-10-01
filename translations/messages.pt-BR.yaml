@@ -19,6 +19,14 @@ all: Tudo
 page.view: Visualizar como
 seals: Selos
 list.view.more: Ver mais
+full-name: Nome completo
+cpf: CPF
+email: Email
+password: Senha
+confirm-password: Confirmar senha
+continue: Continuar
+registration: Cadastro
+back: Voltar
 
 authentication.login.form.welcome: Boas vindas
 authentication.login.form.paragraph: Entre com a sua conta
@@ -165,3 +173,11 @@ event.card.language: Linguagens
 event.card.entry: Valor da entrada
 event.card.participants: Número de participantes
 event.card.button: Acessar evento
+
+register.title: Criar uma conta
+register.subtitle: Siga os passos para finalizar o seu cadastro na plataforma Aurora.
+register.name: Seu nome completo
+register.cpf: Seu CPF
+register.email: Seu email
+register.password: Sua senha
+register.confirm_password: Confirme sua senha

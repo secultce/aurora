@@ -1,0 +1,24 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %} {{ 'registration'|trans}} {% endblock %}
+
+{% block content %}
+
+    <div class="container d-grid justify-content-start mt-4">
+        <a href="{{ path('admin_home_homepage') }}" class="nav-link centered-icon-text text-primary">
+            <i class="material-icons">arrow_back</i>
+            {{ 'back'|trans }}
+        </a>
+    </div>
+
+    <div class="container d-grid justify-content-center mb-5">
+        <h1 class="fw-bold fs-3">{{ 'register.title'|trans }}</h1>
+        <p>{{ 'register.subtitle'|trans }}</p>
+
+        <div class="form-container mt-3">
+            {% include 'admin/authentication/_partials/form-stepper.html.twig' %}
+        </div>
+    </div>
+
+
+{% endblock %}
