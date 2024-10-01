@@ -24,14 +24,11 @@ class EventApiControllerTest extends AbstractWebTestCase
 
     public function testCanCreateWithPartialRequestBody(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $requestBody = EventTestFixtures::partial();
 
-        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
@@ -54,14 +51,11 @@ class EventApiControllerTest extends AbstractWebTestCase
 
     public function testCanCreateWithCompleteRequestBody(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $requestBody = EventTestFixtures::complete();
 
-        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
@@ -96,12 +90,9 @@ class EventApiControllerTest extends AbstractWebTestCase
     #[DataProvider('provideValidationCreateCases')]
     public function testValidationCreate(array $requestBody, array $expectedErrors): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
-        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
         $this->assertResponseBodySame([
@@ -215,12 +206,9 @@ class EventApiControllerTest extends AbstractWebTestCase
 
     public function testGet(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
-        $client->request(Request::METHOD_GET, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, self::BASE_URL);
         $response = $client->getResponse()->getContent();
 
         $this->assertResponseIsSuccessful();
@@ -249,14 +237,11 @@ class EventApiControllerTest extends AbstractWebTestCase
 
     public function testGetItem(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $url = sprintf('%s/%s', self::BASE_URL, EventFixtures::EVENT_ID_6);
 
-        $client->request(Request::METHOD_GET, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, $url);
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -299,12 +284,9 @@ class EventApiControllerTest extends AbstractWebTestCase
 
     public function testGetAResourceWhenNotFound(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
-        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()), server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         $this->assertResponseBodySame([
@@ -317,12 +299,9 @@ class EventApiControllerTest extends AbstractWebTestCase
 
     public function testDeleteAResourceWhenNotFound(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
-        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()), server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         $this->assertResponseBodySame([
@@ -335,21 +314,15 @@ class EventApiControllerTest extends AbstractWebTestCase
 
     public function testDeleteAnEventItemWithSuccess(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $url = sprintf('%s/%s', self::BASE_URL, EventFixtures::EVENT_ID_4);
 
-        $client->request(Request::METHOD_DELETE, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_DELETE, $url);
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
 
-        $client->request(Request::METHOD_GET, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, $url);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -359,12 +332,10 @@ class EventApiControllerTest extends AbstractWebTestCase
         unset($requestBody['id']);
 
         $url = sprintf('%s/%s', self::BASE_URL, EventFixtures::EVENT_ID_3);
-        $client = self::createClient();
 
-        $client->request(Request::METHOD_PATCH, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client = self::apiClient();
+
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
@@ -401,13 +372,10 @@ class EventApiControllerTest extends AbstractWebTestCase
     #[DataProvider('provideValidationUpdateCases')]
     public function testValidationUpdate(array $requestBody, array $expectedErrors): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $url = sprintf('%s/%s', self::BASE_URL, EventFixtures::EVENT_ID_4);
-        $client->request(Request::METHOD_PATCH, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
         $this->assertResponseBodySame([

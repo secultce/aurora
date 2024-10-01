@@ -24,12 +24,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
     {
         $requestBody = AgentTestFixtures::partial();
 
-        $client = self::createClient();
+        $client = self::apiClient();
 
-        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
@@ -53,12 +50,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
     {
         $requestBody = AgentTestFixtures::complete();
 
-        $client = self::createClient();
+        $client = self::apiClient();
 
-        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
@@ -83,12 +77,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
     #[DataProvider('provideValidationCreateCases')]
     public function testValidationCreate(array $requestBody, array $expectedErrors): void
     {
-        $client = self::createClient();
+        $client = self::apiClient();
 
-        $client->request(Request::METHOD_POST, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
         $this->assertResponseBodySame([
@@ -188,12 +179,10 @@ class AgentApiControllerTest extends AbstractWebTestCase
 
     public function testGet(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
-        $client->request(Request::METHOD_GET, self::BASE_URL, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, self::BASE_URL);
+
         $response = $client->getResponse()->getContent();
 
         $this->assertResponseIsSuccessful();
@@ -217,14 +206,11 @@ class AgentApiControllerTest extends AbstractWebTestCase
 
     public function testGetItem(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_3);
 
-        $client->request(Request::METHOD_GET, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, $url);
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
@@ -243,12 +229,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
 
     public function testGetAResourceWhenNotFound(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
-        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()), server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         $this->assertResponseBodySame([
@@ -261,12 +244,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
 
     public function testDeleteAResourceWhenNotFound(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
-        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()), server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_DELETE, sprintf('%s/%s', self::BASE_URL, Uuid::v4()->toRfc4122()));
 
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
         $this->assertResponseBodySame([
@@ -279,21 +259,15 @@ class AgentApiControllerTest extends AbstractWebTestCase
 
     public function testDeleteAgentItemWithSuccess(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_4);
 
-        $client->request(Request::METHOD_DELETE, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_DELETE, $url);
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
 
-        $client->request(Request::METHOD_GET, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ]);
+        $client->request(Request::METHOD_GET, $url);
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
@@ -303,12 +277,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
         unset($requestBody['id']);
 
         $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_5);
-        $client = self::createClient();
+        $client = self::apiClient();
 
-        $client->request(Request::METHOD_PATCH, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
@@ -333,12 +304,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
     #[DataProvider('provideValidationUpdateCases')]
     public function testValidationUpdate(array $requestBody, array $expectedErrors): void
     {
-        $client = self::createClient();
+        $client = self::apiClient();
         $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_6);
-        $client->request(Request::METHOD_PATCH, $url, server: [
-            'HTTP_ACCEPT' => 'application/json',
-            'HTTP_AUTHORIZATION' => self::getToken(),
-        ], content: json_encode($requestBody));
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
         $this->assertResponseBodySame([

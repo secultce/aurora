@@ -15,7 +15,7 @@ class ExampleApiTest extends AbstractWebTestCase
     {
         $this->expectException(NotFoundHttpException::class);
 
-        $client = static::createClient();
+        $client = static::apiClient();
         $client->catchExceptions(false);
 
         $client->request(Request::METHOD_GET, '/api/not-existent', server: [
@@ -28,7 +28,7 @@ class ExampleApiTest extends AbstractWebTestCase
 
     public function testRouteExistWithResponseIsSuccessful(): void
     {
-        $client = static::createClient();
+        $client = static::apiClient();
 
         $client->request(Request::METHOD_GET, '/api/example', server: [
             'HTTP_ACCEPT' => 'application/json',
