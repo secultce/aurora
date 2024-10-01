@@ -127,9 +127,10 @@ body {
 
 .entity-dashboard {
     display: flex;
-    gap: 1.75rem;
-    width: 96%;
-    margin: 25px 0;
+    justify-content: center;
+    gap: 0.15rem;
+    width: 78.2%;
+    margin: 0 auto;
 }
 
 .lock-icon {
@@ -734,14 +735,6 @@ initiative-title-container {
     font-size: 24px;
     color: var(--bg-icon-circle);
     padding: 10px;
-}
-
-.entity-dashboard-initiative {
-    display: flex;
-    justify-content: center;
-    gap: 0.15rem;
-    width: 78%;
-    margin: 0 auto;
 }
 
 .initiative-tabs {

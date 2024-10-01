@@ -1,5 +1,13 @@
 {% extends "_layouts/base.html.twig" %}
 
 {% block body %}
+    <div class="wrapper">
+        {% include "_components/navbar.html.twig" %}
 
+        <main class="content">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% include "_components/footer.html.twig" %}
+    </div>
 {% endblock %}

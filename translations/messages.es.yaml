@@ -143,3 +143,5 @@ initiative.registered: iniciativas registradas
 initiative.ongoing: iniciativas en curso
 initiative.completed: iniciativa completada
 initiative.days: registrado en los últimos 7 días
+
+event.create: Crear evento
