@@ -143,3 +143,9 @@ initiative.registered: iniciativas cadastradas
 initiative.ongoing: iniciativas em andamento
 initiative.completed: iniciativa concluída
 initiative.days: cadastrados nos últimos 7 dias
+
+event.create: Criar evento
+event.dashboard.registered: Eventos cadastrados
+event.dashboard.realized: Eventos realizados
+event.dashboard.finished: Eventos finalizados
+event.dashboard.seven.days.registered: Eventos cadastrados nos últimos 7 dias

@@ -1,0 +1,17 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'events'|trans }}
+{% endblock %}
+
+{% block content %}
+    <div class="white-square">
+            {% include 'admin/event/_partials/breadcrumb.html.twig' %}
+
+            {% include 'admin/event/_partials/title.html.twig' %}
+
+            {% include '_components/entity-dashboard.html.twig' with { 'entity': event} %}
+
+    </div>
+
+{% endblock %}

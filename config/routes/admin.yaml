@@ -22,3 +22,7 @@ admin_initiative:
   resource: 'admin/initiative.yaml'
   prefix: /
   name_prefix: admin_initiative_
+admin_event:
+  resource: 'admin/event.yaml'
+  prefix: /
+  name_prefix: admin_event_
