@@ -27,6 +27,10 @@ confirm-password: Confirmar senha
 continue: Continuar
 registration: Cadastro
 back: Voltar
+type: Tipo
+linked_with: Vinculado com
+areas_of_interest: Áreas de interesse
+open_registrations: Inscrições abertas
 
 authentication.login.form.welcome: Boas vindas
 authentication.login.form.paragraph: Entre com a sua conta
@@ -117,10 +121,11 @@ agent.list: Lista
 agent.mapa: Mapa
 agent.chart: Indicadores
 agent.agents_found: Agentes encontrados
-agent.sort_by: Ordenar por
-agent.most_recent: Mais Recente
-agent.oldest: Mais Antigo
 agent.home: Inicio
+
+sort_by: Ordenar por
+most_recent: Mais Recente
+oldest: Mais Antigo
 
 my-account: Minha Conta
 profile-picture: Foto de Perfil
@@ -181,3 +186,12 @@ register.cpf: Seu CPF
 register.email: Seu email
 register.password: Sua senha
 register.confirm_password: Confirme sua senha
+
+opportunity.opportunities_found: Oportunidades encontradas
+opportunity.open_registrations: Inscrições abertas
+opportunity.registrations_closed: Inscrições encerradas
+opportunity.future_registrations: Inscrições futuras
+opportunity.official_notices: Editais oficiais
+
+entity.tabs.list: Lista
+entity.tabs.map: Mapa

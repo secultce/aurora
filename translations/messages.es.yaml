@@ -19,6 +19,10 @@ all: Todo
 page.view: Ver como
 seals: Sellos
 list.view.more: Ver más
+type: Tipo
+linked_with: Vinculado con
+areas_of_interest: Áreas de interés
+open_registrations: Inscripciones abiertas
 
 authentication.login.form.welcome: Bienvenido
 authentication.login.form.paragraph: Inicie sesión con sus datos de acceso
@@ -99,6 +103,7 @@ space-filter.access: Tiene accesibilidad
 space-yes: Sí
 space-no: No
 space-area.activity: Área de actividad
+
 agent.title: Agentes
 agent.registered_agents: Agentes Registrados
 agent.individual_agents: Agentes Individuales
@@ -109,10 +114,11 @@ agent.list: Lista
 agent.mapa: Mapa
 agent.chart: Indicadores
 agent.agents_found: Agentes encontrados
-agent.sort_by: Ordenar por
-agent.most_recent: Más reciente
-agent.oldest: Más antiguo
 agent.home: Inicio
+
+sort_by: Ordenar por
+most_recent: Más reciente
+oldest: Más antiguo
 
 my-account: Mi cuenta
 profile-picture: Foto de perfil
@@ -166,3 +172,12 @@ event.card.language: Idiomas
 event.card.entry: Valor de la entrada
 event.card.participants: Número de participantes
 event.card.button: Acceder al evento
+
+opportunity.opportunities_found: Oportunidades encontradas
+opportunity.open_registrations: Inscripciones abiertas
+opportunity.registrations_closed: Inscripciones cerradas
+opportunity.future_registrations: Inscripciones futuras
+opportunity.official_notices: Convocatorias oficiales
+
+entity.tabs.list: Lista
+entity.tabs.map: Mapa

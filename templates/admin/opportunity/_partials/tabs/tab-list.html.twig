@@ -1,0 +1,68 @@
+<div class="d-flex justify-content-between align-items-end">
+    <p class="fw-bold">182 {{ 'opportunity.opportunities_found' | trans }}</p>
+    <div class="d-flex g-4 agent-sort">
+        <label class="text-nowrap" for="sort-options">{{ 'sort_by' | trans }}</label>
+        <select id="sort-options" class="form-select">
+            <option value="recent">{{ 'most_recent' | trans }}</option>
+            <option value="old">{{ 'oldest' | trans }}</option>
+        </select>
+    </div>
+</div>
+
+{% for opportunity in opportunities %}
+<div class="opportunity-card">
+    <div class="opportunity-card-header">
+        <div class="d-flex align-items-center justify-content-end">
+            ID: <span class="fw-bold">45456</span>
+
+            <i class="material-icons text-primary ms-2">check_circle</i>
+            <span>{{ 'open_registrations'|trans }}</span>
+        </div>
+
+        <div class="d-flex mt-1 mb-3 align-items-center">
+            <img src="" alt="Foto do agente" class="rounded-circle">
+
+            <span class="fw-bold ps-3">{{ opportunity.name }}</span>
+        </div>
+        <div class="fw-bold mb-2">
+            {{ 'type'|trans }}: <span class="text-danger me-3">TESTE</span>
+            {{ 'linked_with'|trans}} <ENTIDADE>: <a class="text-primary fw-bold text-decoration-none" href="#">Associação dos Pescadores</a>
+        </div>
+        <p class="text-orange fw-bold">
+            Inscrições de 01/01/2001 à 31/01/2001
+        </p>
+        <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+        </p>
+        <div class="additional-info">
+            <span class="fw-bold text-uppercase">{{ 'areas_of_interest'|trans }}:</span>
+            <br>
+            <span class="text-orange">Pesca, Antropologia, Ciencias Ocultas</span>
+        </div>
+        <div class="additional-info mt-2">
+            <span class="fw-bold">TAGS:</span>
+            <br>
+            <span class="text-orange">Pesca, Antropologia, Ciencias Ocultas</span>
+        </div>
+    </div>
+
+    <div class="d-flex justify-content-between align-items-center mt-2">
+        <div class="additional-info">
+            <span class="fw-bold text-uppercase">{{ 'seals'|trans }}:</span>
+            <br>
+            <div class="stamp-square mt-1"></div>
+        </div>
+
+        <div>
+            <button class="btn btn-primary btn-lg">Conferir <i class="material-icons">chevron_right</i> </button>
+        </div>
+    </div>
+</div>
+{% endfor %}
+
+<div class="container align-items-center mt-5 mb-5">
+    <div class="centered-icon-text card-view-more">
+        <i class="material-icons">add_circle_outline</i>
+        <button class="btn fw-bold">{{ 'list.view.more' | trans }}</button>
+    </div>
+</div>
