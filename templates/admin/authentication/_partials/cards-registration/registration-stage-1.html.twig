@@ -3,21 +3,50 @@
         <label for="inputName" class="form-label">{{ 'full-name'|trans }}</label>
         <input type="text" class="form-control" id="inputName" placeholder="{{ 'register.name'|trans }}">
     </div>
+
+    <div class="mb-3">
+        <label for="inputBirdDate" class="form-label">{{ 'birth-date'|trans }}</label>
+        <input type="date" class="form-control" id="inputBirdDate">
+    </div>
+
     <div class="mb-3">
         <label for="inputCPF" class="form-label">{{ 'cpf'|trans }}</label>
         <input type="text" class="form-control" id="inputCPF" placeholder="{{ 'register.cpf'|trans }}">
     </div>
+
+    <div class="mb-3">
+        <label for="inputPhone" class="form-label">{{ 'phone'|trans }}</label>
+        <input type="tel" class="form-control" id="inputPhone" placeholder="{{ 'register.phone'|trans }}">
+    </div>
+
     <div class="mb-3">
         <label for="inputEmail" class="form-label">{{ 'email'|trans }}</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="{{ 'Seu sobrenome'|trans }}">
+        <input type="email" class="form-control" id="inputEmail" placeholder="{{ 'register.email'|trans }}">
     </div>
+
     <div class="mb-3">
         <label for="inputPassword" class="form-label">{{ 'password'|trans }}</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="{{ 'Seu sobrenome'|trans }}">
+        <input type="password" class="form-control" id="inputPassword" placeholder="{{ 'register.password'|trans }}">
+        <small class="form-text text-muted ">
+            {{ 'register.password-required'|trans }}:
+        </small>
+        <small class="form-text fw-semibold text-danger">
+            {{ 'register.password-requirements'|trans }}
+        </small>
     </div>
+
     <div class="mb-3">
         <label for="inputPasswordConfirm" class="form-label">{{ 'confirm-password'|trans }}</label>
         <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="{{ 'register.confirm_password'|trans }}">
+    </div>
+
+    <div class="mb-3">
+        <label for="passwordStrength" class="form-label">{{ 'register.password-strength'|trans }}</label>
+        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar bg-success" style="width: 25%"></div>
+        </div>
+    </div>
+
     <div class="btn-form-group mt-3">
         <a href="#" class="btn btn-next">{{ 'continue'|trans }}</a>
     </div>
