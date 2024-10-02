@@ -198,18 +198,26 @@ opportunity.official_notices: Convocatorias oficiales
 entity.tabs.list: Lista
 entity.tabs.map: Mapa
 
-register.title: Crear una cuenta
-register.subtitle: Sigue los pasos para completar tu registro en la plataforma Aurora.
-register.name: Tu nombre completo
-register.cpf: Tu CPF
-register.email: Tu correo electrónico
-register.password: Tu contraseña
-register.confirm_password: Confirma tu contraseña
-register.phone: Tu número de contacto
-register.birth_date: Tu fecha de nacimiento
-register.password-required: La contraseña debe tener
-register.password-requirements: al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.
-register.password-strength: Fuerza de la contraseña
+register:
+  title: Crear una cuenta
+  subtitle: Sigue los pasos para completar tu registro en la plataforma Aurora.
+  name: Tu nombre completo
+  cpf: Tu CPF
+  email: Tu correo electrónico
+  password: Tu contraseña
+  confirm_password: Confirma tu contraseña
+  phone: Tu número de contacto
+  birth_date: Tu fecha de nacimiento
+  password-required: La contraseña debe tener
+  password-requirements: al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.
+  password-strength: Fuerza de la contraseña
+
+accept-policies:
+  title: Aceptación de políticas
+  description: Para crear su perfil, es necesario leer y aceptar los términos, políticas y autorizaciones para el uso de la plataforma, que se le enviarán por correo electrónico. Al aceptar, estará de acuerdo con todos.
+  terms: Términos y condiciones de uso
+  privacy: Política de privacidad
+  image: Autorización de uso de imagen
 
 faq-suggestions: Sugerencias principales
 faq-notices: Inscripción para avisos y oportunidades
