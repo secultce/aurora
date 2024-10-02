@@ -57,4 +57,12 @@ describe('Página de Home do ambiente web', () => {
         cy.get('h1').contains('Sabia que a Aurora é um software livre?').should('be.visible');
         cy.get('a').contains('Conheça o repositório').should('be.visible');
     });
+
+    it('Garante que seção "Confira as Oportunidades" estão com os dados das fixtures', () => {
+        cy.get('.carousel-item').first().contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
+    });
+
+    it('Garante que seção "Acontecendo agora" estão com os dados das fixtures', () => {
+        cy.get('#happening-now').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
+    });
 });

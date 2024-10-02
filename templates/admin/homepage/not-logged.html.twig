@@ -64,29 +64,32 @@
                     </button>
                 </div>
             </div>
-
-            {% include "_components/oportunity-card-home.html.twig" with {
-                'status_icon': 'check_circle',
-                'status_text': 'Inscrições abertas',
-                'image_url': asset('img/img.png'),
-                'image_alt': 'Mostra de Cinema Independente',
-                'title': 'Mostra de Cinema Independente - Edição 2024',
-                'registration_period': 'Inscrições de 15/09/2024 até 30/09/2024 às 18:00',
-                'description': 'Uma vitrine para cineastas independentes exibirem seus filmes e documentários. O evento contará com debates, workshops e prêmios para as melhores produções.',
-                'interest_areas_count': 2,
-                'interest_areas': 'Cinema, Produção Independente',
-                'tags_count': 3,
-                'tags': 'Cinema, Independente, Mostra 2024',
-                'badges_count': 1,
-                'badges': '+1',
-                'link_url': 'https://exemplo.com/mostra-cinema-2024',
-            } %}
         </div>
 
         <div id="opportunitiesCarousel" class="carousel slide" data-bs-ride="carousel">
-
+            <div class="carousel-inner d-flex gap-5">
+                {% for opportunity in opportunities %}
+                    <div class="carousel-item {% if loop.first %}active{% endif %}">
+                        {% include "_components/opportunity-card-home.html.twig" with {
+                            'status_icon': 'check_circle',
+                            'status_text': 'Inscrições abertas',
+                            'image_url': asset('img/img.png'),
+                            'image_alt': 'Mostra de Cinema Independente',
+                            'title': opportunity.name,
+                            'registration_period': 'Inscrições de 15/09/2024 até 30/09/2024 às 18:00',
+                            'description': 'Uma vitrine para cineastas independentes exibirem seus filmes e documentários. O evento contará com debates, workshops e prêmios para as melhores produções.',
+                            'interest_areas_count': 2,
+                            'interest_areas': 'Cinema, Produção Independente',
+                            'tags_count': 3,
+                            'tags': 'Cinema, Independente, Mostra 2024',
+                            'badges_count': 1,
+                            'badges': '+1',
+                            'link_url': 'https://exemplo.com/mostra-cinema-2024',
+                        } %}
+                    </div>
+                {% endfor %}
+            </div>
         </div>
-
     </div>
 </div>
 
@@ -128,7 +131,7 @@
     </div>
 </div>
 
-<div class="bg-aqua text-dark py-5">
+<div id="happening-now" class="bg-aqua text-dark py-5">
     <div class="container pb-5">
         <div class="row text-start">
             <div class="col-md-12 d-flex align-items-center justify-content-between">
@@ -138,14 +141,102 @@
                 </div>
 
                 <div class="mt-4">
-                    <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle me-2" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="prev">
+                    <button id="btn-card-prev" class="btn btn-light text-primary rounded-circle me-2 btn-carousel-homepage" type="button">
                         <i class="material-icons">chevron_left</i>
                     </button>
-                    <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="next">
+                    <button id="btn-card-next" class="btn btn-light text-primary rounded-circle btn-carousel-homepage" type="button">
                         <i class="material-icons">chevron_right</i>
                     </button>
                 </div>
             </div>
+
+            {% set agents_content = agents|map(
+                agent => include('admin/homepage/_partials/cards/item-agent.html.twig', {
+                    'icon': 'person',
+                    'status_text': agent.status_text ?? 'Individual',
+                    'image_url': asset('img/ada-lovelace.png'),
+                    'image_alt': 'Imagem não disponível',
+                    'name': agent.name ?? 'Sem nome',
+                    'areas_of_expertise_count': 3,
+                    'areas_of_expertise': 'Música, Cultura Popular, Tradições Locais',
+                    'seals_count': 2,
+                    'seals': '+2',
+                })
+            ) %}
+
+            {% set events_content = events|map(
+                event => include('admin/homepage/_partials/cards/item-event.html.twig', {
+                    'status_icon': 'event',
+                    'image_url': asset('img/ada-lovelace.png'),
+                    'image_alt': 'Imagem não disponível',
+                    'title': event.name ?? 'Sem título',
+                    'date': '11 de julho às 18:00',
+                    'location': 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
+                    'description': 'Sem descrição',
+                    'interest_areas_count': 3,
+                    'interest_areas': 'Música, Cultura Popular, Tradições Locais',
+                    'tags_count': 4,
+                    'tags': 'Festival, Música, Cultura, Edição 2024',
+                    'seals_count': 2,
+                    'seals': '+2',
+                })
+            ) %}
+
+            {% set initiatives_content = initiatives|map(
+                initiative => include('admin/homepage/_partials/cards/item-initiative.html.twig', {
+                    'status_icon': 'check_circle',
+                    'status_text': initiative.status_text ?? 'Iniciativa',
+                    'image_url': asset('img/allan.png'),
+                    'image_alt': 'Imagem não disponível',
+                    'title': initiative.name ?? 'Sem título',
+                    'type': 'CICLO',
+                    'registration_period': 'Sem período de inscrição',
+                    'description': 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
+                    'tags_count': 4,
+                    'tags': 'Festival, Música, Cultura, Edição 2024',
+                    'seals_count': 2,
+                    'seals': '+2',
+                })
+            ) %}
+
+            {% set opportunities_content = opportunities|map(
+                opportunity => include('admin/homepage/_partials/cards/item-opportunity.html.twig', {
+                    'status_icon': 'visibility',
+                    'status_text': 'Oportunidades',
+                    'image_url': asset('img/ada-lovelace.png'),
+                    'image_alt': 'Imagem não disponível',
+                    'title': opportunity.name ?? 'Sem título',
+                    'registration_period': 'Inscrições de 10/08/2024 até 20/08/2024 às 23:59',
+                    'location': 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
+                    'description': 'Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...',
+                    'interest_areas_count': 3,
+                    'interest_areas': 'Música, Cultura Popular, Tradições Locais',
+                    'tags_count': 4,
+                    'tags': 'Festival, Música, Cultura, Edição 2024',
+                    'seals_count': 2,
+                    'seals': '+2',
+                })
+            ) %}
+
+            {% set spaces_content = spaces|map(
+                space => include('admin/homepage/_partials/cards/item-space.html.twig', {
+                    'image_url': asset('img/allan.png'),
+                    'image_alt': 'Imagem não disponível',
+                    'title': space.name ?? 'Sem título',
+                    'type': 'CICLO',
+                    'location': 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
+                    'registration_period': 'Inscrições de 10/08/2024 até 20/08/2024 às 23:59',
+                    'description': 'Sem descrição',
+                    'interest_areas_count': 3,
+                    'interest_areas': 'Música, Cultura Popular, Tradições Locais',
+                    'tags_count': 4,
+                    'tags': 'Festival, Música, Cultura, Edição 2024',
+                    'seals_count': 2,
+                    'seals': '+2',
+                })
+            ) %}
+
+            {% set all_content = agents_content|merge(events_content)|merge(initiatives_content)|merge(opportunities_content)|merge(spaces_content) %}
 
             {% set tabs = [
                 {
@@ -154,102 +245,54 @@
                 },
                 {
                     'id': '2',
-                    'title': 'events'|trans,
-                },
-                {
-                    'id': '3',
-                    'title': 'spaces'|trans,
-                },
-                {
-                    'id': '4',
                     'title': 'agents'|trans,
                 },
                 {
-                    'id': '5',
+                    'id': '3',
+                    'title': 'events'|trans,
+                },
+                {
+                    'id': '4',
                     'title': 'initiatives'|trans,
-                }
+                },
+                {
+                    'id': '5',
+                    'title': 'opportunities'|trans,
+                },
+                {
+                    'id': '6',
+                    'title': 'spaces'|trans,
+                },
             ] %}
             {% include '_components/tabs/tab.html.twig' with { 'tabs': tabs } %}
 
             {% set tabs = [
                 {
                     'id': '1',
-                    'content': [
-                    include('_components/oportunity-card-home.html.twig', {
-                        'status_icon': 'event',
-                        'status_text': 'Evento em andamento',
-                        'image_url': asset('img/img.png'),
-                        'image_alt': 'Festival de Música Regional',
-                        'title': 'Festival de Música Regional - Edição 2024',
-                        'registration_period': 'Inscrições de 10/08/2024 até 20/08/2024 às 23:59',
-                        'description': 'O Festival de Música Regional traz as melhores bandas locais para uma celebração da cultura e tradição musical. Participe de oficinas, shows e rodas de conversa com músicos renomados.',
-                        'interest_areas_count': 3,
-                        'interest_areas': 'Música, Cultura Popular, Tradições Locais',
-                        'tags_count': 4,
-                        'tags': 'Festival, Música, Cultura, Edição 2024',
-                        'badges_count': 2,
-                        'badges': '+2',
-                        'link_url': 'https://exemplo.com/festival-musica-2024',
-                    }),
-                    include('_components/oportunity-card-home.html.twig', {
-                        'status_icon': 'check_circle',
-                        'status_text': 'Inscrições abertas',
-                        'image_url': asset('img/img.png'),
-                        'image_alt': 'Mostra de Cinema Independente',
-                        'title': 'Mostra de Cinema Independente - Edição 2024',
-                        'registration_period': 'Inscrições de 15/09/2024 até 30/09/2024 às 18:00',
-                        'description': 'Uma vitrine para cineastas independentes exibirem seus filmes e documentários. O evento contará com debates, workshops e prêmios para as melhores produções.',
-                        'interest_areas_count': 2,
-                        'interest_areas': 'Cinema, Produção Independente',
-                        'tags_count': 3,
-                        'tags': 'Cinema, Independente, Mostra 2024',
-                        'badges_count': 1,
-                        'badges': '+1',
-                        'link_url': 'https://exemplo.com/mostra-cinema-2024',
-                    }),
-                    include('_components/oportunity-card-home.html.twig', {
-                        'status_icon': 'visibility',
-                        'status_text': 'Próximo evento',
-                        'image_url': asset('img/img.png'),
-                        'image_alt': 'Exposição de Arte Contemporânea',
-                        'title': 'Exposição de Arte Contemporânea - 2024',
-                        'registration_period': 'Inscrições de 01/10/2024 até 15/10/2024 às 20:00',
-                        'description': 'A Exposição de Arte Contemporânea apresenta as obras de artistas emergentes e consagrados. Participe de visitas guiadas e palestras com curadores.',
-                        'interest_areas_count': 4,
-                        'interest_areas': 'Arte Contemporânea, Escultura, Pintura, Fotografia',
-                        'tags_count': 5,
-                        'tags': 'Arte, Contemporânea, Exposição, Cultura, 2024',
-                        'badges_count': 3,
-                        'badges': '+3',
-                        'link_url': 'https://exemplo.com/exposicao-arte-2024',
-                    }),
-                    include('_components/oportunity-card-home.html.twig'),
-                ]
+                    'content': all_content
                 },
                 {
                     'id': '2',
-                    'content': include('_components/oportunity-card-home.html.twig'),
+                    'content': agents_content
                 },
                 {
                     'id': '3',
-                    'content': [
-                    include('_components/oportunity-card-home.html.twig'),
-                    include('_components/oportunity-card-home.html.twig'),
-                ]
+                    'content': events_content
                 },
                 {
                     'id': '4',
-                    'content': [
-                    include('_components/oportunity-card-home.html.twig'),
-                    include('_components/oportunity-card-home.html.twig'),
-                    include('_components/oportunity-card-home.html.twig'),
-                ]
+                    'content': initiatives_content
                 },
                 {
                     'id': '5',
-                    'content': 'Conteúdo 5'
+                    'content': opportunities_content
+                },
+                {
+                    'id': '6',
+                    'content': spaces_content
                 }
             ] %}
+
             {% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}
         </div>
     </div>

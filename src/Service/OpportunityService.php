@@ -57,11 +57,12 @@ readonly class OpportunityService implements OpportunityServiceInterface
         return $opportunity;
     }
 
-    public function list(): array
+    public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
             self::DEFAULT_FILTERS,
-            ['createdAt' => 'DESC']
+            ['createdAt' => 'DESC'],
+            $limit
         );
     }
 

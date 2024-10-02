@@ -57,11 +57,12 @@ readonly class SpaceService implements SpaceServiceInterface
         return $space;
     }
 
-    public function list(): array
+    public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
             self::DEFAULT_FILTERS,
-            ['createdAt' => 'DESC']
+            ['createdAt' => 'DESC'],
+            $limit
         );
     }
 

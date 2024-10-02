@@ -13,7 +13,7 @@ interface OrganizationServiceInterface
 
     public function get(Uuid $id): Organization;
 
-    public function list(): array;
+    public function list(int $limit = 50): array;
 
     public function remove(Uuid $id): void;
 
