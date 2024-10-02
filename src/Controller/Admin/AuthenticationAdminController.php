@@ -20,4 +20,9 @@ class AuthenticationAdminController extends AbstractAdminController
             'error' => $error,
         ]);
     }
+
+    public function register(): Response
+    {
+        return $this->render('authentication/register.html.twig');
+    }
 }
