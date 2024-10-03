@@ -5,15 +5,51 @@ describe('Página de Listar de Agentes', () => {
     });
 
     it('Garante que a página de lista de agentes existe', () => {
-        cy.get('.breadcrumb-agent > :nth-child(1)').contains('Inicio').should('be.visible');
-        cy.get('.breadcrumb-agent > :nth-child(2)').contains('Agentes').should('be.visible');
-        cy.get('.entity-dashboard-title').contains('Agentes').should('be.visible');
+        cy.get('.breadcrumb > :nth-child(1)').contains('Início').should('be.visible');
+        cy.get('.breadcrumb > :nth-child(2)').contains('Agentes').should('be.visible');
+        cy.get('.page-title').contains('Agentes').should('be.visible');
         cy.contains('Agentes Cadastrados');
-        cy.contains('Alice Nogueira');
     });
 
-    it('Garante que as opções de visualização estão presentes', () => {
-        cy.get('a').contains('Lista').should('be.visible');
-        cy.get('a').contains('Mapa').should('be.visible');
+    it('Garante que o dashboard de agentes esteja presente', () => {
+        cy.get('.entity-dashboard').should('be.visible');
+
+        const expectedTexts = [
+            'Agentes Cadastrados',
+            'Agentes Individuais',
+            'Agentes Coletivos',
+            'Cadastrados nos últimos 7 dias'
+        ];
+
+        expectedTexts.forEach(text => {
+            cy.get('span.text').contains(text).should('be.visible');
+        });
+    });
+
+    it('Garante que as tabs estão funcionando', () => {
+        const tabs = [
+            { tab: '#pills-list-tab'},
+            { tab: '#pills-map-tab'},
+            { tab: '#pills-indicators-tab'}
+        ];
+
+        tabs.forEach(({ tab }) => {
+            cy.get(tab).click();
+            cy.get(tab).should('have.class', 'active');
+        });
+    });
+
+    it('Garante que os cards de agentes estão visíveis', () => {
+        cy.get('.align-items-end > .fw-bold').contains('10 Agentes encontrados').should('be.visible');
+        cy.get('.agent-options').should('be.visible');
+        cy.get('#sort-options').select('recent').should('have.value', 'recent');
+        cy.get('#sort-options').select('old').should('have.value', 'old');
+
+        cy.get(':nth-child(2) > .agent-card-header > .agent-info > .agent-name').contains('Paulo').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-body > .agent-area > .agent-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-body > .agent-location').contains('Goiânia (GO)').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-body > .agent-seals > .seals-area').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-body > .agent-description').contains('Especializado em teológia, organiza exposições por todos o Ceará.').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-body > .access-profile-container > .btn').contains('Acessar perfil').should('be.visible');
     });
 });
