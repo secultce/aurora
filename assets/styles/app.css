@@ -12,7 +12,9 @@ body {
     min-height: 100vh;
 }
 
-.agent-wrapper {
+.entity-wrapper {
+    display: flex;
+    justify-content: center;
     position: relative;
     margin-top: 47px;
 }
@@ -865,4 +867,8 @@ initiative-title-container {
 
 .card-view-more  {
     color: var(--deep-teal)
+}
+
+.entity-container {
+    width: 78.2%;
 }

@@ -19,6 +19,10 @@ all: All
 page.view: View as
 seals: Seals
 list.view.more: View more
+type: Type
+linked_with: Linked with
+areas_of_interest: Areas of interest
+open_registrations: Open registrations
 
 authentication.login.form.welcome: Welcome
 authentication.login.form.paragraph: Log in with your account
@@ -114,10 +118,11 @@ agent.list: List
 agent.mapa: Map
 agent.chart: Indicators
 agent.agents_found: Agents found
-agent.sort_by: Sort by
-agent.most_recent: Most recent
-agent.oldest: Oldest
 agent.home: Home
+
+sort_by: Sort by
+most_recent: Most recent
+oldest: Oldest
 
 my-account: My Account
 profile-picture: Profile Picture
@@ -171,3 +176,13 @@ event.card.language: Languages
 event.card.entry: Entry fee
 event.card.participants: Number of participants
 event.card.button: Access event
+
+
+opportunity.opportunities_found: Opportunities found
+opportunity.open_registrations: Open registrations
+opportunity.registrations_closed: Registrations closed
+opportunity.future_registrations: Future registrations
+opportunity.official_notices: Official notices
+
+entity.tabs.list: List
+entity.tabs.map: Map

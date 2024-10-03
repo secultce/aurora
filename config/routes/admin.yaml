@@ -26,3 +26,8 @@ admin_event:
   resource: 'admin/event.yaml'
   prefix: /
   name_prefix: admin_event_
+
+admin_opportunity:
+  resource: 'admin/opportunity.yaml'
+  prefix: /
+  name_prefix: admin_opportunity_
