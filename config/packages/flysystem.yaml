@@ -4,4 +4,5 @@ flysystem:
         default.storage:
             adapter: 'local'
             options:
-                directory: '%kernel.project_dir%/storage/default'
+                directory:  '%env(resolve:STORAGE_DIR)%'
+

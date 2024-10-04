@@ -9,9 +9,11 @@ use App\DataFixtures\Entity\OrganizationFixtures;
 use App\Entity\Agent;
 use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\AgentTestFixtures;
+use App\Tests\Fixtures\ImageTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -19,6 +21,16 @@ use Symfony\Component\Uid\Uuid;
 class AgentApiControllerTest extends AbstractWebTestCase
 {
     private const string BASE_URL = '/api/agents';
+
+    private ?ParameterBagInterface $parameterBag = null;
+
+    protected function setUp(): void
+    {
+        $client = static::createClient();
+        $container = $client->getContainer();
+
+        $this->parameterBag = $container->get(ParameterBagInterface::class);
+    }
 
     public function testCanCreateWithPartialRequestBody(): void
     {
@@ -36,8 +48,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'shortBio' => $requestBody['shortBio'],
-            'longBio' => '',
+            'longBio' => $requestBody['longBio'],
             'culture' => true,
             'organizations' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -56,12 +69,14 @@ class AgentApiControllerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
+        /* @var Agent $agent */
         $agent = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Agent::class, $requestBody['id']);
 
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => $agent->getImage(),
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
@@ -72,6 +87,9 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
+
+        $filepath = str_replace($this->parameterBag->get('app.url.storage'), '', $agent->getImage());
+        file_exists($filepath);
     }
 
     #[DataProvider('provideValidationCreateCases')]
@@ -99,7 +117,6 @@ class AgentApiControllerTest extends AbstractWebTestCase
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
                     ['field' => 'shortBio', 'message' => 'This value should not be blank.'],
-                    ['field' => 'culture', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -124,6 +141,18 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
             'shortBio should be string' => [
@@ -189,9 +218,13 @@ class AgentApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCount(count(AgentFixtures::AGENTS), json_decode($response));
 
+        $agent = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Agent::class, AgentFixtures::AGENT_ID_1);
+
         $this->assertJsonContains([
             'id' => AgentFixtures::AGENT_ID_1,
             'name' => 'Alessandro',
+            'image' => $agent->getImage(),
             'shortBio' => 'Desenvolvedor e evangelista de Software',
             'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
             'culture' => false,
@@ -214,9 +247,15 @@ class AgentApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        /* @var Agent $agent */
+        $agent = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Agent::class, AgentFixtures::AGENT_ID_3);
+
         $this->assertResponseBodySame([
             'id' => AgentFixtures::AGENT_ID_3,
             'name' => 'Anna Kelly',
+            'image' => $agent->getImage(),
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
             'longBio' => 'Desenvolvedora frontend especializada em criar interfaces intuitivas e acessíveis. Entusiasta de UX e está sempre em busca de melhorias na experiência do usuário.',
             'culture' => false,
@@ -275,6 +314,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
     {
         $requestBody = AgentTestFixtures::complete();
         unset($requestBody['id']);
+        unset($requestBody['image']);
 
         $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_5);
         $client = self::apiClient();
@@ -289,6 +329,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => AgentFixtures::AGENT_ID_5,
             'name' => $requestBody['name'],
+            'image' => $agent->getImage(),
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
@@ -299,6 +340,67 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'updatedAt' => $agent->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
         ]);
+    }
+
+    public function testCanUpdateImage(): void
+    {
+        $requestBody = AgentTestFixtures::complete();
+
+        $client = self::apiClient();
+
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
+
+        /* @var Agent $agent */
+        $agentCreated = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Agent::class, $requestBody['id']);
+
+        $this->assertResponseBodySame([
+            'id' => $requestBody['id'],
+            'name' => $requestBody['name'],
+            'image' => $agentCreated->getImage(),
+            'shortBio' => $requestBody['shortBio'],
+            'longBio' => $requestBody['longBio'],
+            'culture' => $requestBody['culture'],
+            'organizations' => [
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
+            ],
+            'createdAt' => $agentCreated->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => null,
+            'deletedAt' => null,
+        ]);
+
+        $firstImage = str_replace($this->parameterBag->get('app.url.storage'), '', $agentCreated->getImage());
+        file_exists($firstImage);
+
+        $url = sprintf('%s/%s', self::BASE_URL, $requestBody['id']);
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $agentUpdated = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Agent::class, $requestBody['id']);
+
+        $this->assertResponseBodySame([
+            'id' => $requestBody['id'],
+            'name' => $requestBody['name'],
+            'image' => $agentUpdated->getImage(),
+            'shortBio' => $requestBody['shortBio'],
+            'longBio' => $requestBody['longBio'],
+            'culture' => $requestBody['culture'],
+            'organizations' => [
+                ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
+            ],
+            'createdAt' => $agentUpdated->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $agentUpdated->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+
+        self::assertFalse(file_exists($firstImage));
+
+        $secondImage = str_replace($this->parameterBag->get('app.url.storage'), '', $agentUpdated->getImage());
+        file_exists($secondImage);
     }
 
     #[DataProvider('provideValidationUpdateCases')]
@@ -318,6 +420,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
     public static function provideValidationUpdateCases(): array
     {
         $requestBody = AgentTestFixtures::partial();
+        unset($requestBody['id']);
 
         return [
             'name should be string' => [
@@ -336,6 +439,18 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
             'shortBio should be string' => [

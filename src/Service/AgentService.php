@@ -10,14 +10,18 @@ use App\Exception\Agent\AgentResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\AgentRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
+use App\Service\Interface\FileServiceInterface;
 use DateTime;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class AgentService implements AgentServiceInterface
 {
-    private const DEFAULT_FILTERS = [
+    private const array DEFAULT_FILTERS = [
         'deletedAt' => null,
     ];
 
@@ -25,18 +29,14 @@ readonly class AgentService implements AgentServiceInterface
         private AgentRepositoryInterface $repository,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private FileServiceInterface $fileService,
+        private ParameterBagInterface $parameterBag,
     ) {
     }
 
     public function create(array $agent): Agent
     {
-        $agentDto = $this->serializer->denormalize($agent, AgentDto::class);
-
-        $violations = $this->validator->validate($agentDto, groups: AgentDto::CREATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $agent = self::validateInput($agent, AgentDto::CREATE);
 
         $agentObj = $this->serializer->denormalize($agent, Agent::class);
 
@@ -73,17 +73,11 @@ readonly class AgentService implements AgentServiceInterface
         $this->repository->save($agent);
     }
 
-    public function update(Uuid $identifier, array $agent): Agent
+    public function update(Uuid $id, array $agent): Agent
     {
-        $agentObj = $this->get($identifier);
+        $agentObj = $this->get($id);
 
-        $agentDto = $this->serializer->denormalize($agent, AgentDto::class);
-
-        $violations = $this->validator->validate($agentDto, groups: AgentDto::UPDATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $agent = self::validateInput($agent, AgentDto::UPDATE);
 
         $agentObj = $this->serializer->denormalize($agent, Agent::class, context: [
             'object_to_populate' => $agentObj,
@@ -92,5 +86,41 @@ readonly class AgentService implements AgentServiceInterface
         $agentObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($agentObj);
+    }
+
+    private function validateInput(array $agent, string $group): array
+    {
+        $agentDto = self::denormalizeDto($agent);
+
+        $violations = $this->validator->validate($agentDto, groups: $group);
+
+        if ($violations->count() > 0) {
+            if ($agentDto->image instanceof File) {
+                $this->fileService->deleteFile($agentDto->image->getRealPath());
+            }
+
+            throw new ValidatorException(violations: $violations);
+        }
+
+        if ($agentDto->image instanceof File) {
+            $agent = array_merge($agent, ['image' => $agentDto->image]);
+        }
+
+        return $agent;
+    }
+
+    private function denormalizeDto(array $data): AgentDto
+    {
+        return $this->serializer->denormalize($data, AgentDto::class, context: [
+            AbstractNormalizer::CALLBACKS => [
+                'image' => function () use ($data): ?File {
+                    if (false === isset($data['image'])) {
+                        return null;
+                    }
+
+                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.agent.profile'), $data['image']);
+                },
+            ],
+        ]);
     }
 }
