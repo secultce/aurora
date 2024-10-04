@@ -27,6 +27,8 @@ confirm-password: Confirmar senha
 continue: Continuar
 registration: Cadastro
 back: Voltar
+birth-date: Data de nascimento
+phone: Telefone
 type: Tipo
 linked_with: Vinculado com
 areas_of_interest: Áreas de interesse
@@ -67,6 +69,7 @@ footer.contact_support: para falar com nossa equipe de suporte por chat.
 footer.send_email: Ou envie um email para
 discover: Descubra
 footer.control_panel: Painel de controle
+footer.notices_opportunities: Editais e Oportunidades
 footer.opportunities: Minhas Oportunidades
 footer.events: Meus Eventos
 footer.agents: Meus Agentes
@@ -84,8 +87,10 @@ space.filter_first: Mais recente primeiro
 space.filter_old: Mais antigo primeiro
 space.filter: Filtros
 space.accessibility: Tem acessibilidade
-space.select: Tipos de Espaços
 spaces.official: Espaços Oficias
+spaces.types: Tipos de Espaços
+space.select: Tipos de Espaços
+space.types_select: Selecionar tipos
 space.gallery: Galeria
 space.theater: Teatro
 space.area: Área de atividade
@@ -98,6 +103,7 @@ space.type.card: Tipos
 space.access.card: Acessibilidade
 space.list: Lista
 space.map: Mapa
+space: Espaço
 space.start: Início
 space.view: Visualizar como
 space.order: Ordenar por
@@ -151,6 +157,7 @@ initiative.dropdown.popular: Mais populares
 initiative.count.found: iniciativas encontradas
 initiative.search.placeholder: Pesquisar por Iniciativas
 initiative.create: Criar iniciativa
+initiative.view: Visualizar como
 initiative.list: Lista
 initiative.chart: Indicadores
 initiative.found: Iniciativas encontradas
@@ -186,6 +193,11 @@ register.cpf: Seu CPF
 register.email: Seu email
 register.password: Sua senha
 register.confirm_password: Confirme sua senha
+register.phone: Seu telefone de contato
+register.birth_date: Sua data de nascimento
+register.password-required: A senha deve ter
+register.password-requirements: no mínimo 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
+register.password-strength: Força da senha
 
 opportunity.opportunities_found: Oportunidades encontradas
 opportunity.open_registrations: Inscrições abertas

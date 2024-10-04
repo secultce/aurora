@@ -23,6 +23,16 @@ type: Type
 linked_with: Linked with
 areas_of_interest: Areas of interest
 open_registrations: Open registrations
+full-name: Full name
+cpf: CPF
+email: Email
+password: Password
+confirm-password: Confirm password
+continue: Continue
+registration: Registration
+back: Back
+birth-date: Date of birth
+phone: Phone
 
 authentication.login.form.welcome: Welcome
 authentication.login.form.paragraph: Log in with your account
@@ -107,7 +117,6 @@ space-yes: Yes
 space-no: No
 space-area.activity: Area of activity
 
-
 agent.title: Agents
 agent.registered_agents: Registered Agents
 agent.individual_agents: Individual Agents
@@ -142,11 +151,11 @@ initiative.description.handcraft:
   In the workshop, decorative objects such as decorated glass jars and bottles, newspaper basketry, and wooden items (paper roll holders) are made using various techniques such as napkin decoupage, marbling, stone effect, vintage, floral arrangements in cans, and newspaper flowers.
 initiative.tags: TAGS (7)
 initiative.access_button: Access initiative
-initiative.dropdown.recent: Más recientes primero
-initiative.dropdown.older: Más antiguos primero
-initiative.dropdown.popular: Más populares
-initiative.count.found: iniciativas encontradas
-initiative.search.placeholder: Buscar iniciativas
+initiative.dropdown.recent: Most recent first
+initiative.dropdown.older: Oldest first
+initiative.dropdown.popular: Most popular
+initiative.count.found: initiatives found
+initiative.search.placeholder: Search for Initiatives
 initiative.create: Create an Initiative
 initiative.view: View as
 initiative.list: List
@@ -186,3 +195,16 @@ opportunity.official_notices: Official notices
 
 entity.tabs.list: List
 entity.tabs.map: Map
+
+register.title: Create an account
+register.subtitle: Follow the steps to complete your registration on the Aurora platform.
+register.name: Your full name
+register.cpf: Your CPF
+register.email: Your email
+register.password: Your password
+register.confirm_password: Confirm your password
+register.phone: Your contact phone
+register.birth_date: Your date of birth
+register.password-required: The password must have
+register.password-requirements: at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.
+register.password-strength: Password strength

@@ -4,10 +4,11 @@
         <div class="progress-step progress-step-active"></div>
         <div class="progress-step"></div>
         <div class="progress-step"></div>
-        <div class="progress-step"></div>
     </div>
 
     {% include 'admin/authentication/_partials/cards-registration/registration-stage-1.html.twig' %}
     {% include 'admin/authentication/_partials/cards-registration/registration-stage-2.html.twig' %}
     {% include 'admin/authentication/_partials/cards-registration/registration-stage-3.html.twig' %}
 </form>
+
+<script type="module" src="{{ asset('js/form-stepper.js') }}"></script>

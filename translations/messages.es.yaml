@@ -14,7 +14,7 @@ initiatives: Iniciativas
 notifications: Notificaciones
 login: Entrar
 check: Consultar
-logo: logo
+logo: Logo
 all: Todo
 page.view: Ver como
 seals: Sellos
@@ -23,6 +23,16 @@ type: Tipo
 linked_with: Vinculado con
 areas_of_interest: Áreas de interés
 open_registrations: Inscripciones abiertas
+full-name: Nombre completo
+cpf: CPF
+email: Email
+password: Contraseña
+confirm-password: Confirmar contraseña
+continue: Continuar
+registration: Registro
+back: Volver
+birth-date: Fecha de nacimiento
+phone: Teléfono
 
 authentication.login.form.welcome: Bienvenido
 authentication.login.form.paragraph: Inicie sesión con sus datos de acceso
@@ -34,16 +44,16 @@ homepage.welcome_mapas.subtitle: Encuentra cultura en cada rincón de la ciudad 
 homepage.create_account: Crear cuenta
 homepage.registration_info: El registro es fundamental para organizar la información y facilitar el acceso a servicios y oportunidades dentro del mapa cultural.
 homepage.sign_up: INSCRIBIRSE
-homepage.check_opportunities: Echa un vistazo as las oportunidades
+homepage.check_opportunities: Echa un vistazo a las oportunidades
 homepage.discover_open_notice: Infórmese sobre los últimos avisos públicos, talleres, premios y concursos abiertos en la actualidad.
-homepage.formed_by_entities: el Mapa Cultura es compuesto por Entidades
+homepage.formed_by_entities: El Mapa Cultura está formado por Entidades
 homepage.register_access: Inscríbete y accede a los resultados de avisos públicos, talleres, premios y concursos. También puedes crear tu propio formulario y divulgar una oportunidad.
 homepage.search_calendar: Busca el calendario de actividades culturales que están sucediendo en tu región. O crea y divulga tus eventos gratuitamente en la plataforma.
 homepage.discover_places: Descubre los lugares donde suceden las actividades culturales. Y aprovecha para registrar tu espacio en el radar artístico y cultural.
 homepage.register_artists: Conoce o registra a artistas, gestores y productores, grupos, colectivos, bandas, instituciones y empresas de la escena artística y cultural de la región.
 homepage.find_initiatives: Encuentre leyes de financiación, avisos públicos de propuestas, exposiciones y anuncios públicos que le interesen o publique sus iniciativas para toda la comunidad.
 homepage.happening_now: Ocurriendo ahora
-homepage.cultural_scene: Mantente al tanto de todo lo que está ocurriendo en el escenario cultural de Ceará!
+homepage.cultural_scene: Mantente al tanto de todo lo que está ocurriendo en el escenario cultural de Ceará
 homepage.contribute_maps: Contribuye con Mapas
 homepage.add_events: Pon tus eventos, espacios, iniciativas y oportunidades como avisos públicos y concursos en el radar cultural, para que las personas participen de lo que está sucediendo en la región. Con Mapas haces todo esto de manera colaborativa e interactiva, democratizando el acceso a la cultura.
 homepage.start_now: EMPEZAR AHORA
@@ -59,6 +69,7 @@ footer.contact_support: para hablar con nuestro equipo de soporte por chat.
 footer.send_email: O envía un email a
 discover: Descubrir
 footer.control_panel: Panel de Control
+footer.notices_opportunities: Avisos y Oportunidades
 footer.opportunities: Mis Oportunidades
 footer.events: Mis Eventos
 footer.agents: Mis Agentes
@@ -74,9 +85,10 @@ footer.visit_repository: visita el repositorio
 
 space.filter_first: Más reciente primero
 space.filter_old: Más antiguo primero
-space.filter: Filtros de espacio
+space.filter: Filtros
 space.accessibility: Tiene accesibilidad
 spaces.official: Espacios oficiales
+spaces.types: Tipos de Espacios
 space.select: Tipos de espacios
 space.types_select: Seleccionar tipos
 space.gallery: Galería
@@ -91,6 +103,7 @@ space.type.card: Tipos
 space.access.card: Accesibilidad
 space.list: Lista
 space.map: Mapa
+space: Espacio
 space.start: Comenzar
 space.view: Ver como
 space.order: Ordenar por
@@ -138,20 +151,20 @@ initiative.description.handcraft:
   En el taller se confeccionan objetos decorativos como frascos y botellas de vidrio decoradas, cestas de papel de periódico, y artículos de madera (soportes para rollos de papel) utilizando diversas técnicas como decoupage con servilletas, marmolado, efecto piedra, vintage, arreglos florales en latas y flores de papel de periódico.
 initiative.tags: ETIQUETAS (7)
 initiative.access_button: Acceder la iniciativa
-initiative.dropdown.recent: Most recent first
-initiative.dropdown.older: Oldest first
-initiative.dropdown.popular: Most popular
-initiative.count.found: initiatives found
-initiative.search.placeholder: Search for Initiatives
+initiative.dropdown.recent: Más recientes primero
+initiative.dropdown.older: Más antiguos primero
+initiative.dropdown.popular: Más populares
+initiative.count.found: iniciativas encontradas
+initiative.search.placeholder: Buscar por Iniciativas
 initiative.create: Crear una iniciativa
 initiative.view: Ver como
 initiative.list: Lista
 initiative.chart: Indicadores
-initiative.found: Iniciativa encontrados
+initiative.found: Iniciativas encontradas
 initiative.registered: iniciativas registradas
 initiative.ongoing: iniciativas en curso
 initiative.completed: iniciativa completada
-initiative.days: registrado en los últimos 7 días
+initiative.days: registrados en los últimos 7 días
 
 event.create: Crear evento
 event.dashboard.registered: Eventos registrados
@@ -181,3 +194,16 @@ opportunity.official_notices: Convocatorias oficiales
 
 entity.tabs.list: Lista
 entity.tabs.map: Mapa
+
+register.title: Crear una cuenta
+register.subtitle: Sigue los pasos para completar tu registro en la plataforma Aurora.
+register.name: Tu nombre completo
+register.cpf: Tu CPF
+register.email: Tu correo electrónico
+register.password: Tu contraseña
+register.confirm_password: Confirma tu contraseña
+register.phone: Tu número de contacto
+register.birth_date: Tu fecha de nacimiento
+register.password-required: La contraseña debe tener
+register.password-requirements: al menos 8 caracteres, una letra mayúscula, una letra minúscula, un número y un carácter especial.
+register.password-strength: Fuerza de la contraseña
