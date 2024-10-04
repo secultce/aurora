@@ -1,0 +1,4 @@
+not found:
+  path: /notfound
+  controller: App\Controller\Admin\NotFoundAdminController::notfound
+  methods: ['GET']
