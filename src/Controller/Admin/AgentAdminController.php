@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Service\Interface\AgentServiceInterface;
+use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Response;
 
 class AgentAdminController extends AbstractAdminController
@@ -19,18 +20,18 @@ class AgentAdminController extends AbstractAdminController
         $agents = $this->service->list();
         $totalAgents = count($agents);
 
-        $entity = [
+        $dashboard = [
             'color' => '#D0A020',
             'items' => [
-                ['text' => 'agent.registered_agents', 'icon' => 'description', 'quantity' => $totalAgents],
-                ['text' => 'agent.individual_agents', 'icon' => 'event_note', 'quantity' => 32],
-                ['text' => 'agent.collective_agents', 'icon' => 'event_available', 'quantity' => 12],
-                ['text' => 'agent.registered_last_7_days', 'icon' => 'today', 'quantity' => 1],
+                new CardItem(icon: 'description', quantity: $totalAgents, text: 'agent.registered_agents'),
+                new CardItem(icon: 'event_note', quantity: 30, text: 'agent.individual_agents'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'agent.collective_agents'),
+                new CardItem(icon: 'today', quantity: 10, text: 'agent.registered_last_7_days'),
             ],
         ];
 
         return $this->render('agent/list.html.twig', [
-            'agent' => $entity,
+            'dashboard' => $dashboard,
             'agents' => $agents,
             'totalAgents' => $totalAgents,
         ]);

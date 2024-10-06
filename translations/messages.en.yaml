@@ -22,7 +22,7 @@ list.view.more: View more
 type: Type
 linked_with: Linked with
 areas_of_interest: Areas of interest
-open_registrations: Open registrations
+opened_registrations: Open registrations
 full-name: Full name
 cpf: CPF
 email: Email
@@ -196,7 +196,7 @@ event.card.button: Access event
 
 
 opportunity.opportunities_found: Opportunities found
-opportunity.open_registrations: Open registrations
+opportunity.opened_registrations: Open registrations
 opportunity.registrations_closed: Registrations closed
 opportunity.future_registrations: Future registrations
 opportunity.official_notices: Official notices

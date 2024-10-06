@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Service\Interface\EventServiceInterface;
+use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Response;
 
 class EventAdminController extends AbstractAdminController
@@ -17,19 +18,20 @@ class EventAdminController extends AbstractAdminController
     public function list(): Response
     {
         $events = $this->service->list();
+        $totalEvents = count($events);
 
-        $entity = [
+        $dashboard = [
             'color' => '#8E46B4',
             'items' => [
-                ['text' => 'event.dashboard.registered', 'icon' => 'description', 'quantity' => 12],
-                ['text' => 'event.dashboard.realized', 'icon' => 'event_note', 'quantity' => 8],
-                ['text' => 'event.dashboard.finished', 'icon' => 'event_available', 'quantity' => 6],
-                ['text' => 'event.dashboard.seven.days.registered', 'icon' => 'today', 'quantity' => 3],
+                new CardItem(icon: 'description', quantity: $totalEvents, text: 'event.dashboard.registered'),
+                new CardItem(icon: 'event_note', quantity: 10, text: 'event.dashboard.realized'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'event.dashboard.finished'),
+                new CardItem(icon: 'today', quantity: 30, text: 'event.dashboard.seven.days.registered'),
             ],
         ];
 
         return $this->render('event/list.html.twig', [
-            'event' => $entity,
+            'dashboard' => $dashboard,
             'events' => $events,
         ]);
     }

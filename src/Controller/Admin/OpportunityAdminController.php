@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Service\Interface\OpportunityServiceInterface;
+use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Response;
 
 class OpportunityAdminController extends AbstractAdminController
@@ -17,19 +18,20 @@ class OpportunityAdminController extends AbstractAdminController
     public function list(): Response
     {
         $opportunities = $this->service->list();
+        $totalOpportunities = count($opportunities);
 
-        $entity = [
+        $dashboard = [
             'color' => '#D14526',
             'items' => [
-                ['text' => 'open_registrations', 'icon' => 'description', 'quantity' => 40],
-                ['text' => 'opportunity.registrations_closed', 'icon' => 'event_note', 'quantity' => 20],
-                ['text' => 'opportunity.future_registrations', 'icon' => 'event_available', 'quantity' => 6],
-                ['text' => 'opportunity.official_notices', 'icon' => 'today', 'quantity' => 15],
+                new CardItem(icon: 'description', quantity: $totalOpportunities, text: 'opened_registrations'),
+                new CardItem(icon: 'event_note', quantity: 10, text: 'opportunity.registrations_closed'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'opportunity.future_registrations'),
+                new CardItem(icon: 'today', quantity: 30, text: 'opportunity.official_notices'),
             ],
         ];
 
         return $this->render('opportunity/list.html.twig', [
-            'opportunity' => $entity,
+            'dashboard' => $dashboard,
             'opportunities' => $opportunities,
         ]);
     }

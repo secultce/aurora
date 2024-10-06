@@ -5,8 +5,9 @@ describe('Página de Lista de Iniciativas', () => {
     });
 
     it('Garante que a dashboard de iniciativas está visível', () => {
-        // Verifica se a dashboard está visível
-        cy.get('.entity-dashboard-initiative').should('be.visible');
+        cy.get('.entity-dashboard').should('be.visible');
+        cy.contains('Iniciativas encontradas');
+        cy.contains('em andamento');
     });
 
     it('Garante que a página de lista de iniciativas existe', () => {

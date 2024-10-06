@@ -1,0 +1,21 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %}
+    {{ 'initiatives'|trans }}
+{% endblock %}
+
+{% block content %}
+    <section class="white-square">
+        {% include 'admin/initiative/_partials/breadcrumb.html.twig' %}
+
+        {% include 'admin/initiative/_partials/title.html.twig' %}
+
+        {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
+
+        {% include 'admin/initiative/_partials/tabs/tabs.html.twig' %}
+    </section>
+
+    {% include 'admin/initiative/_partials/initiative-dropdown.html.twig' %}
+
+    {% include 'admin/initiative/_partials/card-initiative.html.twig' %}
+{% endblock %}

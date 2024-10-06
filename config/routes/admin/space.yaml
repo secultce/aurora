@@ -1,4 +1,4 @@
 space:
   path: /espacos
-  controller: App\Controller\Admin\SpaceAdminController::space
+  controller: App\Controller\Admin\SpaceAdminController::list
   methods: ['GET']

@@ -22,7 +22,7 @@ list.view.more: Ver más
 type: Tipo
 linked_with: Vinculado con
 areas_of_interest: Áreas de interés
-open_registrations: Inscripciones abiertas
+opened_registrations: Inscripciones abiertas
 full-name: Nombre completo
 cpf: CPF
 email: Email
@@ -196,7 +196,7 @@ event.card.participants: Número de participantes
 event.card.button: Acceder al evento
 
 opportunity.opportunities_found: Oportunidades encontradas
-opportunity.open_registrations: Inscripciones abiertas
+opportunity.opened_registrations: Inscripciones abiertas
 opportunity.registrations_closed: Inscripciones cerradas
 opportunity.future_registrations: Inscripciones futuras
 opportunity.official_notices: Convocatorias oficiales

@@ -32,7 +32,7 @@ phone: Telefone
 type: Tipo
 linked_with: Vinculado com
 areas_of_interest: Áreas de interesse
-open_registrations: Inscrições abertas
+opened_registrations: Inscrições abertas
 
 authentication.login.form.welcome: Boas vindas
 authentication.login.form.paragraph: Entre com a sua conta
@@ -206,7 +206,7 @@ register:
   password-strength: Força da senha
 
 opportunity.opportunities_found: Oportunidades encontradas
-opportunity.open_registrations: Inscrições abertas
+opportunity.opened_registrations: Inscrições abertas
 opportunity.registrations_closed: Inscrições encerradas
 opportunity.future_registrations: Inscrições futuras
 opportunity.official_notices: Editais oficiais
