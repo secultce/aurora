@@ -1,6 +1,24 @@
 <div class="form-step">
+    <h4 class="fw-semibold">{{ 'accept-policies.title'|trans }}</h4>
+    <p>
+        {{ 'accept-policies.description'|trans }}
+    </p>
+
+    <hr class="text-body">
+
+    <div class="d-flex flex-column gap-2 mb-5">
+        <a href="#" data-bs-target="#modalTerms" data-bs-toggle="modal">{{ 'accept-policies.terms'|trans }}</a>
+        {% include 'admin/authentication/_partials/cards-registration/modals-acceptance-policy/terms-and-conditions.html.twig' %}
+
+        <a href="#" data-bs-target="#modalPrivacy" data-bs-toggle="modal">{{ 'accept-policies.privacy'|trans }}</a>
+        {% include 'admin/authentication/_partials/cards-registration/modals-acceptance-policy/privacy-policy.html.twig' %}
+
+        <a href="#" data-bs-target="#modalImage" data-bs-toggle="modal">{{ 'accept-policies.image'|trans }}</a>
+        {% include 'admin/authentication/_partials/cards-registration/modals-acceptance-policy/image-authorization.html.twig' %}
+    </div>
+
     <div class="btn-form-group">
-        <a href="#" class="btn btn-prev">{{ 'back'|trans }}</a>
+        <a href="#" class="btn btn-prev btn-secondary">{{ 'back'|trans }}</a>
         <a href="#" class="btn btn-next">{{ 'continue'|trans }}</a>
     </div>
 </div>

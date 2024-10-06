@@ -117,7 +117,6 @@ space-yes: Yes
 space-no: No
 space-area.activity: Area of activity
 
-
 agent.title: Agents
 agent.registered_agents: Registered Agents
 agent.individual_agents: Individual Agents
@@ -200,19 +199,26 @@ opportunity.official_notices: Official notices
 entity.tabs.list: List
 entity.tabs.map: Map
 
-register.title: Create an account
-register.subtitle: Follow the steps to complete your registration on the Aurora platform.
-register.name: Your full name
-register.cpf: Your CPF
-register.email: Your email
-register.password: Your password
-register.confirm_password: Confirm your password
-register.phone: Your contact phone
-register.birth_date: Your date of birth
-register.password-required: The password must have
-register.password-requirements: at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.
-register.password-strength: Password strength
+register:
+  title: Create an account
+  subtitle: Follow the steps to complete your registration on the Aurora platform.
+  name: Your full name
+  cpf: Your CPF
+  email: Your email
+  password: Your password
+  confirm_password: Confirm your password
+  phone: Your contact phone
+  birth_date: Your date of birth
+  password-required: The password must have
+  password-requirements: at least 8 characters, one uppercase letter, one lowercase letter, one number, and one special character.
+  password-strength: Password strength
 
+accept-policies:
+  title: Acceptance of policies
+  description: To create your profile, you need to read and accept the terms, policies, and authorizations for using the platform, which will be sent to you by email. By accepting, you agree to all.
+  terms: Terms and conditions of use
+  privacy: Privacy policy
+  image: Image usage authorization
 
 faq-suggestions: Top suggestions
 faq-notices: Registration for notices and opportunities

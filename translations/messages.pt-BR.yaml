@@ -186,6 +186,36 @@ event.card.entry: Valor da entrada
 event.card.participants: Número de participantes
 event.card.button: Acessar evento
 
+register:
+  title: Criar uma conta
+  subtitle: Siga os passos para finalizar o seu cadastro na plataforma Aurora.
+  name: Seu nome completo
+  cpf: Seu CPF
+  email: Seu email
+  password: Sua senha
+  confirm_password: Confirme sua senha
+  phone: Seu telefone de contato
+  birth_date: Sua data de nascimento
+  password-required: A senha deve ter
+  password-requirements: no mínimo 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
+  password-strength: Força da senha
+
+opportunity.opportunities_found: Oportunidades encontradas
+opportunity.open_registrations: Inscrições abertas
+opportunity.registrations_closed: Inscrições encerradas
+opportunity.future_registrations: Inscrições futuras
+opportunity.official_notices: Editais oficiais
+
+entity.tabs.list: Lista
+entity.tabs.map: Mapa
+
+accept-policies:
+  title: Aceite de políticas
+  description: Para criar o seu perfil é necessário ler e aceitar os termos, políticas e autorizações para utilização da plataforma, que serão encaminhados a você por e-mail. Ao aceitar, você estará concordando com todos.
+  terms: Termos e condições de uso
+  privacy: Política de privacidade
+  image: Autorização de Uso de Imagem
+
 faq-suggestions: Principais sugestões
 faq-notices: Inscrições em editais e oportunidades
 faq-find: Aqui você encontra respostas sobre os editais e oportunidades no mapa cultural.
@@ -204,24 +234,3 @@ faq-support: para falar com nossa equipe de suporte por chat.
 faq-send:  Ou envie um email para
 faq-illustration: Ilustração
 faq-keys: Pesquise por palavras-chaves
-register.title: Criar uma conta
-register.subtitle: Siga os passos para finalizar o seu cadastro na plataforma Aurora.
-register.name: Seu nome completo
-register.cpf: Seu CPF
-register.email: Seu email
-register.password: Sua senha
-register.confirm_password: Confirme sua senha
-register.phone: Seu telefone de contato
-register.birth_date: Sua data de nascimento
-register.password-required: A senha deve ter
-register.password-requirements: no mínimo 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-register.password-strength: Força da senha
-
-opportunity.opportunities_found: Oportunidades encontradas
-opportunity.open_registrations: Inscrições abertas
-opportunity.registrations_closed: Inscrições encerradas
-opportunity.future_registrations: Inscrições futuras
-opportunity.official_notices: Editais oficiais
-
-entity.tabs.list: Lista
-entity.tabs.map: Mapa

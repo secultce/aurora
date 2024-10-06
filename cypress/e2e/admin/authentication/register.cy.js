@@ -1,3 +1,8 @@
+function clickOnContinueButton() {
+    cy.get('.btn').contains('Continuar').click();
+    cy.wait(500);
+}
+
 describe('Página de Cadastro', () => {
     beforeEach(() => {
         cy.visit('/cadastro');
@@ -32,7 +37,30 @@ describe('Página de Cadastro', () => {
         cy.get('#inputPassword').type('senha123');
         cy.get('#inputPasswordConfirm').type('senha123');
 
-        cy.get('.btn').contains('Continuar').click();
+        clickOnContinueButton();
+    });
 
+    it('Verifica o título e subtítulo do formulário de aceite de políticas', () => {
+
+        cy.get('h4').should('contain.text', 'Aceite de políticas');
+        cy.get('p').should('contain.text', 'Para criar o seu perfil é necessário ler e aceitar os termos');
+    });
+
+    it('Executa clicks nos links e botões de aceite', () => {
+        clickOnContinueButton();
+        const politicas = [
+            { link: 'Termos e condições de uso', modal: '#modalTerms' },
+            { link: 'Política de privacidade', modal: '#modalPrivacy' },
+            { link: 'Autorização de Uso de Imagem', modal: '#modalImage' }
+        ];
+
+        politicas.forEach((politica) => {
+            cy.contains(politica.link).click();
+
+            cy.wait(500);
+
+            cy.get(politica.modal).contains('button', 'Aceitar').click();
+
+        });
     });
 });
