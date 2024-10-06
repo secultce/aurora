@@ -1,0 +1,4 @@
+faq:
+  path: /faq
+  controller: App\Controller\Admin\FaqAdminController::faq
+  methods: ['GET']

@@ -31,3 +31,8 @@ admin_opportunity:
   resource: 'admin/opportunity.yaml'
   prefix: /
   name_prefix: admin_opportunity_
+
+admin_faq:
+  resource: 'admin/faq.yaml'
+  prefix: /
+  name_prefix: admin_faq_
