@@ -1,0 +1,46 @@
+<div class="d-flex justify-content-between align-items-end">
+    <p class="fw-bold">{{ totalAgents }} {{ 'agent.agents_found' | trans }}</p>
+    <div class="d-flex g-4 agent-sort">
+        <label class="agent-options" for="sort-options">{{ 'sort_by' | trans }}</label>
+        <select id="sort-options" class="form-select">
+            <option value="recent">{{ 'most_recent' | trans }}</option>
+            <option value="old">{{ 'oldest' | trans }}</option>
+        </select>
+    </div>
+</div>
+
+{% for agent in agents %}
+    <div class="mw-100 agent-card ">
+        <div class="agent-card-header">
+            <img src="/assets/img/home-agents.png" alt="{{ 'agent.profile.picture' | trans }}" class="rounded-circle">
+            <div class="agent-info">
+                <h5 class="agent-name">{{ agent.name }}</h5>
+                <span class="agent-type person">
+              <i class="material-icons">person</i> Pessoa
+            </span>
+            </div>
+        </div>
+
+        <div class="agent-card-body">
+            <p class="agent-area"><strong>{{ 'agent.areas_of_expertise' | trans}} (1):</strong> <span class="agent-sub-area">DESENVOLVIMENTO</span></p>
+            <p class="agent-location"><strong>{{ 'agent.location' | trans }}:</strong> Goiânia (GO)</p>
+            <div class="agent-seals">
+                <p class="seals-area"><strong>Selos:</strong>
+                    <span class="seal">Avaliador UFPR</span>
+                    <span class="seal">Avaliador UnB</span>
+                    <span class="seal">Selo Mapas</span>
+            </div>
+            <p class="agent-description">{{ agent.longBio }}</p>
+            <div class="access-profile-container">
+                <button class="btn btn-primary access-profile">{{ 'agent.access_profile' | trans }}</button>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="container align-items-center mt-5 mb-5">
+    <div class="centered-icon-text card-view-more">
+        <i class="material-icons">add_circle_outline</i>
+        <button class="btn fw-bold">{{ 'list.view.more' | trans }}</button>
+    </div>
+</div>

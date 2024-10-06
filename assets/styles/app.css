@@ -101,12 +101,6 @@ body {
     display: flex;
 }
 
-.agent-panel {
-    background-color: var(--snow-mist);
-    padding: 0 8.75rem;
-    border: 1px solid transparent;
-}
-
 .navbar {
     position: relative;
 }

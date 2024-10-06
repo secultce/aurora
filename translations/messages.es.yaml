@@ -131,6 +131,12 @@ agent.sort_by: Ordenar por
 agent.most_recent: Más reciente
 agent.oldest: Más antiguo
 agent.home: Inicio
+agent.create: Crear agente
+agent.profile.picture: Foto de perfil del agente
+agent.areas_of_expertise: Areas of Expertise
+agent.location: Location
+agent.access_profile: Access Profile
+
 
 sort_by: Ordenar por
 most_recent: Más reciente
@@ -194,6 +200,7 @@ opportunity.open_registrations: Inscripciones abiertas
 opportunity.registrations_closed: Inscripciones cerradas
 opportunity.future_registrations: Inscripciones futuras
 opportunity.official_notices: Convocatorias oficiales
+opportunity.create: Crear oportunidad
 
 entity.tabs.list: Lista
 entity.tabs.map: Mapa

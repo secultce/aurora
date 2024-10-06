@@ -128,6 +128,11 @@ agent.mapa: Mapa
 agent.chart: Indicadores
 agent.agents_found: Agentes encontrados
 agent.home: Inicio
+agent.create: Criar agente
+agent.profile.picture: Foto de Perfil do Agente
+agent.areas_of_expertise: Áreas de Atuação
+agent.location: Localização
+agent.access_profile: Acessar perfil
 
 sort_by: Ordenar por
 most_recent: Mais Recente
@@ -205,6 +210,7 @@ opportunity.open_registrations: Inscrições abertas
 opportunity.registrations_closed: Inscrições encerradas
 opportunity.future_registrations: Inscrições futuras
 opportunity.official_notices: Editais oficiais
+opportunity.create: Criar oportunidade
 
 entity.tabs.list: Lista
 entity.tabs.map: Mapa

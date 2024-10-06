@@ -1,0 +1,15 @@
+{% set tabs = [
+    {
+        'id': 'list',
+        'content': include('admin/agent/_partials/tabs/tab-list.html.twig')
+    },
+    {
+        'id': 'map',
+        'content': include('admin/agent/_partials/tabs/tab-map.html.twig')
+    },
+    {
+        'id': 'indicators',
+        'content': include('admin/agent/_partials/tabs/tab-indicators.html.twig')
+    },
+] %}
+{% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}
