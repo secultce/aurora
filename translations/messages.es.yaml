@@ -234,3 +234,11 @@ view:
       finished: Espacios Cerrados
       opened: Espacios Abiertos
       last_days: Registrados en los últimos 7 días
+
+  not-found:
+    error-404: Error 404
+    error-text_first: Vaya, página no encontrada.
+    error-text_second: Esta página ya no existe o ha cambiado de dirección.
+    error-text_third: Pero no te preocupes, hay muchas otras páginas por descubrir aquí en Maps.
+    error-homepage: Volver a la página de inicio
+    error-image: Imagen de duda

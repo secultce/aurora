@@ -11,15 +11,19 @@ use App\Response\ErrorGeneralResponse;
 use App\Response\ErrorNotFoundResponse;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Twig\Environment;
 
 class ApiCustomResponseSubscriber implements EventSubscriberInterface
 {
-    public function __construct(public ParameterBagInterface $parameterBag)
-    {
+    public function __construct(
+        public ParameterBagInterface $parameterBag,
+        public Environment $twig,
+    ) {
     }
 
     public static function getSubscribedEvents(): array
@@ -78,8 +82,17 @@ class ApiCustomResponseSubscriber implements EventSubscriberInterface
     private function generateNotFoundError(ExceptionEvent $event): void
     {
         $details = [];
-
         $exception = $event->getThrowable();
+
+        if (false === $this->isApiRequest($event->getRequest())) {
+            $response = new Response(
+                $this->twig->render('admin/not-found/not-found.html.twig'),
+                Response::HTTP_NOT_FOUND
+            );
+            $event->setResponse($response);
+
+            return;
+        }
 
         if ($exception instanceof ResourceNotFoundException) {
             $details = ['description' => $exception->getMessage()];
@@ -94,5 +107,10 @@ class ApiCustomResponseSubscriber implements EventSubscriberInterface
                 $details
             )
         );
+    }
+
+    private function isApiRequest(Request $request): bool
+    {
+        return str_starts_with($request->getPathInfo(), '/api');
     }
 }

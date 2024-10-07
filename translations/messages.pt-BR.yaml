@@ -236,3 +236,11 @@ view:
 
   seal:
     create: Criar selo
+
+  not-found:
+    error-404: Error 404
+    error-text_first: Ops, página não encontrada.
+    error-text_second: Essa página não existe mais ou mudou de endereço.
+    error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui no Mapas.
+    error-homepage: Voltar para a página inicial
+    error-image: Imagem de dúvida
