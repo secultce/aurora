@@ -1,0 +1,22 @@
+<div class="entity-page-tabs mt-5">
+    <p class="d-flex align-self-end fw-bold fs-6 mb-3 me-4">{{ 'page.view' | trans }}:</p>
+    {% set tabs = [
+        {
+            'id': 'list',
+            'title': 'event.tabs.list' | trans,
+            'icon': 'list',
+        },
+        {
+            'id': 'map',
+            'title': 'entity.tabs.map' | trans,
+            'icon': 'map',
+        },
+        {
+            'id': 'indicators',
+            'title': 'event.tabs.indicators' | trans,
+            'icon': 'bar_chart',
+        }
+    ] %}
+
+    {% include '_components/tabs/tab.html.twig' with { 'tabs': tabs } %}
+</div>

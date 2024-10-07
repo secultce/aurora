@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Admin;
 
 use App\Service\Interface\InitiativeServiceInterface;
+use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Response;
 
 class InitiativeAdminController extends AbstractAdminController
@@ -16,12 +17,24 @@ class InitiativeAdminController extends AbstractAdminController
         $this->initiativeService = $initiativeService;
     }
 
-    public function initiative(): Response
+    public function list(): Response
     {
         $initiatives = $this->initiativeService->list();
+        $totalInitiatives = count($initiatives);
 
-        return $this->render('initiative/initiative.html.twig', [
+        $dashboard = [
+            'color' => '#D14526',
+            'items' => [
+                new CardItem(icon: 'description', quantity: $totalInitiatives, text: 'initiative.found'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'initiative.finished'),
+                new CardItem(icon: 'event_note', quantity: 10, text: 'initiative.ongoing'),
+                new CardItem(icon: 'today', quantity: 30, text: 'initiative.days'),
+            ],
+        ];
+
+        return $this->render('initiative/list.html.twig', [
             'initiatives' => $initiatives,
+            'dashboard' => $dashboard,
         ]);
     }
 }

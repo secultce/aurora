@@ -1,9 +1,9 @@
 <div class="entity-dashboard d-flex align-items-center">
-    {% for item in entity.items %}
+    {% for item in dashboard.items %}
         <div class="card dashboard-card shadow-sm">
             <div class="top d-flex justify-content-between align-items-start">
                 <h2 class="quantity">{{ item.quantity }}</h2>
-                <span class="material-icons" style="color: {{ entity.color }};">
+                <span class="material-icons" style="color: {{ dashboard.color }};">
                     {{ item.icon }}
                 </span>
             </div>
