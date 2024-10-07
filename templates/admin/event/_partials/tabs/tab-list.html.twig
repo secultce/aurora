@@ -1,10 +1,10 @@
 <div class="d-flex align-content-center justify-content-between">
-    <p class="fw-bold">182 {{ 'event.events_found' | trans }}</p>
+    <p class="fw-bold">182 {{ 'view.event.quantity.total' | trans }}</p>
     <div class="d-flex g-4 event-sort">
-        <label class="event-options" for="sort-options">{{ 'event.sort_by' | trans }}:</label>
+        <label class="event-options" for="sort-options">{{ 'sort_by' | trans }}:</label>
         <select id="sort-options" class="form-select">
-            <option value="recent">{{ 'event.most_recent' | trans }}</option>
-            <option value="old">{{ 'event.oldest' | trans }}</option>
+            <option value="recent">{{ 'most_recent' | trans }}</option>
+            <option value="old">{{ 'oldest' | trans }}</option>
         </select>
     </div>
 </div>
@@ -21,7 +21,7 @@
                 </div>
             </div>
             <div class="event-id">
-                {{ 'event.card.id' | trans }}: {{ event.id }}
+                ID: {{ event.id }}
             </div>
         </div>
 
@@ -41,7 +41,7 @@
             </p>
 
             <p class="event-languages">
-                <strong>{{ 'event.card.language' | trans }} (3):</strong>
+                <strong>{{ 'language' | trans }} (3):</strong>
                 <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
                 <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
                 <a href="#" class="language-link fw-bold">LINGUAGEM</a>
@@ -50,23 +50,23 @@
             <div class="event-details d-flex align-items-center">
                 <p class="entry-fee">
                     <i class="material-icons">monetization_on</i>
-                    <strong>{{ 'event.card.entry' | trans }}: </strong> Gratuito
+                    <strong>Valor da entrada: </strong> Gratuito
                 </p>
                 <p class="participants">
                     <i class="material-icons">people</i>
-                    <strong>{{ 'event.card.participants' | trans }}: </strong> 0 participantes
+                    <strong>Número de participantes: </strong> 0 participantes
                 </p>
             </div>
 
             <div class="d-flex event-seals">
-                <strong>{{ 'Selos'| trans }}:</strong>
+                <strong>{{ 'seals'| trans }}:</strong>
                 <p class="badge seal">Nome do selo</p>
                 <p class="badge seal">Nome do selo</p>
                 <p class="badge seal">Nome do selo</p>
             </div>
 
             <div class="text-end mt-3">
-                <button class="btn btn-primary access-event">{{ 'event.card.button' | trans }}</button>
+                <button class="btn btn-primary access-event">{{ 'access' | trans }}</button>
             </div>
         </div>
     </div>
@@ -75,7 +75,7 @@
 <div class="container align-items-center mt-5 mb-5">
     <div class="centered-icon-text card-view-more">
         <i class="material-icons">add_circle_outline</i>
-        <button class="btn fw-bold">{{ 'list.view.more' | trans }}</button>
+        <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
     </div>
 </div>
 

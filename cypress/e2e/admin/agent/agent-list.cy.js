@@ -8,17 +8,17 @@ describe('Página de Listar de Agentes', () => {
         cy.get('.breadcrumb > :nth-child(1)').contains('Início').should('be.visible');
         cy.get('.breadcrumb > :nth-child(2)').contains('Agentes').should('be.visible');
         cy.get('.page-title').contains('Agentes').should('be.visible');
-        cy.contains('Agentes Cadastrados');
+        cy.contains('Agentes Encontrados');
     });
 
     it('Garante que o dashboard de agentes esteja presente', () => {
         cy.get('.entity-dashboard').should('be.visible');
 
         const expectedTexts = [
-            'Agentes Cadastrados',
-            'Agentes Individuais',
-            'Agentes Coletivos',
-            'Cadastrados nos últimos 7 dias'
+            'Agentes Encontrados',
+            'Agentes Culturais',
+            'Agentes Inativos',
+            'Registrados nos últimos 7 dias'
         ];
 
         expectedTexts.forEach(text => {
@@ -40,7 +40,7 @@ describe('Página de Listar de Agentes', () => {
     });
 
     it('Garante que os cards de agentes estão visíveis', () => {
-        cy.get('.align-items-end > .fw-bold').contains('10 Agentes encontrados').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains('10 Agentes Encontrados').should('be.visible');
         cy.get('.agent-options').should('be.visible');
         cy.get('#sort-options').select('recent').should('have.value', 'recent');
         cy.get('#sort-options').select('old').should('have.value', 'old');
@@ -50,6 +50,6 @@ describe('Página de Listar de Agentes', () => {
         cy.get(':nth-child(2) > .agent-card-body > .agent-location').contains('Goiânia (GO)').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-seals > .seals-area').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-description').contains('Especializado em teológia, organiza exposições por todos o Ceará.').should('be.visible');
-        cy.get(':nth-child(2) > .agent-card-body > .access-profile-container > .btn').contains('Acessar perfil').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-body > .access-profile-container > .btn').contains('Acessar').should('be.visible');
     });
 });

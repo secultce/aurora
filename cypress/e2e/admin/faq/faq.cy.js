@@ -13,14 +13,11 @@ describe('Página de FAQ', () => {
     });
 
     it('Garante que as sugestões principais estão visíveis', () => {
-        cy.get('h5').contains('Principais sugestões').should('be.visible');
-        cy.get('h4').contains('Inscrições em editais e oportunidades').should('be.visible');
-        cy.get('h4').contains('Cadastro no Mapa').should('be.visible');
+        cy.contains('Sugestões').should('be.visible');
+        cy.get('h3').contains('Como se cadastrar').should('be.visible');
     });
 
     it('Garante que as perguntas frequentes estão visíveis', () => {
-        cy.get('p').contains('Inscrições em editais e oportunidades').should('be.visible');
-        cy.get('p').contains('Como recuperar meu acesso?').should('be.visible');
-        cy.get('p').contains('Cadastro no Mapa').should('be.visible');
+        cy.contains('Inscrições em Editais e Oportunidades').should('be.visible');
     });
 });

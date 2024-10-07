@@ -23,12 +23,12 @@ class InitiativeAdminController extends AbstractAdminController
         $totalInitiatives = count($initiatives);
 
         $dashboard = [
-            'color' => '#D14526',
+            'color' => '#6b3fa0',
             'items' => [
-                new CardItem(icon: 'description', quantity: $totalInitiatives, text: 'initiative.found'),
-                new CardItem(icon: 'event_available', quantity: 20, text: 'initiative.finished'),
-                new CardItem(icon: 'event_note', quantity: 10, text: 'initiative.ongoing'),
-                new CardItem(icon: 'today', quantity: 30, text: 'initiative.days'),
+                new CardItem(icon: 'description', quantity: $totalInitiatives, text: 'view.initiative.quantity.total'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'view.initiative.quantity.finished'),
+                new CardItem(icon: 'event_note', quantity: 10, text: 'view.initiative.quantity.opened'),
+                new CardItem(icon: 'today', quantity: 30, text: 'view.initiative.quantity.last_days'),
             ],
         ];
 

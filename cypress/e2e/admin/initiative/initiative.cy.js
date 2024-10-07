@@ -6,8 +6,9 @@ describe('Página de Lista de Iniciativas', () => {
 
     it('Garante que a dashboard de iniciativas está visível', () => {
         cy.get('.entity-dashboard').should('be.visible');
-        cy.contains('Iniciativas encontradas');
-        cy.contains('em andamento');
+        cy.contains('Iniciativas Encontradas');
+        cy.contains('em Andamento');
+        cy.contains('Finalizadas');
     });
 
     it('Garante que a página de lista de iniciativas existe', () => {
@@ -17,7 +18,7 @@ describe('Página de Lista de Iniciativas', () => {
     });
 
     it('Garante que o botão "Criar uma Iniciativa" está visível', () => {
-        cy.get('button').contains('Criar iniciativa').should('be.visible');
+        cy.get('button').contains('Criar uma iniciativa').should('be.visible');
     });
 
     it('Garante que a lista de iniciativas está presente e os itens são visíveis', () => {

@@ -25,10 +25,10 @@ class SpaceAdminController extends AbstractAdminController
         $dashboard = [
             'color' => '#8E46B4',
             'items' => [
-                new CardItem(icon: 'description', quantity: $totalSpaces, text: 'space.dashboard.registered'),
-                new CardItem(icon: 'event_note', quantity: 10, text: 'space.dashboard.realized'),
-                new CardItem(icon: 'event_available', quantity: 20, text: 'space.dashboard.finished'),
-                new CardItem(icon: 'today', quantity: 30, text: 'space.dashboard.seven.days.registered'),
+                new CardItem(icon: 'description', quantity: $totalSpaces, text: 'view.space.quantity.total'),
+                new CardItem(icon: 'event_note', quantity: 10, text: 'view.space.quantity.opened'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'view.space.quantity.finished'),
+                new CardItem(icon: 'today', quantity: 30, text: 'view.space.quantity.last_days'),
             ],
         ];
 

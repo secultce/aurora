@@ -11,7 +11,7 @@ describe('Pagina de Login do ambiente web', () => {
         cy.contains('Iniciativas');
 
         cy.get('p')
-            .contains('Boas vindas!');
+            .contains('Olá!');
 
         cy.contains('Entre com a sua conta.');
         cy.contains('Entrar');
@@ -22,7 +22,7 @@ describe('Pagina de Login do ambiente web', () => {
         cy.get('[data-cy="password"]').type('12345678');
 
         cy.contains('Esqueci minha senha');
-        cy.contains('Cadastre-se');
+        cy.contains('Cadastro');
 
         cy.get('[data-cy="submit"]').click();
 
@@ -35,7 +35,7 @@ describe('Pagina de Login do ambiente web', () => {
         cy.get('[data-cy="password"]').type('cartas');
 
         cy.contains('Esqueci minha senha');
-        cy.contains('Cadastre-se');
+        cy.contains('Cadastro');
 
         cy.get('[data-cy="submit"]').click();
 

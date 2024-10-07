@@ -16,8 +16,8 @@ describe('Página de Lista de Espaços', () => {
     });
 
     it('Garante que o dropdown de ordenação está visível e funcional', () => {
-        cy.get('select').contains('Mais recente primeiro').should('be.visible');
-        cy.get('select').select('Mais antigo primeiro').should('have.value', 'old'); // Change from 'oldest' to 'old'
+        cy.get('select').contains('Mais Recente').should('be.visible');
+        cy.get('select').select('Mais Antigo').should('have.value', 'old'); // Change from 'oldest' to 'old'
     });
 
     it('Garante que a lista de espaços está presente e os itens são visíveis', () => {

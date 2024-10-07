@@ -1,242 +1,209 @@
-hello world: Olá mundo
-Home: Início
-Email: Email
-Password: Senha
-Login: Entrar
-
-home: Início
-opportunities: Oportunidades
+access: Acessar
+accessibility: Acessibilidade
+address: Endereço
 agents: Agentes
-events: Eventos
-spaces: Espaços
-projects: Projetos
-initiatives: Iniciativas
-notifications: Notificações
-login: Entrar
-check: Conferir
-logo: Lôgo
 all: Tudo
-page.view: Visualizar como
-seals: Selos
-list.view.more: Ver mais
-full-name: Nome completo
-cpf: CPF
-email: Email
-password: Senha
-confirm-password: Confirmar senha
-continue: Continuar
-registration: Cadastro
-back: Voltar
-birth-date: Data de nascimento
-phone: Telefone
-type: Tipo
-linked_with: Vinculado com
+areas_of_expertise: Áreas de Atuação
 areas_of_interest: Áreas de interesse
-opened_registrations: Inscrições abertas
 
-authentication.login.form.welcome: Boas vindas
-authentication.login.form.paragraph: Entre com a sua conta
-authentication.login.form.forgot_password: Esqueci minha senha
-authentication.login.form.register: Cadastre-se
+back: Voltar
+birth_date: Data de nascimento
 
-homepage.welcome_mapas.title: Boas-vindas, você chegou ao Mapas Culturais
-homepage.welcome_mapas.subtitle: Encontre cultura em cada canto da cidade e promova a sua própria cultura. Participe da produção artística do seu território com uma plataforma livre, gratuita e colaborativa.
-homepage.create_account: Criar cadastro
-homepage.registration_info: O cadastro é fundamental para organizar informações e facilitar o acesso a serviços e oportunidades dentro do mapa de cultura.
-homepage.sign_up: CADASTRE-SE
-homepage.check_opportunities: Confira as Oportunidades
-homepage.discover_open_notice: Conheça editais, oficinas, prêmios e concursos mais recentes e com inscrições abertas no momento.
-homepage.formed_by_entities: O Mapas Culturais é formado por Entidades
-homepage.register_access: Faça a sua inscrição e acesse os resultados de editais, oficinas, prêmios e concursos. Você também pode criar o seu próprio formulário e divulgar uma oportunidade.
-homepage.search_calendar: Pesquise o calendário de atividades culturais que estão acontecendo na sua região. Ou crie e divulgue seus eventos gratuitamente na plataforma.
-homepage.discover_places: Descubra os lugares em que as atividades culturais acontecem. E aproveite para cadastrar o seu espaço no radar artístico e cultural.
-homepage.register_artists: Conheça ou cadastre artistas, pessoas gestoras e produtoras, grupos, coletivos, bandas, instituições e empresas da cena artística e cultural da região.
-homepage.find_initiatives: Encontre leis de fomento, convocatórias, mostras e editais de seu interesse ou publique suas iniciativas para toda a comunidade.
-homepage.happening_now: Acontecendo agora
-homepage.cultural_scene: Fique por dentro de tudo que está acontecendo no cenário cultural do Ceará!
-homepage.contribute_maps: Contribua com o Mapas
-homepage.add_events: Coloque seus eventos, espaços, iniciativas e oportunidades como editais e concursos no radar cultural, para que as pessoas participem do que está acontecendo na região. Com o Mapas você faz tudo isso de forma colaborativa e interativa, democratizando o acesso à cultura.
-homepage.start_now: COMEÇAR AGORA
-homepage.locate_on_map: Localize no mapa
-homepage.find_nearby: Encontre as atividades que estão próximas a você.
-homepage.free_software_info: Sabia que o Mapas Culturais é um software livre?
-homepage.api_info: Você pode usar a API para acessar os dados públicos no nosso banco de dados e utilizá-los para desenvolver aplicações externas. Além disso, também é possível contribuir com o software livre Mapas Culturais direto no GitHub.
-homepage.explore_repository: Conheça o repositório
+calendar: Calendário
+check: Conferir
+click_here: Clique aqui
+confirm: Confirmar
+confirm_password: Confirmar senha
+continue: Continuar
+contribute: Contribua
+create_account: Crie sua conta
 
-footer.help: Precisa de ajuda?
-footer.click_here: Clique aqui
-footer.contact_support: para falar com nossa equipe de suporte por chat.
-footer.send_email: Ou envie um email para
+description: Descrição
 discover: Descubra
-footer.control_panel: Painel de controle
-footer.notices_opportunities: Editais e Oportunidades
-footer.opportunities: Minhas Oportunidades
-footer.events: Meus Eventos
-footer.agents: Meus Agentes
-footer.spaces: Meus Espaços
-footer.help_privacy: Ajuda e privacidade
-faq: Ajuda e perguntas frequentes (FAQ)
-footer.privacy_policy: Termos de uso e Política de privacidade
-footer.image_authorization: Autorização de uso de imagem
-lgpd: Entenda a LGPD
-footer.platform_created: plataforma criada pela comunidade
-footer.and_developed: e desenvolvida por
-footer.visit_repository: visite o repositório
 
-space.filter_first: Mais recente primeiro
-space.filter_old: Mais antigo primeiro
-space.filter: Filtros
-space.accessibility: Tem acessibilidade
-spaces.official: Espaços Oficias
-spaces.types: Tipos de Espaços
-space.select: Tipos de Espaços
-space.types_select: Selecionar tipos
-space.gallery: Galeria
-space.theater: Teatro
-space.area: Área de atividade
-space.area_select: Selecionar áreas
-space.arts: Artes visuais
-space.music: Música
-space.clear: Limpar todos os filtros
-space.search: Busca de Espaço
-space.type.card: Tipos
-space.access.card: Acessibilidade
-space.list: Lista
-space.map: Mapa
-space: Espaço
-space.start: Início
-space.view: Visualizar como
-space.order: Ordenar por
-space.file: Arquivo privado
-space.access: Acessar
-space-filter.name: Nome do espaço.
-space-filter.type: Tipos de espaço
-space-all: Todos
-space-filter.access: Possui acessibilidade
-space-yes: Sim
-space-no: Não
-space-area.activity: Área de atuação
+email: Email
+entity: Entidade
+events: Eventos
+everybody: Todos
+explore_repository: Conheça o repositório
 
-agent.title: Agentes
-agent.registered_agents: Agentes Cadastrados
-agent.individual_agents: Agentes Individuais
-agent.collective_agents: Agentes Coletivos
-agent.registered_last_7_days: Cadastrados nos últimos 7 dias
-agent.view_as: Visualizar como
-agent.list: Lista
-agent.mapa: Mapa
-agent.chart: Indicadores
-agent.agents_found: Agentes encontrados
-agent.home: Inicio
-agent.create: Criar agente
-agent.profile.picture: Foto de Perfil do Agente
-agent.areas_of_expertise: Áreas de Atuação
-agent.location: Localização
-agent.access_profile: Acessar perfil
+full_name: Nome completo
 
-sort_by: Ordenar por
+gallery: Galeria
+
+happening_now: Acontecendo agora
+help: Ajuda
+help_privacy: Ajuda e privacidade
+home: Início
+
+illustration: Ilustração
+image: Imagem
+indicators: Indicadores
+initiatives: Iniciativas
+
+language: Idioma
+lastname: Sobrenome
+linked_with: Vinculado com
+list: Lista
+locate_yourself: Localize-se
+location: Localização
+logo: Logo
+login: Entrar
+
+map: Mapa
 most_recent: Mais Recente
+my_account: Minha Conta
+
+name: Nom
+notifications: Notificações
+no: Não
+
 oldest: Mais Antigo
+order: Ordenar por
+opened_registrations: Inscrições abertas
+opportunities: Oportunidades
+organizations: Organizações
 
-my-account: Minha Conta
-profile-picture: Foto de Perfil
+privacy: Privacidade
+profile: Perfil
+password: Senha
+password_strength: Força da senha
+phone: Telefone
+photo: Foto
+profile_picture: Foto de Perfil
+projects: Projetos
 
-initiative: Iniciativas
-initiative.past_present_title: Descobrindo o passado no presente
-initiative.cultural_festival_title: Festival Cultural de Cinema Raízes
-initiative.handcraft_exhibition_title: Oficina e Exposição de Artesanato de Guarulhos - 2024
-initiative.id: "ID"
-initiative.badge.workshop: Oficina
-initiative.badge.festival: Festival
-initiative.description.workshop:
-  Oficina de Educação Patrimonial, gratuita, destinada a professores, alunos, agentes de turismo e o público em geral, a escolha da Secretaria Municipal de Cultura de Petrolândia, visando envolver a comunidade no reconhecimento e valorização dos bens de valor histórico, paisagísticos e culturais existentes na cidade.
-initiative.description.festival:
-  O Festival faz uma viagem ao passado ao mesmo tempo que proporciona um espaço para debater as tendências do futuro com os participantes do evento e com a comunidade local, incluindo principalmente o público infantil, com oficinas e filmes dirigidos pelas crianças, falando da origem da vida, da construção das manifestações culturais de um povo.
-initiative.description.handcraft:
-  Na oficina são confeccionados objetos de decoração como potes e garrafas de vidro decorados, sousplat e cestaria de jornal, objetos de madeira (suporte para rolo de papel), através de diversas técnicas, como decoupagem com guardanapo, marmorização, efeito pedra, vintage, arranjos florais em latas e flores de jornal.
-initiative.tags: TAGS (7)
-initiative.access_button: Acessar iniciativa
-initiative.dropdown.recent: Mais recentes primeiro
-initiative.dropdown.older: Mais antigos primeiro
-initiative.dropdown.popular: Mais populares
-initiative.count.found: iniciativas encontradas
-initiative.search.placeholder: Pesquisar por Iniciativas
-initiative.create: Criar iniciativa
-initiative.view: Visualizar como
-initiative.list: Lista
-initiative.chart: Indicadores
-initiative.found: Iniciativas encontradas
-initiative.registered: iniciativas cadastradas
-initiative.ongoing: iniciativas em andamento
-initiative.completed: iniciativa concluída
-initiative.days: cadastrados nos últimos 7 dias
+register: Cadastro
 
-event.create: Criar evento
-event.dashboard.registered: Eventos cadastrados
-event.dashboard.realized: Eventos realizados
-event.dashboard.finished: Eventos finalizados
-event.dashboard.seven.days.registered: Eventos cadastrados nos últimos 7 dias
-event.tabs.list: Lista
-event.tabs.calendar: Calendário
-event.tabs.map: Mapa
-event.tabs.indicators: Indicadores
-event.events_found: eventos encontrados
-event.sort_by: Ordenar por
-event.most_recent: Mais recentes
-event.oldest: Mais antigos
-event.card.id: número identificador
-event.card.location: Local não informado
-event.card.language: Linguagens
-event.card.entry: Valor da entrada
-event.card.participants: Número de participantes
-event.card.button: Acessar evento
+tags: Tags
+term: Termo
+terms: Termos
+title: Titulo
+theater: Teatro
+type: Tipo
 
-register:
-  title: Criar uma conta
-  subtitle: Siga os passos para finalizar o seu cadastro na plataforma Aurora.
-  name: Seu nome completo
-  cpf: Seu CPF
-  email: Seu email
-  password: Sua senha
-  confirm_password: Confirme sua senha
-  phone: Seu telefone de contato
-  birth_date: Sua data de nascimento
-  password-required: A senha deve ter
-  password-requirements: no mínimo 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caractere especial.
-  password-strength: Força da senha
+user: Usuário
 
-opportunity.opportunities_found: Oportunidades encontradas
-opportunity.opened_registrations: Inscrições abertas
-opportunity.registrations_closed: Inscrições encerradas
-opportunity.future_registrations: Inscrições futuras
-opportunity.official_notices: Editais oficiais
-opportunity.create: Criar oportunidade
+seals: Selos
+search: Buscar
+send: Enviar
+see_how: Visualizar como
+see_more: Ver mais
+sort_by: Ordenar por
+spaces: Espaços
+start_now: Comece agora
+suggestions: Sugestões
 
-entity.tabs.list: Lista
-entity.tabs.map: Mapa
+welcome: Olá
+
+#components
 
 accept-policies:
-  title: Aceite de políticas
   description: Para criar o seu perfil é necessário ler e aceitar os termos, políticas e autorizações para utilização da plataforma, que serão encaminhados a você por e-mail. Ao aceitar, você estará concordando com todos.
-  terms: Termos e condições de uso
-  privacy: Política de privacidade
   image: Autorização de Uso de Imagem
+  privacy: Política de privacidade
+  terms: Termos e condições de uso
+  title: Aceite de políticas
 
-faq-suggestions: Principais sugestões
-faq-notices: Inscrições em editais e oportunidades
-faq-find: Aqui você encontra respostas sobre os editais e oportunidades no mapa cultural.
-faq-map: Cadastro no Mapa
-faq-information: Aqui você encontra informações sobre o cadastro no Mapa Cultural.
-faq-registration: Inscrições em Editais e Oportunidades
-faq-results: Aqui você encontra informações sobre como participar e acompanhar resultados.
-faq-questions: Está com dúvidas?
-faq-checks: Confira nossas perguntas frequentes
-faq-categories: Confira todas as dúvidas mais frequentes agrupadas em categorias disponíveis para que você possa consultar.
-faq-opportunity: Inscrições em editais e oportunidades
-faq-access: Como recuperar meu acesso?
-faq-looking: Não encontrou o que procurava?
-faq-click: Clique aqui
-faq-support: para falar com nossa equipe de suporte por chat.
-faq-send:  Ou envie um email para
-faq-illustration: Ilustração
-faq-keys: Pesquise por palavras-chaves
+footer:
+  and_developed: e desenvolvida por
+  contact_support: para falar com nossa equipe de suporte por chat.
+  control_panel: Painel de controle
+  help: Precisa de ajuda?
+  image_authorization: Autorização de uso de imagem
+  notices_opportunities: Editais e Oportunidades
+  opportunities: Minhas Oportunidades
+  platform_created: plataforma criada pela comunidade
+  privacy_policy: Termos de uso e Política de privacidade
+  send_email: Ou envie um email para
+  events: Meus Eventos
+  agents: Meus Agentes
+  spaces: Meus Espaços
+  visit_repository: visite o repositório
+
+#pages
+view:
+  faq:
+    answer_1: Aqui você encontra informações sobre como participar e acompanhar resultados.
+    answer_2: Aqui você encontra informações sobre como criar sua conta.
+    answer_3: Aqui você encontra informações sobre como participar e acompanhar resultados.
+    categories: Confira todas as dúvidas mais frequentes agrupadas em categorias disponíveis para que você possa consultar.
+    illustration: Ilustração
+    looking: Não encontrou o que procurava?
+    question_1: Inscrições em Editais e Oportunidades?
+    question_2: Como se cadastrar?
+    question_3: Inscrições em Editais e Oportunidades
+    title: Está com dúvidas?
+    send: Ou envie um email para
+    subtitle: Veja nossas dúvidas frequentes
+    support: para falar com nossa equipe de suporte por chat.
+
+  agent:
+    create: Criar um agente
+    quantity:
+      total: Agentes Encontrados
+      culture: Agentes Culturais
+      inactive: Agentes Inativos
+      last_days: Registrados nos últimos 7 dias
+    areas_of_expertise: Áreas de Atuação
+    collective_agents: Agentes Coletivos
+    individual_agents: Agentes Individuais
+
+  authentication:
+    forgot_password: Esqueci minha senha
+    paragraph: Entre com a sua conta
+
+    register:
+      paragraph: Siga os passos para completar o seu cadastro na plataforma
+      password_info_1: A senha deve ter
+      password_info_2: 8 caracteres, um número, um caractere especial (! @ \# $ & *), pelo menos uma letra maiúscula  uma minúscula
+
+  event:
+    create: Criar um evento
+    quantity:
+      total: Eventos Encontrados
+      finished: Eventos Finalizados
+      opened: Eventos em Andamento
+      last_days: Registrados nos últimos 7 dias
+
+  homepage:
+    add_events: Adicione seus eventos, espaços, iniciativas e oportunidades como editais e concursos no radar cultural, para que as pessoas participem do que está acontecendo na região. Com o Mapas você faz tudo isso de forma colaborativa e interativa, democratizando o acesso à cultura.
+    api_info: Você pode usar a  API para acessar dados públicos da nossa base de dados e usá-los para desenvolver aplicações externas. Além do mais, você pode contribuir livremente na Aurora diretamente no GitHub.
+    check_opportunities: Confira as Oportunidades
+    cultural_scene: Fique por dentro de tudo que está acontecendo no cenário cultural do Ceará!
+    discover_places: Descubra os lugares em que as atividades culturais acontecem. E aproveite para cadastrar o seu espaço no radar artístico e cultural.
+    entities: Aurora é um mundo, conheça
+    find_initiatives: Encontre leis de fomento, convocatórias, mostras e editais de seu interesse ou publique suas iniciativas para toda a comunidade.
+    find_nearby: Encontre as atividades que estão próximas a você.
+    free_software_info: Sabia que a Aurora é um software livre?
+    register_access: Faça a sua inscrição e acesse os resultados de editais, oficinas, prêmios e concursos. Você também pode criar o seu próprio formulário e divulgar uma oportunidade.
+    register_artists: Conheça ou cadastre artistas, pessoas gestoras e produtoras, grupos, coletivos, bandas, instituições e empresas da cena artística e cultural da região.
+    registration_info: O cadastro é fundamental para organizar informações e facilitar o acesso a serviços e oportunidades dentro do mapa de cultura.
+    search_calendar: Pesquise o calendário de atividades culturais que estão acontecendo na sua região. Ou crie e divulgue seus eventos gratuitamente na plataforma.
+    subtitle: Encontre cultura em cada canto da cidade e promova a sua própria cultura. Participe da produção artística do seu território com uma plataforma livre, gratuita e colaborativa.
+    title: Olá, esta é a plataforma Aurora!
+    discover_open_notice: Conheça editais, oficinas, prêmios e concursos mais recentes e com inscrições abertas no momento.
+
+  initiative:
+    create: Criar uma iniciativa
+    quantity:
+      total: Iniciativas Encontradas
+      finished: Iniciativas Finalizadas
+      opened: Iniciativas em Andamento
+      last_days: Registradas nos últimos 7 dias
+
+  opportunity:
+    create: Criar oportunidade
+    quantity:
+      total: Oportunidades Encontradas
+      finished: Oportunidades Finalizadas
+      opened: Oportunidades em Andamento
+      last_days: Registradas nos últimos 7 dias
+
+  space:
+    create: Criar espaço
+    quantity:
+      total: Espaços Encontrados
+      finished: Espaços Fechados
+      opened: Espaços Abertos
+      last_days: Registrados nos últimos 7 dias

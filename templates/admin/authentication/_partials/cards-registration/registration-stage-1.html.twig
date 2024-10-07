@@ -1,47 +1,47 @@
 <div class="form-step form-step-active">
     <div class="mb-3">
-        <label for="inputName" class="form-label">{{ 'full-name'|trans }}</label>
-        <input type="text" class="form-control" id="inputName" placeholder="{{ 'register.name'|trans }}">
+        <label for="inputName" class="form-label">{{ 'full_name'|trans }}</label>
+        <input type="text" class="form-control" id="inputName" placeholder="{{ 'full_name'|trans }}">
     </div>
 
     <div class="mb-3">
-        <label for="inputBirdDate" class="form-label">{{ 'birth-date'|trans }}</label>
+        <label for="inputBirdDate" class="form-label">{{ 'birth_date'|trans }}</label>
         <input type="date" class="form-control" id="inputBirdDate">
     </div>
 
     <div class="mb-3">
         <label for="inputCPF" class="form-label">{{ 'cpf'|trans }}</label>
-        <input type="text" class="form-control" id="inputCPF" placeholder="{{ 'register.cpf'|trans }}">
+        <input type="text" class="form-control" id="inputCPF" placeholder="{{ 'cpf'|trans }}">
     </div>
 
     <div class="mb-3">
         <label for="inputPhone" class="form-label">{{ 'phone'|trans }}</label>
-        <input type="tel" class="form-control" id="inputPhone" placeholder="{{ 'register.phone'|trans }}">
+        <input type="tel" class="form-control" id="inputPhone" placeholder="{{ 'phone'|trans }}">
     </div>
 
     <div class="mb-3">
         <label for="inputEmail" class="form-label">{{ 'email'|trans }}</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="{{ 'register.email'|trans }}">
+        <input type="email" class="form-control" id="inputEmail" placeholder="{{ 'email'|trans }}">
     </div>
 
     <div class="mb-3">
         <label for="inputPassword" class="form-label">{{ 'password'|trans }}</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="{{ 'register.password'|trans }}">
+        <input type="password" class="form-control" id="inputPassword" placeholder="{{ 'password'|trans }}">
         <small class="form-text text-muted ">
-            {{ 'register.password-required'|trans }}:
+            {{ 'view.authentication.register.password_info_1'|trans }}:
         </small>
         <small class="form-text fw-semibold text-danger">
-            {{ 'register.password-requirements'|trans }}
+            {{ 'view.authentication.register.password_info_2'|trans }}.
         </small>
     </div>
 
     <div class="mb-3">
-        <label for="inputPasswordConfirm" class="form-label">{{ 'confirm-password'|trans }}</label>
-        <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="{{ 'register.confirm_password'|trans }}">
+        <label for="inputPasswordConfirm" class="form-label">{{ 'confirm_password'|trans }}</label>
+        <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="{{ 'confirm_password'|trans }}">
     </div>
 
     <div class="mb-3">
-        <label for="passwordStrength" class="form-label">{{ 'register.password-strength'|trans }}</label>
+        <label for="passwordStrength" class="form-label">{{ 'password_strength'|trans }}</label>
         <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
             <div class="progress-bar bg-success" style="width: 25%"></div>
         </div>
