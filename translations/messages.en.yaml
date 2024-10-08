@@ -57,6 +57,7 @@ my_account: My Account
 name: Name
 notifications: Notifications
 no: No
+none_area_specified: None area specified
 
 oldest: Oldest
 order: Sort by
@@ -64,6 +65,7 @@ opened_registrations: Open Registrations
 opportunities: Opportunities
 organizations: Organizations
 
+period: Period
 privacy: Privacy
 profile: Profile
 password: Password
@@ -95,6 +97,7 @@ start_now: Start Now
 suggestions: Suggestions
 
 welcome: Welcome
+where: Where
 
 #components
 

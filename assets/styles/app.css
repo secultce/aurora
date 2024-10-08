@@ -61,9 +61,19 @@ body {
     display: flex;
 }
 
-#btn-carousel-homepage {
+.btn-carousel-homepage {
     width: 48px;
     height: 48px;
+}
+
+.scroll-container-horizontal{
+    overflow-x: scroll;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scroll-container-horizontal::-webkit-scrollbar {
+    display: none;
 }
 
 .custom-card {

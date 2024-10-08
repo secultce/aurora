@@ -57,6 +57,7 @@ my_account: Mi Cuenta
 name: Nombre
 notifications: Notificaciones
 no: No
+none_area_specified: Ninguna zona especificada
 
 oldest: Más Antiguo
 order: Ordenar por
@@ -64,6 +65,7 @@ opened_registrations: Inscripciones Abiertas
 opportunities: Oportunidades
 organizations: Organizaciones
 
+period: Período
 privacy: Privacidad
 profile: Perfil
 password: Contraseña
@@ -95,6 +97,7 @@ start_now: Comenzar Ahora
 suggestions: Sugerencias
 
 welcome: Bienvenido
+where: Donde
 
 #components
 
