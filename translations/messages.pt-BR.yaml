@@ -54,7 +54,7 @@ map: Mapa
 most_recent: Mais Recente
 my_account: Minha Conta
 
-name: Nom
+name: Nome
 notifications: Notificações
 no: Não
 none_area_specified: Nenhuma área especificada
@@ -157,9 +157,18 @@ view:
     paragraph: Entre com a sua conta
 
     register:
+      create_account: Criar conta
       paragraph: Siga os passos para completar o seu cadastro na plataforma
       password_info_1: A senha deve ter
-      password_info_2: 8 caracteres, um número, um caractere especial (! @ \# $ & *), pelo menos uma letra maiúscula  uma minúscula
+      password_info_2: 8 caracteres, um número, um caractere especial (! @ \# $ & *), pelo menos uma letra maiúscula uma minúscula
+
+      profile:
+        add_other_area: Adicionar
+        creation: Criação do Perfil
+        creation_info: Para finalizar o seu cadastro, é necessário criar seu Perfil de Agente Cultural. Um Agente Cultural é qualquer pessoa que tenha envolvimento com a área da cultura. Este perfil será público e integrará o Mapa da Cultura brasileira, onde será possível acessar informações e projetos culturais relacionados. Dê um nome, faça uma breve descrição sobre sua relação com a cultura e selecione suas principais áreas de atuação, para completar o seu cadastro. Será possível editar as informações posteriormente.
+        description: Uma breve descrição sobre você.
+        name_info: As pessoas irão encontrar você por esse nome.
+        select_areas: Selecione pelo menos uma área de atuação
 
   event:
     create: Criar um evento
