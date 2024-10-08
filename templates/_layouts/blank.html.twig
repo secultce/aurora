@@ -8,6 +8,8 @@
             {% block content %}{% endblock %}
         </main>
 
-        {% include "_components/footer.html.twig" %}
+        {% block footer %}
+            {% include "_components/footer.html.twig" %}
+        {% endblock %}
     </div>
 {% endblock %}

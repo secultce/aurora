@@ -36,3 +36,8 @@ admin_faq:
   resource: 'admin/faq.yaml'
   prefix: /
   name_prefix: admin_faq_
+
+admin_seal :
+  resource: 'admin/seal.yaml'
+  prefix: /
+  name_prefix: admin_seal_

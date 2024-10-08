@@ -3,6 +3,9 @@ accessibility: Accessibility
 address: Address
 agents: Agents
 all: All
+allowed: With permission
+archive: Archive
+archived: Archived
 areas_of_expertise: Areas of Expertise
 areas_of_interest: Areas of Interest
 
@@ -18,9 +21,13 @@ continue: Continue
 contribute: Contribute
 create_account: Create Account
 
+draft: In draft
+delete: Delete
+deleted: Deleted
 description: Description
 discover: Discover
 
+edit: Edit
 email: Email
 entity: Entity
 events: Events
@@ -40,6 +47,7 @@ illustration: Illustration
 image: Image
 indicators: Indicators
 initiatives: Initiatives
+input_search: Search for keywords
 
 language: Language
 lastname: Last Name
@@ -74,7 +82,9 @@ phone: Phone
 photo: Photo
 profile_picture: Profile Picture
 projects: Projects
+published: Published
 
+recently_modified: Recently modified
 register: Register
 
 tags: Tags
@@ -203,6 +213,11 @@ view:
       finished: Completed Initiatives
       opened: Ongoing Initiatives
       last_days: Registered in the last 7 days
+
+  management:
+    management_of: Gestión de
+    info: En esta sección, usted visualiza y gestiona su perfil de usuario y otros sellos creados.
+
 
   opportunity:
     create: Create Opportunity
