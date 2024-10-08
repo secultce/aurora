@@ -1,41 +1,14 @@
-<section class="faq-section">
-    <div class="faq-intro">
-        <p>{{ 'faq-categories' |trans }}</p>
-    </div>
+<section class="container mt-5">
+    <p class="fs-5">{{ 'view.faq.categories' |trans }}</p>
 
-    <div class="d-flex gap-4">
-        <div class="col-md-6">
-            <div class="card card-body card-faq-item">
-                <p>{{ 'faq-opportunity' | trans }}</p>
-                <i class="material-icons">chevron_right</i>
+    <div class="row">
+        {% for i in 1..6 %}
+            <div class="col-md-6 mt-2">
+                <div class="card card-body card-faq-item">
+                    <p>{{ 'view.faq.question_1' | trans }}</p>
+                    <i class="material-icons">chevron_right</i>
+                </div>
             </div>
-
-            <div class="card card-body card-faq-item">
-                <p>{{ 'faq-access' | trans }}</p>
-                <i class="material-icons">chevron_right</i>
-            </div>
-
-            <div class="card card-body card-faq-item">
-                <p>{{ 'faq-opportunity' | trans }}</p>
-                <i class="material-icons">chevron_right</i>
-            </div>
-        </div>
-
-        <div class="col-md-6">
-            <div class="card card-body card-faq-item">
-                <p>{{ 'faq-map' | trans }}</p>
-                <i class="material-icons">chevron_right</i>
-            </div>
-
-            <div class="card card-body card-faq-item">
-                <p>{{ 'faq-notices' | trans }}</p>
-                <i class="material-icons">chevron_right</i>
-            </div>
-
-            <div class="card card-body card-faq-item">
-                <p>{{ 'faq-access' | trans }}</p>
-                <i class="material-icons">chevron_right</i>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </section>

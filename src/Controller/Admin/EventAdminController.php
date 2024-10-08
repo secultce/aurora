@@ -21,12 +21,12 @@ class EventAdminController extends AbstractAdminController
         $totalEvents = count($events);
 
         $dashboard = [
-            'color' => '#8E46B4',
+            'color' => '#f5b932',
             'items' => [
-                new CardItem(icon: 'description', quantity: $totalEvents, text: 'event.dashboard.registered'),
-                new CardItem(icon: 'event_note', quantity: 10, text: 'event.dashboard.realized'),
-                new CardItem(icon: 'event_available', quantity: 20, text: 'event.dashboard.finished'),
-                new CardItem(icon: 'today', quantity: 30, text: 'event.dashboard.seven.days.registered'),
+                new CardItem(icon: 'description', quantity: $totalEvents, text: 'view.event.quantity.total'),
+                new CardItem(icon: 'event_note', quantity: 10, text: 'view.event.quantity.opened'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'view.event.quantity.finished'),
+                new CardItem(icon: 'today', quantity: 30, text: 'view.event.quantity.last_days'),
             ],
         ];
 

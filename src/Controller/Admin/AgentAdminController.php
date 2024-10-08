@@ -23,10 +23,10 @@ class AgentAdminController extends AbstractAdminController
         $dashboard = [
             'color' => '#D0A020',
             'items' => [
-                new CardItem(icon: 'description', quantity: $totalAgents, text: 'agent.registered_agents'),
-                new CardItem(icon: 'event_note', quantity: 30, text: 'agent.individual_agents'),
-                new CardItem(icon: 'event_available', quantity: 20, text: 'agent.collective_agents'),
-                new CardItem(icon: 'today', quantity: 10, text: 'agent.registered_last_7_days'),
+                new CardItem(icon: 'description', quantity: $totalAgents, text: 'view.agent.quantity.total'),
+                new CardItem(icon: 'person', quantity: 30, text: 'view.agent.quantity.culture'),
+                new CardItem(icon: 'block', quantity: 20, text: 'view.agent.quantity.inactive'),
+                new CardItem(icon: 'today', quantity: 10, text: 'view.agent.quantity.last_days'),
             ],
         ];
 

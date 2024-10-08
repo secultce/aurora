@@ -1,17 +1,17 @@
 {% extends "_layouts/blank-not-logged.html.twig" %}
 
-{% block title %} {{ 'Home'|trans}} {% endblock %}
+{% block title %} {{ 'home'|trans}} {% endblock %}
 
 {% block content %}
 <div class="bg-primary">
     <div class="container">
         <div class="row align-items-center justify-content-center p-3">
             <div class="col-md-5 text-white ">
-                <h1><strong>{{ 'homepage.welcome_mapas.title'|trans }}</strong></h1>
-                <p class="lead mt-5">{{ 'homepage.welcome_mapas.subtitle'|trans }}</p>
+                <h1><strong>{{ 'view.homepage.title'|trans }}</strong></h1>
+                <p class="lead mt-5">{{ 'view.homepage.subtitle'|trans }}</p>
             </div>
             <div class="col-md-7 mt-4">
-                <img src="{{ asset('img/pessoas-home.png') }}" alt="Ilustração" class="img-fluid">
+                <img src="{{ asset('img/pessoas-home.png') }}" alt="{{ 'illustration'|trans }}" class="img-fluid">
             </div>
         </div>
     </div>
@@ -20,10 +20,10 @@
     <div class="container pb-5">
         <div class="row text-start">
             <div class="col-md-auto">
-                <h1 class="fw-bold mt-4">{{ 'homepage.create_account'|trans }}</h1>
-                <p class="lead mt-3">{{ 'homepage.registration_info'|trans }}</p>
+                <h1 class="fw-bold mt-4">{{ 'create_account'|trans }}</h1>
+                <p class="lead mt-3">{{ 'view.homepage.registration_info'|trans }}</p>
                 <a href="{{ path('admin_auth_register') }}" class="col-5 mx-auto btn btn-light btn-lg text-green icon-link justify-content-between mt-5">
-                    <h4 class="fw-bold mt-2">{{ 'homepage.sign_up'|trans }}</h4>
+                    <h4 class="fw-bold mt-2 text-uppercase">{{ 'register'|trans }}</h4>
                     <span class="material-icons fs-2">arrow_forward</span>
                 </a>
             </div>
@@ -35,8 +35,8 @@
         <div class="row text-start">
             <div class="col-md-12 d-flex align-items-center justify-content-between">
                 <div>
-                    <h1 class="fw-bold mt-4">{{ 'homepage.check_opportunities'|trans }}</h1>
-                    <p class="lead mt-3">{{ 'homepage.discover_open_notice'|trans }}</p>
+                    <h1 class="fw-bold mt-4">{{ 'view.homepage.check_opportunities'|trans }}</h1>
+                    <p class="lead mt-3">{{ 'view.homepage.discover_open_notice'|trans }}</p>
                 </div>
 
                 <div class="mt-4">
@@ -93,36 +93,36 @@
 <div class=" py-5">
     <div class="container pb-5">
         <div class="row text-start">
-            <h1 class="fw-bold mt-4 text-dark">{{ 'homepage.formed_by_entities'|trans }}</h1>
+            <h1 class="fw-bold mt-4 text-dark">{{ 'view.homepage.entities'|trans }}</h1>
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-opportunities.png'),
                 'entity': 'opportunities'|trans,
                 'entityColor': 'var(--navlink-opportunity)',
-                'textEntity': 'homepage.register_access'|trans
+                'textEntity': 'view.homepage.register_access'|trans
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-events.png'),
                 'entity': 'events'|trans,
                 'entityColor': 'var(--navlink-event)',
-                'textEntity': 'homepage.search_calendar'|trans
+                'textEntity': 'view.homepage.search_calendar'|trans
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-spaces.png'),
                 'entity': 'spaces'|trans,
                 'entityColor': 'var(--navlink-space)',
-                'textEntity': 'homepage.discover_places'|trans
+                'textEntity': 'view.homepage.discover_places'|trans
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-agents.png'),
                 'entity': 'agents'|trans,
                 'entityColor': 'var(--navlink-agent)',
-                'textEntity': 'homepage.register_artists'|trans
+                'textEntity': 'view.homepage.register_artists'|trans
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-projects.png'),
                 'entity': 'initiatives'|trans,
                 'entityColor': 'var(--navlink-project)',
-                'textEntity': 'homepage.find_initiatives'|trans
+                'textEntity': 'view.homepage.find_initiatives'|trans
             } %}
         </div>
     </div>
@@ -133,8 +133,8 @@
         <div class="row text-start">
             <div class="col-md-12 d-flex align-items-center justify-content-between">
                 <div>
-                    <h1 class="fw-bold mt-4">{{ 'homepage.happening_now'|trans }}</h1>
-                    <p class="lead mt-3">{{ 'homepage.cultural_scene'|trans }}</p>
+                    <h1 class="fw-bold mt-4">{{ 'happening_now'|trans }}</h1>
+                    <p class="lead mt-3">{{ 'view.homepage.cultural_scene'|trans }}</p>
                 </div>
 
                 <div class="mt-4">
@@ -259,10 +259,10 @@
     <div class="container pb-5">
         <div class="row text-start">
             <div class="col-md-auto">
-                <h1 class="fw-bold mt-4">{{ 'homepage.contribute_maps'|trans }}</h1>
-                <p class="lead mt-3">{{ 'homepage.add_events'|trans }}</p>
+                <h1 class="fw-bold mt-4">{{ 'contribute'|trans }}</h1>
+                <p class="lead mt-3">{{ 'view.homepage.add_events'|trans }}</p>
                 <a href="#" class="col-5 mx-auto btn btn-light btn-lg text-red-dark icon-link justify-content-between mt-5">
-                    <h4 class="fw-bold mt-2">{{ 'homepage.start_now'|trans }}</h4>
+                    <h4 class="fw-bold mt-2 text-uppercase">{{ 'start_now'|trans }}</h4>
                     <span class="material-icons fs-2">arrow_forward</span>
                 </a>
             </div>
@@ -273,8 +273,8 @@
     <div class="container pb-5">
         <div class="row text-start">
             <div class="col-md-auto">
-                <h1 class="fw-bold mt-4">{{ 'homepage.locate_on_map'|trans }}</h1>
-                <p class="lead mt-3">{{ 'homepage.find_nearby'|trans }}</p>
+                <h1 class="fw-bold mt-4">{{ 'locate_yourself'|trans }}</h1>
+                <p class="lead mt-3">{{ 'view.homepage.find_nearby'|trans }}</p>
             </div>
             <div class="col-md-12 mt-5">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19678.79535967018!2d-38.537474138432515!3d-3.727265727545027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1724612249783!5m2!1spt-BR!2sbr" width="1320" height="389" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
@@ -287,10 +287,10 @@
         <div class="text-center">
             <div class="col-md-auto">
                 <span class="material-icons fw-bold fs-1 mt-2">code</span>
-                <h1 class="fw-bold mt-2">{{ 'homepage.free_software_info'|trans }}</h1>
-                <p class="lead mt-4">{{ 'homepage.api_info'|trans }}</p>
+                <h1 class="fw-bold mt-2">{{ 'view.homepage.free_software_info'|trans }}</h1>
+                <p class="lead mt-4">{{ 'view.homepage.api_info'|trans }}</p>
                 <a href="https://github.com/secultce/aurora" target="_blank" class="centered-icon-text nav-link text-moss mt-4">
-                    <span class="ms-3 font-size-14 me-2">{{ 'homepage.explore_repository'|trans }}</span>
+                    <span class="ms-3 font-size-14 me-2">{{ 'explore_repository'|trans }}</span>
                     <img src="{{ asset('img/icone-github-dark.png') }}">
                 </a>
             </div>

@@ -11,26 +11,26 @@
 
         <div class="card card-body mt-5">
             <p class="mb-0">
-                <span class="fs-3 fw-bold">{{ 'authentication.login.form.welcome'|trans }}!</span>
+                <span class="fs-3 fw-bold">{{ 'welcome'|trans }}!</span>
                 <br>
-                {{ 'authentication.login.form.paragraph'|trans }}.
+                {{ 'view.authentication.paragraph'|trans }}.
             </p>
             <hr>
             <form action="{{ path('admin_auth_login') }}" method="post">
-                <label for="email">{{ 'Email'|trans }}</label>
+                <label for="email">{{ 'email'|trans }}</label>
                 <input data-cy="email" class="form-control mb-3" type="text" name="email" id="email">
 
-                <label for="password">{{ 'Password'|trans }}</label>
+                <label for="password">{{ 'password'|trans }}</label>
                 <input data-cy="password" class="form-control mb-3" type="password" name="password" id="password">
 
                 <button data-cy="submit" class="btn btn-primary w-100">
-                    {{ 'Login'|trans }}
+                    {{ 'login'|trans }}
                 </button>
 
                 <div class="text-end mt-3">
-                    <a href="#">{{ 'authentication.login.form.forgot_password'|trans }}</a>
+                    <a href="#">{{ 'view.authentication.forgot_password'|trans }}</a>
                     <br>
-                    <a href="#">{{ 'authentication.login.form.register'|trans }}</a>
+                    <a href="#">{{ 'register'|trans }}</a>
                 </div>
             </form>
         </div>

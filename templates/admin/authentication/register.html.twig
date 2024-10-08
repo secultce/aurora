@@ -1,6 +1,6 @@
 {% extends "_layouts/blank-not-logged.html.twig" %}
 
-{% block title %} {{ 'registration'|trans}} {% endblock %}
+{% block title %} {{ 'register'|trans}} {% endblock %}
 
 {% block content %}
 
@@ -12,8 +12,8 @@
     </div>
 
     <div class="container d-grid justify-content-center mb-5">
-        <h1 class="fw-bold fs-3">{{ 'register.title'|trans }}</h1>
-        <p>{{ 'register.subtitle'|trans }}</p>
+        <h1 class="fw-bold fs-3">{{ 'create_account'|trans }}</h1>
+        <p>{{ 'view.authentication.register.paragraph'|trans }}.</p>
 
         <div class="form-container mt-3">
             {% include 'admin/authentication/_partials/form-stepper.html.twig' %}

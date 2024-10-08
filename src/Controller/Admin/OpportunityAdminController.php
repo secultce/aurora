@@ -21,12 +21,12 @@ class OpportunityAdminController extends AbstractAdminController
         $totalOpportunities = count($opportunities);
 
         $dashboard = [
-            'color' => '#D14526',
+            'color' => '#009874',
             'items' => [
-                new CardItem(icon: 'description', quantity: $totalOpportunities, text: 'opened_registrations'),
-                new CardItem(icon: 'event_note', quantity: 10, text: 'opportunity.registrations_closed'),
-                new CardItem(icon: 'event_available', quantity: 20, text: 'opportunity.future_registrations'),
-                new CardItem(icon: 'today', quantity: 30, text: 'opportunity.official_notices'),
+                new CardItem(icon: 'description', quantity: $totalOpportunities, text: 'view.opportunity.quantity.total'),
+                new CardItem(icon: 'event_note', quantity: 10, text: 'view.opportunity.quantity.opened'),
+                new CardItem(icon: 'event_available', quantity: 20, text: 'view.opportunity.quantity.finished'),
+                new CardItem(icon: 'today', quantity: 30, text: 'view.opportunity.quantity.last_days'),
             ],
         ];
 
