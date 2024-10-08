@@ -39,6 +39,14 @@ Mude para o diretório do projeto:
 cd aurora
 ```
 
+---
+>
+> O jeito mais fácil é rodar o comando `make setup`, isso já vai executar todos os passos necessários e deixar a aplicação rodando em <http://localhost:8080>
+>
+Mas se preferir, pode fazer o passo a passo abaixo
+
+---
+
 ### Iniciar os Contêineres Docker
 Execute o Docker Compose para iniciar os contêineres:
 ```bash
