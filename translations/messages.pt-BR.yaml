@@ -47,6 +47,7 @@ illustration: Ilustração
 image: Imagem
 indicators: Indicadores
 initiatives: Iniciativas
+in_progress: Em andamento
 input_search: Busque por palavras-chave
 
 language: Idioma
@@ -207,6 +208,7 @@ view:
     discover_open_notice: Conheça editais, oficinas, prêmios e concursos mais recentes e com inscrições abertas no momento.
 
   initiative:
+    access: Acessar Iniciativa
     create: Criar uma iniciativa
     quantity:
       total: Iniciativas Encontradas

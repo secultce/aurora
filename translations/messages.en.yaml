@@ -47,6 +47,7 @@ illustration: Illustration
 image: Image
 indicators: Indicators
 initiatives: Initiatives
+in_progress: In Progress
 input_search: Search for keywords
 
 language: Language
@@ -207,6 +208,7 @@ view:
     discover_open_notice: Discover the latest notices, workshops, awards, and contests with open registrations.
 
   initiative:
+    access: Access Initiative
     create: Create an Initiative
     quantity:
       total: Initiatives Found
