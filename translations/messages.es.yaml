@@ -157,9 +157,18 @@ view:
     paragraph: Inicia sesión con tu cuenta
 
     register:
+      create_account: Crear Cuenta
       paragraph: Sigue los pasos para completar tu registro en la plataforma
       password_info_1: La contraseña debe tener
       password_info_2: 8 caracteres, un número, un carácter especial (! @ \# $ & *), al menos una letra mayúscula y una minúscula
+
+      profile:
+        add_other_area: Añadir
+        creation: Creación del Perfil
+        creation_info: Para finalizar tu registro, es necesario crear tu Perfil de Agente Cultural. Un Agente Cultural es cualquier persona que tenga algún tipo de relación con el ámbito cultural. Este perfil será público e integrará el Mapa de la Cultura Brasileña, donde será posible acceder a información y proyectos culturales relacionados. Ponle un nombre, escribe una breve descripción de tu relación con la cultura y selecciona tus principales áreas de actuación para completar tu registro. Podrás editar la información más adelante.
+        description: Una breve descripción sobre ti.
+        name_info: Las personas te encontrarán por este nombre.
+        select_areas: Selecciona al menos una área de actuación
 
   event:
     create: Crear un Evento

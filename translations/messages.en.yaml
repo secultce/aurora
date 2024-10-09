@@ -157,9 +157,18 @@ view:
     paragraph: Log in with your account
 
     register:
+      create_account: Create Account
       paragraph: Follow the steps to complete your registration on the platform
       password_info_1: The password must have
       password_info_2: 8 characters, a number, a special character (! @ \# $ & *), at least one uppercase and one lowercase letter
+
+      profile:
+        add_other_area: Add
+        creation: Profile Creation
+        creation_info: To complete your registration, you need to create your Cultural Agent Profile. A Cultural Agent is anyone who is involved in the cultural field. This profile will be public and will be part of the Brazilian Culture Map, where it will be possible to access related cultural information and projects. Give it a name, write a brief description of your connection with culture, and select your main areas of expertise to complete your registration. You will be able to edit the information later.
+        description: A brief description about yourself.
+        name_info: People will find you by this name.
+        select_areas: Select at least one area of activity
 
   event:
     create: Create an Event
