@@ -6,6 +6,11 @@ body {
     height: 100%;
 }
 
+.navbar-brand img {
+    height: unset;
+    width: 250px;
+}
+
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -57,7 +62,7 @@ body {
 
 .contribute-maps {
     background-size: cover !important;
-    background: linear-gradient(rgba(0, 43, 71, 0.85), rgba(0, 43, 71, 0.85)), url('../img/home-contribua-mapas.png') center;
+    background: linear-gradient(rgba(0, 43, 71, 0.85), rgba(0, 43, 71, 0.85)), url('../img/home-contribua.png') center;
     display: flex;
 }
 

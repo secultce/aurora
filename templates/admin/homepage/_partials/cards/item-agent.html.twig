@@ -1,5 +1,5 @@
 <div class="item-card-home bg-white p-4 rounded shadow-sm mt-4">
-    <div class="row align-items-center mt-3">
+    <div class="row align-items-center">
         <div class="col-md-3">
             <img src="{{ image_url|default(asset('img/default-image.png')) }}" alt="{{ image_alt|default('agent.image'|trans) }}" class="rounded-circle img-fluid profile-image">
         </div>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="row align-items-start mt-3">
+    <div class="row align-items-start mt-1">
         <div class="d-flex justify-content-between align-items-start">
             <h4 class="fw-bold">
                 {{ name|default('agents'|trans) }}
@@ -19,7 +19,7 @@
         </div>
     </div>
 
-    <p class="text-bold fw-bold mt-4">{{ agent.shortBio|default('agent.short_bio'|trans) }}</p>
+    <p class="text-bold fw-bold mt-1">{{ agent.shortBio|default('agent.short_bio'|trans) }}</p>
     <p class="text-muted">{{ agent.longBio|default('agent.long_bio'|trans) }}</p>
 
     <h6 class="fw-bold mt-4">{{ 'view.agent.areas_of_expertise'|trans }} ({{ areas_of_expertise_count|default(0) }}):</h6>

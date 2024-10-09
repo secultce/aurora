@@ -10,8 +10,8 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class="navbar-brand" href="#">
-                <img src="{{ asset('img/logo.png') }}" alt="">
+            <a class="navbar-brand" href="{{ path('admin_home_homepage') }}">
+                <img src="{{ asset('img/aurora-horizontal.png') }}" alt="">
             </a>
         </div>
 
@@ -64,7 +64,7 @@
         </div>
 
         <div class="notifications-login">
-            <a href="#login" class="nav-btn-login">{{ 'login'|trans }}</a>
+            <a href="{{ path('admin_auth_login') }}" class="nav-btn-login">{{ 'login'|trans }}</a>
         </div>
     </div>
 </nav>
