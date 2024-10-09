@@ -3,6 +3,9 @@ accessibility: Accesibilidad
 address: Dirección
 agents: Agentes
 all: Todo
+allowed: Con permiso
+archive: Archivar
+archived: Archivados
 areas_of_expertise: Áreas de Especialización
 areas_of_interest: Áreas de Interés
 
@@ -18,9 +21,13 @@ continue: Continuar
 contribute: Contribuir
 create_account: Crear Cuenta
 
+draft: En borrador
+delete: Eliminar
+deleted: Eliminados
 description: Descripción
 discover: Descubrir
 
+edit: Editar
 email: Correo Electrónico
 entity: Entidad
 events: Eventos
@@ -40,6 +47,7 @@ illustration: Ilustración
 image: Imagen
 indicators: Indicadores
 initiatives: Iniciativas
+input_search: Buscar por palabras clave
 
 language: Idioma
 lastname: Apellido
@@ -74,7 +82,9 @@ phone: Teléfono
 photo: Foto
 profile_picture: Foto de Perfil
 projects: Proyectos
+published: Publicados
 
+recently_modified: Modificados recientemente
 register: Registro
 
 tags: Etiquetas
@@ -203,6 +213,11 @@ view:
       finished: Iniciativas Finalizadas
       opened: Iniciativas en Curso
       last_days: Registradas en los últimos 7 días
+
+  management:
+    management_of: Management of
+    info: In this section, you view and manage your user profile and other created labels.
+
 
   opportunity:
     create: Crear Oportunidad

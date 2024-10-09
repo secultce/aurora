@@ -12,6 +12,7 @@
     --color-sub-area: #ffa500;
     --soft-gray: #767676;
     --next-button-form: #117C83;
+    --next-button-form-hover: #016a6e;
     --bg-color-f: #ffffff;
     --bg-all: #e0e0e0;
     --snow-mist: #F7F7F7;
@@ -20,5 +21,6 @@
     --bg-icon-circle: #1976d2;
     --bg-initiative: #8E46B4;
     --faq-color: #FFD699;
+    --input-border: #ACACAC;
     --color-attention-100: #FFCA3A;
 }

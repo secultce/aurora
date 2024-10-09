@@ -1,0 +1,26 @@
+<div class="management-tabs" >
+    {% set tabs = [
+        {
+            'id': 'published',
+            'title': 'published' | trans,
+        },
+        {
+            'id': 'draft',
+            'title': 'draft' | trans,
+        },
+        {
+            'id': 'allowed',
+            'title': 'allowed' | trans,
+        },
+        {
+            'id': 'archived',
+            'title': 'archived' | trans,
+        },
+        {
+            'id': 'deleted',
+            'title': 'deleted' | trans
+        },
+    ] %}
+
+    {% include '_components/tabs/tab.html.twig' with { 'tabs': tabs } %}
+</div>

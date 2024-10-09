@@ -3,6 +3,9 @@ accessibility: Acessibilidade
 address: Endereço
 agents: Agentes
 all: Tudo
+allowed: Com permissão
+archive: Arquivar
+archived: Arquivados
 areas_of_expertise: Áreas de Atuação
 areas_of_interest: Áreas de interesse
 
@@ -18,9 +21,13 @@ continue: Continuar
 contribute: Contribua
 create_account: Crie sua conta
 
+draft: Em rascunho
+delete: Excluir
+deleted: Excluídos
 description: Descrição
 discover: Descubra
 
+edit: Editar
 email: Email
 entity: Entidade
 events: Eventos
@@ -40,6 +47,7 @@ illustration: Ilustração
 image: Imagem
 indicators: Indicadores
 initiatives: Iniciativas
+input_search: Busque por palavras-chave
 
 language: Idioma
 lastname: Sobrenome
@@ -74,7 +82,9 @@ phone: Telefone
 photo: Foto
 profile_picture: Foto de Perfil
 projects: Projetos
+published: Publicados
 
+recently_modified: Modificados recentemente
 register: Cadastro
 
 tags: Tags
@@ -204,6 +214,10 @@ view:
       opened: Iniciativas em Andamento
       last_days: Registradas nos últimos 7 dias
 
+  management:
+    management_of: Gestão de
+    info: Nesta seção você visualiza e gerência seu perfil de usuário e outros selos criados.
+
   opportunity:
     create: Criar oportunidade
     quantity:
@@ -219,3 +233,6 @@ view:
       finished: Espaços Fechados
       opened: Espaços Abertos
       last_days: Registrados nos últimos 7 dias
+
+  seal:
+    create: Criar selo
