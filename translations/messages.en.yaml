@@ -234,3 +234,11 @@ view:
       finished: Closed Spaces
       opened: Open Spaces
       last_days: Registered in the last 7 days
+
+  not-found:
+    error-404: Error 404
+    error-text_first: Oops, page not found.
+    error-text_second: This page no longer exists or has changed address.
+    error-text_third: But don't worry, there are many other pages to discover here at Maps.
+    error-homepage: Back to home page
+    error-image: Doubt image
