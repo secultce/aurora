@@ -23,7 +23,7 @@ class SpaceAdminController extends AbstractAdminController
         $totalSpaces = count($spaces);
 
         $dashboard = [
-            'color' => '#8E46B4',
+            'color' => '#088140',
             'items' => [
                 new CardItem(icon: 'description', quantity: $totalSpaces, text: 'view.space.quantity.total'),
                 new CardItem(icon: 'event_note', quantity: 10, text: 'view.space.quantity.opened'),
@@ -35,6 +35,7 @@ class SpaceAdminController extends AbstractAdminController
         return $this->render('space/list.html.twig', [
             'spaces' => $spaces,
             'dashboard' => $dashboard,
+            'totalSpaces' => $totalSpaces,
         ]);
     }
 }

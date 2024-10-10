@@ -229,12 +229,14 @@ view:
       last_days: Registradas nos últimos 7 dias
 
   space:
+    access_space: Acessar espaço
     create: Criar espaço
     quantity:
       total: Espaços Encontrados
       finished: Espaços Fechados
       opened: Espaços Abertos
       last_days: Registrados nos últimos 7 dias
+    picture: Foto do Espaço
 
   seal:
     create: Criar selo
