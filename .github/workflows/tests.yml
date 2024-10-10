@@ -37,6 +37,9 @@ jobs:
       - name: Generate public/private keys for use in your application.
         run: docker compose exec --user root php bin/console lexik:jwt:generate-keypair
 
+      - name: Create storage and give permissions
+        run: mkdir storage && chmod -R 777 storage
+
       - name: Create the phpunit.xml
         run: docker compose exec --user root php cp phpunit.xml.dist phpunit.xml
 
@@ -63,6 +66,9 @@ jobs:
 
       - name: Generate public/private keys for use in your application.
         run: docker compose exec --user root php bin/console lexik:jwt:generate-keypair
+
+      - name: Create storage and give permissions
+        run: mkdir storage && chmod -R 777 storage
 
       - name: Run generate mongodb proxies
         run: docker compose exec --user root php bin/console doctrine:mongodb:generate:proxie

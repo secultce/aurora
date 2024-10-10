@@ -8,6 +8,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do agente"
+  image:
+    type: string
+    maxLength: 100
+    description: "Imagem do perfil do agente"
   shortBio:
     type: string
     maxLength: 100

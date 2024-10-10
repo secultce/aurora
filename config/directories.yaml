@@ -1,0 +1,2 @@
+parameters:
+    app.dir.agent.profile: '%env(resolve:STORAGE_DIR)%/agents/profile'

@@ -7,7 +7,9 @@ namespace App\DTO;
 use App\Entity\Organization;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\NotNull;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints\All;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Sequentially;
@@ -31,6 +33,9 @@ class AgentDto
     ])]
     public mixed $name;
 
+    #[Image(maxSize: (2000000), mimeTypes: ['image/png', 'image/jpg', 'image/jpeg'], groups: [self::CREATE, self::UPDATE])]
+    public ?File $image = null;
+
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
         new NotNull(groups: [self::UPDATE]),
@@ -47,7 +52,6 @@ class AgentDto
     public mixed $longBio;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE, self::UPDATE]),
         new NotNull(groups: [self::UPDATE]),
         new Type('bool', groups: [self::CREATE, self::UPDATE]),
     ])]

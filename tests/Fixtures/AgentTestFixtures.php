@@ -14,8 +14,9 @@ class AgentTestFixtures implements TestFixtures
         return [
             'id' => Uuid::v4()->toRfc4122(),
             'name' => 'Test Agent',
+            'image' => null,
             'shortBio' => 'Short Bio',
-            'longBio' => '',
+            'longBio' => 'Long Bio',
             'culture' => true,
         ];
     }
@@ -23,7 +24,7 @@ class AgentTestFixtures implements TestFixtures
     public static function complete(): array
     {
         return array_merge(self::partial(), [
-            'longBio' => 'Long Bio',
+            'image' => ImageTestFixtures::getImageValid(),
             'organizations' => [OrganizationFixtures::ORGANIZATION_ID_1],
         ]);
     }

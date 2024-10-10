@@ -6,9 +6,11 @@ namespace App\Serializer\Denormalizer;
 
 use App\Entity\Agent;
 use App\Entity\Organization;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 readonly class AgentDenormalizer implements DenormalizerInterface
@@ -17,6 +19,7 @@ readonly class AgentDenormalizer implements DenormalizerInterface
         private EntityManagerInterface $entityManager,
         #[Autowire(service: 'serializer.normalizer.object')]
         private DenormalizerInterface $denormalizer,
+        private FileServiceInterface $fileService,
     ) {
     }
 
@@ -35,6 +38,10 @@ readonly class AgentDenormalizer implements DenormalizerInterface
             $data['organizations'] ?? []
         );
 
+        if (true === array_key_exists('image', $data)) {
+            $this->uploadImage($data, $context['object_to_populate'] ?? null);
+        }
+
         /* @var Agent $agent */
         $agent = $this->denormalizer->denormalize($this->filterData($data), $type, $format, $context);
 
@@ -43,6 +50,17 @@ readonly class AgentDenormalizer implements DenormalizerInterface
         }
 
         return $agent;
+    }
+
+    private function uploadImage(array &$data, ?Agent $agentFromDb = null): void
+    {
+        if (false === is_null($agentFromDb) && true === is_string($agentFromDb->getImage())) {
+            $this->fileService->deleteFileByUrl($agentFromDb->getImage());
+        }
+
+        if ($data['image'] instanceof File) {
+            $data['image'] = $this->fileService->getFileUrl($data['image']->getPathname());
+        }
     }
 
     private function filterData(array $data): array

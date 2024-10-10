@@ -26,6 +26,10 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get'])]
     private ?string $name = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['agent.get'])]
+    private ?string $image = null;
+
     #[ORM\Column(length: 100)]
     #[Groups(['agent.get'])]
     private string $shortBio;
@@ -78,6 +82,16 @@ class Agent extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 
     public function getShortBio(): string

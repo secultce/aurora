@@ -52,7 +52,7 @@ delete:
   summary: Remove um único agente
   responses:
     '204':
-      description: Não possui conteudo de resposta
+      description: Não possui conteúdo de resposta
       content:
           application/json: {}
     '404':
