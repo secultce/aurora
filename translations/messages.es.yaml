@@ -228,12 +228,14 @@ view:
       last_days: Registradas en los últimos 7 días
 
   space:
+    access_space: Acceder al Espacio
     create: Crear Espacio
     quantity:
       total: Espacios Encontrados
       finished: Espacios Cerrados
       opened: Espacios Abiertos
       last_days: Registrados en los últimos 7 días
+    picture: Foto del Espacio
 
   not-found:
     error-404: Error 404

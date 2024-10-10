@@ -228,12 +228,14 @@ view:
       last_days: Registered in the last 7 days
 
   space:
+    access_space: Access Space
     create: Create Space
     quantity:
       total: Spaces Found
       finished: Closed Spaces
       opened: Open Spaces
       last_days: Registered in the last 7 days
+    picture: Space Picture
 
   not-found:
     error-404: Error 404

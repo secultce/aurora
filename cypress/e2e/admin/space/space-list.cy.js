@@ -16,19 +16,30 @@ describe('Página de Lista de Espaços', () => {
     });
 
     it('Garante que o dropdown de ordenação está visível e funcional', () => {
-        cy.get('select').contains('Mais Recente').should('be.visible');
-        cy.get('select').select('Mais Antigo').should('have.value', 'old'); // Change from 'oldest' to 'old'
+        cy.get('#sort-options').contains('Mais Recente');
+        cy.get('#sort-options').select('Mais Antigo').should('have.value', 'old'); // Change from 'oldest' to 'old'
     });
 
-    it('Garante que a lista de espaços está presente e os itens são visíveis', () => {
-        cy.get('.spaces-list').should('be.visible');
-        cy.get('.spaces-list .space-card').first().should('be.visible');
-    });
+    it('Garante que as tabs estão funcionando', () => {
+        const tabs = [
+            { tab: '#pills-list-tab'},
+            { tab: '#pills-map-tab'},
+            { tab: '#pills-indicators-tab'}
+        ];
 
-    it('Garante que cada espaço tem botão de acessar visível', () => {
-        cy.get('.spaces-list .space-card').each(($el) => {
-            // First, check if there's an <a> tag containing "Acessar"
-            cy.wrap($el).find('a:contains("Acessar"), button:contains("Acessar")').should('be.visible');
+        tabs.forEach(({ tab }) => {
+            cy.get(tab).click();
+            cy.get(tab).should('have.class', 'active');
         });
+    });
+
+    it('Garante que os cards de espaços estão visíveis', () => {
+        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__type').contains('Tipo do espaço').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .mb-2').contains('Lorem ipsum dolor sit amet, consectetur adipiscing elit').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .space-card__info > :nth-child(2) > .align-self-center').contains('SCTS – Zona Cívico Administrativa').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .space-card__info > :nth-child(3) > .space-card__areas').contains('Áreas de atuação').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .space-card__info > :nth-child(4) > .align-self-center').contains('Rampa de acesso').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .justify-content-end > .space-card__button').contains('Acessar espaço').should('be.visible');
     });
 });
