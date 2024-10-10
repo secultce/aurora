@@ -1,0 +1,77 @@
+<div class="d-flex justify-content-between align-items-end">
+    <p class="fw-bold">{{ totalInitiatives }} {{ 'view.initiative.quantity.total' | trans }}</p>
+    <div class="d-flex g-4 initiative-sort">
+        <label class="initiative-options" for="sort-options">{{ 'sort_by' | trans }}:</label>
+        <select id="sort-options" class="form-select">
+            <option value="recent">{{ 'most_recent' | trans }}</option>
+            <option value="old">{{ 'oldest' | trans }}</option>
+        </select>
+    </div>
+</div>
+
+{% for initiative in initiatives %}
+    <div class="mw-100 initiative-card">
+        <div class="initiative-card-header">
+            <div class="d-flex mt-1 mb-3 align-items-center">
+                <img src="{{ asset('img/img.png') }}" alt="{{ 'photo' | trans }}" class="rounded-circle">
+
+                <h5 class="initiative-name">{{ initiative.name }}</h5>
+            </div>
+            <div class="initiative-info">
+                <span class="agent-type bg-initiative">
+                    <i class="material-icons fs-4 me-2">event</i> {{ 'in_progress' | trans }}
+                </span>
+            </div>
+            <div class="initiative-id">
+                ID: {{ initiative.id }}
+            </div>
+        </div>
+
+        <div class="initiative-card-body">
+            <p>
+                <strong>{{ 'type'| trans }}:</strong>
+                <span class="text-initiative fw-semibold">{{ 'TIPO DA INICIATIVA' | trans }}</span>
+            </p>
+
+            <p class="initiative-date fw-bold">
+                <i class="material-icons">calendar_month</i>
+                {{ 'period'| trans }}:
+                00/00/0000 às 00:00
+            </p>
+
+            <p class="initiative-location">
+                <i class="material-icons">location_on</i>
+               <strong class="me-1">{{ 'location'| trans }}:</strong>
+                {% if initiative.space %}
+                    <span class="location-name fw-bold">{{ initiative.space.name }}</span>
+                {% else %}
+                    {{ 'initiative.card.location' | trans }}
+                {% endif %}
+            </p>
+
+            <div class="d-flex initiative-seals">
+                <strong>{{ 'seals'| trans }}:</strong>
+                <p class="badge seal">Nome do selo</p>
+                <p class="badge seal">Nome do selo</p>
+                <p class="badge seal">Nome do selo</p>
+            </div>
+
+            <p class="initiative-description">
+                lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+                lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+            </p>
+
+            <div class="text-end mt-3">
+                <button class="btn btn-primary access-initiative">{{ 'view.initiative.access' | trans }}</button>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+
+<div class="container align-items-center mt-5 mb-5">
+    <div class="centered-icon-text card-view-more">
+        <i class="material-icons">add_circle_outline</i>
+        <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
+    </div>
+</div>
+

@@ -23,7 +23,7 @@ class InitiativeAdminController extends AbstractAdminController
         $totalInitiatives = count($initiatives);
 
         $dashboard = [
-            'color' => '#6b3fa0',
+            'color' => 'var(--navlink-initiative)',
             'items' => [
                 new CardItem(icon: 'description', quantity: $totalInitiatives, text: 'view.initiative.quantity.total'),
                 new CardItem(icon: 'event_available', quantity: 20, text: 'view.initiative.quantity.finished'),
@@ -35,6 +35,7 @@ class InitiativeAdminController extends AbstractAdminController
         return $this->render('initiative/list.html.twig', [
             'initiatives' => $initiatives,
             'dashboard' => $dashboard,
+            'totalInitiatives' => $totalInitiatives,
         ]);
     }
 }
