@@ -62,6 +62,21 @@ services:
     volumes:
       - ./docker/mongo/mongo-init.sh:/docker-entrypoint-initdb.d/mongo-init.sh:ro
 
+  cypress:
+    container_name: aurora-cypress
+    image: cypress/included:13.10.0
+    environment:
+      - CYPRESS_BASE_URL=http://nginx
+      - :80
+    depends_on:
+      - nginx
+    entrypoint: [ 'cypress', 'run' ]
+    volumes:
+      - .:/cy
+    working_dir: /cy
+    networks:
+      - aurora_network
+
 networks:
   aurora_network:
     driver: bridge
