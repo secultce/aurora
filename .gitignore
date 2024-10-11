@@ -10,6 +10,7 @@
 /vendor/
 /.idea
 /node_modules/
+package-lock.json
 ###< symfony/framework-bundle ###
 
 ###> friendsofphp/php-cs-fixer ###

@@ -85,5 +85,5 @@ jobs:
       - name: Compile frontend dependencies
         run: docker compose exec --user root php bin/console asset-map:compile
 
-      - name: Install dependencies and run frontend tests
-        run: npm install && npx cypress run --spec "cypress/e2e/**/*.js"
+      - name: Run cypress
+        run: docker compose up cypress
