@@ -61,7 +61,7 @@ final class AgentFixtures extends Fixture
         ],
         [
             'id' => self::AGENT_ID_4,
-            'name' => 'Sara Jenifer',
+            'name' => 'Sara Jennifer',
             'image' => null,
             'shortBio' => 'Engenheira de software e defensora de código aberto',
             'longBio' => 'Sara Jenifer é uma engenheira de software com paixão por projetos de código aberto. Ela contribui regularmente para várias comunidades e promove a colaboração e o compartilhamento de conhecimento.',

@@ -1,9 +1,12 @@
+account_privacy: Conta e Privacidade
 access: Acessar
 accessibility: Acessibilidade
+accountability: Prestações de Conta
 address: Endereço
 agents: Agentes
 all: Tudo
 allowed: Com permissão
+admin_options: Opções do Administrador
 archive: Arquivar
 archived: Arquivados
 areas_of_expertise: Áreas de Atuação
@@ -19,6 +22,7 @@ confirm: Confirmar
 confirm_password: Confirmar senha
 continue: Continuar
 contribute: Contribua
+control_panel: Painel de Controle
 create_account: Crie sua conta
 
 draft: Em rascunho
@@ -34,6 +38,7 @@ events: Eventos
 everybody: Todos
 explore_repository: Conheça o repositório
 
+functions: Gerenciar funções
 full_name: Nome completo
 
 gallery: Galeria
@@ -61,8 +66,20 @@ logo: Logo
 logout: Sair
 
 map: Mapa
+management: Gerenciamento de Entidades
+menu: Menu do Painel de Controle
 most_recent: Mais Recente
 my_account: Minha Conta
+my_agents: Meus Agentes
+my_apps: Meus Aplicativos
+my_events: Meus Eventos
+my_initiatives: Minhas Iniciativas
+my_opportunities: Minhas Oportunidades
+my_organizations: Minhas Organizações
+my_profile: Meu perfil
+my_spaces: Meus Espaços
+my_subscriptions: Minhas Inscrições
+my_reviews: Minhas Avaliações
 
 name: Nome
 notifications: Notificações
@@ -71,6 +88,7 @@ none_area_specified: Nenhuma área especificada
 
 oldest: Mais Antigo
 order: Ordenar por
+other_options: Outras Opções
 opened_registrations: Inscrições abertas
 opportunities: Oportunidades
 organizations: Organizações
@@ -107,6 +125,7 @@ sort_by: Ordenar por
 spaces: Espaços
 start_now: Comece agora
 suggestions: Sugestões
+subsites: Subsites
 
 welcome: Olá
 where: Onde
@@ -127,13 +146,9 @@ footer:
   help: Precisa de ajuda?
   image_authorization: Autorização de uso de imagem
   notices_opportunities: Editais e Oportunidades
-  opportunities: Minhas Oportunidades
   platform_created: plataforma criada pela comunidade
   privacy_policy: Termos de uso e Política de privacidade
   send_email: Ou envie um email para
-  events: Meus Eventos
-  agents: Meus Agentes
-  spaces: Meus Espaços
   visit_repository: visite o repositório
 
 #pages
@@ -252,3 +267,4 @@ view:
     error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui na Aurora.
     error-homepage: Voltar para a página inicial
     error-image: Imagem de dúvida
+

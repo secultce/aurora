@@ -1,6 +1,9 @@
+account_privacy: Cuenta y Privacidad
 access: Acceder
 accessibility: Accesibilidad
+accountability: Rendición de Cuentas
 address: Dirección
+admin_options: Opciones del Administrador
 agents: Agentes
 all: Todo
 allowed: Con permiso
@@ -19,6 +22,7 @@ confirm: Confirmar
 confirm_password: Confirmar Contraseña
 continue: Continuar
 contribute: Contribuir
+control_panel: Panel de control
 create_account: Crear Cuenta
 
 draft: En borrador
@@ -34,6 +38,7 @@ events: Eventos
 everybody: Todos
 explore_repository: Explorar Repositorio
 
+functions: Gerenciar funciones
 full_name: Nombre Completo
 
 gallery: Galería
@@ -61,8 +66,20 @@ logo: Logo
 logout: Salir
 
 map: Mapa
+management: Gerenciamiento de Entidades
+menu: Menú del Panel de Control
 most_recent: Más Reciente
 my_account: Mi Cuenta
+my_agents: Mis Agentes
+my_apps: Mis Aplicaciones
+my_events: Mis Eventos
+my_initiatives: Mis Iniciativas
+my_opportunities: Mis Oportunidades
+my_organizations: Mis Organizaciones
+my_profile: Mi Perfil
+my_spaces: Mis Espacios
+my_subscriptions: Mis Suscripciones
+my_reviews: Mis Evaluaciones
 
 name: Nombre
 notifications: Notificaciones
@@ -71,6 +88,7 @@ none_area_specified: Ninguna zona especificada
 
 oldest: Más Antiguo
 order: Ordenar por
+other_options: Otras opciones
 opened_registrations: Inscripciones Abiertas
 opportunities: Oportunidades
 organizations: Organizaciones
@@ -107,6 +125,7 @@ sort_by: Ordenar por
 spaces: Espacios
 start_now: Comenzar Ahora
 suggestions: Sugerencias
+subsites: Subsitios
 
 welcome: Bienvenido
 where: Donde
@@ -127,7 +146,6 @@ footer:
   help: ¿Necesitas ayuda?
   image_authorization: Autorización de Uso de Imagen
   notices_opportunities: Convocatorias y Oportunidades
-  opportunities: Mis Oportunidades
   platform_created: plataforma creada por la comunidad
   privacy_policy: Términos de Uso y Política de Privacidad
   send_email: O envía un correo electrónico a
@@ -135,6 +153,8 @@ footer:
   agents: Mis Agentes
   spaces: Mis Espacios
   visit_repository: visita el repositorio
+
+
 
 #pages
 view:
