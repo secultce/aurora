@@ -935,7 +935,11 @@ textarea {
 }
 
 .seals {
+    height: 11.688rem;
+    margin: 2rem 0;
+    background-color: var(--white-color);
     padding: 1.5rem;
+    border-radius: 8px;
 }
 
 .seals-header img {
