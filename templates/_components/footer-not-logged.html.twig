@@ -1,14 +1,152 @@
 <footer class="footer">
     <div class="container mt-4">
+        <p class="font-title font-size-16">
+            {{ 'footer.help'|trans }} <a href="#" class="text-primary">{{ 'click_here'|trans }}</a> {{ 'footer.contact_support'|trans }}
+            {{ 'footer.send_email'|trans }} <a href="mailto:suporteaurora@gmail.com" class="text-primary">suporteaurora@gmail.com</a>
+        </p>
+    </div>
+
+    <div class="container">
         <div class="d-flex justify-content-between align-items-center mb-4">
             <div>
-                <a href="#"><img src="{{ asset('img/logo-mapa-cultural.png') }}" alt="{{ "logo"|trans }}" class="img-fluid"></a>
+                <a href="#"><img src="{{ asset('img/aurora.png') }}" width="100px" alt="Logo" class="img-fluid"></a>
             </div>
             <div class="social-icons">
                 <a href="#"><img src="{{ asset('img/icone-facebook.png') }}" alt="Facebook" class="me-4"></a>
                 <a href="#"><img src="{{ asset('img/icone-x.png') }}" alt="X" class="me-4"></a>
                 <a href="#"><img src="{{ asset('img/icone-youtube.png') }}" alt="YouTube"></a>
             </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row justify-content-end">
+            <div class="col-md-3 mb-3">
+                <h5>{{ 'discover'|trans }}</h5>
+                <br>
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="{{ path('admin_opportunity_opportunity') }}" class="centered-icon-text nav-link text-dark">
+                                <i class="material-icons icon-wb-incandescent">wb_incandescent</i>
+                                <span class="ms-3 font-title font-size-16">{{ 'footer.notices_opportunities'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="{{ path('admin_event_event') }}" class="centered-icon-text nav-link text-dark">
+                                <i class="material-icons">event</i>
+                                <span class="ms-3 font-title font-size-16">{{ 'events'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="{{ path('admin_agent_agent') }}" class="centered-icon-text nav-link text-dark">
+                                <i class="material-icons">group</i>
+                                <span class="ms-3 font-title font-size-16">{{ 'agents'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="{{ path('admin_space_space') }}" class="centered-icon-text nav-link text-dark">
+                                <i class="material-icons">location_city</i>
+                                <span class="ms-3 font-title font-size-16">{{ 'spaces'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="{{ path('admin_initiative_initiative') }}" class="centered-icon-text nav-link text-dark">
+                                <i class="material-icons">article</i>
+                                <span class="ms-3 font-title font-size-16">{{ 'initiatives'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-3 mb-3">
+                <h5>{{ 'footer.control_panel'|trans }}</h5>
+                <br>
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="#" class="nav-link text-dark">
+                                <span class="font-title font-size-16">{{ 'footer.opportunities'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="#" class="nav-link text-dark">
+                                <span class="font-title font-size-16">{{ 'footer.events'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="#" class="nav-link text-dark">
+                                <span class="font-title font-size-16">{{ 'footer.agents'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="#" class="nav-link text-dark">
+                                <span class="font-title font-size-16">{{ 'footer.spaces'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="col-md-4 mb-3">
+                <h5>{{ 'footer.help'|trans }}</h5>
+                <br>
+                <ul class="list-unstyled">
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="{{ path('admin_faq_faq') }}" class="nav-link text-dark">
+                                <span class="font-title font-size-16">{{ 'view.faq.description'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="#" class="nav-link text-dark">
+                                <span class="font-title font-size-16">{{ 'footer.privacy_policy'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="#" class="nav-link text-dark">
+                                <span class="font-title font-size-16">{{ 'footer.image_authorization'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="d-flex align-items-center mb-3">
+                            <a href="#" class="nav-link text-dark font-title font-size-16">
+                                <span class="font-title font-size-16">{{ 'lgpd'|trans }}</span>
+                            </a>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center pt-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <span class="font-size-14">{{ 'footer.platform_created'|trans }} <strong>aurora</strong> {{ 'footer.and_developed'|trans }} <strong>Secult Ceará</strong></span>
+            <a href="" class=" centered-icon-text nav-link">
+                <span class="ms-3 font-size-14 me-2">{{ 'footer.visit_repository'|trans }}</span>
+                <img alt="Github" src="{{ asset('img/icone-github-ligth.png') }}">
+            </a>
         </div>
     </div>
 </footer>

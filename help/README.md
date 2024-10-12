@@ -155,7 +155,7 @@ public function __construct(ManagerRegistry $registry)
 ---
 
 ## Migrations
-Migrations são a forma (correta) de fazer um versionamento do banco de dados, nesta parte da aplicação isso é fornecido pela biblioteca `doctrine/migrations` mas no core do MapaCultural isso ainda é feito por uma decisão técnica interna chamada `db-updates.php`
+Migrations são a forma (correta) de fazer um versionamento do banco de dados, nesta parte da aplicação isso é fornecido pela biblioteca `doctrine/migrations` mas no core do Aurora isso ainda é feito por uma decisão técnica interna chamada `db-updates.php`
 
 <details>
 <summary>Como criar uma nova migration</summary>

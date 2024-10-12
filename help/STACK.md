@@ -8,7 +8,7 @@ Aqui você encontra detalhadamente as motivações que nos levaram a escolher ta
 - **Symfony** 7
 - **PostgreSQL** 16
 - **MongoDB** 7
-- **Bootstrap/MapaCulturalDesign** 5.3 
+- **Bootstrap/AuroraUserInterface** 5.3 
 
 > As decisões foram todas tomadas de acordo com a interpretação do time que desempenha o papel de principal braço de desenvolvimento, e todas as decisões foram assinadas pelo até então techlead do projeto [Alessandro Feitoza](https://github.com/alessandrofeitoza)
 
@@ -352,9 +352,9 @@ Esses pontos positivos fazem do MongoDB uma escolha popular para aplicações mo
 
 ---
 
-## Bootstrap/MapaCulturalDesign
+## Bootstrap/AuroraUserInterface
 
-Fizemos um fork do `Bootstrap` e o chamamos de `MapaCulturalDesign`, basicamente nele estamos implementando as interfaces protótipas no Figma e criando componentes reaproveitáveis para o projeto.
+Fizemos um fork do `Bootstrap` e o chamamos de `AuroraUserInterface`, basicamente nele estamos implementando as interfaces protótipas no Figma e criando componentes reaproveitáveis para o projeto.
 
 <details>
 <summary>E, porque Bootstrap?</summary>

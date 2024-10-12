@@ -1,0 +1,9 @@
+.btn.rounded-circle {
+    width: 60px;
+    height: 60px;
+}
+
+.item-card-home {
+    min-height: 550px;
+    display: grid;
+}

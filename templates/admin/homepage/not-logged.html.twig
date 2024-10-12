@@ -2,13 +2,19 @@
 
 {% block title %} {{ 'home'|trans}} {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/homepage.css') }}">
+{% endblock %}
+
 {% block content %}
 <div class="bg-primary">
     <div class="container">
         <div class="row align-items-center justify-content-center p-3">
             <div class="col-md-5 text-white ">
                 <h1><strong>{{ 'view.homepage.title'|trans }}</strong></h1>
-                <p class="lead mt-5">{{ 'view.homepage.subtitle'|trans }}</p>
+                <p class="lead mt-3 fw-bold">{{ 'view.homepage.subtitle'|trans }}</p>
+                <p class="lead mt-2">{{ 'view.homepage.header_text'|trans }}</p>
             </div>
             <div class="col-md-7 mt-4">
                 <img src="{{ asset('img/pessoas-home.png') }}" alt="{{ 'illustration'|trans }}" class="img-fluid">
@@ -43,7 +49,7 @@
                     <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle me-2" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="prev">
                         <i class="material-icons">chevron_left</i>
                     </button>
-                    <button id="btn-carousel-homepage" class="btn btn-light text-primary" style="border-radius: 80%" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="next">
+                    <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="next">
                         <i class="material-icons">chevron_right</i>
                     </button>
                 </div>
@@ -307,7 +313,7 @@
     <div class="container pb-5">
         <div class="row text-start">
             <div class="col-md-auto">
-                <h1 class="fw-bold mt-4">{{ 'contribute'|trans }}</h1>
+                <h1 class="fw-bold mt-4">{{ 'view.homepage.contribute_aurora'|trans }}</h1>
                 <p class="lead mt-3">{{ 'view.homepage.add_events'|trans }}</p>
                 <a href="{{ path('admin_initiative_initiative') }}" class="col-5 mx-auto btn btn-light btn-lg text-red-dark icon-link justify-content-between mt-5">
                     <h4 class="fw-bold mt-2 text-uppercase">{{ 'start_now'|trans }}</h4>

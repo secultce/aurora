@@ -1,5 +1,5 @@
 <div class="item-card-home bg-white p-4 rounded shadow-sm mt-4">
-    <div class="row align-items-center mt-3">
+    <div class="row align-items-center">
         <div class="col-md-3">
             <img src="{{ image_url|default(asset('img/default-image.png')) }}" alt="{{ image_alt|default('initiative.image'|trans) }}" class="rounded-circle img-fluid profile-image">
         </div>
@@ -11,7 +11,7 @@
         </div>
     </div>
 
-    <div class="row align-items-start mt-3">
+    <div class="row align-items-start mt-1">
         <div class="d-flex justify-content-between align-items-start">
             <h4 class="fw-bold">
                 {{ title|default('initiative.title'|trans) }}

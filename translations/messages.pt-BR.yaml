@@ -138,6 +138,7 @@ footer:
 #pages
 view:
   faq:
+    description: Perguntas Frequentes
     answer_1: Aqui você encontra informações sobre como participar e acompanhar resultados.
     answer_2: Aqui você encontra informações sobre como criar sua conta.
     answer_3: Aqui você encontra informações sobre como participar e acompanhar resultados.
@@ -190,21 +191,23 @@ view:
       last_days: Registrados nos últimos 7 dias
 
   homepage:
-    add_events: Adicione seus eventos, espaços, iniciativas e oportunidades como editais e concursos no radar cultural, para que as pessoas participem do que está acontecendo na região. Com o Mapas você faz tudo isso de forma colaborativa e interativa, democratizando o acesso à cultura.
-    api_info: Você pode usar a  API para acessar dados públicos da nossa base de dados e usá-los para desenvolver aplicações externas. Além do mais, você pode contribuir livremente na Aurora diretamente no GitHub.
+    add_events: Coloque seus eventos, espaços, iniciativas e oportunidades como editais e concursos no radar cultural, para que as pessoas participem do que está acontecendo na região. Com o Aurora você faz tudo isso de forma colaborativa e interativa, democratizando o acesso à cultura.
+    api_info: Você pode usar a API para acessar os dados públicos no nosso banco de dados e utilizá-los para desenvolver aplicações externas. Além disso, também é possível contribuir com o software livre Aurora direto no GitHub.
     check_opportunities: Confira as Oportunidades
     cultural_scene: Fique por dentro de tudo que está acontecendo no cenário cultural do Ceará!
+    contribute_aurora: Contribua com o Aurora
     discover_places: Descubra os lugares em que as atividades culturais acontecem. E aproveite para cadastrar o seu espaço no radar artístico e cultural.
-    entities: Aurora é um mundo, conheça
+    entities: No Aurora você encontra
     find_initiatives: Encontre leis de fomento, convocatórias, mostras e editais de seu interesse ou publique suas iniciativas para toda a comunidade.
     find_nearby: Encontre as atividades que estão próximas a você.
     free_software_info: Sabia que a Aurora é um software livre?
     register_access: Faça a sua inscrição e acesse os resultados de editais, oficinas, prêmios e concursos. Você também pode criar o seu próprio formulário e divulgar uma oportunidade.
     register_artists: Conheça ou cadastre artistas, pessoas gestoras e produtoras, grupos, coletivos, bandas, instituições e empresas da cena artística e cultural da região.
-    registration_info: O cadastro é fundamental para organizar informações e facilitar o acesso a serviços e oportunidades dentro do mapa de cultura.
+    registration_info: O cadastro é fundamental para organizar informações e facilitar o acesso a serviços e oportunidades dentro da Aurora.
     search_calendar: Pesquise o calendário de atividades culturais que estão acontecendo na sua região. Ou crie e divulgue seus eventos gratuitamente na plataforma.
-    subtitle: Encontre cultura em cada canto da cidade e promova a sua própria cultura. Participe da produção artística do seu território com uma plataforma livre, gratuita e colaborativa.
-    title: Olá, esta é a plataforma Aurora!
+    subtitle: Um novo amanhecer para a gestão e para o fomento cultural.
+    header_text: Encontre cultura em cada canto da cidade e promova a sua própria cultura. Participe da produção artística do seu território com uma plataforma livre, gratuita e colaborativa.
+    title: Boas vindas, você chegou na Aurora!
     discover_open_notice: Conheça editais, oficinas, prêmios e concursos mais recentes e com inscrições abertas no momento.
 
   initiative:
@@ -245,6 +248,6 @@ view:
     error-404: Error 404
     error-text_first: Ops, página não encontrada.
     error-text_second: Essa página não existe mais ou mudou de endereço.
-    error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui no Mapas.
+    error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui na Aurora.
     error-homepage: Voltar para a página inicial
     error-image: Imagem de dúvida
