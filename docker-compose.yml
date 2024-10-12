@@ -70,7 +70,8 @@ services:
       - :80
     depends_on:
       - nginx
-    entrypoint: [ 'cypress', 'run' ]
+    entrypoint: [ '/bin/sh', '-c' ]
+    command: ['npm install && cypress run']
     volumes:
       - .:/cy
     working_dir: /cy
