@@ -1,6 +1,10 @@
 @import url(colors.css);
 @import url(font.css);
 
+:root {
+    --WIDTH_DEFAULT: 78.2%;
+}
+
 body {
     background-color: var(--bg-color);
     height: 100%;
@@ -132,15 +136,11 @@ body {
     transition: 150ms;
 }
 
-.dashboard-card {
-    width: 23rem;
-}
-
 .entity-dashboard {
     display: flex;
     justify-content: center;
     gap: 0.15rem;
-    width: 78.2%;
+    width: var(--WIDTH_DEFAULT);
     margin: 0 auto;
 }
 
@@ -186,23 +186,6 @@ body {
 .agent-list.shifted {
     width: 1240px;
     transform: translateX(37px);
-}
-
-.breadcrumb-agent{
-    font-family: var(--font-open-sans);
-    font-weight: 600;
-    font-size: 14px;
-    color: #333;
-    margin-top: 23px;
-    cursor: pointer;
-    text-transform: uppercase;
-}
-
-.breadcrumb-agent span + span::before {
-    content: " > ";
-    margin: 0 5px;
-    color: var(--medium-gray);
-    cursor: auto;
 }
 
 .entity-dashboard-title {
@@ -291,17 +274,24 @@ body {
     font-family: var(--font-open-sans);
     font-weight: bold;
     font-size: 14px;
-    color: var(--color-subtitle-gray);
-    margin-left: 207px;
     padding-top: 5px;
     cursor: pointer;
+    width: var(--WIDTH_DEFAULT);
+    margin: auto;
 }
 
-.breadcrumb span {
+.breadcrumb a {
+    text-decoration: none;
     text-transform: uppercase;
+    color: var(--color-subtitle-gray);
 }
 
-.breadcrumb span + span::before {
+.breadcrumb a:hover {
+    cursor: pointer;
+    color: var(--bs-primary);
+}
+
+.breadcrumb a + a::before {
     content: " > ";
     margin: 0 5px;
     color: var(--soft-gray);
@@ -313,14 +303,17 @@ body {
 }
 
 .page-title {
+    width: var(--WIDTH_DEFAULT);
+    margin: auto;
+}
+
+.page-title h2 {
     font-family: var(--font-open-sans);
     font-size: 40px;
     font-weight: 700;
     line-height: 43.58px;
     text-align: left;
     color: var(--main-font-color);
-    margin-left: 207px;
-    margin-bottom: 45px;
 }
 
 .view-options-container {
@@ -524,20 +517,6 @@ body {
     margin-right: 15px;
 }
 
-.create-initiative-btn {
-    background-color: var(--btn-publish-custom-color);
-    color: var(--bg-color-f);
-    font-family: var(--font-open-sans);
-    font-weight: bold;
-    border: none;
-    padding: 15px 80px;
-    border-radius: 10px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    font-size: 15px;
-}
-
 .initiative-card {
     background-color: var(--card-bg-color);
     border: 1px solid var(--mid-gray);
@@ -614,15 +593,6 @@ body {
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease, color 0.3s ease;
-}
-
-.initiative-button-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    position: absolute;
-    right: 13rem;
-    top: 110px;
 }
 
 .entity-page-tabs {
@@ -743,7 +713,7 @@ body {
 }
 
 .entity-container {
-    width: 78.2%;
+    width: var(--WIDTH_DEFAULT);
 }
 
 .faq-header {

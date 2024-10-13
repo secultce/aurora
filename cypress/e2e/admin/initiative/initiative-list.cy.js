@@ -5,10 +5,10 @@ describe('Página de Listar Iniciativas', () => {
     });
 
     it('Garante que a página de lista de iniciativas existe', () => {
-        cy.get('span.name-one').contains('Início').should('be.visible');
-        cy.get('span.name-one').contains('Iniciativas').should('be.visible');
-        cy.get('h2.page-title').contains('Iniciativas').should('be.visible');
-        cy.get('button').contains('Criar uma iniciativa').should('be.visible');
+        cy.get('a.name-one').contains('Início').should('be.visible');
+        cy.get('a.name-one').contains('Iniciativas').should('be.visible');
+        cy.get('h2').contains('Iniciativas').should('be.visible');
+        cy.get('a').contains('Criar uma iniciativa').should('be.visible');
     });
 
     it('Garante que a dashboard de iniciativas está presente', () => {
@@ -53,7 +53,7 @@ describe('Página de Listar Iniciativas', () => {
             cy.get('.initiative-location').contains('Galeria Caatinga').should('be.visible');
             cy.get('.initiative-seals').contains('Selos:').should('be.visible');
             cy.get('.initiative-description').contains('lorem ipsum dolor sit amet').should('be.visible');
-            cy.get('button').contains('Acessar Iniciativa').should('be.visible');
+            cy.get('a').contains('Acessar Iniciativa').should('be.visible');
         });
     });
 

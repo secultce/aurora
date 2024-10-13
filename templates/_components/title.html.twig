@@ -1,0 +1,12 @@
+<div class="row page-title mt-4 mb-2 justify-content-between">
+    <div class="col">
+        <h2>{{ title }}</h2>
+    </div>
+    {% if action is defined %}
+        <div class="col text-end">
+            <a class="btn btn-primary" href="{{ action.path }}">
+                {{ action.text }}
+            </a>
+        </div>
+    {% endif %}
+</div>

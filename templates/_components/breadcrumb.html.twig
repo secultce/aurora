@@ -1,0 +1,7 @@
+<div class="breadcrumb row pt-4">
+    <div class="col">
+        {% for item in items %}
+            <a class="name-one mt-3" href="{{ item.path }}">{{ item.text }}</a>
+        {% endfor %}
+    </div>
+</div>

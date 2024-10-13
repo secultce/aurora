@@ -6,9 +6,20 @@
 
 {% block content %}
     <section class="white-square">
-        {% include 'admin/space/_partials/breadcrumb.html.twig' %}
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('admin_home_homepage')},
+                {text: 'spaces'|trans, path: path('admin_space_list')},
+            ]
+        } %}
 
-        {% include 'admin/space/_partials/title.html.twig' %}
+        {% include '_components/title.html.twig' with {
+            title: 'spaces'|trans,
+            action: {
+                path: '#',
+                text: 'view.space.create'|trans
+            }
+        } %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
 

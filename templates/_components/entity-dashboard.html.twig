@@ -1,14 +1,16 @@
-<div class="entity-dashboard d-flex align-items-center">
+<div class="entity-dashboard row align-items-center mt-3">
     {% for item in dashboard.items %}
-        <div class="card dashboard-card shadow-sm">
-            <div class="top d-flex justify-content-between align-items-start">
-                <h2 class="quantity">{{ item.quantity }}</h2>
-                <span class="material-icons" style="color: {{ dashboard.color }};">
+        <div class="col">
+            <div class="card dashboard-card shadow-sm">
+                <div class="top d-flex justify-content-between align-items-start">
+                    <h2 class="quantity">{{ item.quantity }}</h2>
+                    <span class="material-icons" style="color: {{ dashboard.color }};">
                     {{ item.icon }}
                 </span>
-            </div>
-            <div class="content">
-                <span class="text">{{ item.text | trans }}</span>
+                </div>
+                <div class="content">
+                    <span class="text">{{ item.text | trans }}</span>
+                </div>
             </div>
         </div>
     {% endfor %}

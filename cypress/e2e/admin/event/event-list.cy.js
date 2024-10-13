@@ -5,10 +5,10 @@ describe('Pagina de listar Eventos', () => {
     })
 
     it('Garante que a página de lista de eventos existe', () => {
-        cy.get('span.name-one').contains('Início').should('be.visible');
-        cy.get('span.name-one').contains('Eventos').should('be.visible');
-        cy.get('h2.page-title').contains('Eventos').should('be.visible');
-        cy.get('button').contains('Criar um evento').should('be.visible');
+        cy.get('a.name-one').contains('Início').should('be.visible');
+        cy.get('a.name-one').contains('Eventos').should('be.visible');
+        cy.get('h2').contains('Eventos').should('be.visible');
+        cy.get('a').contains('Criar um evento').should('be.visible');
     });
 
    it('Garante que o dashboard de eventos esteja presente', () => {

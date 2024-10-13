@@ -4,9 +4,14 @@
 
 {% block content %}
     <section class="white-square">
-        {% include 'admin/opportunity/_partials/breadcrumb.html.twig' %}
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('admin_home_homepage')},
+                {text: 'opportunities'|trans, path: path('admin_opportunity_list')},
+            ]
+        } %}
 
-        {% include 'admin/opportunity/_partials/title.html.twig' %}
+        {% include '_components/title.html.twig' with {title: 'opportunities'|trans} %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
 

@@ -5,9 +5,9 @@ describe('Página de listar Oportunidades', () => {
     })
 
     it('Garante que a página de lista de oportunidades existe', () => {
-        cy.get('span.name-one').contains('Início').should('be.visible');
-        cy.get('span.name-one').contains('Oportunidades').should('be.visible');
-        cy.get('h2.page-title').contains('Oportunidades').should('be.visible');
+        cy.get('a.name-one').contains('Início').should('be.visible');
+        cy.get('a.name-one').contains('Oportunidades').should('be.visible');
+        cy.get('h2').contains('Oportunidades').should('be.visible');
     });
 
     it('Garante que o dashboard de oportunidades esteja presente', () => {

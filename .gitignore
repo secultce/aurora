@@ -10,6 +10,7 @@
 /vendor/
 /.idea
 /node_modules/
+/cypress/screenshots/
 package-lock.json
 ###< symfony/framework-bundle ###
 

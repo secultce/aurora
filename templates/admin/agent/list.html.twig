@@ -4,9 +4,14 @@
 
 {% block content %}
     <section class="white-square">
-        {% include "admin/agent/_partials/breadcrumb.html.twig" %}
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('admin_home_homepage')},
+                {text: 'agents'|trans, path: path('admin_agent_list')},
+            ]
+        } %}
 
-        {% include "admin/agent/_partials/title.html.twig" %}
+        {% include "_components/title.html.twig" with {title: 'agents'|trans} %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
 

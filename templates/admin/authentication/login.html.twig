@@ -4,12 +4,12 @@
 
 {% block content %}
 <section class="row mt-5">
-    <div class="col-4 offset-4 mt-5">
+    <div class="col-4 offset-4 mt-3">
         {% if error %}
-            <div>{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
-        <div class="card card-body mt-5">
+        <div class="card card-body mt-3 mb-5">
             <p class="mb-0">
                 <span class="fs-3 fw-bold">{{ 'welcome'|trans }}!</span>
                 <br>

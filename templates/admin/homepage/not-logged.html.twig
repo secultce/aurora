@@ -108,35 +108,35 @@
                 'entity': 'opportunities'|trans,
                 'entityColor': 'var(--navlink-opportunity)',
                 'textEntity': 'view.homepage.register_access'|trans,
-                'path': path('admin_opportunity_opportunity')
+                'path': path('admin_opportunity_list')
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-events.png'),
                 'entity': 'events'|trans,
                 'entityColor': 'var(--navlink-event)',
                 'textEntity': 'view.homepage.search_calendar'|trans,
-                'path': path('admin_event_event')
+                'path': path('admin_event_list')
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-spaces.png'),
                 'entity': 'spaces'|trans,
                 'entityColor': 'var(--navlink-space)',
                 'textEntity': 'view.homepage.discover_places'|trans,
-                'path': path('admin_space_space')
+                'path': path('admin_space_list')
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-agents.png'),
                 'entity': 'agents'|trans,
                 'entityColor': 'var(--navlink-agent)',
                 'textEntity': 'view.homepage.register_artists'|trans,
-                'path': path('admin_agent_agent')
+                'path': path('admin_agent_list')
             } %}
             {% include "_components/intro-card.html.twig" with {
                 'urlImg': asset('img/home-projects.png'),
                 'entity': 'initiatives'|trans,
                 'entityColor': 'var(--navlink-project)',
                 'textEntity': 'view.homepage.find_initiatives'|trans,
-                'path': path('admin_initiative_initiative')
+                'path': path('admin_initiative_list')
             } %}
         </div>
     </div>
@@ -315,7 +315,7 @@
             <div class="col-md-auto">
                 <h1 class="fw-bold mt-4">{{ 'view.homepage.contribute_aurora'|trans }}</h1>
                 <p class="lead mt-3">{{ 'view.homepage.add_events'|trans }}</p>
-                <a href="{{ path('admin_initiative_initiative') }}" class="col-5 mx-auto btn btn-light btn-lg text-red-dark icon-link justify-content-between mt-5">
+                <a href="{{ path('admin_initiative_list') }}" class="col-5 mx-auto btn btn-light btn-lg text-red-dark icon-link justify-content-between mt-5">
                     <h4 class="fw-bold mt-2 text-uppercase">{{ 'start_now'|trans }}</h4>
                     <span class="material-icons fs-2">arrow_forward</span>
                 </a>
