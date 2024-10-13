@@ -36,7 +36,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link agent" aria-current="page" haref="{{ path('admin_agent_list') }}">
+                        <a class="nav-link agent" aria-current="page" href="{{ path('admin_agent_list') }}">
                             <i class="material-icons navbar-icons">group</i>
                             <p>{{ 'agents'|trans }}</p>
                         </a>
@@ -60,23 +60,31 @@
                         </a>
                     </li>
                 </ul>
-            </div>
-        </div>
 
-        <div class="notifications-login">
-            <div class="d-flex align-items-center gap-2">
-                <span class="fw-semibold">{{ 'notifications'|trans }}</span>
-                <div class="position-relative">
-                    <i class="material-icons icon-size-1 icon-bg-primary">notifications_none</i>
-                    <span class="badge-notification">1</span>
-                </div>
-            </div>
-            <div class="d-flex gap-3 align-content-center">
-                <div class="my-account">
-                    <span>Alan Turing</span>
-                    <a href="#">{{ 'my_account'|trans }}</a>
-                </div>
-                <img src="{{ asset('img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
+                {% if app.user.name is defined %}
+                    <div class="notifications-login">
+                        <div class="d-flex align-items-center gap-2">
+                            <div class="position-relative">
+                                <i class="material-icons icon-size-1 icon-bg-primary">notifications_none</i>
+                                <span class="badge-notification">1</span>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-3 align-content-center">
+                            <div class="my-account">
+                                <span>{{ app.user.name }}</span>
+                                <div class="text-end">
+                                    <a href="#">{{ 'my_account'|trans }}</a>
+                                    <a href="{{ path('_logout_web') }}" class="text-danger">{{ 'logout'|trans }}</a>
+                                </div>
+                            </div>
+                            <img src="{{ asset('img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
+                        </div>
+                    </div>
+                {% else %}
+                    <div class="notifications-login">
+                        <a href="{{ path('admin_auth_login') }}" class="nav-btn-login">{{ 'login'|trans }}</a>
+                    </div>
+                {% endif %}
             </div>
         </div>
     </div>
