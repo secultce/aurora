@@ -5,9 +5,9 @@ describe('Página de Lista de Espaços', () => {
     });
 
     it('Garante que a página de lista de espaços existe', () => {
-        cy.get('span.name-one').contains('Início').should('be.visible');
-        cy.get('span.name-one').contains('Espaços').should('be.visible');
-        cy.get('h2.page-title').contains('Espaços').should('be.visible');
+        cy.get('a.name-one').contains('Início').should('be.visible');
+        cy.get('a.name-one').contains('Espaços').should('be.visible');
+        cy.get('h2').contains('Espaços').should('be.visible');
     });
 
     it('Garante que as opções de visualização estão presentes', () => {

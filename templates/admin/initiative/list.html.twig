@@ -6,9 +6,19 @@
 
 {% block content %}
     <section class="white-square">
-        {% include 'admin/initiative/_partials/breadcrumb.html.twig' %}
-
-        {% include 'admin/initiative/_partials/title.html.twig' %}
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('admin_home_homepage')},
+                {text: 'initiatives'|trans, path: path('admin_initiative_list')},
+            ]
+        } %}
+        {% include '_components/title.html.twig' with {
+            title: 'initiatives'|trans,
+            action: {
+                path: '#',
+                text: 'view.initiative.create'|trans
+            }
+        } %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
 

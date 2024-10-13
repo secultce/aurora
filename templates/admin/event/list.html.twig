@@ -6,9 +6,17 @@
 
 {% block content %}
     <section class="white-square">
-        {% include 'admin/event/_partials/breadcrumb.html.twig' %}
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('admin_home_homepage')},
+                {text: 'events'|trans, path: path('admin_event_list')},
+            ]
+        } %}
 
-        {% include 'admin/event/_partials/title.html.twig' %}
+        {% include '_components/title.html.twig' with {
+            title: 'events'|trans,
+            action: {path: '#', text: 'view.event.create'|trans}
+        } %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
 

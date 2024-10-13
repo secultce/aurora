@@ -5,11 +5,11 @@ describe('Página de Home do ambiente web', () => {
     });
 
     const entities = [
-        { name: 'Oportunidades', path: '/admin_opportunity_opportunity' },
-        { name: 'Eventos', path: '/admin_event_event' },
-        { name: 'Espaços', path: '/admin_space_space' },
-        { name: 'Agentes', path: '/admin_agent_agent' },
-        { name: 'Iniciativas', path: '/admin_initiative_initiative' }
+        { name: 'Oportunidades', path: '/admin_opportunity_list' },
+        { name: 'Eventos', path: '/admin_event_list' },
+        { name: 'Espaços', path: '/admin_space_list' },
+        { name: 'Agentes', path: '/admin_agent_list' },
+        { name: 'Iniciativas', path: '/admin_initiative_list' }
     ];
 
     it('Garante que o navbar existe', () => {

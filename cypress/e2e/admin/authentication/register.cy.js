@@ -19,7 +19,7 @@ describe('Página de Cadastro', () => {
     it('Clica no botão Voltar e verifica redirecionamento para a página inicial', () => {
         cy.contains('a', 'Voltar').click();
 
-        cy.contains('Olá, esta é a plataforma Aurora!');
+        cy.contains('Boas vindas, você chegou na Aurora!');
     });
 
     it('Verifica se a página de cadastro existe', () => {
