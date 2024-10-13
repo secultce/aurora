@@ -16,7 +16,7 @@ class AuthenticationApiControllerTest extends AbstractWebTestCase
     {
         $requestBody = [
             'username' => 'henriquelopeslima@example.com',
-            'password' => 'lima',
+            'password' => '123456',
         ];
 
         $client = self::createClient();

@@ -18,7 +18,7 @@ final class ImageTestFixtures
 
     public static function getGif(): string
     {
-        return self::getCodeBase64ToImage('aurora.gif');
+        return self::getCodeBase64ToImage('image.gif');
     }
 
     private static function getCodeBase64ToImage(string $image): string
