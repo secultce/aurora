@@ -24,6 +24,8 @@ final class UserFixtures extends Fixture
     public const string USER_ID_9 = 'fc3c6632-cbff-4dfd-9fb3-1560fec620cf';
     public const string USER_ID_10 = 'b4f5e01c-e826-45bf-975d-1ac34cfe6e8c';
 
+    public const string DEFAULT_PASSWORD = '123456';
+
     public const array USERS = [
         [
             'id' => self::USER_ID_1,
@@ -31,7 +33,6 @@ final class UserFixtures extends Fixture
             'lastname' => ' Alessandro Feitoza',
             'socialName' => 'Alessandro Feitoza',
             'email' => 'alessandrofeitoza@example.com',
-            'password' => 'feitoza',
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T11:35:00+00:00',
             'deletedAt' => null,
@@ -42,7 +43,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'Lopes Lima',
             'socialName' => 'Henrique Lima',
             'email' => 'henriquelopeslima@example.com',
-            'password' => 'lima',
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -53,7 +53,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'Moura Balbino',
             'socialName' => 'Kelly Moura',
             'email' => 'kellymoura@example.com',
-            'password' => 'moura',
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -64,7 +63,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'Camilo',
             'socialName' => 'Sara Camilo',
             'email' => 'saracamilo@example.com',
-            'password' => 'camilo',
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -75,7 +73,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'Soares',
             'socialName' => null,
             'email' => 'talysonsoares@example.com',
-            'password' => 'soares',
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -86,7 +83,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'Ben Labão',
             'socialName' => null,
             'email' => 'raquelbenlabao@example.com',
-            'password' => 'benjamim',
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -97,7 +93,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'Pamplona',
             'socialName' => 'Pampleno',
             'email' => 'lucaspamplona@example.com',
-            'password' => 'pampleno',
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -108,7 +103,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'de Betânia',
             'socialName' => null,
             'email' => 'mariadebetania@example.com',
-            'password' => 'betania',
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -119,7 +113,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'Carvalho',
             'socialName' => 'Abner C.',
             'email' => 'abnercarvalho@example.com',
-            'password' => 'carvalho',
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -130,7 +123,6 @@ final class UserFixtures extends Fixture
             'lastname' => 'de Tarso',
             'socialName' => null,
             'email' => 'paulodetarso@example.com',
-            'password' => 'cartas',
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -145,12 +137,12 @@ final class UserFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
+        $password = $this->passwordHasherFactory->getPasswordHasher(User::class)->hash(self::DEFAULT_PASSWORD);
+
         foreach (self::USERS as $userData) {
             /* @var User $user */
             $user = $this->serializer->denormalize($userData, User::class);
-            $user->setPassword(
-                $this->passwordHasherFactory->getPasswordHasher(User::class)->hash($userData['password'])
-            );
+            $user->setPassword($password);
             $this->setReference(sprintf('%s-%s', self::USER_ID_PREFIX, $userData['id']), $user);
 
             $manager->persist($user);
