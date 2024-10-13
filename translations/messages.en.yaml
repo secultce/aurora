@@ -56,8 +56,9 @@ linked_with: Linked With
 list: List
 locate_yourself: Locate Yourself
 location: Location
-logo: Logo
 login: Login
+logo: Logo
+logout: Logout
 
 map: Map
 most_recent: Most Recent

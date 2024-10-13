@@ -85,6 +85,11 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         $this->socialName = $socialName;
     }
 
+    public function getName(): string
+    {
+        return "{$this->firstname} {$this->lastname}";
+    }
+
     public function getEmail(): ?string
     {
         return $this->email;

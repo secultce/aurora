@@ -10,11 +10,6 @@ body {
     height: 100%;
 }
 
-.navbar-brand img {
-    height: unset;
-    width: 250px;
-}
-
 .wrapper {
     display: flex;
     flex-direction: column;
@@ -120,22 +115,6 @@ body {
     display: flex;
 }
 
-.navbar {
-    position: relative;
-}
-
-.navbar-icons {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: .437rem;
-    border-radius: 50%;
-    color: var(--bs-white);
-    background-color: var(--color-text-grey-1);
-    font-size: 1.2rem;
-    transition: 150ms;
-}
-
 .entity-dashboard {
     display: flex;
     justify-content: center;
@@ -217,34 +196,6 @@ body {
 
 .agent-options {
     text-wrap: nowrap;
-}
-
-.my-account {
-    display: flex;
-    flex-direction: column;
-}
-
-.my-account span:first-child {
-    color: var(--deep-teal);
-    font-weight: 700;
-    font-size: 14px;
-}
-
-.my-account :nth-child(2) {
-    color: var(--deep-teal);
-    font-weight: 400;
-    font-size: 12px;
-    text-decoration: none;
-}
-
-.my-account :nth-child(2):hover {
-    text-decoration: underline;
-}
-
-.profile-picture {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
 }
 
 @media (max-width: 768px) {
@@ -844,7 +795,6 @@ textarea {
     cursor: pointer;
     font-weight: bold;
 }
-
 
 .side-navigation {
     width: 20.5rem;

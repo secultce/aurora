@@ -18,7 +18,7 @@
             <hr>
             <form action="{{ path('admin_auth_login') }}" method="post">
                 <label for="email">{{ 'email'|trans }}</label>
-                <input data-cy="email" class="form-control mb-3" type="text" name="email" id="email">
+                <input value="{{ last_username }}" data-cy="email" class="form-control mb-3" type="text" name="email" id="email">
 
                 <label for="password">{{ 'password'|trans }}</label>
                 <input data-cy="password" class="form-control mb-3" type="password" name="password" id="password">

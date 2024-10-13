@@ -30,6 +30,12 @@ security:
                 username_parameter: email
                 password_parameter: password
                 default_target_path: admin_home_homepage
+            logout:
+                path: /logout
+                clear_site_data:
+                    - cache
+                    - storage
+                    - executionContexts
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#the-firewall

@@ -12,5 +12,6 @@ import 'aurora-user-interface/dist/css/side-filter.css';
 import 'aurora-user-interface/dist/css/timeline.css';
 
 import './styles/app.css';
+import './styles/components/navbar.css';
 
 import 'aurora-user-interface/dist/js/bootstrap.min.js';
