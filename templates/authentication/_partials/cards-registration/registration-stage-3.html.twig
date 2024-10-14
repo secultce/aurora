@@ -1,0 +1,45 @@
+<div class="form-step">
+    <h4 class="fw-semibold">{{ 'view.authentication.register.profile.creation'|trans }}</h4>
+    <p>{{ 'view.authentication.register.profile.creation_info'|trans }}</p>
+
+    <div class="mb-3">
+        <label for="inputProfileName" class="form-label fw-semibold">{{ 'name'|trans }}</label>
+        <input type="text" class="form-control" id="inputProfileName" placeholder="{{ 'name'|trans }}">
+        <p>{{ 'view.authentication.register.profile.name_info'| trans}}</p>
+    </div>
+
+    <div class="mb-3">
+        <label for="inputProfileDescription" class="fw-semibold">
+            {{ 'description'|trans }}
+            <span class="text-danger">*</span>
+        </label>
+        <textarea id="inputProfileDescription" name="description" placeholder="{{ 'view.authentication.register.profile.description'|trans }}" maxlength="400" rows="5" class="form-control"></textarea>
+        <p id="counter">0/400</p>
+    </div>
+
+    <div class="mb-5">
+        <label for="areas-container" class="fw-semibold">
+            {{ 'view.authentication.register.profile.select_areas'|trans }}
+            <span class="text-danger">*</span>
+        </label>
+        <div id="areas-container" class="mt-3 d-flex flex-wrap gap-2"></div>
+
+        <div class="dropdown mt-3">
+            <button id="add-area-btn" class="btn area-tag bg-primary text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                {{ 'view.authentication.register.profile.add_other_area'|trans }}
+                <i class="material-icons fs-4 ms-2">add</i>
+            </button>
+            <ul class="dropdown-menu" aria-labelledby="add-area-btn">
+                <li><a class="dropdown-item" href="" data-value="area0">Área</a></li>
+                <li><a class="dropdown-item" href="" data-value="area1">Área de interesse</a></li>
+                <li><a class="dropdown-item" href="" data-value="area2">Área de interesse media</a></li>
+                <li><a class="dropdown-item" href="" data-value="area3">Área de interesse grande para testar</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="btn-form-group">
+        <a href="#" class="btn btn-prev">{{ 'back'|trans }}</a>
+        <a href="{{ path('web_home_homepage') }}" class="btn btn-form-submit">{{ 'view.authentication.register.create_account'|trans }}</a>
+    </div>
+</div>

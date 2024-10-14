@@ -10,7 +10,7 @@
                 <span class="navbar-toggler-icon"></span>
             </button>
 
-            <a class="navbar-brand" href="{{ path('admin_home_homepage') }}">
+            <a class="navbar-brand" href="{{ path('web_home_homepage') }}">
                 <img src="{{ asset('img/aurora-horizontal.png') }}" width="80px" alt="">
             </a>
         </div>
@@ -24,37 +24,37 @@
             <div class="offcanvas-body">
                 <ul class="navbar-nav nav-entities fs-5 flex-grow-1 pe-3">
                     <li class="nav-item">
-                        <a class="nav-link home" aria-current="page" href="{{ path('admin_home_homepage') }}">
+                        <a class="nav-link home" aria-current="page" href="{{ path('web_home_homepage') }}">
                             <i class="material-icons navbar-icons">home</i>
                             <p>{{ 'home'|trans }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link opportunity" aria-current="page" href="{{ path('admin_opportunity_list') }}">
+                        <a class="nav-link opportunity" aria-current="page" href="{{ path('web_opportunity_list') }}">
                             <i class="material-icons navbar-icons">lightbulb</i>
                             <p>{{ 'opportunities'|trans }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link agent" aria-current="page" href="{{ path('admin_agent_list') }}">
+                        <a class="nav-link agent" aria-current="page" href="{{ path('web_agent_list') }}">
                             <i class="material-icons navbar-icons">group</i>
                             <p>{{ 'agents'|trans }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link event" aria-current="page" href="{{ path('admin_event_list') }}">
+                        <a class="nav-link event" aria-current="page" href="{{ path('web_event_list') }}">
                             <i class="material-icons navbar-icons">event</i>
                             <p>{{ 'events'|trans }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link space" aria-current="page" href="{{ path('admin_space_list') }}">
+                        <a class="nav-link space" aria-current="page" href="{{ path('web_space_list') }}">
                             <i class="material-icons navbar-icons">domain</i>
                             <p>{{ 'spaces'|trans }}</p>
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link project" aria-current="page" href="{{ path('admin_initiative_list') }}">
+                        <a class="nav-link project" aria-current="page" href="{{ path('web_initiative_list') }}">
                             <i class="material-icons navbar-icons">article</i>
                             <p>{{ 'initiatives'|trans }}</p>
                         </a>
@@ -82,7 +82,7 @@
                     </div>
                 {% else %}
                     <div class="notifications-login">
-                        <a href="{{ path('admin_auth_login') }}" class="nav-btn-login">{{ 'login'|trans }}</a>
+                        <a href="{{ path('web_auth_login') }}" class="nav-btn-login">{{ 'login'|trans }}</a>
                     </div>
                 {% endif %}
             </div>

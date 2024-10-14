@@ -1,4 +1,0 @@
-list:
-  path: /agentes
-  controller: App\Controller\Admin\AgentAdminController::list
-  methods: ['GET']

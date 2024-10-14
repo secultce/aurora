@@ -1,4 +1,0 @@
-homepage:
-  path: /
-  controller: App\Controller\Admin\HomepageAdminController::homepage
-  methods: ['GET']

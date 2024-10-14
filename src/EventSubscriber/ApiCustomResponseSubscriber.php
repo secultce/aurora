@@ -86,7 +86,7 @@ class ApiCustomResponseSubscriber implements EventSubscriberInterface
 
         if (false === $this->isApiRequest($event->getRequest())) {
             $response = new Response(
-                $this->twig->render('admin/not-found/not-found.html.twig'),
+                $this->twig->render('not-found/not-found.html.twig'),
                 Response::HTTP_NOT_FOUND
             );
             $event->setResponse($response);

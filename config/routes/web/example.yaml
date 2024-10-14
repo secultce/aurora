@@ -1,0 +1,4 @@
+get:
+  path: /example
+  controller: App\Controller\Web\ExampleWebController::action
+  methods: ['GET']

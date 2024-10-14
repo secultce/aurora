@@ -1,0 +1,4 @@
+list:
+  path: /agentes
+  controller: App\Controller\Web\AgentWebController::list
+  methods: ['GET']

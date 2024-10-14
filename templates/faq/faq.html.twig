@@ -1,0 +1,15 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %}
+    FAQ
+{% endblock %}
+
+{% block content %}
+    {% include 'faq/_partials/faq-header.html.twig' %}
+
+    {% include 'faq/_partials/card-question.html.twig' %}
+
+    {% include 'faq/_partials/faq-item.html.twig' %}
+
+    {% include 'faq/_partials/helper-faq.html.twig' %}
+{% endblock %}

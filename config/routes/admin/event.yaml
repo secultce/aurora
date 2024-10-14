@@ -1,4 +1,0 @@
-list:
-  path: /eventos
-  controller: App\Controller\Admin\EventAdminController::list
-  methods: ['GET']

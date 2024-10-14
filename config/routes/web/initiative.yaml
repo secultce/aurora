@@ -1,0 +1,4 @@
+list:
+  path: /iniciativas
+  controller: App\Controller\Web\InitiativeWebController::list
+  methods: ['GET']

@@ -25,11 +25,11 @@ security:
             lazy: true
             provider: app_user_provider
             form_login:
-                login_path: admin_auth_login
-                check_path: admin_auth_login
+                login_path: web_auth_login
+                check_path: web_auth_login
                 username_parameter: email
                 password_parameter: password
-                default_target_path: admin_home_homepage
+                default_target_path: web_home_homepage
             logout:
                 path: /logout
                 clear_site_data:

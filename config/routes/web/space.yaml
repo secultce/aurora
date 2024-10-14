@@ -1,0 +1,4 @@
+list:
+  path: /espacos
+  controller: App\Controller\Web\SpaceWebController::list
+  methods: ['GET']

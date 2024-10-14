@@ -1,0 +1,23 @@
+{% set tabs = [
+    {
+        'id': 'published',
+        'content': include('_admin/seal/_partials/tabs/tab-published.html.twig')
+    },
+    {
+        'id': 'draft',
+        'content': include('_admin/seal/_partials/tabs/tab-draft.html.twig')
+    },
+    {
+        'id': 'allowed',
+        'content': include('_admin/seal/_partials/tabs/tab-allowed.html.twig')
+    },
+    {
+        'id': 'archived',
+        'content': include('_admin/seal/_partials/tabs/tab-archived.html.twig')
+    },
+    {
+        'id': 'deleted',
+        'content': include('_admin/seal/_partials/tabs/tab-deleted.html.twig')
+    },
+] %}
+{% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}

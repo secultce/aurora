@@ -1,0 +1,31 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'events'|trans }}
+{% endblock %}
+
+{% block content %}
+    <section class="white-square">
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('web_home_homepage')},
+                {text: 'events'|trans, path: path('web_event_list')},
+            ]
+        } %}
+
+        {% include '_components/title.html.twig' with {
+            title: 'events'|trans,
+            action: {path: '#', text: 'view.event.create'|trans}
+        } %}
+
+        {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
+
+        {% include 'event/_partials/tabs/tabs.html.twig' %}
+    </section>
+
+    <section class="entity-wrapper">
+        <div class="entity-container">
+            {% include 'event/_partials/tabs/content-tabs.html.twig' %}
+        </div>
+    </section>
+{% endblock %}
