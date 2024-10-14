@@ -224,6 +224,8 @@ view:
     management_of: Management of
     info: In this section, you view and manage your user profile and other created labels.
 
+  seal:
+    create: Crear un Sello
 
   opportunity:
     create: Crear Oportunidad

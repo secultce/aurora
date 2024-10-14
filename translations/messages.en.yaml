@@ -224,6 +224,8 @@ view:
     management_of: Gestión de
     info: En esta sección, usted visualiza y gestiona su perfil de usuario y otros sellos creados.
 
+  seal:
+    create: Create a Seal
 
   opportunity:
     create: Create Opportunity
