@@ -1,4 +1,0 @@
-list:
-  path: /espacos
-  controller: App\Controller\Admin\SpaceAdminController::list
-  methods: ['GET']

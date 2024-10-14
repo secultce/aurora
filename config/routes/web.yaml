@@ -1,0 +1,34 @@
+web_auth:
+  resource: 'web/authentication.yaml'
+  prefix: /
+  name_prefix: web_auth_
+web_home:
+  resource: 'web/homepage.yaml'
+  prefix: /
+  name_prefix: web_home_
+web_space:
+  resource: 'web/space.yaml'
+  prefix: /
+  name_prefix: web_space_
+web_agent:
+  resource: 'web/agent.yaml'
+  prefix: /
+  name_prefix: web_agent_
+web_initiative:
+  resource: 'web/initiative.yaml'
+  prefix: /
+  name_prefix: web_initiative_
+web_event:
+  resource: 'web/event.yaml'
+  prefix: /
+  name_prefix: web_event_
+
+web_opportunity:
+  resource: 'web/opportunity.yaml'
+  prefix: /
+  name_prefix: web_opportunity_
+
+web_faq:
+  resource: 'web/faq.yaml'
+  prefix: /
+  name_prefix: web_faq_

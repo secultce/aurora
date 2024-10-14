@@ -1,4 +1,0 @@
-list:
-  path: /oportunidades
-  controller: App\Controller\Admin\OpportunityAdminController::list
-  methods: ['GET']

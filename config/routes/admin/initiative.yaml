@@ -1,4 +1,0 @@
-list:
-  path: /iniciativas
-  controller: App\Controller\Admin\InitiativeAdminController::list
-  methods: ['GET']

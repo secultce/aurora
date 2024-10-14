@@ -1,0 +1,33 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %} {{ 'agents'|trans}} {% endblock %}
+
+{% block content %}
+    <section class="white-square">
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('web_home_homepage')},
+                {text: 'agents'|trans, path: path('web_agent_list')},
+            ]
+        } %}
+
+        {% include "_components/title.html.twig" with {title: 'agents'|trans} %}
+
+        {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
+
+        {% include "agent/_partials/tabs/tabs.html.twig" %}
+    </section>
+
+    <section class="entity-wrapper">
+        {% include "agent/_partials/side-filter.html.twig" %}
+
+        <button id="open-filter" class="filter-btn">
+            <i class="material-icons">filter_alt</i>
+        </button>
+
+        <div class="entity-container">
+            {% include 'agent/_partials/tabs/content-tabs.html.twig' %}
+        </div>
+    </section>
+{% endblock %}
+

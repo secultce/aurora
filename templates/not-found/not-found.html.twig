@@ -1,0 +1,9 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %}
+    {{ 'view.not-found.error-404' | trans }}
+{% endblock %}
+
+{% block content %}
+    {% include 'not-found/_partials/not-found-page.html.twig' %}
+{% endblock %}

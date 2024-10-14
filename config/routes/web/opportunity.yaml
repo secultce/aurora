@@ -1,0 +1,4 @@
+list:
+  path: /oportunidades
+  controller: App\Controller\Web\OpportunityWebController::list
+  methods: ['GET']

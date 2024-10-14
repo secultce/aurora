@@ -1,4 +1,0 @@
-get:
-  path: /example
-  controller: App\Controller\Admin\ExampleAdminController::action
-  methods: ['GET']

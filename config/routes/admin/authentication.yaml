@@ -1,8 +1,0 @@
-login:
-  path: /login
-  controller: App\Controller\Admin\AuthenticationAdminController::login
-  methods: ['GET', 'POST']
-register:
-  path: /cadastro
-  controller: App\Controller\Admin\AuthenticationAdminController::register
-  methods: ['GET', 'POST']

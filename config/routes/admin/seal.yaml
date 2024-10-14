@@ -1,4 +1,4 @@
 seal:
   path: /selos
-  controller: App\Controller\Admin\SealAdminController::list
+  controller: App\Controller\Web\Admin\SealAdminController::list
   methods: ['GET']
