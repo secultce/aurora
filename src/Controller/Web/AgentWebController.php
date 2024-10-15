@@ -7,6 +7,7 @@ namespace App\Controller\Web;
 use App\Service\Interface\AgentServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Uid\Uuid;
 
 class AgentWebController extends AbstractWebController
 {
@@ -34,6 +35,15 @@ class AgentWebController extends AbstractWebController
             'dashboard' => $dashboard,
             'agents' => $agents,
             'totalAgents' => $totalAgents,
+        ]);
+    }
+
+    public function getOne(Uuid $id): Response
+    {
+        $agent = $this->service->get($id);
+
+        return $this->render('agent/one.html.twig', [
+            'agent' => $agent,
         ]);
     }
 }
