@@ -1,7 +1,7 @@
 describe('Página de listar Selos', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
-        cy.visit('/selos');
+        cy.visit('/painel/selos');
     });
 
     it('Garante que a página de selos existe', () => {
