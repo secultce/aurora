@@ -1,9 +1,12 @@
+account_privacy: Account and Privacy
 access: Access
 accessibility: Accessibility
+accountability: Accountability
 address: Address
+admin_options: Admin Options
 agents: Agents
 all: All
-allowed: With permission
+allowed: Allowed
 archive: Archive
 archived: Archived
 areas_of_expertise: Areas of Expertise
@@ -19,6 +22,7 @@ confirm: Confirm
 confirm_password: Confirm Password
 continue: Continue
 contribute: Contribute
+control_panel: Control Panel
 create_account: Create Account
 
 draft: In draft
@@ -34,6 +38,7 @@ events: Events
 everybody: Everybody
 explore_repository: Explore Repository
 
+functions: Manage functions
 full_name: Full Name
 
 gallery: Gallery
@@ -61,8 +66,20 @@ logo: Logo
 logout: Logout
 
 map: Map
+management: Management of Entities
+menu: Control Panel Menu
 most_recent: Most Recent
 my_account: My Account
+my_agents: My Agents
+my_apps: My Apps
+my_events: My Events
+my_initiatives: My Initiatives
+my_opportunities: My Opportunities
+my_organizations: My Organizations
+my_profile: My Profile
+my_spaces: My Spaces
+my_subscriptions: My Subscriptions
+my_reviews: My Reviews
 
 name: Name
 notifications: Notifications
@@ -71,6 +88,7 @@ none_area_specified: None area specified
 
 oldest: Oldest
 order: Sort by
+other_options: Other Options
 opened_registrations: Open Registrations
 opportunities: Opportunities
 organizations: Organizations
@@ -107,6 +125,7 @@ sort_by: Sort by
 spaces: Spaces
 start_now: Start Now
 suggestions: Suggestions
+subsites: Subsites
 
 welcome: Welcome
 where: Where
@@ -127,7 +146,6 @@ footer:
   help: Need help?
   image_authorization: Image Authorization
   notices_opportunities: Notices and Opportunities
-  opportunities: My Opportunities
   platform_created: platform created by the community
   privacy_policy: Terms of Use and Privacy Policy
   send_email: Or send an email to
