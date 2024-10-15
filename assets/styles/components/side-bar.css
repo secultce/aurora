@@ -1,0 +1,41 @@
+.side-navigation {
+    width: 20.5rem;
+}
+
+.font-subtitle {
+    font-family: var(--font-open-sans);
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 16.34px;
+    letter-spacing: 0.07em;
+    text-align: left;
+    color: var(--color-subtitle-gray);
+}
+
+.sidebar-header {
+    padding: 1rem;
+    border-right: 1px;
+    width: 328px;
+}
+
+.badge-notification {
+    position: absolute;
+    top: 8px;
+    transform: translate(-86%, -50%);
+    padding: 0.25em 0.50em;
+    font-size: 0.70rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--bs-white);
+    text-align: center;
+    border-radius: 10rem;
+    background-color: var(--bs-danger);
+}
+
+.font-title {
+    font-family: var(--font-open-sans);
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 14.59px;
+    text-align: center;
+}
