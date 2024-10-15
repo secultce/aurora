@@ -1,4 +1,14 @@
-admin_seal :
+admin_seal:
   resource: 'admin/seal.yaml'
-  prefix: /
+  prefix: /painel/selos
   name_prefix: admin_seal_
+
+admin_opportunity:
+  resource: 'admin/opportunity.yaml'
+  prefix: /painel/oportunidades
+  name_prefix: admin_opportunity_
+
+admin_dashboard:
+  path: /painel
+  controller: App\Controller\Web\Admin\DashboardAdminController::index
+  methods: ['GET']

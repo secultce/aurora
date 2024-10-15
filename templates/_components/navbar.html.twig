@@ -73,6 +73,7 @@
                             <div class="my-account">
                                 <span>{{ app.user.name }}</span>
                                 <div class="text-end">
+                                    <a href="{{ path('admin_dashboard') }}" class="text-dark">{{ 'control_panel'|trans }}</a>
                                     <a href="#">{{ 'my_account'|trans }}</a>
                                     <a href="{{ path('_logout_web') }}" class="text-danger">{{ 'logout'|trans }}</a>
                                 </div>

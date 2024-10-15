@@ -1,19 +1,10 @@
 <div id="sidebar" class="bg-light p-3 border-end side-navigation" style="width: 328px;">
-    <!-- Notificações -->
-    <div class="d-flex align-items-center mb-3">
-        <div class="position-relative ms-3">
-            <i class="material-icons icon-size-1 icon-bg-primary">notifications_none</i>
-            <span class="badge-notification">1</span>
-        </div>
-        <span class="font-title ms-4">{{ 'notifications' | trans}}</span>
-    </div>
-
     <!-- Menu do Painel de Controle -->
     <p class="font-subtitle">{{ 'menu' | trans }}</p>
     <ul class="nav flex-column mb-3">
         <li class="nav-item">
             <div class="d-flex align-items-center mb-3">
-                <a href="#" class="centered-icon-text nav-link text-dark">
+                <a href="{{ path('admin_dashboard') }}" class="centered-icon-text nav-link text-dark">
                     <i class="material-icons icon-size-1">dashboard</i>
                     <span class="font-title ms-4">{{ 'control_panel' | trans }}</span>
                 </a>
@@ -47,7 +38,7 @@
     <ul class="nav flex-column mb-3">
         <li class="nav-item">
             <div class="d-flex align-items-center mb-3">
-                <a href="#" class="centered-icon-text nav-link text-dark">
+                <a href="{{ path('admin_opportunity_list') }}" class="centered-icon-text nav-link text-dark">
                     <i class="material-icons icon-wb-incandescent icon-size-1">wb_incandescent</i>
                     <span class="font-title ms-4">{{ 'my_opportunities' | trans }}</span>
                 </a>
@@ -126,7 +117,7 @@
     <ul class="nav flex-column mb-3">
         <li class="nav-item">
             <div class="d-flex align-items-center mb-3">
-                <a href="#" class="centered-icon-text nav-link text-dark">
+                <a href="{{ path('admin_seal_list') }}" class="centered-icon-text nav-link text-dark">
                     <i class="material-icons icon-size-1">bookmark</i>
                     <span class="font-title ms-4">{{ 'seals' | trans }}</span>
                 </a>
@@ -171,7 +162,7 @@
         </li>
         <li class="nav-item">
             <div class="d-flex align-items-center mb-3">
-                <a href="#" class="centered-icon-text nav-link text-dark">
+                <a href="{{ path('_logout_web') }}" class="centered-icon-text nav-link text-dark">
                     <i class="material-icons icon-size-1 icon-bg-primary">logout</i>
                     <span class="font-title ms-4">{{ 'logout' | trans }}</span>
                 </a>
