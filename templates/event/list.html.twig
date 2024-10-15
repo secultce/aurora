@@ -4,6 +4,11 @@
     {{ 'events'|trans }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/events.css') }}">
+{% endblock %}
+
 {% block content %}
     <section class="white-square">
         {% include '_components/breadcrumb.html.twig' with {

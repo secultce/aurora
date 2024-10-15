@@ -4,6 +4,11 @@
     {{ 'view.not-found.error-404' | trans }}
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/not-found.css') }}">
+{% endblock %}
+
 {% block content %}
     {% include 'not-found/_partials/not-found-page.html.twig' %}
 {% endblock %}
