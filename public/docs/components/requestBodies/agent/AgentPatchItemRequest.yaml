@@ -18,6 +18,13 @@ properties:
   culture:
     type: boolean
     description: "Se o agente é cultural"
+  extraFields:
+    type: object
+    description: "Os campos extras do agente"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   organization:
     type: array
     items:

@@ -26,6 +26,12 @@ class AgentTestFixtures implements TestFixtures
         return array_merge(self::partial(), [
             'image' => ImageTestFixtures::getImageValid(),
             'organizations' => [OrganizationFixtures::ORGANIZATION_ID_1],
+            'extraFields' => [
+                'site' => 'https://www.google.com/',
+                'instagram' => '@test.agent',
+                'facebook' => '@test.agent',
+                'x' => '@test.agent',
+            ],
         ]);
     }
 }

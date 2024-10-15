@@ -23,14 +23,14 @@ class AgentApiController extends AbstractApiController
     {
         $agent = $this->service->create($request->toArray());
 
-        return $this->json($agent, status: Response::HTTP_CREATED, context: ['groups' => 'agent.get']);
+        return $this->json($agent, status: Response::HTTP_CREATED, context: ['groups' => ['agent.get', 'agent.get.item']]);
     }
 
     public function get(Uuid $id): JsonResponse
     {
         $agent = $this->service->get($id);
 
-        return $this->json($agent, context: ['groups' => 'agent.get']);
+        return $this->json($agent, context: ['groups' => ['agent.get', 'agent.get.item']]);
     }
 
     public function remove(?Uuid $id): JsonResponse
@@ -54,6 +54,6 @@ class AgentApiController extends AbstractApiController
     {
         $agent = $this->service->update($id, $request->toArray());
 
-        return $this->json($agent, context: ['groups' => 'agent.get']);
+        return $this->json($agent, context: ['groups' => ['agent.get', 'agent.get.item']]);
     }
 }

@@ -52,6 +52,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => true,
+            'extraFields' => null,
             'organizations' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -80,6 +81,12 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'extraFields' => [
+                'site' => 'https://www.google.com/',
+                'instagram' => '@test.agent',
+                'facebook' => '@test.agent',
+                'x' => '@test.agent',
+            ],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -203,6 +210,24 @@ class AgentApiControllerTest extends AbstractWebTestCase
                     ['field' => 'organizations[0]', 'message' => 'This id does not exist.'],
                 ],
             ],
+            'extra fields should be a valid json object' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'extra fields should be a valid json object with only one level of depth. ' => [
+                'requestBody' => array_merge($requestBody, [
+                    'extraFields' => [
+                        'invalid' => [
+                            'invalid',
+                        ],
+                    ],
+                ]),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be a valid json object with only one level of depth.'],
+                ],
+            ],
         ];
     }
 
@@ -259,6 +284,10 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
             'longBio' => 'Desenvolvedora frontend especializada em criar interfaces intuitivas e acessíveis. Entusiasta de UX e está sempre em busca de melhorias na experiência do usuário.',
             'culture' => false,
+            'extraFields' => [
+                'email' => 'anna@example.com',
+                'instagram' => '@anna',
+            ],
             'organizations' => [],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
@@ -333,6 +362,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'extraFields' => $requestBody['extraFields'],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -363,6 +393,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'extraFields' => $requestBody['extraFields'],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -389,6 +420,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'extraFields' => $requestBody['extraFields'],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -499,6 +531,24 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['organizations' => [Uuid::v4()->toRfc4122()]]),
                 'expectedErrors' => [
                     ['field' => 'organizations[0]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'extra fields should be a valid json object' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'extra fields should be a valid json object with only one level of depth. ' => [
+                'requestBody' => array_merge($requestBody, [
+                    'extraFields' => [
+                        'invalid' => [
+                            'invalid',
+                        ],
+                    ],
+                ]),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be a valid json object with only one level of depth.'],
                 ],
             ],
         ];

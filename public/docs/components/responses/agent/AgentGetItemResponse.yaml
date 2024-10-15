@@ -19,6 +19,13 @@ properties:
   culture:
     type: boolean
     description: "Identificador se o agente é cultural ou não"
+  extraFields:
+    type: object
+    description: "Os campos extras do agente"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   organization:
     type: object
     properties:

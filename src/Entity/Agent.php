@@ -9,6 +9,7 @@ use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -41,6 +42,10 @@ class Agent extends AbstractEntity
     #[ORM\Column(length: 100)]
     #[Groups(['agent.get'])]
     private bool $culture;
+
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[Groups(['agent.get.item'])]
+    private ?array $extraFields = null;
 
     #[ORM\ManyToMany(targetEntity: Organization::class, mappedBy: 'agents')]
     #[Groups(['agent.get'])]
@@ -122,6 +127,16 @@ class Agent extends AbstractEntity
     public function setCulture(bool $culture): void
     {
         $this->culture = $culture;
+    }
+
+    public function getExtraFields(): ?array
+    {
+        return $this->extraFields;
+    }
+
+    public function setExtraFields(?array $extraFields): void
+    {
+        $this->extraFields = $extraFields;
     }
 
     public function getOrganizations(): Collection
