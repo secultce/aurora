@@ -1,0 +1,22 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador do usuário"
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  image:
+    type: string
+    maxLength: 100
+    description: "URL da imagem do perfil do usuário"
+  createdAt:
+    $ref: '../common-types/date.yaml'
+    description: "Data e hora da criação do usuário"
+  updatedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da última atualização do usuário"
+  deletedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da exclusão do usuário"

@@ -11,6 +11,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
@@ -19,6 +20,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
+    #[Groups(['user.get'])]
     private Uuid $id;
 
     #[ORM\Column(length: 50)]
@@ -36,13 +38,20 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(length: 255)]
     private string $password;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['user.get'])]
+    private ?string $image = null;
+
     #[ORM\Column]
+    #[Groups(['user.get'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['user.get'])]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['user.get'])]
     private ?DateTime $deletedAt = null;
 
     public function getId(): Uuid
@@ -108,6 +117,16 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     public function setPassword(string $password): void
     {
         $this->password = $password;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable

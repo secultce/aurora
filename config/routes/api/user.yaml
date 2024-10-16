@@ -1,0 +1,4 @@
+update:
+  path: /{id}
+  controller: App\Controller\Api\UserApiController::update
+  methods: ["PATCH"]

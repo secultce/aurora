@@ -1,0 +1,25 @@
+patch:
+  parameters:
+    - $ref: "../../parameters/path/id.yaml"
+  tags:
+    - Usuários
+  summary: Atualiza um único usuário
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../requestBodies/user/UserPatchItemRequest.yaml"
+  responses:
+    "200":
+      description: Usuário atualizado
+      content:
+        application/json:
+          schema:
+            $ref: "../../responses/user/UserPatchItemResponse.yaml"
+    "404":
+      description: Usuário não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: "../../responses/user/UserNotFound.yaml"

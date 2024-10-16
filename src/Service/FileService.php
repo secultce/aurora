@@ -86,8 +86,6 @@ readonly class FileService implements FileServiceInterface
 
     public function urlOfImage($path): string
     {
-        $this->parameterBag->get('app.dir.agent.profile');
-
         return $this->parameterBag->get('app.url.storage').'/'.$path;
     }
 }

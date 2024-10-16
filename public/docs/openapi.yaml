@@ -60,6 +60,8 @@ paths:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
     $ref: './components/paths/space/Item.yaml'
+  /users/{id}:
+    $ref: './components/paths/user/Item.yaml'
 components:
   schemas:
     Agent:
@@ -74,3 +76,5 @@ components:
       $ref: './components/schemas/organization.yaml'
     Space:
       $ref: './components/schemas/space.yaml'
+    User:
+      $ref: './components/schemas/user.yaml'
