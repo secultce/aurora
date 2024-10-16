@@ -43,3 +43,9 @@ api_organization:
   prefix: /api/organizations
   name_prefix: api_organization_
   trailing_slash_on_root: false
+
+api_users:
+  resource: 'api/user.yaml'
+  prefix: /api/users
+  name_prefix: api_user_
+  trailing_slash_on_root: false

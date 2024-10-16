@@ -1,0 +1,5 @@
+type: object
+properties:
+  image:
+    type: string
+    description: "Imagem do perfil do usuário codificada em Base64"
