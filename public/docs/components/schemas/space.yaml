@@ -17,6 +17,13 @@ properties:
         type: string
         format: uuid
         description: "Identificador do espaço pai"
+  extraFields:
+    type: object
+    description: "Os campos extras do espaço"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     $ref: '../common-types/date.yaml'
     description: "Data e hora da criação do espaço"

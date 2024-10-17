@@ -16,17 +16,10 @@ properties:
     description: "Identificador do espaço pai"
     type: string
     format: uuid
-  createdAt:
-    type: string
-    format: date-time
-    description: "Data e hora do criação do espaço"
-  updatedAt:
-    type: string
-    format: date-time
-    nullable: true
-    description: "Data e hora da última atualização do espaço"
-  deletedAt:
-    type: string
-    format: date-time
-    nullable: true
-    description: "Data e hora da exclusão do espaço"
+  extraFields:
+    type: object
+    description: "Os campos extras do espaço"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'

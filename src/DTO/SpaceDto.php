@@ -7,6 +7,7 @@ namespace App\DTO;
 use App\Entity\Agent;
 use App\Entity\Space;
 use App\Validator\Constraints\Exists;
+use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -43,4 +44,7 @@ class SpaceDto
         new Exists(Space::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $parent;
+
+    #[Sequentially([new Json(groups: [self::CREATE, self::UPDATE])])]
+    public mixed $extraFields;
 }

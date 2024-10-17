@@ -38,6 +38,14 @@ properties:
             description: "Identificador do criador do agente"
       parent:
         type: object
+        nullable: true
+      extraFields:
+        type: object
+        description: "Os campos extras do espaço"
+        properties:
+          key:
+            type: string
+            description: 'Valor da chave'
       createdAt:
         type: string
         format: date-time
@@ -52,6 +60,13 @@ properties:
         format: date-time
         nullable: true
         description: "Data e hora da exclusão do espaço"
+  extraFields:
+    type: object
+    description: "Os campos extras do espaço"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     type: string
     format: date-time

@@ -6,7 +6,7 @@ namespace App\DTO;
 
 use App\Entity\Organization;
 use App\Validator\Constraints\Exists;
-use App\Validator\Constraints\JsonWithOneLevel;
+use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Validator\Constraints\All;
@@ -64,6 +64,6 @@ class AgentDto
     ], groups: [self::CREATE, self::UPDATE])]
     public mixed $organizations;
 
-    #[Sequentially([new JsonWithOneLevel()], groups: [self::CREATE, self::UPDATE])]
+    #[Sequentially([new Json()], groups: [self::CREATE, self::UPDATE])]
     public mixed $extraFields;
 }

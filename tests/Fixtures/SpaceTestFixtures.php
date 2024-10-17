@@ -14,7 +14,7 @@ class SpaceTestFixtures implements TestFixtures
     {
         return [
             'id' => Uuid::v4()->toRfc4122(),
-            'name' => 'Test Organization',
+            'name' => 'Test Space',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => SpaceFixtures::SPACE_ID_1,
         ];
@@ -22,6 +22,15 @@ class SpaceTestFixtures implements TestFixtures
 
     public static function complete(): array
     {
-        return array_merge(self::partial());
+        return array_merge(self::partial(), [
+            'extraFields' => [
+                'type' => 'Cultural',
+                'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+                'location' => 'Recife, Pernambuco',
+                'capacity' => 100,
+                'areasOfActivity' => ['Teatro', 'Música', 'Artes Visuais'],
+                'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
+            ],
+        ]);
     }
 }
