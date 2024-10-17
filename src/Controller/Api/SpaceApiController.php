@@ -23,14 +23,14 @@ class SpaceApiController extends AbstractApiController
     {
         $space = $this->service->create($request->toArray());
 
-        return $this->json($space, status: Response::HTTP_CREATED, context: ['groups' => 'space.get']);
+        return $this->json($space, status: Response::HTTP_CREATED, context: ['groups' => ['space.get', 'space.get.item']]);
     }
 
     public function get(?Uuid $id): JsonResponse
     {
         $space = $this->service->get($id);
 
-        return $this->json($space, context: ['groups' => 'space.get']);
+        return $this->json($space, context: ['groups' => ['space.get', 'space.get.item']]);
     }
 
     public function remove(?Uuid $id): JsonResponse
@@ -54,6 +54,6 @@ class SpaceApiController extends AbstractApiController
     {
         $space = $this->service->update($id, $request->toArray());
 
-        return $this->json($space, Response::HTTP_OK, context: ['groups' => 'space.get']);
+        return $this->json($space, Response::HTTP_OK, context: ['groups' => ['space.get', 'space.get.item']]);
     }
 }

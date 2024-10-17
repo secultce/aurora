@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\SpaceRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -35,6 +36,10 @@ class Space extends AbstractEntity
     #[Groups('space.get')]
     #[MaxDepth(1)]
     private ?Space $parent = null;
+
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[Groups(['space.get.item'])]
+    private ?array $extraFields = null;
 
     #[ORM\Column]
     #[Groups('space.get')]
@@ -91,6 +96,16 @@ class Space extends AbstractEntity
     public function setParent(?Space $parent): void
     {
         $this->parent = $parent;
+    }
+
+    public function getExtraFields(): ?array
+    {
+        return $this->extraFields;
+    }
+
+    public function setExtraFields(?array $extraFields): void
+    {
+        $this->extraFields = $extraFields;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
