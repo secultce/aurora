@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\InitiativeRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -40,6 +41,10 @@ class Initiative extends AbstractEntity
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     #[Groups('initiative.get')]
     private Agent $createdBy;
+
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[Groups(['initiative.get.item'])]
+    private ?array $extraFields = null;
 
     #[ORM\Column]
     #[Groups('initiative.get')]
@@ -106,6 +111,16 @@ class Initiative extends AbstractEntity
     public function setCreatedBy(Agent $createdBy): void
     {
         $this->createdBy = $createdBy;
+    }
+
+    public function getExtraFields(): ?array
+    {
+        return $this->extraFields;
+    }
+
+    public function setExtraFields(?array $extraFields): void
+    {
+        $this->extraFields = $extraFields;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable

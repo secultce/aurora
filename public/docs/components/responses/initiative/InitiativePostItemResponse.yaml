@@ -8,14 +8,6 @@ properties:
     type: string
     maxLength: 100
     description: "Nome da iniciativa"
-  createdBy:
-    description: "Agente criador da iniciativa"
-    type: object
-    properties:
-      id:
-        type: string
-        format: uuid
-        description: "Identificador do agente criador"
   parent:
     description: "Iniciativa pai"
     type: object
@@ -44,6 +36,13 @@ properties:
             type: string
             format: uuid
             description: "Identificador do agente criador"
+      extraFields:
+        type: object
+        description: "Os campos extras da iniciativa"
+        properties:
+          key:
+            type: string
+            description: 'Valor da chave'
       createdAt:
         type: string
         format: date-time
@@ -66,6 +65,21 @@ properties:
         type: string
         format: uuid
         description: "Identificador do espaço"
+  createdBy:
+    description: "Agente criador da iniciativa"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente criador"
+  extraFields:
+    type: object
+    description: "Os campos extras da iniciativa"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     type: string
     format: date-time

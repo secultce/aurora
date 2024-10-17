@@ -30,13 +30,13 @@
         <div class="initiative-card-body">
             <p>
                 <strong>{{ 'type'| trans }}:</strong>
-                <span class="text-initiative fw-semibold">{{ 'TIPO DA INICIATIVA' | trans }}</span>
+                <span class="text-initiative fw-semibold">{{ initiative.extraFields.type }}</span>
             </p>
 
             <p class="initiative-date fw-bold">
                 <i class="material-icons">calendar_month</i>
                 {{ 'period'| trans }}:
-                00/00/0000 às 00:00
+                {{ initiative.extraFields.period.startDate | date('d/m/Y') }} a {{ initiative.extraFields.period.endDate | date('d/m/Y') }}
             </p>
 
             <p class="initiative-location">
@@ -57,8 +57,7 @@
             </div>
 
             <p class="initiative-description">
-                lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
-                lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor.
+                {{ initiative.extraFields.description }}
             </p>
 
             <div class="text-end mt-3">

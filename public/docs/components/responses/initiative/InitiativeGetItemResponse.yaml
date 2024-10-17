@@ -34,6 +34,13 @@ properties:
             type: string
             format: uuid
             description: "Identificador do agente"
+      extraFields:
+        type: object
+        description: "Os campos extras da iniciativa"
+        properties:
+          key:
+            type: string
+            description: 'Valor da chave'
       createdAt:
         type: string
         format: date-time
@@ -64,6 +71,13 @@ properties:
         type: string
         format: uuid
         description: "Identificador do agente"
+  extraFields:
+    type: object
+    description: "Os campos extras da iniciativa"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     type: string
     format: date-time

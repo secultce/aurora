@@ -16,3 +16,10 @@ properties:
     description: "Identificador do espaço ao qual a iniciativa pertence"
     type: string
     format: uuid
+  extraFields:
+    type: object
+    description: "Os campos extras da iniciativa"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'

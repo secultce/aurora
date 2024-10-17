@@ -31,6 +31,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
+            'extraFields' => [
+                'type' => 'Musical',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
@@ -41,6 +49,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'type' => 'Cultural',
+                'period' => [
+                    'startDate' => '2024-08-15',
+                    'endDate' => '2024-09-15',
+                ],
+                'description' => 'Raízes e Tradições é uma exposição que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -51,6 +67,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
+            'extraFields' => [
+                'type' => 'Banda',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Ritmos do Mundo é um festival de música que reúne artistas de todo o mundo para celebrar a diversidade cultural.',
+            ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -61,6 +85,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'type' => 'Dança',
+                'period' => [
+                    'startDate' => '2024-10-01',
+                    'endDate' => '2024-10-31',
+                ],
+                'description' => 'AxeZumbi é um festival de dança que reúne artistas de todo o Brasil para celebrar a cultura afro-brasileira.',
+            ],
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -71,6 +103,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
+            'extraFields' => [
+                'type' => 'Concurso de Música',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Repente e Viola é um concurso de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -81,6 +121,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
+            'extraFields' => [
+                'type' => 'Concerto',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Pé de Serra Cultural é um concerto que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -91,6 +139,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'type' => 'Oficina Musical',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Musicalizando é uma oficina musical que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -101,6 +157,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'type' => 'Festival Culinário',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Baião de Dois é um festival culinário que reúne chefs de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -111,6 +175,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::INITIATIVE_ID_8,
             'space' => SpaceFixtures::SPACE_ID_6,
+            'extraFields' => [
+                'type' => 'Artesanato',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Retalhos do Nordeste é uma exposição de artesanato que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -121,6 +193,14 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::INITIATIVE_ID_9,
             'space' => SpaceFixtures::SPACE_ID_3,
+            'extraFields' => [
+                'type' => 'Exposição',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Arte da Caatinga é uma exposição de arte que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
