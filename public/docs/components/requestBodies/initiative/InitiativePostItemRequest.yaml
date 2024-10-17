@@ -8,15 +8,22 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do Iniciativa"
-  createdBy:
-    description: "Identificador do agente criador da iniciativa"
-    type: string
-    format: uuid
   parent:
     description: "Identificador da iniciativa pai"
     type: string
     format: uuid
-  createdAt:
+  space:
+    description: "Identificador do espaço ao qual a iniciativa pertence"
     type: string
-    format: date-time
-    description: "Data e hora do criação da iniciativa"
+    format: uuid
+  createdBy:
+    description: "Identificador do agente criador da iniciativa"
+    type: string
+    format: uuid
+  extraFields:
+    type: object
+    description: "Os campos extras da iniciativa"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'

@@ -23,7 +23,7 @@ class InitiativeApiController extends AbstractApiController
     {
         $initiative = $this->service->get($id);
 
-        return $this->json($initiative, context: ['groups' => 'initiative.get']);
+        return $this->json($initiative, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
     }
 
     public function remove(?Uuid $id): JsonResponse
@@ -47,13 +47,13 @@ class InitiativeApiController extends AbstractApiController
     {
         $initiative = $this->service->create($request->toArray());
 
-        return $this->json($initiative, status: Response::HTTP_CREATED, context: ['groups' => 'initiative.get']);
+        return $this->json($initiative, status: Response::HTTP_CREATED, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
     }
 
     public function update(?Uuid $id, Request $request): JsonResponse
     {
         $initiative = $this->service->update($id, $request->toArray());
 
-        return $this->json($initiative, Response::HTTP_OK, context: ['groups' => 'initiative.get']);
+        return $this->json($initiative, Response::HTTP_OK, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
     }
 }

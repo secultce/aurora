@@ -68,6 +68,14 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
+            'extraFields' => [
+                'type' => 'Musical',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
@@ -135,6 +143,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
             'parent' => null,
             'space' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => null,
             'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -162,6 +171,14 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 'name' => 'Raízes e Tradições',
                 'space' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'extraFields' => [
+                    'type' => 'Cultural',
+                    'period' => [
+                        'startDate' => '2024-08-15',
+                        'endDate' => '2024-09-15',
+                    ],
+                    'description' => 'Raízes e Tradições é uma exposição que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+                ],
                 'createdAt' => '2024-07-11T10:49:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -170,6 +187,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 'id' => $requestBody['space'],
             ],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => $requestBody['extraFields'],
             'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -263,6 +281,24 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                     ['field' => 'space', 'message' => 'This value is not a valid UUID.'],
                 ],
             ],
+            'extra fields should be a valid json object' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'extra fields should be a valid json object with only one level of depth. ' => [
+                'requestBody' => array_merge($requestBody, [
+                    'extraFields' => [
+                        'invalid' => [
+                            'invalid',
+                        ],
+                    ],
+                ]),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be a valid json object with only one level of depth.'],
+                ],
+            ],
         ];
     }
 
@@ -290,6 +326,14 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 'name' => 'Raízes e Tradições',
                 'space' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'extraFields' => [
+                    'type' => 'Cultural',
+                    'period' => [
+                        'startDate' => '2024-08-15',
+                        'endDate' => '2024-09-15',
+                    ],
+                    'description' => 'Raízes e Tradições é uma exposição que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+                ],
                 'createdAt' => '2024-07-11T10:49:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -298,6 +342,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 'id' => SpaceFixtures::SPACE_ID_4,
             ],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => $requestBody['extraFields'],
             'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $initiative->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -375,6 +420,24 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['space' => 'invalid-uuid']),
                 'expectedErrors' => [
                     ['field' => 'space', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'extra fields should be a valid json object' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'extra fields should be a valid json object with only one level of depth. ' => [
+                'requestBody' => array_merge($requestBody, [
+                    'extraFields' => [
+                        'invalid' => [
+                            'invalid',
+                        ],
+                    ],
+                ]),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be a valid json object with only one level of depth.'],
                 ],
             ],
         ];
