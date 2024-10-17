@@ -22,6 +22,8 @@ class SpaceTestFixtures implements TestFixtures
 
     public static function complete(): array
     {
-        return array_merge(self::partial());
+        return array_merge(self::partial(), [
+            'image' => ImageTestFixtures::getImageValid(),
+        ]);
     }
 }
