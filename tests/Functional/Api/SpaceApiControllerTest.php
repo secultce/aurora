@@ -8,10 +8,12 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Space;
 use App\Tests\AbstractWebTestCase;
+use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\SpaceTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -19,6 +21,16 @@ use Symfony\Component\Uid\Uuid;
 class SpaceApiControllerTest extends AbstractWebTestCase
 {
     private const string BASE_URL = '/api/spaces';
+
+    private ?ParameterBagInterface $parameterBag = null;
+
+    protected function setUp(): void
+    {
+        $client = static::createClient();
+        $container = $client->getContainer();
+
+        $this->parameterBag = $container->get(ParameterBagInterface::class);
+    }
 
     public function testCanCreateWithPartialRequestBody(): void
     {
@@ -30,16 +42,19 @@ class SpaceApiControllerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
+        /** @var Space $space */
         $space = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Space::class, $requestBody['id']);
 
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'createdBy' => ['id' => $requestBody['createdBy']],
             'parent' => [
                 'id' => $requestBody['parent'],
                 'name' => 'SECULT',
+                'image' => $space->getParent()->getImage(),
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
                     'type' => 'Instituição Cultural',
@@ -78,16 +93,19 @@ class SpaceApiControllerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
+        /** @var Space $space */
         $space = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Space::class, $requestBody['id']);
 
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => $space->getImage(),
             'createdBy' => ['id' => $requestBody['createdBy']],
             'parent' => [
                 'id' => $requestBody['parent'],
                 'name' => 'SECULT',
+                'image' => $space->getParent()->getImage(),
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
                     'type' => 'Instituição Cultural',
@@ -130,6 +148,9 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
+
+        $filepath = str_replace($this->parameterBag->get('app.url.storage'), '', $space->getImage());
+        file_exists($filepath);
     }
 
     #[DataProvider('provideValidationCreateCases')]
@@ -183,6 +204,18 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
             ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
+                ],
+            ],
             'createdBy should exist' => [
                 'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
@@ -215,9 +248,14 @@ class SpaceApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCount(count(SpaceFixtures::SPACES), json_decode($response));
 
+        /** @var Space $space */
+        $space = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Space::class, SpaceFixtures::SPACE_ID_1);
+
         $this->assertJsonContains([
             'id' => SpaceFixtures::SPACE_ID_1,
             'name' => 'SECULT',
+            'image' => $space->getImage(),
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
@@ -238,15 +276,22 @@ class SpaceApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        /* @var Space $space */
+        $space = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Space::class, SpaceFixtures::SPACE_ID_3);
+
         $this->assertResponseBodySame([
             'id' => '608756eb-4830-49f2-ae14-1160ca5252f4',
             'name' => 'Galeria Caatinga',
+            'image' => $space->getImage(),
             'createdBy' => [
                 'id' => '0cc8c682-b0cd-4cb3-bd9d-41a9161b3566',
             ],
             'parent' => [
                 'id' => 'ae32b8a5-25a8-4b80-b415-4237a8484186',
                 'name' => 'Sítio das Artes',
+                'image' => $space->getParent()->getImage(),
                 'createdBy' => [
                     'id' => '0cc8c682-b0cd-4cb3-bd9d-41a9161b3566',
                 ],
@@ -338,6 +383,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
     {
         $requestBody = SpaceTestFixtures::complete();
         unset($requestBody['id']);
+        unset($requestBody['image']);
 
         $url = sprintf('%s/%s', self::BASE_URL, SpaceFixtures::SPACE_ID_4);
         $client = self::apiClient();
@@ -346,16 +392,19 @@ class SpaceApiControllerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+        /** @var Space $space */
+        $space = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Space::class, SpaceFixtures::SPACE_ID_4);
 
         $this->assertResponseBodySame([
             'id' => SpaceFixtures::SPACE_ID_4,
             'name' => $requestBody['name'],
+            'image' => $space->getImage(),
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'parent' => [
                 'id' => SpaceFixtures::SPACE_ID_1,
                 'name' => 'SECULT',
+                'image' => $space->getParent()->getImage(),
                 'createdBy' => [
                     'id' => AgentFixtures::AGENT_ID_1,
                 ],
@@ -396,10 +445,149 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     3 => 'Sinalização tátil',
                 ],
             ],
-            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
-            'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $space->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
         ]);
+    }
+
+    public function testCanUpdateImage(): void
+    {
+        $requestBody = SpaceTestFixtures::complete();
+
+        $client = self::apiClient();
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
+
+        /** @var Space $createdSpace */
+        $createdSpace = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Space::class, $requestBody['id']);
+
+        $this->assertResponseBodySame([
+            'id' => $requestBody['id'],
+            'name' => $requestBody['name'],
+            'image' => $createdSpace->getImage(),
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'parent' => [
+                'id' => SpaceFixtures::SPACE_ID_1,
+                'name' => 'SECULT',
+                'image' => $createdSpace->getParent()->getImage(),
+                'createdBy' => [
+                    'id' => AgentFixtures::AGENT_ID_1,
+                ],
+                'extraFields' => [
+                    'type' => 'Instituição Cultural',
+                    'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
+                    'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
+                    'areasOfActivity' => [
+                        0 => 'Teatro',
+                        1 => 'Música',
+                        2 => 'Artes Visuais',
+                    ],
+                    'accessibility' => [
+                        0 => 'Banheiros adaptados',
+                        1 => 'Rampa de acesso',
+                        2 => 'Elevador adaptado',
+                        3 => 'Sinalização tátil',
+                    ],
+                ],
+                'createdAt' => '2024-07-10T11:30:00+00:00',
+                'updatedAt' => '2024-07-10T12:20:00+00:00',
+                'deletedAt' => null,
+            ],
+            'extraFields' => [
+                'type' => 'Cultural',
+                'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+                'location' => 'Recife, Pernambuco',
+                'capacity' => 100,
+                'areasOfActivity' => [
+                    0 => 'Teatro',
+                    1 => 'Música',
+                    2 => 'Artes Visuais',
+                ],
+                'accessibility' => [
+                    0 => 'Banheiros adaptados',
+                    1 => 'Rampa de acesso',
+                    2 => 'Elevador adaptado',
+                    3 => 'Sinalização tátil',
+                ],
+            ],
+            'createdAt' => $createdSpace->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => null,
+            'deletedAt' => null,
+        ]);
+
+        $firstImage = str_replace($this->parameterBag->get('app.url.storage'), '', $createdSpace->getImage());
+        file_exists($firstImage);
+
+        $url = sprintf('%s/%s', self::BASE_URL, $requestBody['id']);
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $updatedSpace = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Space::class, $requestBody['id']);
+
+        $this->assertResponseBodySame([
+            'id' => $requestBody['id'],
+            'name' => $requestBody['name'],
+            'image' => $updatedSpace->getImage(),
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'parent' => [
+                'id' => SpaceFixtures::SPACE_ID_1,
+                'name' => 'SECULT',
+                'image' => $updatedSpace->getParent()->getImage(),
+                'createdBy' => [
+                    'id' => AgentFixtures::AGENT_ID_1,
+                ],
+                'parent' => null,
+                'extraFields' => [
+                    'type' => 'Instituição Cultural',
+                    'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
+                    'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
+                    'areasOfActivity' => [
+                        0 => 'Teatro',
+                        1 => 'Música',
+                        2 => 'Artes Visuais',
+                    ],
+                    'accessibility' => [
+                        0 => 'Banheiros adaptados',
+                        1 => 'Rampa de acesso',
+                        2 => 'Elevador adaptado',
+                        3 => 'Sinalização tátil',
+                    ],
+                ],
+                'createdAt' => '2024-07-10T11:30:00+00:00',
+                'updatedAt' => '2024-07-10T12:20:00+00:00',
+                'deletedAt' => null,
+            ],
+            'extraFields' => [
+                'type' => 'Cultural',
+                'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+                'location' => 'Recife, Pernambuco',
+                'capacity' => 100,
+                'areasOfActivity' => [
+                    0 => 'Teatro',
+                    1 => 'Música',
+                    2 => 'Artes Visuais',
+                ],
+                'accessibility' => [
+                    0 => 'Banheiros adaptados',
+                    1 => 'Rampa de acesso',
+                    2 => 'Elevador adaptado',
+                    3 => 'Sinalização tátil',
+                ],
+            ],
+            'createdAt' => $updatedSpace->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $updatedSpace->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+
+        self::assertFalse(file_exists($firstImage));
+
+        $secondImage = str_replace($this->parameterBag->get('app.url.storage'), '', $updatedSpace->getImage());
+        file_exists($secondImage);
     }
 
     #[DataProvider('provideValidationUpdateCases')]
@@ -437,6 +625,18 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
             'parent should exists' => [

@@ -2,8 +2,8 @@ services:
   php:
     container_name: aurora-php
     build:
-      context: ./docker/php
-      dockerfile: Dockerfile
+      context: ./
+      dockerfile: ./docker/php/Dockerfile
     restart: unless-stopped
     tty: true
     volumes:
@@ -70,6 +70,7 @@ services:
       - :80
     depends_on:
       - nginx
+      - php
     entrypoint: [ '/bin/sh', '-c' ]
     command: ['npm install && cypress run']
     volumes:

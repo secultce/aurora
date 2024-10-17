@@ -8,6 +8,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do espaço"
+  image:
+    type: string
+    format: base64url
+    description: "Imagem do perfil do espaço codificada em Base64"
   createdBy:
     description: "Identificador do agente criador do espaço"
     type: string

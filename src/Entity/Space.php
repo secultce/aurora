@@ -26,6 +26,10 @@ class Space extends AbstractEntity
     #[Groups('space.get')]
     private ?string $name = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Groups('space.get')]
+    private ?string $image = null;
+
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     #[Groups('space.get')]
@@ -81,6 +85,16 @@ class Space extends AbstractEntity
     public function getCreatedBy(): Agent
     {
         return $this->createdBy;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 
     public function setCreatedBy(Agent $createdBy): void

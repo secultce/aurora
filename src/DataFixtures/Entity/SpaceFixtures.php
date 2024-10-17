@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Space;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class SpaceFixtures extends Fixture implements DependentFixtureInterface
@@ -28,6 +30,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_1,
             'name' => 'SECULT',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'extraFields' => [
@@ -44,6 +47,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_2,
             'name' => 'Sítio das Artes',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'extraFields' => [
@@ -60,6 +64,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_3,
             'name' => 'Galeria Caatinga',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_2,
             'extraFields' => [
@@ -76,6 +81,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_4,
             'name' => 'Recanto do Cordel',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_3,
             'extraFields' => [
@@ -92,6 +98,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_5,
             'name' => 'Ritmos do Mundo',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_3,
             'extraFields' => [
@@ -108,6 +115,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_6,
             'name' => 'Casa do Sertão',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_3,
             'extraFields' => [
@@ -124,6 +132,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_7,
             'name' => 'Vila do Baião',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::SPACE_ID_6,
             'extraFields' => [
@@ -140,6 +149,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_8,
             'name' => 'Centro Cultural Asa Branca',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'extraFields' => [
@@ -156,6 +166,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_9,
             'name' => 'Casa da Capoeira',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'extraFields' => [
@@ -172,6 +183,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         [
             'id' => self::SPACE_ID_10,
             'name' => 'Dragão do Mar',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'extraFields' => [
@@ -189,12 +201,23 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
 
     public function __construct(
         private readonly SerializerInterface $serializer,
+        private readonly FileServiceInterface $fileService,
+        private readonly ParameterBagInterface $parameterBag,
     ) {
     }
 
     public function load(ObjectManager $manager): void
     {
+        $counter = 0;
+
         foreach (self::SPACES as $spaceData) {
+            if (5 > $counter) {
+                $file = $this->fileService->uploadImage(
+                    $this->parameterBag->get('app.dir.space.profile'),
+                    ImageTestFixtures::getSpaceImage()
+                );
+                $spaceData['image'] = $file;
+            }
             /* @var Space $space */
             $space = $this->serializer->denormalize($spaceData, Space::class);
 
@@ -208,6 +231,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
             $this->setReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['id']), $space);
 
             $manager->persist($space);
+            $counter++;
         }
 
         $manager->flush();
