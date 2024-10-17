@@ -32,7 +32,7 @@
             </div>
             <p class="agent-description">{{ agent.longBio }}</p>
             <div class="access-profile-container">
-                <button class="btn btn-primary access-profile">{{ 'access' | trans }}</button>
+                <a href="{{ path("web_agent_getOne", {'id': agent.id }) }}" class="btn btn-primary access-profile">{{ 'access' | trans }}</a>
             </div>
         </div>
     </div>

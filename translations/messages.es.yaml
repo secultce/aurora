@@ -4,6 +4,7 @@ accessibility: Accesibilidad
 accountability: Rendición de Cuentas
 address: Dirección
 admin_options: Opciones del Administrador
+administration: Administración
 agents: Agentes
 all: Todo
 allowed: Con permiso
@@ -18,6 +19,7 @@ birth_date: Fecha de Nacimiento
 calendar: Calendario
 check: Comprobar
 click_here: Haz clic aquí
+connections: Conexiones
 confirm: Confirmar
 confirm_password: Confirmar Contraseña
 continue: Continuar
@@ -33,6 +35,7 @@ discover: Descubrir
 
 edit: Editar
 email: Correo Electrónico
+entity_banner: Banner de la Entidad
 entity: Entidad
 events: Eventos
 everybody: Todos
@@ -48,12 +51,14 @@ help: Ayuda
 help_privacy: Ayuda y Privacidad
 home: Inicio
 
+identification_number: Número Identificador
 illustration: Ilustración
 image: Imagen
 indicators: Indicadores
 initiatives: Iniciativas
 in_progress: En Progreso
 input_search: Buscar por palabras clave
+introduction: Presentación
 
 language: Idioma
 lastname: Apellido
@@ -94,14 +99,17 @@ opportunities: Oportunidades
 organizations: Organizaciones
 
 period: Período
+portfolio: Portafolio
 privacy: Privacidad
 profile: Perfil
 password: Contraseña
 password_strength: Fuerza de la Contraseña
+personal_data: Datos Personales
 phone: Teléfono
 photo: Foto
 profile_picture: Foto de Perfil
 projects: Proyectos
+public: Público
 published: Publicados
 
 recently_modified: Modificados recientemente
@@ -116,9 +124,13 @@ type: Tipo
 
 user: Usuario
 
+view_all: Ver Todas
+
+share: Compartir
 seals: Sellos
 search: Buscar
 send: Enviar
+send_message: Enviar mensaje
 see_how: Ver Cómo
 see_more: Ver Más
 sort_by: Ordenar por
@@ -184,6 +196,16 @@ view:
     areas_of_expertise: Áreas de Especialización
     collective_agents: Agentes Colectivos
     individual_agents: Agentes Individuales
+
+  agent_profile:
+    organizations_of: Organizaciones de
+    initiative_photo: Foto de la Iniciativa
+    space_photo: Foto del Espacio
+    event_photo: Foto del Evento
+    organization_photo: Foto de la Organización
+    profile_change_history: Historial de Cambios del Perfil
+    report: Denunciar
+    roles_in_culture: Roles en la Cultura
 
   authentication:
     forgot_password: Olvidé mi Contraseña
