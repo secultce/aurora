@@ -16,6 +16,11 @@ final class ImageTestFixtures
         return self::getCodeBase64ToImage('user.png');
     }
 
+    public static function getSpaceImage(): string
+    {
+        return self::getCodeBase64ToImage('space.png');
+    }
+
     private static function getCodeBase64ToImage(string $image): string
     {
         $path = sprintf('%s/images/%s', __DIR__, $image);

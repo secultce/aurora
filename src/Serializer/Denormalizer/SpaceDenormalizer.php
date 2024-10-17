@@ -6,8 +6,10 @@ namespace App\Serializer\Denormalizer;
 
 use App\Entity\Agent;
 use App\Entity\Space;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 readonly class SpaceDenormalizer implements DenormalizerInterface
@@ -16,6 +18,7 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
         private EntityManagerInterface $entityManager,
         #[Autowire(service: 'serializer.normalizer.object')]
         private DenormalizerInterface $denormalizer,
+        private FileServiceInterface $fileService,
     ) {
     }
 
@@ -27,6 +30,10 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
 
         if (Space::class !== $type) {
             return $data;
+        }
+
+        if (true === array_key_exists('image', $data)) {
+            $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
         $space = $this->denormalizer->denormalize($data, $type, $format, $context);
@@ -42,6 +49,17 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
         }
 
         return $space;
+    }
+
+    private function uploadImage(array &$data, ?Space $spaceFromDb = null): void
+    {
+        if (false === is_null($spaceFromDb) && true === is_string($spaceFromDb->getImage())) {
+            $this->fileService->deleteFileByUrl($spaceFromDb->getImage());
+        }
+
+        if ($data['image'] instanceof File) {
+            $data['image'] = $this->fileService->getFileUrl($data['image']->getPathname());
+        }
     }
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool
