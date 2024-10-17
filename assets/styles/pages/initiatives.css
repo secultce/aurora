@@ -1,0 +1,87 @@
+.initiative-options {
+    text-wrap: nowrap;
+}
+
+.initiative-sort {
+    align-items: center;
+    margin-bottom: 10px;
+    gap: 30px;
+}
+
+.initiative-card {
+    background-color: var(--card-bg-color);
+    border: 1px solid var(--mid-gray);
+    border-radius: 7px;
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    box-shadow: 0 2px 10px var(--box-shadow-color, rgba(0, 0, 0, 0.1));
+}
+
+.initiative-card-header {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    margin-bottom: 5px;
+}
+
+.initiative-info {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.initiative-name {
+    font-family: var(--font-open-sans);
+    color: var(--btn-publish-custom-color);
+    margin-top: 22px;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.initiative-card-body {
+    padding: 10px 0;
+    font-size: 1rem;
+    line-height: 1.5;
+    margin-left: 81px;
+}
+
+.initiative-info {
+    flex-grow: 1;
+}
+
+.text-initiative {
+    color: var(--navlink-initiative);
+}
+
+.bg-initiative {
+    color: var(--white-color);
+    background-color: var(--navlink-initiative);
+}
+
+.initiative-id {
+    font-family: var(--font-open-sans);
+    font-size: 0.9rem;
+    margin-top: 5px;
+}
+
+.initiative-type {
+    margin-left: auto;
+}
+
+.initiative-description {
+    font-family: var(--font-open-sans);
+    color: var(--color-subtitle-gray);
+    margin-bottom: 10px;
+}
+
+.access-initiative {
+    font-weight: bold;
+    border: 2px solid var(--btn-publish-custom-color);
+    padding: 10px 60px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
