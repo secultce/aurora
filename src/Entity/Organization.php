@@ -159,4 +159,19 @@ class Organization extends AbstractEntity
     {
         $this->deletedAt = $deletedAt;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id?->toRfc4122(),
+            'name' => $this->name,
+            'description' => $this->description,
+            'agents' => array_map(fn (Agent $agent) => $agent->toArray(), $this->agents->toArray()),
+            'owner' => $this->owner->toArray(),
+            'createdBy' => $this->createdBy->toArray(),
+            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
+            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
+            'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),
+        ];
+    }
 }
