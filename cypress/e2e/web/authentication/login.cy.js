@@ -11,22 +11,32 @@ describe('Pagina de Login do ambiente web', () => {
         cy.contains('Iniciativas');
 
         cy.get('p')
-            .contains('Olá!');
+            .contains('Olá!')
+        cy.contains('Entre com a sua conta.')
 
-        cy.contains('Entre com a sua conta.');
-        cy.contains('Entrar');
+        cy.get('[data-cy="email"]')
+            .should('be.visible');
+        cy.get('[data-cy="password"]')
+            .should('be.visible');
+        cy.contains('Entrar')
+            .should('be.visible');
     })
 
     it('Garante que a mensagem de credenciais inválidas existe', () => {
         cy.get('[data-cy="email"]').type('chiquim@email.com');
         cy.get('[data-cy="password"]').type('12345678');
 
-        cy.contains('Esqueci minha senha');
-        cy.contains('Cadastro');
+        cy.contains('Esqueci minha senha')
+            .should('be.visible');
+        cy.contains('Cadastro')
+            .should('be.visible');
 
-        cy.get('[data-cy="submit"]').click();
+        cy.get('[data-cy="submit"]')
+            .should('be.visible')
+            .click();
 
-        cy.contains('Credenciais inválidas.');
+        cy.contains('Credenciais inválidas.')
+            .should('be.visible');
     })
 
 
