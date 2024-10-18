@@ -281,22 +281,10 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                     ['field' => 'space', 'message' => 'This value is not a valid UUID.'],
                 ],
             ],
-            'extra fields should be a valid json object' => [
-                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+            'extraFields should be a valid JSON' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
-                ],
-            ],
-            'extra fields should be a valid json object with only one level of depth. ' => [
-                'requestBody' => array_merge($requestBody, [
-                    'extraFields' => [
-                        'invalid' => [
-                            'invalid',
-                        ],
-                    ],
-                ]),
-                'expectedErrors' => [
-                    ['field' => 'extraFields', 'message' => 'This value should be a valid json object with only one level of depth.'],
                 ],
             ],
         ];
@@ -422,22 +410,10 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                     ['field' => 'space', 'message' => 'This value is not a valid UUID.'],
                 ],
             ],
-            'extra fields should be a valid json object' => [
-                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+            'extraFields should be a valid JSON' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
-                ],
-            ],
-            'extra fields should be a valid json object with only one level of depth. ' => [
-                'requestBody' => array_merge($requestBody, [
-                    'extraFields' => [
-                        'invalid' => [
-                            'invalid',
-                        ],
-                    ],
-                ]),
-                'expectedErrors' => [
-                    ['field' => 'extraFields', 'message' => 'This value should be a valid json object with only one level of depth.'],
                 ],
             ],
         ];

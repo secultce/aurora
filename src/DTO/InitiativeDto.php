@@ -8,7 +8,7 @@ use App\Entity\Agent;
 use App\Entity\Initiative;
 use App\Entity\Space;
 use App\Validator\Constraints\Exists;
-use App\Validator\Constraints\JsonWithOneLevel;
+use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -52,6 +52,6 @@ class InitiativeDto
     ])]
     public mixed $space;
 
-    #[Sequentially([new JsonWithOneLevel()], groups: [self::CREATE, self::UPDATE])]
+    #[Sequentially([new Json(groups: [self::CREATE, self::UPDATE])])]
     public mixed $extraFields;
 }

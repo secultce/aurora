@@ -12,3 +12,10 @@ properties:
     description: "Identificador do agente criador do espaço"
     type: string
     format: uuid
+  extraFields:
+    type: object
+    description: "Os campos extras do espaço"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'

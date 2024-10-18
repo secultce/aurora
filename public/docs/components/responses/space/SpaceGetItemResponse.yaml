@@ -9,7 +9,12 @@ properties:
     maxLength: 100
     description: "Nome do espaço"
   createdBy:
-    $ref: '../../schemas/agent.yaml'
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do espaço"
   parent:
     type: object
     properties:
@@ -22,7 +27,12 @@ properties:
         maxLength: 100
         description: "Nome do espaço"
       createdBy:
-        $ref: '../../schemas/agent.yaml'
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do espaço"
       parent:
         type: object
         properties:
@@ -30,6 +40,13 @@ properties:
             type: string
             format: uuid
             description: "Identificador do espaço pai"
+      extraFields:
+        type: object
+        description: "Os campos extras do espaço"
+        properties:
+          key:
+            type: string
+            description: 'Valor da chave'
       createdAt:
         type: string
         format: date-time
@@ -44,6 +61,13 @@ properties:
         format: date-time
         nullable: true
         description: "Data e hora da exclusão do espaço"
+  extraFields:
+    type: object
+    description: "Os campos extras do espaço"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     type: string
     format: date-time
