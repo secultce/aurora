@@ -2,3 +2,8 @@ list:
   path: /agentes
   controller: App\Controller\Web\AgentWebController::list
   methods: ['GET']
+
+getOne:
+  path: /agentes/{id}
+  controller: App\Controller\Web\AgentWebController::getOne
+  methods: ['GET']

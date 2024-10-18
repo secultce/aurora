@@ -1,0 +1,19 @@
+{% include "agent/_partials/agent-organizations.html.twig" %}
+
+<div class="perfil-tabs border-bottom mt-4">
+    {% include "agent/_partials/profile-tabs/perfil-tabs/perfil-tabs.html.twig" %}
+</div>
+
+<section class="mt-4 agent-perfil">
+    {% include "agent/_partials/agent-introduction.html.twig" %}
+
+    {% include "agent/_partials/agent-social-media.html.twig" %}
+
+    {% include "agent/_partials/agent-connections.html.twig" %}
+
+    <div class="agent-profile-actions">
+        <button class="left-button ">{{ 'view.agent_profile.profile_change_history' | trans }}</button>
+        <button class="right-button">{{ 'view.agent_profile.report' | trans }}</button>
+    </div>
+
+</section>

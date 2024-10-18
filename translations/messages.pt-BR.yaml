@@ -3,6 +3,7 @@ access: Acessar
 accessibility: Acessibilidade
 accountability: Prestações de Conta
 address: Endereço
+administration: Administração
 agents: Agentes
 all: Tudo
 allowed: Com permissão
@@ -18,6 +19,7 @@ birth_date: Data de nascimento
 calendar: Calendário
 check: Conferir
 click_here: Clique aqui
+connections: Conexões
 confirm: Confirmar
 confirm_password: Confirmar senha
 continue: Continuar
@@ -33,6 +35,7 @@ discover: Descubra
 
 edit: Editar
 email: Email
+entity_banner: Banner da Entidade
 entity: Entidade
 events: Eventos
 everybody: Todos
@@ -48,12 +51,14 @@ help: Ajuda
 help_privacy: Ajuda e privacidade
 home: Início
 
+identification_number: Número identificador
 illustration: Ilustração
 image: Imagem
 indicators: Indicadores
 initiatives: Iniciativas
 in_progress: Em andamento
 input_search: Busque por palavras-chave
+introduction: Apresentação
 
 language: Idioma
 lastname: Sobrenome
@@ -86,6 +91,7 @@ notifications: Notificações
 no: Não
 none_area_specified: Nenhuma área especificada
 
+
 oldest: Mais Antigo
 order: Ordenar por
 other_options: Outras Opções
@@ -94,14 +100,17 @@ opportunities: Oportunidades
 organizations: Organizações
 
 period: Período
+portfolio: Portfólio
 privacy: Privacidade
 profile: Perfil
 password: Senha
 password_strength: Força da senha
+personal_data: Dados pessoais
 phone: Telefone
 photo: Foto
 profile_picture: Foto de Perfil
 projects: Projetos
+public: Público
 published: Publicados
 
 recently_modified: Modificados recentemente
@@ -116,9 +125,13 @@ type: Tipo
 
 user: Usuário
 
+view_all: Ver todas
+
+share: Compartilhar
 seals: Selos
 search: Buscar
 send: Enviar
+send_message: Enviar mensagem
 see_how: Visualizar como
 see_more: Ver mais
 sort_by: Ordenar por
@@ -179,6 +192,16 @@ view:
     areas_of_expertise: Áreas de Atuação
     collective_agents: Agentes Coletivos
     individual_agents: Agentes Individuais
+
+  agent_profile:
+    organizations_of: Organizações de
+    initiative_photo: Foto da Iniciativa
+    space_photo: Foto do Espaço
+    event_photo: Foto do Evento
+    organization_photo: Foto da Organização
+    profile_change_history: Histórico de alterações do perfil
+    report: Denunciar
+    roles_in_culture: Funções na Cultura
 
   authentication:
     forgot_password: Esqueci minha senha
@@ -267,4 +290,5 @@ view:
     error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui na Aurora.
     error-homepage: Voltar para a página inicial
     error-image: Imagem de dúvida
+
 
