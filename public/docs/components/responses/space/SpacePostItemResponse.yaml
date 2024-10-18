@@ -8,6 +8,11 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do espaço"
+  image:
+    type: string
+    format: uri
+    nullable: true
+    description: "Url da imagem do perfil do espaço"
   createdBy:
     description: "Agente criador do espaço"
     type: object
