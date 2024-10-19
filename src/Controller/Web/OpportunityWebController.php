@@ -33,6 +33,7 @@ class OpportunityWebController extends AbstractWebController
         return $this->render('opportunity/list.html.twig', [
             'dashboard' => $dashboard,
             'opportunities' => $opportunities,
+            'totalOpportunities' => $totalOpportunities,
         ]);
     }
 }
