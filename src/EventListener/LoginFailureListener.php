@@ -10,7 +10,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Event\LoginFailureEvent;
 
 #[AsEventListener(LoginFailureEvent::class, 'onLoginFailure')]
-class LoginFailureListener
+readonly class LoginFailureListener
 {
     public function onLoginFailure(LoginFailureEvent $event): void
     {
