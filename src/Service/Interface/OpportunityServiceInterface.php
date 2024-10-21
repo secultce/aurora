@@ -13,7 +13,7 @@ interface OpportunityServiceInterface
 
     public function get(Uuid $id): Opportunity;
 
-    public function list(int $limit = 50): array;
+    public function list(array $filters = [], int $limit = 50): array;
 
     public function remove(Uuid $id): void;
 

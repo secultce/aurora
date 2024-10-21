@@ -57,10 +57,10 @@ readonly class OpportunityService implements OpportunityServiceInterface
         return $opportunity;
     }
 
-    public function list(int $limit = 50): array
+    public function list(array $filters = [], int $limit = 50): array
     {
         return $this->repository->findBy(
-            self::DEFAULT_FILTERS,
+            array_merge($filters, self::DEFAULT_FILTERS),
             ['createdAt' => 'DESC'],
             $limit
         );

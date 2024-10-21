@@ -25,11 +25,11 @@ class HomepageWebController extends AbstractWebController
     public function homepage(): Response
     {
         return $this->render('homepage/not-logged.html.twig', [
-            'agents' => $this->agentService->list(4),
-            'events' => $this->eventService->list(4),
-            'initiatives' => $this->initiativeService->list(4),
-            'opportunities' => $this->opportunityService->list(4),
-            'spaces' => $this->spaceService->list(4),
+            'agents' => $this->agentService->list(limit: 4),
+            'events' => $this->eventService->list(limit: 4),
+            'initiatives' => $this->initiativeService->list(limit: 4),
+            'opportunities' => $this->opportunityService->list(limit: 4),
+            'spaces' => $this->spaceService->list(limit: 4),
         ]);
     }
 }
