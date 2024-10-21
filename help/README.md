@@ -155,6 +155,9 @@ public function __construct(ManagerRegistry $registry)
 ---
 
 ## Migrations
+
+### Migrations ORM
+
 Migrations são a forma (correta) de fazer um versionamento do banco de dados, nesta parte da aplicação isso é fornecido pela biblioteca `doctrine/migrations` mas no core do Aurora isso ainda é feito por uma decisão técnica interna chamada `db-updates.php`
 
 <details>
@@ -379,8 +382,30 @@ Para executar os testes veja a seção <a href="#console-commands">Console Comma
 
 ---
 
+## Events
+
+Atualmente, o projeto faz o uso dos próprios artifícios do Symfony para gerenciar os eventos, incluindo os dois tipos descritos a seguir.
+
+Para saber mais sobre o assunto basta acessar a [documentação](https://symfony.com/doc/current/event_dispatcher.html).
+
+> O symfony oferece uma explicação especial para o relacionamento com os eventos do Doctrine, basta acessar [aqui](https://symfony.com/doc/7.2/doctrine/events.html).
+
+---
+
+### Event Listeners
+
+Utilizados principalmente quando queremos reagir de forma específica a um evento fixo.
+
+### Event Subscribers
+
+Utilizado quando queremos escutar um conjunto de eventos.
+
+---
+
 ## DI (Injeção de dependência)
 A injeção de dependência já acontece automaticamente pela própria estrutura do Symfony
+
+---
 
 ## Console Commands
 

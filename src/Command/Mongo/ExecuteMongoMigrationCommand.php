@@ -54,7 +54,8 @@ class ExecuteMongoMigrationCommand extends Command
             return Command::SUCCESS;
         }
 
-        $collection = $this->documentManager->getClient()->selectCollection('mapinha_nosql', self::MIGRATIONS_COLLECTION);
+        $databaseName = $this->documentManager->getConfiguration()->getDefaultDB();
+        $collection = $this->documentManager->getClient()->selectCollection($databaseName, self::MIGRATIONS_COLLECTION);
         $appliedMigrations = $collection->find()->toArray();
         $appliedVersions = array_column($appliedMigrations, 'version');
 
