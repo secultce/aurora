@@ -1,5 +1,5 @@
 <div class="d-flex justify-content-between align-items-end">
-    <p class="fw-bold">182 {{ 'view.opportunity.quantity.total' | trans }}</p>
+    <p class="fw-bold">{{ totalOpportunities }} {{ 'view.opportunity.quantity.total' | trans }}</p>
     <div class="d-flex g-4 agent-sort">
         <label class="text-nowrap" for="sort-options">{{ 'sort_by' | trans }}</label>
         <select id="sort-options" class="form-select">
@@ -13,7 +13,7 @@
 <div class="opportunity-card">
     <div class="opportunity-card-header">
         <div class="d-flex align-items-center justify-content-end">
-            ID: <span class="fw-bold">45456</span>
+            ID: <span class="fw-bold">{{ opportunity.id }}</span>
 
             <i class="material-icons text-primary ms-2">check_circle</i>
             <span>{{ 'opened_registrations'|trans }}</span>
@@ -25,24 +25,24 @@
             <span class="fw-bold ps-3">{{ opportunity.name }}</span>
         </div>
         <div class="fw-bold mb-2">
-            {{ 'type'|trans }}: <span class="text-danger me-3">TESTE</span>
+            {{ 'type'|trans }}: <span class="text-danger me-3">{{ opportunity.extraFields.type }}</span>
             {{ 'linked_with'|trans}} <ENTIDADE>: <a class="text-primary fw-bold text-decoration-none" href="#">Associação dos Pescadores</a>
         </div>
         <p class="text-orange fw-bold">
-            Inscrições de 01/01/2001 à 31/01/2001
+            Inscrições abertas de {{ opportunity.extraFields.period.startDate | date('d/m/Y') }} a {{ opportunity.extraFields.period.endDate | date('d/m/Y') }}
         </p>
         <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+            {{ opportunity.extraFields.description }}
         </p>
         <div class="additional-info">
             <span class="fw-bold text-uppercase">{{ 'areas_of_interest'|trans }}:</span>
             <br>
-            <span class="text-orange">Pesca, Antropologia, Ciencias Ocultas</span>
+            <span class="text-orange">{{ opportunity.extraFields.areasOfActivity|join(', ') }}</span>
         </div>
         <div class="additional-info mt-2">
             <span class="fw-bold">TAGS:</span>
             <br>
-            <span class="text-orange">Pesca, Antropologia, Ciencias Ocultas</span>
+            <span class="text-orange">{{ opportunity.extraFields.tags|join(', ') }}</span>
         </div>
     </div>
 
