@@ -1,0 +1,13 @@
+.page-title {
+    width: var(--WIDTH_DEFAULT);
+    margin: auto;
+}
+
+.page-title h2 {
+    font-family: var(--font-open-sans);
+    font-size: 40px;
+    font-weight: 700;
+    line-height: 43.58px;
+    text-align: left;
+    color: var(--main-font-color);
+}

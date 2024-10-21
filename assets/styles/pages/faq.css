@@ -1,0 +1,93 @@
+.faq-header {
+    background-color: var(--faq-color);
+    padding: 1rem 0 1rem;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: left;
+    gap: 2rem;
+}
+
+.faq-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.faq-header img {
+    width: 20vw;
+    height: auto;
+}
+
+.faq-text {
+    width: 50%;
+    margin-top: 4rem;
+}
+
+.faq-header h1 {
+    font-size: 2.25rem;
+    font-family: var(--font-open-sans);
+    font-weight: bold;
+    color: var(--main-font-color);
+}
+
+.faq-header p {
+    font-size: 1.2rem;
+    color: var(--main-font-color);
+}
+
+.search-input-container {
+    width: 80%;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+.input-wrapper {
+    position: relative;
+    width: 35%;
+    margin: 0 auto;
+}
+
+.custom-search-input {
+    width: 100%;
+    padding: 10px 115px 10px 15px;
+    border-radius: 50px;
+    font-size: 16px;
+}
+
+.custom-search-icon {
+    position: absolute;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.support-info {
+    font-family: var(--font-open-sans);
+    font-weight: bold;
+    text-align: center;
+    margin-top: 5px;
+    padding: 25px 0;
+    color: var(--main-font-color);
+}
+
+.support-info p {
+    font-size: 1rem;
+    margin: 0;
+}
+
+.support-link, .support-email {
+    color: var(--next-button-form);
+    text-decoration: none;
+}
+
+.support-link:hover, .support-email:hover {
+    text-decoration: underline;
+}
+
+.card-faq {
+    height: 11.25rem;
+    width: 28.641rem;
+}

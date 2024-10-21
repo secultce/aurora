@@ -1,0 +1,31 @@
+.breadcrumb {
+    font-family: var(--font-open-sans);
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 5px;
+    cursor: pointer;
+    width: var(--WIDTH_DEFAULT);
+    margin: auto;
+}
+
+.breadcrumb a {
+    text-decoration: none;
+    text-transform: uppercase;
+    color: var(--color-subtitle-gray);
+}
+
+.breadcrumb a:hover {
+    cursor: pointer;
+    color: var(--bs-primary);
+}
+
+.breadcrumb a + a::before {
+    content: " > ";
+    margin: 0 5px;
+    color: var(--soft-gray);
+}
+
+.name-one{
+    padding-bottom: 5px;
+    margin-bottom: 25px;
+}

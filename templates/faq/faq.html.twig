@@ -4,6 +4,11 @@
     FAQ
 {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/faq.css') }}">
+{% endblock %}
+
 {% block content %}
     {% include 'faq/_partials/faq-header.html.twig' %}
 

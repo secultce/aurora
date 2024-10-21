@@ -1,0 +1,42 @@
+.entity-dashboard {
+    display: flex;
+    justify-content: center;
+    gap: 0.15rem;
+    width: var(--WIDTH_DEFAULT);
+    margin: 0 auto;
+}
+
+.dashboard-card {
+    background-color: var(--card-bg-color);
+    box-shadow: 0 2px 10px var(--box-shadow-color);
+    border-radius: 5px;
+    padding: 11px;
+    margin: 0 auto;
+}
+
+.dashboard-card .top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.dashboard-card .quantity {
+    font-size: 32px;
+    width: 199px;
+    height: 44px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.dashboard-card .content {
+    margin-top: 10px;
+}
+
+.dashboard-card .text {
+    font-size: 1rem;
+    font-family: var(--font-open-sans);
+    color: var(--color-subtitle-gray);
+    margin-top: -15px;
+    display: block;
+    text-align: left;
+}
