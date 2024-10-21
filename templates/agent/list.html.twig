@@ -2,6 +2,11 @@
 
 {% block title %} {{ 'agents'|trans}} {% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/agents.css') }}">
+{% endblock %}
+
 {% block content %}
     <section class="white-square">
         {% include '_components/breadcrumb.html.twig' with {
