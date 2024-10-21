@@ -32,3 +32,8 @@ admin_initiative:
   resource: 'admin/initiative.yaml'
   prefix: /painel/iniciativas
   name_prefix: admin_initiative_
+
+admin_registrations:
+  resource: 'admin/registration.yaml'
+  prefix: /painel/inscricoes
+  name_prefix: admin_registrations_

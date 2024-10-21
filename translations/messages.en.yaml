@@ -2,6 +2,7 @@ account_privacy: Account and Privacy
 access: Access
 accessibility: Accessibility
 accountability: Accountability
+accompany: To accompany
 address: Address
 admin_options: Admin Options
 administration: Administration
@@ -12,6 +13,7 @@ archive: Archive
 archived: Archived
 areas_of_expertise: Areas of Expertise
 areas_of_interest: Areas of Interest
+analysis: Analysis Period
 
 back: Back
 birth_date: Birth Date
@@ -91,6 +93,7 @@ name: Name
 notifications: Notifications
 no: No
 none_area_specified: None area specified
+not_sent: Not sent
 
 oldest: Oldest
 order: Sort by
@@ -108,6 +111,7 @@ password_strength: Password Strength
 personal_data: Personal Data
 phone: Phone
 photo: Photo
+phase: Phase
 profile_picture: Profile Picture
 projects: Projects
 public: Public
@@ -132,6 +136,7 @@ seals: Seals
 search: Search
 send: Send
 send_message: Send Message
+sent: Sent
 see_how: See How
 see_more: See More
 sort_by: Sort by
@@ -250,7 +255,7 @@ view:
     subtitle: A new dawn for management and cultural promotion.
     header_text: Find culture in every corner of the city and promote your own culture. Participate in the artistic production of your territory with a free, open, and collaborative platform.
     title: Welcome, you've arrived at Aurora!
-    discover_open_notice: Discover the latest notices, workshops, awards, and contests with open registrations.
+    discover_open_notice: Discover the latest notices, workshops, awards, and contests with open registration.
 
   initiative:
     access: Access Initiative
@@ -285,6 +290,14 @@ view:
       opened: Open Spaces
       last_days: Registered in the last 7 days
     picture: Space Picture
+
+  registration:
+      available: Open and available resources
+      data: Data collection
+      merit: Merit evaluation
+      title-card: PNAB - Promotion of Cultural Actions Execution
+      section: In this section you can add or manage your registrations.
+      hour: 00/00/0000 to 00/00/0000
 
   not-found:
     error-404: Error 404
