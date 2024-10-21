@@ -1,0 +1,26 @@
+<div class="entity-page-tabs">
+    {% set tabs = [
+        {
+            'id': 'perfil',
+            'title': 'profile' | trans,
+        },
+        {
+            'id': 'portfolio',
+            'title': 'portfolio' | trans,
+        },
+        {
+            'id': 'seals',
+            'title': 'seals' | trans,
+        },
+        {
+            'id': 'connections',
+            'title': 'connections' | trans,
+        },
+        {
+            'id': 'events',
+            'title': 'events' | trans
+        }
+    ] %}
+
+    {% include '_components/tabs/tab.html.twig' with { 'tabs': tabs } %}
+</div>

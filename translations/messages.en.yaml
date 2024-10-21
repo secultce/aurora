@@ -4,6 +4,7 @@ accessibility: Accessibility
 accountability: Accountability
 address: Address
 admin_options: Admin Options
+administration: Administration
 agents: Agents
 all: All
 allowed: Allowed
@@ -18,6 +19,7 @@ birth_date: Birth Date
 calendar: Calendar
 check: Check
 click_here: Click Here
+connections: Connections
 confirm: Confirm
 confirm_password: Confirm Password
 continue: Continue
@@ -33,6 +35,7 @@ discover: Discover
 
 edit: Edit
 email: Email
+entity_banner: Entity Banner
 entity: Entity
 events: Events
 everybody: Everybody
@@ -48,12 +51,14 @@ help: Help
 help_privacy: Help and Privacy
 home: Home
 
+identification_number: Identification Number
 illustration: Illustration
 image: Image
 indicators: Indicators
 initiatives: Initiatives
 in_progress: In Progress
 input_search: Search for keywords
+introduction: Introduction
 
 language: Language
 lastname: Last Name
@@ -94,14 +99,17 @@ opportunities: Opportunities
 organizations: Organizations
 
 period: Period
+portfolio: Portfolio
 privacy: Privacy
 profile: Profile
 password: Password
 password_strength: Password Strength
+personal_data: Personal Data
 phone: Phone
 photo: Photo
 profile_picture: Profile Picture
 projects: Projects
+public: Public
 published: Published
 
 recently_modified: Recently modified
@@ -116,9 +124,13 @@ type: Type
 
 user: User
 
+view_all: View All
+
+share: Share
 seals: Seals
 search: Search
 send: Send
+send_message: Send Message
 see_how: See How
 see_more: See More
 sort_by: Sort by
@@ -182,6 +194,16 @@ view:
     areas_of_expertise: Areas of Expertise
     collective_agents: Collective Agents
     individual_agents: Individual Agents
+
+  agent_profile:
+    organizations_of: Organizations of
+    initiative_photo: Initiative Photo
+    space_photo: Space Photo
+    event_photo: Event Photo
+    organization_photo: Organization Photo
+    profile_change_history: Profile Change History
+    report: Report
+    roles_in_culture: Roles in Culture
 
   authentication:
     forgot_password: Forgot my password
