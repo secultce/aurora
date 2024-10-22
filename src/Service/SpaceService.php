@@ -9,15 +9,19 @@ use App\Entity\Space;
 use App\Exception\Space\SpaceResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\SpaceRepositoryInterface;
+use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use DateTime;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class SpaceService implements SpaceServiceInterface
 {
-    private const DEFAULT_FILTERS = [
+    private const array DEFAULT_FILTERS = [
         'deletedAt' => null,
     ];
 
@@ -25,18 +29,14 @@ readonly class SpaceService implements SpaceServiceInterface
         private SpaceRepositoryInterface $repository,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private FileServiceInterface $fileService,
+        private ParameterBagInterface $parameterBag,
     ) {
     }
 
     public function create(array $space): Space
     {
-        $spaceDto = $this->serializer->denormalize($space, SpaceDto::class);
-
-        $violations = $this->validator->validate($spaceDto, groups: SpaceDto::CREATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $space = self::validateInput($space, SpaceDto::CREATE);
 
         $spaceObj = $this->serializer->denormalize($space, Space::class);
 
@@ -78,20 +78,53 @@ readonly class SpaceService implements SpaceServiceInterface
     {
         $spaceFromDB = $this->get($identifier);
 
-        $spaceDto = $this->serializer->denormalize($space, SpaceDto::class);
+        $spaceDto = self::validateInput($space, SpaceDto::UPDATE);
 
-        $violations = $this->validator->validate($spaceDto, groups: SpaceDto::UPDATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        $spaceObj = $this->serializer->denormalize($space, Space::class, context: [
+        $spaceObj = $this->serializer->denormalize($spaceDto, Space::class, context: [
             'object_to_populate' => $spaceFromDB,
         ]);
 
         $spaceObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($spaceObj);
+    }
+
+    /**
+     * @todo: Analizar capacidade de abstrair código duplicado
+     */
+    private function validateInput(array $space, string $group): array
+    {
+        $spaceDto = self::denormalizeDto($space);
+
+        $violations = $this->validator->validate($spaceDto, groups: $group);
+
+        if ($violations->count() > 0) {
+            if ($spaceDto->image instanceof File) {
+                $this->fileService->deleteFile($spaceDto->image->getRealPath());
+            }
+
+            throw new ValidatorException(violations: $violations);
+        }
+
+        if ($spaceDto->image instanceof File) {
+            $space = array_merge($space, ['image' => $spaceDto->image]);
+        }
+
+        return $space;
+    }
+
+    private function denormalizeDto(array $data): SpaceDto
+    {
+        return $this->serializer->denormalize($data, SpaceDto::class, context: [
+            AbstractNormalizer::CALLBACKS => [
+                'image' => function () use ($data): ?File {
+                    if (false === isset($data['image'])) {
+                        return null;
+                    }
+
+                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.space.profile'), $data['image']);
+                },
+            ],
+        ]);
     }
 }

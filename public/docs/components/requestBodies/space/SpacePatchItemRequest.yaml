@@ -4,6 +4,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do espaço"
+  image:
+    type: string
+    format: base64url
+    description: "Imagem do perfil do agente codificada em Base64"
   parent:
     description: "Identificado do espaço pai"
     type: string
