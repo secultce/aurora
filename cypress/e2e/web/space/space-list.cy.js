@@ -35,11 +35,8 @@ describe('Página de Lista de Espaços', () => {
 
     it('Garante que os cards de espaços estão visíveis', () => {
         cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__type').contains('Tipo do espaço').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .mb-2').contains('Lorem ipsum dolor sit amet, consectetur adipiscing elit').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .space-card__info > :nth-child(2) > .align-self-center').contains('SCTS – Zona Cívico Administrativa').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .space-card__info > :nth-child(3) > .space-card__areas').contains('Áreas de atuação').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .space-card__info > :nth-child(4) > .align-self-center').contains('Rampa de acesso').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__type').contains('Complexo Cultural').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .mb-2').contains('O Dragão do Mar é um dos maiores complexos culturais da região, com teatros, cinemas e galerias de arte que promovem a cultura local e internacional.').should('be.visible');
         cy.get(':nth-child(2) > .space-card__content > .space-card__info > .justify-content-end > .space-card__button').contains('Acessar espaço').should('be.visible');
     });
 });

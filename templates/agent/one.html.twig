@@ -2,6 +2,11 @@
 
 {% block title %}{{ agent.name }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/agents.css') }}">
+{% endblock %}
+
 {% block content %}
 
     <section class="entity-section">

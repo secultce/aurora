@@ -27,16 +27,8 @@
     color: var(--color-subtitle-gray);
 }
 
-.space-card__button {
-    width: 15.625rem;
-    height: 3rem;
-    text-decoration: none;
-    color: var(--white-color);
-    background-color: var(--deep-teal);
-    border-radius: 8px;
-    text-align: center;
-    font-weight: 700;
-    line-height: 3rem;
+.space-card__content {
+    width: 100%;
 }
 
 .space-card__areas {

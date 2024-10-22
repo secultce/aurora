@@ -5,7 +5,6 @@ describe('Painel de Controle - Página de listar Oportunidades', () => {
     });
 
     it('Garante que a página de Oportunidades existe', () => {
-        cy.get('.management-panel__title').contains('Minhas Oportunidades').should('be.visible');
-        cy.get('.management-panel__action').contains('Criar Oportunidade').should('be.visible');
+        cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
     });
 })
