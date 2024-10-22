@@ -23,14 +23,14 @@ class OrganizationApiController extends AbstractApiController
     {
         $organization = $this->service->create($request->toArray());
 
-        return $this->json($organization, status: Response::HTTP_CREATED, context: ['groups' => 'organization.get']);
+        return $this->json($organization, status: Response::HTTP_CREATED, context: ['groups' => ['organization.get', 'organization.get.item']]);
     }
 
     public function get(?Uuid $id): JsonResponse
     {
         $organization = $this->service->get($id);
 
-        return $this->json($organization, context: ['groups' => 'organization.get']);
+        return $this->json($organization, context: ['groups' => ['organization.get', 'organization.get.item']]);
     }
 
     public function remove(?Uuid $id): JsonResponse
@@ -54,6 +54,6 @@ class OrganizationApiController extends AbstractApiController
     {
         $organization = $this->service->update($id, $request->toArray());
 
-        return $this->json($organization, Response::HTTP_OK, context: ['groups' => 'organization.get']);
+        return $this->json($organization, Response::HTTP_OK, context: ['groups' => ['organization.get', 'organization.get.item']]);
     }
 }

@@ -35,6 +35,13 @@ properties:
         type: string
         format: uuid
         description: "Identificador do agente"
+  extraFields:
+    type: object
+    description: "Os campos extras da organização"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     type: string
     format: date-time
