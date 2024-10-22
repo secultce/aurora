@@ -24,3 +24,10 @@ properties:
     description: "Identificador do agente criador da oportunidade"
     type: string
     format: uuid
+  extraFields:
+    type: object
+    description: "Os campos extras da oportunidade"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'

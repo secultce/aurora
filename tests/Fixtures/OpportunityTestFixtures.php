@@ -29,6 +29,23 @@ class OpportunityTestFixtures implements TestFixtures
             'space' => SpaceFixtures::SPACE_ID_1,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
             'event' => EventFixtures::EVENT_ID_1,
+            'extraFields' => [
+                'type' => 'Cultural',
+                'period' => [
+                    'startDate' => '2024-08-15',
+                    'endDate' => '2024-09-15',
+                ],
+                'description' => 'Oportunidade para escritores de cordel',
+                'areasOfActivity' => [
+                    0 => 'Literatura',
+                    1 => 'Cultura popular',
+                ],
+                'tags' => [
+                    0 => 'Literatura',
+                    1 => 'Cordel',
+                    2 => 'Nordeste',
+                ],
+            ],
         ]);
     }
 }

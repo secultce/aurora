@@ -44,6 +44,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
             'initiative' => null,
             'event' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => null,
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -74,6 +75,23 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
                 'event' => ['id' => EventFixtures::EVENT_ID_1],
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'extraFields' => [
+                    'type' => 'Cultural',
+                    'period' => [
+                        'startDate' => '2024-08-15',
+                        'endDate' => '2024-09-15',
+                    ],
+                    'description' => 'O Festival de Literatura Nordestina é um evento cultural que reúne escritores, poetas, cordelistas e artistas populares para celebrar a literatura e a cultura do Nordeste.',
+                    'areasOfActivity' => [
+                        0 => 'Literatura',
+                        1 => 'Cultura popular',
+                    ],
+                    'tags' => [
+                        0 => 'Literatura',
+                        1 => 'Cordel',
+                        2 => 'Nordeste',
+                    ],
+                ],
                 'createdAt' => '2024-09-06T10:00:00+00:00',
                 'updatedAt' => '2024-09-06T16:00:00+00:00',
                 'deletedAt' => null,
@@ -82,6 +100,23 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
             'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
             'event' => ['id' => EventFixtures::EVENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => [
+                'type' => 'Cultural',
+                'period' => [
+                    'startDate' => '2024-08-15',
+                    'endDate' => '2024-09-15',
+                ],
+                'description' => 'Oportunidade para escritores de cordel',
+                'areasOfActivity' => [
+                    0 => 'Literatura',
+                    1 => 'Cultura popular',
+                ],
+                'tags' => [
+                    0 => 'Literatura',
+                    1 => 'Cordel',
+                    2 => 'Nordeste',
+                ],
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -169,6 +204,12 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                     ['field' => 'createdBy', 'message' => 'This id does not exist.'],
                 ],
             ],
+            'extraFields should be a valid JSON' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
         ];
     }
 
@@ -230,6 +271,23 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
             ],
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_3,
+            ],
+            'extraFields' => [
+                'type' => 'Cultural',
+                'period' => [
+                    'startDate' => '2024-06-01',
+                    'endDate' => '2024-06-30',
+                ],
+                'description' => 'O São João do Nordeste celebra as tradições juninas com apresentações de quadrilhas e eventos culturais.',
+                'areasOfActivity' => [
+                    0 => 'Dança',
+                    1 => 'Cultura popular',
+                ],
+                'tags' => [
+                    0 => 'Quadrilhas',
+                    1 => 'São João',
+                    2 => 'Nordeste',
+                ],
             ],
             'createdAt' => '2024-09-08T12:00:00+00:00',
             'updatedAt' => null,
@@ -305,6 +363,23 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
                 'event' => ['id' => EventFixtures::EVENT_ID_1],
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'extraFields' => [
+                    'type' => 'Cultural',
+                    'period' => [
+                        'startDate' => '2024-08-15',
+                        'endDate' => '2024-09-15',
+                    ],
+                    'description' => 'O Festival de Literatura Nordestina é um evento cultural que reúne escritores, poetas, cordelistas e artistas populares para celebrar a literatura e a cultura do Nordeste.',
+                    'areasOfActivity' => [
+                        0 => 'Literatura',
+                        1 => 'Cultura popular',
+                    ],
+                    'tags' => [
+                        0 => 'Literatura',
+                        1 => 'Cordel',
+                        2 => 'Nordeste',
+                    ],
+                ],
                 'createdAt' => '2024-09-06T10:00:00+00:00',
                 'updatedAt' => '2024-09-06T16:00:00+00:00',
                 'deletedAt' => null,
@@ -313,6 +388,23 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
             'initiative' => ['id' => $requestBody['initiative']],
             'event' => ['id' => $requestBody['event']],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => [
+                'type' => 'Cultural',
+                'period' => [
+                    'startDate' => '2024-08-15',
+                    'endDate' => '2024-09-15',
+                ],
+                'description' => 'Oportunidade para escritores de cordel',
+                'areasOfActivity' => [
+                    0 => 'Literatura',
+                    1 => 'Cultura popular',
+                ],
+                'tags' => [
+                    0 => 'Literatura',
+                    1 => 'Cordel',
+                    2 => 'Nordeste',
+                ],
+            ],
             'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $opportunity->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -384,6 +476,12 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
                     ['field' => 'createdBy', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'extraFields should be a valid JSON' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
                 ],
             ],
         ];

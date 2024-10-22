@@ -23,14 +23,14 @@ class OpportunityApiController extends AbstractApiController
     {
         $opportunity = $this->service->create($request->toArray());
 
-        return $this->json($opportunity, status: Response::HTTP_CREATED, context: ['groups' => 'opportunity.get']);
+        return $this->json($opportunity, status: Response::HTTP_CREATED, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
     }
 
     public function get(Uuid $id): JsonResponse
     {
         $opportunity = $this->service->get($id);
 
-        return $this->json($opportunity, context: ['groups' => 'opportunity.get']);
+        return $this->json($opportunity, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
     }
 
     public function remove(?Uuid $id): JsonResponse
@@ -54,6 +54,6 @@ class OpportunityApiController extends AbstractApiController
     {
         $opportunity = $this->service->update($id, $request->toArray());
 
-        return $this->json($opportunity, Response::HTTP_OK, context: ['groups' => 'opportunity.get']);
+        return $this->json($opportunity, Response::HTTP_OK, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
     }
 }

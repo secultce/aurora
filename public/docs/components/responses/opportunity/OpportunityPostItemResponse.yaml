@@ -51,6 +51,13 @@ properties:
             type: string
             format: uuid
             description: "Identificador do agente"
+      extraFields:
+        type: object
+        description: "Os campos extras da oportunidade"
+        properties:
+          key:
+            type: string
+            description: 'Valor da chave'
       createdAt:
         type: string
         format: date-time
@@ -97,6 +104,13 @@ properties:
         type: string
         format: uuid
         description: "Identificador do agente"
+  extraFields:
+    type: object
+    description: "Os campos extras da oportunidade"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     $ref: '../../common-types/date.yaml'
     description: "Data e hora da criação da oportunidade"
