@@ -13,6 +13,7 @@ use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
+use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: AgentRepository::class)]
@@ -20,7 +21,7 @@ class Agent extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['agent.get', 'event.get', 'initiative.get', 'opportunity.get', 'space.get', 'organization.get'])]
+    #[Groups(['agent.get', 'event.get', 'initiative.get', 'opportunity.get', 'space.get', 'user.get', 'organization.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
@@ -46,6 +47,12 @@ class Agent extends AbstractEntity
     #[ORM\Column(type: Types::JSON, nullable: true)]
     #[Groups(['agent.get.item'])]
     private ?array $extraFields = null;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
+    #[Groups('agent.get')]
+    #[MaxDepth(1)]
+    private User $user;
 
     #[ORM\ManyToMany(targetEntity: Organization::class, mappedBy: 'agents')]
     #[Groups(['agent.get'])]
@@ -137,6 +144,16 @@ class Agent extends AbstractEntity
     public function setExtraFields(?array $extraFields): void
     {
         $this->extraFields = $extraFields;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): void
+    {
+        $this->user = $user;
     }
 
     public function getOrganizations(): Collection

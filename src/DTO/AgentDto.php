@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DTO;
 
 use App\Entity\Organization;
+use App\Entity\User;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
@@ -57,6 +58,14 @@ class AgentDto
         new Type('bool', groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $culture;
+
+    #[Sequentially([
+        new NotBlank(groups: [self::CREATE]),
+        new NotNull(groups: [self::UPDATE]),
+        new Uuid(groups: [self::CREATE, self::UPDATE]),
+        new Exists(User::class, groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $user;
 
     #[Sequentially([
         new All([new Uuid()], [self::CREATE, self::UPDATE]),

@@ -6,6 +6,7 @@ namespace App\Tests\Functional\Api;
 
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
+use App\DataFixtures\Entity\UserFixtures;
 use App\Entity\Agent;
 use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\AgentTestFixtures;
@@ -53,6 +54,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'longBio' => $requestBody['longBio'],
             'culture' => true,
             'extraFields' => null,
+            'user' => ['id' => $requestBody['user']],
             'organizations' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -87,6 +89,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 'facebook' => '@test.agent',
                 'x' => '@test.agent',
             ],
+            'user' => ['id' => $requestBody['user']],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -124,6 +127,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
                     ['field' => 'shortBio', 'message' => 'This value should not be blank.'],
+                    ['field' => 'user', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -216,6 +220,18 @@ class AgentApiControllerTest extends AbstractWebTestCase
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
                 ],
             ],
+            'user is not a valid UUID' => [
+                'requestBody' => array_merge($requestBody, ['user' => 'invalid-uuid']),
+                'expectedErrors' => [
+                    ['field' => 'user', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'user should exist' => [
+                'requestBody' => array_merge($requestBody, ['user' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'user', 'message' => 'This id does not exist.'],
+                ],
+            ],
         ];
     }
 
@@ -241,6 +257,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => 'Desenvolvedor e evangelista de Software',
             'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
             'culture' => false,
+            'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_2],
             ],
@@ -276,6 +293,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',
             ],
+            'user' => ['id' => UserFixtures::USER_ID_3],
             'organizations' => [],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
@@ -351,6 +369,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
             'extraFields' => $requestBody['extraFields'],
+            'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -382,6 +401,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
             'extraFields' => $requestBody['extraFields'],
+            'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -409,6 +429,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
             'extraFields' => $requestBody['extraFields'],
+            'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
@@ -525,6 +546,24 @@ class AgentApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'user is not a valid UUID' => [
+                'requestBody' => array_merge($requestBody, ['user' => 'invalid-uuid']),
+                'expectedErrors' => [
+                    ['field' => 'user', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'user should exist' => [
+                'requestBody' => array_merge($requestBody, ['user' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'user', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'user should be not null' => [
+                'requestBody' => array_merge($requestBody, ['user' => null]),
+                'expectedErrors' => [
+                    ['field' => 'user', 'message' => 'This value should not be null.'],
                 ],
             ],
         ];

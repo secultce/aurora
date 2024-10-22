@@ -6,6 +6,7 @@ namespace App\Serializer\Denormalizer;
 
 use App\Entity\Agent;
 use App\Entity\Organization;
+use App\Entity\User;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -44,6 +45,11 @@ readonly class AgentDenormalizer implements DenormalizerInterface
 
         /* @var Agent $agent */
         $agent = $this->denormalizer->denormalize($this->filterData($data), $type, $format, $context);
+
+        if (true === array_key_exists('user', $data)) {
+            $data['user'] = $this->entityManager->getRepository(User::class)->find($data['user']);
+            $agent->setUser($data['user']);
+        }
 
         if (true === array_key_exists('organizations', $data)) {
             $agent->setOrganizations(new ArrayCollection($organizations));
