@@ -40,6 +40,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'agents' => [],
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => null,
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -66,6 +67,9 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'agents' => array_map(fn ($id) => ['id' => $id], $requestBody['agents']),
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => [
+                'instagram' => '@organizationtest',
+            ],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -148,6 +152,12 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
                     ['field' => 'owner', 'message' => 'This id does not exist.'],
                 ],
             ],
+            'extra fields should be a valid json object' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
         ];
     }
 
@@ -179,6 +189,37 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
+    public function testGetItem(): void
+    {
+        $client = static::apiClient();
+
+        $url = sprintf('%s/%s', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_3);
+
+        $client->request(Request::METHOD_GET, $url);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $this->assertResponseBodySame([
+            'id' => OrganizationFixtures::ORGANIZATION_ID_3,
+            'name' => 'Devs do Sertão',
+            'description' => 'Grupo de devs que se reúnem velas veredas do sertão',
+            'agents' => [],
+            'owner' => [
+                'id' => AgentFixtures::AGENT_ID_3,
+            ],
+            'createdBy' => [
+                'id' => AgentFixtures::AGENT_ID_3,
+            ],
+            'extraFields' => [
+                'instagram' => '@devsdosertao',
+            ],
+            'createdAt' => '2024-07-16T17:22:00+00:00',
+            'updatedAt' => null,
+            'deletedAt' => null,
+        ]);
+    }
+
     public function testGetAnOrganizationItemWithSuccess(): void
     {
         $client = static::apiClient();
@@ -199,6 +240,9 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             ],
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_3,
+            ],
+            'extraFields' => [
+                'instagram' => '@devsdosertao',
             ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
@@ -269,6 +313,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'agents' => array_map(fn ($id) => ['id' => $id], $requestBody['agents']),
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => $requestBody['extraFields'],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -358,6 +403,12 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
                 'expectedErrors' => [
                     ['field' => 'agents[0]', 'message' => 'This value is not a valid UUID.'],
                     ['field' => 'agents[1]', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'extra fields should be a valid json object' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
                 ],
             ],
         ];

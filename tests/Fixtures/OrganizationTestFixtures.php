@@ -28,6 +28,9 @@ class OrganizationTestFixtures implements TestFixtures
                 AgentFixtures::AGENT_ID_2,
                 AgentFixtures::AGENT_ID_3,
             ],
+            'extraFields' => [
+                'instagram' => '@organizationtest',
+            ],
         ]);
     }
 }

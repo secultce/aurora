@@ -9,6 +9,7 @@ use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -46,6 +47,10 @@ class Organization extends AbstractEntity
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     #[Groups('organization.get')]
     private Agent $createdBy;
+
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[Groups(['organization.get.item'])]
+    private ?array $extraFields = null;
 
     #[ORM\Column]
     #[Groups('organization.get')]
@@ -128,6 +133,16 @@ class Organization extends AbstractEntity
     public function setCreatedBy(Agent $createdBy): void
     {
         $this->createdBy = $createdBy;
+    }
+
+    public function getExtraFields(): ?array
+    {
+        return $this->extraFields;
+    }
+
+    public function setExtraFields(?array $extraFields): void
+    {
+        $this->extraFields = $extraFields;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable

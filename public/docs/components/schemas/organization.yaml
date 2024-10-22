@@ -44,6 +44,13 @@ properties:
         description: "Identificador do agente"
         example: "123e4567-e89b-12d3-a456-426614174000"
     description: "Criador da organização"
+  extraFields:
+    type: object
+    description: "Os campos extras da organização"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
   createdAt:
     $ref: '../common-types/date.yaml'
     description: "Data e hora da criação da organização"

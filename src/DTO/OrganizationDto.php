@@ -6,6 +6,7 @@ namespace App\DTO;
 
 use App\Entity\Agent;
 use App\Validator\Constraints\Exists;
+use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Length;
@@ -55,4 +56,7 @@ class OrganizationDto
         new Exists(Agent::class),
     ], groups: [self::CREATE, self::UPDATE])]
     public mixed $agents;
+
+    #[Sequentially([new Json(groups: [self::CREATE, self::UPDATE])])]
+    public mixed $extraFields;
 }

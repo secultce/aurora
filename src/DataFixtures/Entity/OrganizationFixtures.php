@@ -34,6 +34,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'agents' => [],
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@phpcomrapadura',
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
@@ -50,6 +53,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             ],
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@capoeiraaxezumbi',
+            ],
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -62,6 +68,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_3,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@devsdosertao',
+            ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -74,6 +83,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@sertaodev',
+            ],
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -86,6 +98,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_3,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@grupoderapente',
+            ],
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -98,6 +113,13 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_2,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@comunidadevidacomcristo',
+                'locations' => [
+                    'R. Principal, 100, Centro, Fortaleza-CE, 60100-000',
+                    'R. Secondária, 200, Aldeota, Fortaleza-CE, 60200-000',
+                ],
+            ],
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -110,6 +132,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@candombleraizesdobrasil',
+            ],
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -122,6 +147,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@baiaodedev',
+            ],
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -134,6 +162,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => self::ORGANIZATION_ID_8,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@phpeste',
+            ],
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -146,6 +177,9 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => self::ORGANIZATION_ID_9,
             'space' => null,
+            'extraFields' => [
+                'instagram' => '@forrotonemveno',
+            ],
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
