@@ -17,7 +17,7 @@ class OpportunityAdminController extends AbstractAdminController
     public function list(): Response
     {
         $opportunities = $this->service->list([
-            'createdBy' => $this->getUser()->getId(),
+            // 'createdBy' => $this->getUser()->getId(),
         ]);
 
         return $this->render('opportunity/list.html.twig', [

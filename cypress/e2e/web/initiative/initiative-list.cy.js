@@ -48,11 +48,11 @@ describe('Página de Listar Iniciativas', () => {
             cy.get('.initiative-info').contains('Em andamento').should('be.visible');
             cy.get('.initiative-id').contains('ID:').should('be.visible');
             cy.get('strong').contains('Tipo:').should('be.visible');
-            cy.get('span').contains('TIPO DA INICIATIVA').should('be.visible');
-            cy.get('.initiative-date').contains('00/00/0000 às 00:00').should('be.visible');
+            cy.get('span').contains('Exposição').should('be.visible');
+            cy.get('.initiative-date').contains('01/08/2024 a 31/08/2024').should('be.visible');
             cy.get('.initiative-location').contains('Galeria Caatinga').should('be.visible');
             cy.get('.initiative-seals').contains('Selos:').should('be.visible');
-            cy.get('.initiative-description').contains('lorem ipsum dolor sit amet').should('be.visible');
+            cy.get('.initiative-description').contains('Arte da Caatinga é uma exposição de arte que reúne artistas de todo o Brasil para celebrar a cultura nordestina.').should('be.visible');
             cy.get('a').contains('Acessar Iniciativa').should('be.visible');
         });
     });

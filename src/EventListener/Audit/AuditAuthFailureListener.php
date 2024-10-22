@@ -36,6 +36,10 @@ class AuditAuthFailureListener extends AbstractAuditListener
         $document->setDevice($this->getDevice());
         $document->setPlatform($this->getPlatform());
 
+        if ('/login' === $this->requestStack->getCurrentRequest()->getPathInfo()) {
+            return;
+        }
+
         $email = $this->requestStack->getCurrentRequest()?->toArray()['username'] ?? null;
 
         $user = null;
