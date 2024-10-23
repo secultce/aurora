@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Tests\Fixtures;
 
 use App\DataFixtures\Entity\OrganizationFixtures;
+use App\DataFixtures\Entity\UserFixtures;
 use Symfony\Component\Uid\Uuid;
 
 class AgentTestFixtures implements TestFixtures
@@ -18,6 +19,7 @@ class AgentTestFixtures implements TestFixtures
             'shortBio' => 'Short Bio',
             'longBio' => 'Long Bio',
             'culture' => true,
+            'user' => UserFixtures::USER_ID_1,
         ];
     }
 

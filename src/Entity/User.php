@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -20,7 +21,7 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['user.get'])]
+    #[Groups(['agent.get', 'user.get'])]
     private Uuid $id;
 
     #[ORM\Column(length: 50)]
@@ -41,6 +42,10 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(length: 100, nullable: true)]
     #[Groups(['user.get'])]
     private ?string $image = null;
+
+    #[ORM\OneToMany(targetEntity: Agent::class, mappedBy: 'user')]
+    #[Groups(['user.get'])]
+    private Collection $agents;
 
     #[ORM\Column]
     #[Groups(['user.get'])]
@@ -127,6 +132,16 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     public function setImage(?string $image): void
     {
         $this->image = $image;
+    }
+
+    public function getAgents(): Collection
+    {
+        return $this->agents;
+    }
+
+    public function setAgents(Collection $agents): void
+    {
+        $this->agents = $agents;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable

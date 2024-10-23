@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\UserFixtures;
 use App\Entity\User;
 use App\Tests\AbstractWebTestCase;
@@ -48,6 +49,9 @@ class UserApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => UserFixtures::USER_ID_5,
             'image' => $user->getImage(),
+            'agents' => [
+                ['id' => AgentFixtures::AGENT_ID_5],
+            ],
             'createdAt' => $user->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $user->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -79,6 +83,9 @@ class UserApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => UserFixtures::USER_ID_5,
             'image' => $userUpdated->getImage(),
+            'agents' => [
+                ['id' => AgentFixtures::AGENT_ID_5],
+            ],
             'createdAt' => $userUpdated->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $userUpdated->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,

@@ -7,11 +7,12 @@ namespace App\DataFixtures\Entity;
 use App\Entity\Agent;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class AgentFixtures extends Fixture
+final class AgentFixtures extends Fixture implements DependentFixtureInterface
 {
     public const string AGENT_ID_PREFIX = 'agent';
     public const string AGENT_ID_1 = '0cc8c682-b0cd-4cb3-bd9d-41a9161b3566';
@@ -37,6 +38,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'alessandro@example.com',
                 'instagram' => '@alessandro',
             ],
+            'user' => UserFixtures::USER_ID_1,
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T11:37:00+00:00',
             'deletedAt' => null,
@@ -52,6 +54,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'henrique@example.com',
                 'instagram' => '@henrique',
             ],
+            'user' => UserFixtures::USER_ID_2,
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -67,6 +70,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',
             ],
+            'user' => UserFixtures::USER_ID_3,
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -82,6 +86,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'sara@example.com',
                 'instagram' => '@sara',
             ],
+            'user' => UserFixtures::USER_ID_4,
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -97,6 +102,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'talyson@example.com',
                 'instagram' => '@talyson',
             ],
+            'user' => UserFixtures::USER_ID_5,
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -112,6 +118,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'raquel@example.com',
                 'instagram' => '@raquel',
             ],
+            'user' => UserFixtures::USER_ID_6,
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -127,6 +134,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'lucas@example.com',
                 'instagram' => '@lucas',
             ],
+            'user' => UserFixtures::USER_ID_7,
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -142,6 +150,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'maria@example.com',
                 'instagram' => '@maria',
             ],
+            'user' => UserFixtures::USER_ID_8,
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -157,6 +166,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'abner@example.com',
                 'instagram' => '@abner',
             ],
+            'user' => UserFixtures::USER_ID_9,
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -172,6 +182,7 @@ final class AgentFixtures extends Fixture
                 'email' => 'paulo@example.com',
                 'instagram' => '@paulo',
             ],
+            'user' => UserFixtures::USER_ID_10,
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -183,6 +194,13 @@ final class AgentFixtures extends Fixture
         private readonly FileServiceInterface $fileService,
         private readonly ParameterBagInterface $parameterBag,
     ) {
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            UserFixtures::class,
+        ];
     }
 
     public function load(ObjectManager $manager): void
@@ -197,6 +215,11 @@ final class AgentFixtures extends Fixture
             }
 
             $agent = $this->serializer->denormalize($agentData, Agent::class);
+
+            if (null !== $agentData['user']) {
+                $user = $this->getReference(sprintf('%s-%s', UserFixtures::USER_ID_PREFIX, $agentData['user']));
+                $agent->setUser($user);
+            }
 
             $this->setReference(sprintf('%s-%s', self::AGENT_ID_PREFIX, $agentData['id']), $agent);
 
