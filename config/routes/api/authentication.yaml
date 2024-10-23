@@ -2,3 +2,8 @@ login:
   path: /login
   controller: App\Controller\Api\AuthenticationApiController::login
   methods: ['POST']
+
+logout:
+  path: /logout
+  controller: App\Controller\Api\AuthenticationApiController::logout
+  methods: ['POST']
