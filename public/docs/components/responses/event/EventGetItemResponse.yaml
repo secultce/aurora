@@ -34,7 +34,7 @@ properties:
         format: uuid
         description: "Identificador da iniciativa"
         example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
-  parentEvent:
+  parent:
     type: object
     properties:
       id:
@@ -55,45 +55,54 @@ properties:
             format: uuid
             description: "Identificador do grupo de agentes"
             example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
-          space:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: "Identificador do espaço"
-                example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
-          initiative:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: "Identificador da iniciativa"
-                example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
-          parent:
-            type: object
-            example: null
-          createby:
-            type: object
-            properties:
-              id:
-                type: string
-                format: uuid
-                description: "Identificador do criador do evento pai"
-                example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
-          createdAt:
-            $ref: '../../common-types/date.yaml'
-            description: "Data e hora da criação do evento"
-          updatedAt:
-            $ref: '../../common-types/date.yaml'
-            nullable: true
-            description: "Data e hora da última atualização do evento"
-          deletedAt:
-            $ref: '../../common-types/date.yaml'
-            nullable: true
-            description: "Data e hora da exclusão do evento"
-  createby:
+      space:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do espaço"
+            example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+      initiative:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador da iniciativa"
+            example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+      parent:
+        type: object
+        example: null
+      extraFields:
+        type: object
+        nullable: true
+        example: null
+      createdBy:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do criador do evento pai"
+            example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
+      createdAt:
+        $ref: '../../common-types/date.yaml'
+        description: "Data e hora da criação do evento"
+      updatedAt:
+        $ref: '../../common-types/date.yaml'
+        nullable: true
+        description: "Data e hora da última atualização do evento"
+      deletedAt:
+        $ref: '../../common-types/date.yaml'
+        nullable: true
+        description: "Data e hora da exclusão do evento"
+  extraFields:
+    type: object
+    nullable: true
+    description: "Campos extras do evento"
+    example: { "occurrences": [ '2025-12-25T15:30-03:00' ] }
+  createdBy:
     type: object
     properties:
       id:
