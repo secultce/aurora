@@ -11,14 +11,19 @@ final class ImageTestFixtures
         return self::getCodeBase64ToImage('agent.png');
     }
 
-    public static function getUserImage(): string
+    public static function getInitiativeImage(): string
     {
-        return self::getCodeBase64ToImage('user.png');
+        return self::getCodeBase64ToImage('initiative.jpg');
     }
 
     public static function getSpaceImage(): string
     {
         return self::getCodeBase64ToImage('space.png');
+    }
+
+    public static function getUserImage(): string
+    {
+        return self::getCodeBase64ToImage('user.png');
     }
 
     private static function getCodeBase64ToImage(string $image): string

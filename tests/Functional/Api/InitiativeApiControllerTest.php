@@ -9,6 +9,7 @@ use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Initiative;
 use App\Tests\AbstractWebTestCase;
+use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\InitiativeTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,9 +33,13 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCount(count(InitiativeFixtures::INITIATIVES), json_decode($response));
 
+        $initiative = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Initiative::class, InitiativeFixtures::INITIATIVE_ID_1);
+
         $this->assertJsonContains([
             'id' => InitiativeFixtures::INITIATIVE_ID_1,
             'name' => 'Vozes do Sertão',
+            'image' => $initiative->getImage(),
             'parent' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
@@ -58,9 +63,14 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $initiative = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Initiative::class, InitiativeFixtures::INITIATIVE_ID_1);
+
         $this->assertResponseBodySame([
             'id' => InitiativeFixtures::INITIATIVE_ID_1,
             'name' => 'Vozes do Sertão',
+            'image' => $initiative->getImage(),
             'parent' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
@@ -140,6 +150,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'parent' => null,
             'space' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -166,9 +177,11 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => $initiative->getImage(),
             'parent' => [
                 'id' => $requestBody['parent'],
                 'name' => 'Raízes e Tradições',
+                'image' => $initiative->getParent()->getImage(),
                 'space' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
@@ -245,6 +258,18 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
             ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
+                ],
+            ],
             'createdBy should exist' => [
                 'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
@@ -309,9 +334,59 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => InitiativeFixtures::INITIATIVE_ID_8,
             'name' => $requestBody['name'],
+            'image' => $initiative->getImage(),
             'parent' => [
                 'id' => InitiativeFixtures::INITIATIVE_ID_2,
                 'name' => 'Raízes e Tradições',
+                'image' => $initiative->getParent()->getImage(),
+                'space' => null,
+                'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'extraFields' => [
+                    'type' => 'Cultural',
+                    'period' => [
+                        'startDate' => '2024-08-15',
+                        'endDate' => '2024-09-15',
+                    ],
+                    'description' => 'Raízes e Tradições é uma exposição que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+                ],
+                'createdAt' => '2024-07-11T10:49:00+00:00',
+                'updatedAt' => null,
+                'deletedAt' => null,
+            ],
+            'space' => [
+                'id' => SpaceFixtures::SPACE_ID_4,
+            ],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'extraFields' => $requestBody['extraFields'],
+            'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $initiative->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    public function testCanUpdateImage(): void
+    {
+        $requestBody = InitiativeTestFixtures::complete();
+        unset($requestBody['id']);
+
+        $url = sprintf('%s/%s', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_8);
+        $client = self::apiClient();
+
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $initiative = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Initiative::class, InitiativeFixtures::INITIATIVE_ID_8);
+
+        $this->assertResponseBodySame([
+            'id' => InitiativeFixtures::INITIATIVE_ID_8,
+            'name' => $requestBody['name'],
+            'image' => $initiative->getImage(),
+            'parent' => [
+                'id' => InitiativeFixtures::INITIATIVE_ID_2,
+                'name' => 'Raízes e Tradições',
+                'image' => $initiative->getParent()->getImage(),
                 'space' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
@@ -372,6 +447,18 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
             'parent should exists' => [
