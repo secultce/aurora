@@ -23,14 +23,14 @@ class EventApiController extends AbstractApiController
     {
         $event = $this->service->create($request->toArray());
 
-        return $this->json($event, status: Response::HTTP_CREATED, context: ['groups' => 'event.get']);
+        return $this->json($event, status: Response::HTTP_CREATED, context: ['groups' => ['event.get', 'event.get.item']]);
     }
 
     public function get(Uuid $id): JsonResponse
     {
         $event = $this->service->get($id);
 
-        return $this->json($event, context: ['groups' => 'event.get']);
+        return $this->json($event, context: ['groups' => ['event.get', 'event.get.item']]);
     }
 
     public function remove(?Uuid $id): JsonResponse
@@ -54,6 +54,6 @@ class EventApiController extends AbstractApiController
     {
         $event = $this->service->update($id, $request->toArray());
 
-        return $this->json($event, Response::HTTP_OK, context: ['groups' => 'event.get']);
+        return $this->json($event, Response::HTTP_OK, context: ['groups' => ['event.get', 'event.get.item']]);
     }
 }

@@ -28,6 +28,16 @@ class EventTestFixtures implements TestFixtures
     {
         return array_merge(self::partial(), [
             'parent' => EventFixtures::EVENT_ID_1,
+            'extraFields' => [
+                'occurrences' => [
+                    '2025-01-16T09:45:00-03:00',
+                    '2025-02-13T09:45:00-03:00',
+                    '2025-03-13T09:45:00-03:00',
+                ],
+                'description' => 'Test Event Description',
+                'locationDescription' => 'Test Event Location',
+                'instagram' => '@mytestevent',
+            ],
         ]);
     }
 }

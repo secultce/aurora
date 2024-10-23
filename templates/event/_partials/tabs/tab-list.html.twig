@@ -28,7 +28,12 @@
         <div class="event-card-body">
             <p class="event-date fw-bold">
                 <i class="material-icons">event</i>
-                00/00/0000 às 00:00
+                {% set occurrence = (event.extraFields.occurrences ?? ['-2days'])|sort|find(o => date(o) > date('now')) %}
+                {% if occurrence is empty %}
+                    {{ 'view.event.not_set_datetime'|trans }}
+                {% else %}
+                    {{ occurrence|date('view.event.format_datetime'|trans) }}
+                {% endif %}
             </p>
 
             <p class="event-location">

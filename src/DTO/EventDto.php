@@ -9,6 +9,7 @@ use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
 use App\Validator\Constraints\Exists;
+use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -59,6 +60,9 @@ class EventDto
         new Exists(Event::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $parent;
+
+    #[Sequentially(new Json(groups: [self::CREATE, self::UPDATE]))]
+    public mixed $extraFields;
 
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
