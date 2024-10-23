@@ -1,0 +1,4 @@
+logout:
+  path: /logout
+  controller: App\Controller\Api\LogoutApiController::logout
+  methods: ['DELETE']

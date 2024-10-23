@@ -8,6 +8,8 @@ parameters:
     app.dir.storage: '%env(resolve:STORAGE_DIR)%'
     app.url.storage: '%env(resolve:STORAGE_BASE_URL)%'
 
+    jwt_public_key: '%env(resolve:JWT_PUBLIC_KEY)%'
+
 imports:
     - { resource: directories.yaml }
 
@@ -36,3 +38,7 @@ services:
         arguments:
             $filesystem: '@default.storage'
         public: true
+
+    App\Controller\Api\LogoutApiController:
+        arguments:
+            $jwtPublicKey: '%jwt_public_key%'
