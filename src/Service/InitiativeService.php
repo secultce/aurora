@@ -9,8 +9,12 @@ use App\Entity\Initiative;
 use App\Exception\Initiative\InitiativeResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\InitiativeRepositoryInterface;
+use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
 use DateTime;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -25,6 +29,8 @@ readonly class InitiativeService implements InitiativeServiceInterface
         private InitiativeRepositoryInterface $repository,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private FileServiceInterface $fileService,
+        private ParameterBagInterface $parameterBag,
     ) {
     }
 
@@ -61,13 +67,7 @@ readonly class InitiativeService implements InitiativeServiceInterface
 
     public function create(array $initiative): Initiative
     {
-        $initiativeDto = $this->serializer->denormalize($initiative, InitiativeDto::class);
-
-        $violations = $this->validator->validate($initiativeDto, groups: InitiativeDto::CREATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $initiative = self::validateInput($initiative, InitiativeDto::CREATE);
 
         $initiativeObj = $this->serializer->denormalize($initiative, Initiative::class);
 
@@ -78,20 +78,50 @@ readonly class InitiativeService implements InitiativeServiceInterface
     {
         $initiativeFromDB = $this->get($id);
 
-        $initiativeDto = $this->serializer->denormalize($initiative, InitiativeDto::class);
+        $initiativeDto = self::validateInput($initiative, InitiativeDto::UPDATE);
 
-        $violations = $this->validator->validate($initiativeDto, groups: InitiativeDto::UPDATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        $initiativeObj = $this->serializer->denormalize($initiative, Initiative::class, context: [
+        $initiativeObj = $this->serializer->denormalize($initiativeDto, Initiative::class, context: [
             'object_to_populate' => $initiativeFromDB,
         ]);
 
         $initiativeObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($initiativeObj);
+    }
+
+    private function validateInput(array $initiative, string $group): array
+    {
+        $initiativeDto = self::denormalizeDto($initiative);
+
+        $violations = $this->validator->validate($initiativeDto, groups: $group);
+
+        if ($violations->count() > 0) {
+            if ($initiativeDto->image instanceof File) {
+                $this->fileService->deleteFile($initiativeDto->image->getRealPath());
+            }
+
+            throw new ValidatorException(violations: $violations);
+        }
+
+        if ($initiativeDto->image instanceof File) {
+            $initiative = array_merge($initiative, ['image' => $initiativeDto->image]);
+        }
+
+        return $initiative;
+    }
+
+    private function denormalizeDto(array $data): InitiativeDto
+    {
+        return $this->serializer->denormalize($data, InitiativeDto::class, context: [
+            AbstractNormalizer::CALLBACKS => [
+                'image' => function () use ($data): ?File {
+                    if (false === isset($data['image'])) {
+                        return null;
+                    }
+
+                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.initiative.profile'), $data['image']);
+                },
+            ],
+        ]);
     }
 }

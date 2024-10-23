@@ -10,6 +10,7 @@ use App\Entity\Space;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 use Symfony\Component\Validator\Constraints\Sequentially;
@@ -32,6 +33,9 @@ class InitiativeDto
         new Length(min: 2, max: 100, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $name;
+
+    #[Sequentially([new Image(maxSize: 2000000, mimeTypes: ['image/png', 'image/jpg', 'image/jpeg'], groups: [self::CREATE, self::UPDATE])])]
+    public mixed $image = null;
 
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),
