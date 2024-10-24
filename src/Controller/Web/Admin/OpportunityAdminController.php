@@ -10,15 +10,13 @@ use Symfony\Component\HttpFoundation\Response;
 class OpportunityAdminController extends AbstractAdminController
 {
     public function __construct(
-        private OpportunityServiceInterface $service
+        private OpportunityServiceInterface $service,
     ) {
     }
 
     public function list(): Response
     {
-        $opportunities = $this->service->list([
-            // 'createdBy' => $this->getUser()->getId(),
-        ]);
+        $opportunities = $this->service->myOpportunities($this->getUser());
 
         return $this->render('opportunity/list.html.twig', [
             'opportunities' => $opportunities,

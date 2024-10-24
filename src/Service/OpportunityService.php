@@ -11,6 +11,7 @@ use App\Exception\ValidatorException;
 use App\Repository\Interface\OpportunityRepositoryInterface;
 use App\Service\Interface\OpportunityServiceInterface;
 use DateTime;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -63,6 +64,19 @@ readonly class OpportunityService implements OpportunityServiceInterface
             array_merge($filters, self::DEFAULT_FILTERS),
             ['createdAt' => 'DESC'],
             $limit
+        );
+    }
+
+    public function myOpportunities(UserInterface $user): array
+    {
+        $filters = [
+            'createdBy' => [$user->getAgents()->map(fn ($item) => $item->getId())]
+        ];
+
+
+        return $this->repository->findBy(
+            array_merge($filters, self::DEFAULT_FILTERS),
+            ['createdAt' => 'DESC']
         );
     }
 

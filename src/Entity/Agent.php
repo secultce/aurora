@@ -48,7 +48,7 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get.item'])]
     private ?array $extraFields = null;
 
-    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'agents')]
     #[ORM\JoinColumn(name: 'user_id', referencedColumnName: 'id')]
     #[Groups('agent.get')]
     #[MaxDepth(1)]

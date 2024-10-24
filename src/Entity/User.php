@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\UserRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -58,6 +59,11 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(nullable: true)]
     #[Groups(['user.get'])]
     private ?DateTime $deletedAt = null;
+
+    public function __construct()
+    {
+        $this->agents = new ArrayCollection();
+    }
 
     public function getId(): Uuid
     {
@@ -142,6 +148,11 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     public function setAgents(Collection $agents): void
     {
         $this->agents = $agents;
+    }
+
+    public function addAgent(Agent $agent): void
+    {
+        $this->agents->add($agent);
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
