@@ -12,3 +12,8 @@ admin_dashboard:
   path: /painel
   controller: App\Controller\Web\Admin\DashboardAdminController::index
   methods: ['GET']
+
+admin_agent:
+    resource: 'admin/agent.yaml'
+    prefix: /painel/agentes
+    name_prefix: admin_agent_
