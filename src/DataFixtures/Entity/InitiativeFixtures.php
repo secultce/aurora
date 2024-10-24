@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Initiative;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class InitiativeFixtures extends Fixture implements DependentFixtureInterface
+final class InitiativeFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public const string INITIATIVE_ID_PREFIX = 'initiative';
     public const string INITIATIVE_ID_1 = 'f0774ecd-4860-4b8c-9607-32090dc31f71';
@@ -27,7 +28,7 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
     public const array INITIATIVES = [
         [
             'id' => self::INITIATIVE_ID_1,
-            'name' => 'Vozes do Sertão',
+            'name' => 'Voz',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
@@ -40,7 +41,7 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
                 'description' => 'Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => '2024-07-10T12:20:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
@@ -207,35 +208,33 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
         ],
     ];
 
+    public const array INITIATIVES_UPDATED = [
+        [
+            'id' => self::INITIATIVE_ID_1,
+            'name' => 'Vozes do Sertão',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
+            'space' => SpaceFixtures::SPACE_ID_4,
+            'extraFields' => [
+                'type' => 'Musical',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'description' => 'Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
+            'createdAt' => '2024-07-10T11:30:00+00:00',
+            'updatedAt' => '2024-07-10T12:20:00+00:00',
+            'deletedAt' => null,
+        ],
+    ];
+
     public function __construct(
+        protected EntityManagerInterface $entityManager,
+        protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
     ) {
-    }
-
-    public function load(ObjectManager $manager): void
-    {
-        foreach (self::INITIATIVES as $initiativeData) {
-            /* @var Initiative $initiative */
-            $initiative = $this->serializer->denormalize($initiativeData, Initiative::class);
-
-            $initiative->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $initiativeData['createdBy'])));
-
-            if (null !== $initiativeData['parent']) {
-                $parent = $this->getReference(sprintf('%s-%s', self::INITIATIVE_ID_PREFIX, $initiativeData['parent']));
-                $initiative->setParent($parent);
-            }
-
-            if (null !== $initiativeData['space']) {
-                $parent = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $initiativeData['space']));
-                $initiative->setSpace($parent);
-            }
-
-            $this->setReference(sprintf('%s-%s', self::INITIATIVE_ID_PREFIX, $initiativeData['id']), $initiative);
-
-            $manager->persist($initiative);
-        }
-
-        $manager->flush();
+        parent::__construct($entityManager, $tokenStorage);
     }
 
     public function getDependencies(): array
@@ -244,5 +243,62 @@ final class InitiativeFixtures extends Fixture implements DependentFixtureInterf
             AgentFixtures::class,
             SpaceFixtures::class,
         ];
+    }
+
+    public function load(ObjectManager $manager): void
+    {
+        $this->createInitiatives($manager);
+        $this->updateInitiatives($manager);
+        $this->manualLogout();
+    }
+
+    private function createInitiatives(ObjectManager $manager): void
+    {
+        foreach (self::INITIATIVES as $initiativeData) {
+            $initiative = $this->mountInitiative($initiativeData);
+
+            $this->setReference(sprintf('%s-%s', self::INITIATIVE_ID_PREFIX, $initiativeData['id']), $initiative);
+
+            $this->manualLoginByAgent($initiativeData['createdBy']);
+
+            $manager->persist($initiative);
+        }
+
+        $manager->flush();
+    }
+
+    private function updateInitiatives(ObjectManager $manager): void
+    {
+        foreach (self::INITIATIVES_UPDATED as $initiativeData) {
+            $initiativeObj = $this->getReference(sprintf('%s-%s', self::INITIATIVE_ID_PREFIX, $initiativeData['id']), Initiative::class);
+
+            $initiative = $this->mountInitiative($initiativeData, ['object_to_populate' => $initiativeObj]);
+
+            $this->manualLoginByAgent($initiativeData['createdBy']);
+
+            $manager->persist($initiative);
+        }
+
+        $manager->flush();
+    }
+
+    private function mountInitiative(array $initiativeData, array $context = []): Initiative
+    {
+        /* @var Initiative $initiative */
+        $initiative = $this->serializer->denormalize($initiativeData, Initiative::class, context: $context);
+
+        $initiative->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $initiativeData['createdBy'])));
+
+        if (null !== $initiativeData['parent']) {
+            $parent = $this->getReference(sprintf('%s-%s', self::INITIATIVE_ID_PREFIX, $initiativeData['parent']));
+            $initiative->setParent($parent);
+        }
+
+        if (null !== $initiativeData['space']) {
+            $parent = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $initiativeData['space']));
+            $initiative->setSpace($parent);
+        }
+
+        return $initiative;
     }
 }

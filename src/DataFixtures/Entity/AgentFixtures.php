@@ -5,14 +5,16 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Agent;
+use App\Entity\User;
 use App\Service\Interface\FileServiceInterface;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class AgentFixtures extends Fixture implements DependentFixtureInterface
+final class AgentFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public const string AGENT_ID_PREFIX = 'agent';
     public const string AGENT_ID_1 = '0cc8c682-b0cd-4cb3-bd9d-41a9161b3566';
@@ -29,7 +31,7 @@ final class AgentFixtures extends Fixture implements DependentFixtureInterface
     public const array AGENTS = [
         [
             'id' => self::AGENT_ID_1,
-            'name' => 'Alessandro',
+            'name' => 'Feitoza',
             'image' => null,
             'shortBio' => 'Desenvolvedor e evangelista de Software',
             'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
@@ -40,7 +42,7 @@ final class AgentFixtures extends Fixture implements DependentFixtureInterface
             ],
             'user' => UserFixtures::USER_ID_1,
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => '2024-07-10T11:37:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
@@ -189,11 +191,32 @@ final class AgentFixtures extends Fixture implements DependentFixtureInterface
         ],
     ];
 
+    public const array AGENTS_UPDATED = [
+        [
+            'id' => self::AGENT_ID_1,
+            'name' => 'Alessandro',
+            'image' => null,
+            'shortBio' => 'Desenvolvedor e evangelista de Software',
+            'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
+            'culture' => false,
+            'extraFields' => [
+                'email' => 'alessandro@example.com',
+                'instagram' => '@alessandro',
+            ],
+            'createdAt' => '2024-07-10T11:30:00+00:00',
+            'updatedAt' => '2024-07-10T11:37:00+00:00',
+            'deletedAt' => null,
+        ],
+    ];
+
     public function __construct(
+        protected EntityManagerInterface $entityManager,
+        protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
         private readonly FileServiceInterface $fileService,
         private readonly ParameterBagInterface $parameterBag,
     ) {
+        parent::__construct($entityManager, $tokenStorage);
     }
 
     public function getDependencies(): array
@@ -205,26 +228,52 @@ final class AgentFixtures extends Fixture implements DependentFixtureInterface
 
     public function load(ObjectManager $manager): void
     {
+        $this->createAgents($manager);
+        $this->updateAgents($manager);
+        $this->manualLogout();
+    }
+
+    private function createAgents(ObjectManager $manager): void
+    {
         $counter = 0;
 
         foreach (self::AGENTS as $agentData) {
-            /* @var Agent $agent */
             if (5 > $counter) {
                 $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.agent.profile'), ImageTestFixtures::getAgentImage());
                 $agentData['image'] = $file;
             }
 
+            /* @var Agent $agent */
             $agent = $this->serializer->denormalize($agentData, Agent::class);
 
-            if (null !== $agentData['user']) {
-                $user = $this->getReference(sprintf('%s-%s', UserFixtures::USER_ID_PREFIX, $agentData['user']));
-                $agent->setUser($user);
-            }
+            /* @var User $user */
+            $user = $this->getReference(sprintf('%s-%s', UserFixtures::USER_ID_PREFIX, $agentData['user']));
+            $agent->setUser($user);
+
+            $this->manualLogin($user->getId()->toRfc4122());
 
             $this->setReference(sprintf('%s-%s', self::AGENT_ID_PREFIX, $agentData['id']), $agent);
 
             $manager->persist($agent);
             $counter++;
+        }
+
+        $manager->flush();
+    }
+
+    private function updateAgents(ObjectManager $manager): void
+    {
+        foreach (self::AGENTS_UPDATED as $agentData) {
+            unset($agentData['image']);
+
+            $agentObj = $this->getReference(sprintf('%s-%s', self::AGENT_ID_PREFIX, $agentData['id']), Agent::class);
+
+            /* @var Agent $agent */
+            $agent = $this->serializer->denormalize($agentData, Agent::class, context: ['object_to_populate' => $agentObj]);
+
+            $this->manualLogin($agent->getUser()->getId()->toRfc4122());
+
+            $manager->persist($agent);
         }
 
         $manager->flush();

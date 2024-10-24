@@ -6,13 +6,14 @@ namespace App\DataFixtures\Entity;
 
 use App\Entity\User;
 use App\Service\Interface\FileServiceInterface;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class UserFixtures extends Fixture
+final class UserFixtures extends AbstractFixture
 {
     public const string USER_ID_PREFIX = 'user';
     public const string USER_ID_1 = '2604e656-57dc-4e1c-9fa8-efdf4a00b203';
@@ -31,13 +32,13 @@ final class UserFixtures extends Fixture
     public const array USERS = [
         [
             'id' => self::USER_ID_1,
-            'firstname' => 'Francisco',
+            'firstname' => 'Fro',
             'lastname' => ' Alessandro Feitoza',
             'socialName' => 'Alessandro Feitoza',
             'email' => 'alessandrofeitoza@example.com',
             'image' => null,
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => '2024-07-10T11:35:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
@@ -141,18 +142,45 @@ final class UserFixtures extends Fixture
         ],
     ];
 
+    public const array USERS_UPDATED = [
+        [
+            'id' => self::USER_ID_1,
+            'firstname' => 'Francisco',
+            'lastname' => ' Alessandro Feitoza',
+            'socialName' => 'Alessandro Feitoza',
+            'email' => 'alessandrofeitoza@example.com',
+            'image' => null,
+            'createdAt' => '2024-07-10T11:30:00+00:00',
+            'updatedAt' => '2024-07-10T11:35:00+00:00',
+            'deletedAt' => null,
+        ],
+    ];
+
+    private string $password;
+
     public function __construct(
+        EntityManagerInterface $entityManager,
+        TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
         private readonly PasswordHasherFactoryInterface $passwordHasherFactory,
         private readonly FileServiceInterface $fileService,
         private readonly ParameterBagInterface $parameterBag,
     ) {
+        parent::__construct($entityManager, $tokenStorage);
+
+        $this->password = $this->passwordHasherFactory->getPasswordHasher(User::class)->hash(self::DEFAULT_PASSWORD);
     }
 
     public function load(ObjectManager $manager): void
     {
+        $this->createUsers($manager);
+        $this->updateUsers($manager);
+        $this->manualLogout();
+    }
+
+    private function createUsers(ObjectManager $manager): void
+    {
         $counter = 0;
-        $password = $this->passwordHasherFactory->getPasswordHasher(User::class)->hash(self::DEFAULT_PASSWORD);
 
         foreach (self::USERS as $userData) {
             /* @var User $user */
@@ -162,7 +190,7 @@ final class UserFixtures extends Fixture
             }
 
             $user = $this->serializer->denormalize($userData, User::class);
-            $user->setPassword($password);
+            $user->setPassword($this->password);
             $this->setReference(sprintf('%s-%s', self::USER_ID_PREFIX, $userData['id']), $user);
 
             $manager->persist($user);
@@ -170,5 +198,24 @@ final class UserFixtures extends Fixture
         }
 
         $manager->flush();
+    }
+
+    private function updateUsers(ObjectManager $manager): void
+    {
+        foreach (self::USERS_UPDATED as $userData) {
+            unset($userData['image']);
+
+            $userObj = $this->getReference(sprintf('%s-%s', self::USER_ID_PREFIX, $userData['id']), User::class);
+
+            /* @var User $user */
+            $user = $this->serializer->denormalize($userData, User::class, context: ['object_to_populate' => $userObj]);
+
+            $this->manualLogin($user->getId()->toRfc4122());
+
+            $manager->persist($user);
+        }
+
+        $manager->flush();
+        $this->manualLogout();
     }
 }

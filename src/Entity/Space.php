@@ -151,4 +151,17 @@ class Space extends AbstractEntity
     {
         $this->deletedAt = $deletedAt;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id?->toRfc4122(),
+            'name' => $this->name,
+            'createdBy' => $this->createdBy->getId()->toRfc4122(),
+            'parent' => $this->parent?->getId()->toRfc4122(),
+            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
+            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
+            'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),
+        ];
+    }
 }
