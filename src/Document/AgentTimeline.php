@@ -7,7 +7,6 @@ namespace App\Document;
 use DateTime;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\Types\Type;
-use Symfony\Component\Uid\Uuid;
 
 #[ODM\Document(collection: 'agent_timeline')]
 class AgentTimeline
@@ -16,10 +15,10 @@ class AgentTimeline
     private ?string $id = null;
 
     #[ODM\Field]
-    private Uuid $userId;
+    private string $userId;
 
     #[ODM\Field]
-    private Uuid $resourceId;
+    private string $resourceId;
 
     #[ODM\Field]
     private int $priority;
@@ -49,22 +48,22 @@ class AgentTimeline
         $this->id = $id;
     }
 
-    public function getUserId(): Uuid
+    public function getUserId(): string
     {
         return $this->userId;
     }
 
-    public function setUserId(Uuid $userId): void
+    public function setUserId(string $userId): void
     {
         $this->userId = $userId;
     }
 
-    public function getResourceId(): Uuid
+    public function getResourceId(): string
     {
         return $this->resourceId;
     }
 
-    public function setResourceId(Uuid $resourceId): void
+    public function setResourceId(string $resourceId): void
     {
         $this->resourceId = $resourceId;
     }

@@ -6,13 +6,14 @@ namespace App\DataFixtures\Entity;
 
 use App\Entity\Space;
 use App\Service\Interface\FileServiceInterface;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class SpaceFixtures extends Fixture implements DependentFixtureInterface
+final class SpaceFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public const string SPACE_ID_PREFIX = 'space';
     public const string SPACE_ID_1 = '69461af3-52f2-4c6b-ad30-ce92e478e9bd';
@@ -29,8 +30,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
     public const array SPACES = [
         [
             'id' => self::SPACE_ID_1,
-            'name' => 'SECULT',
-            'image' => null,
+            'name' => 'Cultura',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'extraFields' => [
@@ -41,7 +41,7 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
                 'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => '2024-07-10T12:20:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
@@ -199,34 +199,62 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         ],
     ];
 
+    public const array SPACES_UPDATED = [
+        [
+            'id' => self::SPACE_ID_1,
+            'name' => 'SECULT',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
+            'extraFields' => [
+                'type' => 'Instituição Cultural',
+                'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
+                'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
+                'areasOfActivity' => ['Teatro', 'Música', 'Artes Visuais'],
+                'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
+            ],
+            'createdAt' => '2024-07-10T11:30:00+00:00',
+            'updatedAt' => '2024-07-10T12:20:00+00:00',
+            'deletedAt' => null,
+        ],
+    ];
+
     public function __construct(
+        protected EntityManagerInterface $entityManager,
+        protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
         private readonly FileServiceInterface $fileService,
         private readonly ParameterBagInterface $parameterBag,
     ) {
+        parent::__construct($entityManager, $tokenStorage);
+    }
+
+    public function getDependencies(): array
+    {
+        return [
+            AgentFixtures::class,
+        ];
     }
 
     public function load(ObjectManager $manager): void
+    {
+        $this->createSpaces($manager);
+        $this->updateSpaces($manager);
+        $this->manualLogout();
+    }
+
+    private function createSpaces(ObjectManager $manager): void
     {
         $counter = 0;
 
         foreach (self::SPACES as $spaceData) {
             if (5 > $counter) {
-                $file = $this->fileService->uploadImage(
-                    $this->parameterBag->get('app.dir.space.profile'),
-                    ImageTestFixtures::getSpaceImage()
-                );
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.space.profile'), ImageTestFixtures::getAgentImage());
                 $spaceData['image'] = $file;
             }
-            /* @var Space $space */
-            $space = $this->serializer->denormalize($spaceData, Space::class);
 
-            $space->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $spaceData['createdBy'])));
+            $space = $this->mountSpace($spaceData);
 
-            if (null !== $spaceData['parent']) {
-                $parent = $this->getReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['parent']));
-                $space->setParent($parent);
-            }
+            $this->manualLoginByAgent($spaceData['createdBy']);
 
             $this->setReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['id']), $space);
 
@@ -237,10 +265,33 @@ final class SpaceFixtures extends Fixture implements DependentFixtureInterface
         $manager->flush();
     }
 
-    public function getDependencies(): array
+    private function updateSpaces(ObjectManager $manager): void
     {
-        return [
-            AgentFixtures::class,
-        ];
+        foreach (self::SPACES_UPDATED as $spaceData) {
+            $spaceObj = $this->getReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['id']), Space::class);
+
+            $space = $this->mountSpace($spaceData, ['object_to_populate' => $spaceObj]);
+
+            $this->manualLoginByAgent($spaceData['createdBy']);
+
+            $manager->persist($space);
+        }
+
+        $manager->flush();
+    }
+
+    private function mountSpace(mixed $spaceData, array $context = []): Space
+    {
+        /* @var Space $space */
+        $space = $this->serializer->denormalize($spaceData, Space::class, context: $context);
+
+        $space->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $spaceData['createdBy'])));
+
+        if (null !== $spaceData['parent']) {
+            $parent = $this->getReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['parent']));
+            $space->setParent($parent);
+        }
+
+        return $space;
     }
 }
