@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Opportunity;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class OpportunityFixtures extends Fixture implements DependentFixtureInterface
+final class OpportunityFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public const string OPPORTUNITY_ID_PREFIX = 'opportunity';
     public const string OPPORTUNITY_ID_1 = '2f31c3b5-4385-4f1d-afc5-6042875a168e';
@@ -27,7 +28,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
     public const array OPPORTUNITIES = [
         [
             'id' => self::OPPORTUNITY_ID_1,
-            'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+            'name' => 'Inscrição para o Concurso de Cordelistas',
             'description' => 'Aberto edital para inscrições no concurso de cordelistas que ocorrerá durante o Festival de Literatura Nordestina.',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
@@ -45,7 +46,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
                 'tags' => ['Literatura', 'Cordel', 'Nordeste'],
             ],
             'createdAt' => '2024-09-06T10:00:00+00:00',
-            'updatedAt' => '2024-09-06T16:00:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
@@ -257,45 +258,28 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         ],
     ];
 
+    public const array OPPORTUNITIES_UPDATED = [
+        [
+            'id' => self::OPPORTUNITY_ID_1,
+            'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+            'description' => 'Aberto edital para inscrições no concurso de cordelistas que ocorrerá durante o Festival de Literatura Nordestina.',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'parent' => null,
+            'space' => SpaceFixtures::SPACE_ID_1,
+            'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
+            'event' => EventFixtures::EVENT_ID_1,
+            'createdAt' => '2024-09-06T10:00:00+00:00',
+            'updatedAt' => '2024-09-06T16:00:00+00:00',
+            'deletedAt' => null,
+        ],
+    ];
+
     public function __construct(
+        protected EntityManagerInterface $entityManager,
+        protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
     ) {
-    }
-
-    public function load(ObjectManager $manager): void
-    {
-        foreach (self::OPPORTUNITIES as $opportunityData) {
-            /* @var Opportunity $opportunity */
-            $opportunity = $this->serializer->denormalize($opportunityData, Opportunity::class);
-
-            $opportunity->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $opportunityData['createdBy'])));
-
-            if (null !== $opportunityData['parent']) {
-                $parent = $this->getReference(sprintf('%s-%s', self::OPPORTUNITY_ID_PREFIX, $opportunityData['parent']));
-                $opportunity->setParent($parent);
-            }
-
-            if (null !== $opportunityData['space']) {
-                $space = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $opportunityData['space']));
-                $opportunity->setSpace($space);
-            }
-
-            if (null !== $opportunityData['initiative']) {
-                $initiative = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $opportunityData['initiative']));
-                $opportunity->setInitiative($initiative);
-            }
-
-            if (null !== $opportunityData['event']) {
-                $event = $this->getReference(sprintf('%s-%s', EventFixtures::EVENT_ID_PREFIX, $opportunityData['event']));
-                $opportunity->setEvent($event);
-            }
-
-            $this->setReference(sprintf('%s-%s', self::OPPORTUNITY_ID_PREFIX, $opportunityData['id']), $opportunity);
-
-            $manager->persist($opportunity);
-        }
-
-        $manager->flush();
+        parent::__construct($entityManager, $tokenStorage);
     }
 
     public function getDependencies(): array
@@ -306,5 +290,72 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
             InitiativeFixtures::class,
             EventFixtures::class,
         ];
+    }
+
+    public function load(ObjectManager $manager): void
+    {
+        $this->createOpportunities($manager);
+        $this->updateOpportunities($manager);
+        $this->manualLogout();
+    }
+
+    public function createOpportunities(ObjectManager $manager): void
+    {
+        foreach (self::OPPORTUNITIES as $opportunityData) {
+            $opportunity = $this->mountOpportunity($opportunityData);
+
+            $this->setReference(sprintf('%s-%s', self::OPPORTUNITY_ID_PREFIX, $opportunityData['id']), $opportunity);
+
+            $this->manualLoginByAgent($opportunityData['createdBy']);
+
+            $manager->persist($opportunity);
+        }
+
+        $manager->flush();
+    }
+
+    public function updateOpportunities(ObjectManager $manager): void
+    {
+        foreach (self::OPPORTUNITIES_UPDATED as $opportunityData) {
+            $opportunityObj = $this->getReference(sprintf('%s-%s', self::OPPORTUNITY_ID_PREFIX, $opportunityData['id']), Opportunity::class);
+
+            $opportunity = $this->mountOpportunity($opportunityData, ['object_to_populate' => $opportunityObj]);
+
+            $this->manualLoginByAgent($opportunityData['createdBy']);
+
+            $manager->persist($opportunity);
+        }
+
+        $manager->flush();
+    }
+
+    private function mountOpportunity(array $opportunityData, array $context = []): Opportunity
+    {
+        /* @var Opportunity $opportunity */
+        $opportunity = $this->serializer->denormalize($opportunityData, Opportunity::class, context: $context);
+
+        $opportunity->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $opportunityData['createdBy'])));
+
+        if (null !== $opportunityData['parent']) {
+            $parent = $this->getReference(sprintf('%s-%s', self::OPPORTUNITY_ID_PREFIX, $opportunityData['parent']));
+            $opportunity->setParent($parent);
+        }
+
+        if (null !== $opportunityData['space']) {
+            $space = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $opportunityData['space']));
+            $opportunity->setSpace($space);
+        }
+
+        if (null !== $opportunityData['initiative']) {
+            $initiative = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $opportunityData['initiative']));
+            $opportunity->setInitiative($initiative);
+        }
+
+        if (null !== $opportunityData['event']) {
+            $event = $this->getReference(sprintf('%s-%s', EventFixtures::EVENT_ID_PREFIX, $opportunityData['event']));
+            $opportunity->setEvent($event);
+        }
+
+        return $opportunity;
     }
 }

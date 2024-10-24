@@ -152,4 +152,19 @@ class Initiative extends AbstractEntity
     {
         $this->deletedAt = $deletedAt;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id?->toRfc4122(),
+            'name' => $this->name,
+            'parent' => $this->parent?->toArray(),
+            'space' => $this->space?->toArray(),
+            'createdBy' => $this->createdBy->toArray(),
+            'extraFields' => $this->extraFields,
+            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
+            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
+            'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),
+        ];
+    }
 }
