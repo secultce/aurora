@@ -19,6 +19,7 @@ back: Voltar
 birth_date: Data de nascimento
 
 calendar: Calendário
+cancel: Cancelar
 check: Conferir
 click_here: Clique aqui
 connections: Conexões
@@ -158,6 +159,9 @@ accept-policies:
   terms: Termos e condições de uso
   title: Aceite de políticas
 
+modal_confirm_remove:
+  message: Esta ação é irreversivel, tem certeza que deseja continuar?
+
 footer:
   and_developed: e desenvolvida por
   contact_support: para falar com nossa equipe de suporte por chat.
@@ -270,6 +274,8 @@ view:
 
   opportunity:
     create: Criar oportunidade
+    message:
+      deleted: A Oportunidade foi excluída
     quantity:
       total: Oportunidades Encontradas
       finished: Oportunidades Finalizadas

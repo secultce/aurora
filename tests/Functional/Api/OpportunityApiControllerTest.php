@@ -329,7 +329,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
     {
         $client = static::apiClient();
 
-        $url = sprintf('%s/%s', self::BASE_URL, OpportunityFixtures::OPPORTUNITY_ID_3);
+        $url = sprintf('%s/%s', self::BASE_URL, OpportunityFixtures::OPPORTUNITY_ID_2);
 
         $client->request(Request::METHOD_DELETE, $url);
 

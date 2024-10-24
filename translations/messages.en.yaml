@@ -19,6 +19,7 @@ back: Back
 birth_date: Birth Date
 
 calendar: Calendar
+cancel: Cancel
 check: Check
 click_here: Click Here
 connections: Connections
@@ -157,6 +158,9 @@ accept-policies:
   terms: Terms and Conditions
   title: Policy Acceptance
 
+modal_confirm_remove:
+  message: This action is irreversible, are you sure you want to continue?
+
 footer:
   and_developed: and developed by
   contact_support: to contact our support team via chat.
@@ -275,6 +279,8 @@ view:
 
   opportunity:
     create: Create Opportunity
+    message:
+      deleted: The opportunity has been deleted
     quantity:
       total: Opportunities Found
       finished: Completed Opportunities

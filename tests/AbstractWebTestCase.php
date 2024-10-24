@@ -46,7 +46,7 @@ abstract class AbstractWebTestCase extends WebTestCase
         return json_decode($this->getCurrentResponse()->getContent(), true);
     }
 
-    protected static function getToken($username = 'henriquelopeslima@example.com'): string
+    protected static function getToken(string $username = 'henriquelopeslima@example.com'): string
     {
         $container = self::getContainer();
 
