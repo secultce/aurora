@@ -25,6 +25,7 @@ class OpportunityTestFixtures implements TestFixtures
     public static function complete(): array
     {
         return array_merge(self::partial(), [
+            'image' => ImageTestFixtures::getImageValid(),
             'parent' => OpportunityFixtures::OPPORTUNITY_ID_1,
             'space' => SpaceFixtures::SPACE_ID_1,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,

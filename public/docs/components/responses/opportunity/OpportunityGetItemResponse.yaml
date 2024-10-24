@@ -8,6 +8,11 @@ properties:
     type: string
     maxLength: 100
     description: "Nome da oportunidade"
+  image:
+    type: string
+    format: uri
+    nullable: true
+    description: "Url da imagem do perfil da oportunidade"
   parent:
     type: object
     properties:
@@ -19,6 +24,11 @@ properties:
         type: string
         maxLength: 100
         description: "Nome da oportunidade"
+      image:
+        type: string
+        format: uri
+        nullable: true
+        description: "Url da imagem do perfil da oportunidade"
       description:
         type: string
         maxLength: 100
