@@ -12,3 +12,8 @@ admin_dashboard:
   path: /painel
   controller: App\Controller\Web\Admin\DashboardAdminController::index
   methods: ['GET']
+
+admin_event:
+  resource: 'admin/event.yaml'
+  prefix: /painel/eventos
+  name_prefix: admin_event_
