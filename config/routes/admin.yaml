@@ -22,3 +22,8 @@ admin_space:
   resource: 'admin/space.yaml'
   prefix: /painel/espacos
   name_prefix: admin_space_
+
+admin_event:
+  resource: 'admin/event.yaml'
+  prefix: /painel/eventos
+  name_prefix: admin_event_
