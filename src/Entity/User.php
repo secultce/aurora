@@ -25,12 +25,15 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     private Uuid $id;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['user.get'])]
     private string $firstname;
 
     #[ORM\Column(length: 50)]
+    #[Groups(['user.get'])]
     private string $lastname;
 
     #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['user.get'])]
     private ?string $socialName = null;
 
     #[ORM\Column(length: 100, unique: true)]
@@ -58,6 +61,11 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
     #[ORM\Column(nullable: true)]
     #[Groups(['user.get'])]
     private ?DateTime $deletedAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
 
     public function getId(): Uuid
     {
