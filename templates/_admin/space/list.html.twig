@@ -1,0 +1,49 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'spaces'|trans }}{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body shadow">
+                        <h2>{{ 'my_spaces'|trans }}</h2>
+
+                        <hr>
+
+                        <table class="table table-hover table-striped">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>{{ 'name'|trans }}</th>
+                                <th>{{ 'created_by'|trans }}</th>
+                                <th></th>
+                                <th></th>
+                                <th>Actions</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in spaces %}
+                                <tr>
+                                    <td><a href="#">{{ item.name }}</a></td>
+                                    <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
+                                    <td></td>
+                                    <td></td>
+                                    <td>
+                                        <a href="#" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
+                                        <a href="#" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer %}{% endblock %}

@@ -12,3 +12,8 @@ admin_dashboard:
   path: /painel
   controller: App\Controller\Web\Admin\DashboardAdminController::index
   methods: ['GET']
+
+admin_space:
+  resource: 'admin/space.yaml'
+  prefix: /painel/espacos
+  name_prefix: admin_space_
