@@ -43,6 +43,15 @@ readonly class AgentService implements AgentServiceInterface
         return $this->repository->save($agentObj);
     }
 
+    public function createFromUser(array $user)
+    {
+        $agent = self::organizeDefaultAgentData($user);
+
+        $agentObj = $this->serializer->denormalize($agent, Agent::class);
+
+        $this->repository->save($agentObj);
+    }
+
     public function get(Uuid $id): Agent
     {
         $agent = $this->repository->findOneBy([
@@ -123,5 +132,17 @@ readonly class AgentService implements AgentServiceInterface
                 },
             ],
         ]);
+    }
+
+    private function organizeDefaultAgentData(array $user): array
+    {
+        return [
+            'id' => Uuid::v4()->toRfc4122(),
+            'name' => "{$user['firstname']} {$user['lastname']}",
+            'shortBio' => 'Agente criado automaticamente',
+            'longBio' => 'Este agente foi criado automaticamente pelo sistema',
+            'culture' => false,
+            'user' => $user['id'],
+        ];
     }
 }

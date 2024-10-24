@@ -9,6 +9,8 @@ use Symfony\Component\Uid\Uuid;
 
 interface UserServiceInterface
 {
+    public function create(array $user): User;
+
     public function get(Uuid $id): User;
 
     public function update(Uuid $id, array $user): User;
