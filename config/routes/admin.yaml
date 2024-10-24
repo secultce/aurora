@@ -17,3 +17,8 @@ admin_agent:
     resource: 'admin/agent.yaml'
     prefix: /painel/agentes
     name_prefix: admin_agent_
+
+admin_space:
+  resource: 'admin/space.yaml'
+  prefix: /painel/espacos
+  name_prefix: admin_space_
