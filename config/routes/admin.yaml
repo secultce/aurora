@@ -12,3 +12,8 @@ admin_dashboard:
   path: /painel
   controller: App\Controller\Web\Admin\DashboardAdminController::index
   methods: ['GET']
+
+admin_initiative:
+  resource: 'admin/initiative.yaml'
+  prefix: /painel/iniciativas
+  name_prefix: admin_initiative_
