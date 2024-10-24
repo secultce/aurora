@@ -49,6 +49,9 @@ jobs:
       - name: Run fixtures
         run: docker compose exec php bin/console d:f:l -n
 
+      - name: Increase PHP memory limit
+        run: docker compose exec --user root php bash -c "echo 'memory_limit=256M' > /usr/local/etc/php/conf.d/memory-limit.ini"
+
       - name: Start the PHPUnit
         run: docker compose exec php bin/phpunit
 

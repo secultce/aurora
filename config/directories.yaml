@@ -1,4 +1,5 @@
 parameters:
     app.dir.agent.profile: '%env(resolve:STORAGE_DIR)%/agents/profile'
-    app.dir.user.profile: '%env(resolve:STORAGE_DIR)%/users/profile'
+    app.dir.opportunity.profile: '%env(resolve:STORAGE_DIR)%/opportunities/profile'
     app.dir.space.profile: '%env(resolve:STORAGE_DIR)%/spaces/profile'
+    app.dir.user.profile: '%env(resolve:STORAGE_DIR)%/users/profile'
