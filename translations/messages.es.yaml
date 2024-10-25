@@ -98,6 +98,7 @@ notifications: Notificaciones
 no: No
 none_area_specified: Ninguna zona especificada
 not_sent: No enviado
+notice: AVISO PUBLICO
 
 oldest: Más Antiguo
 order: Ordenar por
@@ -289,11 +290,15 @@ view:
     management_of: Management of
     info: In this section, you view and manage your user profile and other created labels.
 
+  my-opportunity:
+    title_opportunity: PNAB - Promoción de la Ejecución de Acciones Culturales
+
   seal:
     create: Crear un Sello
 
   opportunity:
     create: Crear Oportunidad
+    description: In this section you will see and manage your opportunities.
     message:
       deleted: La oportunidad ha sido eliminada
     quantity:

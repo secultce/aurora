@@ -37,3 +37,9 @@ admin_registrations:
   resource: 'admin/registration.yaml'
   prefix: /painel/inscricoes
   name_prefix: admin_registrations_
+
+admin_my_opportunity:
+  resource: 'admin/my-opportunity.yaml'
+  prefix: /painel/minhas-oportunidades
+  name_prefix: admin_my_opportunity_
+

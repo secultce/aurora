@@ -8,4 +8,7 @@
         'content': include('_admin/registration/_partials/tabs/not-sent.html.twig')
     },
 ] %}
-{% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}
+
+<div class="ps-4 pe-4 mt-4">
+    {% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}
+</div>

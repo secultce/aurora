@@ -1,0 +1,27 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}Minhas Oportunidades{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/my-opportunity.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+
+        <section class="management-content w-100">
+            <div class="management-panel__white-square d-flex flex-column justify-content-between">
+                {% include "_admin/my-opportunity/_partials/title-my-opportunity.html.twig" %}
+
+                {% include "_admin/my-opportunity/_partials/tabs/tabs.html.twig" %}
+            </div>
+
+            {% include "_admin/my-opportunity/_partials/tabs/content-tabs.html.twig" %}
+        </section>
+    </section>
+
+{% endblock %}
+
+{% block footer %}{% endblock %}

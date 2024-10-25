@@ -1,5 +1,10 @@
 {% extends "_layouts/blank.html.twig" %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/seals.css') }}">
+{% endblock %}
+
 {% block title %}{{ 'seals' | trans }}{% endblock %}
 
 {% block content %}
