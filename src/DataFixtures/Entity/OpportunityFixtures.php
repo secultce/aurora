@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Opportunity;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
 final class OpportunityFixtures extends Fixture implements DependentFixtureInterface
@@ -28,6 +30,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_1,
             'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+            'image' => null,
             'description' => 'Aberto edital para inscrições no concurso de cordelistas que ocorrerá durante o Festival de Literatura Nordestina.',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
@@ -51,6 +54,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_2,
             'name' => 'Chamada para Oficinas de Artesanato - Feira de Cultura Popular',
+            'image' => null,
             'description' => 'Estão abertas as inscrições para artesãos que desejam ministrar oficinas na Feira de Cultura Popular.',
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'parent' => null,
@@ -74,6 +78,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_3,
             'name' => 'Credenciamento de Quadrilhas Juninas - São João do Nordeste',
+            'image' => null,
             'description' => 'Edital de credenciamento para quadrilhas juninas interessadas em participar do São João do Nordeste.',
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'parent' => null,
@@ -97,6 +102,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_4,
             'name' => 'Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino',
+            'image' => null,
             'description' => 'Concurso de danças folclóricas aberto para inscrições, integrando o Encontro Nordestino de Cultura.',
             'createdBy' => AgentFixtures::AGENT_ID_4,
             'parent' => null,
@@ -120,6 +126,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_5,
             'name' => 'Edital de Patrocínio para Grupos de Maracatu - Carnaval Cultural',
+            'image' => null,
             'description' => 'Oportunidade de patrocínio para grupos de Maracatu que irão se apresentar no Carnaval Cultural.',
             'createdBy' => AgentFixtures::AGENT_ID_5,
             'parent' => null,
@@ -143,6 +150,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_6,
             'name' => 'Chamada para Exposição de Artes Visuais - Mostra Nordeste de Arte Contemporânea',
+            'image' => null,
             'description' => 'Inscrições abertas para artistas visuais interessados em participar da Mostra Nordeste de Arte Contemporânea.',
             'createdBy' => AgentFixtures::AGENT_ID_6,
             'parent' => null,
@@ -166,6 +174,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_7,
             'name' => 'Inscrição para Palestras sobre Culinária Regional - Festival Gastronômico Nordestino',
+            'image' => null,
             'description' => 'Chefs e estudiosos da culinária nordestina podem se inscrever para palestras no Festival Gastronômico.',
             'createdBy' => AgentFixtures::AGENT_ID_7,
             'parent' => null,
@@ -189,6 +198,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_8,
             'name' => 'Convocatória para Mostra de Filmes Nordestinos - Cine Nordeste',
+            'image' => null,
             'description' => 'Cineastas podem inscrever seus filmes para exibição na Mostra de Filmes Nordestinos.',
             'createdBy' => AgentFixtures::AGENT_ID_8,
             'parent' => null,
@@ -212,6 +222,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_9,
             'name' => 'Chamada para Oficinas de Teatro de Rua - Encontro de Artes Cênicas Nordestinas',
+            'image' => null,
             'description' => 'Teatralistas podem se inscrever para ministrar oficinas de teatro de rua no Encontro de Artes Cênicas.',
             'createdBy' => AgentFixtures::AGENT_ID_9,
             'parent' => null,
@@ -235,6 +246,7 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
         [
             'id' => self::OPPORTUNITY_ID_10,
             'name' => 'Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino',
+            'image' => null,
             'description' => 'Artistas de rua podem se inscrever para participar do Circuito Cultural Nordestino, promovendo a cultura popular.',
             'createdBy' => AgentFixtures::AGENT_ID_10,
             'parent' => null,
@@ -259,12 +271,23 @@ final class OpportunityFixtures extends Fixture implements DependentFixtureInter
 
     public function __construct(
         private readonly SerializerInterface $serializer,
+        private readonly FileServiceInterface $fileService,
+        private readonly ParameterBagInterface $parameterBag,
     ) {
     }
 
     public function load(ObjectManager $manager): void
     {
+        $counter = 0;
+
         foreach (self::OPPORTUNITIES as $opportunityData) {
+            if (5 > $counter) {
+                $file = $this->fileService->uploadImage(
+                    $this->parameterBag->get('app.dir.opportunity.profile'),
+                    ImageTestFixtures::getOpportunityImage()
+                );
+                $opportunityData['image'] = $file;
+            }
             /* @var Opportunity $opportunity */
             $opportunity = $this->serializer->denormalize($opportunityData, Opportunity::class);
 
