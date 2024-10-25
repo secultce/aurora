@@ -1,0 +1,11 @@
+{% set tabs = [
+    {
+        'id': 'sent',
+        'content': include('_admin/registration/_partials/tabs/sent.html.twig')
+    },
+    {
+        'id': 'not_sent',
+        'content': include('_admin/registration/_partials/tabs/not-sent.html.twig')
+    },
+] %}
+{% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}

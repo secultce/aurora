@@ -2,6 +2,7 @@ account_privacy: Cuenta y Privacidad
 access: Acceder
 accessibility: Accesibilidad
 accountability: Rendición de Cuentas
+accompany: Acompañar
 address: Dirección
 admin_options: Opciones del Administrador
 administration: Administración
@@ -287,6 +288,15 @@ view:
       opened: Espacios Abiertos
       last_days: Registrados en los últimos 7 días
     picture: Foto del Espacio
+
+  registration:
+    available: Recursos abiertos y disponibles
+    data: Recolección de datos
+    merit: Evaluación de mérito
+    title-card: PNAB - Fomento a la Ejecución de Acciones Culturales
+    section: En esta sección puedes añadir o gestionar tus inscripciones.
+    hour: del 00/00/0000 hasta 00/00/0000"
+
 
   not-found:
     error-404: Error 404
