@@ -10,6 +10,12 @@ properties:
     maxLength: 100
     description: "Nome do evento"
     example: "Evento de cultura"
+  image:
+    type: string
+    format: uri
+    nullable: true
+    description: "URL da imagem de perfil do evento"
+    maxLength: 100
   agentGroup:
     type: object
     properties:
@@ -47,6 +53,12 @@ properties:
         maxLength: 100
         description: "Nome do evento pai"
         example: "Evento de cultura"
+      image:
+        type: string
+        format: uri
+        nullable: true
+        description: "URL da imagem de perfil do evento pai"
+        maxLength: 100
       agentGroup:
         type: object
         properties:

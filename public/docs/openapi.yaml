@@ -78,3 +78,12 @@ components:
       $ref: './components/schemas/space.yaml'
     User:
       $ref: './components/schemas/user.yaml'
+  securitySchemes:
+    bearerAuth:
+      type: apiKey,
+      scheme: bearer
+      name: Authorization
+      in: header
+      description: JWT token
+security:
+  - bearerAuth: []

@@ -8,6 +8,12 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do evento"
+  image:
+    type: string
+    format: uri
+    nullable: true
+    description: "URL da imagem de perfil do evento"
+    maxLength: 100
   agentGroup:
     description: "Grupo de agentes do evento"
     type: object
@@ -44,6 +50,11 @@ properties:
         type: string
         maxLength: 100
         description: "Nome do evento"
+      image:
+        type: string
+        format: uri
+        nullable: true
+        description: "URL da imagem de perfil do evento"
       agentGroup:
         description: "Grupo de agentes do evento"
         type: object

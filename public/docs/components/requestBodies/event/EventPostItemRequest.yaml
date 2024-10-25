@@ -8,6 +8,11 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do evento"
+  image:
+    type: string
+    format: base64url
+    nullable: true
+    description: "Imagem do perfil do evento codificada em Base64"
   agentGroup:
     type: string
     format: uuid

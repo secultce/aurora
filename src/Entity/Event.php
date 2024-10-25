@@ -24,6 +24,10 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private ?string $name = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['event.get'])]
+    private ?string $image = null;
+
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'agent_group_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[Groups(['event.get'])]
@@ -84,6 +88,16 @@ class Event extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 
     public function getAgentGroup(): ?Agent
