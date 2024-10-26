@@ -2,6 +2,7 @@ account_privacy: Conta e Privacidade
 access: Acessar
 accessibility: Acessibilidade
 accountability: Prestações de Conta
+accompany: Acompanhar
 address: Endereço
 administration: Administração
 agents: Agentes
@@ -12,6 +13,7 @@ archive: Arquivar
 archived: Arquivados
 areas_of_expertise: Áreas de Atuação
 areas_of_interest: Áreas de interesse
+analysis: Período de Análise
 
 back: Voltar
 birth_date: Data de nascimento
@@ -91,6 +93,7 @@ name: Nome
 notifications: Notificações
 no: Não
 none_area_specified: Nenhuma área especificada
+not_sent: Não enviadas
 
 
 oldest: Mais Antigo
@@ -109,6 +112,7 @@ password_strength: Força da senha
 personal_data: Dados pessoais
 phone: Telefone
 photo: Foto
+phase: Fase
 profile_picture: Foto de Perfil
 projects: Projetos
 public: Público
@@ -133,6 +137,7 @@ seals: Selos
 search: Buscar
 send: Enviar
 send_message: Enviar mensagem
+sent: Enviadas
 see_how: Visualizar como
 see_more: Ver mais
 sort_by: Ordenar por
@@ -281,6 +286,14 @@ view:
       last_days: Registrados nos últimos 7 dias
     picture: Foto do Espaço
 
+  registration:
+    available: Recursos abertos e disponíveis
+    data: Coleta de dados
+    merit: Avaliação de mérito
+    title-card: PNAB - Fomento à Execução de Ações Culturais
+    section: Esta seção você pode adicionar ou gerenciar as suas inscrições.
+    hour: 00/00/0000 até 00/00/0000
+
   seal:
     create: Criar selo
 
@@ -291,5 +304,3 @@ view:
     error-text_third: Mas não se preocupe, existem muitas outras páginas para conhecer aqui na Aurora.
     error-homepage: Voltar para a página inicial
     error-image: Imagem de dúvida
-
-

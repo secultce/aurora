@@ -1,0 +1,41 @@
+<section class="management-seals">
+    <div class="filter-control d-flex justify-content-between">
+        <div class="search-box">
+            <input id="search-seal" type="text" placeholder="{{ "input_search" | trans }}" />
+            <i class="material-icons">search</i>
+        </div>
+
+        <div class="d-flex g-4 agent-sort">
+            <label class="agent-options fw-semibold" for="sort-options">{{ 'sort_by' | trans }}:</label>
+            <select id="sort-options" class="form-select">
+                <option value="recent">{{ 'most_recent' | trans }}</option>
+                <option value="old">{{ 'oldest' | trans }}</option>
+            </select>
+        </div>
+    </div>
+</section>
+
+<div class="resources-section mt-4">
+    <h3 class="resources-title">{{ 'view.registration.available' | trans }}</h3>
+    <hr>
+</div>
+
+<div class="resource-card mt-4">
+    <div class="resource-card-header">
+        <div class="resource-icon"></div>
+        <h4 class="resource-title">{{ 'view.registration.title-card' | trans }}</h4>
+    </div>
+    <div class="resource-card-body">
+        <div class="resource-details">
+            <p><strong>{{ 'phase' | trans }}</strong> {{ 'view.registration.merit' | trans }}</p>
+            <p><strong>{{ 'type' | trans }}</strong> {{ 'view.registration.data' | trans }}</p>
+            <p><strong>{{ 'analysis' | trans }}</strong> {{ 'view.registration.hour' | trans }}</p>
+        </div>
+    </div>
+    <div class="resource-card-footer">
+        <button class="btn btn-follow">{{ 'accompany' | trans}} <span class="material-icons">chevron_right</span></button>
+    </div>
+</div>
+
+
+
