@@ -11,6 +11,7 @@ use App\DataFixtures\Entity\OpportunityFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Opportunity;
 use App\Tests\AbstractWebTestCase;
+use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\OpportunityTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -32,20 +33,20 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
-
-        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Opportunity::class, $requestBody['id']);
 
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'parent' => null,
             'space' => null,
             'initiative' => null,
             'event' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'extraFields' => null,
-            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -61,15 +62,17 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
-        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Opportunity::class, $requestBody['id']);
 
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => $opportunity->getImage(),
             'parent' => [
                 'id' => OpportunityFixtures::OPPORTUNITY_ID_1,
                 'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+                'image' => $opportunity->getParent()->getImage(),
                 'parent' => null,
                 'space' => ['id' => SpaceFixtures::SPACE_ID_1],
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
@@ -117,7 +120,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                     2 => 'Nordeste',
                 ],
             ],
-            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -174,6 +177,18 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
             ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
+                ],
+            ],
             'parent should exists' => [
                 'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
@@ -224,9 +239,13 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCount(count(OpportunityFixtures::OPPORTUNITIES), json_decode($response));
 
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Opportunity::class, OpportunityFixtures::OPPORTUNITY_ID_1);
+
         $this->assertJsonContains([
             'id' => OpportunityFixtures::OPPORTUNITY_ID_1,
             'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+            'image' => $opportunity->getImage(),
             'parent' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_1,
@@ -256,9 +275,14 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Opportunity::class, OpportunityFixtures::OPPORTUNITY_ID_3);
+
         $this->assertResponseBodySame([
             'id' => OpportunityFixtures::OPPORTUNITY_ID_3,
             'name' => 'Credenciamento de Quadrilhas Juninas - São João do Nordeste',
+            'image' => $opportunity->getImage(),
             'parent' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_3,
@@ -355,9 +379,11 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => OpportunityFixtures::OPPORTUNITY_ID_4,
             'name' => $requestBody['name'],
+            'image' => $opportunity->getImage(),
             'parent' => [
                 'id' => OpportunityFixtures::OPPORTUNITY_ID_1,
                 'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+                'image' => $opportunity->getParent()->getImage(),
                 'parent' => null,
                 'space' => ['id' => SpaceFixtures::SPACE_ID_1],
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
@@ -446,6 +472,18 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'image not supported' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
             'parent should exists' => [

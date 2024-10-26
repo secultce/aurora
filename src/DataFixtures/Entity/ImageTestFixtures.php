@@ -11,6 +11,11 @@ final class ImageTestFixtures
         return self::getCodeBase64ToImage('agent.png');
     }
 
+    public static function getOpportunityImage(): string
+    {
+        return self::getCodeBase64ToImage('opportunity.png');
+    }
+
     public static function getUserImage(): string
     {
         return self::getCodeBase64ToImage('user.png');
