@@ -1,10 +1,29 @@
 describe('Painel de Controle - Página de listar Oportunidades', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
+
+        cy.visit('/login');
+        cy.get('[data-cy="email"').type('alessandrofeitoza@example.com');
+        cy.get('[data-cy="password"').type('123456');
+        cy.get('[data-cy="submit"]').click();
+
         cy.visit('/painel/oportunidades');
     });
 
     it('Garante que a página de Oportunidades existe', () => {
         cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
+
+        cy.contains('Inscrição para o Concurso de Cordelistas').should('be.visible');
+        cy.contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('not.exist');
+    });
+
+    it('Garante que a página de Oportunidades existe', () => {
+        cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
+
+        cy.get('[data-cy="remove-1"]').contains('Excluir').click();
+
+        cy.contains('Confirmar').click();
+
+        cy.contains('Inscrição para o Concurso de Cordelistas').should('not.exist');
     });
 })

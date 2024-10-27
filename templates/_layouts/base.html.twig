@@ -20,5 +20,8 @@
         {% block body %}{% endblock %}
 
         <script type="module" src="{{ asset('vendor/aurora-user-interface/aurora-user-interface.index.js') }}"></script>
+
+        {% block extra_javascripts %}
+        {% endblock %}
     </body>
 </html>

@@ -11,21 +11,20 @@ use App\Exception\ValidatorException;
 use App\Repository\Interface\OpportunityRepositoryInterface;
 use App\Service\Interface\OpportunityServiceInterface;
 use DateTime;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-readonly class OpportunityService implements OpportunityServiceInterface
+readonly class OpportunityService extends AbstractEntityService implements OpportunityServiceInterface
 {
-    private const array DEFAULT_FILTERS = [
-        'deletedAt' => null,
-    ];
-
     public function __construct(
+        private Security $security,
         private OpportunityRepositoryInterface $repository,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
+        parent::__construct($security);
     }
 
     public function create(array $opportunity): Opportunity
@@ -47,7 +46,7 @@ readonly class OpportunityService implements OpportunityServiceInterface
     {
         $opportunity = $this->repository->findOneBy([
             ...['id' => $id],
-            ...self::DEFAULT_FILTERS,
+            ...$this->getDefaultParams(),
         ]);
 
         if (null === $opportunity) {
@@ -57,10 +56,33 @@ readonly class OpportunityService implements OpportunityServiceInterface
         return $opportunity;
     }
 
-    public function list(array $filters = [], int $limit = 50): array
+    public function findOneBy(array $params): Opportunity
+    {
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
+        );
+    }
+
+    public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
-            array_merge($filters, self::DEFAULT_FILTERS),
+            $this->getDefaultParams(),
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
+        );
+    }
+
+    public function findBy(array $params = [], int $limit = 50): array
+    {
+        return $this->repository->findBy(
+            [...$params, ...$this->getUserParams()],
             ['createdAt' => 'DESC'],
             $limit
         );
@@ -68,7 +90,14 @@ readonly class OpportunityService implements OpportunityServiceInterface
 
     public function remove(Uuid $id): void
     {
-        $opportunity = $this->get($id);
+        $opportunity = $this->repository->findOneBy(
+            [...['id' => $id], ...$this->getUserParams()]
+        );
+
+        if (null === $opportunity) {
+            throw new OpportunityResourceNotFoundException();
+        }
+
         $opportunity->setDeletedAt(new DateTime());
 
         $this->repository->save($opportunity);
