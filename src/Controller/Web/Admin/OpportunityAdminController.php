@@ -24,6 +24,15 @@ class OpportunityAdminController extends AbstractAdminController
         ]);
     }
 
+    public function edit(?Uuid $id): Response
+    {
+        $opportunity = $this->service->get($id);
+
+        return $this->render('opportunity/edit.html.twig', [
+            'opportunity' => $opportunity,
+        ]);
+    }
+
     public function remove(?Uuid $id): Response
     {
         $this->service->remove($id);

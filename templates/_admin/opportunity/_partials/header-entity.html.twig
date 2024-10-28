@@ -1,0 +1,33 @@
+<section class="white-square">
+    {% include '_components/breadcrumb.html.twig' with {
+        items: [
+            {text: 'control_panel'|trans, path: path('admin_dashboard')},
+            {text: 'my_opportunities'|trans, path: path('admin_opportunity_list')},
+            {text: opportunity.name, path: path("admin_opportunity_#{action}", {id: opportunity.id})},
+        ]
+    } %}
+
+    <div class="pt-5 row m-auto page-title">
+        <h2>{{ opportunity.name }}</h2>
+        <div class="d-flex align-content-between flex-column flex-lg-row">
+            <span>ID: <strong>116</strong></span>
+            <span class="offset-lg-1 offset-0">{{ t('TIPO')|trans }}: <strong style="color: var(--navlink-opportunity);">EDITAL</strong></span>
+            {% if opportunity.initiative is not empty %}
+                <span class="offset-lg-1 offset-0">VINCULADO COMO INICIATIVA:
+                        <a href="#"><strong style="color: var(--navlink-initiative);">{{ opportunity.initiative.name }}</strong></a>
+                    </span>
+            {% endif %}
+        </div>
+    </div>
+
+    <div class="pt-4 m-auto" style="width: var(--WIDTH_DEFAULT);">
+        {% include '_components/tabs/tab.html.twig' with {
+            tabs: [
+                { id: 'information', title: 'view.opportunity.information'|trans },
+                { id: 'phases', title: 'view.opportunity.phases'|trans },
+                { id: 'registrations_and_results', title: 'view.opportunity.registrations_and_results'|trans },
+                { id: 'people', title: 'view.opportunity.people'|trans },
+            ]
+        } %}
+    </div>
+</section>

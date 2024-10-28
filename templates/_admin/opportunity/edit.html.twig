@@ -1,0 +1,25 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'opportunities'|trans }}{% endblock %}
+
+{% block content %}
+     {% include '_admin/opportunity/_partials/header-entity.html.twig' with {
+         opportunity: opportunity,
+         action: 'edit',
+     } %}
+
+    <section class="mt-5">
+        {% include '_components/tabs/content-tabs.html.twig' with {
+            tabs: [
+                { id: 'information', content: include('_admin/opportunity/_partials/tabs/info.html.twig') },
+                { id: 'phases', content: include('_admin/opportunity/_partials/tabs/phases.html.twig') },
+                { id: 'registrations_and_results', content: include('_admin/opportunity/_partials/tabs/registrations.html.twig') },
+                { id: 'people', content: include('_admin/opportunity/_partials/tabs/people.html.twig') },
+            ],
+        } %}
+    </section>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+{% endblock %}

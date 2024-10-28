@@ -274,8 +274,15 @@ view:
 
   opportunity:
     create: Criar oportunidade
+    general_info: Informações gerais
+    information: Informações
     message:
       deleted: A Oportunidade foi excluída
+    people: Pessoas
+    phases: Fases
+    presentation_info: Informações de apresentação
+    public_info: Informações públicas
+    registrations_and_results: Inscrições e Resultados
     quantity:
       total: Oportunidades Encontradas
       finished: Oportunidades Finalizadas
