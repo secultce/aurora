@@ -18,4 +18,6 @@ interface EventServiceInterface
     public function remove(Uuid $id): void;
 
     public function update(Uuid $identifier, array $event): Event;
+
+    public function count(): int;
 }

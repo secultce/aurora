@@ -1,6 +1,11 @@
 {% extends "_layouts/blank.html.twig" %}
 
-{% block title %}{{ 'opportunities' | trans }}{% endblock %}
+{% block title %}{{ 'dashboard' | trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/admin-dashboard.css') }}">
+{% endblock %}
 
 {% block content %}
 
@@ -8,7 +13,15 @@
         {% include "_components/side-bar.html.twig" %}
 
         <div class="management-content w-100">
+            <section class="dashboard__white-square">
+                {% include "_admin/dashboard/_partials/header-dashboard.html.twig" %}
 
+                {% include "_admin/dashboard/_partials/tabs/tabs.html.twig" %}
+            </section>
+
+            <section class="dashboard-content">
+                {% include "_admin/dashboard/_partials/tabs/content-tabs.html.twig" %}
+            </section>
         </div>
     </section>
 

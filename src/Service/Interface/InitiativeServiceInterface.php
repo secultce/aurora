@@ -18,4 +18,6 @@ interface InitiativeServiceInterface
     public function create(array $initiative): Initiative;
 
     public function update(Uuid $id, array $initiative): Initiative;
+
+    public function count(): int;
 }

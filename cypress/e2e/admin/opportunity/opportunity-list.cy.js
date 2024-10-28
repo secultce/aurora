@@ -1,12 +1,7 @@
 describe('Painel de Controle - Página de listar Oportunidades', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
-
-        cy.visit('/login');
-        cy.get('[data-cy="email"').type('alessandrofeitoza@example.com');
-        cy.get('[data-cy="password"').type('Aurora@2024');
-        cy.get('[data-cy="submit"]').click();
-
+        cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
         cy.visit('/painel/oportunidades');
     });
 

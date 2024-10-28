@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-readonly class EventService implements EventServiceInterface
+readonly class EventService extends AbstractEntityService implements EventServiceInterface
 {
     private const DEFAULT_FILTERS = [
         'deletedAt' => null,
@@ -63,6 +63,13 @@ readonly class EventService implements EventServiceInterface
             array_merge($filters, self::DEFAULT_FILTERS),
             ['createdAt' => 'DESC'],
             $limit
+        );
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
         );
     }
 

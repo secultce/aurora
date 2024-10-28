@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-readonly class AgentService implements AgentServiceInterface
+readonly class AgentService extends AbstractEntityService implements AgentServiceInterface
 {
     private const array DEFAULT_FILTERS = [
         'deletedAt' => null,
@@ -73,6 +73,13 @@ readonly class AgentService implements AgentServiceInterface
             array_merge($filters, self::DEFAULT_FILTERS),
             ['createdAt' => 'DESC'],
             $limit
+        );
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
         );
     }
 

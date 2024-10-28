@@ -1,6 +1,7 @@
 account_privacy: Account and Privacy
 access: Access
 accessibility: Accessibility
+access_main_agent: Access the main agent
 accountability: Accountability
 accompany: To accompany
 address: Address
@@ -28,9 +29,11 @@ confirm_password: Confirm Password
 continue: Continue
 contribute: Contribute
 control_panel: Control Panel
+create: Create
 create_account: Create Account
 created_by: Created at
 
+dashboard: Dashboard
 draft: In draft
 delete: Delete
 deleted: Deleted
@@ -118,8 +121,10 @@ projects: Projects
 public: Public
 published: Published
 
+recent_registrations: Recent Registrations
 recently_modified: Recently modified
 register: Register
+registration_date: Registration Date
 
 tags: Tags
 term: Term

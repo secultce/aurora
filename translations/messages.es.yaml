@@ -1,6 +1,7 @@
 account_privacy: Cuenta y Privacidad
 access: Acceder
 accessibility: Accesibilidad
+access_main_agent: Acceder al Agente Principal
 accountability: Rendición de Cuentas
 accompany: Acompañar
 address: Dirección
@@ -28,9 +29,11 @@ confirm_password: Confirmar Contraseña
 continue: Continuar
 contribute: Contribuir
 control_panel: Panel de control
+create: Crear
 create_account: Crear Cuenta
 created_by: Creado en
 
+dashboard: Panel de Control
 draft: En borrador
 delete: Eliminar
 deleted: Eliminados
@@ -118,8 +121,10 @@ projects: Proyectos
 public: Público
 published: Publicados
 
+recent_registrations: Inscripciones Recientes
 recently_modified: Modificados recientemente
 register: Registro
+registration_date: Fecha de Inscripción
 
 tags: Etiquetas
 term: Término
