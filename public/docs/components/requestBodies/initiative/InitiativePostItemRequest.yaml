@@ -8,6 +8,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do Iniciativa"
+  image:
+    type: string
+    format: base64url
+    description: "Imagem do perfil da iniciativa codificada em Base64"
   parent:
     description: "Identificador da iniciativa pai"
     type: string

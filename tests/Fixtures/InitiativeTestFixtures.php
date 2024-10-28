@@ -23,6 +23,7 @@ class InitiativeTestFixtures implements TestFixtures
     public static function complete(): array
     {
         return array_merge(self::partial(), [
+            'image' => ImageTestFixtures::getImageValid(),
             'space' => SpaceFixtures::SPACE_ID_4,
             'parent' => InitiativeFixtures::INITIATIVE_ID_2,
             'extraFields' => [

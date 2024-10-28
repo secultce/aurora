@@ -8,6 +8,11 @@ properties:
     type: string
     maxLength: 100
     description: "Nome da iniciativa"
+  image:
+    type: string
+    format: uri
+    nullable: true
+    description: "Url da imagem do perfil da iniciativa"
   parent:
     description: "Iniciativa pai"
     type: object
@@ -20,6 +25,11 @@ properties:
         type: string
         maxLength: 100
         description: "Nome da iniciativa"
+      image:
+        type: string
+        format: uri
+        nullable: true
+        description: "Url da imagem do perfil da iniciativa"
       space:
         type: object
         properties:
