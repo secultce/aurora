@@ -42,7 +42,7 @@ describe('Pagina de Login do ambiente web', () => {
 
     it('Garante que após o login ser efetuado será redirecionado para a tela home', () => {
         cy.get('[data-cy="email"]').type('paulodetarso@example.com');
-        cy.get('[data-cy="password"]').type('123456');
+        cy.get('[data-cy="password"]').type('Aurora@2024');
 
         cy.contains('Esqueci minha senha');
         cy.contains('Cadastro');
@@ -54,7 +54,7 @@ describe('Pagina de Login do ambiente web', () => {
 
     it('Garante que após o login é possivel deslogar', () => {
         cy.get('[data-cy="email"]').type('alessandrofeitoza@example.com');
-        cy.get('[data-cy="password"]').type('123456');
+        cy.get('[data-cy="password"]').type('Aurora@2024');
 
         cy.contains('Esqueci minha senha');
         cy.contains('Cadastro');

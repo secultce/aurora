@@ -60,6 +60,8 @@ paths:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
     $ref: './components/paths/space/Item.yaml'
+  /users:
+    $ref: './components/paths/user/Collection.yaml'
   /users/{id}:
     $ref: './components/paths/user/Item.yaml'
 components:

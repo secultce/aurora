@@ -14,6 +14,7 @@ use App\Service\Interface\UserServiceInterface;
 use DateTime;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
@@ -31,7 +32,19 @@ readonly class UserService implements UserServiceInterface
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
         private ValidatorInterface $validator,
+        private readonly PasswordHasherFactoryInterface $passwordHasherFactory,
     ) {
+    }
+
+    public function create(array $user): User
+    {
+        $user = self::validateInput($user, UserDto::CREATE);
+        $password = $this->passwordHasherFactory->getPasswordHasher(User::class)->hash($user['password']);
+
+        $userObj = $this->serializer->denormalize($user, User::class);
+        $userObj->setPassword($password);
+
+        return $this->repository->save($userObj);
     }
 
     public function get(Uuid $id): User

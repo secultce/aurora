@@ -1,3 +1,8 @@
+create:
+  path: /
+  controller: App\Controller\Api\UserApiController::create
+  methods: ["POST"]
+
 update:
   path: /{id}
   controller: App\Controller\Api\UserApiController::update

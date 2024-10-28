@@ -4,44 +4,36 @@ properties:
     type: string
     format: uuid
     description: "Identificador do usuário"
-    example: "123e4567-e89b-12d3-a456-426614174000"
   firstname:
     type: string
     maxLength: 50
     description: "Primeiro nome do usuário"
-    example: "Fulano"
   lastname:
     type: string
     maxLength: 50
     description: "Segundo nome do usuário"
-    example: "Silva"
   socialName:
     type: string
     maxLength: 100
     description: "Nome social do usuário"
-    example: "Fulano Silva"
-  email:
-    type: string
-    maxLength: 100
-    description: "E-mail de cadastro de usuário"
-    example: "fulano.silva@mail.com"
-  password:
-    type: string
-    maxLength: 255
-    description: "Hash da senha de acesso do usuário"
-    example: "$2y$13$xOUg4FWI/nAITBfTp.fACOTvqe9nJkvXOByDDr/w1N37/yAFMs04C"
   image:
     type: string
     maxLength: 100
     description: "URL da imagem do perfil do usuário"
+  agents:
+    type: array
+    description: "Agente padrão do usuário"
   createdAt:
-    $ref: '../common-types/date.yaml'
+    type: string
+    format: date-time
     description: "Data e hora da criação do usuário"
   updatedAt:
-    $ref: '../common-types/date.yaml'
+    type: string
+    format: date-time
     nullable: true
     description: "Data e hora da última atualização do usuário"
   deletedAt:
-    $ref: '../common-types/date.yaml'
+    type: string
+    format: date-time
     nullable: true
     description: "Data e hora da exclusão do usuário"

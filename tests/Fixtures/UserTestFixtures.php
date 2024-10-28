@@ -12,6 +12,11 @@ class UserTestFixtures implements TestFixtures
     {
         return [
             'id' => Uuid::v4()->toRfc4122(),
+            'firstname' => 'User',
+            'lastname' => 'Test',
+            'socialName' => null,
+            'email' => 'user.test@mail.com',
+            'password' => 'Aurora@2024',
             'image' => null,
         ];
     }
@@ -19,6 +24,7 @@ class UserTestFixtures implements TestFixtures
     public static function complete(): array
     {
         return array_merge(self::partial(), [
+            'socialName' => 'User Test',
             'image' => ImageTestFixtures::getImageValid(),
         ]);
     }

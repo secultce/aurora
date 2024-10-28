@@ -11,6 +11,8 @@ interface AgentServiceInterface
 {
     public function create(array $agent): Agent;
 
+    public function createFromUser(array $user);
+
     public function get(Uuid $id): Agent;
 
     public function list(array $filters = [], int $limit = 50): array;
