@@ -20,4 +20,6 @@ import './styles/components/side-bar.css';
 import './styles/components/title.css';
 import './styles/components/form-step.css';
 
+import './js/navbar-dropdown.js';
+
 import 'aurora-user-interface/dist/js/bootstrap.min.js';
