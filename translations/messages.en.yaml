@@ -240,6 +240,8 @@ view:
       finished: Completed Events
       opened: Ongoing Events
       last_days: Registered in the last 7 days
+    not_set_datetime: Date and time not set
+    format_datetime: F jS \\a\\t g:ia
 
   homepage:
     add_events: Post your events, spaces, initiatives, and opportunities such as calls for proposals and contests on the cultural radar so that people can participate in what is happening in the region. With Aurora, you can do all this in a collaborative and interactive way, democratizing access to culture.

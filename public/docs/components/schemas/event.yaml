@@ -34,7 +34,7 @@ properties:
         format: uuid
         description: "Identificador da iniciativa"
         example: "1de186d2-ffbe-42a8-bbfe-340b4da81954"
-  parentEvent:
+  parent:
     type: object
     properties:
       id:
@@ -93,7 +93,12 @@ properties:
             $ref: '../common-types/date.yaml'
             nullable: true
             description: "Data e hora da exclusão do evento"
-  createby:
+  extraFields:
+    type: object
+    nullable: true
+    description: "Campos extras do evento"
+    example: { "occurrences": [ '2024-12-10T11:30-03:00' ] }
+  createdBy:
     type: object
     properties:
       id:

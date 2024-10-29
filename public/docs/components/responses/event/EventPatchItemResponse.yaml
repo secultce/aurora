@@ -70,6 +70,13 @@ properties:
             description: "Identificador da iniciativa"
       parent:
         type: object
+        nullable: true
+        example: null
+      extraFields:
+        type: object
+        nullable: true
+        description: "Campos extras do evento"
+        example: null
       createdBy:
         description: "Identificador do agente criador do evento"
         type: object
@@ -92,6 +99,11 @@ properties:
         format: date-time
         nullable: true
         description: "Data e hora da exclusão do evento"
+  extraFields:
+    type: object
+    nullable: true
+    description: "Campos extras do evento"
+    example: { "occurrences": [ '2025-12-25T15:30-03:00' ] }
   createdBy:
     description: "Agente criador do evento"
     type: object

@@ -238,6 +238,8 @@ view:
       finished: Eventos Finalizados
       opened: Eventos em Andamento
       last_days: Registrados nos últimos 7 dias
+    not_set_datetime: Data e hora não definidas
+    format_datetime: d/m/Y \à\s h:i:s
 
   homepage:
     add_events: Coloque seus eventos, espaços, iniciativas e oportunidades como editais e concursos no radar cultural, para que as pessoas participem do que está acontecendo na região. Com o Aurora você faz tudo isso de forma colaborativa e interativa, democratizando o acesso à cultura.

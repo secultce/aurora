@@ -7,6 +7,7 @@ namespace App\Entity;
 use App\Repository\EventRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -43,6 +44,10 @@ class Event extends AbstractEntity
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[Groups(['event.get'])]
     private ?Event $parent = null;
+
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    #[Groups(['event.get.item'])]
+    private ?array $extraFields = null;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false)]
@@ -134,6 +139,16 @@ class Event extends AbstractEntity
     public function setParent(?Event $parent): void
     {
         $this->parent = $parent;
+    }
+
+    public function getExtraFields(): ?array
+    {
+        return $this->extraFields;
+    }
+
+    public function setExtraFields(?array $extraFields): void
+    {
+        $this->extraFields = $extraFields;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable

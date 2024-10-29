@@ -242,6 +242,8 @@ view:
       finished: Eventos Finalizados
       opened: Eventos en Curso
       last_days: Registrados en los últimos 7 días
+    not_set_datetime: Fecha y hora no definidas
+    format_datetime: d/m/Y \a \l\a\s H:i
 
   homepage:
     add_events: Publica tus eventos, espacios, iniciativas y oportunidades como convocatorias y concursos en el radar cultural para que las personas puedan participar en lo que está sucediendo en la región. Con Aurora, puedes hacer todo esto de manera colaborativa e interactiva, democratizando el acceso a la cultura.
