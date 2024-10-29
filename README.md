@@ -101,6 +101,28 @@ Depois que tudo estiver configurado e as dependências instaladas, você pode ac
 
 Há também uma rota de teste para a API. Você pode acessá-la em [http://localhost:8080/api/example](http://localhost:8080/api/example). Esta rota está definida no controller `ExampleController` e retorna a mensagem de sucesso.
 
+#### Usuário padrão
+Há alguns usuarios que você pode utilizar para fins de teste:
+
+<table>
+<tr>
+<th>email</th>
+<th>senha</th>
+</tr>
+<tr>
+<td>mariadebetania@example.com</td>
+<td>Aurora@2024</td>
+</tr>
+<tr>
+<td>saracamilo@example.com</td>
+<td>Aurora@2024</td>
+</tr>
+<tr>
+<td>paulodetarso@example.com</td>
+<td>Aurora@2024</td>
+</tr>
+</table>
+
 </details>
 
 
@@ -118,8 +140,9 @@ flowchart TD
     Routes --> CW[[ControllerWeb]]
     CA <--> S[Service]
     CW <--> S
-    S <--> RP[Repository]
-    RP <==> D[(Database)]
+    S <--> V{Validator}
+    V <--> RP[Repository]
+    RP <==ORM/Doctrine==> D[(Database)]
     CA --JsonResponse--> HC
     CW --HTML/CSS/JS--> B
 ```
