@@ -1,0 +1,24 @@
+post:
+  tags:
+    - Usuários
+  summary: Cria um único usuário
+  requestBody:
+    description: Usuário
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: "../../requestBodies/user/UserPostItemRequest.yaml"
+  responses:
+    "201":
+      description: Usuário criado
+      content:
+        application/json:
+          schema:
+            $ref: "../../responses/user/UserPostItemResponse.yaml"
+    "400":
+      description: Dados inválidos, usuário não criado
+      content:
+        application/json:
+          schema:
+            $ref: "../../responses/InvalidResponse.yaml"

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\EventListener\Audit;
 
+use App\DataFixtures\Entity\UserFixtures;
 use App\Document\AuthTimeline;
 use App\Entity\User;
 use App\Tests\AbstractWebTestCase;
@@ -33,7 +34,7 @@ class AuditAuthSuccessListenerTest extends AbstractWebTestCase
     {
         $requestBody = [
             'username' => 'alessandrofeitoza@example.com',
-            'password' => '123456',
+            'password' => UserFixtures::DEFAULT_PASSWORD,
         ];
 
         if (null !== static::$kernel) {

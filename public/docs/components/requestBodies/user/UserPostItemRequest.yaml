@@ -1,0 +1,28 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador do usuário"
+  firstname:
+    type: string
+    maxLength: 50
+    description: "Primeiro nome do usuário"
+  lastname:
+    type: string
+    maxLength: 50
+    description: "Segundo nome do usuário"
+  socialName:
+    type: string
+    maxLength: 100
+    description: "Nome social do usuário"
+  email:
+    type: string
+    maxLength: 100
+    description: "E-mail de cadastro do usuário"
+  password:
+    type: string
+    description: "Senha de acesso do usuário"
+  image:
+    type: string
+    description: "Imagem do perfil do usuário codificada em Base64"

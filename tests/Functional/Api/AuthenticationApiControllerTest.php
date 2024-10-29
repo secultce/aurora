@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\DataFixtures\Entity\UserFixtures;
 use App\Tests\AbstractWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,7 +17,7 @@ class AuthenticationApiControllerTest extends AbstractWebTestCase
     {
         $requestBody = [
             'username' => 'henriquelopeslima@example.com',
-            'password' => '123456',
+            'password' => UserFixtures::DEFAULT_PASSWORD,
         ];
 
         $client = self::createClient();

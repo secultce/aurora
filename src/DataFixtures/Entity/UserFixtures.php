@@ -27,7 +27,7 @@ final class UserFixtures extends AbstractFixture
     public const string USER_ID_9 = 'fc3c6632-cbff-4dfd-9fb3-1560fec620cf';
     public const string USER_ID_10 = 'b4f5e01c-e826-45bf-975d-1ac34cfe6e8c';
 
-    public const string DEFAULT_PASSWORD = '123456';
+    public const string DEFAULT_PASSWORD = 'Aurora@2024';
 
     public const array USERS = [
         [
