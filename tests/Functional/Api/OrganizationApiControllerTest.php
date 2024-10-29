@@ -170,7 +170,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertCount(count(OrganizationFixtures::ITEMS), json_decode($response));
+        $this->assertCount(count(OrganizationFixtures::ORGANIZATIONS), json_decode($response));
 
         $this->assertJsonContains([
             'id' => OrganizationFixtures::ORGANIZATION_ID_1,

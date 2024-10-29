@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Event;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class EventFixtures extends Fixture implements DependentFixtureInterface
+final class EventFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public const string EVENT_ID_PREFIX = 'event';
     public const string EVENT_ID_1 = '8042b9aa-91b9-43f7-8829-101da3086a27';
@@ -27,7 +28,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
     public const array EVENTS = [
         [
             'id' => self::EVENT_ID_1,
-            'name' => 'Festival Sertão Criativo',
+            'name' => 'Modo Criativo',
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_3,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_2,
@@ -35,7 +36,7 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             'extraFields' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => '2024-07-10T11:35:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
@@ -181,45 +182,27 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
         ],
     ];
 
+    public const array EVENTS_UPDATED = [
+        [
+            'id' => self::EVENT_ID_1,
+            'name' => 'Festival Sertão Criativo',
+            'agentGroup' => null,
+            'space' => SpaceFixtures::SPACE_ID_3,
+            'initiative' => InitiativeFixtures::INITIATIVE_ID_2,
+            'parent' => null,
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'createdAt' => '2024-07-10T11:30:00+00:00',
+            'updatedAt' => '2024-07-10T11:35:00+00:00',
+            'deletedAt' => null,
+        ],
+    ];
+
     public function __construct(
+        protected EntityManagerInterface $entityManager,
+        protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
     ) {
-    }
-
-    public function load(ObjectManager $manager): void
-    {
-        foreach (self::EVENTS as $eventData) {
-            /* @var Event $event */
-            $event = $this->serializer->denormalize($eventData, Event::class);
-
-            $event->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['createdBy'])));
-
-            if (null !== $eventData['agentGroup']) {
-                $agentGroup = $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['agentGroup']));
-                $event->setAgentGroup($agentGroup);
-            }
-
-            if (null !== $eventData['space']) {
-                $space = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $eventData['space']));
-                $event->setSpace($space);
-            }
-
-            if (null !== $eventData['initiative']) {
-                $initiative = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $eventData['initiative']));
-                $event->setInitiative($initiative);
-            }
-
-            if (null !== $eventData['parent']) {
-                $parent = $this->getReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['parent']));
-                $event->setParent($parent);
-            }
-
-            $this->setReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['id']), $event);
-
-            $manager->persist($event);
-        }
-
-        $manager->flush();
+        parent::__construct($entityManager, $tokenStorage);
     }
 
     public function getDependencies(): array
@@ -229,5 +212,72 @@ final class EventFixtures extends Fixture implements DependentFixtureInterface
             SpaceFixtures::class,
             InitiativeFixtures::class,
         ];
+    }
+
+    public function load(ObjectManager $manager): void
+    {
+        $this->createEvents($manager);
+        $this->updateEvents($manager);
+        $this->manualLogout();
+    }
+
+    private function createEvents(ObjectManager $manager): void
+    {
+        foreach (self::EVENTS as $eventData) {
+            $event = $this->mountEvent($eventData);
+
+            $this->setReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['id']), $event);
+
+            $this->manualLoginByAgent($eventData['createdBy']);
+
+            $manager->persist($event);
+        }
+
+        $manager->flush();
+    }
+
+    private function updateEvents(ObjectManager $manager): void
+    {
+        foreach (self::EVENTS_UPDATED as $eventData) {
+            $eventObj = $this->getReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['id']), Event::class);
+
+            $event = $this->mountEvent($eventData, ['object_to_populate' => $eventObj]);
+
+            $this->manualLoginByAgent($eventData['createdBy']);
+
+            $manager->persist($event);
+        }
+
+        $manager->flush();
+    }
+
+    private function mountEvent(array $eventData, array $context = []): Event
+    {
+        /* @var Event $event */
+        $event = $this->serializer->denormalize($eventData, Event::class, context: $context);
+
+        $event->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['createdBy'])));
+
+        if (null !== $eventData['agentGroup']) {
+            $agentGroup = $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['agentGroup']));
+            $event->setAgentGroup($agentGroup);
+        }
+
+        if (null !== $eventData['space']) {
+            $space = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $eventData['space']));
+            $event->setSpace($space);
+        }
+
+        if (null !== $eventData['initiative']) {
+            $initiative = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $eventData['initiative']));
+            $event->setInitiative($initiative);
+        }
+
+        if (null !== $eventData['parent']) {
+            $parent = $this->getReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['parent']));
+            $event->setParent($parent);
+        }
+
+        return $event;
     }
 }

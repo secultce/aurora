@@ -5,12 +5,13 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Organization;
-use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
+use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
-final class OrganizationFixtures extends Fixture implements DependentFixtureInterface
+final class OrganizationFixtures extends AbstractFixture implements DependentFixtureInterface
 {
     public const string ORGANIZATION_ID_PREFIX = 'organization';
     public const string ORGANIZATION_ID_1 = 'bc89ea8d-6ad7-4cb8-92a9-b56ce203c7dd';
@@ -24,10 +25,10 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
     public const string ORGANIZATION_ID_9 = '7cb6a1b8-f33e-1218-cb41-820b0f74e4d1';
     public const string ORGANIZATION_ID_10 = '8c4ca8bd-6e33-1b62-c58b-a66969c49f66';
 
-    public const array ITEMS = [
+    public const array ORGANIZATIONS = [
         [
             'id' => self::ORGANIZATION_ID_1,
-            'name' => 'PHP com Rapadura',
+            'name' => 'PHP sem Rapadura',
             'description' => 'Comunidade de devs PHP do Estado do Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -38,7 +39,7 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
                 'instagram' => '@phpcomrapadura',
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => '2024-07-10T12:20:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ],
         [
@@ -186,9 +187,28 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
         ],
     ];
 
+    public const array ORGANIZATIONS_UPDATED = [
+        [
+            'id' => self::ORGANIZATION_ID_1,
+            'name' => 'PHP com Rapadura',
+            'description' => 'Comunidade de devs PHP do Estado do Ceará',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'owner' => AgentFixtures::AGENT_ID_1,
+            'agents' => [],
+            'parent' => null,
+            'space' => null,
+            'createdAt' => '2024-07-10T11:30:00+00:00',
+            'updatedAt' => '2024-07-10T12:20:00+00:00',
+            'deletedAt' => null,
+        ],
+    ];
+
     public function __construct(
+        protected EntityManagerInterface $entityManager,
+        protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
     ) {
+        parent::__construct($entityManager, $tokenStorage);
     }
 
     public function getDependencies(): array
@@ -200,25 +220,56 @@ final class OrganizationFixtures extends Fixture implements DependentFixtureInte
 
     public function load(ObjectManager $manager): void
     {
-        foreach (self::ITEMS as $objectData) {
-            $agents = $objectData['agents'] ?? [];
-            unset($objectData['agents']);
+        $this->createOrganizations($manager);
+        $this->updateOrganizations($manager);
+        $this->manualLogout();
+    }
 
-            /* @var Organization $object */
-            $object = $this->serializer->denormalize($objectData, Organization::class);
+    private function mountOrganization(array $organizationData, array $context = []): Organization
+    {
+        $agents = $organizationData['agents'] ?? [];
+        unset($organizationData['agents']);
 
-            foreach ($agents ?? [] as $agentId) {
-                $object->addAgent(
-                    $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $agentId))
-                );
-            }
+        /* @var Organization $organization */
+        $organization = $this->serializer->denormalize($organizationData, Organization::class, context: $context);
 
-            $object->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $objectData['createdBy'])));
-            $object->setOwner($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $objectData['owner'])));
+        foreach ($agents ?? [] as $agentId) {
+            $organization->addAgent(
+                $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $agentId))
+            );
+        }
 
-            $this->setReference(sprintf('%s-%s', self::ORGANIZATION_ID_PREFIX, $objectData['id']), $object);
+        $organization->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $organizationData['createdBy'])));
+        $organization->setOwner($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $organizationData['owner'])));
 
-            $manager->persist($object);
+        return $organization;
+    }
+
+    private function createOrganizations(ObjectManager $manager): void
+    {
+        foreach (self::ORGANIZATIONS as $organizationData) {
+            $organization = $this->mountOrganization($organizationData);
+
+            $this->setReference(sprintf('%s-%s', self::ORGANIZATION_ID_PREFIX, $organizationData['id']), $organization);
+
+            $this->manualLoginByAgent($organizationData['createdBy']);
+
+            $manager->persist($organization);
+        }
+
+        $manager->flush();
+    }
+
+    public function updateOrganizations(ObjectManager $manager): void
+    {
+        foreach (self::ORGANIZATIONS_UPDATED as $organizationData) {
+            $organizationObj = $this->getReference(sprintf('%s-%s', self::ORGANIZATION_ID_PREFIX, $organizationData['id']), Organization::class);
+
+            $organization = $this->mountOrganization($organizationData, ['object_to_populate' => $organizationObj]);
+
+            $this->manualLoginByAgent($organizationData['createdBy']);
+
+            $manager->persist($organization);
         }
 
         $manager->flush();

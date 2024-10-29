@@ -200,4 +200,21 @@ class Agent extends AbstractEntity
     {
         $this->deletedAt = $deletedAt;
     }
+
+    public function toArray(): array
+    {
+        return [
+            'id' => $this->id?->toRfc4122(),
+            'name' => $this->name,
+            'image' => $this->image,
+            'shortBio' => $this->shortBio,
+            'longBio' => $this->longBio,
+            'culture' => $this->culture,
+            'extraFields' => $this->extraFields,
+            'organizations' => $this->organizations->map(fn ($organization) => $organization->getId()->toRfc4122()),
+            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
+            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
+            'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),
+        ];
+    }
 }
