@@ -1,0 +1,11 @@
+{% set tabs = [
+    {
+        'id': 'home',
+        'content': include('_admin/dashboard/_partials/tabs/tab-home.html.twig')
+    },
+    {
+        'id': 'notifications',
+        'content': include('_admin/seal/_partials/tabs/tab-draft.html.twig')
+    },
+] %}
+{% include '_components/tabs/content-tabs.html.twig' with { 'tabs': tabs } %}

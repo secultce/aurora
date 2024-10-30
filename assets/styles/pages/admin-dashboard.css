@@ -1,0 +1,154 @@
+.dashboard__white-square {
+    background-color: var(--bg-color-f);
+    width: 100%;
+    padding: 1.813rem 8.438rem 0 2.063rem;
+}
+
+.dashboard-info .user-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5em;
+    margin-top: 1.5rem;
+}
+
+.dashboard-info .user-info img {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+}
+
+.dashboard-info a {
+    height: 3rem;
+    width: 18rem;
+    background-color: var(--deep-teal);
+    text-decoration: none;
+    color: var(--white-color);
+    border-radius: 0.5rem;
+    display: flex;
+    align-items: center;
+    gap: 11px;
+    padding: 1.188rem;
+    font-size: 1.125rem;
+    font-weight: bold;
+    text-wrap: nowrap;
+    transition: 0.3s;
+}
+
+.dashboard-tabs {
+    margin-left: -12px;
+    margin-top: 20px;
+}
+
+.dashboard-content {
+    padding: 2rem 5rem;
+}
+
+.dashboard-cards {
+    display: flex;
+    gap: 24px;
+}
+
+.card-dashboard{
+    border-radius: 8px;
+    background-color: var(--white-color);
+    width: calc((100% - 96px) / 5);
+    height: 16.9875rem;
+    padding: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-shadow: 0 4px 8px 0 var(--box-shadow-color);
+}
+
+.card-dashboard button {
+    border: 2px solid var(--deep-teal);
+    background-color: var(--white-color);
+    color: var(--deep-teal);
+    height: 3.75rem;
+    border-radius: 0.5rem;
+    margin: 0 1.25rem;
+    transition: 0.3s;
+}
+
+.card-dashboard button:hover {
+    background-color: var(--deep-teal);
+    color: var(--white-color);
+}
+
+.bg-card-dashboard {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.bg-card-dashboard.bg-agent {
+    background-color: var(--navlink-agent);
+}
+
+.bg-card-dashboard.bg-opportunity {
+    background-color: var(--navlink-opportunity);
+}
+
+.bg-card-dashboard.bg-initiative {
+    background-color: var(--navlink-initiative);
+}
+
+.bg-card-dashboard.bg-event {
+    background-color: var(--navlink-event);
+}
+
+.bg-card-dashboard.bg-space {
+    background-color: var(--navlink-space);
+}
+
+.bg-card-dashboard i,
+.bg-card-dashboard .iconify {
+    font-size: 1.5rem;
+    color: var(--white-color);
+}
+
+.recent-registrations-card {
+    background-color: var(--white-color);
+    border-radius: 4px;
+    padding: 1.5rem;
+    box-shadow: 0 4px 8px 0 var(--box-shadow-color);
+    width: 25%;
+    height: 18.125rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.recent-registrations-card .registration-info {
+    font-weight: bold;
+    width: 95%;
+    font-size: 18px;
+}
+
+.recent-registrations-card .iconify {
+    font-size: 1.5rem;
+}
+
+.recent-registrations-card a {
+    background-color: var(--deep-teal);
+    color: var(--bs-white);
+    font-size: 18px;
+    font-weight: 600;
+    height: 25%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+.recent-registrations-card a:hover,
+.dashboard-info a:hover {
+    background-color: var(--white-color);
+    color: var(--deep-teal);
+    border: 1px solid var(--deep-teal);
+}

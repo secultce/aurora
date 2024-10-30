@@ -19,7 +19,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-readonly class SpaceService implements SpaceServiceInterface
+readonly class SpaceService extends AbstractEntityService implements SpaceServiceInterface
 {
     private const array DEFAULT_FILTERS = [
         'deletedAt' => null,
@@ -63,6 +63,13 @@ readonly class SpaceService implements SpaceServiceInterface
             array_merge($filters, self::DEFAULT_FILTERS),
             ['createdAt' => 'DESC'],
             $limit
+        );
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
         );
     }
 

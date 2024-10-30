@@ -15,7 +15,7 @@ use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-readonly class InitiativeService implements InitiativeServiceInterface
+readonly class InitiativeService extends AbstractEntityService implements InitiativeServiceInterface
 {
     private const array DEFAULT_FILTERS = [
         'deletedAt' => null,
@@ -48,6 +48,13 @@ readonly class InitiativeService implements InitiativeServiceInterface
             array_merge($filters, self::DEFAULT_FILTERS),
             ['createdAt' => 'DESC'],
             $limit
+        );
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
         );
     }
 

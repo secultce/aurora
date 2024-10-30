@@ -18,4 +18,6 @@ interface SpaceServiceInterface
     public function remove(Uuid $id): void;
 
     public function update(Uuid $identifier, array $space): Space;
+
+    public function count(): int;
 }

@@ -1,0 +1,14 @@
+<div class="dashboard-tabs" >
+    {% set tabs = [
+        {
+            'id': 'home',
+            'title': 'home' | trans,
+        },
+        {
+            'id': 'notifications',
+            'title': 'notifications' | trans,
+        },
+    ] %}
+
+    {% include '_components/tabs/tab.html.twig' with { 'tabs': tabs } %}
+</div>

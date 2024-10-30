@@ -1,0 +1,11 @@
+[
+  {
+    "name": "PHPSESSID",
+    "value": "44df4622ced94f189e33f81ffcd9f128",
+    "path": "/",
+    "secure": false,
+    "httpOnly": true,
+    "domain": "localhost",
+    "sameSite": "lax"
+  }
+]

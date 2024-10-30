@@ -1,6 +1,7 @@
 describe('Página de Minhas Inscrições', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
+        cy.login('talysonsoares@example.com', 'Aurora@2024');
         cy.visit('/painel/inscricoes');
     });
 
