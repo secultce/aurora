@@ -8,6 +8,7 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\EventFixtures;
 use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\OpportunityFixtures;
+use App\DataFixtures\Entity\PhaseFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Opportunity;
 use App\Tests\AbstractWebTestCase;
@@ -45,6 +46,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
             'event' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'extraFields' => null,
+            'phases' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -92,6 +94,20 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                         2 => 'Nordeste',
                     ],
                 ],
+                'phases' => [
+                    [
+                        'id' => PhaseFixtures::PHASE_ID_1,
+                        'name' => 'Fase de submissão',
+                    ],
+                    [
+                        'id' => PhaseFixtures::PHASE_ID_2,
+                        'name' => 'Fase de validação',
+                    ],
+                    [
+                        'id' => PhaseFixtures::PHASE_ID_3,
+                        'name' => 'Fase de recurso',
+                    ],
+                ],
                 'createdAt' => '2024-09-06T10:00:00+00:00',
                 'updatedAt' => '2024-09-06T16:00:00+00:00',
                 'deletedAt' => null,
@@ -117,6 +133,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                     2 => 'Nordeste',
                 ],
             ],
+            'phases' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -225,23 +242,15 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $this->assertCount(count(OpportunityFixtures::OPPORTUNITIES), json_decode($response));
 
         $this->assertJsonContains([
-            'id' => OpportunityFixtures::OPPORTUNITY_ID_1,
-            'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+            'id' => OpportunityFixtures::OPPORTUNITY_ID_10,
+            'name' => 'Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino',
             'parent' => null,
-            'space' => [
-                'id' => SpaceFixtures::SPACE_ID_1,
-            ],
-            'initiative' => [
-                'id' => InitiativeFixtures::INITIATIVE_ID_1,
-            ],
-            'event' => [
-                'id' => EventFixtures::EVENT_ID_1,
-            ],
-            'createdBy' => [
-                'id' => AgentFixtures::AGENT_ID_1,
-            ],
-            'createdAt' => '2024-09-06T10:00:00+00:00',
-            'updatedAt' => '2024-09-06T16:00:00+00:00',
+            'space' => ['id' => SpaceFixtures::SPACE_ID_10],
+            'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_10],
+            'event' => ['id' => EventFixtures::EVENT_ID_10],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_10],
+            'createdAt' => '2024-09-15T19:00:00+00:00',
+            'updatedAt' => null,
             'deletedAt' => null,
         ]);
     }
@@ -287,6 +296,16 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                     0 => 'Quadrilhas',
                     1 => 'São João',
                     2 => 'Nordeste',
+                ],
+            ],
+            'phases' => [
+                [
+                    'id' => PhaseFixtures::PHASE_ID_6,
+                    'name' => 'Fase de submissão',
+                ],
+                [
+                    'id' => PhaseFixtures::PHASE_ID_7,
+                    'name' => 'Fase de documentação',
                 ],
             ],
             'createdAt' => '2024-09-08T12:00:00+00:00',
@@ -380,6 +399,20 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                         2 => 'Nordeste',
                     ],
                 ],
+                'phases' => [
+                    [
+                        'id' => PhaseFixtures::PHASE_ID_1,
+                        'name' => 'Fase de submissão',
+                    ],
+                    [
+                        'id' => PhaseFixtures::PHASE_ID_2,
+                        'name' => 'Fase de validação',
+                    ],
+                    [
+                        'id' => PhaseFixtures::PHASE_ID_3,
+                        'name' => 'Fase de recurso',
+                    ],
+                ],
                 'createdAt' => '2024-09-06T10:00:00+00:00',
                 'updatedAt' => '2024-09-06T16:00:00+00:00',
                 'deletedAt' => null,
@@ -403,6 +436,16 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                     0 => 'Literatura',
                     1 => 'Cordel',
                     2 => 'Nordeste',
+                ],
+            ],
+            'phases' => [
+                [
+                    'id' => PhaseFixtures::PHASE_ID_8,
+                    'name' => 'Fase de submissão',
+                ],
+                [
+                    'id' => PhaseFixtures::PHASE_ID_9,
+                    'name' => 'Fase de documentação',
                 ],
             ],
             'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),

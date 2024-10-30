@@ -7,6 +7,8 @@ namespace App\Entity;
 use App\Repository\OpportunityRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -54,6 +56,10 @@ class Opportunity extends AbstractEntity
     #[Groups(['opportunity.get.item'])]
     private ?array $extraFields = null;
 
+    #[ORM\OneToMany(targetEntity: Phase::class, mappedBy: 'opportunity', orphanRemoval: true)]
+    #[Groups('opportunity.get.item')]
+    private Collection $phases;
+
     #[ORM\Column]
     #[Groups('opportunity.get')]
     private DateTimeImmutable $createdAt;
@@ -69,6 +75,7 @@ class Opportunity extends AbstractEntity
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->phases = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -149,6 +156,26 @@ class Opportunity extends AbstractEntity
     public function setExtraFields(?array $extraFields): void
     {
         $this->extraFields = $extraFields;
+    }
+
+    public function getPhases(): Collection
+    {
+        return $this->phases;
+    }
+
+    public function setPhases(Collection $phases): void
+    {
+        $this->phases = $phases;
+    }
+
+    public function addPhase(Phase $phase): void
+    {
+        $this->phases->add($phase);
+    }
+
+    public function removePhase(Phase $phase): void
+    {
+        $this->phases->removeElement($phase);
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
