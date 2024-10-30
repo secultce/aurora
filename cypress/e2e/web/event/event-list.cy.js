@@ -55,7 +55,7 @@ describe('Pagina de listar Eventos', () => {
         cy.get(':nth-child(2) > .event-card-header > .event-id').contains('ID: 9f0e3630-f9e1-42ca-8e6b-b1dcaa006797').should('be.visible');
         cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-3 > .event-name').contains('Nordeste Literário').should('be.visible');
         cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-3 > .event-subtitle').contains('Subtítulo do evento').should('be.visible');
-        cy.get(':nth-child(2) > .event-card-body > .event-date').contains('00/00/0000 às 00:00').should('be.visible');
+        cy.get(':nth-child(2) > .event-card-body > .event-date').contains('Data e hora não definidas').should('be.visible');
         cy.get(':nth-child(2) > .event-card-body > .event-location').contains('Casa do Sertão | SCTS – Zona Cívico Administrativa – Brasília/DF – CEP: 70070-150').should('be.visible');
         cy.get(':nth-child(2) > .event-card-body > .event-languages').contains('Idioma (3): LINGUAGEM, LINGUAGEM, LINGUAGEM').should('be.visible');
         cy.get(':nth-child(2) > .event-card-body > .event-details').contains( 'Valor da entrada:').should('be.visible');

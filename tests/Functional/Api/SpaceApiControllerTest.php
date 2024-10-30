@@ -286,7 +286,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'name' => 'Galeria Caatinga',
             'image' => $space->getImage(),
             'createdBy' => [
-                'id' => '0cc8c682-b0cd-4cb3-bd9d-41a9161b3566',
+                'id' => '84a5b3d1-a7a4-49a6-aff8-902a325f97f9',
             ],
             'parent' => [
                 'id' => 'ae32b8a5-25a8-4b80-b415-4237a8484186',

@@ -65,7 +65,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'id' => self::SPACE_ID_3,
             'name' => 'Galeria Caatinga',
             'image' => null,
-            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'createdBy' => AgentFixtures::AGENT_ID_2,
             'parent' => self::SPACE_ID_2,
             'extraFields' => [
                 'type' => 'Galeria de Arte',

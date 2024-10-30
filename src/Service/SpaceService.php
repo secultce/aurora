@@ -12,6 +12,7 @@ use App\Repository\Interface\SpaceRepositoryInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use DateTime;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -21,17 +22,15 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class SpaceService extends AbstractEntityService implements SpaceServiceInterface
 {
-    private const array DEFAULT_FILTERS = [
-        'deletedAt' => null,
-    ];
-
     public function __construct(
         private SpaceRepositoryInterface $repository,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
+        private Security $security,
     ) {
+        parent::__construct($security);
     }
 
     public function create(array $space): Space
@@ -47,7 +46,7 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
     {
         $space = $this->repository->findOneBy([
             ...['id' => $id],
-            ...self::DEFAULT_FILTERS,
+            ...$this->getDefaultParams(),
         ]);
 
         if (null === $space) {
@@ -57,10 +56,17 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         return $space;
     }
 
-    public function list(array $filters = [], int $limit = 50): array
+    public function findOneBy(array $params): Space
+    {
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
+        );
+    }
+
+    public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
-            array_merge($filters, self::DEFAULT_FILTERS),
+            $this->getDefaultParams(),
             ['createdAt' => 'DESC'],
             $limit
         );
@@ -73,9 +79,25 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         );
     }
 
+    public function findBy(array $params = [], int $limit = 50): array
+    {
+        return $this->repository->findBy(
+            [...$params, ...$this->getUserParams()],
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
     public function remove(Uuid $id): void
     {
-        $space = $this->get($id);
+        $space = $this->repository->findOneBy(
+            [...['id' => $id], ...$this->getUserParams()]
+        );
+
+        if (null === $space) {
+            throw new SpaceResourceNotFoundException();
+        }
+
         $space->setDeletedAt(new DateTime());
 
         $this->repository->save($space);
