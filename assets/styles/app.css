@@ -797,7 +797,7 @@ textarea {
 }
 
 .side-navigation {
-    width: 20.5rem;
+    /*width: 20.5rem;*/
 }
 
 .management-seals {
@@ -1217,3 +1217,8 @@ textarea {
     margin-top: 5px;
 }
 
+@media only screen and (max-width: 600px) {
+    .side-navigation {
+        display: none;
+    }
+}
