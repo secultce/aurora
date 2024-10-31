@@ -10,7 +10,14 @@ describe('Painel de Controle - Página de listar Agentes', () => {
     });
 
     it('Garante que os agentes estejam visíveis ', () => {
-        cy.get(':nth-child(6) > :nth-child(1) > a').contains('Talyson').should('be.visible');
-        cy.get('tbody > :nth-child(6) > :nth-child(2)').contains('22/07/2024 16:20:00').should('be.visible');
+        cy.get('tbody > tr > :nth-child(1)').contains('Talyson').should('be.visible');
+        cy.get('tbody >  tr > :nth-child(2)').contains('22/07/2024 16:20:00').should('be.visible');
+    });
+
+    it('Garante que seja possível deletar um agente', () => {
+        cy.get('button[data-cy="remove-1"]').click();
+        cy.get('[data-modal-button="confirm-link"]').click();
+
+        cy.get('.table').should('not.contain', 'Agent Name');
     });
 })

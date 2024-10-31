@@ -58,6 +58,9 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get'])]
     private Collection $organizations;
 
+    #[ORM\OneToMany(targetEntity: Opportunity::class, mappedBy: 'createdBy')]
+    private Collection $opportunities;
+
     #[ORM\Column]
     #[Groups(['agent.get'])]
     private DateTimeImmutable $createdAt;
@@ -73,6 +76,7 @@ class Agent extends AbstractEntity
     public function __construct()
     {
         $this->organizations = new ArrayCollection();
+        $this->opportunities = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
     }
 
@@ -169,6 +173,11 @@ class Agent extends AbstractEntity
     public function addOrganization(Organization $organization): void
     {
         $this->organizations->add($organization);
+    }
+
+    public function getOpportunities(): Collection
+    {
+        return $this->opportunities;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable

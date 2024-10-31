@@ -9,9 +9,11 @@ use App\Entity\Agent;
 use App\Exception\Agent\AgentResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\AgentRepositoryInterface;
+use App\Repository\Interface\OpportunityRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use DateTime;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
@@ -21,17 +23,16 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class AgentService extends AbstractEntityService implements AgentServiceInterface
 {
-    private const array DEFAULT_FILTERS = [
-        'deletedAt' => null,
-    ];
-
     public function __construct(
         private AgentRepositoryInterface $repository,
+        private OpportunityRepositoryInterface $opportunityRepository,
+        private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
     ) {
+        parent::__construct($security);
     }
 
     public function create(array $agent): Agent
@@ -57,7 +58,7 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
     {
         $agent = $this->repository->findOneBy([
             ...['id' => $id],
-            ...self::DEFAULT_FILTERS,
+            ...$this->getDefaultParams(),
         ]);
 
         if (null === $agent) {
@@ -67,10 +68,33 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         return $agent;
     }
 
-    public function list(array $filters = [], int $limit = 50): array
+    public function findOneBy(array $params): ?Agent
+    {
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
+        );
+    }
+
+    public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
-            array_merge($filters, self::DEFAULT_FILTERS),
+            $this->getDefaultParams(),
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    public function findBy(array $params = [], int $limit = 50): array
+    {
+        $userParams = $this->getDefaultParams();
+
+        if (null !== $this->security->getUser()) {
+            $user = $this->security->getUser();
+            $userParams['user'] = $user;
+        }
+
+        return $this->repository->findBy(
+            [...$params, ...$userParams],
             ['createdAt' => 'DESC'],
             $limit
         );
@@ -85,9 +109,21 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
 
     public function remove(Uuid $id): void
     {
-        $agent = $this->get($id);
-        $agent->setDeletedAt(new DateTime());
+        $agent = $this->repository->findOneBy([
+            ...['id' => $id],
+            ...$this->getDefaultParams(),
+        ]);
 
+        if (null === $agent) {
+            throw new AgentResourceNotFoundException();
+        }
+
+        foreach ($agent->getOpportunities() as $opportunity) {
+            $opportunity->setDeletedAt(new DateTime());
+            $this->opportunityRepository->save($opportunity);
+        }
+
+        $agent->setDeletedAt(new DateTime());
         $this->repository->save($agent);
     }
 
