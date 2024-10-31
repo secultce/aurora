@@ -242,6 +242,8 @@ view:
 
   event:
     create: Crear un Evento
+    message:
+      deleted: El evento ha sido eliminado
     quantity:
       total: Eventos Encontrados
       finished: Eventos Finalizados

@@ -11,21 +11,20 @@ use App\Exception\ValidatorException;
 use App\Repository\Interface\EventRepositoryInterface;
 use App\Service\Interface\EventServiceInterface;
 use DateTime;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class EventService extends AbstractEntityService implements EventServiceInterface
 {
-    private const DEFAULT_FILTERS = [
-        'deletedAt' => null,
-    ];
-
     public function __construct(
         private EventRepositoryInterface $repository,
+        private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
+        parent::__construct($security);
     }
 
     public function create(array $event): Event
@@ -47,7 +46,7 @@ readonly class EventService extends AbstractEntityService implements EventServic
     {
         $event = $this->repository->findOneBy([
             ...['id' => $id],
-            ...self::DEFAULT_FILTERS,
+            ...$this->getDefaultParams(),
         ]);
 
         if (null === $event) {
@@ -57,10 +56,26 @@ readonly class EventService extends AbstractEntityService implements EventServic
         return $event;
     }
 
-    public function list(array $filters = [], int $limit = 50): array
+    public function findOneBy(array $params): ?Event
+    {
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
+        );
+    }
+
+    public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
-            array_merge($filters, self::DEFAULT_FILTERS),
+            $this->getDefaultParams(),
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    public function findBy(array $params = [], int $limit = 50): array
+    {
+        return $this->repository->findBy(
+            [...$params, ...$this->getUserParams()],
             ['createdAt' => 'DESC'],
             $limit
         );
@@ -75,7 +90,14 @@ readonly class EventService extends AbstractEntityService implements EventServic
 
     public function remove(Uuid $id): void
     {
-        $event = $this->get($id);
+        $event = $this->repository->findOneBy(
+            [...['id' => $id], ...$this->getUserParams()]
+        );
+
+        if (null === $event) {
+            throw new EventResourceNotFoundException();
+        }
+
         $event->setDeletedAt(new DateTime());
 
         $this->repository->save($event);

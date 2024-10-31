@@ -240,6 +240,8 @@ view:
 
   event:
     create: Create an Event
+    message:
+      deleted: The event has been deleted
     quantity:
       total: Events Found
       finished: Completed Events
