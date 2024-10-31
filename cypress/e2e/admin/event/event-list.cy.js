@@ -10,7 +10,14 @@ describe('Painel de Controle - Página de listar Eventos', () => {
     });
 
     it('Garante que os eventos estejam visíveis ', () => {
-        cy.get('tbody > :nth-child(4) > :nth-child(1) > a').contains('Raízes do Sertão').should('be.visible');
-        cy.get('tbody > :nth-child(4) > :nth-child(2)').contains('11/08/2024 15:54:00').should('be.visible');
+        cy.get('tbody > tr > :nth-child(1)').contains('Nordeste Literário').should('be.visible');
+        cy.get('tbody > tr > :nth-child(2)').contains('14/08/2024 10:00:00').should('be.visible');
+    });
+
+    it('Garante que seja possível deletar um agente', () => {
+        cy.get('button[data-cy="remove-1"]').click();
+        cy.get('[data-modal-button="confirm-link"]').click();
+
+        cy.get('.table').should('not.contain', 'Cores do Sertão');
     });
 })
