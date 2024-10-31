@@ -301,6 +301,8 @@ view:
   space:
     access_space: Access Space
     create: Create Space
+    message:
+      deleted: The space has been deleted
     quantity:
       total: Spaces Found
       finished: Closed Spaces

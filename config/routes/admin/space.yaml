@@ -2,3 +2,8 @@ list:
   path: /
   controller: App\Controller\Web\Admin\SpaceAdminController::list
   methods: ['GET']
+
+remove:
+  path: /{id}/remove
+  controller: App\Controller\Web\Admin\SpaceAdminController::remove
+  methods: ['GET']

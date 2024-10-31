@@ -13,11 +13,15 @@ interface SpaceServiceInterface
 
     public function get(Uuid $id): Space;
 
-    public function list(array $filters = [], int $limit = 50): array;
+    public function findOneBy(array $params): Space;
+
+    public function findBy(array $params = []): array;
+
+    public function list(int $limit = 50): array;
+
+    public function count(): int;
 
     public function remove(Uuid $id): void;
 
     public function update(Uuid $identifier, array $space): Space;
-
-    public function count(): int;
 }

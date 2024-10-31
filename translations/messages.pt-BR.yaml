@@ -165,7 +165,7 @@ accept-policies:
   title: Aceite de políticas
 
 modal_confirm_remove:
-  message: Esta ação é irreversivel, tem certeza que deseja continuar?
+  message: Esta ação é irreversível, tem certeza que deseja continuar?
 
 footer:
   and_developed: e desenvolvida por
@@ -296,6 +296,8 @@ view:
   space:
     access_space: Acessar espaço
     create: Criar espaço
+    message:
+      deleted: O Espaço foi excluído
     quantity:
       total: Espaços Encontrados
       finished: Espaços Fechados
