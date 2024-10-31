@@ -201,6 +201,8 @@ view:
 
   agent:
     create: Create an Agent
+    message:
+      deleted: The agent has been deleted
     quantity:
       total: Agents Found
       culture: Cultural Agents

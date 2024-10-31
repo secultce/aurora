@@ -15,7 +15,11 @@ interface AgentServiceInterface
 
     public function get(Uuid $id): Agent;
 
-    public function list(array $filters = [], int $limit = 50): array;
+    public function findOneBy(array $params): ?Agent;
+
+    public function findBy(array $params = []): array;
+
+    public function list(int $limit = 50): array;
 
     public function remove(Uuid $id): void;
 
