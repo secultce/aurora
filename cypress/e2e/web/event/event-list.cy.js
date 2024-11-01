@@ -43,9 +43,9 @@ describe('Pagina de listar Eventos', () => {
     it('Garante que o conteúdo da tab Lista está visível', () => {
         cy.get('#pills-list-tab').click();
         cy.get('#pills-list-tab').should('have.class', 'active');
-        cy.get('#pills-list > #scroll-container > .col-md-12').should('be.visible');
+        cy.get('#pills-list > #scroll-container > [data-cy=pills-list-content]').should('be.visible');
 
-        cy.get('.align-content-center > .fw-bold').contains('182 Eventos Encontrados').should('be.visible');
+        cy.get('[data-cy=pills-list-content]').contains('182 Eventos Encontrados').should('be.visible');
         cy.get('.align-content-center > .d-flex').contains('Ordenar por').should('be.visible');
         cy.get('#sort-options').select('recent').should('have.value', 'recent');
         cy.get('#sort-options').select('old').should('have.value', 'old');

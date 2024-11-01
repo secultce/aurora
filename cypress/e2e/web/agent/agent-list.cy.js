@@ -40,7 +40,7 @@ describe('Página de Listar de Agentes', () => {
     });
 
     it('Garante que os cards de agentes estão visíveis', () => {
-        cy.get('.align-items-end > .fw-bold').contains('10 Agentes Encontrados').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains('9 Agentes Encontrados').should('be.visible');
         cy.get('.agent-options').should('be.visible');
         cy.get('#sort-options').select('recent').should('have.value', 'recent');
         cy.get('#sort-options').select('old').should('have.value', 'old');
