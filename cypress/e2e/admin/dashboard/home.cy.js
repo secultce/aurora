@@ -11,11 +11,11 @@ describe('Painel de Controle', () => {
     });
 
     it('Garante que o Painel de Controle tenha as informações das entidades', () => {
-        cy.get('.dashboard-cards > :nth-child(1)').contains('10 Agentes').should('be.visible');
-        cy.get('.dashboard-cards > :nth-child(2)').contains('10 Oportunidades').should('be.visible');
-        cy.get('.dashboard-cards > :nth-child(3)').contains('10 Eventos').should('be.visible');
-        cy.get('.dashboard-cards > :nth-child(4)').contains('10 Espaços').should('be.visible');
-        cy.get('.dashboard-cards > :nth-child(5)').contains('10 Iniciativas').should('be.visible');
+        cy.get('[data-cy=agent-card-dashboard]').contains('9 Agentes').should('be.visible');
+        cy.get('[data-cy=opportunity-card-dashboard]').contains('9 Oportunidades').should('be.visible');
+        cy.get('[data-cy=event-card-dashboard]').contains('10 Eventos').should('be.visible');
+        cy.get('[data-cy=space-card-dashboard]').contains('10 Espaços').should('be.visible');
+        cy.get('[data-cy=initiative-card-dashboard]').contains('10 Iniciativas').should('be.visible');
     });
 
     it('Garante que as inscrições recentes estão visíveis', () => {

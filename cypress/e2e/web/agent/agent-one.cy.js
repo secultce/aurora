@@ -1,19 +1,19 @@
 describe('Página de Perfil de Agentes', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
-        cy.visit('/agentes/79cd7a39-2e48-4f09-b091-04cadf8e8a55');
+        cy.visit('/agentes/d737554f-258e-4360-a653-177551f5b1a5');
     });
 
     it('Garante que a página de perfil do agente existe', () => {
         cy.get('.breadcrumb a:nth-child(1)').contains('Início').should('be.visible');
         cy.get('.breadcrumb a:nth-child(2)').contains('Agentes').should('be.visible');
-        cy.get('[href="/agentes/79cd7a39-2e48-4f09-b091-04cadf8e8a55"]').contains('Talyson').should('be.visible');
-        cy.get('.profile-tabs > span').contains('Número identificador: 79cd7a39-2e48-4f09-b091-04cadf8e8a55').should('be.visible');
+        cy.get('[href="/agentes/d737554f-258e-4360-a653-177551f5b1a5"]').contains('Paulo').should('be.visible');
+        cy.get('.profile-tabs > span').contains('Número identificador: d737554f-258e-4360-a653-177551f5b1a5').should('be.visible');
     });
 
     it('Garante que as informações do agente estão disponíveis no header', () => {
-        cy.get('[href="/agentes/79cd7a39-2e48-4f09-b091-04cadf8e8a55"]').contains('Talyson').should('be.visible');
-        cy.get('.entity-description > p').contains('Talyson é um desenvolvedor backend focado em construir sistemas robustos e seguros.').should('be.visible');
+        cy.get('[href="/agentes/d737554f-258e-4360-a653-177551f5b1a5"]').contains('Paulo').should('be.visible');
+        cy.get('.entity-description > p').contains('Especializado em teológia, organiza exposições por todos o Ceará.').should('be.visible');
     });
 
     it('Garante que as tabs estão funcionando', () => {
