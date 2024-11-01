@@ -1,6 +1,6 @@
 {% extends "_layouts/blank.html.twig" %}
 
-{% block title %} {{ 'control_panel'|trans }} - {{ 'spaces'|trans }}{% endblock %}
+{% block title %} {{ 'control_panel'|trans }} - {{ 'organizations'|trans }}{% endblock %}
 
 {% block content %}
     {% include '_components/modal-confirm-remove.html.twig' %}
@@ -9,16 +9,10 @@
         {% include "_components/side-bar.html.twig" %}
 
         <div class="management-content w-100 p-4">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body shadow">
-                        <h2>{{ 'my_spaces'|trans }}</h2>
+                        <h2>{{ 'my_organizations'|trans }}</h2>
 
                         <hr>
 
@@ -33,7 +27,7 @@
                             </tr>
                             </thead>
                             <tbody>
-                            {% for item in spaces %}
+                            {% for item in organizations %}
                                 <tr>
                                     <td><a href="#">{{ item.name }}</a></td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
@@ -41,16 +35,7 @@
                                     <td></td>
                                     <td>
                                         <a href="#" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
-                                        <button
-                                            data-cy="remove-{{ loop.index }}"
-                                            data-bs-toggle="modal"
-                                            data-bs-target="#modalRemoveConfirm"
-                                            onclick="confirmRemove(this)"
-                                            data-href="{{ path('admin_space_remove', {id: item.id}) }}"
-                                            class="btn btn-outline-danger btn-sm"
-                                        >
-                                            {{ 'delete'|trans }}
-                                        </button>
+{#                                        <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="{{ path('admin_organization_remove', {id: item.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>#}
                                     </td>
                                 </tr>
                             {% endfor %}

@@ -1,27 +1,12 @@
-admin_seal:
-  resource: 'admin/seal.yaml'
-  prefix: /painel/selos
-  name_prefix: admin_seal_
-
-admin_opportunity:
-  resource: 'admin/opportunity.yaml'
-  prefix: /painel/oportunidades
-  name_prefix: admin_opportunity_
+admin_agent:
+  resource: 'admin/agent.yaml'
+  prefix: /painel/agentes
+  name_prefix: admin_agent_
 
 admin_dashboard:
   path: /painel
   controller: App\Controller\Web\Admin\DashboardAdminController::index
   methods: ['GET']
-
-admin_agent:
-    resource: 'admin/agent.yaml'
-    prefix: /painel/agentes
-    name_prefix: admin_agent_
-
-admin_space:
-  resource: 'admin/space.yaml'
-  prefix: /painel/espacos
-  name_prefix: admin_space_
 
 admin_event:
   resource: 'admin/event.yaml'
@@ -33,10 +18,30 @@ admin_initiative:
   prefix: /painel/iniciativas
   name_prefix: admin_initiative_
 
+admin_opportunity:
+  resource: 'admin/opportunity.yaml'
+  prefix: /painel/oportunidades
+  name_prefix: admin_opportunity_
+
+admin_organization:
+  resource: 'admin/organization.yaml'
+  prefix: /painel/organizacoes
+  name_prefix: admin_organization_
+
 admin_registrations:
   resource: 'admin/registration.yaml'
   prefix: /painel/inscricoes
   name_prefix: admin_registrations_
+
+admin_seal:
+  resource: 'admin/seal.yaml'
+  prefix: /painel/selos
+  name_prefix: admin_seal_
+
+admin_space:
+  resource: 'admin/space.yaml'
+  prefix: /painel/espacos
+  name_prefix: admin_space_
 
 admin_my_opportunity:
   resource: 'admin/my-opportunity.yaml'

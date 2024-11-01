@@ -4,6 +4,7 @@ accessibility: Acessibilidade
 access_main_agent: Acesse agente principal
 accountability: Prestações de Conta
 accompany: Acompanhar
+actions: Ações
 address: Endereço
 administration: Administração
 agents: Agentes
@@ -31,7 +32,7 @@ contribute: Contribua
 control_panel: Painel de Controle
 create: Criar
 create_account: Crie sua conta
-created_by: Criado em
+created_at: Criado em
 
 dashboard: Painel de Controle
 draft: Em rascunho
