@@ -3,6 +3,8 @@
 {% block title %} {{ 'control_panel'|trans }} - {{ 'initiatives'|trans }}{% endblock %}
 
 {% block content %}
+    {% include '_components/modal-confirm-remove.html.twig' %}
+
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
 
@@ -14,7 +16,7 @@
 
                         <hr>
 
-                        <table class="table table-hover table-striped">
+                        <table class="table table-hover table-striped" data-cy="table-initiative-list">
                             <thead class="table-dark">
                             <tr>
                                 <th>{{ 'name'|trans }}</th>
@@ -33,7 +35,7 @@
                                     <td></td>
                                     <td>
                                         <a href="#" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
-                                        <a href="#" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</a>
+                                        <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="{{ path('admin_initiative_remove', {id: item.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -46,4 +48,7 @@
     </section>
 {% endblock %}
 
-{% block footer %}{% endblock %}
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-confirm-remove.js') }}"></script>
+{% endblock %}

@@ -275,6 +275,8 @@ view:
   initiative:
     access: Access Initiative
     create: Create an Initiative
+    message:
+      deleted: The initiative has been deleted
     quantity:
       total: Initiatives Found
       finished: Completed Initiatives

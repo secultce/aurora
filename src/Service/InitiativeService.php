@@ -11,28 +11,27 @@ use App\Exception\ValidatorException;
 use App\Repository\Interface\InitiativeRepositoryInterface;
 use App\Service\Interface\InitiativeServiceInterface;
 use DateTime;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class InitiativeService extends AbstractEntityService implements InitiativeServiceInterface
 {
-    private const array DEFAULT_FILTERS = [
-        'deletedAt' => null,
-    ];
-
     public function __construct(
+        private Security $security,
         private InitiativeRepositoryInterface $repository,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
+        parent::__construct($this->security);
     }
 
     public function get(Uuid $id): Initiative
     {
         $initiative = $this->repository->findOneBy([
             ...['id' => $id],
-            ...self::DEFAULT_FILTERS,
+            ...$this->getDefaultParams(),
         ]);
 
         if (null === $initiative) {
@@ -42,10 +41,26 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         return $initiative;
     }
 
-    public function list(array $filters = [], int $limit = 50): array
+    public function findOneBy(array $params): Initiative
+    {
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
+        );
+    }
+
+    public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
-            array_merge($filters, self::DEFAULT_FILTERS),
+            $this->getDefaultParams(),
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    public function findBy(array $params = [], int $limit = 50): array
+    {
+        return $this->repository->findBy(
+            [...$params, ...$this->getUserParams()],
             ['createdAt' => 'DESC'],
             $limit
         );

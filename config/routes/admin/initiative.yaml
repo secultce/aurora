@@ -2,3 +2,8 @@ list:
   path: /
   controller: App\Controller\Web\Admin\InitiativeAdminController::list
   methods: ['GET']
+
+remove:
+  path: /{id}/remove
+  controller: App\Controller\Web\Admin\InitiativeAdminController::remove
+  methods: ['GET']
