@@ -11,21 +11,27 @@ use App\Exception\ValidatorException;
 use App\Repository\Interface\OrganizationRepositoryInterface;
 use App\Service\Interface\OrganizationServiceInterface;
 use DateTime;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-readonly class OrganizationService implements OrganizationServiceInterface
+readonly class OrganizationService extends AbstractEntityService implements OrganizationServiceInterface
 {
-    private const array DEFAULT_FILTERS = [
-        'deletedAt' => null,
-    ];
-
     public function __construct(
         private OrganizationRepositoryInterface $repository,
+        private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
+        parent::__construct($security);
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
+        );
     }
 
     public function create(array $organization): Organization
@@ -43,11 +49,27 @@ readonly class OrganizationService implements OrganizationServiceInterface
         return $this->repository->save($organizationObj);
     }
 
+    public function findBy(array $params = [], int $limit = 50): array
+    {
+        return $this->repository->findBy(
+            [...$params, ...$this->getUserParams()],
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    public function findOneBy(array $params): ?Organization
+    {
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
+        );
+    }
+
     public function get(Uuid $id): Organization
     {
         $organization = $this->repository->findOneBy([
             ...['id' => $id],
-            ...self::DEFAULT_FILTERS,
+            ...$this->getDefaultParams(),
         ]);
 
         if (null === $organization) {
@@ -60,7 +82,7 @@ readonly class OrganizationService implements OrganizationServiceInterface
     public function list(int $limit = 50): array
     {
         return $this->repository->findBy(
-            self::DEFAULT_FILTERS,
+            $this->getDefaultParams(),
             ['createdAt' => 'DESC'],
             $limit
         );

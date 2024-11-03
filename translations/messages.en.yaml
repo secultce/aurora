@@ -4,6 +4,7 @@ accessibility: Accessibility
 access_main_agent: Access the main agent
 accountability: Accountability
 accompany: To accompany
+actions: Actions
 address: Address
 admin_options: Admin Options
 administration: Administration
@@ -31,7 +32,7 @@ contribute: Contribute
 control_panel: Control Panel
 create: Create
 create_account: Create Account
-created_by: Created at
+created_at: Created at
 
 dashboard: Dashboard
 draft: In draft

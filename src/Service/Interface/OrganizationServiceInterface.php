@@ -9,9 +9,15 @@ use Symfony\Component\Uid\Uuid;
 
 interface OrganizationServiceInterface
 {
+    public function count(): int;
+
     public function create(array $organization): Organization;
 
     public function get(Uuid $id): Organization;
+
+    public function findOneBy(array $params): ?Organization;
+
+    public function findBy(array $params = []): array;
 
     public function list(int $limit = 50): array;
 
