@@ -47,3 +47,103 @@
     height: 45px;
     border-radius: 50%;
 }
+
+.notifications-login {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.profile-picture {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+
+.dropdown-menu {
+    display: none;
+    width: 32rem;
+    padding: 1rem;
+    border-radius: 0.5rem;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--bg-color-f);
+}
+
+.dropdown-menu.show {
+    display: block;
+}
+
+.dropdown-content {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.menu-column {
+    width: 50%;
+}
+
+.dropdown-header {
+    font: var(--font-open-sans);
+    font-weight: bold;
+    font-size: 0.9rem;
+    color: var(--main-font-color);
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+.dropdown-item {
+    font: var(--font-open-sans);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1rem;
+    color: var(--main-font-color);
+}
+
+.dropdown-item i.material-icons {
+    font-size: 1.2rem;
+    color: var(--btn-publish-custom-color);
+}
+
+.dropdown-item:hover {
+    background-color: var(--snow-mist);
+    border-radius: 4px;
+}
+
+.badge-notification {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background-color: var(--circle-red);
+    color: var(--bg-color-f);
+    border-radius: 50%;
+    padding: 0.2rem 0.5rem;
+    font-size: 0.8rem;
+}
+
+.btn.dropdown-toggle {
+    color: var(--btn-publish-custom-color);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    outline: none;
+    box-shadow: none;
+}
+
+.navbar .dropdown .btn.dropdown-toggle:focus,
+.navbar .dropdown .btn.dropdown-toggle:active,
+.navbar .dropdown .btn.dropdown-toggle:visited,
+.navbar .dropdown .btn.dropdown-toggle:hover {
+    outline: none;
+    box-shadow: none;
+    border-color: transparent;
+}
+
+
+
