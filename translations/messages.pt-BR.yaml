@@ -273,6 +273,8 @@ view:
   initiative:
     access: Acessar Iniciativa
     create: Criar uma iniciativa
+    message:
+      deleted: A Iniciativa foi excluída
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas

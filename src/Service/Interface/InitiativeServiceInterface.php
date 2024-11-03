@@ -9,9 +9,13 @@ use Symfony\Component\Uid\Uuid;
 
 interface InitiativeServiceInterface
 {
+    public function findBy(array $params = []): array;
+
+    public function findOneBy(array $params): ?Initiative;
+
     public function get(Uuid $id): Initiative;
 
-    public function list(array $filters = [], int $limit = 50): array;
+    public function list(int $limit = 50): array;
 
     public function remove(Uuid $id): void;
 

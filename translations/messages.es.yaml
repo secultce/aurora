@@ -277,6 +277,8 @@ view:
   initiative:
     access: Acceder Iniciativa
     create: Crear una Iniciativa
+    message:
+      deleted: La iniciativa ha sido eliminada
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas
