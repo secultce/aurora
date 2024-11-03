@@ -98,6 +98,7 @@ notifications: Notificações
 no: Não
 none_area_specified: Nenhuma área especificada
 not_sent: Não enviadas
+notice: EDITAL
 
 
 oldest: Mais Antigo
@@ -281,12 +282,16 @@ view:
       opened: Iniciativas em Andamento
       last_days: Registradas nos últimos 7 dias
 
+  my-opportunity:
+    title_opportunity: PNAB - Fomento à Execução de Ações Culturais
+
   management:
     management_of: Gestão de
     info: Nesta seção você visualiza e gerência seu perfil de usuário e outros selos criados.
 
   opportunity:
     create: Criar oportunidade
+    description: Nesta seção você pode adicionar e gerenciar as Oportunidades criadas por você.
     message:
       deleted: A Oportunidade foi excluída
     quantity:

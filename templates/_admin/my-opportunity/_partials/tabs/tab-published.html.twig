@@ -1,0 +1,45 @@
+<div class="filter-control d-flex justify-content-between mt-3">
+    <div class="search-box">
+        <input id="search-seal" type="text" placeholder="{{ "input_search" | trans }}" />
+        <i class="material-icons">search</i>
+    </div>
+
+    <div class="d-flex g-4 agent-sort">
+        <label class="agent-options fw-semibold" for="sort-options">{{ 'sort_by' | trans }}:</label>
+        <select id="sort-options" class="form-select">
+            <option value="recent">{{ 'most_recent' | trans }}</option>
+            <option value="old">{{ 'oldest' | trans }}</option>
+        </select>
+    </div>
+</div>
+
+<div class="card-opportunity d-flex flex-column mt-4">
+    <div class="d-flex align-items-center mb-4 flex-wrap">
+        <div class="icon-container d-flex justify-content-center align-items-center mb-3 mb-md-0">
+            <i class="material-icons">image</i>
+        </div>
+        <div class="text-container ml-3">
+            <h2 class="title-opportunity">{{ 'view.my-opportunity.title_opportunity' | trans}}</h2>
+            <p class="type-opportunity">{{ 'type' | trans }}: {{ 'notice' | trans }}</p>
+        </div>
+    </div>
+    <div class="action-buttons d-flex align-items-center justify-content-between flex-wrap mt-3">
+        <div class="d-flex align-items-center mr-4 mb-3 mb-md-0">
+            <button class="btn btn-archive d-flex align-items-center mr-3">
+                <span class="material-icons mr-1 archive-icon">archive</span> {{ 'archive' | trans }}
+            </button>
+            <button class="btn btn-delete d-flex align-items-center">
+                <span class="material-icons mr-1 delete-icon">delete</span> {{ 'delete' | trans }}
+            </button>
+        </div>
+        <div class="ml-auto d-flex align-items-center mb-3 mb-md-0">
+            <button class="btn btn-outline-primary mr-3 d-flex align-items-center">
+                {{ 'check' | trans }} <i class="material-icons ml-1">arrow_forward</i>
+            </button>
+            <button class="btn btn-primary d-flex align-items-center">
+                <i class="material-icons mr-1">edit</i> {{ 'edit' | trans }}
+            </button>
+        </div>
+    </div>
+</div>
+

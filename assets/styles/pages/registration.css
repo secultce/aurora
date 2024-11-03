@@ -1,26 +1,3 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-.container-fluid {
-    padding: 0;
-}
-
-.col-md-3 {
-    width: 20%;
-    float: left;
-    height: 100vh;
-}
-
-.col-md-9 {
-    width: 80%;
-    float: right;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
 .icon-container-inscriptions {
     background-color: var(--circle-red);
     color: var(--bg-color-f);
@@ -129,46 +106,6 @@
     .input-wrapper-inscriptions {
         width: 100%;
     }
-
-    .dropdown.ml-2 {
-        margin-top: 10px;
-    }
-}
-
-.dropdown .btn {
-    background-color: transparent;
-    padding: 10px 20px;
-    border: 2px solid var(--next-button-form);
-    color: var(--main-font-color);
-    font-weight: bold;
-    box-shadow: none;
-}
-
-.dropdown .btn:after {
-    margin-left: 5px;
-}
-
-.dropdown-menu {
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    border: 1px solid rgba(0, 0, 0, 0.15);
-}
-
-.dropdown-item {
-    color: var(--main-font-color);
-}
-
-.dropdown .btn:focus,
-.dropdown .btn:active,
-.dropdown .btn:focus:active {
-    background-color: transparent !important;
-    color: var(--main-font-color) !important;
-    box-shadow: none;
-}
-
-.dropdown-item:hover {
-    background-color: var(--next-button-form);
-    color: var(--bg-color-f);
 }
 
 .resources-section {
@@ -197,9 +134,7 @@ hr {
     padding: 20px;
     display: flex;
     flex-direction: column;
-    width: 95%;
     margin-top: 20px;
-    margin-left: 2rem;
 }
 
 .resource-card-header {
@@ -244,26 +179,6 @@ hr {
     margin-bottom: 0;
 }
 
-.btn-follow {
-    background-color: var(--next-button-form);
-    color: white;
-    padding: 10px 20px;
-    border-radius: 8px;
-    border: none;
-    font-weight: bold;
-    display: flex;
-    align-items: center;
-    transition: background-color 0.3s;
-    white-space: nowrap;
-    margin-left: 69rem;
-    margin-top: 15px;
-    white-space: nowrap;
-}
-
-.btn-follow span.material-icons {
-    margin-left: 5px;
-}
-
-.btn-follow:hover {
-    background-color: var(--btn-publish-custom-color);
+i.material-icons {
+    font-size: 24px;
 }

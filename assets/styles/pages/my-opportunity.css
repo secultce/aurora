@@ -1,0 +1,104 @@
+.card-opportunity {
+    background-color: var(--bg-color-f);
+    border-radius: 8px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+    padding: 40px;
+}
+
+.icon-container {
+    width: 50px;
+    height: 50px;
+    background-color: var(--bg-all);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.title-opportunity {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+}
+
+.type-opportunity {
+    font-size: 16px;
+    font-weight: bold;
+    color: var(--main-font-color);
+    margin: 0;
+}
+
+.btn-archive, .btn-delete {
+    background: none;
+    border: none;
+    color: inherit;
+    font-size: 16px;
+    margin-top: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.btn-archive:hover {
+    color: var(--color-attention-100);
+}
+
+.btn-delete:hover {
+    color: var(--circle-red);
+}
+
+.archive-icon {
+    color: var(--color-attention-100);
+}
+
+.delete-icon {
+    color: var(--circle-red);
+}
+
+.search-box {
+    position: relative;
+    width: 32.75rem;
+}
+
+.icon-container-inscriptions {
+    background-color: var(--circle-red);
+    color: var(--bg-color-f);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 3rem;
+    height: 3rem;
+    margin-right: 10px;
+}
+
+.icon-container-inscriptions i {
+    font-size: 2rem;
+}
+
+.header-content-inscriptions {
+    display: flex;
+    align-items: center;
+}
+
+.text-container-inscriptions {
+    margin-left: 1%;
+}
+
+.title-inscriptions {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin: 0;
+    line-height: 1.2;
+    color: var(--main-font-color);
+}
+
+.title-inscriptions span {
+    color: var(--main-font-color);
+}
+
+.subtitle-inscriptions {
+    font-size: 1rem;
+    color: var(--main-font-color);
+    margin: 0;
+}
