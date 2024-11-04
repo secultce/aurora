@@ -13,4 +13,11 @@ describe('Painel de Controle - Página de listar Organizações', () => {
         cy.get('tbody > tr > :nth-child(1)').contains('De RapEnte').should('be.visible');
         cy.get('tbody >  tr > :nth-child(2)').contains('22/07/2024 16:20:00').should('be.visible');
     });
+
+    it('Garante que seja possível deletar uma organização', () => {
+        cy.get('button[data-cy="remove-2"]').click();
+        cy.get('[data-modal-button="confirm-link"]').click();
+
+        cy.get('.table').should('not.contain', 'Cultura em ação');
+    })
 })

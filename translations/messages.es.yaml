@@ -308,6 +308,10 @@ view:
       opened: Oportunidades en Curso
       last_days: Registradas en los últimos 7 días
 
+  organization:
+    message:
+      deleted: La organización ha sido eliminada
+
   space:
     access_space: Acceder al Espacio
     create: Crear Espacio

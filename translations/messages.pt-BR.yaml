@@ -301,6 +301,10 @@ view:
       opened: Oportunidades em Andamento
       last_days: Registradas nos últimos 7 dias
 
+  organization:
+    message:
+      deleted: A Organização foi excluída
+
   space:
     access_space: Acessar espaço
     create: Criar espaço

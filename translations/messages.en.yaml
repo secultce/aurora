@@ -306,6 +306,10 @@ view:
       opened: Ongoing Opportunities
       last_days: Registered in the last 7 days
 
+  organization:
+    message:
+      deleted: The organization has been deleted
+
   space:
     access_space: Access Space
     create: Create Space
