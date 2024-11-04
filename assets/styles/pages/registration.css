@@ -179,6 +179,6 @@ hr {
     margin-bottom: 0;
 }
 
-i.material-icons {
-    font-size: 24px;
+.registration-page i.material-icons {
+    font-size: 24px !important;
 }
