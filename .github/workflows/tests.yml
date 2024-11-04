@@ -86,4 +86,4 @@ jobs:
         run: docker compose exec --user root php bin/console asset-map:compile
 
       - name: Run cypress
-        run: docker compose up cypress
+        run: docker compose run --rm cypress

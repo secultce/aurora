@@ -64,6 +64,7 @@ describe('Pagina de Login do ambiente web', () => {
         cy.url().should('include', '/');
         cy.contains('Francisco Alessandro Feitoza');
 
+        cy.get('#dropdownMenuButton').click();
         cy.get('a').contains('Sair').click();
         cy.get('a').contains('Entrar');
 
