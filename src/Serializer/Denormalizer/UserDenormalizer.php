@@ -33,7 +33,7 @@ readonly class UserDenormalizer implements DenormalizerInterface
             $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
-        /* @var User $user */
+        /** @var User $user */
         $user = $this->denormalizer->denormalize($data, $type, $format, $context);
 
         return $user;

@@ -30,7 +30,7 @@ readonly class PhaseDenormalizer implements DenormalizerInterface
             return $data;
         }
 
-        /* @var Phase $phase */
+        /** @var Phase $phase */
         $phase = $this->denormalizer->denormalize($data, $type, $format, $context);
 
         if (true === array_key_exists('createdBy', $data)) {

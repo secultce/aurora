@@ -32,7 +32,7 @@ readonly class OpportunityDenormalizer implements DenormalizerInterface
             return $data;
         }
 
-        /* @var Opportunity $opportunity */
+        /** @var Opportunity $opportunity */
         $opportunity = $this->denormalizer->denormalize($this->filterData($data), $type, $format, $context);
 
         if (true === array_key_exists('parent', $data)) {

@@ -31,7 +31,7 @@ readonly class EventDenormalizer implements DenormalizerInterface
             return $data;
         }
 
-        /* @var Event $event */
+        /** @var Event $event */
         $event = $this->denormalizer->denormalize($data, Event::class, $format, $context);
 
         if (isset($data['agentGroup'])) {

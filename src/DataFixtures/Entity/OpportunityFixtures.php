@@ -331,7 +331,7 @@ final class OpportunityFixtures extends AbstractFixture implements DependentFixt
 
     private function mountOpportunity(array $opportunityData, array $context = []): Opportunity
     {
-        /* @var Opportunity $opportunity */
+        /** @var Opportunity $opportunity */
         $opportunity = $this->serializer->denormalize($opportunityData, Opportunity::class, context: $context);
 
         $opportunity->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $opportunityData['createdBy'])));
