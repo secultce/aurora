@@ -1,6 +1,7 @@
 describe('Pagina de Login do ambiente web', () => {
     beforeEach(() => {
-        cy.visit('/login')
+        cy.viewport(1920, 1080);
+        cy.visit('/login');
     });
 
     it('Garante que a página de login existe', () => {
@@ -52,7 +53,7 @@ describe('Pagina de Login do ambiente web', () => {
         cy.url().should('include', '/');
     });
 
-    it('Garante que após o login é possivel deslogar', () => {
+    it('Garante que após o login é possível deslogar', () => {
         cy.get('[data-cy="email"]').type('alessandrofeitoza@example.com');
         cy.get('[data-cy="password"]').type('Aurora@2024');
 
@@ -62,10 +63,10 @@ describe('Pagina de Login do ambiente web', () => {
         cy.get('[data-cy="submit"]').click();
 
         cy.url().should('include', '/');
-        cy.contains('Francisco Alessandro Feitoza');
+        cy.contains('Francisco Alessandro Feitoza').click();
 
         cy.get('a').contains('Sair').click();
-        cy.get('a').contains('Entrar');
+        cy.get('a').contains('Entrar').should('be.visible');
 
         cy.contains('Alessandro Feitoza').should('not.exist');
     });

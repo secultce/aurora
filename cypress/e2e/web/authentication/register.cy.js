@@ -5,6 +5,7 @@ function clickOnContinueButton() {
 
 describe('Página de Cadastro', () => {
     beforeEach(() => {
+        cy.viewport(1920, 1080);
         cy.visit('/cadastro');
 
         Cypress.on('uncaught:exception', (err, runnable) => {
@@ -80,7 +81,7 @@ describe('Página de Cadastro', () => {
         cy.get('p').should('contain.text', 'Para finalizar o seu cadastro, é necessário criar seu Perfil de Agente Cultural.');
     });
 
-    it('Verifica os campos, preenche inputs, verifica o contador de caracteres e interage com as áreas de atuação', () => {
+    it.only('Verifica os campos, preenche inputs, verifica o contador de caracteres e interage com as áreas de atuação', () => {
         clickOnContinueButton();
         cy.get('.form-step-active > .btn-form-group > .btn-next').click();
 

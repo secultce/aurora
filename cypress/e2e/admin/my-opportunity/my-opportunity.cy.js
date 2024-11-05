@@ -2,6 +2,7 @@ describe('Página de Minhas Oportunidades', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.visit('/painel/minhas-oportunidades');
+        cy.login('saracamilo@example.com', 'Aurora@2024');
     });
 
     it('Deve verificar a URL da página de Minhas Oportunidades', () => {
@@ -26,7 +27,7 @@ describe('Página de Minhas Oportunidades', () => {
     });
 
     it('Deve verificar a presença dos botões Conferir e Editar', () => {
-        cy.get('.btn-outline-primary').contains('Conferir').should('exist');
-        cy.get('.btn-edit').contains('Editar').should('exist');
+        cy.get('button:contains(Conferir)').should('be.visible');
+        cy.get('button:contains(Editar)').should('be.visible');
     });
 });

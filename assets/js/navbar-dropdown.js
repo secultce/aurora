@@ -26,11 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     });
 
-    const dropdownItems = document.querySelectorAll('.dropdown-item');
+    const dropdownItems = document.querySelectorAll('#customDropdown .dropdown-item');
     dropdownItems.forEach(item => {
         item.addEventListener('click', () => {
             const dropdownMenu = document.getElementById("customDropdown");
-            dropdownMenu.classList.remove('show');
+            dropdownMenu?.classList.remove('show');
 
             setTimeout(() => {
                 dropdownButton.blur();
