@@ -1,0 +1,19 @@
+<header class="seal-header">
+    {% include '_components/breadcrumb.html.twig' with {
+        items: [
+            {text: 'home'|trans, path: path('web_home_homepage')},
+            {text: 'seals'|trans, path: path('web_agent_list')},
+            {text: 'seal name', path: 'seal'}
+        ]
+    } %}
+
+    <div class="seal-info">
+        <div class="seal-img">
+            <img src="{{ asset('img/allan.png') }}" alt="{{ 'view.seal.seal-picture' | trans }}">
+        </div>
+        <div>
+            <h1 class="fs-4 fw-bold">Seal Name</h1>
+            <p>Ac massa tempus mattis dictum. Eu molestie morbi a mattis pretium et lectus egestas euismod. Cras at quis tincidunt vel feugiat enim, felis ut amet. Nibh sit nulla eget purus quam porta non. Erat condimentum sapien amet suspendisse diam, nunc massa consectetur. Morbi sed ac massa elementum. Rhoncus viverra lorem interdum eu quis facilisis tempus. Auctor laoreet varius eu pretium congue. É isso aí.</p>
+        </div>
+    </div>
+</header>

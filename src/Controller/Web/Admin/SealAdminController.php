@@ -12,4 +12,9 @@ class SealAdminController extends AbstractAdminController
     {
         return $this->render('seal/list.html.twig');
     }
+
+    public function getOne(int $id): Response
+    {
+        return $this->render('seal/one.html.twig');
+    }
 }

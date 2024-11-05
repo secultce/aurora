@@ -1,0 +1,18 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'seals' | trans }} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/seal.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% include "_admin/seal/_partials/seal-header.html.twig" %}
+
+    {% include "_admin/seal/_partials/seal-content.html.twig" %}
+
+    {% include "_admin/seal/_partials/seal-actions.html.twig" %}
+{% endblock %}
+
+{% block footer %}{% endblock %}

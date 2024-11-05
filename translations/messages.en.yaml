@@ -23,6 +23,7 @@ birth_date: Birth Date
 calendar: Calendar
 cancel: Cancel
 check: Check
+claim-ownership: Claim Ownership
 click_here: Click Here
 connections: Connections
 confirm: Confirm
@@ -33,6 +34,7 @@ control_panel: Control Panel
 create: Create
 create_account: Create Account
 created_at: Created at
+contact: Contact
 
 dashboard: Dashboard
 draft: In draft
@@ -40,6 +42,7 @@ delete: Delete
 deleted: Deleted
 description: Description
 discover: Discover
+downloadable-files: Downloadable Files
 
 edit: Edit
 email: Email
@@ -122,11 +125,14 @@ profile_picture: Profile Picture
 projects: Projects
 public: Public
 published: Published
+published-by: Publicado por
 
 recent_registrations: Recent Registrations
 recently_modified: Recently modified
 register: Register
 registration_date: Registration Date
+related-agents: Related Agents
+report: Report
 
 tags: Tags
 term: Term
@@ -294,6 +300,8 @@ view:
 
   seal:
     create: Create a Seal
+    seal-picture: Seal Picture
+    certificate-seal-validity: Certificate Seal Validity
 
   opportunity:
     create: Create Opportunity

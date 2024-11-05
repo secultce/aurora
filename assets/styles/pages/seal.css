@@ -1,0 +1,152 @@
+.seal-header {
+  background-color: var(--white-color);
+  padding: 3.375rem 7.125rem;
+}
+
+.seal-header .breadcrumb {
+  margin: 0;
+  padding: 0 !important;
+}
+
+.seal-header img {
+  width: 4.375rem;
+  height: 4.375rem;
+}
+
+.seal-header .seal-info {
+  display: flex;
+  margin-top: 2.5rem;
+  margin-left: 0.3125rem;
+  width: 85%;
+  gap: 24px;
+}
+
+.seal-info .seal-img img {
+  width: 4.375rem;
+  height: 4.375rem;
+  border-radius: 50%;
+}
+
+.seal-content {
+  margin: 2rem 7.3125rem;
+  display: flex;
+  gap: 2.125rem;
+}
+
+.seal-content section{
+  background-color: var(--white-color);
+  width: 75%;
+  border-radius: 8px;
+  padding: 1.5rem 4rem 1.5rem 1.5rem;
+}
+
+.seal-content section .seal-validity {
+  display: block;
+  height: 4rem;
+  line-height: 4rem;
+  background-color: var(--snow-gray);
+  border-radius: 0.25rem;
+  font-size: 1.125rem;
+  font-weight: bold;
+  padding-left: 0.765625rem;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.seal-files li a span:last-child,
+.seal-links li a span:last-child{
+  color: var(--color-subtitle-gray);
+  font-size: 1.125rem;
+  font-weight: bold;
+}
+
+.seal-content aside {
+  background-color: var(--white-color);
+  width: 18%;
+  height: auto;
+  padding: 1.5rem;
+  align-self: flex-start;
+  border-radius: 0.5rem;
+}
+
+.seal-content aside .seal-aside-title {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--deep-teal);
+}
+
+.seal-content aside img {
+  height: 2.8125rem;
+  width: 2.8125rem;
+  border-radius: 50%;
+}
+
+.seal-actions {
+  margin-left: 7.3125rem;
+}
+
+.seal-actions button {
+  background-color: var(--deep-teal);
+  color: var(--white-color);
+  border: none;
+  border-radius: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  font-weight: 700;
+  transition: 0.3s;
+}
+
+.seal-actions button:hover {
+  background-color: var(--next-button-form-hover);
+}
+
+.seal-actions div button {
+  background-color: transparent;
+  border: 0.125rem solid var(--deep-teal);
+  color: var(--deep-teal);
+  width: 12.5rem;
+  transition: 0.3s;
+}
+
+.seal-actions div button:hover {
+  background-color: var(--deep-teal);
+  color: var(--white-color);
+}
+
+@media (max-width: 1024px) {
+  .seal-header {
+    background-color: var(--white-color);
+    padding: 2.375rem 1rem;
+  }
+
+  .seal-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .seal-content {
+    display: flex;
+    flex-direction: column-reverse;
+    margin: 2rem 2.125rem;
+  }
+
+  .seal-content section {
+    width: 100%;
+    padding: 1.5rem 1.5rem 1.5rem 1.5rem;
+  }
+
+  .seal-actions {
+    margin-left: 2.125rem;
+    margin-right: 2.125rem;
+  }
+
+  .seal-content section .seal-validity {
+    white-space: nowrap;
+    font-size: 0.8rem;
+  }
+
+  .seal-content aside {
+    width: 100%;
+    margin-top: 1.5rem;
+  }
+}
