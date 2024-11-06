@@ -1,0 +1,92 @@
+<div class="square-aligned">
+    <div class="custom-registration-form">
+        <h2 class="form-title">{{ 'personal_data' | trans }}</h2>
+        <p class="form-subtitle">{{ 'view.registration-space.data_notice' | trans }}.</p>
+
+        <form>
+            <div class="form-group">
+                <label for="socialName" class="form-label">{{ 'social_name' | trans }}</label>
+                <input type="text" class="form-control" id={{ 'social_name' | trans }}>
+            </div>
+
+            <div class="form-group">
+                <label for="fullName" class="form-label">{{ 'full_name' | trans }}</label>
+                <input type="text" class="form-control" id={{ 'full_name' | trans }}>
+            </div>
+
+            <div class="form-group">
+                <label for="cpf" class="form-label">{{ 'cpf' | trans }}</label>
+                <input type="text" class="form-control" id={{ 'cpf' | trans }}>
+            </div>
+
+            <div class="form-group">
+                <label for="mei" class="form-label">{{ 'cnpf' | trans }}</label>
+                <input type="text" class="form-control" id={{ 'cnpf' | trans }}>
+            </div>
+
+            <div class="form-group">
+                <label for="personalEmail" class="form-label">{{ 'email' | trans }}</label>
+                <input type="email" class="form-control" id={{ 'email' | trans }}>
+            </div>
+
+            <div class="form-group">
+                <label for="publicPhone" class="form-label">{{ 'phone' | trans }}</label>
+                <input type="text" class="form-control" id={{ 'phone' | trans }}>
+            </div>
+
+            <hr>
+            <h4 class="form-section-title">{{ 'address' | trans }}</h4>
+
+            <div class="row">
+                <div class="col-md-3 form-group">
+                    <label for="zipCode" class="form-label">{{ 'cep' | trans }}</label>
+                    <input type="text" class="form-control" id={{ 'cep' | trans }}>
+                </div>
+                <div class="col-md-9 form-group">
+                    <label for="street" class="form-label">{{ 'street' | trans }}</label>
+                    <input type="text" class="form-control" id={{ 'street' | trans }}>
+                </div>
+                <div class="row">
+                    <div class="col-md-3 form-group">
+                        <label for="number" class="form-label">{{ 'number_address' | trans }}</label>
+                        <input type="text" class="form-control" id={{ 'number_address' | trans }}>
+                    </div>
+                    <div class="col-md-9 form-group">
+                        <label for="neighborhood" class="form-label">{{ 'neighborhood' | trans }}</label>
+                        <input type="text" class="form-control" id={{ 'neighborhood' | trans }}>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="complement" class="form-label">{{ 'reference_point' | trans }}</label>
+                    <input type="text" class="form-control" id={{ 'reference_point' | trans }}>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 form-group">
+                        <label for="state" class="form-label">{{ 'state' | trans }}</label>
+                        <select class="form-control" id="state">
+                            <option value="" disabled selected>{{ 'select_state' | trans }}</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 form-group">
+                        <label for="city" class="form-label">{{ 'municipality' | trans }}</label>
+                        <select class="form-control" id="city">
+                            <option value="" disabled selected>{{ 'select_municipality' | trans }}</option>0
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <input type="checkbox" id="publicLocation">
+                    <label for="publicLocation">{{ 'location' | trans }}</label>
+                    <p class="form-text separate-text">
+                        {{ 'view.registration-space.check_address' | trans }}
+                    </p>
+                </div>
+
+                <div id="map" class="map-container">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d15925.516160407531!2d-38.53747413982176!3d-3.727265727542122!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x7c749ad4b042991%3A0x4107a8237f70d84c!2sCentro%2C%20Fortaleza%20-%20CE!5e0!3m2!1spt-BR!2sbr!4v1731425130216!5m2!1spt-BR!2sbr" width="1164" height="298 style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
