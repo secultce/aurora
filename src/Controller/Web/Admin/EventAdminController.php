@@ -39,12 +39,8 @@ class EventAdminController extends AbstractAdminController
 
     public function create(Request $request): Response
     {
-        $error = null;
-
         if (false === $request->isMethod('POST')) {
-            return $this->render('event/create.html.twig', [
-                'error' => $error,
-            ]);
+            return $this->render('event/create.html.twig');
         }
 
         $name = $request->request->get('name');
@@ -69,7 +65,7 @@ class EventAdminController extends AbstractAdminController
             $this->addFlash('error', $exception->getMessage());
 
             return $this->render('event/create.html.twig', [
-                'error' => $error,
+                'error' => $exception->getMessage(),
             ]);
         }
 

@@ -5,15 +5,22 @@ declare(strict_types=1);
 namespace App\Controller\Web\Admin;
 
 use App\Service\Interface\SpaceServiceInterface;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use TypeError;
 
 class SpaceAdminController extends AbstractAdminController
 {
+    private const VIEW_LIST = 'space/list.html.twig';
+    private const VIEW_ADD = 'space/create.html.twig';
+
     public function __construct(
         private SpaceServiceInterface $service,
         private readonly TranslatorInterface $translator,
+        private Security $security
     ) {
     }
 
@@ -21,7 +28,7 @@ class SpaceAdminController extends AbstractAdminController
     {
         $spaces = $this->service->findBy();
 
-        return $this->render('space/list.html.twig', [
+        return $this->render(self::VIEW_LIST, [
             'spaces' => $spaces,
         ]);
     }
@@ -30,7 +37,35 @@ class SpaceAdminController extends AbstractAdminController
     {
         $this->service->remove($id);
 
-        $this->addFlash('success', $this->translator->trans('view.space.message.deleted'));
+        $this->addFlashSuccess($this->translator->trans('view.space.message.deleted'));
+
+        return $this->redirectToRoute('admin_space_list');
+    }
+
+    public function create(Request $request): Response
+    {
+        if (false === $request->isMethod(Request::METHOD_POST)) {
+            return $this->render(self::VIEW_ADD);
+        }
+
+        $name = $request->request->get('name');
+
+        $space = [
+            'id' => Uuid::v4(),
+            'name' => $name,
+            'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
+        ];
+
+        try {
+            $this->service->create($space);
+            $this->addFlashSuccess($this->translator->trans('view.space.message.created'));
+        } catch (TypeError $exception) {
+            $this->addFlashError($exception->getMessage());
+
+            return $this->render(self::VIEW_ADD, [
+                'error' => $exception->getMessage(),
+            ]);
+        }
 
         return $this->redirectToRoute('admin_space_list');
     }

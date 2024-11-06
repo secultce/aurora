@@ -111,8 +111,9 @@ general_data: General data
 happening_now: Happening Now
 help: Help
 help_privacy: Help and Privacy
-home: Home
+higher: Higher Education
 
+home: Home
 identification_number: Identification Number
 illustration: Illustration
 image: Image
@@ -125,8 +126,8 @@ initiatives: Initiatives
 in_progress: In Progress
 input_search: Search for keywords
 introduction: Introduction
-is_itinerant: Is it an itinerant agent?
 
+is_itinerant: Is it an itinerant agent?
 language: Language
 lastname: Last Name
 linked_with: Linked With
@@ -139,8 +140,8 @@ login: Login
 login-account: Log in to my account
 logo: Logo
 logout: Logout
-long_description: Long description
 
+long_description: Long description
 map: Map
 management: Management of Entities
 masculine: Masculine
@@ -162,8 +163,8 @@ my_organizations: My Organizations
 my_profile: My Profile
 my_spaces: My Spaces
 my_subscriptions: My Subscriptions
-my_reviews: My Reviews
 
+my_reviews: My Reviews
 name: Name
 name_space: Space name
 name_event: Event Name
@@ -178,8 +179,8 @@ none_area_specified: None area specified
 not_informed: Not informed
 not_sent: Not sent
 notice: PUBLIC NOTICE
-number_address: Number
 
+number_address: Number
 official_events: Official Events
 official_spaces: Official Spaces
 official_registration: You edit official
@@ -193,8 +194,8 @@ opportunities: Opportunities
 organizations: Organizations
 organization_register: Create an Organization
 orientation: Select the Sexual Orientation
-other_information: Other information
 
+other_information: Other information
 pardo: Mixed Race
 peoples: Peoples
 period: Period
@@ -218,11 +219,11 @@ public: Public
 public_information: Public Information
 public_phone: Public Telephone
 published: Published
+
 published-by: Publicado por
-
 question_register: Register Question
-question: Question
 
+question: Question
 riverside: Riverside
 recent_registrations: Recent Registrations
 recently_modified: Recently modified
@@ -232,8 +233,8 @@ registration_date: Registration Date
 related-agents: Related Agents
 required_field: Required Field
 report: Report
-responsible_agent: Responsible Agent
 
+responsible_agent: Responsible Agent
 tags: Tags
 term: Term
 terms: Terms
@@ -248,16 +249,16 @@ type_opportunity: Opportunity Type
 type_organization: Organization Type
 type_initiative: Type of initiative
 type_space: Space type
+
 to: to
-
 user: User
-users: Users
 
+users: Users
 view_all: View All
 view_file: view file
 video: Add Video
-visualization: Visual
 
+visualization: Visual
 save-and_publish: Save and Publish
 savings: Savings
 save: Save
@@ -291,9 +292,6 @@ status: Status
 street: Street
 suggestions: Suggestions
 subsites: Subsites
-
-higher: Higher Education
-
 your_name: Enter your name
 your_question: Write your question
 
@@ -550,6 +548,7 @@ view:
     create: Create Space
     message:
       deleted: The space has been deleted
+      created: A new space has been created
     quantity:
       total: Spaces Found
       finished: Closed Spaces
