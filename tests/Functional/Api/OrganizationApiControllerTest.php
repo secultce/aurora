@@ -280,11 +280,11 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function testDeleteAnEventItemWithSuccess(): void
+    public function testDeleteAnOrganizationItemWithSuccess(): void
     {
         $client = static::apiClient();
 
-        $url = sprintf('%s/%s', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_3);
+        $url = sprintf('%s/%s', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_6);
 
         $client->request(Request::METHOD_DELETE, $url);
 

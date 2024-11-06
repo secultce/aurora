@@ -90,7 +90,14 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
 
     public function remove(Uuid $id): void
     {
-        $organization = $this->get($id);
+        $organization = $this->findOneBy(
+            [...['id' => $id], ...$this->getUserParams()]
+        );
+
+        if (null === $organization) {
+            throw new OrganizationResourceNotFoundException();
+        }
+
         $organization->setDeletedAt(new DateTime());
 
         $this->repository->save($organization);
