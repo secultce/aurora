@@ -23,6 +23,7 @@ birth_date: Data de nascimento
 calendar: Calendário
 cancel: Cancelar
 check: Conferir
+claim-ownership: Reivindicar Propriedade
 click_here: Clique aqui
 connections: Conexões
 confirm: Confirmar
@@ -33,6 +34,7 @@ control_panel: Painel de Controle
 create: Criar
 create_account: Crie sua conta
 created_at: Criado em
+contact: Contato
 
 dashboard: Painel de Controle
 draft: Em rascunho
@@ -40,6 +42,7 @@ delete: Excluir
 deleted: Excluídos
 description: Descrição
 discover: Descubra
+downloadable-files: Arquivos para download
 
 edit: Editar
 email: Email
@@ -123,11 +126,14 @@ profile_picture: Foto de Perfil
 projects: Projetos
 public: Público
 published: Publicados
+published-by: Publicado por
 
 recent_registrations: Inscrições recentes
 recently_modified: Modificados recentemente
 register: Cadastro
 registration_date: Data de inscrição
+related-agents: Agentes Relacionados
+report: Denúncia
 
 tags: Tags
 term: Termo
@@ -327,6 +333,8 @@ view:
 
   seal:
     create: Criar selo
+    seal-picture: Foto do Selo
+    certificate-seal-validity: Validade do Certificado do Selo
 
   not-found:
     error-404: Error 404
