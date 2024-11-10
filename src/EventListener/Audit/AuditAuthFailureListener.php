@@ -45,7 +45,7 @@ class AuditAuthFailureListener extends AbstractAuditListener
         $user = null;
 
         if (null !== $email) {
-            /* @var User $user */
+            /** @var User $user */
             $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $email]);
         }
 

@@ -46,6 +46,14 @@ tests_back:
 reset:
 	docker compose exec -T php bash -c "php bin/console cache:clear"
 
+# Limpa a cache e o banco
+reset-deep:
+	rm -rf var/
+	docker compose exec -T php bash -c "php bin/console cache:clear"
+	docker compose exec -T php bash -c "php bin/console d:d:d -f"
+	docker compose exec -T php bash -c "php bin/console d:d:c"
+	docker compose exec -T php bash -c "php bin/console doctrine:migrations:migrate -n"
+
 # Executa o php cs fixer
 style:
 	docker compose exec -T php bash -c "php bin/console app:code-style"

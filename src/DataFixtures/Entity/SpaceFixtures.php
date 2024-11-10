@@ -282,7 +282,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
 
     private function mountSpace(mixed $spaceData, array $context = []): Space
     {
-        /* @var Space $space */
+        /** @var Space $space */
         $space = $this->serializer->denormalize($spaceData, Space::class, context: $context);
 
         $space->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $spaceData['createdBy'])));

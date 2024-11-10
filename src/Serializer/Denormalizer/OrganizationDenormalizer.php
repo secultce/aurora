@@ -31,7 +31,7 @@ readonly class OrganizationDenormalizer implements DenormalizerInterface
             $data['agents'] ?? []
         );
 
-        /* @var Organization $organization */
+        /** @var Organization $organization */
         $organization = $this->denormalizer->denormalize($this->filterData($data), $type, $format, $context);
 
         if (true === array_key_exists('agents', $data)) {

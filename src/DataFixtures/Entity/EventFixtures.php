@@ -253,7 +253,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
 
     private function mountEvent(array $eventData, array $context = []): Event
     {
-        /* @var Event $event */
+        /** @var Event $event */
         $event = $this->serializer->denormalize($eventData, Event::class, context: $context);
 
         $event->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['createdBy'])));

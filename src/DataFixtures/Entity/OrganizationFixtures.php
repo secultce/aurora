@@ -230,7 +230,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         $agents = $organizationData['agents'] ?? [];
         unset($organizationData['agents']);
 
-        /* @var Organization $organization */
+        /** @var Organization $organization */
         $organization = $this->serializer->denormalize($organizationData, Organization::class, context: $context);
 
         foreach ($agents ?? [] as $agentId) {

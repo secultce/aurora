@@ -43,7 +43,7 @@ readonly class AgentDenormalizer implements DenormalizerInterface
             $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
-        /* @var Agent $agent */
+        /** @var Agent $agent */
         $agent = $this->denormalizer->denormalize($this->filterData($data), $type, $format, $context);
 
         if (true === array_key_exists('user', $data)) {

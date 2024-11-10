@@ -79,7 +79,7 @@ class AuthTimelineFixtures extends Fixture
                 'action' => 'api',
             ];
 
-            /* @var AuthTimeline $document */
+            /** @var AuthTimeline $document */
             $document = $this->serializer->denormalize($documentData, AuthTimeline::class);
             $manager->persist($document);
         }

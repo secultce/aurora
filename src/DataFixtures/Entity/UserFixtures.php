@@ -183,12 +183,12 @@ final class UserFixtures extends AbstractFixture
         $counter = 0;
 
         foreach (self::USERS as $userData) {
-            /* @var User $user */
             if (5 > $counter) {
                 $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.user.profile'), ImageTestFixtures::getUserImage());
                 $userData['image'] = $file;
             }
 
+            /** @var User $user */
             $user = $this->serializer->denormalize($userData, User::class);
             $user->setPassword($this->password);
             $this->setReference(sprintf('%s-%s', self::USER_ID_PREFIX, $userData['id']), $user);
@@ -207,7 +207,7 @@ final class UserFixtures extends AbstractFixture
 
             $userObj = $this->getReference(sprintf('%s-%s', self::USER_ID_PREFIX, $userData['id']), User::class);
 
-            /* @var User $user */
+            /** @var User $user */
             $user = $this->serializer->denormalize($userData, User::class, context: ['object_to_populate' => $userObj]);
 
             $this->manualLogin($user->getId()->toRfc4122());

@@ -284,7 +284,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
 
     private function mountInitiative(array $initiativeData, array $context = []): Initiative
     {
-        /* @var Initiative $initiative */
+        /** @var Initiative $initiative */
         $initiative = $this->serializer->denormalize($initiativeData, Initiative::class, context: $context);
 
         $initiative->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $initiativeData['createdBy'])));

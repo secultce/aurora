@@ -240,7 +240,7 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
         foreach (self::PHASES_UPDATED as $phaseData) {
             $phaseObj = $this->getReference(sprintf('%s-%s', self::PHASE_ID_PREFIX, $phaseData['id']), Phase::class);
 
-            /* @var Phase $phase */
+            /** @var Phase $phase */
             $phase = $this->serializer->denormalize($phaseData, Phase::class, context: ['object_to_populate' => $phaseObj]);
 
             $this->manualLoginByAgent($phase->getCreatedBy()->getId()->toRfc4122());
