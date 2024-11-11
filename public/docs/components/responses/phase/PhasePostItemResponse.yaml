@@ -1,0 +1,61 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da fase"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da fase"
+    example: "Fase inicial"
+  description:
+    type: string
+    description: "Descrição da fase"
+  startDate:
+    type: string
+    format: "YYYY-MM-DD"
+    description: "Data de começo da fase"
+  endDate:
+    type: string
+    format: "YYYY-MM-DD"
+    description: "Data final da fase"
+  status:
+    type: boolean
+    description: "Valor boolean do status"
+    example: false
+  sequence:
+    type: integer
+    description: "Número de sequência"
+  createdBy:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+  opportunity:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da oportunidade"
+  extraFields:
+    type: object
+    description: "Os campos extras da fase"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
+  createdAt:
+    $ref: '../../common-types/date.yaml'
+    description: "Data e hora da criação do usuário"
+  updatedAt:
+    $ref: '../../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da última atualização do usuário"
+  deletedAt:
+    $ref: '../../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da exclusão do usuário"

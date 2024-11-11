@@ -1,0 +1,32 @@
+post:
+  parameters:
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da oportunidade
+  tags:
+    - Fases
+  summary: Cria um única fase
+  requestBody:
+    description: Fase
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/phase/PhasePostItemRequest.yaml'
+  responses:
+    '201':
+      description: Fase criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/phase/PhasePostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, fase não criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'

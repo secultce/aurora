@@ -14,4 +14,12 @@ class PhaseRepository extends AbstractRepository implements PhaseRepositoryInter
     {
         parent::__construct($registry, Phase::class);
     }
+
+    public function save(Phase $phase): Phase
+    {
+        $this->getEntityManager()->persist($phase);
+        $this->getEntityManager()->flush();
+
+        return $phase;
+    }
 }
