@@ -1,3 +1,4 @@
+add: Add
 account_privacy: Account and Privacy
 access: Access
 accessibility: Accessibility
@@ -144,6 +145,7 @@ map: Map
 management: Management of Entities
 masculine: Masculine
 maroons: Maroon
+mei: MEI (CNPJ of MEI)
 menu: Control Panel Menu
 medium: High School
 months: months
@@ -207,6 +209,7 @@ phone: Phone
 postgraduate: Postgraduate
 photo: Photo
 phase: Phase
+postal_code: Postal Code
 profile_picture: Profile Picture
 projects: Projects
 physical: Physical
@@ -227,6 +230,7 @@ reference_point: Complement or reference point
 register: Register
 registration_date: Registration Date
 related-agents: Related Agents
+required_field: Required Field
 report: Report
 responsible_agent: Responsible Agent
 
@@ -258,6 +262,7 @@ save-and_publish: Save and Publish
 savings: Savings
 save: Save
 share: Share
+save_share: Save and Share
 seals: Seals
 search: Search
 select: Select
@@ -275,6 +280,7 @@ select_race: Select the Race/Color
 select_education: Select Your Education Level
 seal_name: Seal Name
 social_media: Social media
+site: Site
 sort_by: Sort by
 social_name: Social Name
 short_presentation: Short Presentation
@@ -282,9 +288,9 @@ spaces: Spaces
 start_now: Start Now
 state: State
 status: Status
+street: Street
 suggestions: Suggestions
 subsites: Subsites
-street: Street
 
 higher: Higher Education
 
@@ -371,6 +377,32 @@ view:
     profile_change_history: Profile Change History
     report: Report
     roles_in_culture: Roles in Culture
+
+  agent_create:
+    creation_individual_agent: Creation of individual agent
+    agent_information: Agent Information
+    mandatory_fields_message: Fields marked with asterisco are mandatory. The data entered below will be visible to all users.
+    add_cover_image: Add Cover Image
+    add_profile_image: Add Profile Image
+    agent_name: Agent Name
+    add_new: Add New
+    short_bio: Short Bio
+    inform_your_role_in_culture: Inform your role in the culture
+    add_social_media: Add Social Media
+    personal_data: Personal Data
+    personal_data_warning: Your data will not be displayed publicly.
+    social_name: Social Name
+    public_email: Public Email
+    private_phone_1: Private Phone 1 with DDD
+    private_phone_2: Private Phone 2 with DDD
+    complement_or_reference_point: Complement or Reference Point
+    public_location: Public Location
+    public_location_info: Check the box above to make the address public or leave it unchecked to keep the address private.
+    administered_by: Administered by
+    related_agents: Related Agents
+    add_new_agent_group: Add New Agent Group
+    add_group: Add Group
+    error_length: The field must have between {min} and {max} characters.
 
   authentication:
     error:

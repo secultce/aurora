@@ -1,3 +1,4 @@
+add: Añadir
 account_privacy: Cuenta y Privacidad
 access: Acceder
 accessibility: Accesibilidad
@@ -144,6 +145,7 @@ map: Mapa
 management: Gerenciamiento de Entidades
 masculine: Masculino
 maroons: Quilombola
+mei: MEI (CNPJ del MEI)
 menu: Menú del Panel de Control
 medium: Secundario
 months: meses
@@ -207,6 +209,7 @@ phone: Teléfono
 postgraduate: Posgrado
 photo: Foto
 phase: Fase
+postal_code: Código Postal
 profile_picture: Foto de Perfil
 projects: Proyectos
 physical: Física
@@ -227,6 +230,7 @@ reference_point: Complemento o punto de referencia
 register: Registro
 registration_date: Fecha de Inscripción
 related-agents: Agentes Relacionados
+required_field: Campo obligatorio
 report: Reportar
 responsible_agent: Agente Responsable
 
@@ -258,6 +262,7 @@ save-and_publish: Guardar y Publicar
 savings: Ahorro
 save: Guardar
 share: Compartir
+save_share: Guardar y Compartir
 seals: Sellos
 search: Buscar
 select: Seleccionar
@@ -275,6 +280,7 @@ see_more: Ver Más
 seal_name: Nombre del sello
 short_description: Breve descripción
 social_media: Redes sociales
+site: Sitio Web
 sort_by: Ordenar por
 social_name: Nombre Social
 short_presentation: Presentación Corta
@@ -373,6 +379,33 @@ view:
     profile_change_history: Historial de Cambios del Perfil
     report: Denunciar
     roles_in_culture: Roles en la Cultura
+
+  agent_create:
+    creation_individual_agent: Creación de agente individual
+    agent_information: Información del Agente
+    mandatory_fields_message: Los campos marcados con asterisco son obligatorios. Los datos ingresados abajo serán visibles para todos los usuarios.
+    add_cover_image: Agregar Imagen a la Portada
+    add_profile_image: Agregar imagen de perfil
+    agent_name: Nombre del Agente
+    add_new: Añadir Nuevo
+    short_bio: Breve Biografía
+    inform_your_role_in_culture: Informa tu rol en la cultura
+    add_social_media: Agregar Redes Sociales
+    personal_data: Datos Personales
+    personal_data_warning: Tus datos no serán mostrados públicamente
+    social_name: Nombre Social
+    public_email: Correo electrónico público
+    private_phone_1: Teléfono privado 1 con DDD
+    private_phone_2: Teléfono privado 2 con DDD
+    complement_or_reference_point: Complemento o punto de referencia
+    public_location: Ubicación pública
+    public_location_info: Marque el campo anterior para hacer la dirección pública o déjelo sin marcar para mantener la dirección privada.
+    administered_by: Administrado por
+    related_agents: Agentes Relacionados
+    add_new_agent_group: Añadir Nuevo Grupo de Agentes
+    add_group: Añadir Grupo
+    error_length: El campo debe tener entre {min} y {max} caracteres.
+
 
   authentication:
     error:
