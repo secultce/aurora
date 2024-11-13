@@ -2,6 +2,7 @@ login:
   path: /login
   controller: App\Controller\Web\AuthenticationWebController::login
   methods: ['GET', 'POST']
+
 register:
   path: /cadastro
   controller: App\Controller\Web\AuthenticationWebController::register

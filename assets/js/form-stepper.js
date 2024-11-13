@@ -28,7 +28,7 @@ function updateFormSteps() {
     });
 
     formSteps[formStepsNum].classList.add('form-step-active');
-};
+}
 
 function updateProgressbar() {
     const totalSteps = progressSteps.length - 1;

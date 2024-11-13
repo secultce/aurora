@@ -523,3 +523,7 @@ textarea {
         display: none;
     }
 }
+
+.mw-0 {
+    max-width: 0;
+}

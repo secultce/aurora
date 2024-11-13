@@ -56,6 +56,8 @@ events: Events
 everybody: Everybody
 explore_repository: Explore Repository
 
+first_name: First Name
+last_name: Last Name
 functions: Manage functions
 full_name: Full Name
 
@@ -238,6 +240,15 @@ view:
     roles_in_culture: Roles in Culture
 
   authentication:
+    error:
+      email_in_use: This email is already in use.
+      error_message: An error occurred while trying to create the account.
+      first_name_length: The first name must be between 2 and 50 characters.
+      invalid_email: Please enter a valid email address with up to 100 characters.
+      invalid_password: The password must be at least 8 characters long, including uppercase, lowercase letters, and numbers.
+      last_name_length: The last name must be between 2 and 50 characters.
+      password_mismatch: The passwords do not match.
+
     forgot_password: Forgot my password
     paragraph: Log in with your account
 

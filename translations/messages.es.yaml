@@ -56,6 +56,8 @@ events: Eventos
 everybody: Todos
 explore_repository: Explorar Repositorio
 
+first_name: Nombre
+last_name: Apellido
 functions: Gerenciar funciones
 full_name: Nombre Completo
 
@@ -240,6 +242,15 @@ view:
     roles_in_culture: Roles en la Cultura
 
   authentication:
+    error:
+      email_in_use: Este correo electrónico ya está en uso.
+      error_message: Ha ocurrido un error ao crear tu cuenta.
+      first_name_length: El nombre debe tener entre 2 y 50 caracteres.
+      invalid_email: Por favor, ingrese una dirección de correo electrónico válida de hasta 100 caracteres.
+      invalid_password: La contraseña debe tener al menos 8 caracteres, incluyendo letras mayúsculas, minúsculas y números.
+      last_name_length: El apellido debe tener entre 2 y 50 caracteres.
+      password_mismatch: Las contraseñas no coinciden.
+
     forgot_password: Olvidé mi Contraseña
     paragraph: Inicia sesión con tu cuenta
 

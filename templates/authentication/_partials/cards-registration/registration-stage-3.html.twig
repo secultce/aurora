@@ -4,7 +4,7 @@
 
     <div class="mb-3">
         <label for="inputProfileName" class="form-label fw-semibold">{{ 'name'|trans }}</label>
-        <input type="text" class="form-control" id="inputProfileName" placeholder="{{ 'name'|trans }}">
+        <input type="text" class="form-control" name="profile_name" placeholder="{{ 'name'|trans }}">
         <p>{{ 'view.authentication.register.profile.name_info'| trans}}</p>
     </div>
 
@@ -39,7 +39,7 @@
     </div>
 
     <div class="btn-form-group">
-        <a href="#" class="btn btn-prev">{{ 'back'|trans }}</a>
-        <a href="{{ path('web_home_homepage') }}" class="btn btn-form-submit">{{ 'view.authentication.register.create_account'|trans }}</a>
+        <button class="btn btn-prev">{{ 'back'|trans }}</button>
+        <button type="submit" class="btn btn-form-submit">{{ 'view.authentication.register.create_account'|trans }}</button>
     </div>
 </div>

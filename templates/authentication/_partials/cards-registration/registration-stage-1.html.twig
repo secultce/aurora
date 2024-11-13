@@ -1,33 +1,38 @@
 <div class="form-step form-step-active">
     <div class="mb-3">
-        <label for="inputName" class="form-label">{{ 'full_name'|trans }}</label>
-        <input type="text" class="form-control" id="inputName" placeholder="{{ 'full_name'|trans }}">
+        <label for="inputName" class="form-label">{{ 'first_name'|trans }}</label>
+        <input type="text" class="form-control" name="first_name" placeholder="{{ 'first_name'|trans }}" required>
+    </div>
+
+    <div class="mb-3">
+        <label for="inputName" class="form-label">{{ 'last_name'|trans }}</label>
+        <input type="text" class="form-control" name="last_name" placeholder="{{ 'last_name'|trans }}" required>
     </div>
 
     <div class="mb-3">
         <label for="inputBirdDate" class="form-label">{{ 'birth_date'|trans }}</label>
-        <input type="date" class="form-control" id="inputBirdDate">
+        <input type="date" class="form-control" name="birth_date" >
     </div>
 
     <div class="mb-3">
-        <label for="inputCPF" class="form-label">{{ 'cpf'|trans }}</label>
-        <input type="text" class="form-control" id="inputCPF" placeholder="{{ 'cpf'|trans }}">
+        <label for="inputCPF" class="form-label text-uppercase">{{ 'cpf'|trans }}</label>
+        <input type="text" class="form-control" name="cpf" placeholder="Ex: 123.123.123-12" >
     </div>
 
     <div class="mb-3">
         <label for="inputPhone" class="form-label">{{ 'phone'|trans }}</label>
-        <input type="tel" class="form-control" id="inputPhone" placeholder="{{ 'phone'|trans }}">
+        <input type="tel" class="form-control" name="phone" placeholder="{{ 'phone'|trans }}" >
     </div>
 
     <div class="mb-3">
         <label for="inputEmail" class="form-label">{{ 'email'|trans }}</label>
-        <input type="email" class="form-control" id="inputEmail" placeholder="{{ 'email'|trans }}">
+        <input type="email" class="form-control" name="email" placeholder="{{ 'email'|trans }}" required>
     </div>
 
     <div class="mb-3">
         <label for="inputPassword" class="form-label">{{ 'password'|trans }}</label>
-        <input type="password" class="form-control" id="inputPassword" placeholder="{{ 'password'|trans }}">
-        <small class="form-text text-muted ">
+        <input type="password" class="form-control" name="password" placeholder="{{ 'password'|trans }}" required>
+        <small class="form-text text-muted">
             {{ 'view.authentication.register.password_info_1'|trans }}:
         </small>
         <small class="form-text fw-semibold text-danger">
@@ -37,17 +42,17 @@
 
     <div class="mb-3">
         <label for="inputPasswordConfirm" class="form-label">{{ 'confirm_password'|trans }}</label>
-        <input type="password" class="form-control" id="inputPasswordConfirm" placeholder="{{ 'confirm_password'|trans }}">
+        <input type="password" class="form-control" name="confirm_password" placeholder="{{ 'confirm_password'|trans }}" >
     </div>
 
     <div class="mb-3">
         <label for="passwordStrength" class="form-label">{{ 'password_strength'|trans }}</label>
-        <div class="progress" role="progressbar" aria-label="Success example" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">
-            <div class="progress-bar bg-success" style="width: 25%"></div>
+        <div class="progress" id="passwordStrength" role="progressbar" aria-valuemin="0" aria-valuemax="100">
+            <div class="progress-bar" style="width: 0%" aria-label="Password strength"></div>
         </div>
     </div>
 
     <div class="btn-form-group mt-3">
-        <a href="#" class="btn btn-next">{{ 'continue'|trans }}</a>
+        <button class="btn btn-next">{{ 'continue'|trans }}</button>
     </div>
 </div>

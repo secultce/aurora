@@ -152,7 +152,6 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
             if ($agentDto->image instanceof File) {
                 $this->fileService->deleteFile($agentDto->image->getRealPath());
             }
-
             throw new ValidatorException(violations: $violations);
         }
 
