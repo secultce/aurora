@@ -5,13 +5,17 @@ declare(strict_types=1);
 namespace App\Controller\Api;
 
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Psr\EventDispatcher\EventDispatcherInterface;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Http\Event\LogoutEvent;
 
 class AuthenticationApiController extends AbstractApiController
 {
     public function __construct(
-        private readonly JWTTokenManagerInterface $jwtManager,
+        private readonly JWTTokenManagerInterface $jwtManager
     ) {
     }
 
@@ -31,5 +35,12 @@ class AuthenticationApiController extends AbstractApiController
         $token = $this->jwtManager->create($user);
 
         return new JsonResponse(['token' => $token, 'user' => $user->getUserIdentifier()]);
+    }
+
+    public function logout(Request $request, Security $security, EventDispatcherInterface $eventDispatcher): JsonResponse
+    {
+        $eventDispatcher->dispatch(new LogoutEvent($request, $security->getToken()));
+
+        return new JsonResponse(['message' => 'Logged out successfully'], Response::HTTP_OK);
     }
 }

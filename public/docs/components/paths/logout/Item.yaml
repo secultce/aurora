@@ -1,0 +1,39 @@
+post:
+  tags:
+    - Autorização
+  summary: Realizar logout
+  requestBody:
+    description: Token de autenticação do usuário
+    required: true
+    content:
+      application/json:
+        schema:
+          type: object
+          properties:
+            token:
+              type: string
+              description: "Token de autenticação do usuário"
+  responses:
+    '200':
+      description: Logout efetuado com sucesso
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              message:
+                type: string
+                default: "Logged out successfully"
+    '401':
+      description: Não autorizado - token inválido ou expirado
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              code:
+                type: integer
+                default: 401
+              message:
+                type: string
+                default: "Invalid JWT Token"

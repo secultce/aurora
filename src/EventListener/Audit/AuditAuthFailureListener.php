@@ -11,6 +11,7 @@ use Doctrine\ODM\MongoDB\DocumentManager;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\EventDispatcher\Attribute\AsEventListener;
+use Symfony\Component\HttpFoundation\Exception\JsonException;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Security\Http\Event\LoginFailureEvent;
 
@@ -38,6 +39,14 @@ class AuditAuthFailureListener extends AbstractAuditListener
 
         if ('/login' === $this->requestStack->getCurrentRequest()->getPathInfo()) {
             return;
+        }
+
+        try {
+            $email = $this->requestStack->getCurrentRequest()?->toArray()['username'] ?? null;
+        } catch (JsonException $exception) {
+            if ('Request body is empty.' === $exception->getMessage()) {
+                return;
+            }
         }
 
         $email = $this->requestStack->getCurrentRequest()?->toArray()['username'] ?? null;
