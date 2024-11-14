@@ -6,6 +6,7 @@ namespace App\Service\Interface;
 
 use App\Entity\Initiative;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 interface InitiativeServiceInterface
 {
@@ -19,7 +20,7 @@ interface InitiativeServiceInterface
 
     public function remove(Uuid $id): void;
 
-    public function create(array $initiative): Initiative;
+    public function create(array $initiative): Initiative|ConstraintViolationList;
 
     public function update(Uuid $id, array $initiative): Initiative;
 

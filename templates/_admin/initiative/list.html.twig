@@ -9,10 +9,23 @@
         {% include "_components/side-bar.html.twig" %}
 
         <div class="management-content w-100 p-4">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body shadow">
-                        <h2>{{ 'my_initiatives'|trans }}</h2>
+                        <div class="clearfix">
+                            <span class="float-start">
+                                <h2>{{ 'my_initiatives'|trans }}</h2>
+                            </span>
+                            <span class="float-end">
+                                <a href={{ path('admin_initiative_create') }} class="btn btn-outline-success btn-sm">{{ 'view.initiative.create'|trans }}</a>
+                            </span>
+                        </div>
 
                         <hr>
 
@@ -28,14 +41,14 @@
                             </thead>
                             <tbody>
                             {% for item in initiatives %}
-                                <tr>
-                                    <td><a href="#">{{ item.name }}</a></td>
+                                <tr data-cy={{ item.id }}>
+                                    <td data-cy="name-{{ item.name }}"><a href="#">{{ item.name }}</a></td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td></td>
                                     <td>
                                         <a href="#" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
-                                        <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="{{ path('admin_initiative_remove', {id: item.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
+                                        <button data-cy="remove-{{ item.id }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="{{ path('admin_initiative_remove', {id: item.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
                                     </td>
                                 </tr>
                             {% endfor %}

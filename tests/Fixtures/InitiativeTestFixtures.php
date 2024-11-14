@@ -26,8 +26,8 @@ class InitiativeTestFixtures implements TestFixtures
             'space' => SpaceFixtures::SPACE_ID_4,
             'parent' => InitiativeFixtures::INITIATIVE_ID_2,
             'extraFields' => [
-                'type' => 'Cultural',
-                'description' => 'É uma exposição que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
+                'culturalLanguage' => 'Cultural',
+                'shortDescription' => 'É uma exposição que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
             ],
         ]);
     }
