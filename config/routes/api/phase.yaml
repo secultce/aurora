@@ -1,0 +1,4 @@
+create:
+  path: /phases
+  controller: App\Controller\Api\PhaseApiController::create
+  methods: ['POST']
