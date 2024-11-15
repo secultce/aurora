@@ -30,13 +30,21 @@
         <div class="initiative-card-body">
             <p>
                 <strong>{{ 'type'| trans }}:</strong>
-                <span class="text-initiative fw-semibold">{{ initiative.extraFields.type }}</span>
+                {% if initiative.extraFields.culturalLanguage is defined %}
+                    <span class="text-initiative fw-semibold">{{ initiative.extraFields.culturalLanguage }}</span>
+                {% else %}
+                    {{ 'view.initiative.no_cultural_language' | trans }}
+                {% endif %}
             </p>
 
             <p class="initiative-date fw-bold">
                 <i class="material-icons">calendar_month</i>
                 {{ 'period'| trans }}:
-                {{ initiative.extraFields.period.startDate | date('d/m/Y') }} a {{ initiative.extraFields.period.endDate | date('d/m/Y') }}
+                {% if initiative.extraFields.period is defined %}
+                    {{ initiative.extraFields.period.startDate | date('d/m/Y') }} a {{ initiative.extraFields.period.endDate | date('d/m/Y') }}
+                {% else %}
+                    {{ 'view.initiative.no_period' | trans }}
+                {% endif %}
             </p>
 
             <p class="initiative-location">
@@ -45,7 +53,7 @@
                 {% if initiative.space %}
                     <span class="location-name fw-bold">{{ initiative.space.name }}</span>
                 {% else %}
-                    {{ 'initiative.card.location' | trans }}
+                    {{ 'view.initiative.no_location' | trans }}
                 {% endif %}
             </p>
 
@@ -57,7 +65,11 @@
             </div>
 
             <p class="initiative-description">
-                {{ initiative.extraFields.description }}
+                {% if initiative.extraFields.shortDescription %}
+                    {{ initiative.extraFields.shortDescription }}
+                {% else %}
+                    {{ 'view.initiative.no_short_description' | trans }}
+                {% endif %}
             </p>
 
             <div class="text-end mt-3">
@@ -73,4 +85,3 @@
         <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
     </div>
 </div>
-

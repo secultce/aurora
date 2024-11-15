@@ -2,3 +2,4 @@ parameters:
     app.dir.agent.profile: '%env(resolve:STORAGE_DIR)%/agents/profile'
     app.dir.user.profile: '%env(resolve:STORAGE_DIR)%/users/profile'
     app.dir.space.profile: '%env(resolve:STORAGE_DIR)%/spaces/profile'
+    app.dir.initiative.cover_image: '%env(resolve:STORAGE_DIR)%/initiatives/cover_image'

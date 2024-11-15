@@ -1,3 +1,13 @@
+create:
+  path: /adicionar
+  controller: App\Controller\Web\Admin\InitiativeAdminController::create
+  methods: ['GET']
+
+store:
+  path: /store
+  controller: App\Controller\Web\Admin\InitiativeAdminController::store
+  methods: ['POST']
+
 list:
   path: /
   controller: App\Controller\Web\Admin\InitiativeAdminController::list

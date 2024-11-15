@@ -14,6 +14,7 @@ use DateTime;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class InitiativeService extends AbstractEntityService implements InitiativeServiceInterface
@@ -81,14 +82,14 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         $this->repository->save($initiative);
     }
 
-    public function create(array $initiative): Initiative
+    public function create(array $initiative): Initiative|ConstraintViolationList
     {
         $initiativeDto = $this->serializer->denormalize($initiative, InitiativeDto::class);
 
         $violations = $this->validator->validate($initiativeDto, groups: InitiativeDto::CREATE);
 
         if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
+            return $violations;
         }
 
         $initiativeObj = $this->serializer->denormalize($initiative, Initiative::class);

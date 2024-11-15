@@ -31,10 +31,14 @@ confirm_password: Confirm Password
 continue: Continue
 contribute: Contribute
 control_panel: Control Panel
+cover_image: Cover image
 create: Create
+create_and_publish: Create and Publish
+create_in_draft: Create in Draft
 create_account: Create Account
 created_at: Created at
 contact: Contact
+cultural_language: Cultural language
 
 dashboard: Dashboard
 draft: In draft
@@ -80,6 +84,7 @@ location: Location
 login: Login
 logo: Logo
 logout: Logout
+long_description: Long description
 
 map: Map
 management: Management of Entities
@@ -133,6 +138,7 @@ register: Register
 registration_date: Registration Date
 related-agents: Related Agents
 report: Report
+responsible_agent: Responsible Agent
 
 tags: Tags
 term: Term
@@ -153,6 +159,7 @@ send_message: Send Message
 sent: Sent
 see_how: See How
 see_more: See More
+short_description: Short description
 sort_by: Sort by
 spaces: Spaces
 start_now: Start Now
@@ -284,7 +291,13 @@ view:
     access: Access Initiative
     create: Create an Initiative
     message:
+      created: The Initiative was successfully created
       deleted: The initiative has been deleted
+      required_fields: Fill in all required fields.
+    no_cultural_language: No cultural language
+    no_location: No location
+    no_period: No period
+    no_short_description: No description
     quantity:
       total: Initiatives Found
       finished: Completed Initiatives

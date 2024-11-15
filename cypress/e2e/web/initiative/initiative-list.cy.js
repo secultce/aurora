@@ -43,16 +43,16 @@ describe('Página de Listar Iniciativas', () => {
         cy.get('#pills-list-tab').should('have.class', 'active');
         cy.get('.initiative-card').should('be.visible');
 
-        cy.get('.initiative-card').first().within(() => {
-            cy.get('.initiative-name').contains('Arte da Caatinga').should('be.visible');
+        cy.get('.initiative-card').last().within(() => {
+            cy.get('.initiative-name').contains('Vozes do Sertão').should('be.visible');
             cy.get('.initiative-info').contains('Em andamento').should('be.visible');
             cy.get('.initiative-id').contains('ID:').should('be.visible');
             cy.get('strong').contains('Tipo:').should('be.visible');
-            cy.get('span').contains('Exposição').should('be.visible');
+            cy.get('span').contains('Musical').should('be.visible');
             cy.get('.initiative-date').contains('01/08/2024 a 31/08/2024').should('be.visible');
-            cy.get('.initiative-location').contains('Galeria Caatinga').should('be.visible');
+            cy.get('.initiative-location').contains('Recanto do Cordel').should('be.visible');
             cy.get('.initiative-seals').contains('Selos:').should('be.visible');
-            cy.get('.initiative-description').contains('Arte da Caatinga é uma exposição de arte que reúne artistas de todo o Brasil para celebrar a cultura nordestina.').should('be.visible');
+            cy.get('.initiative-description').contains('Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.').should('be.visible');
             cy.get('a').contains('Acessar Iniciativa').should('be.visible');
         });
     });

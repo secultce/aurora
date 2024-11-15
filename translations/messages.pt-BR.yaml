@@ -31,10 +31,14 @@ confirm_password: Confirmar senha
 continue: Continuar
 contribute: Contribua
 control_panel: Painel de Controle
+cover_image: Imagem de capa
 create: Criar
+create_and_publish: Criar e Publicar
+create_in_draft: Criar em Rascunho
 create_account: Crie sua conta
 created_at: Criado em
 contact: Contato
+cultural_language: Linguagem cultural
 
 dashboard: Painel de Controle
 draft: Em rascunho
@@ -80,6 +84,7 @@ location: Localização
 login: Entrar
 logo: Logo
 logout: Sair
+long_description: Descrição longa
 
 map: Mapa
 management: Gerenciamento de Entidades
@@ -134,6 +139,7 @@ register: Cadastro
 registration_date: Data de inscrição
 related-agents: Agentes Relacionados
 report: Denúncia
+responsible_agent: Agente Responsável
 
 tags: Tags
 term: Termo
@@ -154,6 +160,7 @@ send_message: Enviar mensagem
 sent: Enviadas
 see_how: Visualizar como
 see_more: Ver mais
+short_description: Descrição curta
 sort_by: Ordenar por
 spaces: Espaços
 start_now: Comece agora
@@ -282,7 +289,13 @@ view:
     access: Acessar Iniciativa
     create: Criar uma iniciativa
     message:
+      created: A Iniciativa foi criada com sucesso
       deleted: A Iniciativa foi excluída
+      required_fields: Preencha todos os campos obrigatórios.
+    no_cultural_language: Sem linguagem cultural
+    no_location: Sem localização
+    no_period: Sem período
+    no_short_description: Sem descrição
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas
