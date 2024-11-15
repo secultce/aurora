@@ -66,6 +66,8 @@ paths:
     $ref: './components/paths/space/Item.yaml'
   /opportunities/{opportunity}/phases:
     $ref: './components/paths/phase/Collection.yaml'
+  /opportunities/{opportunity}/phases/{id}:
+    $ref: './components/paths/phase/Item.yaml'
   /users:
     $ref: './components/paths/user/Collection.yaml'
   /users/{id}:

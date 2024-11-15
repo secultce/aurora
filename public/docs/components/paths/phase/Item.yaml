@@ -1,0 +1,86 @@
+get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da fase
+  tags:
+    - Fases
+  summary: Recupera uma única fase
+  responses:
+    '200':
+      description: Fase encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/phase/PhaseGetItemResponse.yaml'
+    '404':
+      description: Fase não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/phase/PhaseNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da fase
+  tags:
+    - Fases
+  summary: Atualiza uma única fase
+  requestBody:
+    description: Fase
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/phase/PhasePatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Fase atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/phase/PhasePatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, fase não atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da oportunidade
+  tags:
+    - Fases
+  summary: Remove uma única fase
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+        application/json: {}
+
+    '404':
+      description: Fase não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/phase/PhaseNotFound.yaml'
