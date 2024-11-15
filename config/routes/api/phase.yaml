@@ -1,4 +1,24 @@
 create:
-  path: /phases
+  path: /
   controller: App\Controller\Api\PhaseApiController::create
   methods: ['POST']
+
+get:
+  path: /{id}
+  controller: App\Controller\Api\PhaseApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\PhaseApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\PhaseApiController::remove
+  methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\PhaseApiController::update
+  methods: ['PATCH']

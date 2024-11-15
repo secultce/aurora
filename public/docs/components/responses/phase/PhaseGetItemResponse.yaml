@@ -1,0 +1,63 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da fase"
+  name:
+    type: string
+    maxLength: 100
+    description: "Nome da fase"
+  description:
+    type: string
+    maxLength: 100
+    description: "Descrição da fase"
+  startDate:
+    type: string
+    format: date
+    description: "Data inicial da fase"
+  endDate:
+    type: string
+    format: date
+    description: "Data final da fase"
+  status:
+    type: boolean
+    description: "Status da fase"
+  sequence:
+    type: integer
+    description: "Número que representa a sequência"
+  createdBy:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+  opportunity:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da oportunidade"
+  extraFields:
+    type: object
+    description: "Os campos extras da fase"
+    properties:
+      key:
+        type: string
+        description: 'Valor da chave'
+  createdAt:
+    type: string
+    format: date-time
+    description: "Data e hora da criação da fase"
+  updatedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da última atualização da fase"
+  deletedAt:
+    type: string
+    format: date-time
+    nullable: true
+    description: "Data e hora da exclusão da fase"

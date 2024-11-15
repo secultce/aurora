@@ -4,14 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OpportunityFixtures;
+use App\DataFixtures\Entity\PhaseFixtures;
 use App\Entity\Phase;
 use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\PhaseTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
-use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -19,16 +20,6 @@ use Symfony\Component\Uid\Uuid;
 class PhaseApiControllerTest extends AbstractWebTestCase
 {
     private const string BASE_URL = '/api/opportunities/{opportunity}/phases';
-
-    private ?ParameterBagInterface $parameterBag = null;
-
-    protected function setUp(): void
-    {
-        $client = static::createClient();
-        $container = $client->getContainer();
-
-        $this->parameterBag = $container->get(ParameterBagInterface::class);
-    }
 
     public function testCanCreateWithPartialRequestBody(): void
     {
@@ -162,5 +153,227 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                 ],
             ],
         ];
+    }
+
+    public function testGet(): void
+    {
+        $client = static::apiClient();
+
+        $url = str_replace('{opportunity}', OpportunityFixtures::OPPORTUNITY_ID_1, self::BASE_URL);
+
+        $client->request(Request::METHOD_GET, $url);
+        $response = $client->getResponse()->getContent();
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertCount(3, json_decode($response));
+        $this->assertResponseBodySame([
+            [
+                'id' => PhaseFixtures::PHASE_ID_1,
+                'name' => 'Fase de submissão',
+                'description' => 'Fase inicial do Concurso de Cordelistas',
+                'startDate' => '2024-07-12T00:00:00+00:00',
+                'endDate' => '2024-07-17T00:00:00+00:00',
+                'status' => true,
+                'sequence' => 1,
+                'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+                'createdAt' => '2024-07-10T11:30:00+00:00',
+                'updatedAt' => '2024-07-10T11:35:00+00:00',
+                'deletedAt' => null,
+            ],
+            [
+                'id' => PhaseFixtures::PHASE_ID_2,
+                'name' => 'Fase de validação',
+                'description' => 'Fase de validação do Concurso de Cordelistas',
+                'startDate' => '2024-07-18T00:00:00+00:00',
+                'endDate' => '2024-07-22T00:00:00+00:00',
+                'status' => true,
+                'sequence' => 2,
+                'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+                'createdAt' => '2024-07-11T10:49:00+00:00',
+                'updatedAt' => null,
+                'deletedAt' => null,
+            ],
+            [
+                'id' => PhaseFixtures::PHASE_ID_3,
+                'name' => 'Fase de recurso',
+                'description' => 'Fase de recurso do Concurso de Cordelistas',
+                'startDate' => '2024-07-23T00:00:00+00:00',
+                'endDate' => '2024-07-26T00:00:00+00:00',
+                'status' => true,
+                'sequence' => 3,
+                'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+                'createdAt' => '2024-07-16T17:22:00+00:00',
+                'updatedAt' => null,
+                'deletedAt' => null,
+            ],
+        ]);
+    }
+
+    public function testGetAnPhaseItemWithSuccess(): void
+    {
+        $client = static::apiClient();
+
+        $url = sprintf('%s/%s', str_replace('{opportunity}', OpportunityFixtures::OPPORTUNITY_ID_1, self::BASE_URL), PhaseFixtures::PHASE_ID_3);
+
+        $client->request(Request::METHOD_GET, $url);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->assertResponseBodySame([
+            'id' => PhaseFixtures::PHASE_ID_3,
+            'name' => 'Fase de recurso',
+            'description' => 'Fase de recurso do Concurso de Cordelistas',
+            'startDate' => '2024-07-23T00:00:00+00:00',
+            'endDate' => '2024-07-26T00:00:00+00:00',
+            'status' => true,
+            'sequence' => 3,
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+            'extraFields' => [],
+            'createdAt' => '2024-07-16T17:22:00+00:00',
+            'updatedAt' => null,
+            'deletedAt' => null,
+        ]);
+    }
+
+    public function testGetAResourceWhenNotFound(): void
+    {
+        $client = static::apiClient();
+
+        $url = sprintf('%s/%s', str_replace('{opportunity}', OpportunityFixtures::OPPORTUNITY_ID_1, self::BASE_URL), Uuid::v4()->toRfc4122());
+
+        $client->request(Request::METHOD_GET, $url);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_found',
+            'error_details' => [
+                'description' => 'The requested Phase was not found.',
+            ],
+        ]);
+    }
+
+    public function testCanUpdate(): void
+    {
+        $requestBody = PhaseTestFixtures::complete();
+        unset($requestBody['id']);
+
+        $url = sprintf('%s/%s', str_replace('{opportunity}', OpportunityFixtures::OPPORTUNITY_ID_2, self::BASE_URL), PhaseFixtures::PHASE_ID_5);
+        $client = self::apiClient();
+
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $phase = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Phase::class, PhaseFixtures::PHASE_ID_5);
+
+        $this->assertResponseBodySame([
+            'id' => PhaseFixtures::PHASE_ID_5,
+            'name' => $requestBody['name'],
+            'description' => $requestBody['description'],
+            'startDate' => $phase->getStartDate()->format(DateTimeInterface::ATOM),
+            'endDate' => $phase->getEndDate()->format(DateTimeInterface::ATOM),
+            'status' => $requestBody['status'],
+            'sequence' => 2,
+            'createdBy' => ['id' => $requestBody['createdBy']],
+            'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_2],
+            'extraFields' => $requestBody['extraFields'],
+            'createdAt' => $phase->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $phase->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateCases')]
+    public function testValidationUpdate(array $requestBody, array $expectedErrors): void
+    {
+        $client = self::apiClient();
+        $url = sprintf('%s/%s', str_replace('{opportunity}', OpportunityFixtures::OPPORTUNITY_ID_2, self::BASE_URL), PhaseFixtures::PHASE_ID_5);
+
+        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateCases(): array
+    {
+        $requestBody = PhaseTestFixtures::partial();
+
+        return [
+            'name is not a string' => [
+                'requestBody' => array_merge($requestBody, ['name' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'name is too short' => [
+                'requestBody' => array_merge($requestBody, ['name' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'name is too long' => [
+                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
+                'expectedErrors' => [
+                    ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
+                ],
+            ],
+            'description is not a string' => [
+                'requestBody' => array_merge($requestBody, ['description' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'description', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'createdBy should exist' => [
+                'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
+                'expectedErrors' => [
+                    ['field' => 'createdBy', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'extraFields should be a valid JSON' => [
+                'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
+                'expectedErrors' => [
+                    ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+        ];
+    }
+
+    public function testDeleteAResourceWhenNotFound(): void
+    {
+        $client = static::apiClient();
+
+        $url = sprintf('%s/%s', str_replace('{opportunity}', OpportunityFixtures::OPPORTUNITY_ID_1, self::BASE_URL), Uuid::v4()->toRfc4122());
+
+        $client->request(Request::METHOD_DELETE, $url);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_found',
+            'error_details' => [
+                'description' => 'The requested Phase was not found.',
+            ],
+        ]);
+    }
+
+    public function testDeleteAResourceWithSuccess(): void
+    {
+        $client = static::apiClient();
+
+        $url = sprintf('%s/%s', str_replace('{opportunity}', OpportunityFixtures::OPPORTUNITY_ID_2, self::BASE_URL), PhaseFixtures::PHASE_ID_4);
+
+        $client->request(Request::METHOD_DELETE, $url);
+
+        $this->assertResponseIsSuccessful();
+        $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
 }

@@ -34,7 +34,7 @@ api_opportunity:
 
 api_phase:
   resource: 'api/phase.yaml'
-  prefix: /api/opportunities/{opportunity}
+  prefix: /api/opportunities/{opportunity}/phases
   name_prefix: api_phase_
   trailing_slash_on_root: false
 
