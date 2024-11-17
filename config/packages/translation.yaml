@@ -1,9 +1,9 @@
 framework:
-    default_locale: pt-BR
+    default_locale: pt-br
     translator:
         default_path: '%kernel.project_dir%/translations'
         fallbacks:
             - en
-            - pt-BR
+            - pt-br
             - es
         providers:

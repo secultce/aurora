@@ -71,7 +71,7 @@ describe('Página de Cadastro', () => {
         cy.get("[name = 'email']").clear().type('joaodasilva@test.com');
 
         cy.get("[name = 'password']").type('123');
-        cy.get("#error-message").should('contain.text', 'A senha deve ter: 8 caracteres, um número, um caractere especial (! @ \\# $ & *), pelo menos uma letra maiúscula uma minúscula.')
+        cy.get("#error-message").should('contain.text', 'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas e números.')
         cy.get("[name = 'password']").clear().type('a204C_DB%l.@');
 
         cy.get("[name = 'confirm_password']").type('321');
