@@ -230,7 +230,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         ];
     }
 
-    public function testGet(): void
+    public function testGetACollectionOfOpportunities(): void
     {
         $client = static::apiClient();
 
@@ -356,7 +356,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_NO_CONTENT);
     }
 
-    public function testCanUpdate(): void
+    public function testCanUpdateOneOpportunity(): void
     {
         $requestBody = OpportunityTestFixtures::complete();
         unset($requestBody['id']);

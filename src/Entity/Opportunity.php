@@ -57,6 +57,7 @@ class Opportunity extends AbstractEntity
     private ?array $extraFields = null;
 
     #[ORM\OneToMany(targetEntity: Phase::class, mappedBy: 'opportunity', orphanRemoval: true)]
+    #[ORM\OrderBy(['sequence' => 'ASC'])]
     #[Groups('opportunity.get.item')]
     private Collection $phases;
 
