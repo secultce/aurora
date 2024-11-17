@@ -35,6 +35,8 @@ tags:
     description: Endpoints relacionados às iniciativas
   - name: Fases
     description: Endpoints relacionados às fases
+  - name: Usuários
+    description: Endpoints relacionados aos usuários
 paths:
   /agents:
     $ref: './components/paths/agent/Collection.yaml'

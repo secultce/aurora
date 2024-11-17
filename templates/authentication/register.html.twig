@@ -11,13 +11,26 @@
         </a>
     </div>
 
-    <div class="container d-grid justify-content-center mb-5">
+    <div class="container d-grid justify-content-center mb-5 mw-0">
         <h1 class="fw-bold fs-3">{{ 'create_account'|trans }}</h1>
         <p>{{ 'view.authentication.register.paragraph'|trans }}.</p>
+
+        {% if error %}
+            <div class="alert alert-danger" id="error-message">{{ error }}</div>
+        {% else %}
+            <div class="alert alert-danger d-none" id="error-message"></div>
+        {% endif %}
 
         <div class="form-container mt-3">
             {% include 'authentication/_partials/form-stepper.html.twig' %}
         </div>
     </div>
 
+{% endblock %}
+
+{% block extra_javascripts %}
+    <script type="module" src="{{ asset('js/register-validations.js') }}"></script>
+    <script type="module" src="{{ asset('js/form-stepper.js') }}"></script>
+    <script type="module" src="{{ asset('js/counter.js') }}"></script>
+    <script type="module" src="{{ asset('js/dropdown.js') }}"></script>
 {% endblock %}

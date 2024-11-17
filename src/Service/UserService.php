@@ -9,6 +9,7 @@ use App\Entity\User;
 use App\Exception\User\UserResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\UserRepositoryInterface;
+use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use DateTime;
@@ -27,24 +28,29 @@ readonly class UserService implements UserServiceInterface
     ];
 
     public function __construct(
+        private AgentServiceInterface $agentService,
         private UserRepositoryInterface $repository,
         private SerializerInterface $serializer,
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
         private ValidatorInterface $validator,
-        private readonly PasswordHasherFactoryInterface $passwordHasherFactory,
+        private PasswordHasherFactoryInterface $passwordHasherFactory,
     ) {
     }
 
     public function create(array $user): User
     {
         $user = self::validateInput($user, UserDto::CREATE);
+
         $password = $this->passwordHasherFactory->getPasswordHasher(User::class)->hash($user['password']);
 
         $userObj = $this->serializer->denormalize($user, User::class);
         $userObj->setPassword($password);
 
-        return $this->repository->save($userObj);
+        $this->repository->save($userObj);
+        $this->agentService->createFromUser($user);
+
+        return $userObj;
     }
 
     public function get(Uuid $id): User
@@ -86,7 +92,6 @@ readonly class UserService implements UserServiceInterface
             if ($userDto->image instanceof File) {
                 $this->fileService->deleteFile($userDto->image->getRealPath());
             }
-
             throw new ValidatorException(violations: $violations);
         }
 

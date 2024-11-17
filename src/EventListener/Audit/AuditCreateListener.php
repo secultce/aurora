@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventListener\Audit;
 
+use App\Entity\Agent;
 use App\Entity\User;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
@@ -57,10 +58,10 @@ class AuditCreateListener extends AbstractAuditListener
 
     private function isMandatoryAuthenticated(string $class): bool
     {
-        if (User::class === $class) {
-            return false;
-        }
-
-        return true;
+        return match ($class) {
+            User::class,
+            Agent::class => false,
+            default => true,
+        };
     }
 }
