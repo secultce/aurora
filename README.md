@@ -6,7 +6,7 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 
 ## Tecnologias
 
-- **PHP** 8.3
+- **PHP** 8.4
 - **PostgreSQL** 16
 - **MongoDB** 7
 - **Symfony** 7
