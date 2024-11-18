@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Exception\ResourceNotFoundException;
 use App\Service\Interface\OpportunityServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Uid\Uuid;
 
 class OpportunityWebController extends AbstractWebController
 {
@@ -37,6 +39,19 @@ class OpportunityWebController extends AbstractWebController
             'dashboard' => $dashboard,
             'opportunities' => $opportunities,
             'totalOpportunities' => $totalOpportunities,
+        ]);
+    }
+
+    public function details(Uuid $id): Response
+    {
+        $opportunity = $this->service->get($id);
+
+        if (!$opportunity) {
+            throw new ResourceNotFoundException();
+        }
+
+        return $this->render('opportunity/details.html.twig', [
+            'opportunity' => $opportunity,
         ]);
     }
 }

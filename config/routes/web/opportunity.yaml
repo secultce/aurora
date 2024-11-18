@@ -2,3 +2,8 @@ list:
   path: /oportunidades
   controller: App\Controller\Web\OpportunityWebController::list
   methods: ['GET']
+
+details:
+  path: /oportunidades/{id}
+  controller: App\Controller\Web\OpportunityWebController::details
+  methods: ['GET']

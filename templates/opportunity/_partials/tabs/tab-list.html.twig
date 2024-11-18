@@ -20,13 +20,13 @@
         </div>
 
         <div class="d-flex mt-1 mb-3 align-items-center">
-            <img src="" alt="Foto do agente" class="rounded-circle">
+            <img src="{{ opportunity.image }}" alt="Foto da oportunidade" class="rounded-circle">
 
             <span class="fw-bold ps-3">{{ opportunity.name }}</span>
         </div>
         <div class="fw-bold mb-2">
             {{ 'type'|trans }}: <span class="text-danger me-3">TESTE</span>
-            {{ 'linked_with'|trans}} <ENTIDADE>: <a class="text-primary fw-bold text-decoration-none" href="#">Associação dos Pescadores</a>
+            {{ 'linked_with'|trans}} ENTIDADE: <a class="text-primary fw-bold text-decoration-none" href="#">Associação dos Pescadores</a>
         </div>
         <p class="text-orange fw-bold">
             Inscrições de 01/01/2001 à 31/01/2001
@@ -54,7 +54,9 @@
         </div>
 
         <div>
-            <button class="btn btn-primary btn-lg">{{ 'access'|trans}} <i class="material-icons">chevron_right</i> </button>
+            <a href="{{ path('web_opportunity_details', {id: opportunity.id}) }}" class="btn btn-primary btn-lg">
+                {{ 'access'|trans}} <i class="material-icons">chevron_right</i>
+            </a>
         </div>
     </div>
 </div>
