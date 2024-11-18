@@ -8,6 +8,12 @@ api_auth:
   prefix: /api
   name_prefix: api_auth_
 
+api_address:
+  resource: 'api/address.yaml'
+  prefix: /api/addresses
+  name_prefix: api_address_
+  trailing_slash_on_root: false
+
 api_agents:
     resource: 'api/agent.yaml'
     prefix: /api/agents

@@ -1,0 +1,14 @@
+create:
+  path: /
+  controller: App\Controller\Api\AddressController::create
+  methods: ['POST']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\AddressController::update
+  methods: ['PATCH']
+
+delete:
+  path: /{id}
+  controller: App\Controller\Api\AddressController::remove
+  methods: ['DELETE']
