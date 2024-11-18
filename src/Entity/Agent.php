@@ -11,6 +11,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\MaxDepth;
@@ -64,6 +65,9 @@ class Agent extends AbstractEntity
 
     #[ORM\OneToMany(targetEntity: Opportunity::class, mappedBy: 'createdBy')]
     private Collection $opportunities;
+
+    #[ORM\OneToMany(targetEntity: AgentAddress::class, mappedBy: 'owner')]
+    private Collection $addresses;
 
     #[ORM\Column]
     #[Groups(['agent.get'])]

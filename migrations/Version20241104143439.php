@@ -24,8 +24,8 @@ final class Version20241104143439 extends AbstractMigration
         $this->addSql('CREATE UNIQUE INDEX UNIQ_A393D2FBFC2D9FF7 ON state (capital_id)');
         $this->addSql('COMMENT ON COLUMN state.id IS \'(DC2Type:uuid)\'');
         $this->addSql('COMMENT ON COLUMN state.capital_id IS \'(DC2Type:uuid)\'');
-        $this->addSql('ALTER TABLE city ADD CONSTRAINT FK_2D5B02345D83CC1 FOREIGN KEY (state_id) REFERENCES state (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
-        $this->addSql('ALTER TABLE state ADD CONSTRAINT FK_A393D2FBFC2D9FF7 FOREIGN KEY (capital_id) REFERENCES city (id) NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE city ADD CONSTRAINT FK_2D5B02345D83CC1 FOREIGN KEY (state_id) REFERENCES state (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
+        $this->addSql('ALTER TABLE state ADD CONSTRAINT FK_A393D2FBFC2D9FF7 FOREIGN KEY (capital_id) REFERENCES city (id) ON DELETE CASCADE NOT DEFERRABLE INITIALLY IMMEDIATE');
     }
 
     public function down(Schema $schema): void

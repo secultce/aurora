@@ -30,6 +30,9 @@ class Space extends AbstractEntity
     #[Groups('space.get')]
     private ?string $image = null;
 
+    #[ORM\OneToOne(targetEntity: SpaceAddress::class, mappedBy: 'owner', cascade: ['persist', 'remove'])]
+    private SpaceAddress $address;
+
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     #[Groups('space.get')]
