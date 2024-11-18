@@ -40,6 +40,9 @@ jobs:
       - name: Create storage and give permissions
         run: mkdir storage && chmod -R 777 storage
 
+      - name: Give permissions for var/storage
+        run: chmod -R 777 var/storage
+
       - name: Create the phpunit.xml
         run: docker compose exec --user root php cp phpunit.xml.dist phpunit.xml
 
@@ -69,6 +72,9 @@ jobs:
 
       - name: Create storage and give permissions
         run: mkdir storage && chmod -R 777 storage
+
+      - name: Give permissions for var/storage
+        run: chmod -R 777 var/storage
 
       - name: Run generate mongodb proxies
         run: docker compose exec --user root php bin/console doctrine:mongodb:generate:proxie

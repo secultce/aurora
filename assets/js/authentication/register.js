@@ -1,3 +1,14 @@
+import "../../app.js";
+
+import {
+    trans,
+    VIEW_AUTHENTICATION_ERROR_FIRST_NAME_LENGTH,
+    VIEW_AUTHENTICATION_ERROR_INVALID_EMAIL,
+    VIEW_AUTHENTICATION_ERROR_INVALID_PASSWORD,
+    VIEW_AUTHENTICATION_ERROR_LAST_NAME_LENGTH,
+    VIEW_AUTHENTICATION_ERROR_PASSWORD_MISMATCH,
+} from "./../../translator.js";
+
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');
     const btnNext = document.querySelector('.btn-next');
@@ -28,19 +39,19 @@ document.addEventListener('DOMContentLoaded', function () {
         });
 
         if (!validateName(firstName)) {
-            errorMessage = "O nome deve ter entre 2 e 50 caracteres.";
+            errorMessage = trans(VIEW_AUTHENTICATION_ERROR_FIRST_NAME_LENGTH);
             inputs.firstName.classList.add('border-danger');
         } else if (!validateName(lastName)) {
-            errorMessage = "O sobrenome deve ter entre 2 e 50 caracteres.";
+            errorMessage = trans(VIEW_AUTHENTICATION_ERROR_LAST_NAME_LENGTH);
             inputs.lastName.classList.add('border-danger');
         } else if (!validateEmail(email)) {
-            errorMessage = "Insira um email válido com até 100 caracteres.";
+            errorMessage = trans(VIEW_AUTHENTICATION_ERROR_INVALID_EMAIL);
             inputs.email.classList.add('border-danger');
         } else if (!validatePassword(password)) {
-            errorMessage = "A senha deve ter: 8 caracteres, um número, um caractere especial (! @ \\# $ & *), pelo menos uma letra maiúscula uma minúscula.";
+            errorMessage = trans(VIEW_AUTHENTICATION_ERROR_INVALID_PASSWORD);
             inputs.password.classList.add('border-danger');
         } else if (!validateConfirmPassword(password, confirmPassword)) {
-            errorMessage = "As senhas não correspondem.";
+            errorMessage = trans(VIEW_AUTHENTICATION_ERROR_PASSWORD_MISMATCH);
             inputs.confirmPassword.classList.add('border-danger');
         }
 

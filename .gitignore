@@ -6,7 +6,6 @@
 /.env.*.local
 /config/secrets/prod/prod.decrypt.private.php
 /public/bundles/
-/var/
 /vendor/
 /.idea
 /node_modules/
@@ -28,6 +27,12 @@ package-lock.json
 /public/assets/
 /assets/vendor/
 ###< symfony/asset-mapper ###
+
+###> ux-translator ###
+/var/cache/
+/var/log/
+/var/tmp/
+###< ux-translator ###
 
 ###> league/flysystem-bundle ###
 /storage

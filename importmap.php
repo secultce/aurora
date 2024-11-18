@@ -7,6 +7,19 @@ return [
         'path' => './assets/app.js',
         'entrypoint' => true,
     ],
+    'register' => [
+        'path' => './assets/js/authentication/register.js',
+        'entrypoint' => true,
+    ],
+    '@symfony/ux-translator' => [
+        'path' => './vendor/symfony/ux-translator/assets/dist/translator_controller.js',
+    ],
+    '@app/translations' => [
+        'path' => './var/translations/index.js',
+    ],
+    '@app/translations/configuration' => [
+        'path' => './var/translations/configuration.js',
+    ],
     'aurora-user-interface' => [
         'version' => '5.3.20',
     ],
@@ -63,5 +76,20 @@ return [
     'aurora-user-interface/dist/css/editor.css' => [
         'version' => '5.3.20',
         'type' => 'css',
+    ],
+    'intl-messageformat' => [
+        'version' => '10.7.6',
+    ],
+    'tslib' => [
+        'version' => '2.8.1',
+    ],
+    '@formatjs/fast-memoize' => [
+        'version' => '2.2.3',
+    ],
+    '@formatjs/icu-messageformat-parser' => [
+        'version' => '2.9.3',
+    ],
+    '@formatjs/icu-skeleton-parser' => [
+        'version' => '1.8.7',
     ],
 ];

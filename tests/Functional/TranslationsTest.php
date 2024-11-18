@@ -10,7 +10,7 @@ use Symfony\Component\Yaml\Yaml;
 class TranslationsTest extends KernelTestCase
 {
     private const array TRANSLATION_FILES = [
-        'translations/messages.pt-BR.yaml',
+        'translations/messages.pt-br.yaml',
         'translations/messages.en.yaml',
         'translations/messages.es.yaml',
     ];
