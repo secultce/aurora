@@ -170,7 +170,7 @@ Migrations são a forma (correta) de fazer um versionamento do banco de dados, n
 
 declare(strict_types=1);
 
-namespace App\Migrations;
+namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Schema\Schema;
 use Doctrine\Migrations\AbstractMigration;
