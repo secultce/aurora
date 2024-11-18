@@ -247,6 +247,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
 
     public function load(ObjectManager $manager): void
     {
+        $this->truncateTable(Initiative::class);
         $this->createInitiatives($manager);
         $this->updateInitiatives($manager);
         $this->manualLogout();
