@@ -50,11 +50,13 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
             'image' => null,
+            'address' => null,
             'createdBy' => ['id' => $requestBody['createdBy']],
             'parent' => [
                 'id' => $requestBody['parent'],
                 'name' => 'SECULT',
                 'image' => $space->getParent()->getImage(),
+                'address' => $space->getParent()->getAddress(),
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
                     'type' => 'Instituição Cultural',
@@ -101,11 +103,13 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
             'image' => $space->getImage(),
+            'address' => $space->getAddress(),
             'createdBy' => ['id' => $requestBody['createdBy']],
             'parent' => [
                 'id' => $requestBody['parent'],
                 'name' => 'SECULT',
                 'image' => $space->getParent()->getImage(),
+                'address' => $space->getParent()->getAddress(),
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
                     'type' => 'Instituição Cultural',
@@ -241,6 +245,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => SpaceFixtures::SPACE_ID_1,
             'name' => 'SECULT',
             'image' => $space->getImage(),
+            'address' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
@@ -270,6 +275,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => '608756eb-4830-49f2-ae14-1160ca5252f4',
             'name' => 'Galeria Caatinga',
             'image' => $space->getImage(),
+            'address' => null,
             'createdBy' => [
                 'id' => '84a5b3d1-a7a4-49a6-aff8-902a325f97f9',
             ],
@@ -277,6 +283,15 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'id' => 'ae32b8a5-25a8-4b80-b415-4237a8484186',
                 'name' => 'Sítio das Artes',
                 'image' => $space->getParent()->getImage(),
+                'address' => [
+                    'id' => 'b8636a9e-3906-4751-b4a9-7a24995813aa',
+                    'street' => 'Avenida das Oliveiras',
+                    'number' => 'S/N',
+                    'neighborhood' => 'Jardins',
+                    'complement' => null,
+                    'city' => [],
+                    'zipcode' => '60300100',
+                ],
                 'createdBy' => [
                     'id' => '0cc8c682-b0cd-4cb3-bd9d-41a9161b3566',
                 ],
@@ -385,11 +400,21 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => SpaceFixtures::SPACE_ID_4,
             'name' => $requestBody['name'],
             'image' => $space->getImage(),
+            'address' => [
+                'id' => 'fd64752a-c7ed-44ff-b092-44076dea4b4c',
+                'street' => 'Avenida Central',
+                'number' => '456',
+                'neighborhood' => 'Centro',
+                'complement' => 'Sala 302',
+                'city' => [],
+                'zipcode' => '30003210',
+            ],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'parent' => [
                 'id' => SpaceFixtures::SPACE_ID_1,
                 'name' => 'SECULT',
                 'image' => $space->getParent()->getImage(),
+                'address' => null,
                 'createdBy' => [
                     'id' => AgentFixtures::AGENT_ID_1,
                 ],
@@ -462,6 +487,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => SpaceFixtures::SPACE_ID_1,
             'name' => 'SECULT',
             'image' => $space->getImage(),
+            'address' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],

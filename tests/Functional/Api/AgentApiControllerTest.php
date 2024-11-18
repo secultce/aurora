@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\DataFixtures\Entity\AddressFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
 use App\DataFixtures\Entity\UserFixtures;
@@ -57,6 +58,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'extraFields' => null,
             'user' => ['id' => $requestBody['user']],
             'organizations' => [],
+            'addresses' => null,
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -95,6 +97,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
+            'addresses' => null,
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -284,6 +287,23 @@ class AgentApiControllerTest extends AbstractWebTestCase
             ],
             'user' => ['id' => UserFixtures::USER_ID_3],
             'organizations' => [],
+            'addresses' => [
+                [
+                    'id' => '425bdb7a-1ea2-41b5-bcb8-3511ef8f750a',
+                    'street' => 'Rua das Flores',
+                    'number' => '123',
+                    'neighborhood' => 'Primavera',
+                    'complement' => 'Bloco A',
+                    'city' => [
+                        'name' => 'Pedra Branca',
+                        'state' => [
+                            'name' => 'Ceará',
+                            'acronym' => 'CE',
+                        ],
+                    ],
+                    'zipcode' => '01002000',
+                ],
+            ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -386,6 +406,23 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
+            'addresses' => [
+                [
+                    'id' => AddressFixtures::ADDRESS_ID_5,
+                    'street' => 'Travessa do Sol',
+                    'number' => '7',
+                    'neighborhood' => 'Aurora',
+                    'complement' => null,
+                    'city' => [
+                        'name' => 'Brejo Santo',
+                        'state' => [
+                            'name' => 'Ceará',
+                            'acronym' => 'CE',
+                        ],
+                    ],
+                    'zipcode' => '30330110',
+                ],
+            ],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $agent->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -428,6 +465,23 @@ class AgentApiControllerTest extends AbstractWebTestCase
             ],
             'user' => ['id' => UserFixtures::USER_ID_3],
             'organizations' => [],
+            'addresses' => [
+                [
+                    'id' => AddressFixtures::ADDRESS_ID_3,
+                    'street' => 'Rua das Flores',
+                    'number' => '123',
+                    'neighborhood' => 'Primavera',
+                    'complement' => 'Bloco A',
+                    'city' => [
+                        'name' => 'Pedra Branca',
+                        'state' => [
+                            'name' => 'Ceará',
+                            'acronym' => 'CE',
+                        ],
+                    ],
+                    'zipcode' => '01002000',
+                ],
+            ],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $agent->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
