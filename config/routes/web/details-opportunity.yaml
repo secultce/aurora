@@ -1,0 +1,4 @@
+list:
+  path: /detalhes
+  controller: App\Controller\Web\DetailsOpportunityWebController::list
+  methods: ['GET']
