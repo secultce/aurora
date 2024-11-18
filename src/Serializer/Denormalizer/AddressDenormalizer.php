@@ -7,6 +7,7 @@ namespace App\Serializer\Denormalizer;
 use App\Entity\Address;
 use App\Entity\Agent;
 use App\Entity\AgentAddress;
+use App\Entity\City;
 use App\Entity\Space;
 use App\Entity\SpaceAddress;
 use Doctrine\ORM\EntityManagerInterface;
@@ -24,6 +25,12 @@ readonly class AddressDenormalizer implements DenormalizerInterface
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
+        if (isset($data['ownerType']) && 'agent' === $data['ownerType']) {
+            $type = AgentAddress::class;
+        } elseif (isset($data['ownerType']) && 'space' === $data['ownerType']) {
+            $type = SpaceAddress::class;
+        }
+
         if (false === is_array($data)) {
             return $this->denormalizer->denormalize(['id' => $data], $type, $format, $context);
         }
@@ -33,7 +40,7 @@ readonly class AddressDenormalizer implements DenormalizerInterface
         }
 
         /** @var Address $address */
-        $address = $this->denormalizer->denormalize($data, Address::class, $format, $context);
+        $address = $this->denormalizer->denormalize($data, $type, $format, $context);
 
         if (isset($data['owner']) && isset($data['ownerType'])) {
             if ('agent' === $data['ownerType']) {
@@ -45,7 +52,7 @@ readonly class AddressDenormalizer implements DenormalizerInterface
         }
 
         if (isset($data['city'])) {
-            $data['city'] = $this->entityManager->getRepository(Address::class)->find($data['city']);
+            $data['city'] = $this->entityManager->getRepository(City::class)->find($data['city']);
             $address->setCity($data['city']);
         }
 

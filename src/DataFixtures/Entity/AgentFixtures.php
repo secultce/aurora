@@ -41,6 +41,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
                 'email' => 'alessandro@example.com',
                 'instagram' => '@alessandro',
             ],
+            'addresses' => [],
             'user' => UserFixtures::USER_ID_1,
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
@@ -234,6 +235,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
     {
         return [
             UserFixtures::class,
+            AddressFixtures::class,
         ];
     }
 
