@@ -1,4 +1,4 @@
-import "../../app.js";
+import "../../../app.js";
 
 import {
     trans,
@@ -7,7 +7,7 @@ import {
     VIEW_AUTHENTICATION_ERROR_INVALID_PASSWORD,
     VIEW_AUTHENTICATION_ERROR_LAST_NAME_LENGTH,
     VIEW_AUTHENTICATION_ERROR_PASSWORD_MISMATCH,
-} from "./../../translator.js";
+} from "../../../translator.js";
 
 document.addEventListener('DOMContentLoaded', function () {
     const form = document.querySelector('form');

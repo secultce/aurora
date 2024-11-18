@@ -10,6 +10,14 @@ administration: Administração
 agents: Agentes
 agent_name: Nome do Agente
 answer: Resposta
+age_rating: Classificação etária
+ages_rating:
+    all: Livre
+    ten: 10 anos
+    twelve: 12 anos
+    fourteen: 14 anos
+    sixteen: 16 anos
+    eighteen: 18 anos
 all: Tudo
 allowed: Com permissão
 admin_options: Opções do Administrador
@@ -211,6 +219,7 @@ select_education: Selecione a sua Escolaridade
 select_state: Selecione o Estado
 select_municipality: Selecione o Municipio
 select_race: Selecione a Raça/Cor
+select: Selecione
 send: Enviar
 send_message: Enviar mensagem
 sent: Enviadas
@@ -304,6 +313,7 @@ view:
 
   authentication:
     error:
+      age_rating_valid: Você deve selecionar uma classificação etária válida.
       email_in_use: Este email já está em uso.
       error_message: Ocorreu um erro ao tentar criar a conta.
       first_name_length: O nome deve ter entre 2 e 50 caracteres.
@@ -330,16 +340,21 @@ view:
         select_areas: Selecione pelo menos uma área de atuação
 
   event:
-    create: Criar um evento
+    create_event:
+      create: Criar um evento
+      description: Crie um evento com informações básicas e de forma rápida.
+      error:
+        user_not_logged: Para criar um evento é necessário estar logado.
+      short_bio: Adicione uma breve descrição do evento.
+    format_datetime: d/m/Y \à\s h:i:s
     message:
       deleted: O Evento foi excluído
-    quantity:
-      total: Eventos Encontrados
-      finished: Eventos Finalizados
-      opened: Eventos em Andamento
-      last_days: Registrados nos últimos 7 dias
     not_set_datetime: Data e hora não definidas
-    format_datetime: d/m/Y \à\s h:i:s
+    quantity:
+      finished: Eventos Finalizados
+      last_days: Registrados nos últimos 7 dias
+      opened: Eventos em Andamento
+      total: Eventos Encontrados
 
   homepage:
     add_events: Coloque seus eventos, espaços, iniciativas e oportunidades como editais e concursos no radar cultural, para que as pessoas participem do que está acontecendo na região. Com o Aurora você faz tudo isso de forma colaborativa e interativa, democratizando o acesso à cultura.

@@ -35,21 +35,18 @@ class EventDto
     public mixed $name;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
         new Uuid(groups: [self::CREATE, self::UPDATE]),
         new Exists(Agent::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $agentGroup;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
         new Uuid(groups: [self::CREATE, self::UPDATE]),
         new Exists(Space::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $space;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
         new Uuid(groups: [self::CREATE, self::UPDATE]),
         new Exists(Initiative::class, groups: [self::CREATE, self::UPDATE]),
     ])]
@@ -65,7 +62,6 @@ class EventDto
     public mixed $extraFields;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
         new NotNull(groups: [self::UPDATE]),
         new Uuid(groups: [self::CREATE, self::UPDATE]),
         new Exists(Agent::class, groups: [self::CREATE, self::UPDATE]),

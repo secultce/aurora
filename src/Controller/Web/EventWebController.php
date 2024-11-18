@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 class EventWebController extends AbstractWebController
 {
     public function __construct(
-        public readonly EventServiceInterface $service,
+        public readonly EventServiceInterface $service
     ) {
     }
 

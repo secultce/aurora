@@ -20,7 +20,6 @@ class EventTestFixtures implements TestFixtures
             'agentGroup' => AgentFixtures::AGENT_ID_1,
             'space' => SpaceFixtures::SPACE_ID_1,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
-            'createdBy' => AgentFixtures::AGENT_ID_1,
         ];
     }
 

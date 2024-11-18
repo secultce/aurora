@@ -33,12 +33,12 @@ class Event extends AbstractEntity
     #[ORM\ManyToOne(targetEntity: Space::class)]
     #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[Groups(['event.get'])]
-    private ?Space $space;
+    private ?Space $space = null;
 
     #[ORM\ManyToOne(targetEntity: Initiative::class)]
     #[ORM\JoinColumn(name: 'initiative_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[Groups(['event.get'])]
-    private ?Initiative $initiative;
+    private ?Initiative $initiative = null;
 
     #[ORM\ManyToOne(targetEntity: self::class)]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]

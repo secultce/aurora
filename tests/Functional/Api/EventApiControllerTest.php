@@ -43,7 +43,7 @@ class EventApiControllerTest extends AbstractWebTestCase
             'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
             'parent' => null,
             'extraFields' => null,
-            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'createdBy' => ['id' => self::getLoggedAgentId()],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -92,7 +92,7 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'locationDescription' => 'Test Event Location',
                 'instagram' => '@mytestevent',
             ],
-            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'createdBy' => ['id' => self::getLoggedAgentId()],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -123,10 +123,6 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'expectedErrors' => [
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
-                    ['field' => 'agentGroup', 'message' => 'This value should not be blank.'],
-                    ['field' => 'space', 'message' => 'This value should not be blank.'],
-                    ['field' => 'initiative', 'message' => 'This value should not be blank.'],
-                    ['field' => 'createdBy', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -216,7 +212,7 @@ class EventApiControllerTest extends AbstractWebTestCase
         ];
     }
 
-    public function testGet(): void
+    public function testGetACollectionOfEvents(): void
     {
         $client = static::apiClient();
 
@@ -247,7 +243,7 @@ class EventApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function testGetItem(): void
+    public function testGetAnEventItem(): void
     {
         $client = static::apiClient();
 
@@ -344,7 +340,7 @@ class EventApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
-    public function testCanUpdate(): void
+    public function testCanUpdateAnEvent(): void
     {
         $requestBody = EventTestFixtures::complete();
         unset($requestBody['id']);
@@ -382,7 +378,7 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'deletedAt' => null,
             ],
             'extraFields' => $requestBody['extraFields'],
-            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+            'createdBy' => ['id' => self::getLoggedAgentId()],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $event->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,

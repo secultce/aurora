@@ -1,0 +1,85 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'events'|trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/events.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container d-grid justify-content-start mt-4">
+        <a href="{{ path('web_event_list') }}" class="nav-link centered-icon-text text-primary">
+            <i class="material-icons">arrow_back</i>
+            {{ 'back'|trans }}
+        </a>
+    </div>
+
+    <div class="container d-grid justify-content-center mt-5 mb-5 mw-0">
+
+        <form action="{{ path('admin_event_create') }}" method="post" class="form-stepper">
+            <h2 class="fw-bold fs-3">{{ 'view.event.create_event.create'|trans }}</h2>
+            <p>{{ 'view.event.create_event.description'|trans }}</p>
+            <div class="mb-4">
+                <label for="name" class="form-label">{{ 'name'|trans }}</label>
+                <input type="text" class="form-control" id="name" name="name" required/>
+            </div>
+
+            <div class="mb-4">
+                <label for="areas-container">
+                    {{ 'cultural_language'|trans }}
+                </label>
+                <div id="areas-container" class="mt-3 d-flex flex-wrap gap-2"></div>
+
+                <div class="dropdown" id="cultural-language">
+                    <button id="add-area-btn" class="btn area-tag bg-primary text-white" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        {{ 'view.authentication.register.profile.add_other_area'|trans }}
+                        <i class="material-icons fs-4 ms-2">add</i>
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="add-area-btn">
+                        <li><a class="dropdown-item" data-value="area0">Área</a></li>
+                        <li><a class="dropdown-item" data-value="area1">Área de interesse</a></li>
+                        <li><a class="dropdown-item" data-value="area2">Área de interesse media</a></li>
+                        <li><a class="dropdown-item" data-value="area3">Área de interesse grande para testar</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mb-4">
+                <label for="description">
+                    {{ 'view.event.create_event.short_bio'|trans }}
+                </label>
+                <textarea id="description" name="description" maxlength="400" rows="5" class="form-control mt-1"></textarea>
+                <p id="counter">0/400</p>
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label" for="age-rating">{{ 'age_rating'|trans }}</label>
+                <span class="text-danger">*</span>
+                <select class="form-select mt-1" id="age-rating" name="age_rating">
+                    <option selected disabled id="desabilitado">{{ 'select'|trans }}</option>
+                    <option value="livre">{{ 'ages_rating.all'|trans }}</option>
+                    <option value="10">{{ 'ages_rating.ten'|trans }}</option>
+                    <option value="12">{{ 'ages_rating.twelve'|trans }}</option>
+                    <option value="14">{{ 'ages_rating.fourteen'|trans }}</option>
+                    <option value="16">{{ 'ages_rating.sixteen'|trans }}</option>
+                    <option value="18">{{ 'ages_rating.eighteen'|trans }}</option>
+                </select>
+            </div>
+
+            <div class="btn-form-group mt-5">
+                <button type="submit" class="btn btn-primary">{{ 'create_and_publish'|trans }}</button>
+                <button class="btn btn-secondary">{{ 'create_in_draft'|trans }}</button>
+                <button type="button" class="btn btn-link">{{ 'cancel'|trans }}</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}
+
+{% block extra_javascripts %}
+    <script type="module" src="{{ asset('js/counter.js') }}"></script>
+    <script type="module" src="{{ asset('js/dropdown.js') }}"></script>
+    <script type="module" src="{{ asset('js/authentication/event/create.js') }}"></script>
+{% endblock %}

@@ -9,6 +9,13 @@
             <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
         {% endif %}
 
+        {% for message in app.flashes('error') %}
+            <div class="alert alert-danger">
+                {{ message }}
+            </div>
+        {% endfor %}
+
+
         <div class="card card-body mt-3 mb-5">
             <p class="mb-0">
                 <span class="fs-3 fw-bold">{{ 'welcome'|trans }}!</span>
