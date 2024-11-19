@@ -216,6 +216,7 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
 
     public function load(ObjectManager $manager): void
     {
+        $this->truncateTable(Phase::class);
         $this->createPhases($manager);
         $this->updatePhases($manager);
         $this->manualLogout();

@@ -228,6 +228,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
 
     public function load(ObjectManager $manager): void
     {
+        $this->truncateTable(Agent::class);
         $this->createAgents($manager);
         $this->updateAgents($manager);
         $this->manualLogout();
