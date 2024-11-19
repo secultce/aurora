@@ -1,0 +1,4 @@
+success:
+  path: /efetuado
+  controller: App\Controller\Web\SuccessWebController::success
+  methods: ['GET']

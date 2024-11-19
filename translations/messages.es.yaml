@@ -9,6 +9,7 @@ address: Dirección
 admin_options: Opciones del Administrador
 administration: Administración
 agents: Agentes
+agent_name: Nombre del Agente
 all: Todo
 allowed: Con permiso
 archive: Archivar
@@ -16,12 +17,17 @@ archived: Archivados
 areas_of_expertise: Áreas de Especialización
 areas_of_interest: Áreas de Interés
 analysis: Periodo de análisis
+auditory: Auditiva
+asian: Amarillo
 
 back: Volver
 birth_date: Fecha de Nacimiento
+black: Negra
 
 calendar: Calendario
 cancel: Cancelar
+cep: CEP
+cisgender: Cisgénero
 check: Comprobar
 claim-ownership: Reclamar Propiedad
 click_here: Haz clic aquí
@@ -32,11 +38,14 @@ continue: Continuar
 contribute: Contribuir
 control_panel: Panel de control
 cover_image: Imagen de portada
+cpf: CPF
+cnpj: CNPJ (MEI)
 create: Crear
 create_and_publish: Crear y publicar
 create_in_draft: Crear en borrador
 create_account: Crear Cuenta
 created_at: Creado en
+chain: Cadena
 contact: Contacto
 cultural_language: Lenguaje cultural
 
@@ -54,14 +63,18 @@ entity_banner: Banner de la Entidad
 entity: Entidad
 events: Eventos
 everybody: Todos
+elderly_person: Persona mayor
 explore_repository: Explorar Repositorio
 
 first_name: Nombre
 last_name: Apellido
+feminine: Femenino
 functions: Gerenciar funciones
+fundamental: Primaria
 full_name: Nombre Completo
 
 gallery: Galería
+gender: Seleccione el Género
 
 happening_now: Ocurriendo Ahora
 help: Ayuda
@@ -71,27 +84,36 @@ home: Inicio
 identification_number: Número Identificador
 illustration: Ilustración
 image: Imagen
+image_gallery: Añadir fotos a la galería
 indicators: Indicadores
+indigenous: Indígena
 initiatives: Iniciativas
 in_progress: En Progreso
 input_search: Buscar por palabras clave
 introduction: Presentación
+is_itinerant: ¿Es agente itinerante?
 
 language: Idioma
 lastname: Apellido
 linked_with: Vinculado Con
+link: Añadir Enlace
 list: Lista
 locate_yourself: Ubícate
 location: Ubicación
 login: Iniciar Sesión
+login-account: Iniciar sesión en mi cuenta
 logo: Logo
 logout: Salir
 long_description: Descripción larga
 
 map: Mapa
 management: Gerenciamiento de Entidades
+masculine: Masculino
+maroons: Quilombola
 menu: Menú del Panel de Control
+medium: Secundario
 most_recent: Más Reciente
+municipality: Municipio
 my_account: Mi Cuenta
 my_agents: Mis Agentes
 my_apps: Mis Aplicaciones
@@ -105,11 +127,14 @@ my_subscriptions: Mis Suscripciones
 my_reviews: Mis Evaluaciones
 
 name: Nombre
+neighborhood: Barrio
 notifications: Notificaciones
 no: No
+no_inform: No Informar
 none_area_specified: Ninguna zona especificada
 not_sent: No enviado
 notice: AVISO PUBLICO
+number_address: Número
 
 oldest: Más Antiguo
 order: Ordenar por
@@ -117,7 +142,9 @@ other_options: Otras opciones
 opened_registrations: Inscripciones Abiertas
 opportunities: Oportunidades
 organizations: Organizaciones
+orientation: Seleccione la Orientación Sexual
 
+pardo: Pardo
 period: Período
 portfolio: Portafolio
 privacy: Privacidad
@@ -125,17 +152,23 @@ profile: Perfil
 password: Contraseña
 password_strength: Fuerza de la Contraseña
 personal_data: Datos Personales
+person_disabled: Persona con Discapacidad
 phone: Teléfono
+postgraduate: Posgrado
 photo: Foto
 phase: Fase
 profile_picture: Foto de Perfil
 projects: Proyectos
+physical: Física
 public: Público
+public_information: Información pública
 published: Publicados
 published-by: Publicado por
 
+riverside: Ribereña
 recent_registrations: Inscripciones Recientes
 recently_modified: Modificados recientemente
+reference_point: Complemento o punto de referencia
 register: Registro
 registration_date: Fecha de Inscripción
 related-agents: Agentes Relacionados
@@ -146,30 +179,52 @@ tags: Etiquetas
 term: Término
 terms: Términos
 title: Título
+transsexual: Transexual
+transvestite: Travesti
 theater: Teatro
 type: Tipo
+type_here: Escriba aquí
 
 user: Usuario
 
 view_all: Ver Todas
+video: Añadir Vídeo
+visualization: Visual
 
+save-and_publish: Guardar y Publicar
+savings: Ahorro
+save: Guardar
 share: Compartir
 seals: Sellos
 search: Buscar
 send: Enviar
 send_message: Enviar mensaje
 sent: Enviado
+select_bank: Seleccione el banco
+select_state: Seleccione el Estado
+select_municipality: Seleccione el Municipio
+select_race: Seleccione la Raza/Color
+select_education: Seleccione su Nivel Educativo
 see_how: Ver Cómo
 see_more: Ver Más
 short_description: Breve descripción
 sort_by: Ordenar por
+social_name: Nombre Social
+short_presentation: Presentación Corta
 spaces: Espacios
 start_now: Comenzar Ahora
+state: Estado
 suggestions: Sugerencias
 subsites: Subsitios
+street: Vía Pública
+
+higher: Superior
 
 welcome: Bienvenido
 where: Donde
+white: Blanca
+
+yes: Si
 
 #components
 
@@ -344,6 +399,9 @@ view:
     message:
       deleted: La organización ha sido eliminada
 
+  success:
+    successfully: ¡Su registro ha sido creado exitosamente!
+    access_registration: Accede a tu correo electrónico de registro para confirmar la creación de tu cuenta en Mapas Culturais.
   space:
     access_space: Acceder al Espacio
     create: Crear Espacio
@@ -364,6 +422,34 @@ view:
     section: En esta sección puedes añadir o gestionar tus inscripciones.
     hour: del 00/00/0000 hasta 00/00/0000"
 
+  registration-space:
+    add_files: Añadir archivos para descargar
+    add_new: Añadir nuevo
+    add_image: Añadir imagen de portada
+    add-perfil_image: Añadir imagen de perfil
+    add_social: Añadir redes sociales
+    bank: Tipo de cuenta bancaria para pagos
+    bank_brazil: Banco de Brasil
+    bank_account: Número de la cuenta bancaria para pagos
+    bank_second: Caja Económica
+    bank_payments: Agencia bancaria para pagos
+    bank_third: Bradesco
+    bank_fourth: Itaú
+    bank_fifth: Santander
+    bank_verification: Dígito verificador de la cuenta bancaria
+    bank_number: Número del banco para pagos
+    check_address: Marque el campo de arriba para hacer la dirección pública o deje desmarcado para mantener la dirección privada.
+    data_notice: No se preocupe, estos datos no se mostrarán públicamente
+    data-not_public: Los datos ingresados a continuación serán registrados solo en el sistema y no se mostrarán públicamente
+    data_public: Los datos ingresados a continuación, así como la información de presentación, también se mostrarán públicamente
+    data_sensitive: Datos personales sensibles
+    fieldes_space: Los campos marcados con
+    fieldes_continuity: son obligatorios. Los datos ingresados a continuación se mostrarán a todos los usuarios.
+    presentation: Información de presentación
+    payments: Número del banco para pagos
+    report_role: Informe su función en la cultura
+    traditional: Comunidades tradicionales
+    traditional_find: ¿No encontró su comunidad tradicional?
 
   not-found:
     error-404: Error 404

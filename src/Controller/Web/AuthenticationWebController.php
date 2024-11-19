@@ -28,7 +28,6 @@ class AuthenticationWebController extends AbstractWebController
         }
 
         $error = $authenticationUtils->getLastAuthenticationError();
-
         $lastUsername = $authenticationUtils->getLastUsername();
 
         return $this->render('authentication/login.html.twig', [
@@ -61,7 +60,7 @@ class AuthenticationWebController extends AbstractWebController
                 'password' => $password,
             ]);
 
-            return $this->redirectToRoute('web_auth_login');
+            return $this->redirectToRoute('web_success_success');
         } catch (UniqueConstraintViolationException $exception) {
             $error = $this->translator->trans('view.authentication.error.email_in_use');
         } catch (Exception $exception) {

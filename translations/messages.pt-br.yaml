@@ -8,6 +8,7 @@ actions: Ações
 address: Endereço
 administration: Administração
 agents: Agentes
+agent_name: Nome do Agente
 all: Tudo
 allowed: Com permissão
 admin_options: Opções do Administrador
@@ -16,12 +17,17 @@ archived: Arquivados
 areas_of_expertise: Áreas de Atuação
 areas_of_interest: Áreas de interesse
 analysis: Período de Análise
+auditory: Auditiva
+asian: Amarelo
 
 back: Voltar
 birth_date: Data de nascimento
+black: Preta
 
 calendar: Calendário
 cancel: Cancelar
+cep: CEP
+cisgender: Cisgênero
 check: Conferir
 claim-ownership: Reivindicar Propriedade
 click_here: Clique aqui
@@ -32,11 +38,14 @@ continue: Continuar
 contribute: Contribua
 control_panel: Painel de Controle
 cover_image: Imagem de capa
+cpf: CPF
+cnpj: CNPJ (MEI)
 create: Criar
 create_and_publish: Criar e Publicar
 create_in_draft: Criar em Rascunho
 create_account: Crie sua conta
 created_at: Criado em
+chain: Corrente
 contact: Contato
 cultural_language: Linguagem cultural
 
@@ -54,14 +63,18 @@ entity_banner: Banner da Entidade
 entity: Entidade
 events: Eventos
 everybody: Todos
+elderly_person: Pessoa idosa
 explore_repository: Conheça o repositório
 
 first_name: Nome
 last_name: Sobrenome
+feminine: Feminino
 functions: Gerenciar funções
+fundamental: Fundamental
 full_name: Nome completo
 
 gallery: Galeria
+gender: Selecione o Gênero
 
 happening_now: Acontecendo agora
 help: Ajuda
@@ -71,27 +84,36 @@ home: Início
 identification_number: Número identificador
 illustration: Ilustração
 image: Imagem
+image_gallery: Adicionar fotos na galeria
 indicators: Indicadores
+indigenous: Indígena
 initiatives: Iniciativas
 in_progress: Em andamento
 input_search: Busque por palavras-chave
 introduction: Apresentação
+is_itinerant: É agente itinerante?
 
 language: Idioma
 lastname: Sobrenome
 linked_with: Vinculado com
 list: Lista
+link: Adicionar Link
 locate_yourself: Localize-se
 location: Localização
 login: Entrar
+login-account: Entrar na minha conta
 logo: Logo
 logout: Sair
 long_description: Descrição longa
 
 map: Mapa
 management: Gerenciamento de Entidades
+masculine: Masculino
+maroons: Quilombola
 menu: Menu do Painel de Controle
+medium: Médio
 most_recent: Mais Recente
+municipality: Municipio
 my_account: Minha Conta
 my_agents: Meus Agentes
 my_apps: Meus Aplicativos
@@ -105,12 +127,14 @@ my_subscriptions: Minhas Inscrições
 my_reviews: Minhas Avaliações
 
 name: Nome
+neighborhood: Bairro
 notifications: Notificações
 no: Não
+no_inform: Não Informar
 none_area_specified: Nenhuma área especificada
 not_sent: Não enviadas
 notice: EDITAL
-
+number_address: Número
 
 oldest: Mais Antigo
 order: Ordenar por
@@ -118,7 +142,9 @@ other_options: Outras Opções
 opened_registrations: Inscrições abertas
 opportunities: Oportunidades
 organizations: Organizações
+orientation: Selecione a Orientação Sexual
 
+pardo: Pardo
 period: Período
 portfolio: Portfólio
 privacy: Privacidade
@@ -126,17 +152,23 @@ profile: Perfil
 password: Senha
 password_strength: Força da senha
 personal_data: Dados pessoais
+person_disabled: Pessoa com Deficiência
+postgraduate: Pós-graduação
 phone: Telefone
 photo: Foto
 phase: Fase
+physical: Física
 profile_picture: Foto de Perfil
 projects: Projetos
 public: Público
+public_information: Informações públicas
 published: Publicados
 published-by: Publicado por
 
+riverside: Ribeirinha
 recent_registrations: Inscrições recentes
 recently_modified: Modificados recentemente
+reference_point: Complemento ou ponto de referência
 register: Cadastro
 registration_date: Data de inscrição
 related-agents: Agentes Relacionados
@@ -147,16 +179,30 @@ tags: Tags
 term: Termo
 terms: Termos
 title: Titulo
+transsexual: Transexual
+transvestite: Travesti
 theater: Teatro
 type: Tipo
+type_here: Digite aqui
 
 user: Usuário
 
 view_all: Ver todas
+video: Adicionar Vídeo
+visualization: Visual
 
+savings: Poupança
+save: Salvar
+save-and_publish: Salvar e Publicar
 share: Compartilhar
+short_presentation: Apresentação Curta
 seals: Selos
 search: Buscar
+select_bank: Selecione o banco
+select_education: Selecione a sua Escolaridade
+select_state: Selecione o Estado
+select_municipality: Selecione o Municipio
+select_race: Selecione a Raça/Cor
 send: Enviar
 send_message: Enviar mensagem
 sent: Enviadas
@@ -164,13 +210,21 @@ see_how: Visualizar como
 see_more: Ver mais
 short_description: Descrição curta
 sort_by: Ordenar por
+social_name: Nome Social
 spaces: Espaços
 start_now: Comece agora
+state: Estado
+street: Logradouro
 suggestions: Sugestões
 subsites: Subsites
 
+higher: Superior
+
 welcome: Olá
 where: Onde
+white: Branca
+
+yes: Sim
 
 #components
 
@@ -335,6 +389,10 @@ view:
     message:
       deleted: A Organização foi excluída
 
+  success:
+    successfully: Seu cadastro foi criado com sucesso!
+    access_registration: Acesse seu e-mail de cadastro para confirmar a criação da sua conta no Mapas Culturais.
+
   space:
     access_space: Acessar espaço
     create: Criar espaço
@@ -354,6 +412,35 @@ view:
     title-card: PNAB - Fomento à Execução de Ações Culturais
     section: Esta seção você pode adicionar ou gerenciar as suas inscrições.
     hour: 00/00/0000 até 00/00/0000
+
+  registration-space:
+    add_files: Adicionar arquivos para download
+    add_new: Adicionar Nova
+    add_image: Adicionar Imagem de Capa
+    add-perfil_image: Adicionar imagem de perfil
+    add_social: Adicionar redes sociais
+    bank: Tipo da conta bancária para pagamentos
+    bank_brazil: Banco do Brasil
+    bank_account: Número da conta bancária para pagamentos
+    bank_second: Caixa Econômica
+    bank_payments: Agência bancária para pagamentos
+    bank_third: Bradesco
+    bank_fourth: Itaú
+    bank_fifth: Santander
+    bank_verification: Dígito verificador da conta bancária
+    bank_number: Número do banco para pagamentos
+    check_address: Marque o campo acima para tornar o endereço público ou deixe desmarcado para manter o endereço privado.
+    data_notice: Não se preocupe, esses dados não serão exibidos publicamente
+    data-not_public: Os dados inseridos abaixo serão registrados apenas no sistema e não serão exibidos publicamente
+    data_public: Os dados inseridos abaixo assim como as informações de apresentação também são exibidos publicamente
+    data_sensitive: Dados pessoais sensíveis
+    fieldes_space: Os campos marcados com
+    fieldes_continuity: são de preenchimento obrigatório. Os dados inseridos abaixo serão exibidos para todos os usuários.
+    presentation: Informações de Apresentação
+    payments: Número do banco para pagamentos
+    report_role: Informe sua função na cultura
+    traditional: Comunidades tradicionais
+    traditional_find: Não encontrou sua comunidade Tradicional
 
   seal:
     create: Criar selo
