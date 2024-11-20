@@ -40,9 +40,13 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get'])]
     private string $longBio;
 
-    #[ORM\Column(length: 100)]
+    #[ORM\Column]
     #[Groups(['agent.get'])]
     private bool $culture;
+
+    #[ORM\Column]
+    #[Groups(['agent.get'])]
+    private bool $main = false;
 
     #[ORM\Column(type: Types::JSON, nullable: true)]
     #[Groups(['agent.get.item'])]
@@ -138,6 +142,16 @@ class Agent extends AbstractEntity
     public function setCulture(bool $culture): void
     {
         $this->culture = $culture;
+    }
+
+    public function isMain(): bool
+    {
+        return $this->main;
+    }
+
+    public function setMain(bool $main): void
+    {
+        $this->main = $main;
     }
 
     public function getExtraFields(): ?array

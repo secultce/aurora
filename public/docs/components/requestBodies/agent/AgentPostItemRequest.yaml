@@ -22,6 +22,9 @@ properties:
   culture:
     type: boolean
     description: "Se o agente é cultural"
+  main:
+    type: boolean
+    description: "Se é o agente principal do usuario"
   extraFields:
     type: object
     description: "Os campos extras do agente"

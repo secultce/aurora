@@ -7,6 +7,7 @@ namespace App\Service;
 use App\DTO\AgentDto;
 use App\Entity\Agent;
 use App\Exception\Agent\AgentResourceNotFoundException;
+use App\Exception\Agent\CantRemoveUniqueAgentFromUserException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\AgentRepositoryInterface;
 use App\Repository\Interface\OpportunityRepositoryInterface;
@@ -114,8 +115,14 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
             ...$this->getDefaultParams(),
         ]);
 
+        $agents = $this->security->getUser()->getAgents()->count();
+
         if (null === $agent) {
             throw new AgentResourceNotFoundException();
+        }
+
+        if (1 === $agents) {
+            throw new CantRemoveUniqueAgentFromUserException();
         }
 
         foreach ($agent->getOpportunities() as $opportunity) {

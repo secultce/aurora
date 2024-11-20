@@ -108,6 +108,8 @@ final class FaqFixtures extends AbstractFixture
 
     public function load(ObjectManager $manager): void
     {
+        $this->truncateTable(Faq::class);
+
         foreach (self::FAQS as $faqData) {
             /** @var Faq $faq */
             $faq = $this->serializer->denormalize($faqData, Faq::class, context: ['object_to_populate' => $faqData]);

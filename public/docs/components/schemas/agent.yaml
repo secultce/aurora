@@ -28,6 +28,10 @@ properties:
     type: boolean
     description: "Identificador se o agente é cultural ou não"
     example: false
+  main:
+    type: boolean
+    description: "Identifica se o agente é o principal deste usuário"
+    example: false
   extraFields:
     type: object
     description: "Os campos extras do agente"

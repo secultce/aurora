@@ -14,6 +14,10 @@ describe('Painel de Controle - Página de listar Agentes', () => {
         cy.get('tbody >  tr > :nth-child(2)').contains('22/07/2024 16:20:00').should('be.visible');
     });
 
+    it('Garante que não é possivel excluir o agente pois só tem um', () => {
+        cy.get('.table').should('not.contain', 'Excluir');
+    });
+
     // it('Garante que seja possível deletar um agente', () => {
     //     cy.get('button[data-cy="remove-1"]').click();
     //     cy.get('[data-modal-button="confirm-link"]').click();
