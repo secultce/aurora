@@ -31,6 +31,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
     public const array AGENTS = [
         [
             'id' => self::AGENT_ID_1,
+            'main' => false,
             'name' => 'Feitoza',
             'image' => null,
             'shortBio' => 'Desenvolvedor e evangelista de Software',
@@ -47,6 +48,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_2,
+            'main' => false,
             'name' => 'Henrique',
             'image' => null,
             'shortBio' => 'Desenvolvedor, pesquisador e evangelista cristão',
@@ -63,6 +65,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_3,
+            'main' => false,
             'name' => 'Anna Kelly',
             'image' => null,
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
@@ -79,6 +82,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_4,
+            'main' => false,
             'name' => 'Sara Jennifer',
             'image' => null,
             'shortBio' => 'Engenheira de software e defensora de código aberto',
@@ -95,6 +99,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_5,
+            'main' => false,
             'name' => 'Talyson',
             'image' => null,
             'shortBio' => 'Desenvolvedor backend e especialista em segurança',
@@ -111,6 +116,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_6,
+            'main' => false,
             'name' => 'Raquel',
             'image' => null,
             'shortBio' => 'Produtora cultural e curadora de eventos',
@@ -127,6 +133,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_7,
+            'main' => false,
             'name' => 'Lucas',
             'image' => null,
             'shortBio' => 'Músico e produtor cultural',
@@ -143,6 +150,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_8,
+            'main' => false,
             'name' => 'Maria',
             'image' => null,
             'shortBio' => 'Pesquisadora e escritora',
@@ -159,6 +167,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_9,
+            'main' => false,
             'name' => 'Abner',
             'image' => null,
             'shortBio' => 'Cineasta e documentarista',
@@ -175,6 +184,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
         ],
         [
             'id' => self::AGENT_ID_10,
+            'main' => false,
             'name' => 'Paulo',
             'image' => null,
             'shortBio' => 'Formado em teológia pela UFC',
@@ -194,6 +204,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
     public const array AGENTS_UPDATED = [
         [
             'id' => self::AGENT_ID_1,
+            'main' => false,
             'name' => 'Alessandro',
             'image' => null,
             'shortBio' => 'Desenvolvedor e evangelista de Software',
