@@ -32,3 +32,7 @@ web_faq:
   resource: 'web/faq.yaml'
   prefix: /
   name_prefix: web_faq_
+
+web_keycloak:
+  resource: 'web/mainick_keycloak_security.yaml'
+  name_prefix: mainick_keycloak_security_auth_

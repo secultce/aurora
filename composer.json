@@ -14,6 +14,7 @@
         "doctrine/orm": "^3.2",
         "league/flysystem-bundle": "^3.3",
         "lexik/jwt-authentication-bundle": "^3.1",
+        "mainick/keycloak-client-bundle": "*",
         "symfony/asset": "7.1.*",
         "symfony/asset-mapper": "7.1.*",
         "symfony/console": "7.1.*",

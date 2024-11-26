@@ -36,3 +36,6 @@ services:
         arguments:
             $filesystem: '@default.storage'
         public: true
+
+    Mainick\KeycloakClientBundle\Interface\IamClientInterface:
+        alias: Mainick\KeycloakClientBundle\Provider\KeycloakClient
