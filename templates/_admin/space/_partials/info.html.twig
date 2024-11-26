@@ -1,0 +1,83 @@
+<section class="presentation-info-container">
+    <h2 class="presentation-title">{{ 'view.registration-space.presentation' | trans }}</h2>
+    <p class="presentation-subtitle">
+        {{ 'view.registration-space.fieldes_space' | trans }} <span class="presentation-required">*</span> {{ 'view.registration-space.fieldes_continuity' | trans }}
+    </p>
+
+    <div class="presentation-content">
+        <div class="presentation-left">
+            <div class="presentation-cover-image">
+                <div class="presentation-image-upload">
+                    <span class="iconify" data-icon="material-symbols:image-outline" style="font-size: 2.5rem;"></span>
+                    <span>{{ 'view.registration-space.add_image' | trans }}</span>
+                </div>
+            </div>
+
+            <div class="presentation-profile-section">
+                <div class="presentation-profile-image-container">
+                    <div class="presentation-profile-image-circle">
+                        <span class="iconify profile-image-icon" data-icon="material-symbols:person-outline"></span>
+                        <span class="iconify presentation-edit-icon" data-icon="material-symbols:edit"></span>
+                    </div>
+                    <div class="profile-text">{{ 'view.registration-space.add-perfil_image' | trans }}</div>
+                </div>
+                <div class="presentation-agent-info">
+                    <label for="agent-name" class="presentation-label">{{ 'agent_name' | trans }} <span class="presentation-required">*</span></label>
+                    <input type="text" id="agent-name" name="agent-name" class="presentation-input" placeholder={{ 'agent_name' | trans }}>
+                </div>
+            </div>
+
+            <div class="presentation-areas-section">
+                <h3 class="presentation-areas-title">{{ 'areas_of_expertise' | trans }}<span class="presentation-required">*</span></h3>
+                <button class="presentation-add-button">{{ 'view.registration-space.add_new' | trans }}<span class="iconify" data-icon="mdi:plus"></span></button>
+            </div>
+
+            <div class="presentation-bio-section">
+                <label for="mini-bio" class="presentation-label">{{ 'short_presentation' | trans }} <span class="presentation-required">*</span></label>
+                <textarea id="mini-bio" name="mini-bio" maxlength="400" class="presentation-textarea" placeholder={{ 'short_presentation' | trans }}></textarea>
+                <span class="presentation-char-count">24/400</span>
+            </div>
+
+            <div class="presentation-website-section">
+                <label for="website" class="presentation-label">Site</label>
+                <input type="url" id="website" name="website" class="presentation-input" placeholder="https://www.site.com">
+            </div>
+        </div>
+
+        <div class="presentation-right">
+            <h3 class="presentation-right-title-new">{{ 'view.registration-space.report_role' | trans }} <span class="presentation-required">*</span></h3>
+            <button class="presentation-add-button">{{ 'view.registration-space.add_new' | trans }} <span class="iconify" data-icon="mdi:plus"></span></button>
+            <h3 class="presentation-right-title-new">{{ 'view.registration-space.add_social' | trans }}</h3>
+            <div class="presentation-social-inputs">
+                <div class="social-input">
+                    <span class="iconify social-icon" data-icon="mdi:instagram" style="font-size: 1.9rem;"></span>
+                    <input type="text" class="presentation-input" placeholder={{ 'name' | trans }} aria-label="Instagram">
+                </div>
+                <div class="social-input">
+                    <span class="iconify social-icon" data-icon="uil:twitter" style="font-size: 1.9rem;"></span>
+                    <input type="text" class="presentation-input" placeholder={{ 'name' | trans }} aria-label="Twitter">
+                </div>
+                <div class="social-input">
+                    <span class="iconify social-icon" data-icon="uil:facebook-f" style="font-size: 1.9rem;"></span>
+                    <input type="text" class="presentation-input" placeholder={{ 'name' | trans }} aria-label="Facebook">
+                </div>
+                <div class="social-input">
+                    <span class="iconify social-icon" data-icon="ant-design:youtube-filled" style="font-size: 1.9rem;"></span>
+                    <input type="text" class="presentation-input" placeholder={{ 'name' | trans }} aria-label="YouTube">
+                </div>
+                <div class="social-input">
+                    <span class="iconify social-icon" data-icon="mdi:linkedin" style="font-size: 1.9rem;"></span>
+                    <input type="text" class="presentation-input" placeholder={{ 'name' | trans }} aria-label="LinkedIn">
+                </div>
+                <div class="social-input">
+                    <span class="iconify social-icon" data-icon="mdi:spotify" style="font-size: 1.9rem;"></span>
+                    <input type="text" class="presentation-input" placeholder={{ 'name' | trans }} aria-label="Spotify">
+                </div>
+                <div class="social-input">
+                    <span class="iconify social-icon" data-icon="formkit:pinterest" style="font-size: 1.9rem;"></span>
+                    <input type="text" class="presentation-input" placeholder={{ 'name' | trans }} aria-label="Pinterest">
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

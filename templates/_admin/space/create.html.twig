@@ -1,0 +1,26 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}{{ 'view.space.create' | trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/spaces.css') }}">
+{% endblock %}
+
+{% block content %}
+    {% include "_admin/space/_partials/header-registration.html.twig" %}
+
+    {% include "_admin/space/_partials/info.html.twig" %}
+
+    {% include "_admin/space/_partials/personal-data.html.twig" %}
+
+    {% include "_admin/space/_partials/sensitive-personal.html.twig" %}
+
+    {% include "_admin/space/_partials/public-information.html.twig" %}
+
+    <div class="save-bar">
+        <button type="button" class="save-button exit">{{ 'logout' | trans }}</button>
+        <button type="button" class="save-button save">{{ 'save' | trans }}</button>
+        <button type="button" class="save-button save-publish">{{ 'save-and_publish' | trans }}</button>
+    </div>
+{% endblock %}

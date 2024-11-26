@@ -1,0 +1,167 @@
+<div class="container-sensitive-data custom-registration-form">
+    <h2 class="form-title">{{ 'view.registration-space.data_sensitive' | trans }}</h2>
+    <p class="form-subtitle">{{ 'view.registration-space.data-not_public' | trans }}</p>
+
+    <form>
+        <div class="row-sensitive-data">
+            <div class="col-sensitive-data form-group">
+                <label for="birthDate" class="form-label">{{ 'birth_date' | trans }}</label>
+                <input type="date" class="form-control" id="birthDate">
+            </div>
+            <div class="col-sensitive-data form-group">
+                <label for="isSenior" class="form-label">{{ 'elderly_person' | trans }}</label>
+                <select class="form-control" id="isSenior">
+                    <option>{{ 'yes' | trans }}</option>
+                    <option>{{ 'no' | trans }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row-sensitive-data">
+            <div class="col-sensitive-data form-group">
+                <label for="gender" class="form-label">{{ 'gender' | trans }}</label>
+                <select class="form-control" id="gender">
+                    <option>{{ 'no_inform' | trans }}</option>
+                    <option>{{ 'masculine' | trans }}</option>
+                    <option>{{ 'feminine' | trans }}</option>
+                    <option>{{ 'other_options' | trans }}</option>
+                </select>
+            </div>
+            <div class="col-sensitive-data form-group">
+                <label for="sexualOrientation" class="form-label">{{ 'orientation' | trans }}</label>
+                <select class="form-control" id="sexualOrientation">
+                    <option>{{ 'no_inform' | trans }}</option>
+                    <option>{{ 'cisgender' | trans }}</option>
+                    <option>{{ 'transsexual' | trans }}</option>
+                    <option>{{ 'transvestite' | trans }}</option>
+                    <option>{{ 'other_options' | trans }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row-sensitive-data">
+            <div class="col-sensitive-data form-group">
+                <label for="race" class="form-label">{{ 'select_race' | trans }}</label>
+                <select class="form-control" id="race">
+                    <option>{{ 'no_inform' | trans }}</option>
+                    <option>{{ 'white' | trans }}</option>
+                    <option>{{ 'black' | trans }}</option>
+                    <option>{{ 'indigenous' | trans }}</option>
+                    <option>{{ 'pardo' | trans }}</option>
+                    <option>{{ 'asian' | trans }}</option>
+                </select>
+            </div>
+            <div class="col-sensitive-data form-group">
+                <label for="education" class="form-label">{{ 'select_education' | trans }}</label>
+                <select class="form-control" id="education">
+                    <option>{{ 'no_inform' | trans }}</option>
+                    <option>{{ 'fundamental' | trans }}</option>
+                    <option>{{ 'medium' | trans }}</option>
+                    <option>{{ 'higher' | trans }}</option>
+                    <option>{{ 'postgraduate' | trans }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row-sensitive-data">
+            <div class="col-sensitive-data form-group">
+                <label for="isItinerant" class="form-label">{{ 'is_itinerant' | trans }}</label>
+                <select class="form-control" id="isItinerant">
+                    <option>{{ 'no_inform' | trans }}</option>
+                    <option>{{ 'yes' | trans }}</option>
+                    <option>{{ 'no' | trans }}</option>
+                </select>
+            </div>
+            <div class="col-sensitive-data form-group">
+                <label for="accountType" class="form-label">{{ 'view.registration-space.bank' | trans }}</label>
+                <select class="form-control" id="accountType">
+                    <option>{{ 'chain' | trans }}</option>
+                    <option>{{ 'savings' | trans }}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="row-sensitive-data">
+            <div class="col-sensitive-data form-group">
+                <label for="bankNumber" class="form-label">{{ 'view.registration-space.bank_number' | trans }}</label>
+                <select class="form-control" id="bankNumber">
+                    <option>{{ 'select_bank' | trans }}</option>
+                    <option>{{ 'view.registration-space.bank_brazil' | trans }}</option>
+                    <option>{{ 'view.registration-space.bank_second' | trans }}</option>
+                    <option>{{ 'view.registration-space.bank_third' | trans }}</option>
+                    <option>{{ 'view.registration-space.bank_fourth' | trans }}</option>
+                    <option>{{ 'view.registration-space.bank_fifth' | trans }}</option>
+                </select>
+            </div>
+            <div class="col-sensitive-data form-group">
+                <label for="accountNumber" class="form-label">{{ 'view.registration-space.bank_account' | trans }}</label>
+                <input type="text" class="form-control" id="accountNumber">
+            </div>
+        </div>
+
+        <div class="row-sensitive-data">
+            <div class="col-sensitive-data form-group">
+                <label for="accountVerifier" class="form-label">{{ 'view.registration-space.bank_verification' | trans }}</label>
+                <input type="text" class="form-control" id="accountVerifier">
+            </div>
+            <div class="col-sensitive-data form-group">
+                <label for="agencyNumber" class="form-label">{{ 'view.registration-space.bank_payments' | trans }}</label>
+                <input type="text" class="form-control" id="agencyNumber">
+            </div>
+        </div>
+
+        <div class="row-sensitive-data">
+            <div class="col-sensitive-data form-group">
+                <label for="agencyVerifier" class="form-label">{{ 'view.registration-space.bank_verification' | trans }}</label>
+                <input type="text" class="form-control" id="agencyVerifier">
+            </div>
+            <div class="col-sensitive-data form-group">
+                <label for="disability" class="form-label">{{ 'person_disabled' | trans }}</label>
+                <select class="form-control" id="disability">
+                    <option>{{ 'no' | trans }}</option>
+                    <option>{{ 'visualization' | trans }}</option>
+                    <option>{{ 'physical' | trans }}</option>
+                    <option>{{ 'auditory' | trans }}</option>
+                </select>
+            </div>
+            <div class="full-width-group form-group">
+                <label for="disability" class="form-label">{{ 'person_disabled' | trans }}</label>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="disability_none">
+                    <label class="form-check-label" for="disability_none">{{ 'no' | trans }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="disability_visual">
+                    <label class="form-check-label" for="disability_visual">{{ 'visual' | trans }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="disability_mental">
+                    <label class="form-check-label" for="disability_mental">{{ 'mental' | trans }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="disability_physical">
+                    <label class="form-check-label" for="disability_physical">{{ 'physical' | trans }}</label>
+                </div>
+                <div class="form-check">
+                    <input type="checkbox" class="form-check-input" id="disability_hearing">
+                    <label class="form-check-label" for="disability_hearing">{{ 'auditory' | trans }}</label>
+                </div>
+            </div>
+
+            <div class="full-width-group form-group">
+                <label for="traditionalCommunity" class="form-label">{{ 'view.registration-space.traditional' | trans }}</label>
+                <select class="form-control" id="traditionalCommunity">
+                    <option>{{ 'no' | trans }}</option>
+                    <option>{{ 'maroons' | trans }}</option>
+                    <option>{{ 'indigenous' | trans }}</option>
+                    <option>{{ 'riverside' | trans }}</option>
+                </select>
+            </div>
+
+            <div class="full-width-group form-group">
+                <label for="otherCommunity" class="form-label">{{ 'view.registration-space.traditional_find' | trans }}</label>
+                <input type="text" class="form-control" id="otherCommunity" placeholder="{{ 'type_here' | trans }}">
+            </div>
+        </div>
+    </form>
+</div>

@@ -34,4 +34,9 @@ class SpaceAdminController extends AbstractAdminController
 
         return $this->redirectToRoute('admin_space_list');
     }
+
+    public function create(): Response
+    {
+        return $this->render('space/create.html.twig');
+    }
 }

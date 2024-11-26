@@ -36,7 +36,7 @@ class ApiCustomResponseSubscriber implements EventSubscriberInterface
     public function generateCustomError(ExceptionEvent $event): void
     {
         $exception = $event->getThrowable();
-
+        dd($exception);
         if ($exception instanceof NotFoundHttpException || $exception instanceof ResourceNotFoundException) {
             $this->generateNotFoundError($event);
 
