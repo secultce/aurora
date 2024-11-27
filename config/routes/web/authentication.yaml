@@ -7,3 +7,8 @@ register:
   path: /cadastro
   controller: App\Controller\Web\AuthenticationWebController::register
   methods: ['GET', 'POST']
+
+autenticado:
+  path: /autenticado
+  controller: App\Controller\Web\AuthenticationWebController::authenKeycloak
+  methods: ['GET']
