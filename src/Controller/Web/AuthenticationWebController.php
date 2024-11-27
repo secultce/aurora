@@ -8,29 +8,30 @@ use App\Service\Interface\UserServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
 use League\OAuth2\Client\Token\AccessToken as AccessTokenLib;
+use Mainick\KeycloakClientBundle\DTO\KeycloakAuthorizationCodeEnum;
 use Mainick\KeycloakClientBundle\DTO\UserRepresentationDTO;
 use Mainick\KeycloakClientBundle\Interface\AccessTokenInterface;
+use Mainick\KeycloakClientBundle\Token\AccessToken;
 use Mainick\KeycloakClientBundle\Token\KeycloakResourceOwner;
+use Stevenmaguire\OAuth2\Client\Provider\Keycloak;
+use Symfony\Component\HttpClient\HttpClient;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 use Mainick\KeycloakClientBundle\Interface\IamClientInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
-use Symfony\Bundle\SecurityBundle\Security;
 use Mainick\KeycloakClientBundle\Annotation\ExcludeTokenValidationAttribute;
 use function dump;
 
 
 class AuthenticationWebController extends AbstractWebController implements IamClientInterface
 {
+    private Keycloak $keycloakProvider;
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly UserServiceInterface $userService,
-        private IamClientInterface $iamClient
+        private readonly IamClientInterface $iamClient
     ) {
     }
 
@@ -86,16 +87,43 @@ class AuthenticationWebController extends AbstractWebController implements IamCl
             'error' => $error,
         ]);
     }
+
     #[ExcludeTokenValidationAttribute]
-    public function authenKeycloak(AccessTokenInterface $token): ?AccessTokenInterface
+    public function authenKeycloak(Request $request): ?Response
     {
 //        $token = $tokenStorage;
 //        $accessToken = $this->iamClient;
-        $accessToken = $this->iamClient->verifyToken($token);
-        dump($accessToken);
-        dump($token);
+        dump($request->server->get('IAM_CLIENT_SECRET'));
+        $session = $request->getSession();
+        $codeKey = $session->get('keycloak-code');
+        dump($codeKey);
+        $client = HttpClient::create();
+        $tokenEndpoint = 'http://172.19.18.235:8080/realms/secultce/protocol/openid-connect/token';
+        $clientId = $request->server->get('IAM_CLIENT_ID');
+        $clientSecret = $request->server->get('IAM_CLIENT_SECRET');
+        $redirectUri = 'http://localhost:8082/auth/keycloak/check';
 
-        dump($this->iamClient); die;
+        try {
+            $response = $client->request('POST', $tokenEndpoint, [
+                'headers' => [
+                    'Content-Type' => 'application/x-www-form-urlencoded',
+                ],
+                'body' => [
+                    'grant_type' => 'authorization_code',
+                    'code' => $codeKey,
+                    'redirect_uri' => $redirectUri,
+                    'client_id' => $clientId,
+                    'client_secret' => $clientSecret,
+                ],
+            ]);
+           dump($response->getContent());die;
+        }catch (Exception $exception){
+            dump($exception->getMessage());
+        }
+
+
+
+        dump($this->iamClient->getAuthorizationUrl()); die;
         // Garantir que o token seja do tipo KeycloakToken
         if (!$token instanceof \Keycloak\Bundle\Security\User\KeycloakToken) {
             throw new \LogicException('Token não é do tipo esperado.');
@@ -177,7 +205,32 @@ class AuthenticationWebController extends AbstractWebController implements IamCl
 
     public function authenticateCodeGrant(string $code): ?AccessTokenInterface
     {
-        return null;
+        try {
+            $token = $this->keycloakProvider->getAccessToken('authorization_code', [
+                'code' => $code,
+            ]);
+            dump($token); die;
+            $accessToken = new AccessToken();
+            $accessToken->setToken($token->getToken())
+                ->setExpires($token->getExpires())
+                ->setRefreshToken($token->getRefreshToken())
+                ->setValues($token->getValues());
+
+            $this->keycloakClientLogger->info('KeycloakClient::authenticateCodeGrant', [
+                'token' => $accessToken->getToken(),
+                'expires' => $accessToken->getExpires(),
+                'refresh_token' => $accessToken->getRefreshToken(),
+            ]);
+
+            return $accessToken;
+        }
+        catch (\Exception $e) {
+            $this->keycloakClientLogger->error('KeycloakClient::authenticateCodeGrant', [
+                'error' => $e->getMessage(),
+            ]);
+
+            return null;
+        }
     }
 
     /**
