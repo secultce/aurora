@@ -1,0 +1,27 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da faq"
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  question:
+    type: string
+    maxLength: 255
+    description: "Pergunta da FAQ"
+    example: "Como se cadastrar?"
+  answer:
+    type: string
+    maxLength: 255
+    description: "Resposta da pergunta da FAQ"
+    example: "Acesse a página de cadastro e preencha o formulario"
+  active:
+    type: boolean
+    description: "Se a pergunta está ativa ou não"
+  createdAt:
+    $ref: '../common-types/date.yaml'
+    description: "Data e hora da criação do usuário"
+  updatedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da última atualização do usuário"

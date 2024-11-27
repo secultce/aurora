@@ -53,6 +53,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => true,
+            'main' => false,
             'extraFields' => null,
             'user' => ['id' => $requestBody['user']],
             'organizations' => [],
@@ -83,6 +84,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'main' => $requestBody['main'],
             'extraFields' => [
                 'site' => 'https://www.google.com/',
                 'instagram' => '@test.agent',
@@ -257,6 +259,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => 'Desenvolvedor e evangelista de Software',
             'longBio' => 'Fomentador da comunidade de desenvolvimento, um dos fundadores da maior comunidade de PHP do Ceará (PHP com Rapadura)',
             'culture' => false,
+            'main' => false,
             'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_2],
@@ -289,6 +292,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => 'Desenvolvedora frontend e entusiasta de UX',
             'longBio' => 'Desenvolvedora frontend especializada em criar interfaces intuitivas e acessíveis. Entusiasta de UX e está sempre em busca de melhorias na experiência do usuário.',
             'culture' => false,
+            'main' => false,
             'extraFields' => [
                 'email' => 'anna@example.com',
                 'instagram' => '@anna',
@@ -331,9 +335,32 @@ class AgentApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function testDeleteAgentItemWithSuccess(): void
+    public function testDeleteAgentWhenIsTheUniqueFromUserShouldBeRetrieveAnError(): void
     {
         $client = static::apiClient();
+
+        $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_4);
+
+        $client->request(Request::METHOD_DELETE, $url);
+
+        $this->assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'error_general',
+            'error_details' => [
+                'description' => 'Cannot remove unique agent from user.',
+            ],
+        ]);
+    }
+
+    public function testDeleteAgentItemWithSuccess(): void
+    {
+        $client = static::apiClient(user: UserFixtures::USERS[0]['email']);
+
+        $requestBody = AgentTestFixtures::complete();
+
+        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
         $url = sprintf('%s/%s', self::BASE_URL, AgentFixtures::AGENT_ID_4);
 
@@ -368,6 +395,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'main' => $requestBody['main'],
             'extraFields' => $requestBody['extraFields'],
             'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
@@ -400,6 +428,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'main' => $requestBody['main'],
             'extraFields' => $requestBody['extraFields'],
             'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [
@@ -428,6 +457,7 @@ class AgentApiControllerTest extends AbstractWebTestCase
             'shortBio' => $requestBody['shortBio'],
             'longBio' => $requestBody['longBio'],
             'culture' => $requestBody['culture'],
+            'main' => $requestBody['main'],
             'extraFields' => $requestBody['extraFields'],
             'user' => ['id' => UserFixtures::USER_ID_1],
             'organizations' => [

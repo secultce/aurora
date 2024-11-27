@@ -78,6 +78,8 @@ components:
   schemas:
     Agent:
       $ref: './components/schemas/agent.yaml'
+    Faq:
+      $ref: './components/schemas/faq.yaml'
     Event:
       $ref: './components/schemas/event.yaml'
     Initiative:

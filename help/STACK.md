@@ -4,7 +4,7 @@ Aqui você encontra detalhadamente as motivações que nos levaram a escolher ta
 
 ## Tecnologias
 
-- **PHP** 8.3
+- **PHP** 8.4
 - **Symfony** 7
 - **PostgreSQL** 16
 - **MongoDB** 7

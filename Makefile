@@ -24,7 +24,7 @@ migrate_database:
 
 # Executa as fixtures de dados
 load_fixtures:
-	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n"
+	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n --append"
 
 # Instala dependências do frontend
 install_frontend:
@@ -35,12 +35,12 @@ compile_frontend:
 	docker compose exec -T php bash -c "php bin/console asset-map:compile"
 
 # Executa as fixtures de dados e os testes de front-end
-tests_front:
-	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n" && docker compose up cypress
+tests_front: load_fixtures
+	docker compose up cypress
 
 # Executa as fixtures de dados e os testes de back-end
-tests_back:
-	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n && bin/phpunit"
+tests_back: load_fixtures
+	docker compose exec -T php bash -c "php bin/phpunit"
 
 # Limpa o cache do projeto
 reset:

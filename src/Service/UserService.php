@@ -13,6 +13,7 @@ use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use DateTime;
+use Exception;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
@@ -47,8 +48,16 @@ readonly class UserService implements UserServiceInterface
         $userObj = $this->serializer->denormalize($user, User::class);
         $userObj->setPassword($password);
 
-        $this->repository->save($userObj);
-        $this->agentService->createFromUser($user);
+        try {
+            $this->repository->beginTransaction();
+            $this->repository->save($userObj);
+            $this->repository->commit();
+
+            $this->agentService->createFromUser($user);
+        } catch (Exception $exception) {
+            $this->repository->rollback();
+            throw $exception;
+        }
 
         return $userObj;
     }

@@ -46,8 +46,12 @@ abstract class AbstractWebTestCase extends WebTestCase
         return json_decode($this->getCurrentResponse()->getContent(), true);
     }
 
-    protected static function getToken(string $username = 'henriquelopeslima@example.com'): string
+    protected static function getToken(?string $username = null): string
     {
+        if (null === $username) {
+            $username = 'henriquelopeslima@example.com';
+        }
+
         $container = self::getContainer();
 
         $entityManager = $container->get('doctrine.orm.default_entity_manager');
@@ -56,9 +60,9 @@ abstract class AbstractWebTestCase extends WebTestCase
         return 'Bearer '.$container->get('lexik_jwt_authentication.jwt_manager')->create($user);
     }
 
-    protected static function apiClient(array $options = [], array $server = []): KernelBrowser
+    protected static function apiClient(array $options = [], array $server = [], ?string $user = null): KernelBrowser
     {
-        $token = self::getToken();
+        $token = self::getToken($user);
 
         if (null !== static::$kernel) {
             static::ensureKernelShutdown();

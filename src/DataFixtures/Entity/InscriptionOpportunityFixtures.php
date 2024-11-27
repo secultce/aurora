@@ -149,6 +149,7 @@ final class InscriptionOpportunityFixtures extends AbstractFixture implements De
 
     public function load(ObjectManager $manager): void
     {
+        $this->truncateTable(InscriptionOpportunity::class);
         $this->createSpaces($manager);
         $this->updateSpaces($manager);
         $this->manualLogout();

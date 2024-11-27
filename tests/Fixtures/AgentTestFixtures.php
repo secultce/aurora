@@ -19,6 +19,7 @@ class AgentTestFixtures implements TestFixtures
             'shortBio' => 'Short Bio',
             'longBio' => 'Long Bio',
             'culture' => true,
+            'main' => false,
             'user' => UserFixtures::USER_ID_1,
         ];
     }
