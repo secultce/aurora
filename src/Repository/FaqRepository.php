@@ -14,4 +14,12 @@ class FaqRepository extends AbstractRepository implements FaqRepositoryInterface
     {
         parent::__construct($registry, Faq::class);
     }
+
+    public function save(Faq $faq): Faq
+    {
+        $this->getEntityManager()->persist($faq);
+        $this->getEntityManager()->flush();
+
+        return $faq;
+    }
 }

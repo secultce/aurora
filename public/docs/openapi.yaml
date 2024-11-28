@@ -9,6 +9,7 @@ info:
     - Iniciativas
     - Oportunidades
     - Organizações
+    - Perguntas Frequentes(FaQ)
     - Usuários
 
     Links Importantes:
@@ -33,6 +34,8 @@ tags:
     description: Endpoints relacionados aos eventos
   - name: Iniciativas
     description: Endpoints relacionados às iniciativas
+  - name: Faq
+    description: Endpoints relacionados às faqs
   - name: Fases
     description: Endpoints relacionados às fases
   - name: Usuários
@@ -46,6 +49,10 @@ paths:
     $ref: './components/paths/event/Collection.yaml'
   /events/{id}:
     $ref: './components/paths/event/Item.yaml'
+  /faqs:
+    $ref: './components/paths/faq/Collection.yaml'
+  /faqs/{id}:
+    $ref: './components/paths/faq/Item.yaml'
   /initiatives:
     $ref: './components/paths/initiative/Collection.yaml'
   /initiatives/{id}:

@@ -20,6 +20,12 @@ api_events:
     name_prefix: api_event_
     trailing_slash_on_root: false
 
+api_faq:
+  resource: 'api/faq.yaml'
+  prefix: /api/faqs
+  name_prefix: api_faq_
+  trailing_slash_on_root: false
+
 api_initiative:
   resource: 'api/initiative.yaml'
   prefix: /api/initiatives
