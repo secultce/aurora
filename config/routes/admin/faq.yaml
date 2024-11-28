@@ -1,0 +1,4 @@
+faq:
+  path: /
+  controller: App\Controller\Web\Admin\FaqAdminController::add
+  methods: ['GET', 'POST']

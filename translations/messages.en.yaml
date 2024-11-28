@@ -7,11 +7,13 @@ accompany: To accompany
 actions: Actions
 address: Address
 admin_options: Admin Options
+add_archive: Add
 administration: Administration
 agents: Agents
 agent_name: Agent Name
 all: All
 allowed: Allowed
+answer: Answer
 archive: Archive
 archived: Archived
 areas_of_expertise: Areas of Expertise
@@ -66,6 +68,8 @@ everybody: Everybody
 elderly_person: Elderly Person
 explore_repository: Explore Repository
 
+faq: FaQ
+file: Attach file
 first_name: First Name
 last_name: Last Name
 feminine: Feminine
@@ -165,6 +169,9 @@ public_information: Public Information
 published: Published
 published-by: Publicado por
 
+question_register: Register Question
+question: Question
+
 riverside: Riverside
 recent_registrations: Recent Registrations
 recently_modified: Recently modified
@@ -186,6 +193,7 @@ type: Type
 type_here: Type here
 
 user: User
+users: Users
 
 view_all: View All
 video: Add Video
@@ -219,6 +227,9 @@ subsites: Subsites
 street: Street
 
 higher: Higher Education
+
+your_name: Enter your name
+your_question: Write your question
 
 welcome: Welcome
 where: Where
@@ -400,6 +411,9 @@ view:
   success:
     successfully: Your registration has been created successfully!
     access_registration: Access your registration email to confirm the creation of your account on Mapas Culturais.
+
+  question:
+    characters: Maximum of 500 characters
 
   space:
     access_space: Access Space

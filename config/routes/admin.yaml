@@ -13,6 +13,11 @@ admin_event:
   prefix: /painel/eventos
   name_prefix: admin_event_
 
+admin_faq:
+  resource: 'admin/faq.yaml'
+  prefix: /painel/faq
+  name_prefix: admin_faq_
+
 admin_initiative:
   resource: 'admin/initiative.yaml'
   prefix: /painel/iniciativas
