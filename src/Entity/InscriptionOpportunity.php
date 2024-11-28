@@ -4,10 +4,10 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
-use App\Enum\InscriptionOpportunityStatus;
 use App\Repository\InscriptionOpportunityRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
@@ -18,34 +18,39 @@ class InscriptionOpportunity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['inscription_opportunity.get'])]
+    #[Groups(['inscription-opportunity.get'])]
     private ?Uuid $id = null;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'agent_id', referencedColumnName: 'id', nullable: false)]
-    #[Groups(['inscription_opportunity.get'])]
+    #[Groups(['inscription-opportunity.get'])]
     private ?Agent $agent = null;
 
     #[ORM\ManyToOne(targetEntity: Opportunity::class, inversedBy: 'phases')]
     #[ORM\JoinColumn(name: 'opportunity_id', referencedColumnName: 'id', nullable: false)]
-    #[Groups(['inscription_opportunity.get'])]
+    #[Groups(['inscription-opportunity.get'])]
     private ?Opportunity $opportunity = null;
 
-    #[ORM\Column]
-    #[Groups(['inscription_opportunity.get'])]
-    private ?InscriptionOpportunityStatus $status = null;
+    #[ORM\Column(type: Types::SMALLINT)]
+    #[Groups(['inscription-opportunity.get'])]
+    private ?int $status = null;
 
     #[ORM\Column]
-    #[Groups('inscription_opportunity.get')]
+    #[Groups('inscription-opportunity.get')]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
-    #[Groups('inscription_opportunity.get')]
+    #[Groups('inscription-opportunity.get')]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups('inscription_opportunity.get')]
+    #[Groups('inscription-opportunity.get')]
     private ?DateTime $deletedAt = null;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTimeImmutable();
+    }
 
     public function getId(): ?Uuid
     {
@@ -57,12 +62,12 @@ class InscriptionOpportunity
         $this->id = $id;
     }
 
-    public function getStatus(): ?InscriptionOpportunityStatus
+    public function getStatus(): ?int
     {
         return $this->status;
     }
 
-    public function setStatus(InscriptionOpportunityStatus $status): void
+    public function setStatus(int $status): void
     {
         $this->status = $status;
     }
@@ -121,9 +126,9 @@ class InscriptionOpportunity
     {
         return [
             'id' => $this->id?->toRfc4122(),
-            'agent' => $this->agent->toArray(),
-            'opportunity' => $this->getOpportunity()->toArray(),
-            'status' => $this->status->value,
+            'agent' => $this->agent->getId(),
+            'opportunity' => $this->getOpportunity()->getId(),
+            'status' => $this->status,
             'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
             'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
             'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),

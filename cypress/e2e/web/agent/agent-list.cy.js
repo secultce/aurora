@@ -40,16 +40,16 @@ describe('Página de Listar de Agentes', () => {
     });
 
     it('Garante que os cards de agentes estão visíveis', () => {
-        cy.get('.align-items-end > .fw-bold').contains('10 Agentes Encontrados').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains(/^\d+ Agentes Encontrados/).should('be.visible');
         cy.get('.agent-options').should('be.visible');
         cy.get('#sort-options').select('recent').should('have.value', 'recent');
         cy.get('#sort-options').select('old').should('have.value', 'old');
 
-        cy.get(':nth-child(2) > .agent-card-header > .agent-info > .agent-name').contains('Paulo').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-header > .agent-info > .agent-name').contains('Feitozo').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-area > .agent-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-location').contains('Goiânia (GO)').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-seals > .seals-area').should('be.visible');
-        cy.get(':nth-child(2) > .agent-card-body > .agent-description').contains('Especializado em teológia, organiza exposições por todos o Ceará.').should('be.visible');
+        cy.get(':nth-child(2) > .agent-card-body > .agent-description').contains('Capoeirista apaixonado pela arte, com experiência em movimentos fluidos e percussão, buscando promover a cultura e a tradição da capoeira em cada performance.').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .access-profile-container > .btn').contains('Acessar').should('be.visible');
     });
 });

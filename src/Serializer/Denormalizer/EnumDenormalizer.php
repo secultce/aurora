@@ -23,7 +23,7 @@ final class EnumDenormalizer implements DenormalizerInterface
         }
 
         try {
-            return $type::from($data);
+            return $type::fromValueOrLabel($data);
         } catch (ValueError $e) {
             throw new NotNormalizableValueException(sprintf('The data "%s" is not a valid enumeration case of type "%s".', $data, $type), 0, $e);
         }

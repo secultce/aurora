@@ -1,0 +1,25 @@
+type: object
+properties:
+  agent:
+    description: "Agente inscrito na oportunidade"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+        example: "123e4567-e89b-12d3-a456-426614174000"
+  opportunity:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da oportunidade"
+        example: "123e4567-e89b-12d3-a456-426614174000"
+  status:
+    type: string
+    enum:
+      - 'active'
+      - 'inactive'
+      - 'suspended'

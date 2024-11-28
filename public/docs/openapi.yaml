@@ -9,7 +9,6 @@ info:
     - Iniciativas
     - Oportunidades
     - Organizações
-    - Perguntas Frequentes(FaQ)
     - Usuários
 
     Links Importantes:
@@ -34,6 +33,8 @@ tags:
     description: Endpoints relacionados aos eventos
   - name: Iniciativas
     description: Endpoints relacionados às iniciativas
+  - name: Inscrição na oportunidade
+    description: Endpoints relacionados as inscrições na oportunidade
   - name: Faq
     description: Endpoints relacionados às faqs
   - name: Fases
@@ -65,6 +66,10 @@ paths:
     $ref: './components/paths/opportunity/Collection.yaml'
   /opportunities/{id}:
     $ref: './components/paths/opportunity/Item.yaml'
+  /opportunities/{opportunity}/inscriptions:
+    $ref: './components/paths/inscription-opportunity/Collection.yaml'
+  /opportunities/{opportunity}/inscriptions/{id}:
+    $ref: './components/paths/inscription-opportunity/Item.yaml'
   /organizations:
     $ref: './components/paths/organization/Collection.yaml'
   /organizations/{id}:
@@ -91,6 +96,8 @@ components:
       $ref: './components/schemas/event.yaml'
     Initiative:
       $ref: './components/schemas/initiative.yaml'
+    InscriptionOpportunity:
+      $ref: './components/schemas/inscription-opportunity.yaml'
     Opportunity:
       $ref: './components/schemas/opportunity.yaml'
     Organization:

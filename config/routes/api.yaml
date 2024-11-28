@@ -38,6 +38,12 @@ api_opportunity:
   name_prefix: api_opportunity_
   trailing_slash_on_root: false
 
+api_inscription_opportunity:
+  resource: 'api/inscription-opportunity.yaml'
+  prefix: /api/opportunities/{opportunity}/inscriptions
+  name_prefix: api_inscription_opportunity_
+  trailing_slash_on_root: false
+
 api_phase:
   resource: 'api/phase.yaml'
   prefix: /api/opportunities/{opportunity}/phases

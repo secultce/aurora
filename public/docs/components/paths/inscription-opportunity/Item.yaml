@@ -1,0 +1,85 @@
+get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da fase
+  tags:
+    - Inscrição na oportunidade
+  summary: Recupera uma única inscrição na oportunidade
+  responses:
+    '200':
+      description: Inscrição na oportunidade encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/inscription-opportunity/InscriptionOpportunityGetItemResponse.yaml'
+    '404':
+      description: Inscrição na oportunidade não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/inscription-opportunity/InscriptionOpportunityNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da fase
+  tags:
+    - Inscrição na oportunidade
+  summary: Atualiza um única inscrição na oportunidade
+  requestBody:
+    description: Oportunidade
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/inscription-opportunity/InscriptionOpportunityPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Inscrição na oportunidade atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/inscription-opportunity/InscriptionOpportunityPatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, inscrição na oportunidade não atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da fase
+  tags:
+    - Inscrição na oportunidade
+  summary: Remove uma única inscrição na oportunidade
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Inscrição na oportunidade não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/inscription-opportunity/InscriptionOpportunityNotFound.yaml'
