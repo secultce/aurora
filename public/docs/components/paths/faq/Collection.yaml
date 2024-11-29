@@ -1,0 +1,24 @@
+post:
+  tags:
+    - Faq
+  summary: Cria um único faqo
+  requestBody:
+    description: Faq
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/faq/FaqPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Faq criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/faq/FaqPostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, faqo não criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'

@@ -9,6 +9,7 @@ use DateTime;
 use DateTimeImmutable;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: FaqRepository::class)]
@@ -17,21 +18,27 @@ class Faq extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
+    #[Groups(['faq.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column]
+    #[Groups(['faq.get'])]
     private string $question;
 
     #[ORM\Column]
+    #[Groups(['faq.get'])]
     private string $answer;
 
     #[ORM\Column]
-    private bool $active;
+    #[Groups(['faq.get'])]
+    private bool $active = true;
 
     #[ORM\Column]
+    #[Groups(['faq.get'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['faq.get'])]
     private ?DateTime $updatedAt = null;
 
     public function __construct()

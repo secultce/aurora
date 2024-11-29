@@ -1,0 +1,9 @@
+create:
+  path: /
+  controller: App\Controller\Api\FaqApiController::create
+  methods: ['POST']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\FaqApiController::update
+  methods: ['PATCH']

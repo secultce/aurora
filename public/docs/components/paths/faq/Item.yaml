@@ -1,0 +1,26 @@
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Faq
+  summary: Atualiza uma única Faq
+  requestBody:
+    description: Faq
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/faq/FaqPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Faq atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/faq/FaqPatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, Faq não atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
