@@ -32,8 +32,3 @@ web_faq:
   resource: 'web/faq.yaml'
   prefix: /
   name_prefix: web_faq_
-
-web_success:
-  resource: 'web/success.yaml'
-  prefix: /
-  name_prefix: web_success_

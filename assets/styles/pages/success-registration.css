@@ -16,23 +16,6 @@
     color: var(--btn-publish-custom-color);
 }
 
-.btn-custom {
-    font: var(--font-open-sans);
-    font-size: 16px;
-    background-color: var(--btn-publish-custom-color);
-    color: var(--bg-color-f);
-    border: none;
-    padding: 10px 25px;
-    border-radius: 5px;
-    font-weight: bold;
-    text-transform: uppercase;
-    transition: background-color 0.3s ease;
-}
-
-.btn-custom:hover {
-    background-color: var(--paleGray);
-}
-
 .card-title {
     font-size: 1.5rem;
     margin-top: 20px;

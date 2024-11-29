@@ -60,7 +60,7 @@ class AuthenticationWebController extends AbstractWebController
                 'password' => $password,
             ]);
 
-            return $this->redirectToRoute('web_success_success');
+            return $this->render('authentication/register_success.html.twig');
         } catch (UniqueConstraintViolationException $exception) {
             $error = $this->translator->trans('view.authentication.error.email_in_use');
         } catch (Exception $exception) {
