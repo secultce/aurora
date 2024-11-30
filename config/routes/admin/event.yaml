@@ -7,3 +7,8 @@ remove:
   path: /{id}/remove
   controller: App\Controller\Web\Admin\EventAdminController::remove
   methods: ['GET']
+
+create:
+  path: /adicionar
+  controller: App\Controller\Web\Admin\EventAdminController::create
+  methods: ['GET', 'POST']

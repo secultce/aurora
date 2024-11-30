@@ -48,6 +48,15 @@ abstract class AbstractWebTestCase extends WebTestCase
 
     protected static function getToken(?string $username = null): string
     {
+        $container = self::getContainer();
+
+        $user = self::getLoggedUser($username);
+
+        return 'Bearer '.$container->get('lexik_jwt_authentication.jwt_manager')->create($user);
+    }
+
+    protected static function getLoggedUser(?string $username = null): User
+    {
         if (null === $username) {
             $username = 'henriquelopeslima@example.com';
         }
@@ -55,9 +64,15 @@ abstract class AbstractWebTestCase extends WebTestCase
         $container = self::getContainer();
 
         $entityManager = $container->get('doctrine.orm.default_entity_manager');
-        $user = $entityManager->getRepository(User::class)->findOneBy(['email' => $username]);
 
-        return 'Bearer '.$container->get('lexik_jwt_authentication.jwt_manager')->create($user);
+        return $entityManager->getRepository(User::class)->findOneBy(['email' => $username]);
+    }
+
+    protected static function getLoggedAgentId(?string $username = null): string
+    {
+        $user = self::getLoggedUser($username);
+
+        return $user->getAgents()->getValues()[0]->getId()->toRfc4122();
     }
 
     protected static function apiClient(array $options = [], array $server = [], ?string $user = null): KernelBrowser

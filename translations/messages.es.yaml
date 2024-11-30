@@ -10,6 +10,14 @@ admin_options: Opciones del Administrador
 add_archive: Añadir
 administration: Administración
 agents: Agentes
+age_rating: Clasificación por Edad
+ages_rating:
+  all: Libre
+  ten: 10 años
+  twelve: 12 años
+  fourteen: 14 años
+  sixteen: 16 años
+  eighteen: 18 años
 agent_name: Nombre del Agente
 all: Todo
 allowed: Con permiso
@@ -205,6 +213,7 @@ save: Guardar
 share: Compartir
 seals: Sellos
 search: Buscar
+select: Seleccionar
 send: Enviar
 send_message: Enviar mensaje
 sent: Enviado
@@ -309,6 +318,7 @@ view:
 
   authentication:
     error:
+      age_rating_valid: Debes seleccionar una clasificación de edad válida.
       email_in_use: Este correo electrónico ya está en uso.
       error_message: Ha ocurrido un error ao crear tu cuenta.
       first_name_length: El nombre debe tener entre 2 y 50 caracteres.
@@ -335,16 +345,21 @@ view:
         select_areas: Selecciona al menos una área de actuación
 
   event:
-    create: Crear un Evento
+    create_event:
+      create: Crear un Evento
+      description: Crea un evento con información básica rápidamente.
+      error:
+        user_not_logged: Para crear un evento debes estar registrado.
+      short_bio: Añade una breve descripción del evento.
+    format_datetime: d/m/Y \a \l\a\s H:i:s
     message:
       deleted: El evento ha sido eliminado
-    quantity:
-      total: Eventos Encontrados
-      finished: Eventos Finalizados
-      opened: Eventos en Curso
-      last_days: Registrados en los últimos 7 días
     not_set_datetime: Fecha y hora no definidas
-    format_datetime: d/m/Y \a \l\a\s H:i
+    quantity:
+      finished: Eventos Finalizados
+      last_days: Registrados en los últimos 7 días
+      opened: Eventos en Curso
+      total: Eventos Encontrados
 
   homepage:
     add_events: Publica tus eventos, espacios, iniciativas y oportunidades como convocatorias y concursos en el radar cultural para que las personas puedan participar en lo que está sucediendo en la región. Con Aurora, puedes hacer todo esto de manera colaborativa e interactiva, democratizando el acceso a la cultura.

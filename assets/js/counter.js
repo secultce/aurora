@@ -1,7 +1,7 @@
-const descricao = document.getElementById('inputProfileDescription');
-const contador = document.getElementById('counter');
+const description = document.getElementById('description');
+const counter = document.getElementById('counter');
 
-descricao.addEventListener('input', () => {
-    const length = descricao.value.length;
-    contador.textContent = `${length}/400`;
+description.addEventListener('input', () => {
+    const length = description.value.length;
+    counter.textContent = `${length}/400`;
 });

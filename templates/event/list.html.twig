@@ -20,7 +20,7 @@
 
         {% include '_components/title.html.twig' with {
             title: 'events'|trans,
-            action: {path: '#', text: 'view.event.create'|trans}
+            action: {path: path('admin_event_create'), text: 'view.event.create_event.create'|trans}
         } %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}

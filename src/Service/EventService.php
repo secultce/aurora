@@ -37,7 +37,12 @@ readonly class EventService extends AbstractEntityService implements EventServic
             throw new ValidatorException(violations: $violations);
         }
 
+        /** @var Event $eventObj */
         $eventObj = $this->serializer->denormalize($event, Event::class);
+
+        $eventObj->setCreatedBy(
+            $this->getAgentsFromLoggedUser()[0]
+        );
 
         return $this->repository->save($eventObj);
     }

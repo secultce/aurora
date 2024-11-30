@@ -34,4 +34,9 @@ abstract readonly class AbstractEntityService
 
         return $params;
     }
+
+    public function getAgentsFromLoggedUser(): array
+    {
+        return $this->security->getUser()->getAgents()->getValues();
+    }
 }

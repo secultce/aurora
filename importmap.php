@@ -8,7 +8,7 @@ return [
         'entrypoint' => true,
     ],
     'register' => [
-        'path' => './assets/js/authentication/register.js',
+        'path' => './assets/js/authentication/user/register.js',
         'entrypoint' => true,
     ],
     '@symfony/ux-translator' => [
