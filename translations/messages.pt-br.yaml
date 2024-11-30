@@ -9,9 +9,11 @@ address: Endereço
 administration: Administração
 agents: Agentes
 agent_name: Nome do Agente
+answer: Resposta
 all: Tudo
 allowed: Com permissão
 admin_options: Opções do Administrador
+add_archive: Adicione
 archive: Arquivar
 archived: Arquivados
 areas_of_expertise: Áreas de Atuação
@@ -66,6 +68,8 @@ everybody: Todos
 elderly_person: Pessoa idosa
 explore_repository: Conheça o repositório
 
+faq: FaQ
+file: Anexar arquivo
 first_name: Nome
 last_name: Sobrenome
 feminine: Feminino
@@ -165,6 +169,9 @@ public_information: Informações públicas
 published: Publicados
 published-by: Publicado por
 
+question_register: Cadastrar Pergunta
+question: Pergunta
+
 riverside: Ribeirinha
 recent_registrations: Inscrições recentes
 recently_modified: Modificados recentemente
@@ -186,6 +193,7 @@ type: Tipo
 type_here: Digite aqui
 
 user: Usuário
+users: Usuários
 
 view_all: Ver todas
 video: Adicionar Vídeo
@@ -217,6 +225,9 @@ state: Estado
 street: Logradouro
 suggestions: Sugestões
 subsites: Subsites
+
+your_name: Digite seu nome
+your_question: Escreva sua pergunta
 
 higher: Superior
 
@@ -392,6 +403,9 @@ view:
   success:
     successfully: Seu cadastro foi criado com sucesso!
     access_registration: Acesse seu e-mail de cadastro para confirmar a criação da sua conta no Mapas Culturais.
+
+  question:
+    characters: Máximo de 500 caracteres
 
   space:
     access_space: Acessar espaço
