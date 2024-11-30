@@ -1,0 +1,28 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'view.success.successfully' | trans }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/success-registration.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="success-card">
+        <div class="success-card container mt-5">
+            <div class="card text-center shadow-lg">
+                <div class="card-body">
+                    <span class="iconify text-success" data-icon="mdi:check-circle-outline" data-width="80" data-height="80"></span>
+                    <h3 class="card-title mt-3">{{ 'view.success.successfully' | trans }}</h3>
+                    <p class="card-text">
+                        {{ 'view.success.access_registration' | trans }}
+                    </p>
+                    <a href="/login" class="btn btn-primary btn-lg mt-3">{{ 'login-account' | trans }}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
