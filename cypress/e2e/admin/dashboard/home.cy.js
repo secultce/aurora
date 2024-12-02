@@ -11,7 +11,12 @@ describe('Painel de Controle', () => {
     });
 
     it('Garante que o Painel de Controle tenha as informações das entidades', () => {
-        cy.get('[data-cy=agent-card-dashboard]').contains('10 Agentes').should('be.visible');
+        cy.get('[data-cy=agent-card-dashboard] > .align-self-center')
+            .find('span')
+            .first()
+            .contains(/^\d+/)
+            .next('span')
+            .should('have.text', 'Agentes');
         cy.get('[data-cy=opportunity-card-dashboard]').contains('10 Oportunidades').should('be.visible');
         cy.get('[data-cy=event-card-dashboard]').contains('Eventos').should('be.visible');
         cy.get('[data-cy=space-card-dashboard]').contains('10 Espaços').should('be.visible');

@@ -20,7 +20,7 @@ class Opportunity extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['opportunity.get', 'phase.get'])]
+    #[Groups(['opportunity.get', 'phase.get', 'inscription-opportunity.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]

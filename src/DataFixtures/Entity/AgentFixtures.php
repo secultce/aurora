@@ -27,6 +27,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
     public const string AGENT_ID_8 = '12923f16-b744-41ad-bd45-ebf99a599801';
     public const string AGENT_ID_9 = '37a5640f-ca46-4612-9e53-a797f3b8f11c';
     public const string AGENT_ID_10 = 'd737554f-258e-4360-a653-177551f5b1a5';
+    public const string AGENT_ID_11 = 'd691f373-9ddf-4b1f-861a-3539c9df9e64';
 
     public const array AGENTS = [
         [
@@ -193,6 +194,22 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             'extraFields' => [
                 'email' => 'paulo@example.com',
                 'instagram' => '@paulo',
+            ],
+            'user' => UserFixtures::USER_ID_10,
+            'createdAt' => '2024-08-14T10:00:00+00:00',
+            'updatedAt' => null,
+            'deletedAt' => null,
+        ],
+        [
+            'id' => self::AGENT_ID_11,
+            'name' => 'Feitozo',
+            'image' => null,
+            'shortBio' => 'Capoeirista',
+            'longBio' => 'Capoeirista apaixonado pela arte, com experiência em movimentos fluidos e percussão, buscando promover a cultura e a tradição da capoeira em cada performance.',
+            'culture' => false,
+            'extraFields' => [
+                'email' => 'feitozo.capoeira@example.com',
+                'instagram' => '@feitozo.capoeira',
             ],
             'user' => UserFixtures::USER_ID_10,
             'createdAt' => '2024-08-14T10:00:00+00:00',

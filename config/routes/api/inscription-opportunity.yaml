@@ -1,0 +1,24 @@
+create:
+  path: /
+  controller: App\Controller\Api\InscriptionOpportunityApiController::create
+  methods: ['POST']
+
+get:
+  path: /{id}
+  controller: App\Controller\Api\InscriptionOpportunityApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\InscriptionOpportunityApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\InscriptionOpportunityApiController::remove
+  methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\InscriptionOpportunityApiController::update
+  methods: ['PATCH']

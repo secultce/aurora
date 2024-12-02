@@ -8,7 +8,7 @@ use Symfony\Bundle\SecurityBundle\Security;
 
 abstract readonly class AbstractEntityService
 {
-    private const array DEFAULT_FILTERS = [
+    protected const array DEFAULT_FILTERS = [
         'deletedAt' => null,
     ];
 
