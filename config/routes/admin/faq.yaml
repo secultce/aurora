@@ -1,4 +1,14 @@
-faq:
-  path: /
+add:
+  path: /adicionar
   controller: App\Controller\Web\Admin\FaqAdminController::add
   methods: ['GET', 'POST']
+
+list:
+  path: /
+  controller: App\Controller\Web\Admin\FaqAdminController::list
+  methods: [GET]
+
+remove:
+  path: /{id}
+  controller: App\Controller\Web\Admin\FaqAdminController::list
+  methods: [GET]

@@ -15,7 +15,7 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 class FaqAdminController extends AbstractWebController
 {
-    public const string VIEW_ADD = '_admin/faq/add.html.twig';
+    public const VIEW_ADD = '_admin/faq/add.html.twig';
 
     public function __construct(
         private FaqServiceInterface $faqService
@@ -47,5 +47,14 @@ class FaqAdminController extends AbstractWebController
         }
 
         return $this->redirectToRoute('admin_dashboard');
+    }
+
+    public function list(): Response
+    {
+        $faqs = $this->faqService->list();
+
+        return $this->render('_admin/faq/list.html.twig', [
+            'faqs' => $faqs,
+        ]);
     }
 }
