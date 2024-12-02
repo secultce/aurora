@@ -37,10 +37,5 @@ services:
             $filesystem: '@default.storage'
         public: true
 
-    Mainick\KeycloakClientBundle\Interface\IamClientInterface:
-        alias: Mainick\KeycloakClientBundle\Provider\KeycloakClient
 
-    Mainick\KeycloakClientBundle\EventSubscriber\TokenAuthListener:
-        tags:
-            - { name: kernel.event_listener, event: kernel.request, method: checkValidToken, priority: 0 }
 

@@ -10,5 +10,9 @@ register:
 
 autenticado:
   path: /autenticado
-  controller: App\Controller\Web\AuthenticationWebController::authenKeycloak
+  controller: App\Controller\Web\KeyCloakWebController::authenKeycloak
   methods: ['GET']
+
+connect:
+  path: /auth/keycloak/connect
+  controller: App\Controller\Web\KeyCloakWebController::connect

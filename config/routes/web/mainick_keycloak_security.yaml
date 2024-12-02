@@ -1,6 +1,4 @@
-connect:
-  path:       /auth/keycloak/connect
-  controller: Mainick\KeycloakClientBundle\Controller\KeycloakController::connect
+# config/routes/mainick_keycloak_security.yaml
 
 mainick_keycloak_security_auth_connect_check:
   path:       /auth/keycloak/check

@@ -9,8 +9,6 @@ security:
 #                class: App\Entity\User
 #                property: email
     providers:
-        mainick_keycloak_user_provider:
-            id: Mainick\KeycloakClientBundle\Security\User\KeycloakUserProvider
         app_user_provider:
             entity:
                 class: App\Entity\User
@@ -28,16 +26,6 @@ security:
             pattern: /auth/keycloak/connect
             security: false
 
-        secured_area:
-            pattern: ^/
-            provider: mainick_keycloak_user_provider
-            entry_point: Mainick\KeycloakClientBundle\Security\EntryPoint\KeycloakAuthenticationEntryPoint
-            custom_authenticator:
-                - Mainick\KeycloakClientBundle\Security\Authenticator\KeycloakAuthenticator
-            logout:
-                path: mainick_keycloak_security_auth_logout
-#        role_hierarchy:
-#            ROLE_ADMIN: ROLE_USER
 #        api:
 #            pattern: ^/api
 #            stateless: true

@@ -15,5 +15,4 @@ return [
     DAMA\DoctrineTestBundle\DAMADoctrineTestBundle::class => ['test' => true],
     Lexik\Bundle\JWTAuthenticationBundle\LexikJWTAuthenticationBundle::class => ['all' => true],
     Symfony\UX\Translator\UxTranslatorBundle::class => ['all' => true],
-    Mainick\KeycloakClientBundle\MainickKeycloakClientBundle::class => ['all' => true],
 ];
