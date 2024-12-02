@@ -17,11 +17,11 @@
             </p>
             <hr>
             <p>
-                <a href="{{ path('mainick_keycloak_security_auth_connect') }}">Login</a>
+{#                <a href="{{ path('mainick_keycloak_security_auth_connect') }}">Login</a>#}
 
             </p>
             <hr>
-            <form action="{{ path('web_auth_login') }}" method="post">
+            <form action="{{ path('web_auth_connect') }}" method="post">
                 <label for="email">{{ 'email'|trans }}</label>
                 <input value="{{ last_username }}" data-cy="email" class="form-control mb-3" type="text" name="email" id="email">
 
