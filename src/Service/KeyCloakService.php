@@ -45,7 +45,7 @@ readonly class KeyCloakService extends AbstractEntityService
     public function connectUsernamePass(string $authServerUrl, Request $request )
     {
         $client = new Client(['base_uri' => $authServerUrl]);
-        $status = $this->makeRequest($client, '/realms/secultce/protocol/openid-connect/auth');
+        $status = $this->makeRequest($client, '/');
         if($status['status'] >= 400)
         {
 
@@ -64,13 +64,12 @@ readonly class KeyCloakService extends AbstractEntityService
         ]);
 
         try {
-            dump($provider);
-            dump($provider->getHttpClient());
 
-//            return  $provider->getAccessToken('password', [
-//                'username' => $request->request->get('email'),
-//                'password' => $request->request->get('password'),
-//            ]);
+
+            return  $provider->getAccessToken('password', [
+                'username' => $request->request->get('email'),
+                'password' => $request->request->get('password'),
+            ]);
         }catch (\Exception $e){
             return $e->getMessage();
         }
@@ -85,14 +84,14 @@ readonly class KeyCloakService extends AbstractEntityService
 
             // Verifica se a resposta foi bem-sucedida
             if ($statusCode >= 200 && $statusCode < 300) {
-                return ['message' => 'Sucesso : ' . $response->getBody()->getContents()];
+                return ['message' => 'Sucesso : ' . $response->getBody()->getContents(),'status' => $statusCode];
 //                return $response->getBody()->getContents(); // Retorna o conteúdo da resposta
             } else {
-                return ["Erro HTTP: Status code " => $statusCode];
+                return ["Erro HTTP: Status code " => $statusCode,'status' => $statusCode];
             }
         } catch (ConnectException $e) {
             // Erro de conexão, como DNS ou timeout
-            return ['message' => 'Erro de Conexão com a url '];
+            return ['message' => 'Erro de Conexão com a url ','status' => $statusCode];
 
 //            return $this->json($user, status: Response::HTTP_CREATED, context: ['groups' => 'user.get']);
         } catch (RequestException $e) {
@@ -102,11 +101,11 @@ readonly class KeyCloakService extends AbstractEntityService
                 return ['message' => 'Erro HTTP: Status code - ' .$statusCode, 'status' => $statusCode];
 
             } else {
-                return ['message' => 'Erro na requisição:  - ' . $e->getMessage()];
+                return ['message' => 'Erro na requisição:  - ' . $e->getMessage(),'status' => $statusCode];
 
             }
         } catch (Exception $e) {
-            return ['message' => "Erro inesperado: " . $e->getMessage()];
+            return ['message' => "Erro inesperado: " . $e->getMessage(),'status' => $statusCode];
             // Qualquer outro erro inesperado
         }
     }

@@ -27,6 +27,8 @@ class KeyCloakWebController extends AbstractController
         $keyCloakService = new KeycloakService($this->security);
         $accessToken = $keyCloakService->connectUsernamePass('http://172.19.18.154:8080/', $request);
         dump($accessToken);
+g        $this->getUserKeyCloak($accessToken, $request);
+
 //        if($accessToken['status'] >= 400)
 //        {
 //
@@ -113,18 +115,18 @@ class KeyCloakWebController extends AbstractController
 
     }
 
-    public function getUserKeyCloak($token, $clientId, $clientSecret): Response
+    public function getUserKeyCloak($token, $request): Response
     {
         $client = HttpClient::create();
-        $endpointUser = 'http://172.19.18.235:8080/realms/secultce/protocol/openid-connect/token/introspect';
+        $endpointUser = 'http://172.19.18.154:8080/realms/secultce/protocol/openid-connect/token/introspect';
         $res = $client->request('POST', $endpointUser, [
             'headers' => [
                 'Content-Type' => 'application/x-www-form-urlencoded',
             ],
             'body' => [
-                'token' => $token,
-                'client_id' => $clientId,
-                'client_secret' => $clientSecret,
+                'token' => $token->getToken(),
+                'client_id' => $request->server->get('IAM_CLIENT_ID'),
+                'client_secret' => $request->server->get('IAM_CLIENT_SECRET'),
             ],
         ]);
         dump($res->toArray());die;
