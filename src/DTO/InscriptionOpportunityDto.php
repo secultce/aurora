@@ -6,7 +6,7 @@ namespace App\DTO;
 
 use App\Entity\Agent;
 use App\Entity\Opportunity;
-use App\Enum\InscriptionOpportunityStatus;
+use App\Enum\InscriptionOpportunityStatusEnum;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\NotNull;
 use Doctrine\DBAL\Types\Types;
@@ -42,7 +42,7 @@ class InscriptionOpportunityDto
 
     #[Sequentially([
         new Type(Types::STRING, groups: [self::CREATE, self::UPDATE]),
-        new Choice(callback: [InscriptionOpportunityStatus::class, 'getLabels'], groups: [self::CREATE, self::UPDATE]),
+        new Choice(callback: [InscriptionOpportunityStatusEnum::class, 'getNames'], groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $status;
 }

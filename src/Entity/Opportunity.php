@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Helper\DateFormatHelper;
 use App\Repository\OpportunityRepository;
 use DateTime;
 use DateTimeImmutable;
@@ -219,9 +220,9 @@ class Opportunity extends AbstractEntity
             'initiative' => $this->initiative?->toArray(),
             'event' => $this->event?->toArray(),
             'createdBy' => $this->createdBy->toArray(),
-            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
-            'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),
+            'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
+            'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
+            'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
         ];
     }
 }

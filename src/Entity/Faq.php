@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Helper\DateFormatHelper;
 use App\Repository\FaqRepository;
 use DateTime;
 use DateTimeImmutable;
@@ -113,8 +114,8 @@ class Faq extends AbstractEntity
             'question' => $this->question,
             'answer' => $this->answer,
             'active' => $this->active,
-            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
+            'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
+            'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
         ];
     }
 }
