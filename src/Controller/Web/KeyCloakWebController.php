@@ -7,6 +7,7 @@ namespace App\Controller\Web;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpClient\HttpClient;
 use Stevenmaguire\OAuth2\Client\Provider\Keycloak as OAuth2Keycloak;
+use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -20,7 +21,7 @@ class KeyCloakWebController extends AbstractController
     ) {
     }
 
-    public function connect(Request $request): Response
+    public function connect(Request $request): JsonResponse
     {
         dump($request);
         $keyCloakService = new KeycloakService($this->security);
@@ -44,8 +45,8 @@ class KeyCloakWebController extends AbstractController
 //        $user = $provider->getAuthenticatedRequest();
 
         // Use these details to create a new profile
-
-        dump($accessToken->getToken()); die;
+//        return $this->json($agent, context: ['groups' => ['agent.get', 'agent.get.item']]);
+        dump($accessToken); die;
         return '';
 
 //        $keycloak = new KeycloakController($this->keycloakClientLogger, $this->iamClient);
