@@ -42,12 +42,17 @@ readonly class KeyCloakService extends AbstractEntityService
 
     }
 
-    public function connectUsernamePass(string $authServerUrl, Request $request ) :AccessTokenInterface
+    public function connectUsernamePass(string $authServerUrl, Request $request )
     {
         $client = new Client(['base_uri' => $authServerUrl]);
-        $this->makeRequest($client, '/realms/secultce/protocol/openid-connect/auth');
+        $status = $this->makeRequest($client, '/realms/secultce/protocol/openid-connect/auth');
+        if($status['status'] >= 400)
+        {
 
-        die;
+           return $status;
+
+        }
+
         $provider = new OAuth2Keycloak([
             'authServerUrl'         => $authServerUrl,
             'realm'                 => $request->server->get('IAM_REALM'),
@@ -72,7 +77,7 @@ readonly class KeyCloakService extends AbstractEntityService
         die;
     }
 
-    public function makeRequest(Client $client, string $url) : JsonResponse
+    public function makeRequest(Client $client, string $url) : Array
     {
         try {
             $response = $client->get($url);
@@ -80,26 +85,29 @@ readonly class KeyCloakService extends AbstractEntityService
 
             // Verifica se a resposta foi bem-sucedida
             if ($statusCode >= 200 && $statusCode < 300) {
-                return $response->getBody()->getContents(); // Retorna o conteúdo da resposta
+                return ['message' => 'Sucesso : ' . $response->getBody()->getContents()];
+//                return $response->getBody()->getContents(); // Retorna o conteúdo da resposta
             } else {
-                throw new Exception("Erro HTTP: Status code $statusCode");
+                return ["Erro HTTP: Status code " => $statusCode];
             }
         } catch (ConnectException $e) {
             // Erro de conexão, como DNS ou timeout
-            $status =  new JsonResponse(['message' => 'Erro de Conexão com a url ']);
-            return $status->getContent();
+            return ['message' => 'Erro de Conexão com a url '];
+
 //            return $this->json($user, status: Response::HTTP_CREATED, context: ['groups' => 'user.get']);
         } catch (RequestException $e) {
             // Erro relacionado à requisição (HTTP), podemos pegar o status code
             if ($e->hasResponse()) {
                 $statusCode = $e->getResponse()->getStatusCode();
-                return "Erro HTTP: Status code $statusCode - " . $e->getMessage();
+                return ['message' => 'Erro HTTP: Status code - ' .$statusCode, 'status' => $statusCode];
+
             } else {
-                return "Erro na requisição: " . $e->getMessage();
+                return ['message' => 'Erro na requisição:  - ' . $e->getMessage()];
+
             }
         } catch (Exception $e) {
+            return ['message' => "Erro inesperado: " . $e->getMessage()];
             // Qualquer outro erro inesperado
-            return "Erro inesperado: " . $e->getMessage();
         }
     }
 

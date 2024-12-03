@@ -21,11 +21,18 @@ class KeyCloakWebController extends AbstractController
     ) {
     }
 
-    public function connect(Request $request): JsonResponse
+    public function connect(Request $request)
     {
         dump($request);
         $keyCloakService = new KeycloakService($this->security);
-        $accessToken = $keyCloakService->connectUsernamePass('http://172.19.18.235:8080/', $request);
+        $accessToken = $keyCloakService->connectUsernamePass('http://172.19.18.154:8080/', $request);
+        dump($accessToken);
+//        if($accessToken['status'] >= 400)
+//        {
+//
+//            return $this->redirect('http://localhost:8082/login');
+//
+//        }
 //        $provider = new OAuth2Keycloak([
 //            'authServerUrl'         => 'http://172.19.18.235:8080/',
 //            'realm'                 => $request->server->get('IAM_REALM'),
@@ -46,7 +53,7 @@ class KeyCloakWebController extends AbstractController
 
         // Use these details to create a new profile
 //        return $this->json($agent, context: ['groups' => ['agent.get', 'agent.get.item']]);
-        dump($accessToken); die;
+        dump('sdfsd'); die;
         return '';
 
 //        $keycloak = new KeycloakController($this->keycloakClientLogger, $this->iamClient);
