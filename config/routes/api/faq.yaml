@@ -3,6 +3,21 @@ create:
   controller: App\Controller\Api\FaqApiController::create
   methods: ['POST']
 
+get:
+  path: /{id}
+  controller: App\Controller\Api\FaqApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\FaqApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\FaqApiController::remove
+  methods: ['DELETE']
+
 update:
   path: /{id}
   controller: App\Controller\Api\FaqApiController::update

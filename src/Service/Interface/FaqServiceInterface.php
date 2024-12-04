@@ -12,4 +12,10 @@ interface FaqServiceInterface
     public function create(array $faq): Faq;
 
     public function update(Uuid $identifier, array $faq): Faq;
+
+    public function get(Uuid $id): Faq;
+
+    public function list(int $limit = 50): array;
+
+    public function remove(Uuid $id): void;
 }
