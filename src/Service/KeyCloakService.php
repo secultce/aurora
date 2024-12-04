@@ -25,7 +25,7 @@ readonly class KeyCloakService extends AbstractEntityService
 
     protected function getTokenFull($urlServerKeyCloak, $token, $clientId, $clientSecret): Response
     {
-        //http://172.19.18.235:8080
+        //http://192.168.30.121:8080
         $client = HttpClient::create();
         $endpointUser = $urlServerKeyCloak.'/realms/secultce/protocol/openid-connect/token/introspect';
         $res = $client->request('POST', $endpointUser, [

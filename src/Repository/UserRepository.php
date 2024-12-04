@@ -37,4 +37,15 @@ class UserRepository extends AbstractRepository implements UserRepositoryInterfa
     {
         $this->getEntityManager()->rollback();
     }
+
+    /**
+     * Busca um usuário pelo e-mail.
+     *
+     * @param string $email
+     * @return User|null
+     */
+    public function findByEmail(string $email): ?User
+    {
+        return $this->findOneBy(['email' => $email]);
+    }
 }
