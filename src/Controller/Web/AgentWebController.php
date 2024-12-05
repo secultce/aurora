@@ -6,6 +6,7 @@ namespace App\Controller\Web;
 
 use App\Service\Interface\AgentServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
@@ -16,9 +17,11 @@ class AgentWebController extends AbstractWebController
     ) {
     }
 
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $agents = $this->service->list();
+        $filters = $request->query->all();
+
+        $agents = $this->service->list(params: $filters);
         $totalAgents = count($agents);
 
         $dashboard = [

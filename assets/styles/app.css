@@ -134,13 +134,13 @@ body {
 
 .sidebar {
     position: absolute;
+    border-radius: 8px;
     top: 0;
     left: -25.1875rem;
     width: 25.1875rem;
     height: 100%;
-    background-color: var(--snow-mist);
+    background-color: var(--bs-white) !important;
     transition: left 0.3s ease;
-    padding: 20px;
     margin-right: 50px;
     padding: 13px 30px;
 }

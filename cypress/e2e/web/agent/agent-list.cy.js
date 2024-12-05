@@ -52,4 +52,12 @@ describe('Página de Listar de Agentes', () => {
         cy.get(':nth-child(2) > .agent-card-body > .agent-description').contains('Capoeirista apaixonado pela arte, com experiência em movimentos fluidos e percussão, buscando promover a cultura e a tradição da capoeira em cada performance.').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .access-profile-container > .btn').contains('Acessar').should('be.visible');
     });
+
+    it('Garante que o filtro funciona', () => {
+        cy.get('#open-filter').click();
+        cy.get('#agent-name').type('Talyson');
+        cy.get('#apply-filters').click();
+        cy.get('.justify-content-between > .fw-bold').contains('1 Agentes Encontrados').should('be.visible');
+        cy.get('.agent-name').contains('Talyson').should('be.visible');
+    });
 });

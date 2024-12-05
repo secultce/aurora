@@ -1,8 +1,8 @@
 <div id="filter-sidebar" class="sidebar">
     <div class="close-filter">
-                <span>
+                <span class="d-flex gap-3">
                   <i class="material-icons text-primary">filter_alt</i>
-                  <span>Filtros</span>
+                  <span class="align-self-center fw-bold">Filtros</span>
                 </span>
         <i id="close-filter" class="material-icons close-filter-btn">close</i>
     </div>
@@ -48,6 +48,9 @@
             </select>
         </div>
 
-        <button id="clear-filters" class="clearFilters">Limpar todos os filtros</button>
+        <div class="d-flex flex-column gap-1">
+            <button id="apply-filters" class="btn btn-primary fw-bold apply-filter">Aplicar Filtros</button>
+            <button id="clear-filters" class="clear-filters">Limpar todos os filtros</button>
+        </div>
     </div>
 </div>

@@ -76,10 +76,10 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         );
     }
 
-    public function list(int $limit = 50): array
+    public function list(int $limit = 50, array $params = []): array
     {
         return $this->repository->findBy(
-            $this->getDefaultParams(),
+            [...$params, ...$this->getDefaultParams()],
             ['createdAt' => 'DESC'],
             $limit
         );
