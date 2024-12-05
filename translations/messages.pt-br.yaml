@@ -307,6 +307,8 @@ view:
     send: Ou envie um email para
     subtitle: Veja nossas dúvidas frequentes
     support: para falar com nossa equipe de suporte por chat.
+    message:
+      deleted_faq: A pergunta foi excluída
 
   faq_edit:
     description_faq: Descrição da FAQ que pode ser editada.

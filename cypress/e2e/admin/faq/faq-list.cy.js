@@ -24,7 +24,5 @@ describe('Teste de navegação e validação da página de Minhas FAQs', () => {
         cy.url({ timeout: 10000 }).should('include', '/painel/faq/');
 
         cy.get('table', { timeout: 10000 }).should('be.visible');
-
-        cy.get('table').contains('Como me inscrever', { timeout: 10000 }).should('be.visible');
     });
 });

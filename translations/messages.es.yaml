@@ -312,6 +312,8 @@ view:
     send: O envía un correo electrónico a
     subtitle: Consulta nuestras preguntas frecuentes
     support: para hablar con nuestro equipo de soporte por chat.
+    message:
+      deleted_faq: La pregunta ha sido eliminada.
 
   faq_edit:
     description_faq: Descripción de las preguntas frecuentes que se puede editar.
