@@ -71,6 +71,7 @@ does_not_expire: não expira
 downloadable-files: Arquivos para download
 
 edit: Editar
+edit_faq: Editar FAQ
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
@@ -138,6 +139,7 @@ my_account: Minha Conta
 my_agents: Meus Agentes
 my_apps: Meus Aplicativos
 my_events: Meus Eventos
+my_faqs: Minhas FAQs
 my_initiatives: Minhas Iniciativas
 my_opportunities: Minhas Oportunidades
 my_organizations: Minhas Organizações
@@ -305,6 +307,10 @@ view:
     send: Ou envie um email para
     subtitle: Veja nossas dúvidas frequentes
     support: para falar com nossa equipe de suporte por chat.
+
+  faq_edit:
+    description_faq: Descrição da FAQ que pode ser editada.
+    found_faq: Nenhuma FAQ encontrada.
 
   agent:
     create: Criar um agente
