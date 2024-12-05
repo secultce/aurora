@@ -9,6 +9,7 @@ address: Dirección
 admin_options: Opciones del Administrador
 add_archive: Añadir
 administration: Administración
+agent: Agente
 agents: Agentes
 age_rating: Clasificación por Edad
 ages_rating:
@@ -23,6 +24,7 @@ all: Todo
 allowed: Con permiso
 answer: Respuesta
 archive: Archivar
+archives: Archivos
 archived: Archivados
 areas_of_expertise: Áreas de Especialización
 areas_of_interest: Áreas de Interés
@@ -65,6 +67,7 @@ delete: Eliminar
 deleted: Eliminados
 description: Descripción
 discover: Descubrir
+does_not_expire: no caduca
 downloadable-files: Archivos Descargables
 
 edit: Editar
@@ -87,6 +90,7 @@ full_name: Nombre Completo
 
 gallery: Galería
 gender: Seleccione el Género
+general_data: Datos generales
 
 happening_now: Ocurriendo Ahora
 help: Ayuda
@@ -96,9 +100,11 @@ home: Inicio
 identification_number: Número Identificador
 illustration: Ilustración
 image: Imagen
+images: Imágenes
 image_gallery: Añadir fotos a la galería
 indicators: Indicadores
 indigenous: Indígena
+initiative: Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
 input_search: Buscar por palabras clave
@@ -110,6 +116,7 @@ lastname: Apellido
 linked_with: Vinculado Con
 link: Añadir Enlace
 list: Lista
+local: Ubicación
 locate_yourself: Ubícate
 location: Ubicación
 login: Iniciar Sesión
@@ -124,6 +131,7 @@ masculine: Masculino
 maroons: Quilombola
 menu: Menú del Panel de Control
 medium: Secundario
+months: meses
 most_recent: Más Reciente
 municipality: Municipio
 my_account: Mi Cuenta
@@ -144,10 +152,12 @@ notifications: Notificaciones
 no: No
 no_inform: No Informar
 none_area_specified: Ninguna zona especificada
+not_informed: No informado
 not_sent: No enviado
 notice: AVISO PUBLICO
 number_address: Número
 
+old: viejo
 oldest: Más Antiguo
 order: Ordenar por
 other_options: Otras opciones
@@ -155,8 +165,10 @@ opened_registrations: Inscripciones Abiertas
 opportunities: Oportunidades
 organizations: Organizaciones
 orientation: Seleccione la Orientación Sexual
+other_information: Otra información
 
 pardo: Pardo
+peoples: Gente
 period: Período
 portfolio: Portafolio
 privacy: Privacidad
@@ -172,6 +184,7 @@ phase: Fase
 profile_picture: Foto de Perfil
 projects: Proyectos
 physical: Física
+project_value: Valor del proyecto
 public: Público
 public_information: Información pública
 published: Publicados
@@ -199,11 +212,13 @@ transvestite: Travesti
 theater: Teatro
 type: Tipo
 type_here: Escriba aquí
+to: hasta
 
 user: Usuario
 users: Usuarios
 
 view_all: Ver Todas
+view_file: ver archivo
 video: Añadir Vídeo
 visualization: Visual
 
@@ -222,9 +237,11 @@ select_state: Seleccione el Estado
 select_municipality: Seleccione el Municipio
 select_race: Seleccione la Raza/Color
 select_education: Seleccione su Nivel Educativo
+see_all: ver todo
 see_how: Ver Cómo
 see_more: Ver Más
 short_description: Breve descripción
+social_media: Redes sociales
 sort_by: Ordenar por
 social_name: Nombre Social
 short_presentation: Presentación Corta
@@ -243,6 +260,7 @@ your_question: Escriba su pregunta
 welcome: Bienvenido
 where: Donde
 white: Blanca
+work_plan: Plan de trabajo
 
 yes: Si
 
@@ -344,6 +362,12 @@ view:
         name_info: Las personas te encontrarán por este nombre.
         select_areas: Selecciona al menos una área de actuación
 
+  entities:
+    change_history: historia de cambios
+    report: quejar
+    message:
+      required_fields: Complete todos los campos obligatorios.
+
   event:
     create_event:
       create: Crear un Evento
@@ -384,19 +408,18 @@ view:
   initiative:
     access: Acceder Iniciativa
     create: Crear una Iniciativa
+    id: ID de la iniciativa
+    linked_parent: Este proyecto es una iniciativa
     message:
       created: La Iniciativa fue creada con éxito
       deleted: La iniciativa ha sido eliminada
-      required_fields: Complete todos los campos obligatorios.
-    no_cultural_language: Sin lenguaje cultural
-    no_location: Sin ubicación
-    no_period: Sin período
-    no_short_description: Sin descripción
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas
       opened: Iniciativas en Curso
       last_days: Registradas en los últimos 7 días
+    period: Período de la iniciativa
+    type_of: Tipo de iniciativa
 
   management:
     management_of: Management of
@@ -406,9 +429,14 @@ view:
     title_opportunity: PNAB - Promoción de la Ejecución de Acciones Culturales
 
   seal:
-    create: Crear un Sello
-    seal-picture: Foto del Sello
+    awarded_by: Sello otorgado por
     certificate-seal-validity: Certificado de validez del sello
+    create: Crear un Sello
+    creator: Creador del sello
+    date_of_receipt_of_the: Fecha de recepción del sello
+    expired: sello vencido
+    seal-picture: Foto del Sello
+    validity: Validez del sello
 
   opportunity:
     create: Crear Oportunidad

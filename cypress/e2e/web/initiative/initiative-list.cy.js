@@ -49,7 +49,7 @@ describe('Página de Listar Iniciativas', () => {
             cy.get('.initiative-id').contains('ID:').should('be.visible');
             cy.get('strong').contains('Tipo:').should('be.visible');
             cy.get('span').contains('Musical').should('be.visible');
-            cy.get('.initiative-date').contains('01/08/2024 a 31/08/2024').should('be.visible');
+            cy.get('.initiative-date').contains('01/08/2024 até 31/08/2024').should('be.visible');
             cy.get('.initiative-location').contains('Recanto do Cordel').should('be.visible');
             cy.get('.initiative-seals').contains('Selos:').should('be.visible');
             cy.get('.initiative-description').contains('Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.').should('be.visible');

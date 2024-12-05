@@ -33,7 +33,7 @@
                 {% if initiative.extraFields.culturalLanguage is defined %}
                     <span class="text-initiative fw-semibold">{{ initiative.extraFields.culturalLanguage }}</span>
                 {% else %}
-                    {{ 'view.initiative.no_cultural_language' | trans }}
+                    {{ 'not_informed' | trans }}
                 {% endif %}
             </p>
 
@@ -41,9 +41,9 @@
                 <i class="material-icons">calendar_month</i>
                 {{ 'period'| trans }}:
                 {% if initiative.extraFields.period is defined %}
-                    {{ initiative.extraFields.period.startDate | date('d/m/Y') }} a {{ initiative.extraFields.period.endDate | date('d/m/Y') }}
+                    {{ initiative.extraFields.period.startDate | date('d/m/Y') }} {{ 'to' | trans }} {{ initiative.extraFields.period.endDate | date('d/m/Y') }}
                 {% else %}
-                    {{ 'view.initiative.no_period' | trans }}
+                    {{ 'not_informed' | trans }}
                 {% endif %}
             </p>
 
@@ -53,7 +53,7 @@
                 {% if initiative.space %}
                     <span class="location-name fw-bold">{{ initiative.space.name }}</span>
                 {% else %}
-                    {{ 'view.initiative.no_location' | trans }}
+                    {{ 'not_informed' | trans }}
                 {% endif %}
             </p>
 
@@ -68,12 +68,12 @@
                 {% if initiative.extraFields.shortDescription %}
                     {{ initiative.extraFields.shortDescription }}
                 {% else %}
-                    {{ 'view.initiative.no_short_description' | trans }}
+                    {{ 'not_informed' | trans }}
                 {% endif %}
             </p>
 
             <div class="text-end mt-3">
-                <a class="btn btn-primary access-initiative">{{ 'view.initiative.access' | trans }}</a>
+                <a href="{{ path('web_initiative_show', {id: initiative.id}) }}" class="btn btn-primary access-initiative">{{ 'view.initiative.access' | trans }}</a>
             </div>
         </div>
     </div>

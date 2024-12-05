@@ -7,6 +7,7 @@ accompany: Acompanhar
 actions: Ações
 address: Endereço
 administration: Administração
+agent: Agente
 agents: Agentes
 agent_name: Nome do Agente
 answer: Resposta
@@ -23,6 +24,7 @@ allowed: Com permissão
 admin_options: Opções do Administrador
 add_archive: Adicione
 archive: Arquivar
+archives: Arquivos
 archived: Arquivados
 areas_of_expertise: Áreas de Atuação
 areas_of_interest: Áreas de interesse
@@ -65,6 +67,7 @@ delete: Excluir
 deleted: Excluídos
 description: Descrição
 discover: Descubra
+does_not_expire: não expira
 downloadable-files: Arquivos para download
 
 edit: Editar
@@ -87,6 +90,7 @@ full_name: Nome completo
 
 gallery: Galeria
 gender: Selecione o Gênero
+general_data: Dados gerais
 
 happening_now: Acontecendo agora
 help: Ajuda
@@ -96,9 +100,11 @@ home: Início
 identification_number: Número identificador
 illustration: Ilustração
 image: Imagem
+images: Imagens
 image_gallery: Adicionar fotos na galeria
 indicators: Indicadores
 indigenous: Indígena
+initiative: Iniciativa
 initiatives: Iniciativas
 in_progress: Em andamento
 input_search: Busque por palavras-chave
@@ -110,6 +116,7 @@ lastname: Sobrenome
 linked_with: Vinculado com
 list: Lista
 link: Adicionar Link
+local: Local
 locate_yourself: Localize-se
 location: Localização
 login: Entrar
@@ -124,6 +131,7 @@ masculine: Masculino
 maroons: Quilombola
 menu: Menu do Painel de Controle
 medium: Médio
+months: meses
 most_recent: Mais Recente
 municipality: Municipio
 my_account: Minha Conta
@@ -144,10 +152,12 @@ notifications: Notificações
 no: Não
 no_inform: Não Informar
 none_area_specified: Nenhuma área especificada
+not_informed: Não informado
 not_sent: Não enviadas
 notice: EDITAL
 number_address: Número
 
+old: antigo
 oldest: Mais Antigo
 order: Ordenar por
 other_options: Outras Opções
@@ -155,8 +165,10 @@ opened_registrations: Inscrições abertas
 opportunities: Oportunidades
 organizations: Organizações
 orientation: Selecione a Orientação Sexual
+other_information: Outras informações
 
 pardo: Pardo
+peoples: Pessoas
 period: Período
 portfolio: Portfólio
 privacy: Privacidade
@@ -172,6 +184,7 @@ phase: Fase
 physical: Física
 profile_picture: Foto de Perfil
 projects: Projetos
+project_value: Valor do projeto
 public: Público
 public_information: Informações públicas
 published: Publicados
@@ -199,11 +212,13 @@ transvestite: Travesti
 theater: Teatro
 type: Tipo
 type_here: Digite aqui
+to: até
 
 user: Usuário
 users: Usuários
 
 view_all: Ver todas
+view_file: ver arquivo
 video: Adicionar Vídeo
 visualization: Visual
 
@@ -223,9 +238,11 @@ select: Selecione
 send: Enviar
 send_message: Enviar mensagem
 sent: Enviadas
+see_all: ver tudo
 see_how: Visualizar como
 see_more: Ver mais
 short_description: Descrição curta
+social_media: Redes sociais
 sort_by: Ordenar por
 social_name: Nome Social
 spaces: Espaços
@@ -243,6 +260,7 @@ higher: Superior
 welcome: Olá
 where: Onde
 white: Branca
+work_plan: Plano de trabalho
 
 yes: Sim
 
@@ -338,6 +356,12 @@ view:
         description: Uma breve descrição sobre você.
         name_info: As pessoas irão encontrar você por esse nome.
         select_areas: Selecione pelo menos uma área de atuação
+  
+  entities:
+    change_history: histórico de alterações
+    report: denunciar
+    message:
+      required_fields: Preencha todos os campos obrigatórios.
 
   event:
     create_event:
@@ -379,19 +403,18 @@ view:
   initiative:
     access: Acessar Iniciativa
     create: Criar uma iniciativa
+    id: ID da iniciativa
+    linked_parent: Este projeto está à iniciativa
     message:
       created: A Iniciativa foi criada com sucesso
       deleted: A Iniciativa foi excluída
-      required_fields: Preencha todos os campos obrigatórios.
-    no_cultural_language: Sem linguagem cultural
-    no_location: Sem localização
-    no_period: Sem período
-    no_short_description: Sem descrição
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas
       opened: Iniciativas em Andamento
       last_days: Registradas nos últimos 7 dias
+    period: Período da iniciativa
+    type_of: Tipo de iniciativa
 
   my-opportunity:
     title_opportunity: PNAB - Fomento à Execução de Ações Culturais
@@ -472,9 +495,14 @@ view:
     traditional_find: Não encontrou sua comunidade Tradicional
 
   seal:
-    create: Criar selo
-    seal-picture: Foto do Selo
+    awarded_by: Selo atribuído por
     certificate-seal-validity: Validade do Certificado do Selo
+    create: Criar selo
+    creator: Criador do selo
+    date_of_receipt_of_the: Data de recebimento do selo
+    expired: selo expirado
+    seal-picture: Foto do Selo
+    validity: Validade do selo
 
   not-found:
     error-404: Error 404

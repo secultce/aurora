@@ -1,6 +1,6 @@
 {% extends "_layouts/blank.html.twig" %}
 
-{% block title %} {{ 'control_panel'|trans }} - {{ 'initiatives'|trans }}{% endblock %}
+{% block title %} {{ 'control_panel'|trans }} - {{ 'view.initiative.create'|trans }}{% endblock %}
 
 {% block content %}
     <section class="d-flex">
@@ -20,8 +20,8 @@
 
                         <hr>
 
-                        <form action={{ path('admin_initiative_store') }} method="post">
-                            <input type="hidden" id="idInitiative" name="id" value={{ id }}>
+                        <form action="{{ path('admin_initiative_store') }}" method="post">
+                            <input type="hidden" id="idInitiative" name="id" value="{{ id }}">
                             <div class="mb-3">
                                 <label for="nameInitiative" class="mb-1">{{ 'name'|trans }}</label>
                                 <input type="text" class="form-control" id="nameInitiative" name="name" data-cy="name">
@@ -50,7 +50,7 @@
                                 <select class="form-select" id="initiativeCreatedBy" name="createdBy" data-cy="createdBy">
                                     <option disabled selected></option>
                                     {% for item in agents %}
-                                        <option value={{ item.id }}>{{ item.name }}</option>
+                                        <option value="{{ item.id }}">{{ item.name }}</option>
                                     {% endfor %}
                                 </select>
                             </div>
@@ -79,7 +79,7 @@
                             </div>
                             <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_and_publish'|trans }}</button>
                             <button type="button" class="btn btn-secondary me-3">{{ 'create_in_draft'|trans }}</button>
-                            <a href={{ path('admin_initiative_list') }} class="btn">{{ 'cancel'|trans }}</a>
+                            <a href="{{ path('admin_initiative_list') }}" class="btn">{{ 'cancel'|trans }}</a>
                         </form>
                     </div>
                 </div>
@@ -87,6 +87,8 @@
         </div>
     </section>
 {% endblock %}
+
+{% block footer %}{% endblock %}
 
 {% block extra_javascripts %}
     {{ parent() }}
