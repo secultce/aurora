@@ -39,7 +39,7 @@ patch:
           schema:
             $ref: '../../responses/space/SpacePatchItemResponse.yaml'
     '400':
-      description: Dados inválidos, espaço não atualizada
+      description: Dados inválidos, espaço não atualizado
       content:
         application/json:
           schema:

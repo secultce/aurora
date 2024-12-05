@@ -33,13 +33,6 @@ class SpaceApiController extends AbstractApiController
         return $this->json($space, context: ['groups' => ['space.get', 'space.get.item']]);
     }
 
-    public function remove(?Uuid $id): JsonResponse
-    {
-        $this->service->remove($id);
-
-        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
-    }
-
     public function list(): JsonResponse
     {
         return $this->json($this->service->list(), context: [
@@ -50,10 +43,26 @@ class SpaceApiController extends AbstractApiController
         ]);
     }
 
+    public function remove(?Uuid $id): JsonResponse
+    {
+        $this->service->remove($id);
+
+        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
     public function update(?Uuid $id, Request $request): JsonResponse
     {
         $space = $this->service->update($id, $request->toArray());
 
         return $this->json($space, Response::HTTP_OK, context: ['groups' => ['space.get', 'space.get.item']]);
+    }
+
+    public function updateImage(Uuid $id, Request $request): JsonResponse
+    {
+        $image = $request->files->get('image');
+
+        $space = $this->service->updateImage($id, $image);
+
+        return $this->json($space, context: ['groups' => ['space.get', 'space.get.item']]);
     }
 }

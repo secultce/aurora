@@ -33,13 +33,6 @@ class AgentApiController extends AbstractApiController
         return $this->json($agent, context: ['groups' => ['agent.get', 'agent.get.item']]);
     }
 
-    public function remove(?Uuid $id): JsonResponse
-    {
-        $this->service->remove($id);
-
-        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
-    }
-
     public function list(): JsonResponse
     {
         return $this->json($this->service->list(), context: [
@@ -50,9 +43,25 @@ class AgentApiController extends AbstractApiController
         ]);
     }
 
+    public function remove(?Uuid $id): JsonResponse
+    {
+        $this->service->remove($id);
+
+        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
     public function update(Uuid $id, Request $request): JsonResponse
     {
         $agent = $this->service->update($id, $request->toArray());
+
+        return $this->json($agent, context: ['groups' => ['agent.get', 'agent.get.item']]);
+    }
+
+    public function updateImage(Uuid $id, Request $request): JsonResponse
+    {
+        $image = $request->files->get('image');
+
+        $agent = $this->service->updateImage($id, $image);
 
         return $this->json($agent, context: ['groups' => ['agent.get', 'agent.get.item']]);
     }

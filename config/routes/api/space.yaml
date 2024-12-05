@@ -22,3 +22,8 @@ update:
   path: /{id}
   controller: App\Controller\Api\SpaceApiController::update
   methods: ['PATCH']
+
+update-image:
+  path: /{id}/images
+  controller: App\Controller\Api\SpaceApiController::updateImage
+  methods: ['POST']

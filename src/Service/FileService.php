@@ -5,10 +5,11 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Service\Interface\FileServiceInterface;
-use Exception;
+use League\Flysystem\FilesystemException;
 use League\Flysystem\FilesystemOperator;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 readonly class FileService implements FileServiceInterface
 {
@@ -56,35 +57,22 @@ readonly class FileService implements FileServiceInterface
         return $this->parameterBag->get('app.url.storage').$path;
     }
 
-    public function uploadImage(string $path, string $base64Image): File
+    /**
+     * @throws FilesystemException
+     */
+    public function uploadImage(string $path, UploadedFile $uploadedFile): File
     {
-        if (1 === preg_match('/^\/var\/www(?:\/var)?\/storage(.*)/', $path, $matches)) {
-            $path = $matches[1];
-        }
+        $fileName = uniqid('', true).'.'.$uploadedFile->guessExtension();
+        $filePath = rtrim($path, '/').'/'.$fileName;
 
-        if (1 === preg_match('/^data:(.*?);base64,(.*)$/', $base64Image, $matches)) {
-            $mimeType = $matches[1];
-            $base64Data = $matches[2];
+        $stream = fopen($uploadedFile->getRealPath(), 'r');
+        $this->filesystem->writeStream($filePath, $stream);
+        fclose($stream);
 
-            $imageData = base64_decode($base64Data, true);
-
-            if (false === $imageData) {
-                throw new Exception('base64 decode failed');
-            }
-
-            $extension = explode('/', $mimeType)[1];
-            $fileName = uniqid().'.'.$extension;
-            $filePath = $path.'/'.$fileName;
-
-            $this->filesystem->write($filePath, $imageData);
-
-            return new File($this->storageDir.$filePath);
-        }
-
-        throw new Exception('invalid base64 image');
+        return new File($this->storageDir.$filePath);
     }
 
-    public function urlOfImage($path): string
+    public function urlOfImage(string $path): string
     {
         return $this->parameterBag->get('app.url.storage').'/'.$path;
     }

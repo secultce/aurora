@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Interface;
 
 use App\Entity\Agent;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
 
 interface AgentServiceInterface
@@ -24,6 +25,8 @@ interface AgentServiceInterface
     public function remove(Uuid $id): void;
 
     public function update(Uuid $id, array $agent): Agent;
+
+    public function updateImage(Uuid $id, UploadedFile $uploadedFile): Agent;
 
     public function count(): int;
 }

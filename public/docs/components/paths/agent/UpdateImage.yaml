@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Agentes
+  summary: Atualiza a imagem de um único agente
+  description: Atualiza a imagem de perfil de um agente. O upload deve ser feito utilizando o formato `multipart/form-data`. Apenas arquivos nos formatos `image/png`, `image/jpg` e `image/jpeg` são permitidos, com tamanho máximo de 2 MB.
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            image:
+              type: string
+              format: binary
+              description: Arquivo da imagem do agente
+          required:
+            - image
+  responses:
+    '200':
+      description: Imagem do agente atualizada com sucesso
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/agent/AgentPatchItemResponse.yaml'
+    '404':
+      description: Agente não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'

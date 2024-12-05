@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Espaços
+  summary: Atualiza a imagem de um único espaço
+  description: Atualiza a imagem de perfil de um espaço. O upload deve ser feito utilizando o formato `multipart/form-data`. Apenas arquivos nos formatos `image/png`, `image/jpg` e `image/jpeg` são permitidos, com tamanho máximo de 2 MB.
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            image:
+              type: string
+              format: binary
+              description: Arquivo da imagem do espaço
+          required:
+            - image
+  responses:
+    '200':
+      description: Imagem do espaço atualizada com sucesso
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space/SpacePatchItemResponse.yaml'
+    '404':
+      description: Espaço não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'

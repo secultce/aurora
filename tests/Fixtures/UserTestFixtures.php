@@ -25,7 +25,6 @@ class UserTestFixtures implements TestFixtures
     {
         return array_merge(self::partial(), [
             'socialName' => 'User Test',
-            'image' => ImageTestFixtures::getImageValid(),
         ]);
     }
 }

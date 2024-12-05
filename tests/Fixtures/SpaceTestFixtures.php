@@ -23,7 +23,6 @@ class SpaceTestFixtures implements TestFixtures
     public static function complete(): array
     {
         return array_merge(self::partial(), [
-            'image' => ImageTestFixtures::getImageValid(),
             'extraFields' => [
                 'type' => 'Cultural',
                 'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',

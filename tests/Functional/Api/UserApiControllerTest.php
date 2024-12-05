@@ -8,7 +8,6 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\UserFixtures;
 use App\Entity\User;
 use App\Tests\AbstractWebTestCase;
-use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\UserTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -82,9 +81,6 @@ class UserApiControllerTest extends AbstractWebTestCase
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
-
-        $filepath = str_replace($this->parameterBag->get('app.url.storage'), '', $user->getImage());
-        file_exists($filepath);
     }
 
     #[DataProvider('provideValidationCreateCases')]
@@ -191,11 +187,6 @@ class UserApiControllerTest extends AbstractWebTestCase
             'updatedAt' => $userUpdated->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
         ]);
-
-        self::assertFalse(file_exists($firstImage));
-
-        $secondImage = str_replace($this->parameterBag->get('app.url.storage'), '', $userUpdated->getImage());
-        file_exists($secondImage);
     }
 
     #[DataProvider('provideValidationUpdateCases')]
@@ -285,18 +276,6 @@ class UserApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['password' => '123456']),
                 'expectedErrors' => [
                     ['field' => 'password', 'message' => 'The password strength is too low. Please use a stronger password.'],
-                ],
-            ],
-            'image not supported' => [
-                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
-                'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
-                ],
-            ],
-            'image size' => [
-                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
-                'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
         ];
