@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Helper\DateFormatHelper;
 use App\Repository\AgentRepository;
 use DateTime;
 use DateTimeImmutable;
@@ -65,6 +66,9 @@ class Agent extends AbstractEntity
     #[ORM\OneToMany(targetEntity: Opportunity::class, mappedBy: 'createdBy')]
     private Collection $opportunities;
 
+    #[ORM\OneToMany(targetEntity: Seal::class, mappedBy: 'createdBy')]
+    private Collection $seals;
+
     #[ORM\Column]
     #[Groups(['agent.get'])]
     private DateTimeImmutable $createdAt;
@@ -81,6 +85,7 @@ class Agent extends AbstractEntity
     {
         $this->organizations = new ArrayCollection();
         $this->opportunities = new ArrayCollection();
+        $this->seals = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
     }
 
@@ -194,6 +199,21 @@ class Agent extends AbstractEntity
         return $this->opportunities;
     }
 
+    public function getSeals(): Collection
+    {
+        return $this->seals;
+    }
+
+    public function setSeals(Collection $seals): void
+    {
+        $this->seals = $seals;
+    }
+
+    public function addSeal(Seal $seal): void
+    {
+        $this->seals->add($seal);
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -235,9 +255,9 @@ class Agent extends AbstractEntity
             'culture' => $this->culture,
             'extraFields' => $this->extraFields,
             'organizations' => $this->organizations->map(fn ($organization) => $organization->getId()->toRfc4122()),
-            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
-            'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),
+            'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
+            'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
+            'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
         ];
     }
 }

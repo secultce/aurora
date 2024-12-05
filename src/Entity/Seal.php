@@ -5,58 +5,52 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Helper\DateFormatHelper;
-use App\Repository\InitiativeRepository;
+use App\Repository\SealRepository;
 use DateTime;
 use DateTimeImmutable;
-use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
-use Symfony\Component\Serializer\Attribute\MaxDepth;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: InitiativeRepository::class)]
-class Initiative extends AbstractEntity
+#[ORM\Entity(repositoryClass: SealRepository::class)]
+class Seal extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['event.get', 'initiative.get', 'opportunity.get'])]
+    #[Groups(['seal.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups('initiative.get')]
+    #[Groups(['seal.get'])]
     private ?string $name = null;
 
-    #[ORM\ManyToOne(targetEntity: self::class)]
-    #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    #[Groups('initiative.get')]
-    #[MaxDepth(1)]
-    private ?Initiative $parent = null;
+    #[ORM\Column(length: 255)]
+    #[Groups(['seal.get'])]
+    private ?string $description = null;
+    #[ORM\Column]
+    #[Groups(['seal.get'])]
+    private bool $active = false;
 
-    #[ORM\ManyToOne(targetEntity: Space::class)]
-    #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
-    #[Groups('initiative.get')]
-    private ?Space $space = null;
-
-    #[ORM\ManyToOne(targetEntity: Agent::class)]
+    #[ORM\ManyToOne(targetEntity: Agent::class, inversedBy: 'seals')]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
-    #[Groups('initiative.get')]
+    #[Groups('seal.get')]
     private Agent $createdBy;
 
-    #[ORM\Column(type: Types::JSON, nullable: true)]
-    #[Groups(['initiative.get.item'])]
-    private ?array $extraFields = null;
+    #[ORM\Column(nullable: true)]
+    #[Groups(['seal.get'])]
+    private DateTimeImmutable $expirationDate;
 
     #[ORM\Column]
-    #[Groups('initiative.get')]
+    #[Groups(['seal.get'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
-    #[Groups('initiative.get')]
+    #[Groups(['seal.get'])]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups('initiative.get')]
+    #[Groups(['seal.get'])]
     private ?DateTime $deletedAt = null;
 
     public function __construct()
@@ -79,29 +73,29 @@ class Initiative extends AbstractEntity
         return $this->name;
     }
 
-    public function setName(string $name): void
+    public function setName(string $name): ?string
     {
-        $this->name = $name;
+        return $this->name = $name;
     }
 
-    public function getParent(): ?Initiative
+    public function getDescription(): ?string
     {
-        return $this->parent;
+        return $this->description;
     }
 
-    public function setParent(?Initiative $parent): void
+    public function setDescription(?string $description): void
     {
-        $this->parent = $parent;
+        $this->description = $description;
     }
 
-    public function getSpace(): ?Space
+    public function isActive(): bool
     {
-        return $this->space;
+        return $this->active;
     }
 
-    public function setSpace(?Space $space): void
+    public function setActive(bool $active): void
     {
-        $this->space = $space;
+        $this->active = $active;
     }
 
     public function getCreatedBy(): Agent
@@ -114,14 +108,14 @@ class Initiative extends AbstractEntity
         $this->createdBy = $createdBy;
     }
 
-    public function getExtraFields(): ?array
+    public function getExpirationDate(): DateTimeImmutable
     {
-        return $this->extraFields;
+        return $this->expirationDate;
     }
 
-    public function setExtraFields(?array $extraFields): void
+    public function setExpirationDate(DateTimeImmutable $expirationDate): void
     {
-        $this->extraFields = $extraFields;
+        $this->expirationDate = $expirationDate;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
@@ -159,10 +153,10 @@ class Initiative extends AbstractEntity
         return [
             'id' => $this->id?->toRfc4122(),
             'name' => $this->name,
-            'parent' => $this->parent?->toArray(),
-            'space' => $this->space?->toArray(),
-            'createdBy' => $this->createdBy->toArray(),
-            'extraFields' => $this->extraFields,
+            'description' => $this->description,
+            'active' => $this->active,
+            'createdBy' => $this->createdBy->getId()->toRfc4122(),
+            'expirationDate' => $this->expirationDate?->format('Y-m-d H:i:s'),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),

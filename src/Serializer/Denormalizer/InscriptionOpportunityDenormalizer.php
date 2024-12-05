@@ -7,7 +7,7 @@ namespace App\Serializer\Denormalizer;
 use App\Entity\Agent;
 use App\Entity\InscriptionOpportunity;
 use App\Entity\Opportunity;
-use App\Enum\InscriptionOpportunityStatus;
+use App\Enum\InscriptionOpportunityStatusEnum;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -32,7 +32,7 @@ readonly class InscriptionOpportunityDenormalizer implements DenormalizerInterfa
         }
 
         if (true === array_key_exists('status', $data)) {
-            $data['status'] = InscriptionOpportunityStatus::fromValueOrLabel($data['status'])->value;
+            $this->denormalizeInscriptionOpportunityStatus($data);
         }
 
         /** @var InscriptionOpportunity $inscriptionOpportunity */
@@ -49,6 +49,17 @@ readonly class InscriptionOpportunityDenormalizer implements DenormalizerInterfa
         }
 
         return $inscriptionOpportunity;
+    }
+
+    private function denormalizeInscriptionOpportunityStatus(array &$data): void
+    {
+        if (true === is_string($data['status'])) {
+            $data['status'] = InscriptionOpportunityStatusEnum::fromName($data['status']);
+        }
+
+        if ($data['status'] instanceof InscriptionOpportunityStatusEnum) {
+            $data['status'] = $data['status']->value;
+        }
     }
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool

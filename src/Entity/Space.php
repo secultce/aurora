@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Helper\DateFormatHelper;
 use App\Repository\SpaceRepository;
 use DateTime;
 use DateTimeImmutable;
@@ -159,9 +160,9 @@ class Space extends AbstractEntity
             'name' => $this->name,
             'createdBy' => $this->createdBy->getId()->toRfc4122(),
             'parent' => $this->parent?->getId()->toRfc4122(),
-            'createdAt' => $this->createdAt->format('Y-m-d H:i:s'),
-            'updatedAt' => $this->updatedAt?->format('Y-m-d H:i:s'),
-            'deletedAt' => $this->deletedAt?->format('Y-m-d H:i:s'),
+            'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
+            'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
+            'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
         ];
     }
 }

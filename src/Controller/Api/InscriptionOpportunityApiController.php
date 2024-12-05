@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
-use App\Enum\InscriptionOpportunityStatus;
+use App\Enum\InscriptionOpportunityStatusEnum;
 use App\Service\Interface\InscriptionOpportunityServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
@@ -22,7 +22,7 @@ class InscriptionOpportunityApiController extends AbstractApiController
         $this->context = [
             'groups' => ['inscription-opportunity.get'],
             AbstractNormalizer::CALLBACKS => [
-                'status' => fn ($value) => InscriptionOpportunityStatus::getLabelByValue($value),
+                'status' => fn ($value) => InscriptionOpportunityStatusEnum::getName($value),
             ],
         ];
     }
