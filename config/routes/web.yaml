@@ -32,3 +32,8 @@ web_faq:
   resource: 'web/faq.yaml'
   prefix: /
   name_prefix: web_faq_
+
+web_details_opportunity:
+  resource: 'web/details-opportunity.yaml'
+  prefix: /
+  name_prefix: web_details_opportunity_
