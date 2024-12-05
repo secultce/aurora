@@ -23,7 +23,7 @@
                                 <h2>{{ 'my_initiatives'|trans }}</h2>
                             </span>
                             <span class="float-end">
-                                <a href={{ path('admin_initiative_create') }} class="btn btn-outline-success btn-sm">{{ 'view.initiative.create'|trans }}</a>
+                                <a href="{{ path('admin_initiative_create') }}" class="btn btn-outline-success btn-sm">{{ 'view.initiative.create'|trans }}</a>
                             </span>
                         </div>
 
@@ -41,8 +41,8 @@
                             </thead>
                             <tbody>
                             {% for item in initiatives %}
-                                <tr data-cy={{ item.id }}>
-                                    <td data-cy="name-{{ item.name }}"><a href="#">{{ item.name }}</a></td>
+                                <tr data-cy="{{ item.id }}">
+                                    <td data-cy="name-{{ item.name }}"><a href="{{ path('web_initiative_show', {id: item.id}) }}">{{ item.name }}</a></td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td></td>

@@ -7,6 +7,7 @@ namespace App\Controller\Web;
 use App\Service\Interface\InitiativeServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Uid\Uuid;
 
 class InitiativeWebController extends AbstractWebController
 {
@@ -37,5 +38,12 @@ class InitiativeWebController extends AbstractWebController
             'dashboard' => $dashboard,
             'totalInitiatives' => $totalInitiatives,
         ]);
+    }
+
+    public function show(Uuid $id): Response
+    {
+        $initiative = $this->initiativeService->get($id);
+
+        return $this->render('initiative/show.html.twig', ['initiative' => $initiative]);
     }
 }

@@ -38,7 +38,7 @@ class InitiativeAdminController extends AbstractAdminController
         $initiative = $this->service->create($data);
 
         if ($initiative instanceof ConstraintViolationList) {
-            $this->addFlash('error', $this->translator->trans('view.initiative.message.required_fields'));
+            $this->addFlash('error', $this->translator->trans('view.entities.message.required_fields'));
 
             return $this->redirectToRoute('admin_initiative_create');
         }
