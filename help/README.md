@@ -407,6 +407,11 @@ A injeção de dependência já acontece automaticamente pela própria estrutura
 
 ---
 
+## Enumerations (Enum)
+As enumerações são feitas seguindo o padrão implementado pelo php8.1, no entanto, tem algumas particularidades explanadas nesse [documento](./ENUM.md).
+
+---
+
 ## Console Commands
 
 <details>
