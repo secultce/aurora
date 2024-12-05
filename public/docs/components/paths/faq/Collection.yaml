@@ -1,7 +1,7 @@
 post:
   tags:
     - Faq
-  summary: Cria um único faqo
+  summary: Cria uma única faq
   requestBody:
     description: Faq
     required: true
@@ -17,8 +17,23 @@ post:
           schema:
             $ref: '../../responses/faq/FaqPostItemResponse.yaml'
     '400':
-      description: Dados inválidos, faqo não criado
+      description: Dados inválidos, faq não criada
       content:
         application/json:
           schema:
             $ref: '../../responses/InvalidResponse.yaml'
+
+get:
+  tags:
+    - Faq
+  summary: Recupera uma lista de faqs
+  responses:
+    '200':
+      description: Lista de faqs
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              allOf:
+                - $ref: '../../responses/faq/FaqGetCollectionResponse.yaml'

@@ -1,3 +1,23 @@
+get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Faq
+  summary: Recupera uma única faq
+  responses:
+    '200':
+      description: Faq encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/faq/FaqGetItemResponse.yaml'
+    '404':
+      description: Faq não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/faq/FaqNotFound.yaml'
+
 patch:
   parameters:
     - $ref: '../../parameters/path/id.yaml'
@@ -24,3 +44,22 @@ patch:
         application/json:
           schema:
             $ref: '../../responses/InvalidResponse.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Faq
+  summary: Remove uma única faq
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+        application/json: {}
+
+    '404':
+      description: Faq não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/faq/FaqNotFound.yaml'

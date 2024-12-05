@@ -44,7 +44,7 @@ readonly class FaqService extends AbstractEntityService implements FaqServiceInt
 
     public function get(Uuid $id): Faq
     {
-        $faq = $this->repository->find($id);
+        $faq = $this->repository->findOneBy(['id' => $id, 'active' => true]);
 
         if (null === $faq) {
             throw new FaqResourceNotFoundException();
@@ -72,5 +72,24 @@ readonly class FaqService extends AbstractEntityService implements FaqServiceInt
         $faqObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($faqObj);
+    }
+
+    public function list(int $limit = 50): array
+    {
+        return $this->repository->findBy(
+            ['active' => true],
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    public function remove(Uuid $id): void
+    {
+        $faq = $this->get($id);
+
+        $faq->setUpdatedAt(new DateTime());
+        $faq->setActive(false);
+
+        $this->repository->save($faq);
     }
 }
