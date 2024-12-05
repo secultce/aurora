@@ -1,5 +1,5 @@
 <div class="d-flex align-content-center justify-content-between">
-    <p class="fw-bold">182 {{ 'view.event.quantity.total' | trans }}</p>
+    <p class="fw-bold">{{ totalEvents }} {{ 'view.event.quantity.total' | trans }}</p>
     <div class="d-flex g-4 event-sort">
         <label class="event-options" for="sort-options">{{ 'sort_by' | trans }}:</label>
         <select id="sort-options" class="form-select">
@@ -77,10 +77,12 @@
     </div>
 {% endfor %}
 
-<div class="container align-items-center mt-5 mb-5">
-    <div class="centered-icon-text card-view-more">
-        <i class="material-icons">add_circle_outline</i>
-        <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
+{% if events|length > 0 %}
+    <div class="container align-items-center mt-5 mb-5">
+        <div class="centered-icon-text card-view-more">
+            <i class="material-icons">add_circle_outline</i>
+            <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
+        </div>
     </div>
-</div>
+{% endif %}
 

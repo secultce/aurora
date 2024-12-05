@@ -6,6 +6,7 @@ namespace App\Controller\Web;
 
 use App\Service\Interface\EventServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class EventWebController extends AbstractWebController
@@ -15,9 +16,11 @@ class EventWebController extends AbstractWebController
     ) {
     }
 
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $events = $this->service->list();
+        $filters = $request->query->all();
+
+        $events = $this->service->list(params: $filters);
         $totalEvents = count($events);
 
         $dashboard = [
@@ -33,6 +36,7 @@ class EventWebController extends AbstractWebController
         return $this->render('event/list.html.twig', [
             'dashboard' => $dashboard,
             'events' => $events,
+            'totalEvents' => $totalEvents,
         ]);
     }
 }
