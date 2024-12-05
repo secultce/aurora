@@ -29,6 +29,7 @@
                     <span class="seal">Avaliador UFPR</span>
                     <span class="seal">Avaliador UnB</span>
                     <span class="seal">Selo Mapas</span>
+                </p>
             </div>
             <p class="agent-description">{{ agent.longBio }}</p>
             <div class="access-profile-container">
@@ -38,9 +39,11 @@
     </div>
 {% endfor %}
 
-<div class="container align-items-center mt-5 mb-5">
-    <div class="centered-icon-text card-view-more">
-        <i class="material-icons">add_circle_outline</i>
-        <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
+{% if agents|length > 0 %}
+    <div class="container align-items-center mt-5 mb-5">
+        <div class="centered-icon-text card-view-more">
+            <i class="material-icons">add_circle_outline</i>
+            <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
+        </div>
     </div>
-</div>
+{% endif %}

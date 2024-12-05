@@ -21,6 +21,7 @@ body {
     justify-content: center;
     position: relative;
     margin-top: 47px;
+    min-height: 58rem;
 }
 
 .content{
@@ -134,7 +135,7 @@ body {
 
 .sidebar {
     position: absolute;
-    border-radius: 8px;
+    border-radius: 0 8px 0 0;
     top: 0;
     left: -25.1875rem;
     width: 25.1875rem;
@@ -143,6 +144,7 @@ body {
     transition: left 0.3s ease;
     margin-right: 50px;
     padding: 13px 30px;
+    box-shadow: 0 -2px 10px var(--box-shadow-color, rgba(0, 0, 0, 0.1));
 }
 
 .sidebar.open {
