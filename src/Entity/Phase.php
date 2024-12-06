@@ -8,6 +8,7 @@ use App\Helper\DateFormatHelper;
 use App\Repository\PhaseRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -55,6 +56,9 @@ class Phase
     #[ORM\JoinColumn(name: 'opportunity_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['phase.get'])]
     private ?Opportunity $opportunity = null;
+
+    #[ORM\OneToMany(targetEntity: InscriptionPhase::class, mappedBy: 'phase')]
+    private Collection $inscriptions;
 
     #[ORM\Column(type: Types::JSON, nullable: true)]
     #[Groups(['phase.get.item'])]
@@ -165,6 +169,21 @@ class Phase
     public function setOpportunity(?Opportunity $opportunity): void
     {
         $this->opportunity = $opportunity;
+    }
+
+    public function getInscriptions(): Collection
+    {
+        return $this->inscriptions;
+    }
+
+    public function setInscriptions(Collection $inscriptions): void
+    {
+        $this->inscriptions = $inscriptions;
+    }
+
+    public function addInscription(InscriptionPhase $inscription): void
+    {
+        $this->inscriptions->add($inscription);
     }
 
     public function getExtraFields(): ?array
