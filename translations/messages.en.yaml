@@ -310,6 +310,8 @@ view:
     send: Or send an email to
     subtitle: Check out our frequently asked questions
     support: to talk to our support team via chat.
+    message:
+      deleted_faq: The question has been deleted
 
   faq_edit:
     description_faq: FAQ description that can be edited.

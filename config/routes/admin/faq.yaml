@@ -9,6 +9,6 @@ list:
   methods: [GET]
 
 remove:
-  path: /{id}
-  controller: App\Controller\Web\Admin\FaqAdminController::list
+  path: /{id}/remove
+  controller: App\Controller\Web\Admin\FaqAdminController::remove
   methods: [GET]

@@ -12,13 +12,15 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class FaqAdminController extends AbstractWebController
 {
     public const VIEW_ADD = '_admin/faq/add.html.twig';
 
     public function __construct(
-        private FaqServiceInterface $faqService
+        private FaqServiceInterface $faqService,
+        private readonly TranslatorInterface $translator
     ) {
     }
 
@@ -56,5 +58,14 @@ class FaqAdminController extends AbstractWebController
         return $this->render('_admin/faq/list.html.twig', [
             'faqs' => $faqs,
         ]);
+    }
+
+    public function remove(?Uuid $id): Response
+    {
+        $this->faqService->remove($id);
+
+        $this->addFlash('success', $this->translator->trans('view.faq.message.deleted_faq'));
+
+        return $this->redirectToRoute('admin_faq_list');
     }
 }
