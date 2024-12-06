@@ -97,5 +97,11 @@
 }
 
 .entity-container {
+    transition: width 0.3s, transform 0.3s;
     width: var(--WIDTH_DEFAULT);
+}
+
+.entity-container.shifted {
+    width: 78.125rem;
+    transform: translateX(118px);
 }
