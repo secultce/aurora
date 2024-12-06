@@ -6,6 +6,7 @@ namespace App\Controller\Web;
 
 use App\Service\Interface\InitiativeServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
@@ -18,9 +19,11 @@ class InitiativeWebController extends AbstractWebController
         $this->initiativeService = $initiativeService;
     }
 
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $initiatives = $this->initiativeService->list();
+        $filters = $request->query->all();
+
+        $initiatives = $this->initiativeService->list(params: $filters);
         $totalInitiatives = count($initiatives);
 
         $dashboard = [
