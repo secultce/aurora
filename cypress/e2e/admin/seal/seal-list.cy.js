@@ -1,40 +1,28 @@
-describe('Página de listar Selos', () => {
-    beforeEach(() => {
-        cy.viewport(1920, 1080);
-        cy.login('talysonsoares@example.com', 'Aurora@2024');
-        cy.visit('/painel/selos');
+describe('Teste de navegação e validação da página de Selos', () => {
+    it('Deve acessar a página de Selos a partir de Oportunidades após login', () => {
+        cy.visit('/');
+
+        cy.contains('Entrar').click();
+
+        cy.url().should('include', '/login');
+
+        cy.login('saracamilo@example.com', 'Aurora@2024');
+
+        cy.url().should('include', '/');
+
+        cy.contains('Sara Jenifer Camilo').should('be.visible');
+        cy.contains('Sara Jenifer Camilo').click();
+
+        cy.contains('Minhas Oportunidades', { timeout: 10000 }).should('be.visible').click();
+
+        cy.url({ timeout: 10000 }).should('include', '/painel/oportunidades');
+
+        cy.scrollTo('bottom');
+
+        cy.contains('Selos', { timeout: 10000 }).should('be.visible').click();
+
+        cy.url({ timeout: 10000 }).should('include', '/painel/selos/');
+
+        cy.get('table', { timeout: 10000 }).should('be.visible');
     });
-
-    it('Garante que a página de selos existe', () => {
-        cy.get('.management-panel__title').contains('Gestão de Selos').should('be.visible');
-        cy.get('.management-panel__action').contains('Criar selo').should('be.visible');
-    });
-
-    it('Garante que as tabs estão funcionando', () => {
-        const tabs = [
-            {tab: '#pills-published-tab'},
-            {tab: '#pills-draft-tab'},
-            {tab: '#pills-allowed-tab'},
-            {tab: '#pills-archived-tab'},
-            {tab: '#pills-deleted-tab'}
-        ];
-
-        tabs.forEach(({ tab}) => {
-            cy.get(tab).click();
-            cy.get(tab).should('have.class', 'active');
-        })
-    });
-
-    it('Garante que o input existe', () => {
-        cy.get('#search-seal').should('be.visible');
-    })
-
-    it('Garante que os cards estão visíveis', () => {
-        cy.get(':nth-child(2) > .seals-header > img').should('be.visible');
-        cy.get(':nth-child(2) > .seals-header > img').should('be.visible');
-        cy.get(':nth-child(2) > .justify-content-between > .actions-manage > :nth-child(1)').should('be.visible');
-        cy.get(':nth-child(2) > .justify-content-between > .actions-manage > :nth-child(2)').should('be.visible');
-        cy.get(':nth-child(2) > .justify-content-between > .actions-interact > .seals-edit').should('be.visible');
-        cy.get(':nth-child(2) > .justify-content-between > .actions-interact > :nth-child(2)').should('be.visible');
-    });
-})
+});

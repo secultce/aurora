@@ -1,30 +1,59 @@
 {% extends "_layouts/blank.html.twig" %}
 
-{% block stylesheets %}
-    {{ parent() }}
-    <link rel="stylesheet" href="{{ asset('styles/pages/seals.css') }}">
-{% endblock %}
-
-{% block title %}{{ 'seals' | trans }}{% endblock %}
+{% block title %} {{ 'seals'|trans }}{% endblock %}
 
 {% block content %}
+    {% include '_components/modal-confirm-remove.html.twig' %}
 
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
 
-        <div class="management-content w-100">
-            <section class="management-panel__white-square">
-                {% include "_components/management-panel.html.twig" with { 'item_name': 'seals', 'create_name': 'view.seal.create' } %}
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body shadow">
+                        <div class="d-flex justify-content-between">
+                            <h2>{{ 'seals'|trans }}</h2>
+                            <div>
+                                <a href="#" class="btn btn-primary">
+                                    {{ 'create' | trans }}
+                                </a>
+                            </div>
+                        </div>
 
-                {% include "_admin/seal/_partials/tabs/tabs.html.twig" %}
-            </section>
+                        <hr>
 
-            <section>
-                {% include "_admin/seal/_partials/tabs/content-tabs.html.twig" %}
-            </section>
+                        <table class="table table-hover table-striped">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>{{ 'name'|trans }}</th>
+                                <th>{{ 'status'|trans }}</th>
+                                <th>{{ 'created_at'|trans }}</th>
+                                <th>{{ 'actions'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for seal in seals %}
+                                <tr>
+                                    <td>{{ seal.name }}</td>
+                                    <td>{{ seal.status }}</td>
+                                    <td>{{ seal.createdAt|date('d/m/Y H:i') }}</td>
+                                    <td>
+                                        <a href="#" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
+                                        <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="#" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
-
 {% endblock %}
 
-{% block footer %}{% endblock %}
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-confirm-remove.js') }}"></script>
+{% endblock %}
