@@ -85,8 +85,7 @@ abstract class AbstractWebTestCase extends WebTestCase
 
         if ([] === $server) {
             $server = [
-                'HTTP_ACCEPT' => 'application/json',
-                'HTTP_CONTENT_TYPE' => 'application/json',
+                'HTTP_ACCEPT' => ['application/json', 'multipart/form-data'],
                 'HTTP_AUTHORIZATION' => $token,
             ];
         }

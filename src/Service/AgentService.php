@@ -17,6 +17,7 @@ use DateTime;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
@@ -26,14 +27,21 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
 {
     public function __construct(
         private AgentRepositoryInterface $repository,
+        private FileServiceInterface $fileService,
         private OpportunityRepositoryInterface $opportunityRepository,
+        private ParameterBagInterface $parameterBag,
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
-        private FileServiceInterface $fileService,
-        private ParameterBagInterface $parameterBag,
     ) {
         parent::__construct($security);
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
+        );
     }
 
     public function create(array $agent): Agent
@@ -55,34 +63,19 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         $this->repository->save($agentObj);
     }
 
-    public function get(Uuid $id): Agent
+    private function denormalizeDto(array $data): AgentDto
     {
-        $agent = $this->repository->findOneBy([
-            ...['id' => $id],
-            ...$this->getDefaultParams(),
+        return $this->serializer->denormalize($data, AgentDto::class, context: [
+            AbstractNormalizer::CALLBACKS => [
+                'image' => function () use ($data): ?File {
+                    if (false === isset($data['image'])) {
+                        return null;
+                    }
+
+                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.agent.profile'), $data['image']);
+                },
+            ],
         ]);
-
-        if (null === $agent) {
-            throw new AgentResourceNotFoundException();
-        }
-
-        return $agent;
-    }
-
-    public function findOneBy(array $params): ?Agent
-    {
-        return $this->repository->findOneBy(
-            [...$params, ...$this->getDefaultParams()]
-        );
-    }
-
-    public function list(int $limit = 50, array $params = []): array
-    {
-        return $this->repository->findBy(
-            [...$params, ...$this->getDefaultParams()],
-            ['createdAt' => 'DESC'],
-            $limit
-        );
     }
 
     public function findBy(array $params = [], int $limit = 50): array
@@ -101,11 +94,46 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         );
     }
 
-    public function count(): int
+    public function findOneBy(array $params): ?Agent
     {
-        return $this->repository->count(
-            $this->getDefaultParams()
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
         );
+    }
+
+    public function get(Uuid $id): Agent
+    {
+        $agent = $this->repository->findOneBy([
+            ...['id' => $id],
+            ...$this->getDefaultParams(),
+        ]);
+
+        if (null === $agent) {
+            throw new AgentResourceNotFoundException();
+        }
+
+        return $agent;
+    }
+
+    public function list(int $limit = 50, array $params = []): array
+    {
+        return $this->repository->findBy(
+            [...$params, ...$this->getDefaultParams()],
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    private function organizeDefaultAgentData(array $user): array
+    {
+        return [
+            'id' => Uuid::v4()->toRfc4122(),
+            'name' => "{$user['firstname']} {$user['lastname']}",
+            'shortBio' => 'Agente criado automaticamente',
+            'longBio' => 'Este agente foi criado automaticamente pelo sistema',
+            'culture' => false,
+            'user' => $user['id'],
+        ];
     }
 
     public function remove(Uuid $id): void
@@ -149,6 +177,37 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         return $this->repository->save($agentObj);
     }
 
+    public function updateImage(Uuid $id, UploadedFile $uploadedFile): Agent
+    {
+        $agent = $this->get($id);
+
+        $agentDto = new AgentDto();
+        $agentDto->image = $uploadedFile;
+
+        $violations = $this->validator->validate($agentDto, groups: [AgentDto::UPDATE]);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        if ($agent->getImage()) {
+            $this->fileService->deleteFileByUrl($agent->getImage());
+        }
+
+        $uploadedImage = $this->fileService->uploadImage(
+            $this->parameterBag->get('app.dir.agent.profile'),
+            $uploadedFile
+        );
+
+        $agent->setImage($this->fileService->urlOfImage($uploadedImage->getFilename()));
+
+        $agent->setUpdatedAt(new DateTime());
+
+        $this->repository->save($agent);
+
+        return $agent;
+    }
+
     private function validateInput(array $agent, string $group): array
     {
         $agentDto = self::denormalizeDto($agent);
@@ -156,43 +215,9 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         $violations = $this->validator->validate($agentDto, groups: $group);
 
         if ($violations->count() > 0) {
-            if ($agentDto->image instanceof File) {
-                $this->fileService->deleteFile($agentDto->image->getRealPath());
-            }
             throw new ValidatorException(violations: $violations);
         }
 
-        if ($agentDto->image instanceof File) {
-            $agent = array_merge($agent, ['image' => $agentDto->image]);
-        }
-
         return $agent;
-    }
-
-    private function denormalizeDto(array $data): AgentDto
-    {
-        return $this->serializer->denormalize($data, AgentDto::class, context: [
-            AbstractNormalizer::CALLBACKS => [
-                'image' => function () use ($data): ?File {
-                    if (false === isset($data['image'])) {
-                        return null;
-                    }
-
-                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.agent.profile'), $data['image']);
-                },
-            ],
-        ]);
-    }
-
-    private function organizeDefaultAgentData(array $user): array
-    {
-        return [
-            'id' => Uuid::v4()->toRfc4122(),
-            'name' => "{$user['firstname']} {$user['lastname']}",
-            'shortBio' => 'Agente criado automaticamente',
-            'longBio' => 'Este agente foi criado automaticamente pelo sistema',
-            'culture' => false,
-            'user' => $user['id'],
-        ];
     }
 }

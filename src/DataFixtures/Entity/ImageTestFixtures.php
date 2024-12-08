@@ -4,29 +4,36 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Entity;
 
+use RuntimeException;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+
 final class ImageTestFixtures
 {
-    public static function getAgentImage(): string
+    public static function getAgentImage(): UploadedFile
     {
-        return self::getCodeBase64ToImage('agent.png');
+        return self::getUploadedFile('agent.png');
     }
 
-    public static function getUserImage(): string
+    public static function getUserImage(): UploadedFile
     {
-        return self::getCodeBase64ToImage('user.png');
+        return self::getUploadedFile('user.png');
     }
 
-    public static function getSpaceImage(): string
+    public static function getSpaceImage(): UploadedFile
     {
-        return self::getCodeBase64ToImage('space.png');
+        return self::getUploadedFile('space.png');
     }
 
-    private static function getCodeBase64ToImage(string $image): string
+    private static function getUploadedFile(string $image): UploadedFile
     {
-        $path = sprintf('%s/images/%s', __DIR__, $image);
-        $type = pathinfo($path, PATHINFO_EXTENSION);
-        $data = file_get_contents($path);
+        $path = realpath(sprintf('%s/images/%s', __DIR__, $image));
 
-        return 'data:image/'.$type.';base64,'.base64_encode($data);
+        if (!file_exists($path)) {
+            throw new RuntimeException("Image file not found: $path");
+        }
+
+        $type = mime_content_type($path);
+
+        return new UploadedFile($path, $image, $type, null, true);
     }
 }

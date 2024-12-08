@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service\Interface;
 
 use App\Entity\Space;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
 
 interface SpaceServiceInterface
@@ -24,4 +25,6 @@ interface SpaceServiceInterface
     public function remove(Uuid $id): void;
 
     public function update(Uuid $identifier, array $space): Space;
+
+    public function updateImage(Uuid $id, UploadedFile $uploadedFile): Space;
 }

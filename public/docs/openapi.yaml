@@ -46,6 +46,8 @@ paths:
     $ref: './components/paths/agent/Collection.yaml'
   /agents/{id}:
     $ref: './components/paths/agent/Item.yaml'
+  /agents/{id}/images:
+    $ref: './components/paths/agent/UpdateImage.yaml'
   /events:
     $ref: './components/paths/event/Collection.yaml'
   /events/{id}:
@@ -78,6 +80,8 @@ paths:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
     $ref: './components/paths/space/Item.yaml'
+  /spaces/{id}/images:
+    $ref: './components/paths/space/UpdateImage.yaml'
   /opportunities/{opportunity}/phases:
     $ref: './components/paths/phase/Collection.yaml'
   /opportunities/{opportunity}/phases/{id}:

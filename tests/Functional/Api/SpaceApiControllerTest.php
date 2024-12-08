@@ -148,9 +148,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
-
-        $filepath = str_replace($this->parameterBag->get('app.url.storage'), '', $space->getImage());
-        file_exists($filepath);
     }
 
     #[DataProvider('provideValidationCreateCases')]
@@ -202,18 +199,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
-                ],
-            ],
-            'image not supported' => [
-                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
-                'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
-                ],
-            ],
-            'image size' => [
-                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
-                'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
             'createdBy should exist' => [
@@ -451,122 +436,40 @@ class SpaceApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function testCanUpdateImage(): void
+    public function testCanUpdateImageWithMultipartFormData(): void
     {
-        $requestBody = SpaceTestFixtures::complete();
+        $file = ImageTestFixtures::getImageValid();
+
+        $url = sprintf('%s/%s/images', self::BASE_URL, SpaceFixtures::SPACE_ID_1);
 
         $client = self::apiClient();
-        $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
-
-        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
-
-        /** @var Space $createdSpace */
-        $createdSpace = $client->getContainer()->get(EntityManagerInterface::class)
-            ->find(Space::class, $requestBody['id']);
-
-        $this->assertResponseBodySame([
-            'id' => $requestBody['id'],
-            'name' => $requestBody['name'],
-            'image' => $createdSpace->getImage(),
-            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
-            'parent' => [
-                'id' => SpaceFixtures::SPACE_ID_1,
-                'name' => 'SECULT',
-                'image' => $createdSpace->getParent()->getImage(),
-                'createdBy' => [
-                    'id' => AgentFixtures::AGENT_ID_1,
-                ],
-                'extraFields' => [
-                    'type' => 'Instituição Cultural',
-                    'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
-                    'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'areasOfActivity' => [
-                        0 => 'Teatro',
-                        1 => 'Música',
-                        2 => 'Artes Visuais',
-                    ],
-                    'accessibility' => [
-                        0 => 'Banheiros adaptados',
-                        1 => 'Rampa de acesso',
-                        2 => 'Elevador adaptado',
-                        3 => 'Sinalização tátil',
-                    ],
-                ],
-                'createdAt' => '2024-07-10T11:30:00+00:00',
-                'updatedAt' => '2024-07-10T12:20:00+00:00',
-                'deletedAt' => null,
-            ],
-            'extraFields' => [
-                'type' => 'Cultural',
-                'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
-                'location' => 'Recife, Pernambuco',
-                'capacity' => 100,
-                'areasOfActivity' => [
-                    0 => 'Teatro',
-                    1 => 'Música',
-                    2 => 'Artes Visuais',
-                ],
-                'accessibility' => [
-                    0 => 'Banheiros adaptados',
-                    1 => 'Rampa de acesso',
-                    2 => 'Elevador adaptado',
-                    3 => 'Sinalização tátil',
-                ],
-            ],
-            'createdAt' => $createdSpace->getCreatedAt()->format(DateTimeInterface::ATOM),
-            'updatedAt' => null,
-            'deletedAt' => null,
-        ]);
-
-        $firstImage = str_replace($this->parameterBag->get('app.url.storage'), '', $createdSpace->getImage());
-        file_exists($firstImage);
-
-        $url = sprintf('%s/%s', self::BASE_URL, $requestBody['id']);
-        $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
 
         self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
-        $updatedSpace = $client->getContainer()->get(EntityManagerInterface::class)
-            ->find(Space::class, $requestBody['id']);
+        /* @var Space $space */
+        $space = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Space::class, SpaceFixtures::SPACE_ID_1);
 
         $this->assertResponseBodySame([
-            'id' => $requestBody['id'],
-            'name' => $requestBody['name'],
-            'image' => $updatedSpace->getImage(),
-            'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
-            'parent' => [
-                'id' => SpaceFixtures::SPACE_ID_1,
-                'name' => 'SECULT',
-                'image' => $updatedSpace->getParent()->getImage(),
-                'createdBy' => [
-                    'id' => AgentFixtures::AGENT_ID_1,
-                ],
-                'parent' => null,
-                'extraFields' => [
-                    'type' => 'Instituição Cultural',
-                    'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
-                    'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'areasOfActivity' => [
-                        0 => 'Teatro',
-                        1 => 'Música',
-                        2 => 'Artes Visuais',
-                    ],
-                    'accessibility' => [
-                        0 => 'Banheiros adaptados',
-                        1 => 'Rampa de acesso',
-                        2 => 'Elevador adaptado',
-                        3 => 'Sinalização tátil',
-                    ],
-                ],
-                'createdAt' => '2024-07-10T11:30:00+00:00',
-                'updatedAt' => '2024-07-10T12:20:00+00:00',
-                'deletedAt' => null,
+            'id' => SpaceFixtures::SPACE_ID_1,
+            'name' => 'SECULT',
+            'image' => $space->getImage(),
+            'createdBy' => [
+                'id' => AgentFixtures::AGENT_ID_1,
             ],
+            'parent' => null,
             'extraFields' => [
-                'type' => 'Cultural',
-                'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
-                'location' => 'Recife, Pernambuco',
-                'capacity' => 100,
+                'type' => 'Instituição Cultural',
+                'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
+                'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
                 'areasOfActivity' => [
                     0 => 'Teatro',
                     1 => 'Música',
@@ -579,15 +482,10 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     3 => 'Sinalização tátil',
                 ],
             ],
-            'createdAt' => $updatedSpace->getCreatedAt()->format(DateTimeInterface::ATOM),
-            'updatedAt' => $updatedSpace->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $space->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
         ]);
-
-        self::assertFalse(file_exists($firstImage));
-
-        $secondImage = str_replace($this->parameterBag->get('app.url.storage'), '', $updatedSpace->getImage());
-        file_exists($secondImage);
     }
 
     #[DataProvider('provideValidationUpdateCases')]
@@ -627,18 +525,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
             ],
-            'image not supported' => [
-                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getGif()]),
-                'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
-                ],
-            ],
-            'image size' => [
-                'requestBody' => array_merge($requestBody, ['image' => ImageTestFixtures::getImageMoreThan2mb()]),
-                'expectedErrors' => [
-                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
-                ],
-            ],
             'parent should exists' => [
                 'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
@@ -655,6 +541,51 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+        ];
+    }
+
+    #[DataProvider('provideValidationUpdateImageCases')]
+    public function testValidationUpdateImage(array $requestBody, $file, array $expectedErrors): void
+    {
+        $url = sprintf('%s/%s/images', self::BASE_URL, SpaceFixtures::SPACE_ID_1);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateImageCases(): array
+    {
+        $requestBody = SpaceTestFixtures::partial();
+        unset($requestBody['id']);
+
+        return [
+            'image not supported' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getGif(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getImageMoreThan2mb(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
         ];

@@ -249,7 +249,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
 
         foreach (self::SPACES as $spaceData) {
             if (5 > $counter) {
-                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.space.profile'), ImageTestFixtures::getAgentImage());
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.space.profile'), ImageTestFixtures::getSpaceImage());
                 $spaceData['image'] = $file;
             }
 

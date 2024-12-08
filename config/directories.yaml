@@ -1,5 +1,5 @@
 parameters:
-    app.dir.agent.profile: '%env(resolve:STORAGE_DIR)%/agents/profile'
-    app.dir.user.profile: '%env(resolve:STORAGE_DIR)%/users/profile'
-    app.dir.space.profile: '%env(resolve:STORAGE_DIR)%/spaces/profile'
-    app.dir.initiative.cover_image: '%env(resolve:STORAGE_DIR)%/initiatives/cover_image'
+    app.dir.agent.profile: '/agents/profile'
+    app.dir.user.profile: '/users/profile'
+    app.dir.space.profile: '/spaces/profile'
+    app.dir.initiative.cover_image: '/cover_image'
