@@ -462,6 +462,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => SpaceFixtures::SPACE_ID_1,
             'name' => 'SECULT',
             'image' => $space->getImage(),
+            'address' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
