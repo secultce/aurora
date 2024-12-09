@@ -67,4 +67,23 @@ describe('Página de Listar Iniciativas', () => {
             cy.wrap($el).find('a:contains("Acessar"), button:contains("Acessar")').should('be.visible');
         });
     });
+
+    it('Garante que o filtro funciona', () => {
+        cy.get('#open-filter').click();
+        cy.get('#initiative-name').type('Retalhos do Nordeste');
+        cy.get('#apply-filters').click();
+        cy.get('.justify-content-between > .fw-bold').contains('1 Iniciativas Encontradas').should('be.visible');
+        cy.get(':nth-child(2) > .initiative-card-header > .d-flex > .initiative-name').contains('Retalhos do Nordeste').should('be.visible');
+    });
+
+    it('Garante que o botão de limpar filtros funciona', () => {
+        cy.get('.justify-content-between > .fw-bold').contains(/^\d+ Iniciativas Encontradas/).should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('#initiative-name').type('Retalhos do Nordeste');
+        cy.get('#apply-filters').click();
+        cy.get('.justify-content-between > .fw-bold').contains('1 Iniciativas Encontradas').should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('.btn-outline-primary').click();
+        cy.get('.justify-content-between > .fw-bold').contains(/^\d+ Iniciativas Encontradas/).should('be.visible');
+    });
 });
