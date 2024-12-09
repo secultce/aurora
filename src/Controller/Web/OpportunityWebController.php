@@ -6,6 +6,7 @@ namespace App\Controller\Web;
 
 use App\Service\Interface\OpportunityServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class OpportunityWebController extends AbstractWebController
@@ -15,9 +16,11 @@ class OpportunityWebController extends AbstractWebController
     ) {
     }
 
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $opportunities = $this->service->list();
+        $filters = $request->query->all();
+
+        $opportunities = $this->service->list(params: $filters);
         $totalOpportunities = count($opportunities);
 
         $dashboard = [
@@ -33,6 +36,7 @@ class OpportunityWebController extends AbstractWebController
         return $this->render('opportunity/list.html.twig', [
             'dashboard' => $dashboard,
             'opportunities' => $opportunities,
+            'totalOpportunities' => $totalOpportunities,
         ]);
     }
 }
