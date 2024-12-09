@@ -1,0 +1,216 @@
+<section class="main-form-content mb-3">
+    <form action="" method="POST" enctype="multipart/form-data" id="agent-create-form">
+        <section class="presentation-info">
+            <div>
+                <h2 class="fw-bold fs-4">{{ "view.agent_create.agent_information" | trans }}</h2>
+                {% set asterisk = '<span class="text-danger">*</span>' %}
+                <p>{{ 'view.agent_create.mandatory_fields_message'|trans({'asterisco': asterisk})|raw }}</p>
+            </div>
+
+            <div class="d-flex flex-column flex-md-row">
+                <div class="presentation-info__agent">
+                    <label for="cover-image" class="agent-banner">
+                        <span class="iconify align-self-center mb-2 fs-3" data-icon="ion:image-outline"></span>
+                        <span>{{ "view.agent_create.add_cover_image" | trans}}</span>
+                        <input class="d-none" type="file" name="cover_image" id="cover-image">
+                    </label>
+
+                    <div class="d-flex flex-column flex-md-row gap-md-5 mt-4 mb-4">
+                        <label for="profile-image" class="profile-picture-label align-self-center">
+                            <span class="agent-profile-img">
+                                <span class="iconify fs-4 text-white" data-icon="ion:image-outline"></span>
+                            </span>
+                            <span class="d-flex flex-column small align-self-center">
+                               <span class="align-self-center">{{ "add" | trans }}</span> {{ "view.agent_create.add_profile_image"|trans }}
+                            </span>
+                            <input class="d-none" type="file" name="profile_image" id="profile-image">
+                        </label>
+
+                        <div class="agent-input-form align-self-end w-100">
+                            <label for="agent-name">{{ "view.agent_create.agent_name" | trans}} <span class="text-danger">*</span> </label>
+                            <input class="required" type="text" id="agent-name" name="agent_name"
+                                   data-min-length="2"
+                                   data-max-length="100"
+                                   data-error-length="{{ "view.agent_create.error_length" | trans }}">
+                            <span class="text-danger fw-bold d-none">
+                                {{ "required_field" | trans }}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="agent-expertise">
+                        <label for="areas" class="form-label fw-bold">{{ "view.agent.areas_of_expertise" | trans}} <span class="text-danger">*</span></label>
+                        <button type="button" class="d-flex align-items-center mb-3">
+                            {{ "view.agent_create.add_new" | trans}} <span class="iconify" data-icon="majesticons:plus-line"></span>
+                        </button>
+                    </div>
+                    <div class="agent-input-form">
+                        <label for="mini-bio">{{ "view.agent_create.short_bio" | trans}} <span class="text-danger">*</span></label>
+                        <textarea class="required" name="mini_bio" id="mini-bio" rows="4" data-min-length="2" data-max-length="400" data-error-length="{{ "view.agent_create.error_length" | trans }}"></textarea>
+                        <span class="text-danger fw-bold d-none">{{ "required_field" | trans }}</span>
+                    </div>
+                    <div class="agent-input-form">
+                        <label for="agent-site">{{ "site" | trans}} <span class="text-danger">*</span></label>
+                        <input class="required" type="text" name="agent_site" id="agent-site"
+                               data-min-length="2"
+                               data-max-length="100"
+                               data-error-length="{{ "view.agent_create.error_length" | trans }}">
+                        <span class="text-danger fw-bold d-none">{{ "required_field" | trans }}</span>
+                    </div>
+                </div>
+
+                <div class="social-media-agent w-100">
+                    <div class="agent-expertise">
+                        <label for="areas" class="form-label fs-6 fw-bold"> {{ "view.agent_create.inform_your_role_in_culture" | trans}}<span class="text-danger"> *</span></label>
+                        <button type="button" class="d-flex align-items-center mb-3">
+                            {{ "view.agent_create.add_new" | trans}} <span class="iconify" data-icon="majesticons:plus-line"></span>
+                        </button>
+                    </div>
+                    <div class="d-flex flex-column gap-2 mt-4">
+                        <h3 class="fs-5 fw-bold">{{ "view.agent_create.add_social_media" | trans }}</h3>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="iconoir:instagram"></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="pajamas:twitter" ></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="gg:facebook" ></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="mdi:vimeo" ></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="mdi:youtube" ></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="uil:linkedin" ></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="mdi:spotify" ></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                        <label class="social-media-input">
+                            <span class="iconify fs-2" data-icon="jam:pinterest" ></span>
+                            <input type="text" placeholder="nomedeusuario">
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="d-flex flex-column-reverse flex-md-row mt-3 mt-md-4 gap-3 gap-md-5">
+            <section class="agent-personal-data">
+                <h3 class="fw-bold fs-4">{{ "view.agent_create.personal_data" | trans }}</h3>
+                <span class="fw-bold small">{{ "view.agent_create.personal_data_warning" | trans }}</span>
+
+                <div class="agent-input-form">
+                    <label for="social-name">{{ "view.agent_create.social_name" | trans}}</label>
+                    <input name="social_name" id="social-name" type="text" />
+                </div>
+
+                <div class="agent-input-form">
+                    <label for="full-name">{{ "full_name" | trans}}</label>
+                    <input id="full-name" name="full_name" type="text" />
+                </div>
+
+                <div class="agent-input-form">
+                    <label for="cpf">{{ "cpf" | trans}}</label>
+                    <input id="cpf" name="cpf" type="text" />
+                </div>
+
+                <div class="agent-input-form">
+                    <label for="mei">{{ "mei" | trans}}</label>
+                    <input id="mei" name="mei" type="text" />
+                </div>
+
+                <div class="agent-input-form">
+                    <label for="public-email">{{ "view.agent_create.public_email" | trans}}</label>
+                    <input id="public-email" name="public_email" type="text" />
+                </div>
+
+                <div class="d-flex flex-column flex-md-row gap-md-4">
+                    <div class="agent-input-form">
+                        <label for="private-phone1">{{ "view.agent_create.private_phone_1" | trans}}</label>
+                        <input id="private-phone1" name="private_phone1" type="text" />
+                    </div>
+
+                    <div class="agent-input-form">
+                        <label for="private-phone2">{{ "view.agent_create.private_phone_2" | trans}}</label>
+                        <input id="private-phone2" name="private_phone2" type="text" />
+                    </div>
+                </div>
+
+                <div class="agent-address">
+                    <h3 class="fw-bold">{{ "address" | trans}}</h3>
+                    <div class="d-flex flex-column gap-md-4 flex-md-row">
+                        <div class="agent-input-form agent-cep mt-2">
+                            <label for="postal-code">{{ "postal_code" | trans}}</label>
+                            <input id="postal-code" name="postal_code" type="text" />
+                        </div>
+
+                        <div class="agent-input-form mt-2">
+                            <label for="street">{{ "street" | trans}}</label>
+                            <input id="street" name="street" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="d-flex gap-2 gap-md-4">
+                        <div class="agent-input-form agent-house-number">
+                            <label for="number">{{ "number_address" | trans}}</label>
+                            <input id="number" name="number" type="text" />
+                        </div>
+
+                        <div class="agent-input-form neighborhood">
+                            <label for="neighborhood">{{ "neighborhood" | trans}}</label>
+                            <input id="neighborhood" name="neighborhood" type="text" />
+                        </div>
+                    </div>
+
+                    <div class="agent-input-form">
+                        <label for="complement-or-reference_point">{{ "view.agent_create.complement_or_reference_point" | trans}}</label>
+                        <input id="complement-or-reference_point" name="complement_or_reference_point" type="text" />
+                    </div>
+
+                    <div class="agent-public-location">
+                        <div class="d-flex align-items-center">
+                            <input id="public-location" type="checkbox" />
+                            <label class="fw-bold small" for="public-location">{{ "view.agent_create.public_location" | trans}}</label>
+                        </div>
+                        <p class="fw-bold small">{{ "view.agent_create.public_location_info" | trans}}</p>
+                    </div>
+                </div>
+            </section>
+
+
+
+            <aside class="agent-administration">
+                <div class="agent-expertise">
+                    <label for="administered_by" class="form-label fw-bold fs-5">{{ "view.agent_create.administered_by" | trans }}</label>
+                    <button type="button" class="d-flex align-items-center mb-3">
+                        {{ "view.agent_create.add_new" | trans}} <span class="iconify" data-icon="majesticons:plus-line"></span>
+                    </button>
+                </div>
+                <div>
+                    <h4 class="mb-2 fw-bold fs-5">{{ "view.agent_create.related_agents" | trans }}</h4>
+                    <span class="fw-bold small">{{ "view.agent_create.add_new_agent_group" | trans }}</span>
+                    <button class="agent-add-group mt-2 d-flex justify-content-center align-items-center">
+                        <span class="iconify fs-4" data-icon="ic:baseline-plus"></span>
+                        <span>{{ "view.agent_create.add_group" | trans }}</span>
+                    </button>
+                </div>
+                <div class="agent-expertise mt-3">
+                    <label for="tags" class="form-label fw-bold fs-5">{{ "tags" | trans }}</label>
+                    <button type="button" class="d-flex align-items-center mb-3">
+                        {{ "view.agent_create.add_new" | trans}} <span class="iconify" data-icon="majesticons:plus-line"></span>
+                    </button>
+                </div>
+            </aside>
+        </section>
+    </form>
+</section>
