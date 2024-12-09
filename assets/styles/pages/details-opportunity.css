@@ -1,0 +1,159 @@
+.details-header {
+    color: white;
+}
+
+.details-cover {
+    position: relative;
+    height: 256px;
+    background-color: #0a9396;
+    display: flex;
+    align-items: flex-start;
+}
+
+.details-cover-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+}
+
+.breadcrumb-overlay {
+    position: absolute;
+    top: 15px;
+    left: 20px;
+    z-index: 2;
+    display: flex;
+    justify-content: flex-start;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.details-breadcrumb {
+    display: flex;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 0.9rem;
+    font-weight: bold;
+    color: white;
+}
+
+.details-breadcrumb .breadcrumb-item + .breadcrumb-item::before {
+    content: '>';
+    margin: 0 0.5rem;
+    color: white;
+}
+
+.details-breadcrumb .breadcrumb-item a {
+    color: white;
+    text-decoration: none;
+}
+
+.details-breadcrumb .breadcrumb-item.active {
+    color: white;
+}
+
+.details-header-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-top: -20px;
+    margin-bottom: 20px;
+    z-index: 2;
+    position: relative;
+}
+
+.details-header-btn-share,
+.details-header-btn-message {
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+}
+
+.details-header-btn-share {
+    color: #005f73;
+    border: 2px solid #005f73;
+    background-color: white;
+}
+
+.details-header-btn-share:hover {
+    background-color: #005f73;
+    color: white;
+}
+
+.details-header-btn-message {
+    background-color: #ff6e54;
+    border: none;
+    color: white;
+}
+
+.details-header-btn-message:hover {
+    background-color: #d45087;
+}
+
+.details-header-content {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    margin-top: 20px;
+    flex-wrap: wrap;
+    z-index: 2;
+    position: relative;
+    text-align: center;
+}
+
+.details-header-icon {
+    flex: 0 0 120px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.details-header-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: white;
+    padding: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.details-header-info {
+    flex: 1;
+    color: black;
+}
+
+.details-header-title {
+    font-size: 2.5rem;
+    margin: 0 0 0.5rem;
+    font-weight: bold;
+    color: black;
+}
+
+.details-header-description {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #555;
+}
+
+@media (max-width: 768px) {
+    .details-header-actions {
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 0;
+    }
+
+    .details-header-content {
+        flex-direction: column;
+        text-align: center;
+        margin-top: 20px;
+    }
+}
