@@ -6,6 +6,7 @@ namespace App\Controller\Web;
 
 use App\Service\Interface\SpaceServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class SpaceWebController extends AbstractWebController
@@ -17,9 +18,11 @@ class SpaceWebController extends AbstractWebController
         $this->spaceService = $spaceService;
     }
 
-    public function list(): Response
+    public function list(Request $request): Response
     {
-        $spaces = $this->spaceService->list();
+        $filters = $request->query->all();
+
+        $spaces = $this->spaceService->list(params: $filters);
         $totalSpaces = count($spaces);
 
         $dashboard = [

@@ -1,0 +1,69 @@
+<form id="filter-sidebar" class="sidebar" method="GET" action="">
+    <div class="close-filter">
+        <span class="d-flex gap-3">
+          <i class="material-icons text-primary">filter_alt</i>
+          <span class="align-self-center fw-bold">Filtros</span>
+        </span>
+        <i id="close-filter" class="material-icons close-filter-btn">close</i>
+    </div>
+
+    <div class="filter-fields">
+        <div class="mb-2 d-flex align-items-center gap-2">
+            <input type="checkbox" id="official-spaces" name="official-spaces" value="official-spaces">
+            <label for="official-spaces" class="fw-bold">Espaços Oficiais</label>
+            <span class="iconify text-primary" data-icon="oui:check-in-circle-filled"></span>
+        </div>
+
+        <div class="form-group">
+            <label for="space-name" class="filter-label">Nome do espaço</label>
+            <input type="text" class="filter-form" id="space-name" name="name" placeholder="Digite o nome do espaço">
+        </div>
+
+        <div class="form-group">
+            <label for="type" class="filter-label">Tipo do espaço</label>
+            <select class="filter-form" id="type" name="type">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="accessibility" class="filter-label">Acessibilidade</label>
+            <select class="filter-form" id="accessibility" name="accessibility">
+                <option value="">Todos</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="status" class="filter-label">Áreas de atuação</label>
+            <select class="filter-form" id="status" name="status">
+                <option value="">Todas</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="seals" class="filter-label">Selos</label>
+            <select class="filter-form" id="seals" name="seals">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="state" class="filter-label">Estado</label>
+            <select class="filter-form" id="state" name="state">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="city" class="filter-label">Município</label>
+            <select class="filter-form" id="city" name="city">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+
+        <div class="d-flex flex-column gap-2">
+            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">Aplicar Filtros</button>
+            <a href="{{ path("web_space_list") }}" class="btn btn-outline-primary py-3 fw-bold">Limpar todos os filtros</a>
+        </div>
+    </div>
+</form>
