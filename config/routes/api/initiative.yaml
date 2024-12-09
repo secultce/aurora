@@ -22,3 +22,8 @@ update:
   path: /{id}
   controller: App\Controller\Api\InitiativeApiController::update
   methods: ['PATCH']
+
+update-image:
+  path: /{id}/images
+  controller: App\Controller\Api\InitiativeApiController::updateImage
+  methods: ['POST']

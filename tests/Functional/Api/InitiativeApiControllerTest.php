@@ -9,6 +9,7 @@ use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Initiative;
 use App\Tests\AbstractWebTestCase;
+use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\InitiativeTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -35,6 +36,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertJsonContains([
             'id' => InitiativeFixtures::INITIATIVE_ID_1,
             'name' => 'Vozes do Sertão',
+            'image' => null,
             'parent' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
@@ -61,6 +63,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => InitiativeFixtures::INITIATIVE_ID_1,
             'name' => 'Vozes do Sertão',
+            'image' => null,
             'parent' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_4,
@@ -140,6 +143,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'parent' => null,
             'space' => null,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -166,9 +170,11 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'parent' => [
                 'id' => $requestBody['parent'],
                 'name' => 'Raízes e Tradições',
+                'image' => $initiative->getParent()->getImage(),
                 'space' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
@@ -414,9 +420,11 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => InitiativeFixtures::INITIATIVE_ID_8,
             'name' => $requestBody['name'],
+            'image' => null,
             'parent' => [
                 'id' => InitiativeFixtures::INITIATIVE_ID_2,
                 'name' => 'Raízes e Tradições',
+                'image' => $initiative->getParent()->getImage(),
                 'space' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'extraFields' => [
@@ -519,6 +527,98 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+        ];
+    }
+
+    public function testCanUpdateImageWithMultipartFormData(): void
+    {
+        $file = ImageTestFixtures::getImageValid();
+
+        $url = sprintf('%s/%s/images', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_1);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        /* @var Initiative $initiative */
+        $initiative = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Initiative::class, InitiativeFixtures::INITIATIVE_ID_1);
+
+        $this->assertResponseBodySame([
+            'id' => InitiativeFixtures::INITIATIVE_ID_1,
+            'name' => 'Vozes do Sertão',
+            'image' => $initiative->getImage(),
+            'parent' => null,
+            'space' => [
+                'id' => SpaceFixtures::SPACE_ID_4,
+            ],
+            'createdBy' => [
+                'id' => AgentFixtures::AGENT_ID_1,
+            ],
+            'extraFields' => [
+                'culturalLanguage' => 'Musical',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-31',
+                ],
+                'shortDescription' => 'Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
+            'createdAt' => $initiative->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $initiative->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateImageCases')]
+    public function testValidationUpdateImage(array $requestBody, $file, array $expectedErrors): void
+    {
+        $url = sprintf('%s/%s/images', self::BASE_URL, InitiativeFixtures::INITIATIVE_ID_5);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateImageCases(): array
+    {
+        $requestBody = InitiativeTestFixtures::partial();
+        unset($requestBody['id']);
+
+        return [
+            'image not supported' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getGif(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getImageMoreThan2mb(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
         ];

@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Initiative;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -29,6 +31,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_1,
             'name' => 'Voz',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
@@ -47,6 +50,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_2,
             'name' => 'Raízes e Tradições',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
@@ -65,6 +69,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_3,
             'name' => 'Ritmos do Mundo',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
@@ -83,6 +88,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_4,
             'name' => 'AxeZumbi',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
@@ -101,6 +107,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_5,
             'name' => 'Repente e Viola',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
@@ -119,6 +126,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_6,
             'name' => 'Pé de Serra Cultural',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
@@ -137,6 +145,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_7,
             'name' => 'Musicalizando',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
@@ -155,6 +164,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_8,
             'name' => 'Baião de Dois',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
@@ -173,6 +183,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_9,
             'name' => 'Retalhos do Nordeste',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::INITIATIVE_ID_8,
             'space' => SpaceFixtures::SPACE_ID_6,
@@ -191,6 +202,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_10,
             'name' => 'Arte da Caatinga',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => self::INITIATIVE_ID_9,
             'space' => SpaceFixtures::SPACE_ID_3,
@@ -212,6 +224,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         [
             'id' => self::INITIATIVE_ID_1,
             'name' => 'Vozes do Sertão',
+            'image' => null,
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
@@ -233,6 +246,8 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
         protected EntityManagerInterface $entityManager,
         protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
+        private readonly FileServiceInterface $fileService,
+        private readonly ParameterBagInterface $parameterBag,
     ) {
         parent::__construct($entityManager, $tokenStorage);
     }
@@ -255,7 +270,14 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
 
     private function createInitiatives(ObjectManager $manager): void
     {
+        $counter = 0;
+
         foreach (self::INITIATIVES as $initiativeData) {
+            if (5 > $counter) {
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.initiative.profile'), ImageTestFixtures::getInitiativeImage());
+                $initiativeData['image'] = $file;
+            }
+
             $initiative = $this->mountInitiative($initiativeData);
 
             $this->setReference(sprintf('%s-%s', self::INITIATIVE_ID_PREFIX, $initiativeData['id']), $initiative);
@@ -263,6 +285,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
             $this->manualLoginByAgent($initiativeData['createdBy']);
 
             $manager->persist($initiative);
+            $counter++;
         }
 
         $manager->flush();
