@@ -1,0 +1,56 @@
+<form id="filter-sidebar" class="sidebar" method="GET" action="">
+    <div class="close-filter">
+        <span class="d-flex gap-3">
+          <i class="material-icons text-primary">filter_alt</i>
+          <span class="align-self-center fw-bold">Filtros</span>
+        </span>
+        <i id="close-filter" class="material-icons close-filter-btn">close</i>
+    </div>
+
+    <div class="filter-fields">
+
+        <div class="form-group">
+            <label for="opportunity-name" class="filter-label">Nome da oportunidade</label>
+            <input type="text" class="filter-form" id="opportunity-name" name="name" placeholder="Digite o nome da oportunidade">
+        </div>
+
+        <div class="form-group">
+            <label for="type" class="filter-label">Tipo da oportunidade</label>
+            <select class="filter-form" id="type" name="type">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+
+        <fieldset class="d-flex flex-column mb-3">
+            <legend class="fs-6 fw-bold">Status:</legend>
+            <label>
+                <input type="checkbox" name="status" value="open">
+                Inscrições abertas
+            </label>
+            <label>
+                <input type="checkbox" name="status" value="closed">
+                Inscrições encerradas
+            </label>
+            <label>
+                <input type="checkbox" name="status" value="future">
+                Inscrições futuras
+            </label>
+            <label class="fw-bold">
+                <input type="checkbox" name="status" value="oficials">
+                Editais oficiais
+            </label>
+        </fieldset>
+
+        <div class="form-group">
+            <label for="area" class="filter-label">Área de interesse</label>
+            <select class="filter-form" id="area" name="area">
+                <option value="">Selecione</option>
+            </select>
+        </div>
+
+        <div class="d-flex flex-column gap-2">
+            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">Aplicar Filtros</button>
+            <a href="{{ path("web_opportunity_list") }}" class="btn btn-outline-primary py-3 fw-bold">Limpar todos os filtros</a>
+        </div>
+    </div>
+</form>

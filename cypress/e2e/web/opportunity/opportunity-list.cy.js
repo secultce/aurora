@@ -38,7 +38,7 @@ describe('Página de listar Oportunidades', () => {
     });
 
     it('Garante que os cards de oportunidades estão visíveis', () => {
-        cy.get('.align-items-end > .fw-bold').contains('182 Oportunidades Encontradas').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains('10 Oportunidades Encontradas').should('be.visible');
         cy.get('.text-nowrap').contains('Ordenar por').should('be.visible');
         cy.get('#sort-options').select('recent').should('have.value', 'recent');
         cy.get('#sort-options').select('old').should('have.value', 'old');
@@ -54,5 +54,24 @@ describe('Página de listar Oportunidades', () => {
         cy.get(':nth-child(2) > .opportunity-card-header > :nth-child(6) > .text-orange').contains('Pesca, Antropologia, Ciencias Ocultas').should('be.visible');
         cy.get(':nth-child(3) > .opportunity-card-header > .mt-2 > .text-orange').contains('Pesca, Antropologia, Ciencias Oculta').should('be.visible');
         cy.get(':nth-child(2) > .justify-content-between > :nth-child(2) > .btn').contains('Acessar').should('be.visible');
+    });
+
+    it('Garante que o filtro funciona', () => {
+        cy.get('#open-filter').click();
+        cy.get('#opportunity-name').type('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
+        cy.get('#apply-filters').click();
+        cy.get('.align-items-end > .fw-bold').contains('1 Oportunidades Encontradas').should('be.visible');
+        cy.get(':nth-child(2) > .opportunity-card-header > .mt-1 > .fw-bold').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
+    });
+
+    it('Garante que o botão de limpar filtros funciona', () => {
+        cy.get('.align-items-end > .fw-bold').contains('10 Oportunidades Encontradas').should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('#opportunity-name').type('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
+        cy.get('#apply-filters').click();
+        cy.get('.align-items-end > .fw-bold').contains('1 Oportunidades Encontradas').should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('.btn-outline-primary').click();
+        cy.get('.align-items-end > .fw-bold').contains('10 Oportunidades Encontradas').should('be.visible');
     });
 })
