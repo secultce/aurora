@@ -27,6 +27,10 @@ class Initiative extends AbstractEntity
     #[Groups('initiative.get')]
     private ?string $name = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Groups(['initiative.get'])]
+    private ?string $image = null;
+
     #[ORM\ManyToOne(targetEntity: self::class)]
     #[ORM\JoinColumn(name: 'parent_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[Groups('initiative.get')]
@@ -82,6 +86,16 @@ class Initiative extends AbstractEntity
     public function setName(string $name): void
     {
         $this->name = $name;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 
     public function getParent(): ?Initiative

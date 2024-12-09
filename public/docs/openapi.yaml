@@ -60,6 +60,8 @@ paths:
     $ref: './components/paths/initiative/Collection.yaml'
   /initiatives/{id}:
     $ref: './components/paths/initiative/Item.yaml'
+  /initiatives/{id}/images:
+    $ref: './components/paths/initiative/UpdateImage.yaml'
   /login:
     $ref: './components/paths/login/Item.yaml'
   /logout:

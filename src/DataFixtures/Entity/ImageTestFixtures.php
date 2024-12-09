@@ -14,14 +14,19 @@ final class ImageTestFixtures
         return self::getUploadedFile('agent.png');
     }
 
-    public static function getUserImage(): UploadedFile
+    public static function getInitiativeImage(): UploadedFile
     {
-        return self::getUploadedFile('user.png');
+        return self::getUploadedFile('initiative.jpg');
     }
 
     public static function getSpaceImage(): UploadedFile
     {
         return self::getUploadedFile('space.png');
+    }
+
+    public static function getUserImage(): UploadedFile
+    {
+        return self::getUploadedFile('user.png');
     }
 
     private static function getUploadedFile(string $image): UploadedFile

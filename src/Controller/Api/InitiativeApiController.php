@@ -19,18 +19,18 @@ class InitiativeApiController extends AbstractApiController
     ) {
     }
 
+    public function create(Request $request): JsonResponse
+    {
+        $initiative = $this->service->create($request->toArray());
+
+        return $this->json($initiative, status: Response::HTTP_CREATED, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
+    }
+
     public function get(?Uuid $id): JsonResponse
     {
         $initiative = $this->service->get($id);
 
         return $this->json($initiative, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
-    }
-
-    public function remove(?Uuid $id): JsonResponse
-    {
-        $this->service->remove($id);
-
-        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
     }
 
     public function list(): JsonResponse
@@ -43,11 +43,11 @@ class InitiativeApiController extends AbstractApiController
         ]);
     }
 
-    public function create(Request $request): JsonResponse
+    public function remove(?Uuid $id): JsonResponse
     {
-        $initiative = $this->service->create($request->toArray());
+        $this->service->remove($id);
 
-        return $this->json($initiative, status: Response::HTTP_CREATED, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
+        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
     }
 
     public function update(?Uuid $id, Request $request): JsonResponse
@@ -55,5 +55,14 @@ class InitiativeApiController extends AbstractApiController
         $initiative = $this->service->update($id, $request->toArray());
 
         return $this->json($initiative, Response::HTTP_OK, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
+    }
+
+    public function updateImage(Uuid $id, Request $request): JsonResponse
+    {
+        $image = $request->files->get('image');
+
+        $initiative = $this->service->updateImage($id, $image);
+
+        return $this->json($initiative, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
     }
 }

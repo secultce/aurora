@@ -8,6 +8,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome da iniciativa"
+  image:
+    type: string
+    format: uri
+    description: "Imagem de perfil da iniciativa"
   parent:
     description: "Iniciativa pai"
     type: object

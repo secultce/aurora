@@ -14,21 +14,29 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
-readonly class InitiativeDenormalize implements DenormalizerInterface
+readonly class InitiativeDenormalizer implements DenormalizerInterface
 {
     public function __construct(
         private EntityManagerInterface $entityManager,
         #[Autowire(service: 'serializer.normalizer.object')]
         private DenormalizerInterface $denormalizer,
-        private readonly FileServiceInterface $fileService,
-        private readonly ParameterBagInterface $parameterBag,
+        private FileServiceInterface $fileService,
+        private ParameterBagInterface $parameterBag,
     ) {
     }
 
     public function denormalize(mixed $data, string $type, ?string $format = null, array $context = []): mixed
     {
+        if (false === is_array($data)) {
+            return $this->denormalizer->denormalize(['id' => $data], $type, $format, $context);
+        }
+
         if (Initiative::class !== $type) {
             return $data;
+        }
+
+        if (true === array_key_exists('image', $data)) {
+            $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
         if (false === empty($data['extraFields']['coverImage'])) {
@@ -53,6 +61,17 @@ readonly class InitiativeDenormalize implements DenormalizerInterface
         }
 
         return $initiative;
+    }
+
+    private function uploadImage(array &$data, ?Initiative $initiativeFromDb = null): void
+    {
+        if (false === is_null($initiativeFromDb) && true === is_string($initiativeFromDb->getImage())) {
+            $this->fileService->deleteFileByUrl($initiativeFromDb->getImage());
+        }
+
+        if ($data['image'] instanceof File) {
+            $data['image'] = $this->fileService->getFileUrl($data['image']->getPathname());
+        }
     }
 
     private function uploadImageExtraFields(array &$extraFields, ?Initiative $initiativeFromDb = null): void

@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Iniciativas
+  summary: Atualiza a imagem de uma única iniciativa
+  description: Atualiza a imagem de perfil de uma iniciativa. O upload deve ser feito utilizando o formato `multipart/form-data`. Apenas arquivos nos formatos `image/png`, `image/jpg` e `image/jpeg` são permitidos, com tamanho máximo de 2 MB.
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            image:
+              type: string
+              format: binary
+              description: Arquivo da imagem da iniciativa
+          required:
+            - image
+  responses:
+    '200':
+      description: Imagem da iniciativa atualizada com sucesso
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/initiative/InitiativePatchItemResponse.yaml'
+    '404':
+      description: Iniciativa não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
