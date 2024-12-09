@@ -411,6 +411,7 @@ export declare const VIEW_FAQ_TITLE: Message<{ 'messages': { parameters: NoParam
 export declare const VIEW_FAQ_SEND: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_FAQ_SUBTITLE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_FAQ_SUPPORT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_FAQ_MESSAGE_DELETED_FAQ: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_FAQ_EDIT_DESCRIPTION_FAQ: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_FAQ_EDIT_FOUND_FAQ: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_CREATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
