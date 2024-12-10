@@ -24,6 +24,7 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
     public const string PHASE_ID_8 = '7931cdbe-5ef4-4124-af20-e84bebe51956';
     public const string PHASE_ID_9 = '46a4d60b-6cc0-41f0-befe-edc23c569af1';
     public const string PHASE_ID_10 = '83fcead2-d55a-4484-87a2-00ef8736555f';
+    public const string PHASE_ID_11 = '10d34ecd-4860-4b8c-9607-e4590dc31f7a';
 
     public const array PHASES = [
         [
@@ -173,6 +174,21 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_5,
             'extraFields' => [],
             'createdAt' => '2024-08-14T10:00:00+00:00',
+            'updatedAt' => null,
+            'deletedAt' => null,
+        ],
+        [
+            'id' => self::PHASE_ID_11,
+            'name' => 'Fase de submissão',
+            'description' => 'Fase de submissão de inscrição para Seleção de Artistas de Rua - Circuito Cultural Nordestino',
+            'startDate' => '2024-05-01',
+            'endDate' => '2024-05-05',
+            'status' => false,
+            'sequence' => 1,
+            'createdBy' => AgentFixtures::AGENT_ID_5,
+            'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_10,
+            'extraFields' => [],
+            'createdAt' => '2024-05-01T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
         ],

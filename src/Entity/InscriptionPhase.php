@@ -5,7 +5,7 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Helper\DateFormatHelper;
-use App\Repository\InscriptionOpportunityRepository;
+use App\Repository\InscriptionPhaseRepository;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
@@ -14,7 +14,7 @@ use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity(repositoryClass: InscriptionOpportunityRepository::class)]
+#[ORM\Entity(repositoryClass: InscriptionPhaseRepository::class)]
 class InscriptionPhase
 {
     #[ORM\Id]
@@ -128,7 +128,7 @@ class InscriptionPhase
         return [
             'id' => $this->id?->toRfc4122(),
             'agent' => $this->agent->getId(),
-            'opportunity' => $this->getOpportunity()->getId(),
+            'phase' => $this->getPhase()->getId(),
             'status' => $this->status,
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
