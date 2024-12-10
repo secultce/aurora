@@ -31,6 +31,7 @@ areas_of_interest: Áreas de Interés
 analysis: Periodo de análisis
 auditory: Auditiva
 asian: Amarillo
+apply_filter: Aplicar filtros
 
 back: Volver
 birth_date: Fecha de Nacimiento
@@ -40,8 +41,11 @@ calendar: Calendario
 cancel: Cancelar
 cep: CEP
 cisgender: Cisgénero
+city: ciudad
 check: Comprobar
 claim-ownership: Reclamar Propiedad
+clean_filter: Limpiar todos los filtros
+close_registration: Inscripciones cerradas
 click_here: Haz clic aquí
 connections: Conexiones
 confirm: Confirmar
@@ -49,6 +53,7 @@ confirm_password: Confirmar Contraseña
 continue: Continuar
 contribute: Contribuir
 control_panel: Panel de control
+completed: Finalizado
 cover_image: Imagen de portada
 cpf: CPF
 cnpj: CNPJ (MEI)
@@ -75,6 +80,9 @@ edit_faq: Editar preguntas frecuentes
 email: Correo Electrónico
 entity_banner: Banner de la Entidad
 entity: Entidad
+enter_opportunity: Ingrese el nombre de la oportunidad
+enter_initiative: Digite el nombre de la iniciativa
+enter_space: Introduce el nombre del espacio
 events: Eventos
 everybody: Todos
 elderly_person: Persona mayor
@@ -82,11 +90,13 @@ explore_repository: Explorar Repositorio
 
 faq: FaQ
 file: Adjuntar archivo
+filter: Filtros
 first_name: Nombre
 last_name: Apellido
 feminine: Femenino
 functions: Gerenciar funciones
 fundamental: Primaria
+future_registration: Inscripciones futuras
 full_name: Nombre Completo
 
 gallery: Galería
@@ -149,6 +159,10 @@ my_subscriptions: Mis Suscripciones
 my_reviews: Mis Evaluaciones
 
 name: Nombre
+name_space: Nombre del espacio
+name_event: Nombre del evento
+name_opportunity: Nombre de la oportunidad
+name_initiative: Nombre de la iniciativa
 neighborhood: Barrio
 notifications: Notificaciones
 no: No
@@ -159,6 +173,9 @@ not_sent: No enviado
 notice: AVISO PUBLICO
 number_address: Número
 
+official_events: Eventos oficiales
+official_spaces: Espacios Oficiales
+official_registration: Ediciones oficiales
 old: viejo
 oldest: Más Antiguo
 order: Ordenar por
@@ -214,6 +231,10 @@ transvestite: Travesti
 theater: Teatro
 type: Tipo
 type_here: Escriba aquí
+type_agent: tipo de agente
+type_opportunity: tipo de oportunidad
+type_initiative: Tipo de iniciativa
+type_space: tipo de espacio
 to: hasta
 
 user: Usuario
@@ -250,6 +271,7 @@ short_presentation: Presentación Corta
 spaces: Espacios
 start_now: Comenzar Ahora
 state: Estado
+status: Status
 suggestions: Sugerencias
 subsites: Subsitios
 street: Vía Pública

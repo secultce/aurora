@@ -2,7 +2,7 @@
     <div class="close-filter">
         <span class="d-flex gap-3">
           <i class="material-icons text-primary">filter_alt</i>
-          <span class="align-self-center fw-bold">Filtros</span>
+          <span class="align-self-center fw-bold">{{ 'filter' | trans }}</span>
         </span>
         <i id="close-filter" class="material-icons close-filter-btn">close</i>
     </div>
@@ -10,51 +10,51 @@
     <div class="filter-fields">
 
         <div class="form-group">
-            <label for="initiative-name" class="filter-label">Nome da iniciativa</label>
-            <input type="text" class="filter-form" id="initiative-name" name="name" placeholder="Digite o nome da iniciativa">
+            <label for="initiative-name" class="filter-label">{{ 'name_initiative' | trans }}</label>
+            <input type="text" class="filter-form" id="initiative-name" name="name" placeholder={{ 'enter_initiative' | trans }}>
         </div>
 
         <div class="form-group">
-            <label for="type" class="filter-label">Tipo da iniciativa</label>
+            <label for="type" class="filter-label">{{ 'type_initiative' | trans }}</label>
             <select class="filter-form" id="type" name="type">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="status" class="filter-label">Status</label>
+            <label for="status" class="filter-label">{{ 'status' | trans }}</label>
             <select class="filter-form" id="status" name="status">
-                <option value="">Selecione</option>
-                <option value="todos">Todos</option>
-                <option value="finalizados">Finalizados</option>
-                <option value="em-andamento">Em andamento</option>
+                <option value="">{{ 'select' | trans }}</option>
+                <option value="todos">{{ 'everybody' | trans }}</option>
+                <option value="finalizados">{{ 'completed' | trans }}</option>
+                <option value="em-andamento">{{ 'in_progress' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="seals" class="filter-label">Selos</label>
+            <label for="seals" class="filter-label">{{ 'seals' | trans }}</label>
             <select class="filter-form" id="seals" name="seals">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="state" class="filter-label">Estado</label>
+            <label for="state" class="filter-label">{{ 'state' | trans }}</label>
             <select class="filter-form" id="state" name="state">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="city" class="filter-label">Município</label>
+            <label for="city" class="filter-label">{{ 'city' | trans }}</label>
             <select class="filter-form" id="city" name="city">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="d-flex flex-column gap-2">
-            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">Aplicar Filtros</button>
-            <a href="{{ path("web_initiative_list") }}" class="btn btn-outline-primary py-3 fw-bold">Limpar todos os filtros</a>
+            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">{{ 'apply_filter' | trans }}</button>
+            <a href="{{ path("web_initiative_list") }}" class="btn btn-outline-primary py-3 fw-bold">{{ 'clean_filter' | trans }}</a>
         </div>
     </div>
 </form>

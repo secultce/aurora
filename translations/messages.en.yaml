@@ -31,6 +31,7 @@ areas_of_interest: Areas of Interest
 analysis: Analysis Period
 auditory: Auditory
 asian: Yellow
+apply_filter: Apply Filters
 
 back: Back
 birth_date: Birth Date
@@ -40,8 +41,11 @@ calendar: Calendar
 cancel: Cancel
 cep: CEP
 cisgender: Cisgender
+city: City
 check: Check
 claim-ownership: Claim Ownership
+clean_filter: Clean Filter
+close_registration: Registration closed
 click_here: Click Here
 connections: Connections
 confirm: Confirm
@@ -49,6 +53,7 @@ confirm_password: Confirm Password
 continue: Continue
 contribute: Contribute
 control_panel: Control Panel
+completed: Completed
 cover_image: Cover image
 cpf: CPF
 cnpj: CNPJ (MEI)
@@ -75,6 +80,9 @@ edit_faq: Edit FAQ
 email: Email
 entity_banner: Entity Banner
 entity: Entity
+enter_opportunity: Enter the opportunity name
+enter_initiative: Enter the name of the initiative
+enter_space: Enter the name of the space
 events: Events
 everybody: Everybody
 elderly_person: Elderly Person
@@ -82,11 +90,13 @@ explore_repository: Explore Repository
 
 faq: FaQ
 file: Attach file
+filter: Filters
 first_name: First Name
 last_name: Last Name
 feminine: Feminine
 functions: Manage functions
 fundamental: Elementary
+future_registration: Future registrations
 full_name: Full Name
 
 gallery: Gallery
@@ -149,6 +159,10 @@ my_subscriptions: My Subscriptions
 my_reviews: My Reviews
 
 name: Name
+name_space: Space name
+name_event: Event Name
+name_opportunity: Opportunity Name
+name_initiative: Nome gives initiative
 neighborhood: Neighborhood
 notifications: Notifications
 no: No
@@ -159,6 +173,9 @@ not_sent: Not sent
 notice: PUBLIC NOTICE
 number_address: Number
 
+official_events: Official Events
+official_spaces: Official Spaces
+official_registration: You edit official
 old: old
 oldest: Oldest
 order: Sort by
@@ -214,6 +231,10 @@ title: Title
 theater: Theater
 type: Type
 type_here: Type here
+type_agent: Agent type
+type_opportunity: Opportunity Type
+type_initiative: Type of initiative
+type_space: Space type
 to: to
 
 user: User
@@ -250,6 +271,7 @@ short_presentation: Short Presentation
 spaces: Spaces
 start_now: Start Now
 state: State
+status: Status
 suggestions: Suggestions
 subsites: Subsites
 street: Street
