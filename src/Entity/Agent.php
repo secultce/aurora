@@ -12,6 +12,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\PersistentCollection;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Serializer\Attribute\MaxDepth;
@@ -68,6 +69,10 @@ class Agent extends AbstractEntity
 
     #[ORM\OneToMany(targetEntity: Seal::class, mappedBy: 'createdBy')]
     private Collection $seals;
+
+    #[ORM\OneToMany(targetEntity: AgentAddress::class, mappedBy: 'owner', orphanRemoval: true)]
+    #[Groups(['agent.get.item'])]
+    private ?Collection $addresses = null;
 
     #[ORM\Column]
     #[Groups(['agent.get'])]
@@ -212,6 +217,26 @@ class Agent extends AbstractEntity
     public function addSeal(Seal $seal): void
     {
         $this->seals->add($seal);
+    }
+
+    public function getAddresses(): ?Collection
+    {
+        return $this->addresses;
+    }
+
+    public function setAddresses(Collection $addresses): void
+    {
+        $this->addresses = $addresses;
+    }
+
+    public function addAddress(AgentAddress $address): void
+    {
+        $this->addresses->add($address);
+    }
+
+    public function removeAddress(AgentAddress $address): void
+    {
+        $this->addresses->removeElement($address);
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
