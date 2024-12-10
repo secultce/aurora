@@ -33,13 +33,6 @@ class OpportunityApiController extends AbstractApiController
         return $this->json($opportunity, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
     }
 
-    public function remove(?Uuid $id): JsonResponse
-    {
-        $this->service->remove($id);
-
-        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
-    }
-
     public function list(): JsonResponse
     {
         return $this->json($this->service->list(), context: [
@@ -50,9 +43,25 @@ class OpportunityApiController extends AbstractApiController
         ]);
     }
 
+    public function remove(?Uuid $id): JsonResponse
+    {
+        $this->service->remove($id);
+
+        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
     public function update(?Uuid $id, Request $request): JsonResponse
     {
         $opportunity = $this->service->update($id, $request->toArray());
+
+        return $this->json($opportunity, Response::HTTP_OK, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
+    }
+
+    public function updateImage(Uuid $id, Request $request): JsonResponse
+    {
+        $image = $request->files->get('image');
+
+        $opportunity = $this->service->updateImage($id, $image);
 
         return $this->json($opportunity, Response::HTTP_OK, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
     }

@@ -9,9 +9,14 @@ use App\Entity\Opportunity;
 use App\Exception\Opportunity\OpportunityResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\OpportunityRepositoryInterface;
+use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\OpportunityServiceInterface;
 use DateTime;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
@@ -19,27 +24,61 @@ use Symfony\Component\Validator\Validator\ValidatorInterface;
 readonly class OpportunityService extends AbstractEntityService implements OpportunityServiceInterface
 {
     public function __construct(
-        private Security $security,
+        private FileServiceInterface $fileService,
+        private ParameterBagInterface $parameterBag,
         private OpportunityRepositoryInterface $repository,
+        private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($security);
+        parent::__construct($this->security);
+    }
+
+    public function count(): int
+    {
+        return $this->repository->count(
+            $this->getDefaultParams()
+        );
     }
 
     public function create(array $opportunity): Opportunity
     {
-        $opportunityDto = $this->serializer->denormalize($opportunity, OpportunityDto::class);
-
-        $violations = $this->validator->validate($opportunityDto, groups: OpportunityDto::CREATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $opportunity = self::validateInput($opportunity, OpportunityDto::CREATE);
 
         $opportunityObj = $this->serializer->denormalize($opportunity, Opportunity::class);
 
         return $this->repository->save($opportunityObj);
+    }
+
+    private function denormalizeDto(array $data): OpportunityDto
+    {
+        return $this->serializer->denormalize($data, OpportunityDto::class, context: [
+            AbstractNormalizer::CALLBACKS => [
+                'image' => function () use ($data): ?File {
+                    if (false === isset($data['image'])) {
+                        return null;
+                    }
+
+                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.opportunity.profile'), $data['image']);
+                },
+            ],
+        ]);
+    }
+
+    public function findBy(array $params = [], int $limit = 50): array
+    {
+        return $this->repository->findBy(
+            [...$params, ...$this->getUserParams()],
+            ['createdAt' => 'DESC'],
+            $limit
+        );
+    }
+
+    public function findOneBy(array $params): Opportunity
+    {
+        return $this->repository->findOneBy(
+            [...$params, ...$this->getDefaultParams()]
+        );
     }
 
     public function get(Uuid $id): Opportunity
@@ -56,33 +95,10 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
         return $opportunity;
     }
 
-    public function findOneBy(array $params): Opportunity
-    {
-        return $this->repository->findOneBy(
-            [...$params, ...$this->getDefaultParams()]
-        );
-    }
-
     public function list(int $limit = 50, array $params = []): array
     {
         return $this->repository->findBy(
             [...$params, ...$this->getDefaultParams()],
-            ['createdAt' => 'DESC'],
-            $limit
-        );
-    }
-
-    public function count(): int
-    {
-        return $this->repository->count(
-            $this->getDefaultParams()
-        );
-    }
-
-    public function findBy(array $params = [], int $limit = 50): array
-    {
-        return $this->repository->findBy(
-            [...$params, ...$this->getUserParams()],
             ['createdAt' => 'DESC'],
             $limit
         );
@@ -107,20 +123,58 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
     {
         $opportunityFromDB = $this->get($identifier);
 
-        $opportunityDto = $this->serializer->denormalize($opportunity, OpportunityDto::class);
+        $opportunityDto = self::validateInput($opportunity, OpportunityDto::UPDATE);
 
-        $violations = $this->validator->validate($opportunityDto, groups: OpportunityDto::UPDATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        $opportunityObj = $this->serializer->denormalize($opportunity, Opportunity::class, context: [
+        $opportunityObj = $this->serializer->denormalize($opportunityDto, Opportunity::class, context: [
             'object_to_populate' => $opportunityFromDB,
         ]);
 
         $opportunityObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($opportunityObj);
+    }
+
+    public function updateImage(Uuid $id, UploadedFile $uploadedFile): Opportunity
+    {
+        $opportunity = $this->get($id);
+
+        $opportunityDto = new OpportunityDto();
+        $opportunityDto->image = $uploadedFile;
+
+        $violations = $this->validator->validate($opportunityDto, groups: [OpportunityDto::UPDATE]);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        if ($opportunity->getImage()) {
+            $this->fileService->deleteFileByUrl($opportunity->getImage());
+        }
+
+        $uploadedImage = $this->fileService->uploadImage(
+            $this->parameterBag->get('app.dir.opportunity.profile'),
+            $uploadedFile
+        );
+
+        $opportunity->setImage($this->fileService->urlOfImage($uploadedImage->getFilename()));
+
+        $opportunity->setUpdatedAt(new DateTime());
+
+        $this->repository->save($opportunity);
+
+        return $opportunity;
+    }
+
+    private function validateInput(array $opportunity, string $group): array
+    {
+        $opportunityDto = self::denormalizeDto($opportunity);
+
+        $violations = $this->validator->validate($opportunityDto, groups: $group);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        return $opportunity;
     }
 }

@@ -9,8 +9,10 @@ use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Opportunity;
 use App\Entity\Space;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 readonly class OpportunityDenormalizer implements DenormalizerInterface
@@ -19,6 +21,7 @@ readonly class OpportunityDenormalizer implements DenormalizerInterface
         private EntityManagerInterface $entityManager,
         #[Autowire(service: 'serializer.normalizer.object')]
         private DenormalizerInterface $denormalizer,
+        private FileServiceInterface $fileService,
     ) {
     }
 
@@ -30,6 +33,10 @@ readonly class OpportunityDenormalizer implements DenormalizerInterface
 
         if (Opportunity::class !== $type) {
             return $data;
+        }
+
+        if (isset($data['image'])) {
+            $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
         /** @var Opportunity $opportunity */
@@ -61,6 +68,17 @@ readonly class OpportunityDenormalizer implements DenormalizerInterface
         }
 
         return $opportunity;
+    }
+
+    private function uploadImage(array &$data, ?Opportunity $opportunityFromDb = null): void
+    {
+        if (false === is_null($opportunityFromDb) && true === is_string($opportunityFromDb->getImage())) {
+            $this->fileService->deleteFileByUrl($opportunityFromDb->getImage());
+        }
+
+        if ($data['image'] instanceof File) {
+            $data['image'] = $this->fileService->getFileUrl($data['image']->getPathname());
+        }
     }
 
     private function filterData(array $data): array

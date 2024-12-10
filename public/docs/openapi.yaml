@@ -74,6 +74,8 @@ paths:
     $ref: './components/paths/inscription-opportunity/Collection.yaml'
   /opportunities/{opportunity}/inscriptions/{id}:
     $ref: './components/paths/inscription-opportunity/Item.yaml'
+  /opportunities/{id}/images:
+    $ref: './components/paths/opportunity/UpdateImage.yaml'
   /organizations:
     $ref: './components/paths/organization/Collection.yaml'
   /organizations/{id}:

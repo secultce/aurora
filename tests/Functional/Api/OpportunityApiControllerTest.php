@@ -12,6 +12,7 @@ use App\DataFixtures\Entity\PhaseFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Opportunity;
 use App\Tests\AbstractWebTestCase;
+use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\OpportunityTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -34,12 +35,13 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
-        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Opportunity::class, $requestBody['id']);
 
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'parent' => null,
             'space' => null,
             'initiative' => null,
@@ -47,7 +49,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'extraFields' => null,
             'phases' => [],
-            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -63,15 +65,17 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
-        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
             ->find(Opportunity::class, $requestBody['id']);
 
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'parent' => [
                 'id' => OpportunityFixtures::OPPORTUNITY_ID_1,
                 'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+                'image' => $opportunity->getParent()->getImage(),
                 'parent' => null,
                 'space' => ['id' => SpaceFixtures::SPACE_ID_1],
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
@@ -134,7 +138,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 ],
             ],
             'phases' => [],
-            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -241,15 +245,19 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCount(count(OpportunityFixtures::OPPORTUNITIES), json_decode($response));
 
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Opportunity::class, OpportunityFixtures::OPPORTUNITY_ID_10);
+
         $this->assertJsonContains([
             'id' => OpportunityFixtures::OPPORTUNITY_ID_10,
             'name' => 'Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino',
+            'image' => null,
             'parent' => null,
             'space' => ['id' => SpaceFixtures::SPACE_ID_10],
             'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_10],
             'event' => ['id' => EventFixtures::EVENT_ID_10],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_10],
-            'createdAt' => '2024-09-15T19:00:00+00:00',
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -265,9 +273,14 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Opportunity::class, OpportunityFixtures::OPPORTUNITY_ID_3);
+
         $this->assertResponseBodySame([
             'id' => OpportunityFixtures::OPPORTUNITY_ID_3,
             'name' => 'Credenciamento de Quadrilhas Juninas - São João do Nordeste',
+            'image' => $opportunity->getImage(),
             'parent' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_3,
@@ -308,7 +321,7 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                     'name' => 'Fase de documentação',
                 ],
             ],
-            'createdAt' => '2024-09-08T12:00:00+00:00',
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -374,9 +387,11 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => OpportunityFixtures::OPPORTUNITY_ID_4,
             'name' => $requestBody['name'],
+            'image' => $opportunity->getImage(),
             'parent' => [
                 'id' => OpportunityFixtures::OPPORTUNITY_ID_1,
                 'name' => 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina',
+                'image' => $opportunity->getParent()->getImage(),
                 'parent' => null,
                 'space' => ['id' => SpaceFixtures::SPACE_ID_1],
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
@@ -525,6 +540,98 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+        ];
+    }
+
+    public function testCanUpdateImageWithMultipartFormData(): void
+    {
+        $file = ImageTestFixtures::getImageValid();
+
+        $url = sprintf('%s/%s/images', self::BASE_URL, OpportunityFixtures::OPPORTUNITY_ID_9);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $opportunity = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Opportunity::class, OpportunityFixtures::OPPORTUNITY_ID_9);
+
+        $this->assertResponseBodySame([
+            'id' => OpportunityFixtures::OPPORTUNITY_ID_9,
+            'name' => 'Chamada para Oficinas de Teatro de Rua - Encontro de Artes Cênicas Nordestinas',
+            'image' => $opportunity->getImage(),
+            'parent' => null,
+            'space' => ['id' => SpaceFixtures::SPACE_ID_9],
+            'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_9],
+            'event' => ['id' => EventFixtures::EVENT_ID_9],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_9],
+            'extraFields' => [
+                'type' => 'Teatro',
+                'period' => [
+                    'startDate' => '2024-08-01',
+                    'endDate' => '2024-08-15',
+                ],
+                'description' => 'O Encontro de Artes Cênicas Nordestinas reúne artistas de teatro de rua para oficinas, apresentações e debates sobre a arte cênica.',
+                'areasOfActivity' => ['Teatro', 'Cultura popular'],
+                'tags' => ['Teatro', 'Artes cênicas', 'Nordeste'],
+            ],
+            'phases' => [],
+            'createdAt' => $opportunity->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $opportunity->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateImageCases')]
+    public function testValidationUpdateImage(array $requestBody, $file, array $expectedErrors): void
+    {
+        $url = sprintf('%s/%s/images', self::BASE_URL, OpportunityFixtures::OPPORTUNITY_ID_3);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateImageCases(): array
+    {
+        $requestBody = OpportunityTestFixtures::partial();
+        unset($requestBody['id']);
+
+        return [
+            'image not supported' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getGif(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getImageMoreThan2mb(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
         ];

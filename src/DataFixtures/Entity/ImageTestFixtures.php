@@ -19,6 +19,11 @@ final class ImageTestFixtures
         return self::getUploadedFile('initiative.jpg');
     }
 
+    public static function getOpportunityImage(): UploadedFile
+    {
+        return self::getUploadedFile('opportunity.png');
+    }
+
     public static function getSpaceImage(): UploadedFile
     {
         return self::getUploadedFile('space.png');

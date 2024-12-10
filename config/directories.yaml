@@ -2,5 +2,6 @@ parameters:
     app.dir.agent.profile: '/agents/profile'
     app.dir.initiative.cover_image: '/cover_image'
     app.dir.initiative.profile: '/initiatives/images'
+    app.dir.opportunity.profile: '/opportunities/images'
     app.dir.space.profile: '/spaces/profile'
     app.dir.user.profile: '/users/profile'
