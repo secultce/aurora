@@ -39,4 +39,23 @@ describe('Página de Lista de Espaços', () => {
         cy.get(':nth-child(2) > .space-card__content > .space-card__info > .mb-2').contains('O Dragão do Mar é um dos maiores complexos culturais da região, com teatros, cinemas e galerias de arte que promovem a cultura local e internacional.').should('be.visible');
         cy.get(':nth-child(2) > .space-card__content > .space-card__info > .justify-content-end > .space-card__button').contains('Acessar espaço').should('be.visible');
     });
+
+    it('Garante que o filtro funciona', () => {
+        cy.get('#open-filter').click();
+        cy.get('#space-name').type('Dragão do Mar');
+        cy.get('#apply-filters').click();
+        cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
+    });
+
+    it('Garante que o botão de limpar filtros funciona', () => {
+        cy.get('.align-items-end > .fw-bold').contains('Espaços Encontrados').should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('#space-name').type('Dragão do Mar');
+        cy.get('#apply-filters').click();
+        cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('.btn-outline-primary').click();
+        cy.get('.align-items-end > .fw-bold').contains('Espaços Encontrados').should('be.visible');
+    });
 });
