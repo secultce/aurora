@@ -2,7 +2,7 @@
     <div class="close-filter">
         <span class="d-flex gap-3">
           <i class="material-icons text-primary">filter_alt</i>
-          <span class="align-self-center fw-bold">Filtros</span>
+          <span class="align-self-center fw-bold">{{ 'filter' | trans }}</span>
         </span>
         <i id="close-filter" class="material-icons close-filter-btn">close</i>
     </div>
@@ -10,47 +10,47 @@
     <div class="filter-fields">
 
         <div class="form-group">
-            <label for="opportunity-name" class="filter-label">Nome da oportunidade</label>
-            <input type="text" class="filter-form" id="opportunity-name" name="name" placeholder="Digite o nome da oportunidade">
+            <label for="opportunity-name" class="filter-label">{{ 'name_opportunity' | trans }}</label>
+            <input type="text" class="filter-form" id="opportunity-name" name="name" placeholder={{ 'enter_opportunity' | trans }}>
         </div>
 
         <div class="form-group">
-            <label for="type" class="filter-label">Tipo da oportunidade</label>
+            <label for="type" class="filter-label">{{ 'type_opportunity' | trans }}</label>
             <select class="filter-form" id="type" name="type">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <fieldset class="d-flex flex-column mb-3">
-            <legend class="fs-6 fw-bold">Status:</legend>
+            <legend class="fs-6 fw-bold">{{ 'status' | trans }}</legend>
             <label>
                 <input type="checkbox" name="status" value="open">
-                Inscrições abertas
+                {{ 'opened_registrations' | trans }}
             </label>
             <label>
                 <input type="checkbox" name="status" value="closed">
-                Inscrições encerradas
+                {{ 'close_registration' | trans }}
             </label>
             <label>
                 <input type="checkbox" name="status" value="future">
-                Inscrições futuras
+                 {{ 'future_registration' | trans }}
             </label>
             <label class="fw-bold">
                 <input type="checkbox" name="status" value="oficials">
-                Editais oficiais
+                {{ 'official_registration' | trans }}
             </label>
         </fieldset>
 
         <div class="form-group">
-            <label for="area" class="filter-label">Área de interesse</label>
+            <label for="area" class="filter-label">{{ 'areas_of_expertise' | trans }}</label>
             <select class="filter-form" id="area" name="area">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="d-flex flex-column gap-2">
-            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">Aplicar Filtros</button>
-            <a href="{{ path("web_opportunity_list") }}" class="btn btn-outline-primary py-3 fw-bold">Limpar todos os filtros</a>
+            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">{{ 'apply_filter' | trans }}</button>
+            <a href="{{ path("web_opportunity_list") }}" class="btn btn-outline-primary py-3 fw-bold">{{ 'clean_filter' | trans }}</a>
         </div>
     </div>
 </form>
