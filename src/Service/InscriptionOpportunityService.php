@@ -6,6 +6,8 @@ namespace App\Service;
 
 use App\DTO\InscriptionOpportunityDto;
 use App\Entity\InscriptionOpportunity;
+use App\Entity\InscriptionPhase;
+use App\Enum\InscriptionPhaseStatusEnum;
 use App\Exception\InscriptionOpportunity\AlreadyInscriptionOpportunityException;
 use App\Exception\InscriptionOpportunity\InscriptionOpportunityResourceNotFoundException;
 use App\Exception\UnauthorizedException;
@@ -13,6 +15,7 @@ use App\Exception\ValidatorException;
 use App\Repository\Interface\InscriptionOpportunityRepositoryInterface;
 use App\Service\Interface\InscriptionOpportunityServiceInterface;
 use App\Service\Interface\OpportunityServiceInterface;
+use App\Service\Interface\PhaseServiceInterface;
 use DateTime;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -26,6 +29,7 @@ readonly class InscriptionOpportunityService extends AbstractEntityService imple
         private Security $security,
         private InscriptionOpportunityRepositoryInterface $repository,
         private OpportunityServiceInterface $opportunityService,
+        private PhaseServiceInterface $phaseService,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
@@ -48,8 +52,19 @@ readonly class InscriptionOpportunityService extends AbstractEntityService imple
 
         $inscriptionOpportunityObj = $this->serializer->denormalize($inscriptionOpportunity, InscriptionOpportunity::class);
 
+        $firstPhase = current($this->phaseService->list($inscriptionOpportunityObj->getOpportunity()->getId(), 1));
+
+        $inscriptionPhase = null;
+        if (false !== $firstPhase) {
+            $inscriptionPhase = new InscriptionPhase();
+            $inscriptionPhase->setId(Uuid::v4());
+            $inscriptionPhase->setAgent($inscriptionOpportunityObj->getAgent());
+            $inscriptionPhase->setPhase($firstPhase);
+            $inscriptionPhase->setStatus(InscriptionPhaseStatusEnum::ACTIVE->value);
+        }
+
         try {
-            return $this->repository->save($inscriptionOpportunityObj);
+            return $this->repository->create($inscriptionOpportunityObj, $inscriptionPhase);
         } catch (UniqueConstraintViolationException) {
             throw new AlreadyInscriptionOpportunityException();
         }
