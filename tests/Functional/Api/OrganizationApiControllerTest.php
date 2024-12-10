@@ -8,6 +8,7 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
 use App\Entity\Organization;
 use App\Tests\AbstractWebTestCase;
+use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\OrganizationTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -37,6 +38,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
             'description' => null,
+            'image' => null,
             'agents' => [],
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -64,6 +66,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
             'description' => 'Test Organization',
+            'image' => null,
             'agents' => array_map(fn ($id) => ['id' => $id], $requestBody['agents']),
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -172,10 +175,14 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
         $this->assertCount(count(OrganizationFixtures::ORGANIZATIONS), json_decode($response));
 
+        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Organization::class, OrganizationFixtures::ORGANIZATION_ID_1);
+
         $this->assertJsonContains([
             'id' => OrganizationFixtures::ORGANIZATION_ID_1,
             'name' => 'PHP com Rapadura',
             'description' => 'Comunidade de devs PHP do Estado do Ceará',
+            'image' => $organization->getImage(),
             'agents' => [],
             'owner' => [
                 'id' => AgentFixtures::AGENT_ID_1,
@@ -183,39 +190,8 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
-            'createdAt' => '2024-07-10T11:30:00+00:00',
-            'updatedAt' => '2024-07-10T12:20:00+00:00',
-            'deletedAt' => null,
-        ]);
-    }
-
-    public function testGetItem(): void
-    {
-        $client = static::apiClient();
-
-        $url = sprintf('%s/%s', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_3);
-
-        $client->request(Request::METHOD_GET, $url);
-
-        $this->assertResponseIsSuccessful();
-        $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-
-        $this->assertResponseBodySame([
-            'id' => OrganizationFixtures::ORGANIZATION_ID_3,
-            'name' => 'Devs do Sertão',
-            'description' => 'Grupo de devs que se reúnem velas veredas do sertão',
-            'agents' => [],
-            'owner' => [
-                'id' => AgentFixtures::AGENT_ID_3,
-            ],
-            'createdBy' => [
-                'id' => AgentFixtures::AGENT_ID_3,
-            ],
-            'extraFields' => [
-                'instagram' => '@devsdosertao',
-            ],
-            'createdAt' => '2024-07-16T17:22:00+00:00',
-            'updatedAt' => null,
+            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
         ]);
     }
@@ -230,10 +206,15 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Organization::class, OrganizationFixtures::ORGANIZATION_ID_3);
+
         $this->assertResponseBodySame([
             'id' => OrganizationFixtures::ORGANIZATION_ID_3,
             'name' => 'Devs do Sertão',
             'description' => 'Grupo de devs que se reúnem velas veredas do sertão',
+            'image' => $organization->getImage(),
             'agents' => [],
             'owner' => [
                 'id' => AgentFixtures::AGENT_ID_3,
@@ -244,7 +225,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'extraFields' => [
                 'instagram' => '@devsdosertao',
             ],
-            'createdAt' => '2024-07-16T17:22:00+00:00',
+            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -310,6 +291,7 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
             'id' => OrganizationFixtures::ORGANIZATION_ID_4,
             'name' => $requestBody['name'],
             'description' => $requestBody['description'],
+            'image' => $organization->getImage(),
             'agents' => array_map(fn ($id) => ['id' => $id], $requestBody['agents']),
             'owner' => ['id' => AgentFixtures::AGENT_ID_1],
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
@@ -409,6 +391,93 @@ class OrganizationApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+        ];
+    }
+
+    public function testCanUpdateImageWithMultipartFormData(): void
+    {
+        $file = ImageTestFixtures::getImageValid();
+
+        $url = sprintf('%s/%s/images', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_10);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $organization = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Organization::class, OrganizationFixtures::ORGANIZATION_ID_10);
+
+        $this->assertResponseBodySame([
+            'id' => OrganizationFixtures::ORGANIZATION_ID_10,
+            'name' => 'Banda de Forró tô nem veno',
+            'description' => 'Banda de forró formada com pessoas de baixa ou nenhuma visão',
+            'image' => $organization->getImage(),
+            'agents' => [],
+            'owner' => [
+                'id' => AgentFixtures::AGENT_ID_1,
+            ],
+            'createdBy' => [
+                'id' => AgentFixtures::AGENT_ID_1,
+            ],
+            'extraFields' => [
+                'instagram' => '@forrotonemveno',
+            ],
+            'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateImageCases')]
+    public function testValidationUpdateImage(array $requestBody, $file, array $expectedErrors): void
+    {
+        $url = sprintf('%s/%s/images', self::BASE_URL, OrganizationFixtures::ORGANIZATION_ID_7);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateImageCases(): array
+    {
+        $requestBody = OrganizationTestFixtures::partial();
+        unset($requestBody['id']);
+
+        return [
+            'image not supported' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getGif(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getImageMoreThan2mb(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
         ];

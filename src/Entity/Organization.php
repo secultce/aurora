@@ -32,6 +32,10 @@ class Organization extends AbstractEntity
     #[Groups('organization.get')]
     private ?string $description = null;
 
+    #[ORM\Column(length: 100, nullable: true)]
+    #[Groups('organization.get')]
+    private ?string $image = null;
+
     #[ORM\JoinTable(name: 'organizations_agents')]
     #[ORM\JoinColumn(name: 'organization_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'agent_id', referencedColumnName: 'id')]
@@ -99,6 +103,16 @@ class Organization extends AbstractEntity
     public function setDescription(?string $description): void
     {
         $this->description = $description;
+    }
+
+    public function getImage(): ?string
+    {
+        return $this->image;
+    }
+
+    public function setImage(?string $image): void
+    {
+        $this->image = $image;
     }
 
     public function getAgents(): Collection
