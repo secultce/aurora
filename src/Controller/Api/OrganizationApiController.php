@@ -33,13 +33,6 @@ class OrganizationApiController extends AbstractApiController
         return $this->json($organization, context: ['groups' => ['organization.get', 'organization.get.item']]);
     }
 
-    public function remove(?Uuid $id): JsonResponse
-    {
-        $this->service->remove($id);
-
-        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
-    }
-
     public function list(): JsonResponse
     {
         return $this->json($this->service->list(), context: [
@@ -50,9 +43,23 @@ class OrganizationApiController extends AbstractApiController
         ]);
     }
 
+    public function remove(?Uuid $id): JsonResponse
+    {
+        $this->service->remove($id);
+
+        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
     public function update(?Uuid $id, Request $request): JsonResponse
     {
         $organization = $this->service->update($id, $request->toArray());
+
+        return $this->json($organization, Response::HTTP_OK, context: ['groups' => ['organization.get', 'organization.get.item']]);
+    }
+
+    public function updateImage(Uuid $id, Request $request): JsonResponse
+    {
+        $organization = $this->service->updateImage($id, $request->files->get('image'));
 
         return $this->json($organization, Response::HTTP_OK, context: ['groups' => ['organization.get', 'organization.get.item']]);
     }

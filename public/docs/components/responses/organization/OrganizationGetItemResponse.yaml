@@ -8,6 +8,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome da organização"
+  image:
+    type: string
+    format: uri
+    description: "Imagem da organização"
   description:
     type: string
     maxLength: 100
