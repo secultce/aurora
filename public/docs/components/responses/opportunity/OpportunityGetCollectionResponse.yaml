@@ -8,6 +8,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome da oportunidade"
+  image:
+    type: string
+    format: uri
+    description: "Imagem da oportunidade"
   parent:
     type: object
     properties:
