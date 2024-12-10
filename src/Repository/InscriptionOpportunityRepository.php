@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\InscriptionOpportunity;
+use App\Entity\InscriptionPhase;
 use App\Repository\Interface\InscriptionOpportunityRepositoryInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
@@ -13,6 +14,15 @@ class InscriptionOpportunityRepository extends AbstractRepository implements Ins
     public function __construct(ManagerRegistry $registry)
     {
         parent::__construct($registry, InscriptionOpportunity::class);
+    }
+
+    public function create(InscriptionOpportunity $inscriptionOpportunity, ?InscriptionPhase $inscriptionPhase = null): InscriptionOpportunity
+    {
+        if (null !== $inscriptionPhase) {
+            $this->getEntityManager()->persist($inscriptionPhase);
+        }
+
+        return $this->save($inscriptionOpportunity);
     }
 
     public function save(InscriptionOpportunity $inscriptionOpportunity): InscriptionOpportunity
