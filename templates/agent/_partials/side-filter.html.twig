@@ -2,55 +2,55 @@
     <div class="close-filter">
                 <span class="d-flex gap-3">
                   <i class="material-icons text-primary">filter_alt</i>
-                  <span class="align-self-center fw-bold">Filtros</span>
+                  <span class="align-self-center fw-bold">{{ 'filter' | trans }}</span>
                 </span>
         <i id="close-filter" class="material-icons close-filter-btn">close</i>
     </div>
 
     <div class="filter-fields">
         <div class="form-group">
-            <label for="agent-name" class="filter-label">Nome do agente</label>
-            <input type="text" class="filter-form" id="agent-name" placeholder="Digite">
+            <label for="agent-name" class="filter-label">{{ 'agent_name' | trans }}</label>
+            <input type="text" class="filter-form" id="agent-name" placeholder={{ 'type_here' | trans }}>
         </div>
 
         <div class="form-group">
-            <label for="agent-type" class="filter-label">Tipo de agente</label>
+            <label for="agent-type" class="filter-label">{{ 'type_agent' | trans }}</label>
             <select class="filter-form" id="agent-type">
-                <option>Selecione</option>
+                <option>{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="areas-of-activity" class="filter-label">Áreas de atuação</label>
+            <label for="areas-of-activity" class="filter-label">{{ 'areas_of_expertise' | trans }}</label>
             <select class="filter-form" id="areas-of-activity">
-                <option>Selecione</option>
+                <option>{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="seals" class="filter-label">Selos</label>
+            <label for="seals" class="filter-label">{{ 'seals' | trans }}</label>
             <select class="filter-form" id="seals">
-                <option>Selecione</option>
+                <option>{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="state" class="filter-label">Estado</label>
+            <label for="state" class="filter-label">{{ 'state' | trans }}</label>
             <select class="filter-form" id="state">
-                <option>Selecione</option>
+                <option>{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="city" class="filter-label">Município</label>
+            <label for="city" class="filter-label">{{ 'city' | trans }}</label>
             <select class="filter-form" id="city">
-                <option>Selecione</option>
+                <option>{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="d-flex flex-column gap-1">
-            <button id="apply-filters" class="btn btn-primary fw-bold apply-filter">Aplicar Filtros</button>
-            <button id="clear-filters" class="clear-filters">Limpar todos os filtros</button>
+            <button id="apply-filters" class="btn btn-primary fw-bold apply-filter">{{ 'apply_filter' | trans }}</button>
+            <button id="clear-filters" class="clear-filters">{{ 'clean_filter' | trans }}</button>
         </div>
     </div>
 </div>
