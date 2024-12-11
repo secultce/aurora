@@ -10,6 +10,10 @@ properties:
     maxLength: 100
     description: "Nome do evento"
     example: "Evento de cultura"
+  image:
+    type: string
+    format: uri
+    description: "Imagem do evento"
   agentGroup:
     type: object
     properties:

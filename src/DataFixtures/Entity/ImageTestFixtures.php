@@ -14,6 +14,11 @@ final class ImageTestFixtures
         return self::getUploadedFile('agent.png');
     }
 
+    public static function getEventImage(): UploadedFile
+    {
+        return self::getUploadedFile('event.png');
+    }
+
     public static function getInitiativeImage(): UploadedFile
     {
         return self::getUploadedFile('initiative.jpg');

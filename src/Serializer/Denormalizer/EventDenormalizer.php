@@ -8,8 +8,10 @@ use App\Entity\Agent;
 use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
+use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
 
 readonly class EventDenormalizer implements DenormalizerInterface
@@ -18,6 +20,7 @@ readonly class EventDenormalizer implements DenormalizerInterface
         private EntityManagerInterface $entityManager,
         #[Autowire(service: 'serializer.normalizer.object')]
         private DenormalizerInterface $denormalizer,
+        private FileServiceInterface $fileService,
     ) {
     }
 
@@ -29,6 +32,10 @@ readonly class EventDenormalizer implements DenormalizerInterface
 
         if (Event::class !== $type) {
             return $data;
+        }
+
+        if (true === array_key_exists('image', $data)) {
+            $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
         /** @var Event $event */
@@ -60,6 +67,17 @@ readonly class EventDenormalizer implements DenormalizerInterface
         }
 
         return $event;
+    }
+
+    private function uploadImage(array &$data, ?Event $eventFromDb = null): void
+    {
+        if (false === is_null($eventFromDb) && true === is_string($eventFromDb->getImage())) {
+            $this->fileService->deleteFileByUrl($eventFromDb->getImage());
+        }
+
+        if ($data['image'] instanceof File) {
+            $data['image'] = $this->fileService->getFileUrl($data['image']->getPathname());
+        }
     }
 
     public function supportsDenormalization(mixed $data, string $type, ?string $format = null, array $context = []): bool

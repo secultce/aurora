@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Event;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -29,6 +31,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_1,
             'name' => 'Modo Criativo',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_3,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_2,
@@ -42,6 +45,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_2,
             'name' => 'PHP com Rapadura 10 anos',
+            'image' => null,
             'agentGroup' => null,
             'space' => null,
             'initiative' => null,
@@ -67,6 +71,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_3,
             'name' => 'Músical o vento da Caatinga',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_5,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_7,
@@ -79,6 +84,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_4,
             'name' => 'Encontro de Saberes',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_9,
@@ -91,6 +97,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_5,
             'name' => 'Vozes do Interior',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_4,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_5,
@@ -108,6 +115,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_6,
             'name' => 'Cores do Sertão',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_3,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_10,
@@ -125,6 +133,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_7,
             'name' => 'Raízes do Sertão',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
@@ -137,6 +146,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_8,
             'name' => 'Festival da Rapadura',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_2,
@@ -149,6 +159,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_9,
             'name' => 'Cultura em ação',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_10,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_4,
@@ -167,6 +178,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_10,
             'name' => 'Nordeste Literário',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_6,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
@@ -186,6 +198,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         [
             'id' => self::EVENT_ID_1,
             'name' => 'Festival Sertão Criativo',
+            'image' => null,
             'agentGroup' => null,
             'space' => SpaceFixtures::SPACE_ID_3,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_2,
@@ -201,6 +214,8 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         protected EntityManagerInterface $entityManager,
         protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
+        private readonly FileServiceInterface $fileService,
+        private readonly ParameterBagInterface $parameterBag,
     ) {
         parent::__construct($entityManager, $tokenStorage);
     }
@@ -224,7 +239,14 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
 
     private function createEvents(ObjectManager $manager): void
     {
+        $counter = 0;
+
         foreach (self::EVENTS as $eventData) {
+            if (5 > $counter) {
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.event.profile'), ImageTestFixtures::getEventImage());
+                $eventData['image'] = $file;
+            }
+
             $event = $this->mountEvent($eventData);
 
             $this->setReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['id']), $event);
@@ -232,6 +254,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             $this->manualLoginByAgent($eventData['createdBy']);
 
             $manager->persist($event);
+            $counter++;
         }
 
         $manager->flush();
