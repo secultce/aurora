@@ -13,12 +13,12 @@ Inicia os serviços Docker em modo *detached* (em segundo plano).
 </details>
 
 <details>
-<summary>DOWN</summary>
+<summary>STOP</summary>
 
-### `down`
+### `stop`
 Para os serviços Docker.
-- **Uso:** `make down`
-- **Descrição:** Executa `docker compose down`, encerrando todos os contêineres e redes iniciados pelo comando `up`.
+- **Uso:** `make stop`
+- **Descrição:** Executa `docker compose stop`, encerrando todos os contêineres e redes iniciados pelo comando `up`.
 </details>
 
 <details>
@@ -101,6 +101,15 @@ Executa as fixtures de dados e os testes de backend.
 Limpa o cache do Aurora.
 - **Uso:** `make reset`
 - **Descrição:** Executa `php bin/console cache:clear` para limpar o cache gerado pela aplicação.
+</details>
+
+<details>
+<summary>RESET DEEP</summary>
+
+### `reset`
+Faz um reset de tudo do diretório storage.
+- **Uso:** `make reset-deep`
+- **Descrição:** Executa `php bin/console cache:clear` para limpar o cache gerado pela aplicação, e outros comandos para excluir o conteudo do diretório `/var`
 </details>
 
 <details>

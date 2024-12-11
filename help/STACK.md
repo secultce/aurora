@@ -13,7 +13,7 @@ Aqui você encontra detalhadamente as motivações que nos levaram a escolher ta
 > As decisões foram todas tomadas de acordo com a interpretação do time que desempenha o papel de principal braço de desenvolvimento, e todas as decisões foram assinadas pelo até então techlead do projeto [Alessandro Feitoza](https://github.com/alessandrofeitoza)
 
 ## PHP
-Atualmente na versão 8.3, veja abaixo detalhe sobre o seu uso
+Atualmente na versão 8.4, veja abaixo detalhe sobre o seu uso
 <details>
 <summary>Porque PHP?</summary>
 
