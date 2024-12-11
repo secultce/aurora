@@ -80,6 +80,8 @@ paths:
     $ref: './components/paths/organization/Collection.yaml'
   /organizations/{id}:
     $ref: './components/paths/organization/Item.yaml'
+  /organizations/{id}/images:
+    $ref: './components/paths/organization/UpdateImage.yaml'
   /spaces:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:

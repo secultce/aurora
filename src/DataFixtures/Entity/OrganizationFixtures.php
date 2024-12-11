@@ -5,9 +5,11 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Organization;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
 use Symfony\Component\Serializer\SerializerInterface;
 
@@ -29,6 +31,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_1,
             'name' => 'PHP sem Rapadura',
+            'image' => null,
             'description' => 'Comunidade de devs PHP do Estado do Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -45,6 +48,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_2,
             'name' => 'Grupo de Capoeira Axé Zumbi',
+            'image' => null,
             'description' => 'Grupo de Capoeira Axé Zumbi',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -64,6 +68,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_3,
             'name' => 'Devs do Sertão',
+            'image' => null,
             'description' => 'Grupo de devs que se reúnem velas veredas do sertão',
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'owner' => AgentFixtures::AGENT_ID_3,
@@ -79,6 +84,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_4,
             'name' => 'SertãoDev',
+            'image' => null,
             'description' => 'Cooperativa de devs do Estado do Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -94,6 +100,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_5,
             'name' => 'De RapEnte',
+            'image' => null,
             'description' => 'Grupo de Rap e Repente da caatinga nordestina',
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'owner' => AgentFixtures::AGENT_ID_3,
@@ -109,6 +116,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_6,
             'name' => 'Comunidade Vida com Cristo',
+            'image' => null,
             'description' => 'Grupo de oração destinado a cristãos de boa fé',
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'owner' => AgentFixtures::AGENT_ID_2,
@@ -128,6 +136,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_7,
             'name' => 'Candomblé Raizes do Brasil ',
+            'image' => null,
             'description' => 'Grupo de praticantes do candomblé - Natal-RN',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -143,6 +152,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_8,
             'name' => 'Baião de Dev',
+            'image' => null,
             'description' => 'Grupo de desenvolvedores do nordeste',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -158,6 +168,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_9,
             'name' => 'PHPeste',
+            'image' => null,
             'description' => 'Organização da Conferencia de PHP do Nordeste',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -173,6 +184,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_10,
             'name' => 'Banda de Forró tô nem veno',
+            'image' => null,
             'description' => 'Banda de forró formada com pessoas de baixa ou nenhuma visão',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -191,6 +203,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         [
             'id' => self::ORGANIZATION_ID_1,
             'name' => 'PHP com Rapadura',
+            'image' => null,
             'description' => 'Comunidade de devs PHP do Estado do Ceará',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'owner' => AgentFixtures::AGENT_ID_1,
@@ -207,6 +220,8 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
         protected EntityManagerInterface $entityManager,
         protected TokenStorageInterface $tokenStorage,
         private readonly SerializerInterface $serializer,
+        private readonly FileServiceInterface $fileService,
+        private readonly ParameterBagInterface $parameterBag,
     ) {
         parent::__construct($entityManager, $tokenStorage);
     }
@@ -248,7 +263,14 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
 
     private function createOrganizations(ObjectManager $manager): void
     {
+        $counter = 0;
+
         foreach (self::ORGANIZATIONS as $organizationData) {
+            if (5 > $counter) {
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.organization.profile'), ImageTestFixtures::getOrganizationImage());
+                $organizationData['image'] = $file;
+            }
+
             $organization = $this->mountOrganization($organizationData);
 
             $this->setReference(sprintf('%s-%s', self::ORGANIZATION_ID_PREFIX, $organizationData['id']), $organization);
@@ -256,6 +278,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             $this->manualLoginByAgent($organizationData['createdBy']);
 
             $manager->persist($organization);
+            $counter++;
         }
 
         $manager->flush();

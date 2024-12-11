@@ -1,0 +1,33 @@
+post:
+  tags:
+    - Organizações
+  summary: Atualiza a imagem de uma única organização
+  description: Atualiza a imagem de perfil de uma organização. O upload deve ser feito utilizando o formato `multipart/form-data`. Apenas arquivos nos formatos `image/png`, `image/jpg` e `image/jpeg` são permitidos, com tamanho máximo de 2 MB.
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  requestBody:
+    required: true
+    content:
+      multipart/form-data:
+        schema:
+          type: object
+          properties:
+            image:
+              type: string
+              format: binary
+              description: Arquivo da imagem da organização
+          required:
+            - image
+  responses:
+    '200':
+      description: Imagem da organização atualizada com sucesso
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/organization/OrganizationPatchItemResponse.yaml'
+    '404':
+      description: Organização não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
