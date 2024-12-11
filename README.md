@@ -12,9 +12,16 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 - **Symfony** 7
 - **Aurora User Interface** 5.3 
 
-[Acesse aqui para entender as decisões](./help/STACK.md)
-
-[Acesse aqui os diagramas](./help/DIAGRAM.md)
+## Links Rápidos
+- [Acesse aqui para entender melhor nossa Stack](./help/STACK.md)
+- [Acesse aqui para entender nossas decisões](./help/TECHNICAL-DECISIONS.md)
+- [Esquema do Banco de Dados](./help/DIAGRAM.md)
+- [Como criar issues](./help/CREATE-ISSUES.md)
+- [Como abrir Pull Requests](./help/CREATE-PULL-REQUESTS.md)
+- [Nosso Fluxo de Desenvolvimento](./help/DEV-FLOW.md)
+- [Enums](./help/ENUM.md)
+- [Arquiterua da Aplicação](./help/README.md)
+- [Comandos do terminal](./help/COMMANDS.md)
 
 ## Instalação 
 <details>
@@ -43,6 +50,9 @@ cd aurora
 >
 > O jeito mais fácil é rodar o comando `make setup`, isso já vai executar todos os passos necessários e deixar a aplicação rodando em <http://localhost:8080>
 >
+```bash
+make setup
+```
 Mas se preferir, pode fazer o passo a passo abaixo
 
 ---

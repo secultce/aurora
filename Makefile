@@ -7,6 +7,10 @@ up:
 	docker compose up -d
 
 # Para os serviços Docker
+stop:
+	docker compose stop
+
+# Para e remove os serviços Docker
 down:
 	docker compose down
 
@@ -48,7 +52,12 @@ reset:
 
 # Limpa a cache e o banco
 reset-deep:
-	rm -rf var/
+	rm -rf var/cache
+	rm -rf var/log
+	rm -rf var/storage/agents
+	rm -rf var/storage/initiatives
+	rm -rf var/storage/spaces
+	rm -rf var/storage/users
 	docker compose exec -T php bash -c "php bin/console cache:clear"
 	docker compose exec -T php bash -c "php bin/console d:d:d -f"
 	docker compose exec -T php bash -c "php bin/console d:d:c"
@@ -60,7 +69,7 @@ style:
 
 # Gera as chaves de autenticação JWT
 generate_keys:
-	docker compose exec -T php bash -c "php bin/console lexik:jwt:generate-keypair --overwrite"
+	docker compose exec -T php bash -c "php bin/console lexik:jwt:generate-keypair --overwrite -n"
 
 # Comando para rodar todos os passos juntos
-setup: up install_dependencies generate_proxies migrate_database load_fixtures install_frontend compile_frontend generate_keys
+setup: up install_dependencies reset-deep generate_proxies migrate_database load_fixtures install_frontend compile_frontend generate_keys
