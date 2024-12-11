@@ -4,11 +4,26 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Exception\ValidatorException;
+use App\Service\Interface\SealServiceInterface;
 use DateTime;
+use Exception;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SealAdminController extends AbstractAdminController
 {
+    public const VIEW_ADD = 'seal/add.html.twig';
+
+    public function __construct(
+        private SealServiceInterface $sealService,
+        private readonly TranslatorInterface $translator,
+    ) {
+    }
+
     public function list(): Response
     {
         $seals = [
@@ -32,5 +47,34 @@ class SealAdminController extends AbstractAdminController
         return $this->render('seal/one.html.twig', [
             'seal' => $seal,
         ]);
+    }
+
+    public function add(Request $request, ValidatorInterface $validator): Response
+    {
+        if ('POST' !== $request->getMethod()) {
+            return $this->render(self::VIEW_ADD);
+        }
+
+        try {
+            $this->sealService->create([
+                'id' => Uuid::v4(),
+                'name' => $request->get('name'),
+                'status' => $request->get('status'),
+            ]);
+        } catch (ValidatorException $exception) {
+            return $this->render(self::VIEW_ADD, [
+                'errors' => $exception->getConstraintViolationList(),
+            ]);
+        } catch (Exception $exception) {
+            return $this->render(self::VIEW_ADD, [
+                'errors' => [
+                    $exception->getMessage(),
+                ],
+            ]);
+        }
+
+        $this->addFlash('success', $this->translator->trans('view.seal.message.created'));
+
+        return $this->redirectToRoute('admin_seal_list');
     }
 }
