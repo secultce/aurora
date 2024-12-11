@@ -2,67 +2,67 @@
     <div class="close-filter">
         <span class="d-flex gap-3">
           <i class="material-icons text-primary">filter_alt</i>
-          <span class="align-self-center fw-bold">Filtros</span>
+          <span class="align-self-center fw-bold">{{ 'filter' | trans }}</span>
         </span>
         <i id="close-filter" class="material-icons close-filter-btn">close</i>
     </div>
 
     <div class="filter-fields">
         <div class="form-group">
-            <label for="period" class="filter-label">Período</label>
+            <label for="period" class="filter-label">{{ 'period' | trans }}</label>
             <select class="filter-form" id="period" name="period">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="mb-2">
             <input type="checkbox" id="official-events" name="official-events" value="official-events">
-            <label for="official-events" class="fw-bold">Eventos Oficiais</label>
+            <label for="official-events" class="fw-bold">{{ 'official_events' | trans }}</label>
         </div>
 
         <div class="form-group">
-            <label for="event-name" class="filter-label">Nome do evento</label>
+            <label for="event-name" class="filter-label">{{ 'name_event' | trans }}</label>
             <input type="text" class="filter-form" id="event-name" name="name" placeholder="">
         </div>
 
         <div class="form-group">
-            <label for="event-language" class="filter-label">Linguagens</label>
+            <label for="event-language" class="filter-label">{{ 'language' | trans }}</label>
             <select class="filter-form" id="event-language" name="language">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="age-rating" class="filter-label">Classificação etária</label>
+            <label for="age-rating" class="filter-label">{{ 'age_rating' | trans }}</label>
             <select class="filter-form" id="age-rating" name="age-rating">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="seals" class="filter-label">Selos</label>
+            <label for="seals" class="filter-label">{{ 'seals' | trans }}</label>
             <select class="filter-form" id="seals" name="seals">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="state" class="filter-label">Estado</label>
+            <label for="state" class="filter-label">{{ 'state' | trans }}</label>
             <select class="filter-form" id="state" name="state">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="city" class="filter-label">Município</label>
+            <label for="city" class="filter-label">{{ 'city' | trans }}</label>
             <select class="filter-form" id="city" name="city">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="d-flex flex-column gap-2">
-            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">Aplicar Filtros</button>
-            <a href="{{ path("web_event_list") }}" class="btn btn-outline-primary py-3 fw-bold">Limpar todos os filtros</a>
+            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">{{ 'apply_filter' | trans }}</button>
+            <a href="{{ path("web_event_list") }}" class="btn btn-outline-primary py-3 fw-bold">{{ 'clean_filter' | trans }}</a>
         </div>
     </div>
 </form>

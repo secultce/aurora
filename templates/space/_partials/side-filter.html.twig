@@ -2,7 +2,7 @@
     <div class="close-filter">
         <span class="d-flex gap-3">
           <i class="material-icons text-primary">filter_alt</i>
-          <span class="align-self-center fw-bold">Filtros</span>
+          <span class="align-self-center fw-bold">{{ 'filter' | trans }}</span>
         </span>
         <i id="close-filter" class="material-icons close-filter-btn">close</i>
     </div>
@@ -10,60 +10,60 @@
     <div class="filter-fields">
         <div class="mb-2 d-flex align-items-center gap-2">
             <input type="checkbox" id="official-spaces" name="official-spaces" value="official-spaces">
-            <label for="official-spaces" class="fw-bold">Espaços Oficiais</label>
+            <label for="official-spaces" class="fw-bold">{{ 'official_spaces' | trans }}</label>
             <span class="iconify text-primary" data-icon="oui:check-in-circle-filled"></span>
         </div>
 
         <div class="form-group">
-            <label for="space-name" class="filter-label">Nome do espaço</label>
-            <input type="text" class="filter-form" id="space-name" name="name" placeholder="Digite o nome do espaço">
+            <label for="space-name" class="filter-label">{{ 'name_space' | trans }}</label>
+            <input type="text" class="filter-form" id="space-name" name="name" placeholder={{ 'enter_space' | trans }}>
         </div>
 
         <div class="form-group">
-            <label for="type" class="filter-label">Tipo do espaço</label>
+            <label for="type" class="filter-label">{{ 'type_space' | trans }}</label>
             <select class="filter-form" id="type" name="type">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="accessibility" class="filter-label">Acessibilidade</label>
+            <label for="accessibility" class="filter-label">{{ 'accessibility' | trans }}</label>
             <select class="filter-form" id="accessibility" name="accessibility">
-                <option value="">Todos</option>
+                <option value="">{{ 'everybody' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="status" class="filter-label">Áreas de atuação</label>
+            <label for="status" class="filter-label">{{ 'areas_of_expertise' | trans }}</label>
             <select class="filter-form" id="status" name="status">
-                <option value="">Todas</option>
+                <option value="">{{ 'everybody' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="seals" class="filter-label">Selos</label>
+            <label for="seals" class="filter-label">{{ 'seals' | trans }}</label>
             <select class="filter-form" id="seals" name="seals">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="state" class="filter-label">Estado</label>
+            <label for="state" class="filter-label">{{ 'state' | trans }}</label>
             <select class="filter-form" id="state" name="state">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="city" class="filter-label">Município</label>
+            <label for="city" class="filter-label">{{ 'city' | trans }}</label>
             <select class="filter-form" id="city" name="city">
-                <option value="">Selecione</option>
+                <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="d-flex flex-column gap-2">
-            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">Aplicar Filtros</button>
-            <a href="{{ path("web_space_list") }}" class="btn btn-outline-primary py-3 fw-bold">Limpar todos os filtros</a>
+            <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">{{ 'apply_filter' | trans }}</button>
+            <a href="{{ path("web_space_list") }}" class="btn btn-outline-primary py-3 fw-bold">{{ 'clean_filter' | trans }}</a>
         </div>
     </div>
 </form>

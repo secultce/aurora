@@ -31,6 +31,7 @@ areas_of_interest: Áreas de interesse
 analysis: Período de Análise
 auditory: Auditiva
 asian: Amarelo
+apply_filter: Aplicar Filtros
 
 back: Voltar
 birth_date: Data de nascimento
@@ -39,9 +40,12 @@ black: Preta
 calendar: Calendário
 cancel: Cancelar
 cep: CEP
+city: Cidade
 cisgender: Cisgênero
 check: Conferir
 claim-ownership: Reivindicar Propriedade
+clean_filter: Limpar todos os filtros
+close_registration: Inscrições encerradas
 click_here: Clique aqui
 connections: Conexões
 confirm: Confirmar
@@ -49,6 +53,7 @@ confirm_password: Confirmar senha
 continue: Continuar
 contribute: Contribua
 control_panel: Painel de Controle
+completed: Finalizados
 cover_image: Imagem de capa
 cpf: CPF
 cnpj: CNPJ (MEI)
@@ -75,6 +80,9 @@ edit_faq: Editar FAQ
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
+enter_opportunity: Digite o nome da oportunidade
+enter_initiative: Digite o nome da iniciativa
+enter_space: Digite o nome do espaço
 events: Eventos
 everybody: Todos
 elderly_person: Pessoa idosa
@@ -82,11 +90,13 @@ explore_repository: Conheça o repositório
 
 faq: FaQ
 file: Anexar arquivo
+filter: Filtros
 first_name: Nome
 last_name: Sobrenome
 feminine: Feminino
 functions: Gerenciar funções
 fundamental: Fundamental
+future_registration: Inscrições futuras
 full_name: Nome completo
 
 gallery: Galeria
@@ -149,6 +159,10 @@ my_subscriptions: Minhas Inscrições
 my_reviews: Minhas Avaliações
 
 name: Nome
+name_space: Nome do espaço
+name_event: Nome do evento
+name_opportunity: Nome da oportunidade
+name_initiative: Nome da iniciativa
 neighborhood: Bairro
 notifications: Notificações
 no: Não
@@ -159,6 +173,9 @@ not_sent: Não enviadas
 notice: EDITAL
 number_address: Número
 
+official_events: Eventos Oficiais
+official_spaces: Espaços Oficiais
+official_registration: Editais oficiais
 old: antigo
 oldest: Mais Antigo
 order: Ordenar por
@@ -214,6 +231,10 @@ transvestite: Travesti
 theater: Teatro
 type: Tipo
 type_here: Digite aqui
+type_agent: Tipo de agente
+type_opportunity: Tipo da oportunidade
+type_initiative: Tipo da iniciativa
+type_space: Tipo do espaço
 to: até
 
 user: Usuário
@@ -250,6 +271,7 @@ social_name: Nome Social
 spaces: Espaços
 start_now: Comece agora
 state: Estado
+status: Status
 street: Logradouro
 suggestions: Sugestões
 subsites: Subsites
