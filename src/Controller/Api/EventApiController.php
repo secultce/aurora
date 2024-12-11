@@ -33,13 +33,6 @@ class EventApiController extends AbstractApiController
         return $this->json($event, context: ['groups' => ['event.get', 'event.get.item']]);
     }
 
-    public function remove(?Uuid $id): JsonResponse
-    {
-        $this->service->remove($id);
-
-        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
-    }
-
     public function list(): JsonResponse
     {
         return $this->json($this->service->list(), context: [
@@ -50,9 +43,23 @@ class EventApiController extends AbstractApiController
         ]);
     }
 
+    public function remove(?Uuid $id): JsonResponse
+    {
+        $this->service->remove($id);
+
+        return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
     public function update(Uuid $id, Request $request): JsonResponse
     {
         $event = $this->service->update($id, $request->toArray());
+
+        return $this->json($event, Response::HTTP_OK, context: ['groups' => ['event.get', 'event.get.item']]);
+    }
+
+    public function updateImage(Uuid $id, Request $request): JsonResponse
+    {
+        $event = $this->service->updateImage($id, $request->files->get('image'));
 
         return $this->json($event, Response::HTTP_OK, context: ['groups' => ['event.get', 'event.get.item']]);
     }

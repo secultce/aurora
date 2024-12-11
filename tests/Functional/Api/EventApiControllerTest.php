@@ -11,6 +11,7 @@ use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Event;
 use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\EventTestFixtures;
+use App\Tests\Fixtures\ImageTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use PHPUnit\Framework\Attributes\DataProvider;
@@ -38,6 +39,7 @@ class EventApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'agentGroup' => ['id' => AgentFixtures::AGENT_ID_1],
             'space' => ['id' => SpaceFixtures::SPACE_ID_1],
             'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
@@ -66,12 +68,14 @@ class EventApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => $requestBody['id'],
             'name' => $requestBody['name'],
+            'image' => null,
             'agentGroup' => ['id' => AgentFixtures::AGENT_ID_1],
             'space' => ['id' => SpaceFixtures::SPACE_ID_1],
             'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_1],
             'parent' => [
                 'id' => EventFixtures::EVENT_ID_1,
                 'name' => 'Festival Sertão Criativo',
+                'image' => null,
                 'agentGroup' => null,
                 'space' => ['id' => SpaceFixtures::SPACE_ID_3],
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_2],
@@ -226,6 +230,7 @@ class EventApiControllerTest extends AbstractWebTestCase
         $this->assertJsonContains([
             'id' => EventFixtures::EVENT_ID_1,
             'name' => 'Festival Sertão Criativo',
+            'image' => null,
             'agentGroup' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_3,
@@ -253,9 +258,14 @@ class EventApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $event = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Event::class, EventFixtures::EVENT_ID_6);
+
         $this->assertResponseBodySame([
             'id' => '64f6d8a0-6326-4c15-bec1-d4531720f578',
             'name' => 'Cores do Sertão',
+            'image' => null,
             'agentGroup' => null,
             'space' => [
                 'id' => SpaceFixtures::SPACE_ID_3,
@@ -266,6 +276,7 @@ class EventApiControllerTest extends AbstractWebTestCase
             'parent' => [
                 'id' => EventFixtures::EVENT_ID_3,
                 'name' => 'Músical o vento da Caatinga',
+                'image' => $event->getParent()->getImage(),
                 'agentGroup' => null,
                 'space' => [
                     'id' => SpaceFixtures::SPACE_ID_5,
@@ -290,7 +301,7 @@ class EventApiControllerTest extends AbstractWebTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_3,
             ],
-            'createdAt' => '2024-08-10T11:26:00+00:00',
+            'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
         ]);
@@ -359,6 +370,7 @@ class EventApiControllerTest extends AbstractWebTestCase
         $this->assertResponseBodySame([
             'id' => EventFixtures::EVENT_ID_3,
             'name' => 'Test Event',
+            'image' => $event->getImage(),
             'agentGroup' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
@@ -367,6 +379,7 @@ class EventApiControllerTest extends AbstractWebTestCase
             'parent' => [
                 'id' => EventFixtures::EVENT_ID_1,
                 'name' => 'Festival Sertão Criativo',
+                'image' => $event->getParent()->getImage(),
                 'agentGroup' => null,
                 'space' => ['id' => SpaceFixtures::SPACE_ID_3],
                 'initiative' => ['id' => InitiativeFixtures::INITIATIVE_ID_2],
@@ -487,6 +500,94 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+        ];
+    }
+
+    public function testCanUpdateImageWithMultipartFormData(): void
+    {
+        $file = ImageTestFixtures::getImageValid();
+
+        $url = sprintf('%s/%s/images', self::BASE_URL, EventFixtures::EVENT_ID_8);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $event = $client->getContainer()->get(EntityManagerInterface::class)
+            ->find(Event::class, EventFixtures::EVENT_ID_8);
+
+        $this->assertResponseBodySame([
+            'id' => EventFixtures::EVENT_ID_8,
+            'name' => 'Festival da Rapadura',
+            'image' => $event->getImage(),
+            'agentGroup' => null,
+            'space' => [
+                'id' => SpaceFixtures::SPACE_ID_6,
+            ],
+            'initiative' => [
+                'id' => InitiativeFixtures::INITIATIVE_ID_2,
+            ],
+            'parent' => null,
+            'extraFields' => null,
+            'createdBy' => [
+                'id' => AgentFixtures::AGENT_ID_4,
+            ],
+            'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => $event->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'deletedAt' => null,
+        ]);
+    }
+
+    #[DataProvider('provideValidationUpdateImageCases')]
+    public function testValidationUpdateImage(array $requestBody, $file, array $expectedErrors): void
+    {
+        $url = sprintf('%s/%s/images', self::BASE_URL, EventFixtures::EVENT_ID_7);
+
+        $client = self::apiClient();
+        $client->request(
+            Request::METHOD_POST,
+            $url,
+            files: ['image' => $file],
+            server: [
+                'CONTENT_TYPE' => 'multipart/form-data',
+            ]
+        );
+
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+        $this->assertResponseBodySame([
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
+        ]);
+    }
+
+    public static function provideValidationUpdateImageCases(): array
+    {
+        $requestBody = EventTestFixtures::partial();
+        unset($requestBody['id']);
+
+        return [
+            'image not supported' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getGif(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The mime type of the file is invalid ("image/gif"). Allowed mime types are "image/png", "image/jpg", "image/jpeg".'],
+                ],
+            ],
+            'image size' => [
+                'requestBody' => $requestBody,
+                'file' => ImageTestFixtures::getImageMoreThan2mb(),
+                'expectedErrors' => [
+                    ['field' => 'image', 'message' => 'The file is too large (2.5 MB). Allowed maximum size is 2 MB.'],
                 ],
             ],
         ];

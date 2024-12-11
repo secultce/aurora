@@ -8,6 +8,10 @@ properties:
     type: string
     maxLength: 100
     description: "Nome do evento"
+  image:
+    type: string
+    format: uri
+    description: "Imagem do evento"
   agentGroup:
     description: "Grupo de agentes do evento"
     type: object

@@ -52,6 +52,8 @@ paths:
     $ref: './components/paths/event/Collection.yaml'
   /events/{id}:
     $ref: './components/paths/event/Item.yaml'
+  /events/{id}/images:
+    $ref: './components/paths/event/UpdateImage.yaml'
   /faqs:
     $ref: './components/paths/faq/Collection.yaml'
   /faqs/{id}:
