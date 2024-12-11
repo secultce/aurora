@@ -12,9 +12,16 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 - **Symfony** 7
 - **Aurora User Interface** 5.3 
 
-[Acesse aqui para entender as decisões](./help/STACK.md)
-
-[Acesse aqui os diagramas](./help/DIAGRAM.md)
+## Links Rápidos
+- [Acesse aqui para entender melhor nossa Stack](./help/STACK.md)
+- [Acesse aqui para entender nossas decisões de backend](./help/TECHNICAL-DECISIONS.md)
+- [Esquema do Banco de Dados](./help/DIAGRAM.md)
+- [Como criar issues](./help/CREATE-ISSUES.md)
+- [Como abrir Pull Requests](./help/CREATE-PULL-REQUESTS.md)
+- [Nosso Fluxo de Desenvolvimento](./help/DEV-FLOW.md)
+- [Enums](./help/ENUM.md)
+- [Arquitetura da Aplicação](./help/README.md)
+- [Comandos do terminal](./help/COMMANDS.md)
 
 ## Instalação 
 <details>
@@ -43,6 +50,9 @@ cd aurora
 >
 > O jeito mais fácil é rodar o comando `make setup`, isso já vai executar todos os passos necessários e deixar a aplicação rodando em <http://localhost:8080>
 >
+```bash
+make setup
+```
 Mas se preferir, pode fazer o passo a passo abaixo
 
 ---
@@ -134,20 +144,24 @@ Estamos utilizando o Symfony e o seu ecossistma de bibliotecas, porém a arquite
 
 ```mermaid
 flowchart TD
+    style E fill:#e06666, color:white
+    style S fill:#3d85c6, color:white
+
     HC((HttpClient)) --JsonRequest<--> R[Routes]
     B((Browser)) --GET/POST--> Routes
     R --> CA[[ControllerApi]]
     Routes --> CW[[ControllerWeb]]
-    CA <--> S[Service]
+    CA <--> S([Service])
     CW <--> S
     S <--> V{Validator}
-    V <--> RP[Repository]
+    V <--is invalid--> E{{Exceptions/Violations}}
+    V <--is valid--> RP[Repository]
     RP <==ORM/Doctrine==> D[(Database)]
     CA --JsonResponse--> HC
     CW --HTML/CSS/JS--> B
 ```
 
-- Para saber mais sobre nossas decisões técnicas [acesse aqui](./help/README.md)
+- Para saber mais sobre nossas decisões técnicas [acesse aqui](./help/TECHNICAL-DECISIONS.md)
 - Para entender nosso fluxo de desenvolvimento decisões técnicas [clique aqui](./help/DEV-FLOW.md)
 </details>
 

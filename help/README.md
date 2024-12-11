@@ -19,9 +19,9 @@ Essa é a documentação das decisões técnicas, voltada para desenvolvedores e
 
 ### Instalação dos pacotes
 
-Para instalar as dependências e atualizar o autoload, entre no container da aplicação e execute:
+Para instalar as dependências e atualizar o autoload:
 ```shell
-composer install
+make install_dependencies
 ```
 
 --- 
@@ -34,7 +34,7 @@ Os `Controllers` em conjunto com as `Routes` permitem criar endpoints para diver
 <summary>Como criar um novo controller</summary>
 
 #### 1 - Controller
-Crie uma nova classe em `/app/Controller/Api/`, por exemplo, `EventApiController.php`:
+Crie uma nova classe em `/src/Controller/Api/`, por exemplo, `EventApiController.php`:
 
 ```php
 <?php
@@ -43,7 +43,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
-class EventApiController
+class EventApiController extends AbstractApiController
 {
     
 }
@@ -63,9 +63,8 @@ declare(strict_types=1);
 namespace App\Controller\Api;
 
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Symfony\Component\HttpFoundation\Response;
 
-class EventApiController
+class EventApiController extends AbstractApiController
 {
     public function getList(): JsonResponse
     {
@@ -76,7 +75,22 @@ class EventApiController
     
         return new JsonResponse($events);
     }
-    
+}
+```
+
+ou
+
+```php
+<?php
+
+declare(strict_types=1);
+
+namespace App\Controller\Web;
+
+use Symfony\Component\HttpFoundation\Response;
+
+class EventWebController extends AbstractWebController
+{
     public function getList(): Response
     {
         $events = [
@@ -96,7 +110,7 @@ Acesse os arquivos das rotas em `/config/routes` lá nós estamos separando as r
 ```yaml
 get:
   path: /example
-  controller: App\Controller\Admin\ExampleAdminController::action
+  controller: App\Controller\Web\Admin\ExampleAdminController::action
   methods: ['GET']
 ```
 
@@ -122,7 +136,7 @@ A camada responsável pela comunicação entre nosso código e o banco de dados.
 
 Siga o passo a passo a seguir:
 
-#### Passo 1 - Crie sua classe no `/app/src/Repository` e extenda a classe abstrata `AbstractRepository`
+#### Passo 1 - Crie sua classe no `/src/Repository` e extenda a classe abstrata `AbstractRepository`
 
 ```php
 <?php
@@ -163,7 +177,7 @@ Migrations são a forma (correta) de fazer um versionamento do banco de dados, n
 <details>
 <summary>Como criar uma nova migration</summary>
 
-#### Passo 1 - Criar uma nova classe no diretório `/app/migrations`
+#### Passo 1 - Criar uma nova classe no diretório `/migrations`
 
 ```php
 <?php
@@ -200,7 +214,7 @@ Atualmente o Doctrine não fornece suporte para migrations em bancos de dados n�
 <details>
 <summary>Como criar uma nova migration</summary>
 
-#### Passo 1 - Criar uma nova classe no diretório `/app/migrations-odm`
+#### Passo 1 - Criar uma nova classe no diretório `/migrations-odm`
 
 ```php
 <?php
@@ -249,7 +263,7 @@ Comandos são entradas via CLI (linha de comando) que permitem automatizar algun
 <details>
 <summary>Como criar um novo console command</summary>
 
-#### Passo 1 - Criar uma nova classe em `app/src/Command/`:
+#### Passo 1 - Criar uma nova classe em `/src/Command/`:
 
 ```php
 <?php
@@ -300,7 +314,7 @@ Data Fixtures são dados falsos, normalmente criados para testar a aplicação, 
 <details>
 <summary>Como criar uma DataFixture para uma Entidade</summary>
 
-#### Passo 1 - Criar uma nova classe em `app/src/DataFixtures/`:
+#### Passo 1 - Criar uma nova classe em `/src/DataFixtures/`:
 
 ```php
 <?php
@@ -348,7 +362,7 @@ Documentação do PHPUnit: <https://phpunit.de/index.html>
 <summary>Como criar um novo teste</summary>
 
 ### Criar um novo teste
-Para criar um novo cenário de teste funcional, basta adicionar sua nova classe no diretório `/app/tests/functional/`, com o seguinte código:
+Para criar um novo cenário de teste funcional, basta adicionar sua nova classe no diretório `/tests/Functional/`, com o seguinte código:
 
 ```php
 <?php
