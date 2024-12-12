@@ -22,5 +22,6 @@ describe('Painel de Controle - Página de listar FAQs', () => {
         });
 
         cy.get('.table').should('not.contain', 'Onde posso acessar editais para projetos culturais no Brasil?');
+        cy.get('.success.snackbar').contains('A pergunta foi excluída').should('be.visible');
     });
 });

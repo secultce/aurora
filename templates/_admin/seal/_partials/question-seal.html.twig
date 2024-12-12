@@ -1,16 +1,6 @@
 <div class="faq-form-container">
     <h2 class="form-title">{{ 'view.seal.create' | trans }}</h2>
 
-    {% if errors is defined and errors|length > 0 %}
-        <div class="alert alert-danger">
-            <ul>
-                {% for error in errors %}
-                    <li>{{ error.message }}</li>
-                {% endfor %}
-            </ul>
-        </div>
-    {% endif %}
-
     <form method="POST" action="">
         <div class="mb-3">
             <label for="question" class="form-label">{{ 'seal_name' | trans }}</label>

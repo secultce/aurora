@@ -7,12 +7,6 @@
         {% include "_components/side-bar.html.twig" %}
 
         <div class="management-content w-100 p-4">
-            {% for message in app.flashes('error') %}
-                <div class="alert alert-danger">
-                    {{ message }}
-                </div>
-            {% endfor %}
-
             <div class="row justify-content-center">
                 <div class="col-6">
                     <div class="card card-body shadow">

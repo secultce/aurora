@@ -1,0 +1,41 @@
+<div class="toast-container p-3 top-0 start-50 translate-middle-x">
+    {% if errors is defined and errors|length > 0 %}
+        {% for error in errors %}
+            <div class="toast danger snackbar" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true">
+                <div class="d-flex">
+                    <span class="icon material-icons align-self-start">check_circle</span>
+                    <div class="toast-body">
+                        {{ error.message }}
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    {% for message in app.flashes('error') %}
+        <div class="toast danger snackbar" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true">
+            <div class="d-flex">
+                <span class="icon material-icons align-self-start">check_circle</span>
+                <div class="toast-body">
+                    {{ message|trans }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    {% endfor %}
+
+    {% for message in app.flashes('success') %}
+        <div class="toast success snackbar" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true">
+            <div class="d-flex">
+                <span class="icon material-icons align-self-start">check_circle</span>
+                <div class="toast-body">
+                    {{ message|trans }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    {% endfor %}
+</div>
+
+<script type="module" src="{{ asset('js/snackbar.js') }}"></script>
