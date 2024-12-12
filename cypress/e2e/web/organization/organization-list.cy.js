@@ -60,13 +60,13 @@ describe('Página de Listar de Organizações', () => {
     });
 
     it('Garante que o botão de limpar filtros funciona', () => {
-        cy.get('.align-items-end > .fw-bold').contains('9 Organizações Encontradas').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains('10 Organizações Encontradas').should('be.visible');
         cy.get('#open-filter').click();
         cy.get('#organization-name').type('PHPeste');
         cy.get('#apply-filters').click();
         cy.get('.align-items-end > .fw-bold').contains('1 Organizações Encontradas').should('be.visible');
         cy.get('#open-filter').click();
         cy.get('.btn-outline-primary').click();
-        cy.get('.align-items-end > .fw-bold').contains('9 Organizações Encontradas').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').contains('10 Organizações Encontradas').should('be.visible');
     });
 });

@@ -25,5 +25,6 @@ describe('Painel de Controle - Página de listar Espaços', () => {
         cy.contains('Confirmar').click();
 
         cy.contains('Casa da Capoeira').should('not.exist');
+        cy.get('.success.snackbar').contains('O Espaço foi excluído').should('be.visible');
     });
 })

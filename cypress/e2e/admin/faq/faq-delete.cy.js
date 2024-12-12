@@ -20,5 +20,7 @@ describe('Painel de Controle - Página de listar FAQs', () => {
         cy.get('.modal-dialog').within(() => {
             cy.contains('Confirmar').click();
         });
+
+        cy.get('.success.snackbar').contains('FAQ removida com sucesso.').should('be.visible');
     });
 });

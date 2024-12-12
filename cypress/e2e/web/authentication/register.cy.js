@@ -86,6 +86,21 @@ describe('Página de Cadastro', () => {
         cy.get('.btn').contains('Continuar').click();
     });
 
+    it('Garante que os erros são mostrados', () => {
+        cy.get("[name = 'first_name']").type('João');
+        cy.get("[name = 'last_name']").type('da Silva');
+        cy.get("[name='birth_date']").type('1990-01-01');
+        cy.get("[name = 'cpf']").type('123.456.789-00');
+        cy.get("[name = 'phone']").type('(11) 99999-9999');
+        cy.get("[name = 'email']").type('alessandrofeitoza@example.com');
+        cy.get("[name = 'password']").type('a204C_DB%l.@');
+        cy.get("[name = 'confirm_password']").type('a204C_DB%l.@');
+
+        clickOnContinueButton();
+
+        cy.get('.danger.snackbar').contains('Este email já está em uso.').should('be.visible');
+    });
+
 // TODO: Aguardar a implementação do aceite de políticas e dados do agente cultural para descomentar os testes abaixo:
     // it('Verifica o título e subtítulo do formulário de aceite de políticas', () => {
     //
