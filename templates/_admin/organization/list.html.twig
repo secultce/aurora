@@ -12,8 +12,12 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body shadow">
-                        <h2>{{ 'my_organizations'|trans }}</h2>
-
+                        <div class="d-flex justify-content-between align-items-center">
+                            <h2>{{ 'my_organizations'|trans }}</h2>
+                            <a href="{{  path('admin_organization_add') }}" class="btn btn-primary">
+                                {{ 'create' | trans }}
+                            </a>
+                        </div>
                         <hr>
 
                         <table class="table table-hover table-striped">
