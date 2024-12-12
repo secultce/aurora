@@ -179,6 +179,7 @@ official_registration: You edit official
 old: old
 oldest: Oldest
 order: Sort by
+organization: Organization
 other_options: Other Options
 opened_registrations: Open Registrations
 opportunities: Opportunities
@@ -478,8 +479,14 @@ view:
       last_days: Registered in the last 7 days
 
   organization:
+    date: Organization was created on
     message:
       deleted: The organization has been deleted
+    quantity:
+      total: Organizations Found
+      culture: Cultural Organizations
+      inactive: Inactive Organizations
+      last_days: Registered in the last 7 days
 
   success:
     successfully: Your registration has been created successfully!

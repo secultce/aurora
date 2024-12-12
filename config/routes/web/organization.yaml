@@ -1,0 +1,4 @@
+list:
+  path: /organizacoes
+  controller: App\Controller\Web\OrganizationWebController::list
+  methods: ['GET']

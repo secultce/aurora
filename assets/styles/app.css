@@ -558,6 +558,14 @@ img.entity-image {
     text-overflow: ellipsis;
 }
 
+.nav-item .nav-link.organization:hover .material-icons {
+    background-color: var(--navlink-organization);
+}
+
+.nav-item .nav-link.organization:hover p {
+    color: var(--navlink-organization);
+}
+
 @media only screen and (min-width: 1400px) {
     .name__entity-details {
         max-width: 755px;

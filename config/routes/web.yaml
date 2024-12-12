@@ -28,6 +28,11 @@ web_opportunity:
   prefix: /
   name_prefix: web_opportunity_
 
+web_organization:
+  resource: 'web/organization.yaml'
+  prefix: /
+  name_prefix: web_organization_
+
 web_faq:
   resource: 'web/faq.yaml'
   prefix: /

@@ -179,6 +179,7 @@ official_registration: Ediciones oficiales
 old: viejo
 oldest: Más Antiguo
 order: Ordenar por
+organization: Organización
 other_options: Otras opciones
 opened_registrations: Inscripciones Abiertas
 opportunities: Oportunidades
@@ -480,8 +481,14 @@ view:
       last_days: Registradas en los últimos 7 días
 
   organization:
+    date: Organización fue creada en
     message:
       deleted: La organización ha sido eliminada
+    quantity:
+      total: Organizaciones Encontradas
+      culture: Organizaciones Culturales
+      inactive: Organizaciones Inactivas
+      last_days: Registradas en los últimos 7 días
 
   success:
     successfully: ¡Su registro ha sido creado exitosamente!

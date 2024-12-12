@@ -1,0 +1,53 @@
+describe('Página de Listar de Organizações', () => {
+    beforeEach(() => {
+        cy.viewport(1920, 1080);
+        cy.visit('/organizacoes');
+    });
+
+    it('Garante que a página de lista de organizações existe', () => {
+        cy.get('.breadcrumb a:nth-child(1)').contains('Início').should('be.visible');
+        cy.get('.breadcrumb a:nth-child(2)').contains('Organizações').should('be.visible');
+        cy.get('.page-title').contains('Organizações').should('be.visible');
+        cy.contains('Organizações Encontradas');
+    });
+
+    it('Garante que o dashboard de orgnizações esteja presente', () => {
+        cy.get('.entity-dashboard').should('be.visible');
+
+        const expectedTexts = [
+            'Organizações Encontradas',
+            'Organizações Culturais',
+            'Organizações Inativos',
+            'Registrados nos últimos 7 dias'
+        ];
+
+        expectedTexts.forEach(text => {
+            cy.get('span.text').contains(text).should('be.visible');
+        });
+    });
+
+    it('Garante que as tabs estão funcionando', () => {
+        const tabs = [
+            { tab: '#pills-list-tab'},
+            { tab: '#pills-map-tab'},
+            { tab: '#pills-indicators-tab'}
+        ];
+
+        tabs.forEach(({ tab }) => {
+            cy.get(tab).click();
+            cy.get(tab).should('have.class', 'active');
+        });
+    });
+
+    it('Garante que os cards de organizações estão visíveis', () => {
+        cy.get('.align-items-end > .fw-bold').contains(/^\d+ Organizações Encontradas/).should('be.visible');
+        cy.get('.agent-options').should('be.visible');
+        cy.get('#sort-options').select('recent').should('have.value', 'recent');
+        cy.get('#sort-options').select('old').should('have.value', 'old');
+
+        cy.get(':nth-child(3) > .agent-card-header > .d-flex > .organization-name').contains('PHPeste').should('be.visible');
+        cy.get(':nth-child(3) > .flex-column > .agent-area > .organization-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
+        cy.get(':nth-child(3) > .flex-column > .mx-3').contains('Organização da Conferencia de PHP do Nordeste').should('be.visible');
+        cy.get(':nth-child(3) > .flex-column > .access-profile-container > .btn').contains('Acessar').should('be.visible');
+    });
+});
