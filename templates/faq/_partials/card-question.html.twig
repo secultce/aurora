@@ -57,45 +57,39 @@
                 <p>{{ 'view.faq.categories' | trans }}</p>
             </div>
 
-            <div class="d-flex justify-content-between gap-2">
-                <div class="col">
-                    {% for faq in faqs %}
-                        {% if loop.index is odd %}
-                            <div class="card card-body card-faq-item mb-2">
-                                <p>{{ faq.question }}</p>
-                                <i class="material-icons" data-bs-toggle="modal" data-bs-target="#faqModal-{{ faq.id }}">chevron_right</i>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
-
-                <div class="col">
-                    {% for faq in faqs %}
-                        {% if loop.index is even %}
-                            <div class="card card-body card-faq-item mb-2">
-                                <p>{{ faq.question }}</p>
-                                <i class="material-icons" data-bs-toggle="modal" data-bs-target="#faqModal-{{ faq.id }}">chevron_right</i>
-                            </div>
-                        {% endif %}
-                    {% endfor %}
-                </div>
+            <div class="row">
+                {% for faq in faqs %}
+                    <div class="col-md-6">
+                        <div
+                            class="card card-body card-faq-item my-2"
+                            data-faq-question="{{ faq.question }}"
+                            data-faq-answer="{{ faq.answer }}"
+                            data-bs-toggle="modal"
+                            data-bs-target="#faqModalAnswer"
+                        >
+                            <p>{{ faq.question }}</p>
+                            <i class="material-icons">help_outline</i>
+                        </div>
+                    </div>
+                {% endfor %}
             </div>
         </section>
 
-        {% for faq in faqs %}
-        <div class="modal fade faq-modal" id="faqModal-{{ faq.id }}" tabindex="-1" aria-labelledby="faqModalLabel-{{ faq.id }}" aria-hidden="true">
-            <div class="modal-dialog">
+        <div class="modal fade faq-modal" id="faqModalAnswer" tabindex="-1" aria-labelledby="faqModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="faqModalLabel-{{ faq.id }}">{{ faq.question }}</h5>
+                        <h5 class="modal-title" id="faqModalLabel"></h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
-                    <div class="modal-body">
-                        {{ faq.answer }}
+                    <div class="modal-body" id="faqModalBody">
                     </div>
                 </div>
             </div>
         </div>
-        {% endfor %}
     </div>
 </section>
+
+{% block extra_javascripts %}
+    <script type="module" src="{{ asset('js/faq/modal.js') }}"></script>
+{% endblock %}
