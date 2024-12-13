@@ -1,0 +1,31 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %} {{ 'organizations'|trans}} {% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/organization.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="white-square">
+        {% include '_components/breadcrumb.html.twig' with {
+            items: [
+                {text: 'home'|trans, path: path('web_home_homepage')},
+                {text: 'organizations'|trans, path: path('web_organization_list')},
+            ]
+        } %}
+
+        {% include "_components/title.html.twig" with {title: 'organizations'|trans} %}
+
+        {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
+
+        {% include "organization/_partials/tabs/tabs.html.twig" %}
+    </section>
+
+    <section class="entity-wrapper">
+        <div class="entity-container">
+            {% include 'organization/_partials/tabs/content-tabs.html.twig' %}
+        </div>
+    </section>
+{% endblock %}

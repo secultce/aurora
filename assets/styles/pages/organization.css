@@ -1,0 +1,15 @@
+.organization-name {
+    font-family: var(--font-open-sans);
+    color: var(--btn-publish-custom-color);
+    margin: 0;
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.organization-sub-area {
+    color: var(--archive-icon-color);
+    font-weight: bold;
+    font-size: 0.9375rem;
+    display: inline;
+    margin-left: 0.3125rem;
+}

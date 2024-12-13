@@ -180,6 +180,7 @@ official_registration: Editais oficiais
 old: antigo
 oldest: Mais Antigo
 order: Ordenar por
+organization: Organização
 other_options: Outras Opções
 opened_registrations: Inscrições abertas
 opportunities: Oportunidades
@@ -389,7 +390,7 @@ view:
         description: Uma breve descrição sobre você.
         name_info: As pessoas irão encontrar você por esse nome.
         select_areas: Selecione pelo menos uma área de atuação
-  
+
   entities:
     change_history: histórico de alterações
     report: denunciar
@@ -468,8 +469,14 @@ view:
       last_days: Registradas nos últimos 7 dias
 
   organization:
+    date: Organização foi criada em
     message:
       deleted: A Organização foi excluída
+    quantity:
+      total: Organizações Encontradas
+      culture: Organizações Culturais
+      inactive: Organizações Inativos
+      last_days: Registrados nos últimos 7 dias
 
   success:
     successfully: Seu cadastro foi criado com sucesso!
