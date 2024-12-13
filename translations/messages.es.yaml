@@ -162,6 +162,7 @@ name: Nombre
 name_space: Nombre del espacio
 name_event: Nombre del evento
 name_opportunity: Nombre de la oportunidad
+name_organization: Nombre de la organización
 name_initiative: Nombre de la iniciativa
 neighborhood: Barrio
 notifications: Notificaciones
@@ -183,6 +184,7 @@ other_options: Otras opciones
 opened_registrations: Inscripciones Abiertas
 opportunities: Oportunidades
 organizations: Organizaciones
+organization_register: Create an Organization
 orientation: Seleccione la Orientación Sexual
 other_information: Otra información
 
@@ -206,6 +208,7 @@ physical: Física
 project_value: Valor del proyecto
 public: Público
 public_information: Información pública
+public_phone: telefono publico
 published: Publicados
 published-by: Publicado por
 

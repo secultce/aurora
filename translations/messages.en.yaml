@@ -162,6 +162,7 @@ name: Name
 name_space: Space name
 name_event: Event Name
 name_opportunity: Opportunity Name
+name_organization: Organization name
 name_initiative: Nome gives initiative
 neighborhood: Neighborhood
 notifications: Notifications
@@ -183,6 +184,7 @@ other_options: Other Options
 opened_registrations: Open Registrations
 opportunities: Opportunities
 organizations: Organizations
+organization_register: Create an Organization
 orientation: Select the Sexual Orientation
 other_information: Other information
 
@@ -206,6 +208,7 @@ physical: Physical
 project_value: Project value
 public: Public
 public_information: Public Information
+public_phone: Public Telephone
 published: Published
 published-by: Publicado por
 

@@ -1,3 +1,8 @@
+add:
+  path: /adicionar
+  controller: App\Controller\Web\Admin\OrganizationAdminController::add
+  methods: ['GET', 'POST']
+
 list:
   path: /
   controller: App\Controller\Web\Admin\OrganizationAdminController::list
