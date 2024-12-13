@@ -6,9 +6,12 @@ info:
     - Agentes
     - Espaços
     - Eventos
+    - Faqs
+    - Fases
     - Iniciativas
     - Oportunidades
     - Organizações
+    - Selos
     - Usuários
 
     Links Importantes:
@@ -39,6 +42,12 @@ tags:
     description: Endpoints relacionados às faqs
   - name: Fases
     description: Endpoints relacionados às fases
+  - name: Oportunidades
+    description: Endpoints relacionados às oportunidades
+  - name: Organizações
+    description: Endpoints relacionados às organizações
+  - name: Selos
+    description: Endpoints relacionados aos selos
   - name: Usuários
     description: Endpoints relacionados aos usuários
 paths:
@@ -72,28 +81,32 @@ paths:
     $ref: './components/paths/opportunity/Collection.yaml'
   /opportunities/{id}:
     $ref: './components/paths/opportunity/Item.yaml'
+  /opportunities/{id}/images:
+    $ref: './components/paths/opportunity/UpdateImage.yaml'
   /opportunities/{opportunity}/inscriptions:
     $ref: './components/paths/inscription-opportunity/Collection.yaml'
   /opportunities/{opportunity}/inscriptions/{id}:
     $ref: './components/paths/inscription-opportunity/Item.yaml'
-  /opportunities/{id}/images:
-    $ref: './components/paths/opportunity/UpdateImage.yaml'
+  /opportunities/{opportunity}/phases:
+    $ref: './components/paths/phase/Collection.yaml'
+  /opportunities/{opportunity}/phases/{id}:
+    $ref: './components/paths/phase/Item.yaml'
   /organizations:
     $ref: './components/paths/organization/Collection.yaml'
   /organizations/{id}:
     $ref: './components/paths/organization/Item.yaml'
   /organizations/{id}/images:
     $ref: './components/paths/organization/UpdateImage.yaml'
+  /seals:
+    $ref: './components/paths/seal/Collection.yaml'
+  /seals/{id}:
+    $ref: './components/paths/seal/Item.yaml'
   /spaces:
     $ref: './components/paths/space/Collection.yaml'
   /spaces/{id}:
     $ref: './components/paths/space/Item.yaml'
   /spaces/{id}/images:
     $ref: './components/paths/space/UpdateImage.yaml'
-  /opportunities/{opportunity}/phases:
-    $ref: './components/paths/phase/Collection.yaml'
-  /opportunities/{opportunity}/phases/{id}:
-    $ref: './components/paths/phase/Item.yaml'
   /users:
     $ref: './components/paths/user/Collection.yaml'
   /users/{id}:
@@ -102,10 +115,10 @@ components:
   schemas:
     Agent:
       $ref: './components/schemas/agent.yaml'
-    Faq:
-      $ref: './components/schemas/faq.yaml'
     Event:
       $ref: './components/schemas/event.yaml'
+    Faq:
+      $ref: './components/schemas/faq.yaml'
     Initiative:
       $ref: './components/schemas/initiative.yaml'
     InscriptionOpportunity:
@@ -116,6 +129,8 @@ components:
       $ref: './components/schemas/organization.yaml'
     Phase:
       $ref: './components/schemas/phase.yaml'
+    Seal:
+      $ref: './components/schemas/seal.yaml'
     Space:
       $ref: './components/schemas/space.yaml'
     User:

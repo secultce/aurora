@@ -18,39 +18,39 @@ class Seal extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private ?string $name = null;
 
     #[ORM\Column(length: 255)]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private ?string $description = null;
     #[ORM\Column]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private bool $active = false;
 
     #[ORM\ManyToOne(targetEntity: Agent::class, inversedBy: 'seals')]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
-    #[Groups('seal.get')]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private Agent $createdBy;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private DateTimeImmutable $expirationDate;
 
     #[ORM\Column]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
-    #[Groups(['seal.get'])]
+    #[Groups(['seal.get', 'seal.get.item'])]
     private ?DateTime $deletedAt = null;
 
     public function __construct()

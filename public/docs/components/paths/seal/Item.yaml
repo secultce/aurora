@@ -1,0 +1,37 @@
+get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Selos
+  summary: Recupera um único selo
+  responses:
+    '200':
+      description: Selo encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/seal/SealGetItemResponse.yaml'
+    '404':
+      description: Selo não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/seal/SealNotFound.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Selos
+  summary: Remove um único selo
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Selo não encontrado
+      content:
+          application/json:
+            schema:
+              $ref: '../../responses/seal/SealNotFound.yaml'
