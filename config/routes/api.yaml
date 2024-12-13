@@ -3,22 +3,22 @@ api_example:
   prefix: /api
   name_prefix: api_example_
 
+api_agents:
+  resource: 'api/agent.yaml'
+  prefix: /api/agents
+  name_prefix: api_agent_
+  trailing_slash_on_root: false
+
 api_auth:
   resource: 'api/authentication.yaml'
   prefix: /api
   name_prefix: api_auth_
 
-api_agents:
-    resource: 'api/agent.yaml'
-    prefix: /api/agents
-    name_prefix: api_agent_
-    trailing_slash_on_root: false
-
 api_events:
-    resource: 'api/event.yaml'
-    prefix: /api/events
-    name_prefix: api_event_
-    trailing_slash_on_root: false
+  resource: 'api/event.yaml'
+  prefix: /api/events
+  name_prefix: api_event_
+  trailing_slash_on_root: false
 
 api_faq:
   resource: 'api/faq.yaml'
@@ -32,16 +32,22 @@ api_initiative:
   name_prefix: api_initiative_
   trailing_slash_on_root: false
 
+api_inscription_opportunity:
+  resource: 'api/inscription-opportunity.yaml'
+  prefix: /api/opportunities/{opportunity}/inscriptions
+  name_prefix: api_inscription_opportunity_
+  trailing_slash_on_root: false
+
 api_opportunity:
   resource: 'api/opportunity.yaml'
   prefix: /api/opportunities
   name_prefix: api_opportunity_
   trailing_slash_on_root: false
 
-api_inscription_opportunity:
-  resource: 'api/inscription-opportunity.yaml'
-  prefix: /api/opportunities/{opportunity}/inscriptions
-  name_prefix: api_inscription_opportunity_
+api_organization:
+  resource: 'api/organization.yaml'
+  prefix: /api/organizations
+  name_prefix: api_organization_
   trailing_slash_on_root: false
 
 api_phase:
@@ -50,16 +56,16 @@ api_phase:
   name_prefix: api_phase_
   trailing_slash_on_root: false
 
+api_seal:
+  resource: 'api/seal.yaml'
+  prefix: /api/seals
+  name_prefix: api_seal_
+  trailing_slash_on_root: false
+
 api_space:
   resource: 'api/space.yaml'
   prefix: /api/spaces
   name_prefix: api_space_
-  trailing_slash_on_root: false
-
-api_organization:
-  resource: 'api/organization.yaml'
-  prefix: /api/organizations
-  name_prefix: api_organization_
   trailing_slash_on_root: false
 
 api_users:
