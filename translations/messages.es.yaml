@@ -81,6 +81,7 @@ email: Correo Electrónico
 entity_banner: Banner de la Entidad
 entity: Entidad
 enter_opportunity: Ingrese el nombre de la oportunidad
+enter_organization: Ingrese el nombre de la organización
 enter_initiative: Digite el nombre de la iniciativa
 enter_space: Introduce el nombre del espacio
 events: Eventos
@@ -235,10 +236,11 @@ transvestite: Travesti
 theater: Teatro
 type: Tipo
 type_here: Escriba aquí
-type_agent: tipo de agente
-type_opportunity: tipo de oportunidad
+type_agent: Tipo de agente
+type_opportunity: Tipo de oportunidad
 type_initiative: Tipo de iniciativa
-type_space: tipo de espacio
+type_organization: Tipo de organización
+type_space: Tipo de espacio
 to: hasta
 
 user: Usuario

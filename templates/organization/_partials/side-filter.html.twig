@@ -8,34 +8,23 @@
     </div>
 
     <div class="filter-fields">
-        <div class="form-group">
-            <label for="period" class="filter-label">{{ 'period' | trans }}</label>
-            <select class="filter-form mb-3" id="period" name="period">
-                <option value="">{{ 'select' | trans }}</option>
-            </select>
-        </div>
 
-        <div class="mb-2">
-            <input type="checkbox" id="official-events" name="official-events" value="official-events">
-            <label for="official-events" class="fw-bold">{{ 'official_events' | trans }}</label>
+        <div class="form-group">
+            <label for="organization-name" class="filter-label">{{ 'name_organization' | trans }}</label>
+            <input type="text" class="filter-form" id="organization-name" name="name" placeholder={{ 'enter_organization'| trans }}>
         </div>
 
         <div class="form-group">
-            <label for="event-name" class="filter-label">{{ 'name_event' | trans }}</label>
-            <input type="text" class="filter-form" id="event-name" name="name" placeholder="">
-        </div>
-
-        <div class="form-group">
-            <label for="event-language" class="filter-label">{{ 'language' | trans }}</label>
-            <select class="filter-form" id="event-language" name="language">
+            <label for="type" class="filter-label">{{ 'type_organization' | trans }}</label>
+            <select class="filter-form" id="type" name="type">
                 <option value="">{{ 'select' | trans }}</option>
             </select>
         </div>
 
         <div class="form-group">
-            <label for="age-rating" class="filter-label">{{ 'age_rating' | trans }}</label>
-            <select class="filter-form" id="age-rating" name="age-rating">
-                <option value="">{{ 'select' | trans }}</option>
+            <label for="status" class="filter-label">{{ 'areas_of_expertise' | trans }}</label>
+            <select class="filter-form" id="status" name="status">
+                <option value="">{{ 'everybody' | trans }}</option>
             </select>
         </div>
 
@@ -62,7 +51,7 @@
 
         <div class="d-flex flex-column gap-2">
             <button id="apply-filters" type="submit" class="btn btn-primary fw-bold py-3">{{ 'apply_filter' | trans }}</button>
-            <a href="{{ path("web_event_list") }}" class="btn btn-outline-primary py-3 fw-bold">{{ 'clean_filter' | trans }}</a>
+            <a href="{{ path("web_organization_list") }}" class="btn btn-outline-primary py-3 fw-bold">{{ 'clean_filter' | trans }}</a>
         </div>
     </div>
 </form>
