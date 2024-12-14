@@ -28,7 +28,7 @@ migrate_database:
 
 # Executa as fixtures de dados
 load_fixtures:
-	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n --append"
+	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n --append --purge-exclusions=city --purge-exclusions=state"
 
 # Instala dependências do frontend
 install_frontend:
