@@ -18,7 +18,9 @@ class OrganizationWebController extends AbstractWebController
 
     public function list(Request $request): Response
     {
-        $organizations = $this->service->list();
+        $filters = $request->query->all();
+
+        $organizations = $this->service->list(params: $filters);
 
         $totalOrganizations = count($organizations);
 

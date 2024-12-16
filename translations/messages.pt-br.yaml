@@ -81,6 +81,7 @@ email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
 enter_opportunity: Digite o nome da oportunidade
+enter_organization: Digite o nome da organização
 enter_initiative: Digite o nome da iniciativa
 enter_space: Digite o nome do espaço
 events: Eventos
@@ -238,6 +239,7 @@ type_here: Digite aqui
 type_agent: Tipo de agente
 type_opportunity: Tipo da oportunidade
 type_initiative: Tipo da iniciativa
+type_organization: Tipo da organização
 type_space: Tipo do espaço
 to: até
 

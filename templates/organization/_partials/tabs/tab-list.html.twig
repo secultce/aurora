@@ -35,3 +35,12 @@
         </div>
     </div>
 {% endfor %}
+
+{% if organizations|length > 8 %}
+    <div class="container align-items-center mt-5 mb-5">
+        <div class="centered-icon-text card-view-more">
+            <i class="material-icons">add_circle_outline</i>
+            <button class="btn fw-bold">{{ 'see_more' | trans }}</button>
+        </div>
+    </div>
+{% endif %}

@@ -50,4 +50,23 @@ describe('Página de Listar de Organizações', () => {
         cy.get(':nth-child(3) > .flex-column > .mx-3').contains('Organização da Conferencia de PHP do Nordeste').should('be.visible');
         cy.get(':nth-child(3) > .flex-column > .access-profile-container > .btn').contains('Acessar').should('be.visible');
     });
+
+    it('Garante que o filtro funciona', () => {
+        cy.get('#open-filter').click();
+        cy.get('#organization-name').type('PHPeste');
+        cy.get('#apply-filters').click();
+        cy.get('.align-items-end > .fw-bold').contains('1 Organizações Encontradas').should('be.visible');
+        cy.get('.organization-name').contains('PHPeste').should('be.visible');
+    });
+
+    it('Garante que o botão de limpar filtros funciona', () => {
+        cy.get('.align-items-end > .fw-bold').contains('9 Organizações Encontradas').should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('#organization-name').type('PHPeste');
+        cy.get('#apply-filters').click();
+        cy.get('.align-items-end > .fw-bold').contains('1 Organizações Encontradas').should('be.visible');
+        cy.get('#open-filter').click();
+        cy.get('.btn-outline-primary').click();
+        cy.get('.align-items-end > .fw-bold').contains('9 Organizações Encontradas').should('be.visible');
+    });
 });
