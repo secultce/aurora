@@ -1,0 +1,27 @@
+{% extends "_layouts/blank-not-logged.html.twig" %}
+
+{% block title %}
+    Criar um selo
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/seal.css') }}">
+{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card card-body">
+                        {% include '_admin/seal/_partials/question-seal.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </section>
+{% endblock %}

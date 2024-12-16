@@ -262,6 +262,7 @@ select_state: Selecione o Estado
 select_municipality: Selecione o Municipio
 select_race: Selecione a Raça/Cor
 select: Selecione
+seal_name: Nome do Selo
 send: Enviar
 send_message: Enviar mensagem
 sent: Enviadas
