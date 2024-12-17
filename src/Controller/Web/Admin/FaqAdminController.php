@@ -17,6 +17,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class FaqAdminController extends AbstractWebController
 {
     public const VIEW_ADD = '_admin/faq/add.html.twig';
+    public const VIEW_EDIT = '_admin/faq/edit.html.twig';
 
     public function __construct(
         private FaqServiceInterface $faqService,
@@ -32,7 +33,6 @@ class FaqAdminController extends AbstractWebController
 
         try {
             $this->faqService->create([
-                'id' => Uuid::v4(),
                 'answer' => $request->get('answer'),
                 'question' => $request->get('question'),
             ]);
@@ -48,7 +48,7 @@ class FaqAdminController extends AbstractWebController
             ]);
         }
 
-        return $this->redirectToRoute('admin_dashboard');
+        return $this->redirectToRoute('admin_faq_list');
     }
 
     public function list(): Response
@@ -60,12 +60,46 @@ class FaqAdminController extends AbstractWebController
         ]);
     }
 
-    public function remove(?Uuid $id): Response
+    public function remove(string $id): Response
     {
-        $this->faqService->remove($id);
-
-        $this->addFlash('success', $this->translator->trans('view.faq.message.deleted_faq'));
+        try {
+            $this->faqService->remove(Uuid::fromString($id));
+            $this->addFlash('success', 'FAQ removida com sucesso.');
+        } catch (Exception $e) {
+            $this->addFlash('error', 'Erro ao remover a FAQ.');
+        }
 
         return $this->redirectToRoute('admin_faq_list');
+    }
+
+    public function edit(string $id, Request $request, ValidatorInterface $validator): Response
+    {
+        try {
+            $faq = $this->faqService->get(Uuid::fromString($id));
+        } catch (Exception $e) {
+            throw $this->createNotFoundException('FAQ não encontrada.');
+        }
+
+        if (!$request->isMethod('POST')) {
+            return $this->render(self::VIEW_EDIT, [
+                'faq' => $faq,
+            ]);
+        }
+
+        try {
+            $this->faqService->update(Uuid::fromString($id), [
+                'question' => $request->get('question'),
+                'answer' => $request->get('answer'),
+            ]);
+
+            $this->addFlash('success', 'FAQ atualizada com sucesso.');
+
+            return $this->redirectToRoute('admin_faq_list');
+        } catch (ValidatorException $exception) {
+            return $this->render(self::VIEW_EDIT, [
+                'faq' => $faq,
+                'errors' => $exception->getConstraintViolationList(),
+            ]);
+        }
     }
 }
