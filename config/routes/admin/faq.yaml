@@ -6,9 +6,14 @@ add:
 list:
   path: /
   controller: App\Controller\Web\Admin\FaqAdminController::list
-  methods: [GET]
+  methods: ['GET']
 
 remove:
-  path: /{id}/remove
+  path: /{id}/remover
   controller: App\Controller\Web\Admin\FaqAdminController::remove
-  methods: [GET]
+  methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\FaqAdminController::edit
+  methods: ['GET', 'POST']
