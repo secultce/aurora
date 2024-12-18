@@ -1,0 +1,39 @@
+post:
+  parameters:
+    - in: path
+      name: 'opportunity'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da oportunidade
+    - in: path
+      name: 'phase'
+      schema:
+        type: string
+        format: uuid
+      required: true
+      description: O identificador da fase
+  tags:
+    - Inscrição na fase
+  summary: Cria uma inscrição na oportunidade
+  requestBody:
+    description: Inscrição na oportunidade
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/inscription-phase/InscriptionPhasePostItemRequest.yaml'
+  responses:
+    '201':
+      description: Inscrição na oportunidade criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/inscription-phase/InscriptionPhasePostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, inscrição na oportunidade não criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
