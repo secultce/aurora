@@ -1,0 +1,4 @@
+create:
+  path: /
+  controller: App\Controller\Api\InscriptionPhaseApiController::create
+  methods: ['POST']

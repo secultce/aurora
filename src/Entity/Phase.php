@@ -20,7 +20,7 @@ class Phase
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['phase.get', 'opportunity.get.item'])]
+    #[Groups(['phase.get', 'opportunity.get.item', 'inscription-phase.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
