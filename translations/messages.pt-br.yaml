@@ -83,8 +83,10 @@ entity: Entidade
 enter_opportunity: Digite o nome da oportunidade
 enter_initiative: Digite o nome da iniciativa
 enter_space: Digite o nome do espaço
+event: Evento
 events: Eventos
 everybody: Todos
+evidences: Evidências
 elderly_person: Pessoa idosa
 explore_repository: Conheça o repositório
 
@@ -405,6 +407,7 @@ view:
         user_not_logged: Para criar um evento é necessário estar logado.
       short_bio: Adicione uma breve descrição do evento.
     format_datetime: d/m/Y \à\s h:i:s
+    id: ID do evento
     message:
       deleted: O Evento foi excluído
     not_set_datetime: Data e hora não definidas

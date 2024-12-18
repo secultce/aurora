@@ -29,7 +29,7 @@
                             <tbody>
                             {% for item in events %}
                                 <tr>
-                                    <td><a href="#">{{ item.name }}</a></td>
+                                    <td><a href="{{ path('web_event_show', {id: item.id}) }}">{{ item.name }}</a></td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td></td>
                                     <td></td>

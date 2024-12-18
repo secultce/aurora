@@ -1,0 +1,82 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'event'|trans }} | {{ event.name }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/initiatives.css') }}">
+{% endblock %}
+
+{% block content %}
+    <div class="container-fluid px-0 bg-white shadow position-relative">
+        <img
+            class="img-fluid w-100"
+            src="{{ asset('img/entity-cover-image.png') }}"
+            alt="{{ 'event'|trans }} | {{ 'cover_image'|trans }}"
+        >
+
+        <div class="container">
+            <div class="breadcrumb pt-sm-4 breadcrumb__entity-details">
+                <a href="{{ path('web_home_homepage') }}">{{ 'home'|trans }}</a>
+                <a href="{{ path('web_event_list') }}">{{ 'events'|trans }}</a>
+                <a href="{{ path('web_event_show', {id: event.id}) }}">{{ event.name }}</a>
+            </div>
+        </div>
+
+        <div class="container position-relative">
+            <div class="d-flex mb-3 entity-info-wrapper">
+                <img class="entity-image rounded-circle" src="{{ asset('img/entity-image.png') }}" alt="{{ 'event'|trans }} | {{ 'image'|trans }}">
+
+                <h2 class="name__entity-details fw-bold ms-2 mt-2 ms-sm-4 mt-sm-3">{{ event.name }}</h2>
+
+                <div class="ms-auto mt-3 d-none d-xxl-inline">
+                    {% include "_components/_show/info-btns.html.twig" %}
+                </div>
+            </div>
+
+            <div class="mb-3 d-xxl-none">
+                {% include "_components/_show/info-btns.html.twig" %}
+            </div>
+
+            <p data-cy="short-description">
+                {{ event.extraFields.subtitle is defined ? event.extraFields.subtitle : '' }}
+            </p>
+
+            <p class="text-secondary id__entity-details mb-xxl-0">{{ 'view.event.id' | trans }}: {{ event.id }}</p>
+
+            <ul class="nav nav-pills">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="pill" href="#generalData">{{ 'general_data'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#seals">{{ 'seals'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#peoples">{{ 'peoples'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#initiatives">{{ 'initiatives'|trans }}</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="pill" href="#evidences">{{ 'evidences'|trans }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="tab-content">
+            {% include "event/_partials/show/general-data.html.twig" %}
+
+            {% include "event/_partials/show/seals.html.twig" %}
+
+            {% include "event/_partials/show/peoples.html.twig" %}
+
+            {% include "event/_partials/show/initiatives.html.twig" %}
+
+            {% include "event/_partials/show/evidences.html.twig" %}
+        </div>
+    </div>
+{% endblock %}
