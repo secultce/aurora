@@ -31,6 +31,10 @@ class Space extends AbstractEntity
     #[Groups('space.get')]
     private ?string $image = null;
 
+    #[ORM\OneToOne(targetEntity: SpaceAddress::class, mappedBy: 'owner', cascade: ['persist', 'remove'])]
+    #[Groups('space.get')]
+    private ?SpaceAddress $address = null;
+
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false, onDelete: 'SET NULL')]
     #[Groups('space.get')]
@@ -123,6 +127,16 @@ class Space extends AbstractEntity
         $this->extraFields = $extraFields;
     }
 
+    public function getAddress(): ?SpaceAddress
+    {
+        return $this->address;
+    }
+
+    public function setAddress(SpaceAddress $address): void
+    {
+        $this->address = $address;
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -160,6 +174,7 @@ class Space extends AbstractEntity
             'name' => $this->name,
             'createdBy' => $this->createdBy->getId()->toRfc4122(),
             'parent' => $this->parent?->getId()->toRfc4122(),
+            'address' => $this->address?->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
