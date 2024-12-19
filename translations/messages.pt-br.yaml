@@ -84,6 +84,7 @@ enter_opportunity: Digite o nome da oportunidade
 enter_organization: Digite o nome da organização
 enter_initiative: Digite o nome da iniciativa
 enter_space: Digite o nome do espaço
+event: Evento
 events: Eventos
 everybody: Todos
 elderly_person: Pessoa idosa
@@ -227,6 +228,8 @@ related-agents: Agentes Relacionados
 report: Denúncia
 responsible_agent: Agente Responsável
 
+space: Espaço
+
 tags: Tags
 term: Termo
 terms: Termos
@@ -303,6 +306,9 @@ accept-policies:
   privacy: Política de privacidade
   terms: Termos e condições de uso
   title: Aceite de políticas
+
+choose_entity:
+  choose_one: Selecione um de seus
 
 modal_confirm_remove:
   message: Esta ação é irreversível, tem certeza que deseja continuar?

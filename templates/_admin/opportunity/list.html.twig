@@ -12,7 +12,14 @@
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body shadow">
-                        <h2>{{ 'my_opportunities'|trans }}</h2>
+                        <div class="clearfix">
+                            <span class="float-start">
+                                <h2>{{ 'my_opportunities'|trans }}</h2>
+                            </span>
+                            <span class="float-end">
+                                <a href="{{ path('admin_opportunity_create') }}" class="btn btn-outline-success btn-sm">{{ 'view.opportunity.create'|trans }}</a>
+                            </span>
+                        </div>
 
                         <hr>
 

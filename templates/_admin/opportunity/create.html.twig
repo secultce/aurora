@@ -1,0 +1,89 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/choose-entity.js') }}"></script>
+{% endblock %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'view.opportunity.create'|trans }}{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        <div class="management-content w-100 p-4">
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card card-body shadow">
+                        <h2>{{ 'view.opportunity.create'|trans }}</h2>
+
+                        <hr>
+
+                        <form action="{{ path('admin_opportunity_store') }}" method="post">
+                            <div class="mb-3">
+                                <select class="form-select" name="extraFields[opportunityType]" aria-label="{{ 'type_opportunity'|trans }}">
+                                    <option selected disabled>{{ 'type_opportunity'|trans }}</option>
+                                    <option>Festival</option>
+                                    <option>Processo de Seleção</option>
+                                    <option>Abaixo-assinado</option>
+                                    <option>Curso</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="opportunityTitle" class="mb-1 required">{{ 'title'|trans }}</label>
+                                <input type="text" class="form-control" id="opportunityTitle" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="areasOfExpertiseOpportunity" class="mb-1">{{ 'areas_of_expertise'|trans }}</label>
+                                <select multiple class="form-select" id="areasOfExpertiseOpportunity" name="extraFields[areasOfExpertise][]" data-cy="areasOfExpertise">
+                                    <option>Artesanato</option>
+                                    <option>Cinema</option>
+                                    <option>Dança</option>
+                                    <option>Fotografia</option>
+                                    <option>Outros</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="coverImageOpportunity" class="mb-1">{{ 'cover_image'|trans }}</label>
+                                <input type="file" class="form-control" id="coverImageOpportunity" accept="image/*" data-cy="coverImage">
+                                <input type="hidden" id="base64CoverImageOpportunity" name="extraFields[coverImage]" value="">
+                            </div>
+
+                            {% include '_components/choose-entity.html.twig' with {
+                                fieldName: 'entity',
+                                entities: { id: 1, type: 'initiative', values: initiatives },
+                            } %}
+                            {% include '_components/choose-entity.html.twig' with {
+                                fieldName: 'entity',
+                                entities: { id: 1, type: 'event', values: events },
+                            } %}
+                            {% include '_components/choose-entity.html.twig' with {
+                                fieldName: 'entity',
+                                entities: { id: 1, type: 'space', values: spaces },
+                            } %}
+                            {% include '_components/choose-entity.html.twig' with {
+                                fieldName: 'entity',
+                                entities: { id: 1, type: 'agent', values: agents },
+                            } %}
+
+                            <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_and_publish'|trans }}</button>
+                            <button type="button" class="btn btn-secondary me-3">{{ 'create_in_draft'|trans }}</button>
+                            <a href="{{ path('admin_opportunity_list') }}" class="btn">{{ 'cancel'|trans }}</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/opportunity/create.js') }}"></script>
+{% endblock %}
