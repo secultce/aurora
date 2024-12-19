@@ -12,7 +12,7 @@
     <div class="container">
         <div class="row align-items-center justify-content-center p-3">
             <div class="col-md-5 text-white">
-                <h1><strong>{{ 'view.homepage.title'|trans }}</strong></h1>
+                <h1><strong>{{ 'view.homepage.title'|trans }} {{ env.aurora.name}} </strong></h1>
                 <p class="lead mt-3 fw-bold">{{ 'view.homepage.subtitle'|trans }}</p>
                 <p class="lead mt-2">{{ 'view.homepage.header_text'|trans }}</p>
             </div>
@@ -102,42 +102,67 @@
 <div class=" py-5">
     <div class="container pb-5">
         <div class="row text-start">
-            <h1 class="fw-bold mt-4 text-dark">{{ 'view.homepage.entities'|trans }}</h1>
-            {% include "_components/intro-card.html.twig" with {
-                'urlImg': asset('img/home-opportunities.png'),
-                'entity': 'opportunities'|trans,
-                'entityColor': 'var(--navlink-opportunity)',
-                'textEntity': 'view.homepage.register_access'|trans,
-                'path': path('web_opportunity_list')
-            } %}
-            {% include "_components/intro-card.html.twig" with {
-                'urlImg': asset('img/home-events.png'),
-                'entity': 'events'|trans,
-                'entityColor': 'var(--navlink-event)',
-                'textEntity': 'view.homepage.search_calendar'|trans,
-                'path': path('web_event_list')
-            } %}
-            {% include "_components/intro-card.html.twig" with {
-                'urlImg': asset('img/home-spaces.png'),
-                'entity': 'spaces'|trans,
-                'entityColor': 'var(--navlink-space)',
-                'textEntity': 'view.homepage.discover_places'|trans,
-                'path': path('web_space_list')
-            } %}
-            {% include "_components/intro-card.html.twig" with {
-                'urlImg': asset('img/home-agents.png'),
-                'entity': 'agents'|trans,
-                'entityColor': 'var(--navlink-agent)',
-                'textEntity': 'view.homepage.register_artists'|trans,
-                'path': path('web_agent_list')
-            } %}
-            {% include "_components/intro-card.html.twig" with {
-                'urlImg': asset('img/home-projects.png'),
-                'entity': 'initiatives'|trans,
-                'entityColor': 'var(--navlink-project)',
-                'textEntity': 'view.homepage.find_initiatives'|trans,
-                'path': path('web_initiative_list')
-            } %}
+            <h1 class="fw-bold mt-4 text-dark">{{ 'view.homepage.entities'|trans }} {{ env.aurora.name }}</h1>
+
+            {% if (env.aurora.modules.opportunities != '' ) %}
+                {% include "_components/intro-card.html.twig" with {
+                    'urlImg': asset('img/home-opportunities.png'),
+                    'entity': env.aurora.modules.opportunities ?? 'opportunities'|trans,
+                    'entityColor': 'var(--navlink-opportunity)',
+                    'textEntity': 'view.homepage.register_access'|trans,
+                    'path': path('web_opportunity_list')
+                } %}
+            {% endif %}
+
+            {% if (env.aurora.modules.events != '' ) %}
+                {% include "_components/intro-card.html.twig" with {
+                    'urlImg': asset('img/home-events.png'),
+                    'entity': env.aurora.modules.events ?? 'events'|trans,
+                    'entityColor': 'var(--navlink-event)',
+                    'textEntity': 'view.homepage.search_calendar'|trans,
+                    'path': path('web_event_list')
+                } %}
+            {% endif %}
+
+            {% if (env.aurora.modules.spaces != '' ) %}
+                {% include "_components/intro-card.html.twig" with {
+                    'urlImg': asset('img/home-spaces.png'),
+                    'entity': env.aurora.modules.spaces ?? 'spaces'|trans,
+                    'entityColor': 'var(--navlink-space)',
+                    'textEntity': 'view.homepage.discover_places'|trans,
+                    'path': path('web_space_list')
+                } %}
+            {% endif %}
+
+            {% if (env.aurora.modules.agents != '' ) %}
+                {% include "_components/intro-card.html.twig" with {
+                    'urlImg': asset('img/home-agents.png'),
+                    'entity': env.aurora.modules.agents ?? 'agents'|trans,
+                    'entityColor': 'var(--navlink-agent)',
+                    'textEntity': 'view.homepage.register_artists'|trans,
+                    'path': path('web_agent_list')
+                } %}
+            {% endif %}
+
+            {% if (env.aurora.modules.initiatives != '' ) %}
+                {% include "_components/intro-card.html.twig" with {
+                    'urlImg': asset('img/home-projects.png'),
+                    'entity': env.aurora.modules.iniatives ?? 'initiatives'|trans,
+                    'entityColor': 'var(--navlink-project)',
+                    'textEntity': 'view.homepage.find_initiatives'|trans,
+                    'path': path('web_initiative_list')
+                } %}
+            {% endif %}
+
+            {% if (env.aurora.modules.organizations != '' ) %}
+                {% include "_components/intro-card.html.twig" with {
+                    'urlImg': asset('img/home-contribua.png'),
+                    'entity': env.aurora.modules.organizations ?? 'initiatives'|trans,
+                    'entityColor': 'var(--navlink-project)',
+                    'textEntity': 'view.homepage.find_initiatives'|trans,
+                    'path': path('web_initiative_list')
+                } %}
+            {% endif %}
         </div>
     </div>
 </div>
@@ -309,20 +334,23 @@
     </div>
 </div>
 
-<div id="" class="contribute-maps text-white py-5">
-    <div class="container pb-5">
-        <div class="row text-start">
-            <div class="col-md-auto">
-                <h1 class="fw-bold mt-4">{{ 'view.homepage.contribute_aurora'|trans }}</h1>
-                <p class="lead mt-3">{{ 'view.homepage.add_events'|trans }}</p>
-                <a href="{{ path('web_initiative_list') }}" class="col-5 mx-auto btn btn-light btn-lg text-red-dark icon-link justify-content-between mt-5">
-                    <h4 class="fw-bold mt-2 text-uppercase">{{ 'start_now'|trans }}</h4>
-                    <span class="material-icons fs-2">arrow_forward</span>
-                </a>
+{% if (env.aurora.homepage.sections.contribute != '') %}
+    <div id="" class="contribute-maps text-white py-5">
+        <div class="container pb-5">
+            <div class="row text-start">
+                <div class="col-md-auto">
+                    <h1 class="fw-bold mt-4">{{ 'view.homepage.contribute_aurora'|trans }}</h1>
+                    <p class="lead mt-3">{{ 'view.homepage.add_events'|trans }}</p>
+                    <a href="{{ path('web_initiative_list') }}" class="col-5 mx-auto btn btn-light btn-lg text-red-dark icon-link justify-content-between mt-5">
+                        <h4 class="fw-bold mt-2 text-uppercase">{{ 'start_now'|trans }}</h4>
+                        <span class="material-icons fs-2">arrow_forward</span>
+                    </a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+{% endif %}
+
 <div class="bg-body text-dark py-5">
     <div class="container pb-5">
         <div class="row text-start">

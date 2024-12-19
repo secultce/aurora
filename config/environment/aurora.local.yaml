@@ -1,0 +1,20 @@
+name: Mapa das Periferias
+author: Secretaria Nacional de Periferias
+logo:
+  horizontal:
+    path: https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/periferias/mapa-das-periferias/@@images/c2b71df1-508b-4c56-b863-9527afc9bad8.png
+    width: 70px
+  vertical:
+    path: https://www.gov.br/cidades/pt-br/acesso-a-informacao/acoes-e-programas/periferias/mapa-das-periferias/@@images/c2b71df1-508b-4c56-b863-9527afc9bad8.png
+    width: 70px
+modules:
+  organizations: Municipios
+  agents: Promotores
+  opportunities: Credenciamento
+  events:
+  spaces:
+  initiatives:
+homepage:
+  sections:
+    contribute:
+    teste: teste

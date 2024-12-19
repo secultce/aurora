@@ -1,6 +1,6 @@
 .navbar-brand img {
-    height: unset;
-    width: 250px;
+    height: unset !important;
+    width: unset !important;
 }
 
 .navbar {
