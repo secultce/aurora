@@ -38,6 +38,8 @@ tags:
     description: Endpoints relacionados às iniciativas
   - name: Inscrição na oportunidade
     description: Endpoints relacionados as inscrições na oportunidade
+  - name: Inscrição na fase
+    description: Endpoints relacionados as inscrições na fase
   - name: Faq
     description: Endpoints relacionados às faqs
   - name: Fases
@@ -91,6 +93,8 @@ paths:
     $ref: './components/paths/phase/Collection.yaml'
   /opportunities/{opportunity}/phases/{id}:
     $ref: './components/paths/phase/Item.yaml'
+  /opportunities/{opportunity}/phases/{phase}/inscriptions:
+    $ref: './components/paths/inscription-phase/Collection.yaml'
   /organizations:
     $ref: './components/paths/organization/Collection.yaml'
   /organizations/{id}:
@@ -123,6 +127,8 @@ components:
       $ref: './components/schemas/initiative.yaml'
     InscriptionOpportunity:
       $ref: './components/schemas/inscription-opportunity.yaml'
+    InscriptionPhase:
+      $ref: './components/schemas/inscription-phase.yaml'
     Opportunity:
       $ref: './components/schemas/opportunity.yaml'
     Organization:
