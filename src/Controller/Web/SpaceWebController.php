@@ -4,25 +4,26 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Uid\Uuid;
 
 class SpaceWebController extends AbstractWebController
 {
-    private SpaceServiceInterface $spaceService;
-
-    public function __construct(SpaceServiceInterface $spaceService)
-    {
-        $this->spaceService = $spaceService;
+    public function __construct(
+        public readonly SpaceServiceInterface $service,
+        public readonly AgentServiceInterface $agentService,
+    ) {
     }
 
     public function list(Request $request): Response
     {
         $filters = $request->query->all();
 
-        $spaces = $this->spaceService->list(params: $filters);
+        $spaces = $this->service->list(params: $filters);
         $totalSpaces = count($spaces);
 
         $dashboard = [
@@ -39,6 +40,17 @@ class SpaceWebController extends AbstractWebController
             'spaces' => $spaces,
             'dashboard' => $dashboard,
             'totalSpaces' => $totalSpaces,
+        ]);
+    }
+
+    public function getOne(Uuid $id): Response
+    {
+        $space = $this->service->get($id);
+        $owner = $this->agentService->get($space->getCreatedBy()->getId());
+
+        return $this->render('space/one.html.twig', [
+            'space' => $space,
+            'owner' => $owner,
         ]);
     }
 }

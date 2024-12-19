@@ -37,7 +37,7 @@ describe('Página de Lista de Espaços', () => {
         cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
         cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__type').contains('Complexo Cultural').should('be.visible');
         cy.get(':nth-child(2) > .space-card__content > .space-card__info > .mb-2').contains('O Dragão do Mar é um dos maiores complexos culturais da região, com teatros, cinemas e galerias de arte que promovem a cultura local e internacional.').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .justify-content-end > .space-card__button').contains('Acessar espaço').should('be.visible');
+        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .justify-content-end > .btn').contains('Acessar espaço').should('be.visible');
     });
 
     it('Garante que o filtro funciona', () => {
