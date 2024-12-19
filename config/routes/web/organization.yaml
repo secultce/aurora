@@ -2,3 +2,8 @@ list:
   path: /organizacoes
   controller: App\Controller\Web\OrganizationWebController::list
   methods: ['GET']
+
+getOne:
+  path: /organizacoes/{id}
+  controller: App\Controller\Web\OrganizationWebController::getOne
+  methods: ['GET']

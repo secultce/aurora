@@ -30,7 +30,7 @@
             </div>
 
             <div class="access-profile-container">
-                <a href="#" class="btn btn-primary access-profile">{{ 'access' | trans }}</a>
+                <a href="{{ path("web_organization_getOne", {'id': organization.id }) }}" class="btn btn-primary access-profile">{{ 'access' | trans }}</a>
             </div>
         </div>
     </div>
