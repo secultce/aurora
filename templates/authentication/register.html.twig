@@ -7,6 +7,19 @@
 {% endblock %}
 
 {% block content %}
+    <div class="toast-container p-3 top-0 start-50 translate-middle-x">
+        {% if error ?? false %}
+            <div class="toast danger snackbar" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true">
+                <div class="d-flex">
+                    <span class="icon material-icons align-self-start">check_circle</span>
+                    <div class="toast-body">
+                        {{ error }}
+                    </div>
+                    <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            </div>
+        {% endif %}
+    </div>
     <div class="container d-grid justify-content-start mt-4">
         <a href="{{ path('web_home_homepage') }}" class="nav-link centered-icon-text text-primary">
             <i class="material-icons">arrow_back</i>
@@ -34,4 +47,5 @@
     <script type="module" src="{{ asset('js/form-stepper.js') }}"></script>
     <script type="module" src="{{ asset('js/counter.js') }}"></script>
     <script type="module" src="{{ asset('js/dropdown.js') }}"></script>
+    <script type="module" src="{{ asset('js/snackbar.js') }}"></script>
 {% endblock %}

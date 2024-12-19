@@ -3,19 +3,21 @@
 {% block title %} {{ 'Login'|trans}} {% endblock %}
 
 {% block content %}
+<div class="toast-container p-3 top-0 start-50 translate-middle-x">
+    {% if error ?? false %}
+        <div class="toast danger snackbar" role="alert" aria-live="assertive" aria-atomic="true" data-bs-delay="5000" data-bs-autohide="true">
+            <div class="d-flex">
+                <span class="icon material-icons align-self-start">check_circle</span>
+                <div class="toast-body">
+                    {{ error.messageKey|trans(error.messageData, 'security') }}
+                </div>
+                <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+        </div>
+    {% endif %}
+</div>
 <section class="row mt-5">
     <div class="col-4 offset-4 mt-3">
-        {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
-        {% endif %}
-
-        {% for message in app.flashes('error') %}
-            <div class="alert alert-danger">
-                {{ message }}
-            </div>
-        {% endfor %}
-
-
         <div class="card card-body mt-3 mb-5">
             <p class="mb-0">
                 <span class="fs-3 fw-bold">{{ 'welcome'|trans }}!</span>
@@ -43,4 +45,9 @@
         </div>
     </div>
 </section>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script type="module" src="{{ asset('js/snackbar.js') }}"></script>
 {% endblock %}

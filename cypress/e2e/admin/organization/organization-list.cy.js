@@ -19,5 +19,6 @@ describe('Painel de Controle - Página de listar Organizações', () => {
         cy.get('[data-modal-button="confirm-link"]').click();
 
         cy.get('.table').should('not.contain', 'Cultura em ação');
+        cy.get('.success.snackbar').contains('A Organização foi excluída').should('be.visible');
     })
 })
