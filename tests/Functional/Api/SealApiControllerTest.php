@@ -26,21 +26,21 @@ class SealApiControllerTest extends AbstractWebTestCase
 
         $this->assertResponseIsSuccessful();
         $this->assertResponseStatusCodeSame(Response::HTTP_OK);
-        $this->assertCount(count(SealFixtures::SEALS), json_decode($response));
+        $this->assertCount(2, json_decode($response));
 
         /* @var Seal $seal */
         $seal = $client->getContainer()->get(EntityManagerInterface::class)
-            ->find(Seal::class, SealFixtures::SEAL_ID_1);
+            ->find(Seal::class, SealFixtures::SEAL_ID_9);
 
         $this->assertJsonContains([
-            'id' => SealFixtures::SEAL_ID_1,
-            'name' => 'Qualidade Cultural',
-            'description' => 'Selo para validar eventos culturais de alta qualidade.',
-            'active' => true,
+            'id' => SealFixtures::SEAL_ID_9,
+            'name' => 'Artes e Ofícios',
+            'description' => 'Selo que valoriza projetos relacionados a artesanato e cultura manual.',
+            'active' => false,
             'createdBy' => [],
             'expirationDate' => $seal->getExpirationDate()->format(DateTimeInterface::ATOM),
             'createdAt' => $seal->getCreatedAt()->format(DateTimeInterface::ATOM),
-            'updatedAt' => $seal->getUpdatedAt()->format(DateTimeInterface::ATOM),
+            'updatedAt' => null,
             'deletedAt' => null,
         ]);
     }

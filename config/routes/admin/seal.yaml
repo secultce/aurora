@@ -12,3 +12,8 @@ getOne:
   path: /{id}
   controller: App\Controller\Web\Admin\SealAdminController::getOne
   methods: ['GET']
+
+remove:
+  path: /{id}/remove
+  controller: App\Controller\Web\Admin\SealAdminController::remove
+  methods: ['GET']
