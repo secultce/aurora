@@ -1,74 +1,16 @@
 <div class="tab-pane container active" id="general_data">
-    {% if initiative.parent %}
-        <div class="card shadow-sm mb-3 card__entity-details">
-            <div class="card-body py-4">
-                <p class="my-3">
-                    {{ 'view.initiative.linked_parent' | trans }}
-                    <a class="text-decoration-none fw-bold" href="{{ path('web_initiative_show', {id: initiative.parent.id }) }}">
-                        {{ initiative.parent.name }}
-                    </a>.
-                </p>
-            </div>
-        </div>
-    {% endif %}
-
     <div class="card shadow-sm mb-3 card__entity-details">
         <div class="card-body py-4">
             <h5 class="mb-4 fw-bold card-title__entity-details">{{ 'introduction' | trans }}</h5>
 
             <div class="row">
                 <div class="col">
-                    <label class="fw-bold mb-2">{{ 'view.initiative.type_of' | trans }}</label>
-                    <p class="text-initiative fw-bold">
-                        {% if initiative.extraFields.culturalLanguage is defined %}
-                            {{ initiative.extraFields.culturalLanguage }}
-                        {% else %}
-                            {{ 'not_informed' | trans }}
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
-                    <label class="fw-bold mb-2">{{ 'areas_of_expertise' | trans }}</label>
-                    <p>
-                        {% if initiative.extraFields.areasOfExpertise is defined %}
-                            {% for areaOfExpertise in initiative.extraFields.areasOfExpertise %}
-                                <span class="text-initiative fw-bold">{{ areaOfExpertise }}</span>{{ loop.last ? '' : ',' }}
-                            {% endfor %}
-                        {% else %}
-                            {{ 'not_informed' | trans }}
-                        {% endif %}
-                    </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col">
                     <label class="fw-bold mb-2">Tags (3) <i class="material-icons text-primary fs-5 align-top">help</i></label>
                     <p>
-                        <span class="text-initiative fw-bold">DESIGN</span>,
-                        <span class="text-initiative fw-bold">ACESSIBILIDADE</span>,
-                        <span class="text-initiative fw-bold">DESIGNINCLUSIVO</span>
+                        <span class="text__entity-details fw-bold">DESIGN</span>,
+                        <span class="text__entity-details fw-bold">ACESSIBILIDADE</span>,
+                        <span class="text__entity-details fw-bold">DESIGNINCLUSIVO</span>
                     </p>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-12 col-sm-6">
-                    <label class="fw-bold mb-2">{{ 'view.initiative.period' | trans }}</label>
-                    <p>
-                        {% if initiative.extraFields.period is defined %}
-                            {{ initiative.extraFields.period.startDate | date('d/m/Y') }} {{ 'to' | trans }} {{ initiative.extraFields.period.endDate | date('d/m/Y') }}
-                        {% else %}
-                            {{ 'not_informed' | trans }}
-                        {% endif %}
-                    </p>
-                </div>
-                <div class="col-12 col-sm-6">
-                    <label class="fw-bold mb-2">{{ 'project_value' | trans }}</label>
-                    <p>R$ 000.000,00</p>
                 </div>
             </div>
 
@@ -76,8 +18,8 @@
                 <div class="col">
                     <label class="fw-bold mb-2">{{ 'description' | trans }}</label>
                     <p>
-                        {% if initiative.extraFields.longDescription is defined %}
-                            {{ initiative.extraFields.longDescription }}
+                        {% if event.extraFields.longDescription is defined %}
+                            {{ event.extraFields.longDescription }}
                             <span class="text-primary fw-bold d-block">({{ 'see_more' | trans }})</span>
                         {% else %}
                             {{ 'not_informed' | trans }}
@@ -89,7 +31,7 @@
             <div class="row">
                 <div class="col-12 col-sm-6">
                     <label class="fw-bold mb-2">Site</label>
-                    <p><a class="text-decoration-none fw-bold" href="#" target="_blank">Site da iniciativa</a></p>
+                    <p><a class="text-decoration-none fw-bold" href="#" target="_blank">Site do evento</a></p>
                 </div>
                 <div class="col-12 col-sm-6">
                     <label class="fw-bold mb-2">{{ 'phone' | trans }}</label>
@@ -202,8 +144,8 @@
             <h6 class="fw-bold mb-4">{{ 'local' | trans }}</h6>
             <span class="d-flex align-items-center fw-bold">
                 <div class="rounded-circle card-names-ellipse__entity-details"></div>
-                {% if initiative.space %}
-                    <span><a class="text-decoration-none" href="#">{{ initiative.space.name }}</a></span>
+                {% if event.space %}
+                    <span><a class="text-decoration-none" href="#">{{ event.space.name }}</a></span>
                 {% else %}
                     {{ 'not_informed' | trans }}
                 {% endif %}
