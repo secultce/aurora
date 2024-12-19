@@ -8,6 +8,7 @@ use App\Service\Interface\OrganizationServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Uid\Uuid;
 
 class OrganizationWebController extends AbstractWebController
 {
@@ -38,6 +39,15 @@ class OrganizationWebController extends AbstractWebController
             'dashboard' => $dashboard,
             'organizations' => $organizations,
             'totalOrganizations' => $totalOrganizations,
+        ]);
+    }
+
+    public function getOne(Uuid $id): Response
+    {
+        $organization = $this->service->get($id);
+
+        return $this->render('organization/one.html.twig', [
+            'organization' => $organization,
         ]);
     }
 }
