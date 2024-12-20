@@ -1,0 +1,41 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: "Identificador da inscrição da oportunidade"
+    example: "123e4567-e89b-12d3-a456-426614174000"
+  agent:
+    description: "Agente inscrito na oportunidade"
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador do agente"
+        example: "123e4567-e89b-12d3-a456-426614174000"
+  opportunity:
+    type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da oportunidade"
+        example: "123e4567-e89b-12d3-a456-426614174000"
+  status:
+    type: string
+    enum:
+      - 'active'
+      - 'inactive'
+      - 'suspended'
+  createdAt:
+    $ref: '../common-types/date.yaml'
+    description: "Data e hora da criação da inscrição na oportunidade"
+  updatedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da última atualização  da inscrição na oportunidade"
+  deletedAt:
+    $ref: '../common-types/date.yaml'
+    nullable: true
+    description: "Data e hora da exclusão da inscrição na oportunidade"
