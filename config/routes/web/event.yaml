@@ -2,3 +2,8 @@ list:
   path: /eventos
   controller: App\Controller\Web\EventWebController::list
   methods: ['GET']
+
+show:
+  path: /eventos/{id}
+  controller: App\Controller\Web\EventWebController::show
+  methods: ['GET']

@@ -1,0 +1,7 @@
+<ul class="nav nav-pills {{ classes is defined ? classes : '' }}">
+    {% for pill in pills %}
+        <li class="nav-item">
+            <a class="nav-link {{ loop.first ? 'active' : '' }}" data-bs-toggle="pill" href="#{{ pill.id }}">{{ pill.title|trans }}</a>
+        </li>
+    {% endfor %}
+</ul>
