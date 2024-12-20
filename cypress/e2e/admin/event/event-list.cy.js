@@ -14,10 +14,11 @@ describe('Painel de Controle - Página de listar Eventos', () => {
         cy.get('tbody > tr > :nth-child(2)').contains('14/08/2024 10:00:00').should('be.visible');
     });
 
-    // it('Garante que seja possível deletar um evento', () => {
-    //     cy.get('button[data-cy="remove-2"]').click();
-    //     cy.get('[data-modal-button="confirm-link"]').click();
-    //
-    //     cy.get('.table').should('not.contain', 'Cultura em ação');
-    // });
+    it('Garante que seja possível deletar um evento', () => {
+        cy.get('button[data-cy="remove-2"]').click();
+        cy.get('[data-modal-button="confirm-link"]').click();
+    
+        cy.get('.table').should('not.contain', 'Músical o vento da Caatinga');
+        cy.get('.success.snackbar').contains('O Evento foi excluído').should('be.visible');
+    });
 })

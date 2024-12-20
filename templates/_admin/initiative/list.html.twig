@@ -9,12 +9,6 @@
         {% include "_components/side-bar.html.twig" %}
 
         <div class="management-content w-100 p-4">
-            {% for message in app.flashes('success') %}
-                <div class="alert alert-success">
-                    {{ message }}
-                </div>
-            {% endfor %}
-
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body shadow">

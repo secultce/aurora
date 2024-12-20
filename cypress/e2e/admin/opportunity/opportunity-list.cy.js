@@ -12,13 +12,14 @@ describe('Painel de Controle - Página de listar Oportunidades', () => {
         cy.contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('not.exist');
     });
 
-    // it('Garante que seja possível deletar uma oportunidade', () => {
-    //     cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
-    //
-    //     cy.get('[data-cy="remove-1"]').contains('Excluir').click();
-    //
-    //     cy.contains('Confirmar').click();
-    //
-    //     cy.contains('Inscrição para o Concurso de Cordelistas').should('not.exist');
-    // });
+    it('Garante que seja possível deletar uma oportunidade', () => {
+        cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
+    
+        cy.get('[data-cy="remove-1"]').contains('Excluir').click();
+    
+        cy.contains('Confirmar').click();
+    
+        cy.contains('Inscrição para o Concurso de Cordelistas').should('not.exist');
+        cy.get('.success.snackbar').contains('A Oportunidade foi excluída').should('be.visible');
+    });
 })

@@ -23,6 +23,7 @@ describe('Painel de Controle - Página de criar Iniciativas', () => {
         cy.get('[data-cy="submit"]').click();
 
         cy.contains('Preencha todos os campos obrigatórios.').should('be.visible');
+        cy.get('.danger.snackbar').contains('Preencha todos os campos obrigatórios.').should('be.visible');
     });
 
     it('Garante que os botões da página existem', () => {
@@ -37,6 +38,6 @@ describe('Painel de Controle - Página de criar Iniciativas', () => {
 
         cy.get('[data-cy="submit"]').click();
 
-        cy.contains('A Iniciativa foi criada com sucesso').should('be.visible');
+        cy.get('.success.snackbar').contains('A Iniciativa foi criada com sucesso').should('be.visible');
     });
 })

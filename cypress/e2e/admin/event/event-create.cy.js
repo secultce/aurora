@@ -6,7 +6,7 @@ describe('Pagina de Cadastrar Eventos', () => {
 
         Cypress.on('uncaught:exception', (err, runnable) => {
             // Previne falhas de teste devido a erros não críticos
-            if (err.message.includes('i.createPopper is not a function') || err.message.includes('Cannot read properties of null')) {
+            if (err.message.includes('createPopper is not a function') || err.message.includes('Cannot read properties of null')) {
                 return false;
             }
         });

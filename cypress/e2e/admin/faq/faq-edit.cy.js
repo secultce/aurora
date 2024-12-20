@@ -24,9 +24,7 @@ describe('Teste de navegação, validação e edição da página de Minhas FAQs
 
         cy.contains('Salvar').click();
 
-        cy.get('.alert.alert-danger')
-            .should('be.visible')
-            .and('contain.text', 'O valor é muito curto');
+        cy.get('.danger.snackbar').contains('O valor é muito curto.').should('be.visible');
     });
 
     it('Deve editar e salvar uma FAQ com sucesso', () => {

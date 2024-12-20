@@ -17,11 +17,4 @@ describe('Painel de Controle - Página de listar Agentes', () => {
     it('Garante que não é possivel excluir o agente pois só tem um', () => {
         cy.get('.table').should('not.contain', 'Excluir');
     });
-
-    // it('Garante que seja possível deletar um agente', () => {
-    //     cy.get('button[data-cy="remove-1"]').click();
-    //     cy.get('[data-modal-button="confirm-link"]').click();
-    //
-    //     cy.get('.table').should('not.contain', 'Agent Name');
-    // });
 })

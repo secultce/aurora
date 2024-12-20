@@ -10,6 +10,7 @@ import 'aurora-user-interface/dist/css/forms.css';
 import 'aurora-user-interface/dist/css/navigation.css';
 import 'aurora-user-interface/dist/css/side-filter.css';
 import 'aurora-user-interface/dist/css/timeline.css';
+import 'aurora-user-interface/dist/css/snackbar.css';
 
 import './styles/app.css';
 import './styles/components/navbar.css';
@@ -23,3 +24,7 @@ import './styles/components/form-step.css';
 import './js/navbar-dropdown.js';
 
 import 'aurora-user-interface/dist/js/bootstrap.min.js';
+
+import { Toast } from 'aurora-user-interface';
+
+export { Toast };
