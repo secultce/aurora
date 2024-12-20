@@ -2,3 +2,9 @@ list:
   path: /espacos
   controller: App\Controller\Web\SpaceWebController::list
   methods: ['GET']
+
+getOne:
+  path: /espacos/{id}
+  controller: App\Controller\Web\SpaceWebController::getOne
+  methods: ['GET']
+
