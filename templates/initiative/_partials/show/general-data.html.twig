@@ -101,95 +101,7 @@
 
     <div class="card shadow-sm mb-3 card__entity-details">
         <div class="card-body py-4">
-            <h5 class="mb-4 fw-bold card-title__entity-details">{{ 'social_media' | trans }}</h5>
-
-            <div class="row">
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">Instagram</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">X ({{ 'old' | trans }} Twitter)</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">Facebook</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">Vimeo</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">YouTube</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">Linkedin</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">Spotify</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">Pinterest</label>
-                    <p class="d-flex">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-                <div class="col mb-2">
-                    <label class="fw-bold mb-2">Tiktok</label>
-                    <p class="d-flex m-0">
-                        <i class="material-icons fs-4 me-1">facebook</i>
-                        <span class="align-top fw-bold">
-                            <a class="text-decoration-none" href="#" target="_blank">nomedainiciativa</a>
-                        </span>
-                    </p>
-                </div>
-            </div>
+            {% include "_components/_show/social-media.html.twig" %}
         </div>
     </div>
 
@@ -211,12 +123,5 @@
         </div>
     </div>
 
-    <div class="clearfix">
-        <button data-cy="change-history-btn" type="button" class="btn btn-outline-success fw-bold px-sm-5 py-sm-2 btn-outline__entity-details float-start">
-            {{ 'view.entities.change_history'|trans }}
-        </button>
-        <button data-cy="report-btn" type="button" class="btn btn-outline-success fw-bold px-sm-5 py-sm-2 btn-outline__entity-details float-end">
-            {{ 'view.entities.report'|trans }}
-        </button>
-    </div>
+    {% include "_components/_show/report-btns.html.twig" %}
 </div>
