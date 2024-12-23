@@ -1,0 +1,60 @@
+<div class="tab-pane container fade" id="initiatives">
+    <div class="card shadow-sm mb-3 card__entity-details">
+        <div class="card-body py-4">
+            {% if event.initiative %}
+                <div class="row">
+                    <div class="col">
+                        <div class="clearfix">
+                            <span class="d-flex align-items-center float-start mb-2">
+                                <div class="rounded-circle card-names-ellipse__entity-details"></div>
+                                <span><a data-cy="initiative-name" class="text-decoration-none fw-bold" href="{{ path('web_initiative_show', {'id': event.initiative.id }) }}">{{ event.initiative.name }}</a></span>
+                                <span data-cy="initiative-status" class="badge rounded-pill bs__bg-primary px-3 py-1">
+                                    <i class="material-icons align-middle fs-5 me-1">event_note</i> {{ 'in_progress' | trans }}
+                                </span>
+                            </span>
+                            <span class="text-secondary float-end mb-2">
+                                <small>{{ 'view.initiative.id' | trans }}: {{ event.initiative.id }}</small>
+                            </span>
+                        </div>
+                        <div class="container w-auto ms-sm-5">
+                            <div class="mb-3">
+                                <label data-cy="initiative-type" class="fw-bold">{{ 'type' | trans }}:</label>
+                                <span data-cy="initiative-type" class="text-initiative fw-semibold">{{ event.initiative.extraFields.culturalLanguage }}</span>
+                            </div>
+                            <div class="mb-3">
+                                <i class="material-icons align-text-bottom fs-5 me-2">calendar_month</i>
+                                <label class="fw-bold">{{ 'period' | trans }}:</label>
+                                <span data-cy="initiative-period">
+                                    {{ event.initiative.extraFields.period.startDate|date('d/m/Y') }} {{ 'to'|trans }} {{ event.initiative.extraFields.period.endDate|date('d/m/Y') }}
+                                </span>
+                            </div>
+                            <div class="mb-2">
+                                <i class="material-icons align-text-bottom fs-5 me-2">place</i>
+                                <label data-cy="initiative-location" class="fw-bold">{{ 'location' | trans }}:</label>
+                                <span>{{ event.initiative.space ? event.initiative.space.name : 'not_informed'|trans }}</span>
+                            </div>
+                            <div class="d-inline-flex align-items-center mb-2">
+                                <label data-cy="initiative-seals" class="fw-bold me-2">{{ 'seals' | trans }}:</label>
+                                <div class="d-inline-flex align-items-center me-sm-3">
+                                    <div class="rounded-circle initiative-seals__entity-details me-2"></div>
+                                    <span>
+                                        <a class="text-decoration-none fw-bold" href="#">Nome do selo</a>,
+                                    </span>
+                                </div>
+                                <div class="d-inline-flex align-items-center me-sm-3">
+                                    <div class="rounded-circle initiative-seals__entity-details me-2"></div>
+                                    <span>
+                                        <a class="text-decoration-none fw-bold" href="#">Nome do selo</a>
+                                    </span>
+                                </div>
+                            </div>
+                            <p data-cy="initiative-shortDescription">{{ event.initiative.extraFields.shortDescription }}</p>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <p>{{ 'view.event.message.without_initiative' | trans }}</p>
+            {% endif %}
+        </div>
+    </div>
+</div>

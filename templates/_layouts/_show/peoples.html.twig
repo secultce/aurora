@@ -10,14 +10,14 @@
                 <div class="row">
                     <div class="col mb-3">
                         <span class="d-flex align-items-center fw-bold">
-                            {% if initiative.createdBy.image %}
-                                <img class="card-images__entity-details rounded-circle" src="{{ initiative.createdBy.image }}" alt="{{ 'agent'|trans }} | {{ 'image'|trans }}">
+                            {% if entity.createdBy.image %}
+                                <img class="card-images__entity-details rounded-circle" src="{{ entity.createdBy.image }}" alt="{{ 'agent'|trans }} | {{ 'image'|trans }}">
                             {% else %}
                                 <div class="rounded-circle card-names-ellipse__entity-details"></div>
                             {% endif %}
                             <span>
-                                <a data-cy="createdBy-name" class="text-decoration-none" href="{{ path('web_agent_getOne', {'id': initiative.createdBy.id }) }}">
-                                    {{ initiative.createdBy.name }}
+                                <a data-cy="createdBy-name" class="text-decoration-none" href="{{ path('web_agent_getOne', {'id': entity.createdBy.id }) }}">
+                                    {{ entity.createdBy.name }}
                                 </a>
                             </span>
                         </span>

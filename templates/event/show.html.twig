@@ -1,0 +1,55 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'event'|trans }} | {{ event.name }}
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/pages/initiatives.css') }}">
+{% endblock %}
+
+{% set pills = [
+    {
+        'id': 'generalData',
+        'title': 'general_data'
+    },
+    {
+        'id': 'seals',
+        'title': 'seals'
+    },
+    {
+        'id': 'peoples',
+        'title': 'peoples'
+    },
+    {
+        'id': 'initiatives',
+        'title': 'initiatives'
+    },
+    {
+        'id': 'evidences',
+        'title': 'evidences'
+    }
+] %}
+
+{% block content %}
+    {% include '_layouts/_show/header.html.twig' with {
+        'entity': event,
+        'entityName': 'event',
+        'pills': pills
+    } %}
+
+    <div class="container py-4">
+        <div class="tab-content">
+            {% include "event/_partials/show/general-data.html.twig" %}
+
+            {% include "_layouts/_show/seals.html.twig" %}
+
+            {% include '_layouts/_show/peoples.html.twig' with { 'entity': event } %}
+
+            {% include "event/_partials/show/initiatives.html.twig" %}
+
+            {% include "event/_partials/show/evidences.html.twig" %}
+        </div>
+    </div>
+{% endblock %}

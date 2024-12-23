@@ -537,7 +537,7 @@ textarea {
 }
 
 .entity-info-wrapper {
-    height: 60px;
+    height: 65px;
 }
 
 img.entity-image {
@@ -625,6 +625,12 @@ img.card-images__entity-details {
     background-color: var(--bg-color-images);
 }
 
+.initiative-seals__entity-details {
+    width: 35px;
+    height: 35px;
+    background-color: var(--bg-color-images);
+}
+
 .btn-outline__entity-details {
     border: 2px solid var(--deep-teal);
     color: var(--deep-teal);
@@ -643,4 +649,12 @@ img.card-images__entity-details {
 
 .portfolio-icon__entity-details {
     background-color: var(--bg-color-images);
+}
+
+.text__entity-details {
+    color: var(--text-entity-details);
+}
+
+.bs__bg-primary {
+    background-color: var(--bs-blue);
 }

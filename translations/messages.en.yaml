@@ -65,6 +65,7 @@ created_at: Created at
 chain: Chain
 contact: Contact
 cultural_language: Cultural language
+cultural_languages: Cultural languages
 
 dashboard: Dashboard
 draft: In draft
@@ -84,8 +85,10 @@ enter_opportunity: Enter the opportunity name
 enter_organization: Enter the organization name
 enter_initiative: Enter the name of the initiative
 enter_space: Enter the name of the space
+event: Event
 events: Events
 everybody: Everybody
+evidences: Evidences
 elderly_person: Elderly Person
 explore_repository: Explore Repository
 
@@ -411,8 +414,10 @@ view:
         user_not_logged: To create an event you must be logged in.
       short_bio: Add a brief description of the event.
     format_datetime: d/m/Y \a\t h:i:s
+    id: Event ID
     message:
       deleted: The event has been deleted
+      without_initiative: No initiatives linked to this event
     not_set_datetime: Date and time not set
     quantity:
       finished: Completed Events
