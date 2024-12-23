@@ -1,5 +1,7 @@
 twig:
     file_name_pattern: '*.twig'
+    globals:
+        env: '@App\Environment\ConfigEnvironment'
 
 when@test:
     twig:

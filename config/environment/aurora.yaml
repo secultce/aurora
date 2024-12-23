@@ -1,0 +1,40 @@
+name: Aurora
+author: SECULT Ceará
+logo:
+  horizontal:
+    path: img/aurora-horizontal.png
+    width: 250
+  vertical:
+    path: img/aurora-horizontal.png
+    width: 250
+modules:
+  organizations: Organizações
+  agents: Agentes
+  opportunities: Oportunidades
+  events: Eventos
+  spaces: Espaços
+  initiatives: Iniciativas
+homepage:
+  sections:
+    header:
+      enabled: true
+      title:
+      subtitle:
+      description:
+      background:
+      image:
+    register:
+      enabled: true
+    opportunities:
+      enabled: true
+    modules:
+      enabled: true
+    happen_now:
+      enabled: true
+    maps:
+      enabled: true
+      background:
+      color:
+    contribute:
+      enabled: true
+
