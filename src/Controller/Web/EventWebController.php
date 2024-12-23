@@ -8,6 +8,7 @@ use App\Service\Interface\EventServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Uid\Uuid;
 
 class EventWebController extends AbstractWebController
 {
@@ -38,5 +39,12 @@ class EventWebController extends AbstractWebController
             'events' => $events,
             'totalEvents' => $totalEvents,
         ]);
+    }
+
+    public function show(Uuid $id): Response
+    {
+        $event = $this->service->get($id);
+
+        return $this->render('event/show.html.twig', ['event' => $event]);
     }
 }

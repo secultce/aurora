@@ -1,0 +1,43 @@
+<div class="container-fluid px-0 bg-white shadow position-relative">
+    <img
+        class="img-fluid w-100"
+        src="{{ entity.extraFields.coverImage is defined and entity.extraFields.coverImage ? entity.extraFields.coverImage : asset('img/entity-cover-image.png') }}"
+        alt="{{ 'entityName'|trans }} | {{ 'cover_image'|trans }}"
+    >
+
+    <div class="container">
+        <div class="breadcrumb pt-sm-4 breadcrumb__entity-details">
+            <a href="{{ path('web_home_homepage') }}">{{ 'home'|trans }}</a>
+            <a href="{{ path('web_'~entityName~'_list') }}">{{ "#{ entityName }s" | trans }}</a>
+            <a href="{{ path('web_'~entityName~'_show', {id: entity.id}) }}">{{ entity.name }}</a>
+        </div>
+    </div>
+
+    <div class="container position-relative">
+        <div class="d-flex mb-3 entity-info-wrapper">
+            <img
+                class="entity-image rounded-circle"
+                src="{{ entity.image ?? asset('img/entity-image.png') }}"
+                alt="{{ entityName|trans }} | {{ 'image'|trans }}"
+            >
+
+            <h2 class="name__entity-details fw-bold ms-2 mt-2 ms-sm-4 mt-sm-3">{{ entity.name }}</h2>
+
+            <div class="ms-auto mt-3 d-none d-xxl-inline">
+                {% include "_components/_show/info-btns.html.twig" %}
+            </div>
+        </div>
+
+        <div class="mb-3 d-xxl-none">
+            {% include "_components/_show/info-btns.html.twig" %}
+        </div>
+
+        <p data-cy="short-description">
+            {{ entity.extraFields.shortDescription is defined ? entity.extraFields.shortDescription : '' }}
+        </p>
+
+        <p class="text-secondary id__entity-details mb-xxl-0">{{ "view.#{ entityName }.id"|trans }}: {{ entity.id }}</p>
+
+        {% include '_components/_show/nav-pills.html.twig' with { 'pills': pills } %}
+    </div>
+</div>
