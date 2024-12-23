@@ -1,6 +1,4 @@
 function confirmRemove(event) {
-    document.querySelector('[data-modal-button="confirm-link"]').setAttribute(
-        'href',
-        event.getAttribute('data-href')
-    );
+    const href = event.getAttribute('data-href');
+    document.querySelector('[data-modal-button="confirm-link"]').setAttribute('href', href);
 }
