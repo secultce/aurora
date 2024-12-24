@@ -549,6 +549,11 @@ view:
     creator: Criador do selo
     date_of_receipt_of_the: Data de recebimento do selo
     expired: selo expirado
+    message:
+      deleted: O selo foi excluído
+    status:
+      active: Ativo
+      inactive: Inativo
     seal-picture: Foto do Selo
     validity: Validade do selo
 

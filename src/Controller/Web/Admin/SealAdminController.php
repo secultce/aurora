@@ -26,10 +26,7 @@ class SealAdminController extends AbstractAdminController
 
     public function list(): Response
     {
-        $seals = [
-            ['name' => 'Selo Um', 'status' => 'Ativo', 'createdAt' => new DateTime('2023-12-01 10:00:00')],
-            ['name' => 'Selo Dois', 'status' => 'Inativo', 'createdAt' => new DateTime('2023-11-25 15:30:00')],
-        ];
+        $seals = $this->sealService->list();
 
         return $this->render('seal/list.html.twig', [
             'seals' => $seals,
@@ -74,6 +71,15 @@ class SealAdminController extends AbstractAdminController
         }
 
         $this->addFlash('success', $this->translator->trans('view.seal.message.created'));
+
+        return $this->redirectToRoute('admin_seal_list');
+    }
+
+    public function remove(?Uuid $id): Response
+    {
+        $this->sealService->remove($id);
+
+        $this->addFlash('success', $this->translator->trans('view.seal.message.deleted'));
 
         return $this->redirectToRoute('admin_seal_list');
     }
