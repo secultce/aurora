@@ -9,6 +9,11 @@
         {% include "_components/side-bar.html.twig" %}
 
         <div class="management-content w-100 p-4">
+            {% for message in app.flashes('success') %}
+                <div class="alert alert-success">
+                    {{ message }}
+                </div>
+            {% endfor %}
             <div class="row">
                 <div class="col-12">
                     <div class="card card-body shadow">
@@ -36,11 +41,11 @@
                             {% for seal in seals %}
                                 <tr>
                                     <td>{{ seal.name }}</td>
-                                    <td>{{ seal.status }}</td>
+                                    <td>{{ seal.active ? 'view.seal.status.active'|trans : 'view.seal.status.inactive'|trans }}</td>
                                     <td>{{ seal.createdAt|date('d/m/Y H:i') }}</td>
                                     <td>
                                         <a href="#" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
-                                        <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="#" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
+                                        <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="{{ path('admin_seal_remove', {id: seal.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
                                     </td>
                                 </tr>
                             {% endfor %}

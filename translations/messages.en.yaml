@@ -475,6 +475,11 @@ view:
     creator: Seal creator
     date_of_receipt_of_the: Date of receipt of the seal
     expired: expired seal
+    message:
+      deleted: The seal has been deleted
+    status:
+      active: Active
+      inactive: Inactive
     seal-picture: Seal Picture
     validity: Seal validity
 
