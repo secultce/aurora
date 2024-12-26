@@ -21,6 +21,6 @@ describe('Painel de Controle - Página de listar FAQs', () => {
             cy.contains('Confirmar').click();
         });
 
-        cy.get('.success.snackbar').contains('FAQ removida com sucesso.').should('be.visible');
+        cy.get('.success.snackbar').contains('A pergunta foi excluída').should('be.visible');
     });
 });
