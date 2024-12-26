@@ -13,5 +13,7 @@ interface UserServiceInterface
 
     public function get(Uuid $id): User;
 
+    public function findAll(): array;
+
     public function update(Uuid $id, array $user): User;
 }

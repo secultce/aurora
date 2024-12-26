@@ -70,7 +70,7 @@ admin_subsite:
 
 admin_user:
   resource: 'admin/user.yaml'
-  prefix: /painel/user
+  prefix: /painel/admin/usuarios
   name_prefix: admin_user_
 
 admin_my_opportunity:
