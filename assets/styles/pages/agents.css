@@ -228,6 +228,11 @@
     color: var(--goldenYellow);
 }
 
+.agent-public-info-p{
+    font-weight: 700;
+    color: var(--main-font-color);
+}
+
 .agent-perfil-description {
     margin-top: 8px;
     max-width: 95rem;

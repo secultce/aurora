@@ -22,4 +22,13 @@ class OrganizationRepository extends AbstractRepository implements OrganizationR
 
         return $organization;
     }
+
+    public function findOneById(string $id): ?Organization
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.id = :id')
+            ->setParameter('id', $id)
+            ->getQuery()
+            ->getOneOrNullResult();
+    }
 }
