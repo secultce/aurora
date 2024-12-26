@@ -1,3 +1,8 @@
+admin_accountability:
+  resource: 'admin/accountability.yaml'
+  prefix: /painel/prestacao-de-contas
+  name_prefix: admin_accountability_
+
 admin_agent:
   resource: 'admin/agent.yaml'
   prefix: /painel/agentes
@@ -33,10 +38,20 @@ admin_organization:
   prefix: /painel/organizacoes
   name_prefix: admin_organization_
 
-admin_registrations:
+admin_registration:
   resource: 'admin/registration.yaml'
   prefix: /painel/inscricoes
-  name_prefix: admin_registrations_
+  name_prefix: admin_registration_
+
+admin_review:
+  resource: 'admin/review.yaml'
+  prefix: /painel/avaliacoes
+  name_prefix: admin_review_
+
+admin_role:
+  resource: 'admin/role.yaml'
+  prefix: /painel/role
+  name_prefix: admin_role_
 
 admin_seal:
   resource: 'admin/seal.yaml'
@@ -47,6 +62,16 @@ admin_space:
   resource: 'admin/space.yaml'
   prefix: /painel/espacos
   name_prefix: admin_space_
+
+admin_subsite:
+  resource: 'admin/subsite.yaml'
+  prefix: /painel/subsite
+  name_prefix: admin_subsite_
+
+admin_user:
+  resource: 'admin/user.yaml'
+  prefix: /painel/user
+  name_prefix: admin_user_
 
 admin_my_opportunity:
   resource: 'admin/my-opportunity.yaml'
