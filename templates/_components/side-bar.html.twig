@@ -1,188 +1,32 @@
 <div id="sidebar" class="bg-light p-3 border-end side-navigation sidebar-header">
-    <!-- Menu do Painel de Controle -->
-    <p class="font-subtitle">{{ 'menu' | trans }}</p>
-    <ul class="nav flex-column mb-3">
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_dashboard') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">dashboard</i>
-                    <span class="font-title ms-4">{{ 'control_panel' | trans }}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
-
-    <!-- Inscrições em Oportunidades -->
-    <p class="font-subtitle">{{ 'my_opportunities' | trans }}</p>
-    <ul class="nav flex-column mb-3">
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_registrations_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-wb-incandescent icon-size-1">wb_incandescent</i>
-                    <span class="font-title ms-4">{{ 'my_subscriptions' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-wb-incandescent icon-size-1">wb_incandescent</i>
-                    <span class="font-title ms-4">{{ 'accountability' | trans }}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
-
-    <!-- Editais e Oportunidades -->
-    <p class="font-subtitle">{{ 'footer.notices_opportunities' | trans }}</p>
-    <ul class="nav flex-column mb-3">
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_opportunity_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-wb-incandescent icon-size-1">wb_incandescent</i>
-                    <span class="font-title ms-4">{{ 'my_opportunities' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-wb-incandescent icon-size-1">wb_incandescent</i>
-                    <span class="font-title ms-4">{{ 'my_reviews' | trans }}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
-
-    <!-- Gerenciamento de Entidades -->
-    <p class="font-subtitle">{{ 'management' | trans }}</p>
-    <ul class="nav flex-column mb-3">
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_agent_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">people</i>
-                    <span class="font-title ms-4">{{ 'my_agents' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_event_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">event</i>
-                    <span class="font-title ms-4">{{ 'my_events' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_space_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">apartment</i>
-                    <span class="font-title ms-4">{{ 'my_spaces' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_initiative_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">article</i>
-                    <span class="font-title ms-4">{{ 'my_initiatives' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_organization_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">diversity_3</i>
-                    <span class="font-title ms-4">{{ 'my_organizations' | trans }}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
-
-    <!-- Outras Opções -->
-    <p class="font-subtitle">{{ 'other_options' | trans }}</p>
-    <ul class="nav flex-column mb-3">
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">extension</i>
-                    <span class="font-title ms-4">{{ 'my_apps' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">settings</i>
-                    <span class="font-title ms-4">{{ 'account_privacy' | trans }}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
-
-    <!-- Opções de administrador -->
-    <p class="font-subtitle">{{ 'admin_options' | trans }}</p>
-    <ul class="nav flex-column mb-3">
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_seal_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">bookmark</i>
-                    <span class="font-title ms-4">{{ 'seals' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">account_tree</i>
-                    <span class="font-title ms-4">{{ 'subsites' | trans  }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">manage_accounts</i>
-                    <span class="font-title ms-4">{{ 'users' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('admin_faq_list') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">quiz</i>
-                    <span class="font-title ms-4">{{ 'faq' | trans }}</span>
-                </a>
-            </div>
-        </li>
-        <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1">newspaper</i>
-                    <span class="font-title ms-4">{{ 'functions' | trans }}</span>
-                </a>
-            </div>
-        </li>
-    </ul>
+    {% for menu in env.aurora.sidebar %}
+        <p class="font-subtitle">{{ menu.title | trans }}</p>
+        <ul class="nav flex-column mb-3">
+            {% for key, item in menu.items %}
+                <li class="nav-item">
+                    <a href="{{ path(key) }}" class="{{ item.color ?? '' }} nav-link d-flex align-items-center">
+                        <i class="material-icons icon-size-1">{{ item.icon }}</i>
+                        <span class="font-title">{{ item.text | trans }}</span>
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    {% endfor %}
 
     <!-- Perfil e Sair -->
     <hr>
     <ul class="nav flex-column">
         <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="#" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1 icon-bg-primary">person</i>
-                    <span class="font-title ms-4">{{ 'my_account' | trans }}</span>
-                </a>
-            </div>
+            <a href="#" class="nav-link d-flex align-items-center text-primary">
+                <i class="material-icons icon-size-1">person</i>
+                <span class="font-title">{{ 'my_account' | trans }}</span>
+            </a>
         </li>
         <li class="nav-item">
-            <div class="d-flex align-items-center">
-                <a href="{{ path('_logout_web') }}" class="centered-icon-text nav-link">
-                    <i class="material-icons icon-size-1 icon-bg-primary">logout</i>
-                    <span class="font-title ms-4">{{ 'logout' | trans }}</span>
-                </a>
-            </div>
+            <a href="{{ path('_logout_web') }}" class="text-danger d-flex align-items-center nav-link">
+                <i class="material-icons icon-size-1">logout</i>
+                <span class="font-title">{{ 'logout' | trans }}</span>
+            </a>
         </li>
     </ul>
 </div>

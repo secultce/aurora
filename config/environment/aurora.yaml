@@ -14,6 +14,74 @@ modules:
   events: Eventos
   spaces: Espaços
   initiatives: Iniciativas
+
+sidebar:
+  dashboard:
+    title: menu
+    items:
+      admin_dashboard:
+        icon: dashboard
+        text: control_panel
+        color: text-info
+
+  my_opportunities:
+    title: my_opportunities
+    items:
+      admin_registration_list:
+        icon: app_registration
+        text: my_subscriptions
+      admin_accountability_list:
+        icon: payments
+        text: accountability
+
+  notice_opportunity:
+    title: footer.notices_opportunities
+    items:
+      admin_opportunity_list:
+        icon: diversity_2
+        text: my_opportunities
+      admin_review_list:
+        icon: manage_search
+        text: my_reviews
+
+  entity:
+    title: management
+    items:
+      admin_agent_list:
+        icon: people
+        text: my_agents
+      admin_event_list:
+        icon: event
+        text: my_events
+      admin_space_list:
+        icon: apartment
+        text: my_spaces
+      admin_initiative_list:
+        icon: article
+        text: my_initiatives
+      admin_organization_list:
+        icon: diversity_3
+        text: my_organizations
+
+  admin:
+    title: admin_options
+    items:
+      admin_seal_list:
+        icon: bookmark
+        text: seals
+      admin_subsite_list:
+        icon: account_tree
+        text: subsites
+      admin_user_list:
+        icon: manage_accounts
+        text: users
+      admin_faq_list:
+        icon: quiz
+        text: faq
+      admin_role_list:
+        icon: newspaper
+        text: functions
+
 homepage:
   sections:
     header:
