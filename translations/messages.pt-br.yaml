@@ -346,7 +346,9 @@ view:
     subtitle: Veja nossas dúvidas frequentes
     support: para falar com nossa equipe de suporte por chat.
     message:
-      deleted_faq: A pergunta foi excluída
+      deleted: A pergunta foi excluída
+      created: A pergunta foi criada com sucesso
+      updated: A pergunta foi atualizada
 
   faq_edit:
     description_faq: Descrição da FAQ que pode ser editada.
