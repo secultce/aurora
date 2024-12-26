@@ -16,7 +16,10 @@
             ]
         } %}
 
-        {% include "_components/title.html.twig" with {title: 'agents'|trans} %}
+        {% include "_components/title.html.twig" with {
+            title: 'agents'|trans,
+            action: {path: '/agentes/cadastro', text: 'view.agent.create'|trans}
+        } %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
 
