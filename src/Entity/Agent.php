@@ -29,7 +29,7 @@ class Agent extends AbstractEntity
     #[Groups(['agent.get'])]
     private ?string $name = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Groups(['agent.get'])]
     private ?string $image = null;
 

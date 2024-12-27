@@ -13,13 +13,16 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 
 readonly class FileService implements FileServiceInterface
 {
+    private const ASSETS_PATTERN = '/^\/var\/www(?:\/var)?\/assets(.*)/';
     private string $storageDir;
+    private string $storageUrl;
 
     public function __construct(
         private FilesystemOperator $filesystem,
         private ParameterBagInterface $parameterBag,
     ) {
         $this->storageDir = $this->parameterBag->get('app.dir.storage');
+        $this->storageUrl = $this->parameterBag->get('app.url.storage');
     }
 
     public function uploadFile(string $filename, string $content): void
@@ -34,7 +37,7 @@ readonly class FileService implements FileServiceInterface
 
     public function deleteFile(string $filename): void
     {
-        if (1 === preg_match('/^\/var\/www(?:\/var)?\/storage(.*)/', $filename, $matches)) {
+        if (1 === preg_match(self::ASSETS_PATTERN, $filename, $matches)) {
             $filename = $matches[1];
         }
 
@@ -43,18 +46,18 @@ readonly class FileService implements FileServiceInterface
 
     public function deleteFileByUrl(string $url): void
     {
-        $filename = str_replace($this->parameterBag->get('app.url.storage'), '', $url);
+        $filename = str_replace($this->storageUrl, '', $url);
 
         $this->filesystem->delete($filename);
     }
 
     public function getFileUrl(string $path): string
     {
-        if (1 === preg_match('/^\/var\/www(?:\/var)?\/storage(.*)/', $path, $matches)) {
+        if (1 === preg_match(self::ASSETS_PATTERN, $path, $matches)) {
             $path = $matches[1];
         }
 
-        return $this->parameterBag->get('app.url.storage').$path;
+        return $path;
     }
 
     /**
@@ -74,6 +77,6 @@ readonly class FileService implements FileServiceInterface
 
     public function urlOfImage(string $path): string
     {
-        return $this->parameterBag->get('app.url.storage').'/'.$path;
+        return $this->storageUrl.'/'.$path;
     }
 }

@@ -32,7 +32,7 @@ class Organization extends AbstractEntity
     #[Groups('organization.get')]
     private ?string $description = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Groups('organization.get')]
     private ?string $image = null;
 

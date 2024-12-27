@@ -27,7 +27,7 @@ class Initiative extends AbstractEntity
     #[Groups('initiative.get')]
     private ?string $name = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Groups(['initiative.get'])]
     private ?string $image = null;
 

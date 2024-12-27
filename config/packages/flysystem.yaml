@@ -4,5 +4,5 @@ flysystem:
         default.storage:
             adapter: 'local'
             options:
-                directory:  '%env(resolve:STORAGE_DIR)%'
-
+                directory: '%env(resolve:STORAGE_IMAGES_DIR)%'
+            directory_visibility: public
