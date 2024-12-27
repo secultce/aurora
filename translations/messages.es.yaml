@@ -552,7 +552,8 @@ view:
     access_space: Acceder al Espacio
     create: Crear Espacio
     message:
-      deleted: El espacio ha sido eliminada
+      deleted: El espacio ha sido eliminado
+      created: Nuevo espacio ha sido creado
     quantity:
       total: Espacios Encontrados
       finished: Espacios Cerrados

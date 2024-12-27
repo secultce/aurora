@@ -532,6 +532,7 @@ view:
     create: Criar espaço
     message:
       deleted: O Espaço foi excluído
+      created: Novo Espaço criado
     quantity:
       total: Espaços Encontrados
       finished: Espaços Fechados

@@ -77,4 +77,3 @@ admin_my_opportunity:
   resource: 'admin/my-opportunity.yaml'
   prefix: /painel/minhas-oportunidades
   name_prefix: admin_my_opportunity_
-

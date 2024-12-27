@@ -240,6 +240,7 @@ export declare const GENERAL_DATA: Message<{ 'messages': { parameters: NoParamet
 export declare const HAPPENING_NOW: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const HELP: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const HELP_PRIVACY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const HIGHER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const HOME: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const IDENTIFICATION_NUMBER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ILLUSTRATION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -408,7 +409,6 @@ export declare const STATUS: Message<{ 'messages': { parameters: NoParametersTyp
 export declare const STREET: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SUGGESTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SUBSITES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
-export declare const HIGHER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const YOUR_NAME: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const YOUR_QUESTION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const WELCOME: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
