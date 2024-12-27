@@ -20,8 +20,8 @@
                     <p class="lead mt-3 fw-bold">{{ env.aurora.homepage.sections.header.subtitle ?? 'view.homepage.subtitle'|trans }}</p>
                     <p class="lead mt-2">{{ env.aurora.homepage.sections.header.description ?? 'view.homepage.header_text'|trans }}</p>
                 </div>
-                <div class="col-md-7 mt-4">
-                    <img src="{{ asset(env.aurora.homepage.sections.header.image ?? 'img/pessoas-home.png') }}" alt="{{ 'illustration'|trans }}" class="img-fluid">
+                <div class="col-md-7 mt-4 text-end">
+                    <img src="{{ asset(env.aurora.homepage.sections.header.image ?? 'img/pessoas-home.png') }}" width="{{ env.aurora.homepage.sections.header.image_width ?? '100%' }}" alt="{{ 'illustration'|trans }}" class="img-fluid">
                 </div>
             </div>
         </div>

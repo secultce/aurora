@@ -62,6 +62,11 @@ readonly class UserService implements UserServiceInterface
         return $userObj;
     }
 
+    public function findAll(): array
+    {
+        return $this->repository->findAll();
+    }
+
     public function get(Uuid $id): User
     {
         $user = $this->repository->findOneBy([
