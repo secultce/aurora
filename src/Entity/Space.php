@@ -27,7 +27,7 @@ class Space extends AbstractEntity
     #[Groups('space.get')]
     private ?string $name = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Groups('space.get')]
     private ?string $image = null;
 

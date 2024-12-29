@@ -37,11 +37,11 @@ jobs:
       - name: Generate public/private keys for use in your application.
         run: docker compose exec --user root php bin/console lexik:jwt:generate-keypair
 
-      - name: Create storage and give permissions
-        run: mkdir storage && chmod -R 777 storage
-
       - name: Give permissions for var/storage
         run: chmod -R 777 var/storage
+
+      - name: Give permissions for assets/uploads
+        run: chmod -R 777 assets/uploads
 
       - name: Create the phpunit.xml
         run: docker compose exec --user root php cp phpunit.xml.dist phpunit.xml

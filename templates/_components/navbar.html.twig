@@ -88,7 +88,7 @@
                     <div class="dropdown notifications-login">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton">
                             <span>{{ app.user.name }}</span>
-                            <img src="{{ asset('img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
+                            <img src="{{ asset(app.user.image ?? 'img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" id="customDropdown">
                             <div class="dropdown-content">

@@ -33,6 +33,8 @@ RUN groupadd -g 1000 developer && useradd -u 1000 -ms /bin/bash -g developer use
 
 COPY --chown=user:developer . /var/www
 
+RUN chown -R www-data /var/www/assets/uploads
+
 USER user
 
 EXPOSE 9000

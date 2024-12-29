@@ -13,6 +13,11 @@ framework:
         default_context:
             enable_max_depth: true
 
+    assets:
+        packages:
+            images:
+                base_urls: '%env(STORAGE_BASE_URL)%'
+
 when@test:
     framework:
         test: true

@@ -26,7 +26,7 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private ?string $name = null;
 
-    #[ORM\Column(length: 100, nullable: true)]
+    #[ORM\Column(nullable: true)]
     #[Groups(['event.get'])]
     private ?string $image = null;
 

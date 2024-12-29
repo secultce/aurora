@@ -52,16 +52,22 @@ reset:
 
 # Limpa a cache e o banco
 reset-deep:
-	rm -rf var/cache
-	rm -rf var/log
 	rm -rf var/storage/agents
 	rm -rf var/storage/initiatives
 	rm -rf var/storage/spaces
-	rm -rf var/storage/users
+	rm -rf var/storage/events
+	rm -rf var/storage/opportunities
+	rm -rf var/storage/organizations
+	rm -rf assets/vendor
+	rm -rf public/assets
+	rm -rf var/cache
+	rm -rf var/log
 	docker compose exec -T php bash -c "php bin/console cache:clear"
 	docker compose exec -T php bash -c "php bin/console d:d:d -f"
 	docker compose exec -T php bash -c "php bin/console d:d:c"
 	docker compose exec -T php bash -c "php bin/console doctrine:migrations:migrate -n"
+	docker compose exec -T php bash -c "php bin/console importmap:install"
+	docker compose exec -T php bash -c "php bin/console asset-map:compile"
 
 # Executa o php cs fixer
 style:

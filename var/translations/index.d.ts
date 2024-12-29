@@ -594,6 +594,7 @@ export declare const VIEW_QUESTION_CHARACTERS: Message<{ 'messages': { parameter
 export declare const VIEW_SPACE_ACCESS_SPACE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SPACE_CREATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SPACE_MESSAGE_DELETED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_SPACE_MESSAGE_CREATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SPACE_QUANTITY_TOTAL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SPACE_QUANTITY_FINISHED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SPACE_QUANTITY_OPENED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

@@ -17,7 +17,7 @@ describe('Painel de Controle - Página de listar Espaços', () => {
     it('Garante que um espaço pode ser excluído', () => {
         cy.get('h2').contains('Meus Espaços').should('be.visible');
 
-        cy.get('[data-cy="remove-2"]').contains('Excluir').click();
+        cy.get('[data-cy="remove-3"]').contains('Excluir').click();
 
         cy.contains('Confirmar').click();
 
