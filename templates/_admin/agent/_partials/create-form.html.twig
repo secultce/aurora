@@ -28,7 +28,7 @@
 
                         <div class="agent-input-form align-self-end w-100">
                             <label for="agent-name">{{ "view.agent_create.agent_name" | trans}} <span class="text-danger">*</span> </label>
-                            <input class="required" type="text" id="agent-name" name="agent_name"
+                            <input data-cy="agent-name" class="required" type="text" id="agent-name" name="name"
                                    data-min-length="2"
                                    data-max-length="100"
                                    data-error-length="{{ "view.agent_create.error_length" | trans }}">
@@ -45,12 +45,12 @@
                     </div>
                     <div class="agent-input-form">
                         <label for="mini-bio">{{ "view.agent_create.short_bio" | trans}} <span class="text-danger">*</span></label>
-                        <textarea class="required" name="mini_bio" id="mini-bio" rows="4" data-min-length="2" data-max-length="400" data-error-length="{{ "view.agent_create.error_length" | trans }}"></textarea>
+                        <textarea class="required" name="shortBio" data-cy="agent-shortBio" id="mini-bio" rows="4" data-min-length="2" data-max-length="400" data-error-length="{{ "view.agent_create.error_length" | trans }}"></textarea>
                         <span class="text-danger fw-bold d-none">{{ "required_field" | trans }}</span>
                     </div>
                     <div class="agent-input-form">
                         <label for="agent-site">{{ "site" | trans}} <span class="text-danger">*</span></label>
-                        <input class="required" type="text" name="agent_site" id="agent-site"
+                        <input class="required" type="text" data-cy="agent-site" name="site" id="agent-site"
                                data-min-length="2"
                                data-max-length="100"
                                data-error-length="{{ "view.agent_create.error_length" | trans }}">

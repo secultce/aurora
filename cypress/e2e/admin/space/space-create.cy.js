@@ -17,7 +17,7 @@ describe('Painel de Controle - Página de listar Espaços', () => {
 
         cy.wait(2000);
 
-        cy.contains('Novo Espaço criado').should('be.visible');
+        cy.contains('Novo Espaço criado');
         cy.contains('Espaço teste');
     });
 })

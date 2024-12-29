@@ -1,4 +1,4 @@
-{% extends "_layouts/blank-not-logged.html.twig" %}
+{% extends "_layouts/blank.html.twig" %}
 
 {% block title %} {{ 'agents'|trans }} {% endblock %}
 
@@ -25,11 +25,11 @@
     </section>
 
     <main class="mt-2">
-        {% include "agent/_partials/create-form.html.twig" %}
+        {% include "_admin/agent/_partials/create-form.html.twig" %}
 
         <div class="save-bar">
             <button>{{ "logout" | trans }}</button>
-            <button type="submit" form="agent-create-form" id="agent-submit">{{ "save" | trans }}</button>
+            <button type="submit" form="agent-create-form" data-cy="agent-submit" id="agent-submit">{{ "save" | trans }}</button>
             <button>{{ "save_share" | trans }}</button>
         </div>
     </main>

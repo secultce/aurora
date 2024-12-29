@@ -4,17 +4,27 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Enum\FlashMessageTypeEnum;
+use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
+use Exception;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
+use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AgentAdminController extends AbstractAdminController
 {
+    private const string VIEW_ADD = 'agent/create.html.twig';
+
     public function __construct(
         private AgentServiceInterface $service,
-        private JWTTokenManagerInterface $jwtManager
+        private JWTTokenManagerInterface $jwtManager,
+        private TranslatorInterface $translator,
+        private Security $security,
     ) {
     }
 
@@ -28,6 +38,38 @@ class AgentAdminController extends AbstractAdminController
             'agents' => $agents,
             'token' => $token,
         ]);
+    }
+
+    public function create(Request $request): Response
+    {
+        if (false === $request->isMethod(Request::METHOD_POST)) {
+            return $this->render(self::VIEW_ADD);
+        }
+
+        $errors = [];
+
+        try {
+            $this->service->create([
+                'id' => Uuid::v4(),
+                'name' => $request->get('name'),
+                'shortBio' => $request->get('shortBio'),
+                'longBio' => $request->get('shortBio'),
+                'culture' => false,
+                'user' => $this->security->getUser()->getId(),
+            ]);
+
+            $this->addFlash(FlashMessageTypeEnum::SUCCESS->value, $this->translator->trans('view.agent.message.created'));
+        } catch (ValidatorException $exception) {
+            $errors = $exception->getConstraintViolationList();
+        } catch (Exception $exception) {
+            $errors = [$exception->getMessage()];
+        }
+
+        if (false === empty($errors)) {
+            return $this->render(self::VIEW_ADD, ['errors' => $errors]);
+        }
+
+        return $this->redirectToRoute('admin_agent_list');
     }
 
     public function remove(?Uuid $id): Response

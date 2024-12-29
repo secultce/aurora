@@ -3,6 +3,11 @@ list:
   controller: App\Controller\Web\Admin\AgentAdminController::list
   methods: ['GET']
 
+create:
+  path: /adicionar
+  controller: App\Controller\Web\Admin\AgentAdminController::create
+  methods: ['GET', 'POST']
+
 remove:
   path: /{id}/remove
   controller: App\Controller\Web\Admin\AgentAdminController::remove

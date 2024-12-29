@@ -363,6 +363,7 @@ view:
     create: Crear un Agente
     message:
       deleted: El agente ha sido eliminado
+      created: Nuevo agente ha sido creado
     quantity:
       total: Agentes Encontrados
       culture: Agentes Culturales
