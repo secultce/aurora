@@ -49,9 +49,4 @@ class AgentWebController extends AbstractWebController
             'agent' => $agent,
         ]);
     }
-
-    public function create(): Response
-    {
-        return $this->render('agent/create.html.twig');
-    }
 }

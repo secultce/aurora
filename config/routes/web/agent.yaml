@@ -3,11 +3,6 @@ list:
   controller: App\Controller\Web\AgentWebController::list
   methods: ['GET']
 
-create:
-  path: /agentes/cadastro
-  controller: App\Controller\Web\AgentWebController::create
-  methods: ['GET', 'POST']
-
 getOne:
   path: /agentes/{id}
   controller: App\Controller\Web\AgentWebController::getOne
