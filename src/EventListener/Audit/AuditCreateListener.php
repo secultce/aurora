@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventListener\Audit;
 
+use App\DocumentService\AbstractTimelineDocumentService;
 use App\Entity\Agent;
 use App\Entity\User;
 use DateTime;
@@ -44,6 +45,7 @@ class AuditCreateListener extends AbstractAuditListener
             $document->setUserId($userId);
         }
 
+        $document->setTitle(AbstractTimelineDocumentService::CREATED);
         $document->setResourceId($object->getId()->toRfc4122());
         $document->setPriority(0);
         $document->setDatetime(new DateTime());

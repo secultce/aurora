@@ -14,8 +14,9 @@ final class Version20240919235125
     public function up(DocumentManager $dm): void
     {
         $documentTimeline = new SpaceTimeline();
-        $documentTimeline->setUserId(Uuid::v4());
-        $documentTimeline->setResourceId(Uuid::v4());
+        $documentTimeline->setUserId(Uuid::v4()->toString());
+        $documentTimeline->setResourceId(Uuid::v4()->toString());
+        $documentTimeline->setTitle('');
         $documentTimeline->setPriority(1);
         $documentTimeline->setDatetime(new DateTime());
         $documentTimeline->setDevice('linux');

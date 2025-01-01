@@ -21,6 +21,9 @@ class EventTimeline
     private string $resourceId;
 
     #[ODM\Field]
+    private string $title;
+
+    #[ODM\Field]
     private int $priority;
 
     #[ODM\Field]
@@ -66,6 +69,16 @@ class EventTimeline
     public function setResourceId(string $resourceId): void
     {
         $this->resourceId = $resourceId;
+    }
+
+    public function getTitle(): string
+    {
+        return $this->title;
+    }
+
+    public function setTitle(string $title): void
+    {
+        $this->title = $title;
     }
 
     public function getPriority(): int

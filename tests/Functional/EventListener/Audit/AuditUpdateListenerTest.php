@@ -46,14 +46,14 @@ class AuditUpdateListenerTest extends AbstractWebTestCase
             static::ensureKernelShutdown();
         }
 
-        /* @var SpaceTimeline[] $spaceTimelinesPosUpdate
-         */
-        $spaceTimelinesPosUpdate = $this->documentManager->getRepository(SpaceTimeline::class)
+        /** @var SpaceTimeline[] $spaceTimelinesPostUpdate */
+        $spaceTimelinesPostUpdate = $this->documentManager->getRepository(SpaceTimeline::class)
             ->findBy(['resourceId' => SpaceFixtures::SPACE_ID_4, 'userId' => UserFixtures::USER_ID_2]);
 
-        self::assertSame(count($spaceTimelinesPosUpdate), count($spaceTimelinesPreUpdate) + 1);
+        self::assertEquals('The resource was updated', $spaceTimelinesPostUpdate[0]->getTitle());
+        self::assertSame(count($spaceTimelinesPostUpdate), count($spaceTimelinesPreUpdate) + 1);
 
-        $spaceTimelineUpdateArray = array_udiff($spaceTimelinesPosUpdate, $spaceTimelinesPreUpdate, function ($a, $b) {
+        $spaceTimelineUpdateArray = array_udiff($spaceTimelinesPostUpdate, $spaceTimelinesPreUpdate, function ($a, $b) {
             return $a->getId() <=> $b->getId();
         });
 

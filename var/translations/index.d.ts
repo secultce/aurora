@@ -456,6 +456,7 @@ export declare const VIEW_FAQ_EDIT_DESCRIPTION_FAQ: Message<{ 'messages': { para
 export declare const VIEW_FAQ_EDIT_FOUND_FAQ: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_CREATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_MESSAGE_DELETED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_AGENT_MESSAGE_CREATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_QUANTITY_TOTAL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_QUANTITY_CULTURE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_QUANTITY_INACTIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

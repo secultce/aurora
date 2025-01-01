@@ -454,6 +454,7 @@ export const VIEW_FAQ_EDIT_DESCRIPTION_FAQ = {"id":"view.faq_edit.description_fa
 export const VIEW_FAQ_EDIT_FOUND_FAQ = {"id":"view.faq_edit.found_faq","translations":{"messages":{"en":"No FAQ found.","pt-br":"Nenhuma FAQ encontrada.","es":"No se encontraron preguntas frecuentes."}}};
 export const VIEW_AGENT_CREATE = {"id":"view.agent.create","translations":{"messages":{"en":"Create an Agent","pt-br":"Criar um agente","es":"Crear un Agente"}}};
 export const VIEW_AGENT_MESSAGE_DELETED = {"id":"view.agent.message.deleted","translations":{"messages":{"en":"The agent has been deleted","pt-br":"O Agente foi exclu\u00eddo","es":"El agente ha sido eliminado"}}};
+export const VIEW_AGENT_MESSAGE_CREATED = {"id":"view.agent.message.created","translations":{"messages":{"en":"A new agent has been created","pt-br":"Novo Agente criado","es":"Nuevo agente ha sido creado"}}};
 export const VIEW_AGENT_QUANTITY_TOTAL = {"id":"view.agent.quantity.total","translations":{"messages":{"en":"Agents Found","pt-br":"Agentes Encontrados","es":"Agentes Encontrados"}}};
 export const VIEW_AGENT_QUANTITY_CULTURE = {"id":"view.agent.quantity.culture","translations":{"messages":{"en":"Cultural Agents","pt-br":"Agentes Culturais","es":"Agentes Culturales"}}};
 export const VIEW_AGENT_QUANTITY_INACTIVE = {"id":"view.agent.quantity.inactive","translations":{"messages":{"en":"Inactive Agents","pt-br":"Agentes Inativos","es":"Agentes Inactivos"}}};
