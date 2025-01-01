@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\DocumentService\AgentTimelineDocumentService;
 use App\Enum\FlashMessageTypeEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
@@ -22,6 +23,7 @@ class AgentAdminController extends AbstractAdminController
 
     public function __construct(
         private AgentServiceInterface $service,
+        private AgentTimelineDocumentService $documentService,
         private JWTTokenManagerInterface $jwtManager,
         private TranslatorInterface $translator,
         private Security $security,
@@ -70,6 +72,16 @@ class AgentAdminController extends AbstractAdminController
         }
 
         return $this->redirectToRoute('admin_agent_list');
+    }
+
+    public function timeline(?Uuid $id): Response
+    {
+        $events = $this->documentService->getEventsByEntityId($id);
+
+        return $this->render('agent/timeline.html.twig', [
+            'agent' => $this->service->get($id),
+            'events' => $events,
+        ]);
     }
 
     public function remove(?Uuid $id): Response
