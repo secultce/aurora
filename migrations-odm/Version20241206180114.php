@@ -16,6 +16,7 @@ final class Version20241206180114
         $documentTimeline = new InscriptionPhaseTimeline();
         $documentTimeline->setUserId(Uuid::v4()->toRfc4122());
         $documentTimeline->setResourceId(Uuid::v4()->toRfc4122());
+        $documentTimeline->setTitle('');
         $documentTimeline->setPriority(1);
         $documentTimeline->setDatetime(new DateTime());
         $documentTimeline->setDevice('linux');

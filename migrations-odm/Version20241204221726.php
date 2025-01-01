@@ -16,6 +16,7 @@ final class Version20241204221726
         $documentTimeline = new SealTimeline();
         $documentTimeline->setUserId(Uuid::v4()->toRfc4122());
         $documentTimeline->setResourceId(Uuid::v4()->toRfc4122());
+        $documentTimeline->setTitle('');
         $documentTimeline->setPriority(1);
         $documentTimeline->setDatetime(new DateTime());
         $documentTimeline->setDevice('linux');

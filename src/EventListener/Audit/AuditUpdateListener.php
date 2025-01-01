@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\EventListener\Audit;
 
+use App\DocumentService\AbstractTimelineDocumentService;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Attribute\AsDoctrineListener;
 use Doctrine\ODM\MongoDB\DocumentManager;
@@ -35,6 +36,7 @@ class AuditUpdateListener extends AbstractAuditListener
 
         $document = new $nameDocument();
         $userId = $this->security->getUser()->getId()->toRfc4122();
+        $document->setTitle(AbstractTimelineDocumentService::UPDATED);
         $document->setUserId($userId);
         $document->setResourceId($object->getId()->toRfc4122());
         $document->setPriority(0);

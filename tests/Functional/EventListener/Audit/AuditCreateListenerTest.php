@@ -36,12 +36,12 @@ class AuditCreateListenerTest extends AbstractWebTestCase
 
         self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
 
-        /* @var SpaceTimeline $spaceTimeline */
+        /** @var SpaceTimeline $spaceTimeline */
         $spaceTimeline = $this->documentManager->getRepository(SpaceTimeline::class)
             ->findOneBy(['resourceId' => $requestBody['id'], 'userId' => UserFixtures::USER_ID_2]);
 
+        self::assertEquals('The resource was created', $spaceTimeline->getTitle());
         self::assertNotNull($spaceTimeline, 'Space document not found');
-
         self::assertSame($spaceTimeline->getFrom(), []);
 
         $this->documentManager->remove($spaceTimeline);
