@@ -1,3 +1,8 @@
+create:
+  path: /
+  controller: App\Controller\Api\SealApiController::create
+  methods: ['POST']
+
 get:
   path: /{id}
   controller: App\Controller\Api\SealApiController::get
@@ -12,3 +17,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\SealApiController::remove
   methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\SealApiController::update
+  methods: ['PATCH']

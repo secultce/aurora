@@ -4,7 +4,6 @@ properties:
     type: string
     format: uuid
     description: "Identificador do selo"
-    example: "123e4567-e89b-12d3-a456-426614174000"
   name:
     type: string
     maxLength: 100
@@ -20,23 +19,9 @@ properties:
     description: "Identificador se o selo está ativo ou não"
     example: false
   createdBy:
-    type: object
     description: "Usuário que criou o selo"
-    properties:
-      id:
-        type: string
-        format: uuid
+    type: string
+    format: uuid
   expirationDate:
-    $ref: '../common-types/date.yaml'
+    $ref: '../../common-types/date.yaml'
     description: "Data de expiração do selo"
-  createdAt:
-    $ref: '../common-types/date.yaml'
-    description: "Data e hora da criação do selo"
-  updatedAt:
-    $ref: '../common-types/date.yaml'
-    nullable: true
-    description: "Data e hora da última atualização do selo"
-  deletedAt:
-    $ref: '../common-types/date.yaml'
-    nullable: true
-    description: "Data e hora da exclusão do selo"
