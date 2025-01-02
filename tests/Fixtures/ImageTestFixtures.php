@@ -14,6 +14,17 @@ final class ImageTestFixtures
         return self::getUploadedFile('image-valid.png');
     }
 
+    public static function getImageValidPath(): string
+    {
+        $path = realpath(sprintf('%s/images/%s', __DIR__, 'image-valid.png'));
+
+        if (!file_exists($path)) {
+            throw new RuntimeException("Image file not found: $path");
+        }
+
+        return $path;
+    }
+
     public static function getImageMoreThan2mb(): UploadedFile
     {
         return self::getUploadedFile('image-more-than-2mb.jpeg');
