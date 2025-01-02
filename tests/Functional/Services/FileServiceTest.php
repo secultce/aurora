@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Services;
 
+use App\Exception\File\InvalidFileExtensionException;
+use App\Exception\File\InvalidFileMimeTypeException;
 use App\Service\FileService;
+use App\Tests\Fixtures\ImageTestFixtures;
 use League\Flysystem\UnableToReadFile;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\HttpFoundation\File\File;
@@ -45,6 +48,16 @@ class FileServiceTest extends KernelTestCase
 
     public function testUploadImage(): void
     {
+        $uploadedFile = ImageTestFixtures::getImageValid();
+
+        $file = $this->fileService->uploadImage('/img', $uploadedFile);
+
+        $this->assertInstanceOf(File::class, $file);
+        $this->assertFileExists($file->getPathname());
+    }
+
+    public function testCannotUploadImageWithMimeTypeIncorrect(): void
+    {
         $tempFile = tempnam(sys_get_temp_dir(), 'test_');
         file_put_contents($tempFile, 'Test image content');
 
@@ -56,11 +69,17 @@ class FileServiceTest extends KernelTestCase
             true
         );
 
-        $file = $this->fileService->uploadImage('/img', $uploadedFile);
+        $this->expectException(InvalidFileMimeTypeException::class);
+        $this->fileService->uploadImage('/img', $uploadedFile);
+    }
 
-        $this->assertInstanceOf(File::class, $file);
-        $this->assertFileExists($file->getPathname());
+    public function testCannotUploadImageWithExtensionIncorrect(): void
+    {
+        $path = ImageTestFixtures::getImageValidPath();
 
-        $this->fileService->deleteFile($file->getPathname());
+        $uploadedFile = new UploadedFile($path, 'image-valid.txt', 'image/png', null, true);
+
+        $this->expectException(InvalidFileExtensionException::class);
+        $this->fileService->uploadImage('/img', $uploadedFile);
     }
 }
