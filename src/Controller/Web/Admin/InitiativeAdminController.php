@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\DocumentService\InitiativeTimelineDocumentService;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -16,6 +17,7 @@ class InitiativeAdminController extends AbstractAdminController
 {
     public function __construct(
         private readonly InitiativeServiceInterface $service,
+        private readonly InitiativeTimelineDocumentService $documentService,
         private readonly AgentServiceInterface $agentService,
         private readonly TranslatorInterface $translator,
     ) {
@@ -64,5 +66,15 @@ class InitiativeAdminController extends AbstractAdminController
         $this->addFlash('success', 'Initiative removed');
 
         return $this->redirectToRoute('admin_initiative_list');
+    }
+
+    public function timeline(Uuid $id): Response
+    {
+        $events = $this->documentService->getEventsByEntityId($id);
+
+        return $this->render('initiative/timeline.html.twig', [
+            'initiative' => $this->service->get($id),
+            'events' => $events,
+        ]);
     }
 }
