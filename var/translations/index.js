@@ -638,3 +638,6 @@ export const VIEW_NOT_FOUND_ERROR_TEXT_SECOND = {"id":"view.not-found.error-text
 export const VIEW_NOT_FOUND_ERROR_TEXT_THIRD = {"id":"view.not-found.error-text_third","translations":{"messages":{"en":"But don't worry, there are many other pages to discover here at Aurora.","pt-br":"Mas n\u00e3o se preocupe, existem muitas outras p\u00e1ginas para conhecer aqui na Aurora.","es":"Pero no te preocupes, hay muchas otras p\u00e1ginas por descubrir aqu\u00ed en Maps."}}};
 export const VIEW_NOT_FOUND_ERROR_HOMEPAGE = {"id":"view.not-found.error-homepage","translations":{"messages":{"en":"Back to home page","pt-br":"Voltar para a p\u00e1gina inicial","es":"Volver a la p\u00e1gina de inicio"}}};
 export const VIEW_NOT_FOUND_ERROR_IMAGE = {"id":"view.not-found.error-image","translations":{"messages":{"en":"Doubt image","pt-br":"Imagem de d\u00favida","es":"Imagen de duda"}}};
+export const VIEW_OPPORTUNITY_ID = {"id":"view.opportunity.id","translations":{"messages":{"pt-br":"ID da oportunidade"}}};
+export const VIEW_OPPORTUNITY_PERIOD = {"id":"view.opportunity.period","translations":{"messages":{"pt-br":"Per\u00edodo da oportunidade"}}};
+export const VIEW_OPPORTUNITY_TYPE_OF = {"id":"view.opportunity.type_of","translations":{"messages":{"pt-br":"Tipo de oportunidade"}}};
