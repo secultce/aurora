@@ -7,3 +7,8 @@ remove:
   path: /{id}/remove
   controller: App\Controller\Web\Admin\OpportunityAdminController::remove
   methods: ['GET']
+
+timeline:
+  path: /{id}/timeline
+  controller: App\Controller\Web\Admin\OpportunityAdminController::timeline
+  methods: ['GET']
