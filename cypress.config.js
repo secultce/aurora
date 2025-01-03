@@ -9,6 +9,8 @@ module.exports = defineConfig({
     },
     specPattern: [
       'cypress/e2e/api/**/*.cy.js',
+      'cypress/e2e/web/agent/*.cy.js',
+      'cypress/e2e/web/authentication/*.cy.js',
       'cypress/e2e/web/**/*.cy.js',
       'cypress/e2e/admin/dashboard/*.cy.js',
       'cypress/e2e/admin/**/*.cy.js',
