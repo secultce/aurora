@@ -12,3 +12,8 @@ create:
   path: /adicionar
   controller: App\Controller\Web\Admin\EventAdminController::create
   methods: ['GET', 'POST']
+
+timeline:
+  path: /{id}/timeline
+  controller: App\Controller\Web\Admin\EventAdminController::timeline
+  methods: ['GET']
