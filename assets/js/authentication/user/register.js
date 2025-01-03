@@ -83,7 +83,6 @@ document.addEventListener('DOMContentLoaded', function () {
     function updatePasswordStrength(password) {
         let strength = 0;
 
-        // Criteria for scoring the password
         if (password.length >= 8) strength += 1;
         if (/[a-z]/.test(password)) strength += 1;
         if (/[A-Z]/.test(password)) strength += 1;
