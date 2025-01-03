@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Api;
 
+use App\Entity\Initiative;
 use App\Helper\EntityIdNormalizerHelper;
 use App\Service\Interface\InitiativeServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
@@ -11,6 +12,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class InitiativeApiController extends AbstractApiController
 {
@@ -22,8 +24,13 @@ class InitiativeApiController extends AbstractApiController
     public function create(Request $request): JsonResponse
     {
         $initiative = $this->service->create($request->toArray());
+        $statusCode = Response::HTTP_CREATED;
 
-        return $this->json($initiative, status: Response::HTTP_CREATED, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
+        if ($initiative instanceof ConstraintViolationList) {
+            $statusCode = Response::HTTP_BAD_REQUEST;
+        }
+
+        return $this->json($initiative, status: $statusCode, context: ['groups' => ['initiative.get', 'initiative.get.item']]);
     }
 
     public function get(?Uuid $id): JsonResponse

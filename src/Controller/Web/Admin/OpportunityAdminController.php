@@ -12,6 +12,7 @@ use App\Service\Interface\SpaceServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OpportunityAdminController extends AbstractAdminController
@@ -66,7 +67,13 @@ class OpportunityAdminController extends AbstractAdminController
     {
         $data = $request->request->all();
 
-        $this->service->create($data);
+        $opportunity = $this->service->create($data);
+
+        if ($opportunity instanceof ConstraintViolationList) {
+            $this->addFlash('error', $this->translator->trans('view.entities.message.required_fields'));
+
+            return $this->redirectToRoute('admin_opportunity_create');
+        }
 
         $this->addFlash('success', $this->translator->trans('view.opportunity.message.created'));
 

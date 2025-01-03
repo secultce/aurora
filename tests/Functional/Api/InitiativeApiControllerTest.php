@@ -207,7 +207,7 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
         $this->assertResponseBodySame([
             'type' => 'https://symfony.com/errors/validation',
             'title' => 'Validation Failed',

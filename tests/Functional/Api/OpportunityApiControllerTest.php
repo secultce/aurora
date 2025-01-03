@@ -145,16 +145,21 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
     }
 
     #[DataProvider('provideValidationCreateCases')]
-    public function testValidationCreate(array $requestBody, array $expectedErrors): void
+    public function testValidationCreate(array $requestBody, string $detail, array $violations): void
     {
         $client = self::apiClient();
 
         $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
         self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
+
+        dd($client->request());
+
         $this->assertResponseBodySame([
-            'error_message' => 'not_valid',
-            'error_details' => $expectedErrors,
+            'type' => 'https://symfony.com/errors/validation',
+            'title' => 'Validation Failed',
+            'detail' => $detail,
+            'violations' => $violations,
         ]);
     }
 
@@ -165,16 +170,42 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
         return [
             'missing required fields' => [
                 'requestBody' => [],
-                'expectedErrors' => [
-                    ['field' => 'id', 'message' => 'This value should not be blank.'],
-                    ['field' => 'name', 'message' => 'This value should not be blank.'],
-                    ['field' => 'createdBy', 'message' => 'This value should not be blank.'],
+                'detail' => "id: This value should not be blank.\nname: This value should not be blank.\ncreatedBy: This value should not be blank.",
+                'violations' => [
+                    [
+                        'propertyPath' => 'id',
+                        'title' => 'This value should not be blank.',
+                        'template' => 'This value should not be blank.',
+                        'parameters' => [
+                            '{{ value }}' => 'null',
+                        ],
+                        'type' => 'urn:uuid:c1051bb4-d103-4f74-8988-acbcafc7fdc3',
+                    ],
+                    [
+                        'propertyPath' => 'name',
+                        'title' => 'This value should not be blank.',
+                        'template' => 'This value should not be blank.',
+                        'parameters' => [
+                            '{{ value }}' => 'null',
+                        ],
+                        'type' => 'urn:uuid:c1051bb4-d103-4f74-8988-acbcafc7fdc3',
+                    ],
+                    [
+                        'propertyPath' => 'createdBy',
+                        'title' => 'This value should not be blank.',
+                        'template' => 'This value should not be blank.',
+                        'parameters' => [
+                            '{{ value }}' => 'null',
+                        ],
+                        'type' => 'urn:uuid:c1051bb4-d103-4f74-8988-acbcafc7fdc3',
+                    ],
                 ],
             ],
             'id is not a valid UUID' => [
                 'requestBody' => array_merge($requestBody, ['id' => 'invalid-uuid']),
-                'expectedErrors' => [
-                    ['field' => 'id', 'message' => 'This value is not a valid UUID.'],
+                'detail' => "",
+                'violations' => [
+
                 ],
             ],
             'name should be string' => [
@@ -182,54 +213,63 @@ class OpportunityApiControllerTest extends AbstractWebTestCase
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value should be of type string.'],
                 ],
+                'violations' => [],
             ],
             'name too short' => [
                 'requestBody' => array_merge($requestBody, ['name' => 'a']),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too short. It should have 2 characters or more.'],
                 ],
+                'violations' => [],
             ],
             'name too long' => [
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
+                'violations' => [],
             ],
             'parent should exists' => [
                 'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
-                'expectedErrors' => [
+                'detail' => [
                     ['field' => 'parent', 'message' => 'This id does not exist.'],
                 ],
+                'violations' => [],
             ],
             'space should exists' => [
                 'requestBody' => array_merge($requestBody, ['space' => Uuid::v4()->toRfc4122()]),
-                'expectedErrors' => [
+                'detail' => [
                     ['field' => 'space', 'message' => 'This id does not exist.'],
                 ],
+                'violations' => [],
             ],
             'initiative should exists' => [
                 'requestBody' => array_merge($requestBody, ['initiative' => Uuid::v4()->toRfc4122()]),
-                'expectedErrors' => [
+                'detail' => [
                     ['field' => 'initiative', 'message' => 'This id does not exist.'],
                 ],
+                'violations' => [],
             ],
             'event should exists' => [
                 'requestBody' => array_merge($requestBody, ['event' => Uuid::v4()->toRfc4122()]),
-                'expectedErrors' => [
+                'detail' => [
                     ['field' => 'event', 'message' => 'This id does not exist.'],
                 ],
+                'violations' => [],
             ],
             'createdBy should exists' => [
                 'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
-                'expectedErrors' => [
+                'detail' => [
                     ['field' => 'createdBy', 'message' => 'This id does not exist.'],
                 ],
+                'violations' => [],
             ],
             'extraFields should be a valid JSON' => [
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
-                'expectedErrors' => [
+                'detail' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
                 ],
+                'violations' => [],
             ],
         ];
     }

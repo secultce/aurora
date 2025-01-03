@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Service;
 
+use App\DTO\InitiativeDto;
 use App\DTO\OpportunityDto;
 use App\Entity\Opportunity;
 use App\Exception\Opportunity\OpportunityResourceNotFoundException;
@@ -19,6 +20,7 @@ use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class OpportunityService extends AbstractEntityService implements OpportunityServiceInterface
@@ -41,9 +43,15 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
         );
     }
 
-    public function create(array $opportunity): Opportunity
+    public function create(array $opportunity): Opportunity|ConstraintViolationList
     {
-        $opportunity = self::validateInput($opportunity, OpportunityDto::CREATE);
+        $opportunityDto = $this->serializer->denormalize($opportunity, OpportunityDto::class);
+
+        $violations = $this->validator->validate($opportunityDto, groups: OpportunityDto::CREATE);
+
+        if (($violations->count()) > 0) {
+            return $violations;
+        }
 
         $opportunityObj = $this->serializer->denormalize($opportunity, Opportunity::class);
 

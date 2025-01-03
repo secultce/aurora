@@ -23,7 +23,6 @@ ages_rating:
 all: Tudo
 allowed: Com permissão
 admin_options: Opções do Administrador
-add: Adicionar
 add_archive: Adicione
 archive: Arquivar
 archives: Arquivos

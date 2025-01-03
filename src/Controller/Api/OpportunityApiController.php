@@ -11,6 +11,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 class OpportunityApiController extends AbstractApiController
 {
@@ -22,8 +23,13 @@ class OpportunityApiController extends AbstractApiController
     public function create(Request $request): JsonResponse
     {
         $opportunity = $this->service->create($request->toArray());
+        $statusCode = Response::HTTP_CREATED;
 
-        return $this->json($opportunity, status: Response::HTTP_CREATED, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
+        if ($opportunity instanceof ConstraintViolationList) {
+            $statusCode = Response::HTTP_BAD_REQUEST;
+        }
+
+        return $this->json($opportunity, status: $statusCode, context: ['groups' => ['opportunity.get', 'opportunity.get.item']]);
     }
 
     public function get(Uuid $id): JsonResponse

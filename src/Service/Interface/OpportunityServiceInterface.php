@@ -7,10 +7,11 @@ namespace App\Service\Interface;
 use App\Entity\Opportunity;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\ConstraintViolationList;
 
 interface OpportunityServiceInterface
 {
-    public function create(array $opportunity): Opportunity;
+    public function create(array $opportunity): Opportunity|ConstraintViolationList;
 
     public function get(Uuid $id): Opportunity;
 

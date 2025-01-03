@@ -9,7 +9,7 @@
 
 <div class="mb-3 px-4 py-2 border rounded d-flex justify-content-between align-items-center">
     <label class="radioEntity">
-        <input type="radio" name="{{ fieldName }}" value="{{ entities.type }}_{{ entities.id }}" id="{{ fieldName }}-{{ entities.type }}" required="{{ required ?? 'false' }}"/>
+        <input type="radio" name="{{ fieldName }}" value="{{ entities.type }}_{{ entities.id }}" id="{{ fieldName }}-{{ entities.type }}" {{ required|default(null) ? 'required' : '' }}"/>
         {{ entities.type|trans }}<span class="entityName fw-bold"></span>
     </label>
     <button for="{{ fieldName }}-{{ entities.type }}" type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{{ 'select'|trans }}</button>
