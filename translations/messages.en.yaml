@@ -306,6 +306,7 @@ yes: Yes
 #components
 
 accept-policies:
+  accept-all: Accept all
   description: To create your profile, you need to read and accept the terms, policies, and authorizations for using the platform, which will be sent to you via email. By accepting, you agree to all of them.
   image: Image Authorization
   privacy: Privacy Policy
