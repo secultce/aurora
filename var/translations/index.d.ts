@@ -640,3 +640,6 @@ export declare const VIEW_NOT_FOUND_ERROR_TEXT_SECOND: Message<{ 'messages': { p
 export declare const VIEW_NOT_FOUND_ERROR_TEXT_THIRD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_NOT_FOUND_ERROR_HOMEPAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_NOT_FOUND_ERROR_IMAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_OPPORTUNITY_ID: Message<{ 'messages': { parameters: NoParametersType } }, 'pt-br'>;
+export declare const VIEW_OPPORTUNITY_PERIOD: Message<{ 'messages': { parameters: NoParametersType } }, 'pt-br'>;
+export declare const VIEW_OPPORTUNITY_TYPE_OF: Message<{ 'messages': { parameters: NoParametersType } }, 'pt-br'>;
