@@ -1,0 +1,12 @@
+.tags-selector .area-tag:focus,
+.tags-selector .custom-search-icon:focus,
+.tags-selector .remove-tag:focus {
+    border-color: #88bec1;
+    outline: 0;
+    box-shadow: 0 0 0 .25rem rgba(17, 124, 131, .25);
+}
+
+.tags-selector .dropdown-item[data-value=""] {
+    pointer-events: none;
+    display: none;
+}

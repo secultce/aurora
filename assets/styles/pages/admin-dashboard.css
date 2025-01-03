@@ -59,7 +59,7 @@
     margin-top: 10px;
 }
 
-.card-dashboard button {
+.card-dashboard [role=button] {
     border: 2px solid var(--deep-teal);
     background-color: var(--white-color);
     color: var(--deep-teal);
@@ -67,6 +67,7 @@
     margin-top: 10px;
     transition: 0.3s;
     padding: 5px 0;
+    text-decoration: none;
 }
 
 .card-dashboard button:hover {

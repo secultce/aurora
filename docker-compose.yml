@@ -65,6 +65,8 @@ services:
   cypress:
     container_name: aurora-cypress
     image: cypress/included:13.10.0
+    profiles:
+      - tests
     environment:
       - CYPRESS_BASE_URL=http://nginx
       - :80

@@ -23,6 +23,7 @@ ages_rating:
 all: Tudo
 allowed: Com permissão
 admin_options: Opções do Administrador
+add: Adicionar
 add_archive: Adicione
 archive: Arquivar
 archives: Arquivos
@@ -234,6 +235,8 @@ required_field: Este campo é obrigatório.
 report: Denúncia
 responsible_agent: Agente Responsável
 
+space: Espaço
+
 tags: Tags
 term: Termo
 terms: Termos
@@ -312,6 +315,9 @@ accept-policies:
   privacy: Política de privacidade
   terms: Termos e condições de uso
   title: Aceite de políticas
+
+choose_entity:
+  choose_one: Selecione um de seus
 
 modal_confirm_remove:
   message: Esta ação é irreversível, tem certeza que deseja continuar?
@@ -505,11 +511,15 @@ view:
     description: Nesta seção você pode adicionar e gerenciar as Oportunidades criadas por você.
     message:
       deleted: A Oportunidade foi excluída
+      created: A oportunidade foi criada
     quantity:
       total: Oportunidades Encontradas
       finished: Oportunidades Finalizadas
       opened: Oportunidades em Andamento
       last_days: Registradas nos últimos 7 dias
+    labels:
+      choose_type: Selecione o tipo da oportunidade
+      choose_entity: Vincule a oportunidade a uma entidade
 
   organization:
     date: Organização foi criada em

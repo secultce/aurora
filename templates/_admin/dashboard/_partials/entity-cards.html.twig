@@ -11,10 +11,10 @@
                 <span class="fw-bold fs-1">{{ totalAgents }}</span>
                 <span class="fw-bold">{{ "agents" | trans }}</span>
             </div>
-            <button class="d-flex align-items-center justify-content-center">
+            <a role="button" class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">add</i>
                 <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-            </button>
+            </a>
         </div>
     </div>
 
@@ -30,15 +30,15 @@
                 <span class="fw-bold fs-1">{{ totalOpportunities }}</span>
                 <span class="fw-bold">{{ "opportunities" | trans }}</span>
             </div>
-            <button class="d-flex align-items-center justify-content-center">
+            <a role="button" class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">add</i>
                 <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-            </button>
+            </a>
         </div>
     </div>
 
     {% if env.aurora.modules.events %}
-    <div class="col-md-3">
+        <div class="col-md-3">
             <div class="card-dashboard" data-cy="event-card-dashboard">
                 <div class="d-flex align-items-center">
                     <div class="bg-card-dashboard bg-event">
@@ -50,10 +50,10 @@
                     <span class="fw-bold fs-1">{{ totalEvents }}</span>
                     <span class="fw-bold">{{ "events" | trans }}</span>
                 </div>
-                <button class="d-flex align-items-center justify-content-center">
+                <a role="button" class="d-flex align-items-center justify-content-center">
                     <i class="material-icons">add</i>
                     <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-                </button>
+                </a>
             </div>
         </div>
     {% endif %}
@@ -71,15 +71,15 @@
                     <span class="fw-bold fs-1">{{ totalSpaces }}</span>
                     <span class="fw-bold">{{ "spaces" | trans }}</span>
                 </div>
-                <button class="d-flex align-items-center justify-content-center">
+                <a role="button" class="d-flex align-items-center justify-content-center">
                     <i class="material-icons">add</i>
                     <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-                </button>
+                </a>
             </div>
         </div>
     {% endif %}
 
-    <div class="col-md-3">
+    <div class="col">
         <div class="card-dashboard" data-cy="initiative-card-dashboard">
             <div class="d-flex align-items-center">
                 <div class="bg-card-dashboard bg-initiative">
@@ -91,10 +91,10 @@
                 <span class="fw-bold fs-1">{{ totalInitiatives }}</span>
                 <span class="fw-bold">{{ "initiatives" | trans }}</span>
             </div>
-            <button class="d-flex align-items-center justify-content-center">
+            <a role="button" class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">add</i>
                 <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-            </button>
+            </a>
         </div>
     </div>
 </section>
