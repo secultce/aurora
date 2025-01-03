@@ -26,17 +26,27 @@ properties:
       id:
         type: string
         format: uuid
+        example: "123e4567-e89b-12d3-a456-426614174000"
+        description: "Identificador do usuário"
   expirationDate:
-    $ref: '../common-types/date.yaml'
+    type: string
+    format: date-time
+    example: "2024-07-10T11:30:00+00:00"
     description: "Data de expiração do selo"
   createdAt:
-    $ref: '../common-types/date.yaml'
-    description: "Data e hora da criação do selo"
+    type: string
+    format: date-time
+    example: "2024-07-10T11:30:00+00:00"
+    description: "Data e hora da criação da oportunidade"
   updatedAt:
-    $ref: '../common-types/date.yaml'
+    type: string
+    format: date-time
+    example: "2024-07-10T11:30:00+00:00"
     nullable: true
-    description: "Data e hora da última atualização do selo"
+    description: "Data e hora da última atualização da oportunidade"
   deletedAt:
-    $ref: '../common-types/date.yaml'
+    type: string
+    format: date-time
+    example: "2024-07-10T11:30:00+00:00"
     nullable: true
-    description: "Data e hora da exclusão do selo"
+    description: "Data e hora da exclusão da oportunidade"

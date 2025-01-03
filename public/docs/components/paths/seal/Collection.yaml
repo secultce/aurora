@@ -1,3 +1,28 @@
+post:
+  tags:
+    - Selos
+  summary: Cria um único selo
+  requestBody:
+    description: Selo
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/seal/SealPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Selo criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/seal/SealPostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, selo não criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 get:
   tags:
     - Selos
@@ -11,4 +36,4 @@ get:
             type: array
             items:
               allOf:
-                - $ref: '../..//responses/seal/SealGetCollectionResponse.yaml'
+                - $ref: '../../responses/seal/SealGetCollectionResponse.yaml'

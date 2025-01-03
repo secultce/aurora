@@ -9,6 +9,8 @@ use Symfony\Component\Uid\Uuid;
 
 interface SealServiceInterface
 {
+    public function create(array $seal): Seal;
+
     public function get(Uuid $id): Seal;
 
     public function findOneBy(array $params): ?Seal;
@@ -18,4 +20,6 @@ interface SealServiceInterface
     public function list(int $limit = 50): array;
 
     public function remove(Uuid $id): void;
+
+    public function update(Uuid $identifier, array $seal): Seal;
 }

@@ -18,6 +18,33 @@ get:
           schema:
             $ref: '../../responses/seal/SealNotFound.yaml'
 
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Selos
+  summary: Atualiza um único selo
+  requestBody:
+    description: Selo
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/seal/SealPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Selo atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/seal/SealPatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, selo não atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 delete:
   parameters:
     - $ref: '../../parameters/path/id.yaml'
