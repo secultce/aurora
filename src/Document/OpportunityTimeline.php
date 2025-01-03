@@ -21,7 +21,7 @@ class OpportunityTimeline
     private string $resourceId;
 
     #[ODM\Field]
-    private string $title;
+    private string $title = '';
 
     #[ODM\Field]
     private int $priority;
