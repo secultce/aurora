@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Exception\ValidatorException;
 use App\Service\Interface\UserServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
@@ -63,6 +64,11 @@ class AuthenticationWebController extends AbstractWebController
             return $this->render('authentication/register_success.html.twig');
         } catch (UniqueConstraintViolationException $exception) {
             $error = $this->translator->trans('view.authentication.error.email_in_use');
+        } catch (ValidatorException $exception) {
+            $violations = $exception->getConstraintViolationList();
+            if ($violations->count() > 0) {
+                $error = $violations->get(0)->getMessage();
+            }
         } catch (Exception $exception) {
             $error = $this->translator->trans('view.authentication.error.error_message').$exception->getMessage();
         }

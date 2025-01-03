@@ -25,6 +25,10 @@ describe('Teste de Cadastro com Sucesso', () => {
         cy.get("[name='confirm_password']").type('Senha@12345678');
         cy.get('.btn').contains('Continuar').click();
 
+        cy.get('#acceptPolicies').click();
+
+        cy.get('#submitPolicies').click();
+
         cy.wait(2000);
 
         cy.contains('Seu cadastro foi criado com sucesso!').should('be.visible');
