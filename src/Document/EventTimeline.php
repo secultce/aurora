@@ -21,7 +21,7 @@ class EventTimeline
     private string $resourceId;
 
     #[ODM\Field]
-    private string $title;
+    private string $title = '';
 
     #[ODM\Field]
     private int $priority;
@@ -40,6 +40,11 @@ class EventTimeline
 
     #[ODM\Field(type: Type::HASH)]
     private array $to;
+
+    public function __construct()
+    {
+        $this->datetime = new DateTime();
+    }
 
     public function getId(): ?string
     {
