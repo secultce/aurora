@@ -524,6 +524,7 @@ view:
   opportunity:
     create: Crear Oportunidad
     description: In this section you will see and manage your opportunities.
+    id: ID de la oportunidad
     message:
       deleted: La oportunidad ha sido eliminada
     quantity:
@@ -531,6 +532,8 @@ view:
       finished: Oportunidades Finalizadas
       opened: Oportunidades en Curso
       last_days: Registradas en los últimos 7 días
+    period: Período de la oportunidad
+    type_of: Tipo de la oportunidad
 
   organization:
     date: Organización fue creada en
