@@ -2,3 +2,8 @@ list:
   path: /
   controller: App\Controller\Web\Admin\UserAdminController::list
   methods: ['GET']
+
+timeline:
+  path: /{id}/timeline
+  controller: App\Controller\Web\Admin\UserAdminController::timeline
+  methods: ['GET']
