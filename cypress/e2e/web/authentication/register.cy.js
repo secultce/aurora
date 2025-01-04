@@ -34,7 +34,7 @@ describe('Página de Cadastro', () => {
         cy.get("[name = 'confirm_password']").should('exist');
     });
 
-    it('Preenche os inputs e clica em Continuar', () => {
+    it('Preenche os inputs, clica em Continuar e faz o aceite de termos', () => {
         cy.get("[name = 'first_name']").type('João');
         cy.get("[name = 'last_name']").type('da Silva');
         cy.get("[name='birth_date']").type('1990-01-01');
@@ -45,6 +45,26 @@ describe('Página de Cadastro', () => {
         cy.get("[name = 'confirm_password']").type('a204C_DB%l.@');
 
         clickOnContinueButton();
+
+        cy.get('h4').should('contain.text', 'Aceite de políticas');
+        cy.get('p').should('contain.text', 'Para criar o seu perfil é necessário ler e aceitar os termos');
+
+        const politicas = [
+            { link: 'Termos e condições de uso', modal: '#modalTerms' },
+            { link: 'Política de privacidade', modal: '#modalPrivacy' },
+            { link: 'Autorização de Uso de Imagem', modal: '#modalImage' }
+        ];
+
+        politicas.forEach((politica) => {
+            cy.contains(politica.link).click();
+
+            cy.wait(500);
+
+            cy.get(politica.modal).contains('button', 'Aceitar').click();
+
+        });
+
+        cy.get('#submitPolicies').click();
 
         cy.wait(2000);
 
@@ -98,34 +118,14 @@ describe('Página de Cadastro', () => {
 
         clickOnContinueButton();
 
+        cy.get('#acceptPolicies').click();
+
+        cy.get('#submitPolicies').click();
+
         cy.get('.danger.snackbar').contains('Este email já está em uso.').should('be.visible');
     });
 
-// TODO: Aguardar a implementação do aceite de políticas e dados do agente cultural para descomentar os testes abaixo:
-    // it('Verifica o título e subtítulo do formulário de aceite de políticas', () => {
-    //
-    //     cy.get('h4').should('contain.text', 'Aceite de políticas');
-    //     cy.get('p').should('contain.text', 'Para criar o seu perfil é necessário ler e aceitar os termos');
-    // });
-    //
-    // it('Executa clicks nos links e botões de aceite', () => {
-    //     clickOnContinueButton();
-    //     const politicas = [
-    //         { link: 'Termos e condições de uso', modal: '#modalTerms' },
-    //         { link: 'Política de privacidade', modal: '#modalPrivacy' },
-    //         { link: 'Autorização de Uso de Imagem', modal: '#modalImage' }
-    //     ];
-    //
-    //     politicas.forEach((politica) => {
-    //         cy.contains(politica.link).click();
-    //
-    //         cy.wait(500);
-    //
-    //         cy.get(politica.modal).contains('button', 'Aceitar').click();
-    //
-    //     });
-    // });
-    //
+    // TODO: Ajustar esse teste
     // it('Verifica o título e subtítulo do perfil de agente cultural existe', () => {
     //     clickOnContinueButton();
     //     cy.get('.form-step-active > .btn-form-group > .btn-next').click();
@@ -133,8 +133,6 @@ describe('Página de Cadastro', () => {
     //     cy.get('h4').should('contain.text', 'Criação do Perfil');
     //     cy.get('p').should('contain.text', 'Para finalizar o seu cadastro, é necessário criar seu Perfil de Agente Cultural.');
     // });
-
-    // TODO: Ajustar esse teste
     // it('Verifica os campos, preenche inputs, verifica o contador de caracteres e interage com as áreas de atuação', () => {
     //     clickOnContinueButton();
     //     cy.get('.form-step-active > .btn-form-group > .btn-next').click();

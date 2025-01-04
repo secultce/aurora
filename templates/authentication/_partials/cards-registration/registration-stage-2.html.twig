@@ -7,18 +7,31 @@
     <hr class="text-body">
 
     <div class="d-flex flex-column gap-2 mb-5">
-        <a href="#" data-bs-target="#modalTerms" data-bs-toggle="modal">{{ 'accept-policies.terms'|trans }}</a>
+        <a href="#" data-bs-target="#modalTerms" data-bs-toggle="modal" data-policy="modalTerms">{{ 'accept-policies.terms'|trans }}</a>
         {% include 'authentication/_partials/cards-registration/modals-acceptance-policy/terms-and-conditions.html.twig' %}
 
-        <a href="#" data-bs-target="#modalPrivacy" data-bs-toggle="modal">{{ 'accept-policies.privacy'|trans }}</a>
+        <a href="#" data-bs-target="#modalPrivacy" data-bs-toggle="modal" data-policy="modalPrivacy">{{ 'accept-policies.privacy'|trans }}</a>
         {% include 'authentication/_partials/cards-registration/modals-acceptance-policy/privacy-policy.html.twig' %}
 
-        <a href="#" data-bs-target="#modalImage" data-bs-toggle="modal">{{ 'accept-policies.image'|trans }}</a>
+        <a href="#" data-bs-target="#modalImage" data-bs-toggle="modal" data-policy="modalImage">{{ 'accept-policies.image'|trans }}</a>
         {% include 'authentication/_partials/cards-registration/modals-acceptance-policy/image-authorization.html.twig' %}
+
+    </div>
+
+    <div class="form-check mb-4">
+        <input
+            class="form-check-input accept-all-policies"
+            type="checkbox"
+            id="acceptPolicies"
+            data-policy="acceptAllPolicies"
+        >
+        <label class="form-check-label" for="acceptPolicies">
+            {{ 'accept-policies.accept-all'|trans }}
+        </label>
     </div>
 
     <div class="btn-form-group">
         <button class="btn btn-prev">{{ 'back'|trans }}</button>
-        <button class="btn btn-next">{{ 'continue'|trans }}</button>
+        <button type="submit" class="btn btn-form-submit" id="submitPolicies">{{ 'continue'|trans }}</button>
     </div>
 </div>

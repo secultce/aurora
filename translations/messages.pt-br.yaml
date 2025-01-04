@@ -308,6 +308,7 @@ yes: Sim
 #components
 
 accept-policies:
+  accept-all: Aceitar todos
   description: Para criar o seu perfil é necessário ler e aceitar os termos, políticas e autorizações para utilização da plataforma, que serão encaminhados a você por e-mail. Ao aceitar, você estará concordando com todos.
   image: Autorização de Uso de Imagem
   privacy: Política de privacidade
