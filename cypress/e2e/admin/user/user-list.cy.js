@@ -7,9 +7,7 @@ describe('Painel de Controle - Página de listar Usuários', () => {
 
     it('Garante que a página de Usuários existe', () => {
         cy.get('h2').contains('Usuários').should('be.visible');
-    });
 
-    it('Garante que os usuários estejam visíveis ', () => {
         cy.get('tbody > tr > :nth-child(1)').contains('Talyson').should('be.visible');
     });
-})
+});

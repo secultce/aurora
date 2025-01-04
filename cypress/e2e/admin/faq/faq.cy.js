@@ -12,9 +12,10 @@ describe('Teste para Gerenciar as Perguntas Frequentes (FaQ)', () => {
         cy.get('#question').type('Pergunta 01');
         cy.get('#answer').type('Resposta 01');
         cy.get('[type="submit"]').click();
-    });
 
-    it('Deve mostrar erro se houver', () => {
+        cy.contains('Criar').click();
+
+        //testar se a validação funciona
         cy.get('#question').should('exist');
         cy.get('#answer').should('exist');
 

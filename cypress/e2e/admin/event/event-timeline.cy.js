@@ -8,7 +8,7 @@ describe('Painel de Controle - Página de listar eventos', () => {
     it('Garante que a página de timeline de evento existe', () => {
         cy.contains('Timeline').click({force: true});
 
-        cy.wait(500);
+        cy.wait(100);
 
         cy.get('h2').contains('Evento - PHP com Rapadura 10 anos - Timeline').should('be.visible');
         cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');

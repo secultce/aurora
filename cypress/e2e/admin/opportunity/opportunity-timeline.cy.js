@@ -16,4 +16,4 @@ describe('Painel de Controle - Página de timeline das Oportunidades', () => {
         cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
         cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible')
     });
-})
+});

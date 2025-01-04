@@ -29,7 +29,7 @@ describe('Teste de Cadastro com Sucesso', () => {
 
         cy.get('#submitPolicies').click();
 
-        cy.wait(2000);
+        cy.wait(100);
 
         cy.contains('Seu cadastro foi criado com sucesso!').should('be.visible');
     });
