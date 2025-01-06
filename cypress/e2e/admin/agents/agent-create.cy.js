@@ -10,7 +10,7 @@ describe('Painel de Controle - Criar Agente', () => {
 
         cy.contains('Criar').click();
 
-        cy.wait(2000);
+        cy.wait(100);
 
         cy.get('[data-cy="agent-name"]').should('be.visible');
         cy.get('[data-cy="agent-site"]').should('be.visible');
@@ -23,7 +23,7 @@ describe('Painel de Controle - Criar Agente', () => {
         cy.get('[data-cy="agent-shortBio"]').type('Um agente teste');
         cy.get('[data-cy="agent-submit"]').click();
 
-        cy.wait(2000);
+        cy.wait(100);
 
         cy.contains('Novo Agente criado').should('be.visible');
         cy.contains('Novo Agente Teste');

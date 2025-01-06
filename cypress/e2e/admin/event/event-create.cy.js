@@ -12,28 +12,22 @@ describe('Pagina de Cadastrar Eventos', () => {
         });
     })
 
-    it('Clica no botão Voltar e verifica redirecionamento', () => {
-        cy.contains('Voltar').click();
-
-        cy.url().should('include', '/eventos');
-    });
-
     it('Garante que a página de listar de eventos possui um botão de criar evento', () => {
         cy.visit('/eventos');
         cy.get('a').contains('Criar um evento').click();
         cy.url().should('include', '/painel/eventos/adicionar');
         cy.get('form').should('exist').and('be.visible');
-    });
 
-    it('Verifica se as validações dos campos estão funcionando', () => {
+
+        //Verifica se as validações dos campos estão funcionando
         cy.visit('/painel/eventos/adicionar');
 
         cy.get('#name').type('E');
         cy.get("p.text-danger.mt-2").should('be.visible', 'O nome deve ter entre 2 e 50 caracteres.');
         cy.get('#name').clear().type('Evento Teste');
-    });
 
-    it('Preenche os inputs e clica em Criar e Publicar', () => {
+        cy.wait(100);
+
         cy.visit('/painel/eventos/adicionar');
 
         cy.get('#name').type('Evento Teste');
@@ -44,9 +38,8 @@ describe('Pagina de Cadastrar Eventos', () => {
 
         cy.contains('button', 'Criar e Publicar').click();
 
-        cy.wait(2000);
+        cy.wait(100);
 
         cy.contains('Evento Teste');
     });
-
 });

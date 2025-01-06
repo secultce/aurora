@@ -10,14 +10,14 @@ describe('Painel de Controle - Página de listar Espaços', () => {
 
         cy.contains('Criar').click();
 
-        cy.wait(2000);
+        cy.wait(100);
 
         cy.get('[data-cy="name"]').type('Espaço teste');
         cy.get('[data-cy="submit"]').click();
 
-        cy.wait(2000);
+        cy.wait(100);
 
         cy.contains('Novo Espaço criado');
         cy.contains('Espaço teste');
     });
-})
+});

@@ -5,14 +5,12 @@ describe('Painel de Controle - Página de listar Oportunidades', () => {
         cy.visit('/painel/oportunidades');
     });
 
-    it('Garante que a página de Oportunidades existe', () => {
+    it('Garante que a página de listar Oportunidades existe e funciona', () => {
         cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
 
         cy.contains('Inscrição para o Concurso de Cordelistas').should('be.visible');
         cy.contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('not.exist');
-    });
 
-    it('Garante que seja possível deletar uma oportunidade', () => {
         cy.get('h2').contains('Minhas Oportunidades').should('be.visible');
     
         cy.get('[data-cy="remove-1"]').contains('Excluir').click();

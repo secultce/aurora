@@ -7,9 +7,7 @@ describe('Página de Minhas Oportunidades', () => {
 
     it('Deve verificar a URL da página de Minhas Oportunidades', () => {
         cy.url().should('include', '/painel/oportunidades');
-    });
 
-    it('Deve verificar a presença do título da página', () => {
         cy.get('h2').contains('Minhas Oportunidades');
     });
 

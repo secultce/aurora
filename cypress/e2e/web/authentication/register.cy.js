@@ -66,7 +66,7 @@ describe('Página de Cadastro', () => {
 
         cy.get('#submitPolicies').click();
 
-        cy.wait(2000);
+        cy.wait(500);
 
         cy.url().then((url) => {
             cy.log('Current URL:', url);

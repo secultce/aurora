@@ -5,12 +5,10 @@ describe('Painel de Controle - Página de listar FAQs', () => {
         cy.visit('/painel/faq');
     });
 
-    it('Garante que a página de FAQs existe', () => {
+    it('Garante que seja possível remover uma FAQ', () => {
         cy.get('h2').contains('Minhas FAQs').should('be.visible');
         cy.contains('Quais oportunidades existem para pesquisadores acadêmicos no Brasil?').should('be.visible');
-    });
 
-    it('Garante que seja possível deletar uma FAQ', () => {
         cy.get('tbody > tr').last().within(() => {
             cy.contains('Excluir').click();
         });
