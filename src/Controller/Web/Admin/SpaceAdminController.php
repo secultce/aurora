@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\DocumentService\SpaceTimelineDocumentService;
 use App\Service\Interface\SpaceServiceInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
@@ -18,9 +19,10 @@ class SpaceAdminController extends AbstractAdminController
     private const VIEW_ADD = 'space/create.html.twig';
 
     public function __construct(
-        private SpaceServiceInterface $service,
+        private readonly SpaceServiceInterface $service,
+        private readonly SpaceTimelineDocumentService $documentService,
         private readonly TranslatorInterface $translator,
-        private Security $security
+        private readonly Security $security,
     ) {
     }
 
@@ -68,5 +70,15 @@ class SpaceAdminController extends AbstractAdminController
         }
 
         return $this->redirectToRoute('admin_space_list');
+    }
+
+    public function timeline(Uuid $id): Response
+    {
+        $events = $this->documentService->getEventsByEntityId($id);
+
+        return $this->render('space/timeline.html.twig', [
+            'space' => $this->service->get($id),
+            'events' => $events,
+        ]);
     }
 }
