@@ -80,6 +80,7 @@ downloadable-files: Archivos Descargables
 
 edit: Editar
 edit_faq: Editar preguntas frecuentes
+edit_seals: Editar sellos
 email: Correo Electrónico
 entity_banner: Banner de la Entidad
 entity: Entidad
@@ -266,6 +267,8 @@ save: Guardar
 share: Compartir
 save_share: Guardar y Compartir
 seals: Sellos
+seals_name: Nombre del sello
+seals_description: Descripción del sello
 search: Buscar
 select: Seleccionar
 send: Enviar
@@ -518,6 +521,7 @@ view:
     expired: sello vencido
     message:
       deleted: El sello ha sido eliminado
+      updated: La insignia ha sido actualizada
     status:
       active: Activo
       inactive: Inactivo

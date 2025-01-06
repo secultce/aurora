@@ -8,7 +8,6 @@ use App\Exception\ValidatorException;
 use App\Service\Interface\SealServiceInterface;
 use DateTime;
 use Exception;
-use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -18,11 +17,11 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SealAdminController extends AbstractAdminController
 {
     public const VIEW_ADD = 'seal/add.html.twig';
+    public const VIEW_EDIT = 'seal/edit.html.twig';
 
     public function __construct(
         private SealServiceInterface $sealService,
-        private readonly TranslatorInterface $translator,
-        private Security $security,
+        private readonly TranslatorInterface $translator
     ) {
     }
 
@@ -38,7 +37,7 @@ class SealAdminController extends AbstractAdminController
     public function getOne(int $id): Response
     {
         $seal = [
-            'name' => 'Selo '.$id,
+            'name' => 'Selo'.$id,
             'status' => 'Ativo',
             'createdAt' => new DateTime('2023-12-01 10:00:00'),
         ];
@@ -58,9 +57,8 @@ class SealAdminController extends AbstractAdminController
             $this->sealService->create([
                 'id' => Uuid::v4(),
                 'name' => $request->get('name'),
+                'active' => null === $request->get('active') ? false : true,
                 'description' => $request->get('description'),
-                'active' => true,
-                'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
             ]);
         } catch (ValidatorException $exception) {
             return $this->render(self::VIEW_ADD, [
@@ -86,5 +84,46 @@ class SealAdminController extends AbstractAdminController
         $this->addFlash('success', $this->translator->trans('view.seal.message.deleted'));
 
         return $this->redirectToRoute('admin_seal_list');
+    }
+
+    public function edit(string $id, Request $request, ValidatorInterface $validator): Response
+    {
+        try {
+            $seal = $this->sealService->get(Uuid::fromString($id));
+        } catch (Exception $exception) {
+            $this->addFlash('error', $exception->getMessage());
+
+            return $this->redirectToRoute('admin_seal_list');
+        }
+
+        if (Request::METHOD_POST !== $request->getMethod()) {
+            return $this->render(self::VIEW_EDIT, [
+                'seal' => $seal,
+            ]);
+        }
+
+        try {
+            $this->sealService->update(Uuid::fromString($id), [
+                'name' => $request->get('name'),
+                'active' => null === $request->get('active') ? false : true,
+                'description' => $request->get('description'),
+            ]);
+
+            $this->addFlash('success', $this->translator->trans('view.seal.message.updated'));
+
+            return $this->redirectToRoute('admin_seal_list');
+        } catch (ValidatorException $exception) {
+            return $this->render(self::VIEW_EDIT, [
+                'seal' => $seal,
+                'errors' => $exception->getConstraintViolationList(),
+            ]);
+        } catch (Exception $exception) {
+            return $this->render(self::VIEW_EDIT, [
+                'seal' => $seal,
+                'errors' => [
+                    $exception->getMessage(),
+                ],
+            ]);
+        }
     }
 }

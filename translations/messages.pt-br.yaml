@@ -80,6 +80,7 @@ downloadable-files: Arquivos para download
 
 edit: Editar
 edit_faq: Editar FAQ
+edit_seals: Editar Selos
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
@@ -267,6 +268,8 @@ save_share: Salvar e Compartilhar
 share: Compartilhar
 short_presentation: Apresentação Curta
 seals: Selos
+seals_name: Nome do Selo
+seals_description: Descrição do Selo
 search: Buscar
 select_bank: Selecione o banco
 select_education: Selecione a sua Escolaridade
@@ -593,6 +596,7 @@ view:
     expired: selo expirado
     message:
       deleted: O selo foi excluído
+      updated: O selo foi atualizado
     status:
       active: Ativo
       inactive: Inativo

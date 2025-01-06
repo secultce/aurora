@@ -212,6 +212,7 @@ export declare const DOES_NOT_EXPIRE: Message<{ 'messages': { parameters: NoPara
 export declare const DOWNLOADABLE_FILES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EDIT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EDIT_FAQ: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const EDIT_SEALS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EMAIL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTITY_BANNER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -384,6 +385,8 @@ export declare const SAVE: Message<{ 'messages': { parameters: NoParametersType 
 export declare const SHARE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SAVE_SHARE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SEALS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const SEALS_NAME: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const SEALS_DESCRIPTION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SEARCH: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SELECT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SEND: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -575,6 +578,7 @@ export declare const VIEW_SEAL_CREATOR: Message<{ 'messages': { parameters: NoPa
 export declare const VIEW_SEAL_DATE_OF_RECEIPT_OF_THE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_EXPIRED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_MESSAGE_DELETED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_SEAL_MESSAGE_UPDATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_STATUS_ACTIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_STATUS_INACTIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_SEAL_PICTURE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

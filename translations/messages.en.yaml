@@ -80,6 +80,7 @@ downloadable-files: Downloadable Files
 
 edit: Edit
 edit_faq: Edit FAQ
+edit_seals: Edit Seals
 email: Email
 entity_banner: Entity Banner
 entity: Entity
@@ -267,6 +268,8 @@ save: Save
 share: Share
 save_share: Save and Share
 seals: Seals
+seals_name: Seal name
+seals_description: Seal Description
 search: Search
 select: Select
 send: Send
@@ -513,6 +516,7 @@ view:
     expired: expired seal
     message:
       deleted: The seal has been deleted
+      updated: The seal has been updated
     status:
       active: Active
       inactive: Inactive
