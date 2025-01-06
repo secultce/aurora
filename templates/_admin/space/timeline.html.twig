@@ -1,0 +1,55 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'spaces'|trans }} - {{ 'Timeline'|trans }}{% endblock %}
+
+{% block content %}
+    {% include '_components/modal-confirm-remove.html.twig' %}
+
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body shadow">
+                        <div class="d-flex justify-content-between">
+                            <h2>{{ 'spaces'|trans }} - {{ space.name }} - {{ 'Timeline'|trans }}</h2>
+                            <div>
+                                <a href="{{  path('admin_space_list') }}" class="btn btn-outline-primary">
+                                    {{ 'back' | trans }}
+                                </a>
+                            </div>
+                        </div>
+
+                        <hr>
+
+                        <table class="table table-hover table-striped">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>{{ 'title'|trans }}</th>
+                                <th>{{ 'created_at'|trans }}</th>
+                                <th>{{ 'device'|trans }}</th>
+                                <th></th>
+                                <th>{{ 'actions'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for item in events %}
+                                <tr>
+                                    <td><a href="#">{{ item.title }}</a></td>
+                                    <td>{{ item.datetime.format('d/m/Y H:i:s') }}</td>
+                                    <td>{{ item.device }}</td>
+                                    <td></td>
+                                    <td>
+                                        <a href="{{ path('admin_space_timeline', {id: space.id}) }}" class="btn btn-outline-dark btn-sm">{{ 'details'|trans }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}

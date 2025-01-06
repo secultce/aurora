@@ -12,3 +12,8 @@ create:
   path: /adicionar
   controller: App\Controller\Web\Admin\SpaceAdminController::create
   methods: ['GET', 'POST']
+
+timeline:
+  path: /{id}/timeline
+  controller: App\Controller\Web\Admin\SpaceAdminController::timeline
+  methods: ['GET']
