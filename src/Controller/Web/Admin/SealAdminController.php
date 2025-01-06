@@ -8,6 +8,7 @@ use App\Exception\ValidatorException;
 use App\Service\Interface\SealServiceInterface;
 use DateTime;
 use Exception;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -21,6 +22,7 @@ class SealAdminController extends AbstractAdminController
     public function __construct(
         private SealServiceInterface $sealService,
         private readonly TranslatorInterface $translator,
+        private Security $security,
     ) {
     }
 
@@ -56,7 +58,9 @@ class SealAdminController extends AbstractAdminController
             $this->sealService->create([
                 'id' => Uuid::v4(),
                 'name' => $request->get('name'),
-                'status' => $request->get('status'),
+                'description' => $request->get('description'),
+                'active' => true,
+                'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
             ]);
         } catch (ValidatorException $exception) {
             return $this->render(self::VIEW_ADD, [

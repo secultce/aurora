@@ -20,5 +20,17 @@ describe('Teste de navegação e validação da página de Selos', () => {
         cy.get('table', { timeout: 10000 }).should('be.visible');
         cy.contains('Criar', { timeout: 10000 }).should('be.visible').click();
         cy.url({ timeout: 10000 }).should('include', '/painel/selos/adicionar');
+
+        // Garante que a validação existe
+        cy.get('button').contains('Salvar').should('be.visible').click();
+        cy.get('input:invalid').should('have.length', 1);
+        cy.get('textarea:invalid').should('have.length', 1);
+
+        // Garante que a criação funciona
+        cy.get('input[name="name"]').type('Selo de qualidade');
+        cy.get('textarea[name="description"]').type('Descrição do selo');
+        cy.get('button').contains('Salvar').should('be.visible').click();
+        cy.url({ timeout: 10000 }).should('include', '/painel/selos/');
+        cy.contains('Selo de qualidade').should('be.visible');
     });
 });
