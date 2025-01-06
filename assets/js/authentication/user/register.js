@@ -1,4 +1,6 @@
 import "../../../app.js";
+import "../../mask.js";
+
 
 import {
     trans,
@@ -7,6 +9,8 @@ import {
     VIEW_AUTHENTICATION_ERROR_INVALID_PASSWORD,
     VIEW_AUTHENTICATION_ERROR_LAST_NAME_LENGTH,
     VIEW_AUTHENTICATION_ERROR_PASSWORD_MISMATCH,
+    VIEW_AUTHENTICATION_ERROR_CPF_INVALID,
+    VIEW_AUTHENTICATION_ERROR_PHONE_INVALID,
 } from "../../../translator.js";
 
 document.addEventListener('DOMContentLoaded', function () {
@@ -17,6 +21,8 @@ document.addEventListener('DOMContentLoaded', function () {
     const inputs = {
         firstName: document.querySelector('input[name="first_name"]'),
         lastName: document.querySelector('input[name="last_name"]'),
+        cpf: document.querySelector('input[name="cpf"]'),
+        phone: document.querySelector('input[name="phone"]'),
         email: document.querySelector('input[name="email"]'),
         password: document.querySelector('input[name="password"]'),
         confirmPassword: document.querySelector('input[name="confirm_password"]')
@@ -29,6 +35,8 @@ document.addEventListener('DOMContentLoaded', function () {
     async function validateFields() {
         const firstName = inputs.firstName.value.trim();
         const lastName = inputs.lastName.value.trim();
+        const cpf = inputs.cpf.value.trim();
+        const phone = inputs.phone.value.trim();
         const email = inputs.email.value.trim();
         const password = inputs.password.value.trim();
         const confirmPassword = inputs.confirmPassword.value.trim();
@@ -44,6 +52,12 @@ document.addEventListener('DOMContentLoaded', function () {
         } else if (!validateName(lastName)) {
             errorMessage = trans(VIEW_AUTHENTICATION_ERROR_LAST_NAME_LENGTH);
             inputs.lastName.classList.add('border-danger');
+        } else if (!validateCpf(cpf)) {
+            errorMessage = trans(VIEW_AUTHENTICATION_ERROR_CPF_INVALID);
+            inputs.cpf.classList.add('border-danger');
+        } else if (!validatePhone(phone)) {
+            errorMessage = trans(VIEW_AUTHENTICATION_ERROR_PHONE_INVALID);
+            inputs.phone.classList.add('border-danger');
         } else if (!validateEmail(email)) {
             errorMessage = trans(VIEW_AUTHENTICATION_ERROR_INVALID_EMAIL);
             inputs.email.classList.add('border-danger');
@@ -112,6 +126,16 @@ function validateName(name) {
 function validateEmail(email) {
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailPattern.test(email) && email.length <= 100;
+}
+
+function validateCpf(cpf) {
+    const cpfPattern = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
+    return cpfPattern.test(cpf) && cpf.length === 14;
+}
+
+function validatePhone(phone) {
+    const phonePattern = /^\(\d{2}\)\s\d{1}\s\d{4}-\d{4}$/;
+    return phonePattern.test(phone) && phone.length <= 16;
 }
 
 function validatePassword(password) {

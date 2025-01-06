@@ -426,6 +426,8 @@ view:
       invalid_password: La contraseña debe tener al menos 8 caracteres, incluyendo letras mayúsculas, minúsculas y números.
       last_name_length: El apellido debe tener entre 2 y 50 caracteres.
       password_mismatch: Las contraseñas no coinciden.
+      cpf_invalid: Por favor, introduzca un CPF válido.
+      phone_invalid: Por favor, introduzca un número de teléfono válido.
 
     forgot_password: Olvidé mi Contraseña
     paragraph: Inicia sesión con tu cuenta

@@ -26,7 +26,7 @@ describe('Página de Cadastro', () => {
 
         cy.get("[name = 'first_name']").should('exist');
         cy.get("[name = 'last_name']").should('exist');
-        cy.get("[name='birth_date']").should('exist');
+        cy.get("[name = 'birth_date']").should('exist');
         cy.get("[name = 'cpf']").should('exist');
         cy.get("[name = 'phone']").should('exist');
         cy.get("[name = 'email']").should('exist');
@@ -37,9 +37,12 @@ describe('Página de Cadastro', () => {
     it('Preenche os inputs, clica em Continuar e faz o aceite de termos', () => {
         cy.get("[name = 'first_name']").type('João');
         cy.get("[name = 'last_name']").type('da Silva');
-        cy.get("[name='birth_date']").type('1990-01-01');
-        cy.get("[name = 'cpf']").type('123.456.789-00');
-        cy.get("[name = 'phone']").type('(11) 99999-9999');
+        cy.get("[name = 'birth_date']").type('1990-01-01');
+        cy.get("[name = 'cpf']").type('12345678900');
+        cy.get("[name = 'cpf']").should('have.value', '123.456.789-00')
+        cy.get("[name = 'phone']").type('11999999999');
+        cy.get("[name = 'phone']").should('have.value', '(11) 9 9999-9999')
+
         cy.get("[name = 'email']").type('joaodasilva@test.com');
         cy.get("[name = 'password']").type('a204C_DB%l.@');
         cy.get("[name = 'confirm_password']").type('a204C_DB%l.@');
@@ -90,9 +93,17 @@ describe('Página de Cadastro', () => {
         cy.get("#error-message").should('contain.text', 'O sobrenome deve ter entre 2 e 50 caracteres.');
         cy.get("[name = 'last_name']").clear().type('Silva');
 
+        cy.get("[name = 'cpf']").type('teste');
+        cy.get("#error-message").should('contain.text', 'Insira um CPF válido.');
+        cy.get("[name = 'cpf']").clear().type('12312312312');
+
+        cy.get("[name = 'phone']").type('123');
+        cy.get("#error-message").should('contain.text', 'Insira um número de telefone válido.');
+        cy.get("[name = 'phone']").clear().type('88912341234');
+
         cy.get("[name = 'email']").type('teste');
         cy.get("#error-message").should('contain.text', 'Insira um email válido com até 100 caracteres.');
-        cy.get("[name = 'email']").clear().type('joaodasilva@test.com');
+        cy.get("[name = 'email']").clear().type('joaodasneves@test.com');
 
         cy.get("[name = 'password']").type('123');
         cy.get("#error-message").should('contain.text', 'A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas e números.');

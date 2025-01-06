@@ -420,6 +420,8 @@ view:
       invalid_password: A senha deve ter pelo menos 8 caracteres, incluindo letras maiúsculas, minúsculas e números.
       last_name_length: O sobrenome deve ter entre 2 e 50 caracteres.
       password_mismatch: As senhas não correspondem.
+      cpf_invalid: Insira um CPF válido.
+      phone_invalid: Insira um número de telefone válido.
 
     forgot_password: Esqueci minha senha
     paragraph: Entre com a sua conta

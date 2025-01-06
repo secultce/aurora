@@ -421,6 +421,8 @@ view:
       invalid_password: The password must be at least 8 characters long, including uppercase, lowercase letters, and numbers.
       last_name_length: The last name must be between 2 and 50 characters.
       password_mismatch: The passwords do not match.
+      cpf_invalid: Please enter a valid CPF.
+      phone_invalid: Please enter a valid phone number.
 
     forgot_password: Forgot my password
     paragraph: Log in with your account
