@@ -12,3 +12,8 @@ timeline:
   path: /{id}/timeline
   controller: App\Controller\Web\Admin\OpportunityAdminController::timeline
   methods: ['GET']
+
+get:
+  path: /{id}
+  controller: App\Controller\Web\Admin\OpportunityAdminController::get
+  methods: ['GET']

@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Web\Admin;
 
 use App\DocumentService\OpportunityTimelineDocumentService;
+use App\Service\Interface\InscriptionOpportunityServiceInterface;
 use App\Service\Interface\OpportunityServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -14,6 +15,7 @@ class OpportunityAdminController extends AbstractAdminController
     public function __construct(
         private OpportunityServiceInterface $service,
         private OpportunityTimelineDocumentService $documentService,
+        private InscriptionOpportunityServiceInterface $inscriptionOpportunityService,
     ) {
     }
 
@@ -42,6 +44,16 @@ class OpportunityAdminController extends AbstractAdminController
         return $this->render('opportunity/timeline.html.twig', [
             'opportunity' => $this->service->get($id),
             'events' => $events,
+        ]);
+    }
+
+    public function get(Uuid $id): Response
+    {
+        $inscriptions = $this->inscriptionOpportunityService->list($id);
+
+        return $this->render('opportunity/details.html.twig', [
+            'opportunity' => $this->service->get($id),
+            'inscriptions' => $inscriptions,
         ]);
     }
 }

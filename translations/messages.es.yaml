@@ -538,6 +538,14 @@ view:
     period: Período de la oportunidad
     type_of: Tipo de la oportunidad
 
+  opportunity_admin:
+    inscriptions:
+      section: Inscripciones
+      status:
+        active: Activo
+        inactive: Inactivo
+      see_inscription: Ver Inscripcione
+
   organization:
     date: Organización fue creada en
     message:

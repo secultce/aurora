@@ -533,6 +533,14 @@ view:
     period: Opportunity period
     type_of: Opportunity Type
 
+  opportunity_admin:
+    inscriptions:
+      section: Inscriptions
+      status:
+        active: Active
+        inactive: Inactive
+      see_inscription: See Inscription
+
   organization:
     date: Organization was created on
     message:
