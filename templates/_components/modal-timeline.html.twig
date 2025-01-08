@@ -1,0 +1,27 @@
+<div class="modal fade" id="modal-timeline" tabindex="-1" aria-labelledby="modal-timeline" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="modal-timeline">{{ "change_details" | trans }}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                    <tr>
+                        <th>{{ "field" | trans }}</th>
+                        <th>{{ "from" | trans }}</th>
+                        <th>{{ "from_to" | trans }}</th>
+                    </tr>
+                    </thead>
+                    <tbody id="modal-timeline-table-body">
+
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ "close" | trans }}</button>
+            </div>
+        </div>
+    </div>
+</div>

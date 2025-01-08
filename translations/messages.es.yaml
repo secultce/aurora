@@ -40,12 +40,14 @@ black: Negra
 
 calendar: Calendario
 cancel: Cancelar
+change_details: Cambiar Detalles
 cep: CEP
 cisgender: Cisgénero
 city: ciudad
 check: Comprobar
 claim-ownership: Reclamar Propiedad
 clean_filter: Limpiar todos los filtros
+close: Cerrar
 close_registration: Inscripciones cerradas
 click_here: Haz clic aquí
 connections: Conexiones
@@ -98,6 +100,7 @@ explore_repository: Explorar Repositorio
 faq: FaQ
 file: Adjuntar archivo
 filter: Filtros
+field: Campo
 first_name: Nombre
 last_name: Apellido
 feminine: Femenino
@@ -105,6 +108,8 @@ functions: Gerenciar funciones
 fundamental: Primaria
 future_registration: Inscripciones futuras
 full_name: Nombre Completo
+from: de
+from_to: A
 
 gallery: Galería
 gender: Seleccione el Género
