@@ -131,6 +131,7 @@ indigenous: Indigenous
 initiative: Initiative
 initiatives: Initiatives
 in_progress: In Progress
+inscriptions: Inscriptions
 input_search: Search for keywords
 introduction: Introduction
 
@@ -218,6 +219,7 @@ phone: Phone
 postgraduate: Postgraduate
 photo: Photo
 phase: Phase
+phases: Phases
 postal_code: Postal Code
 profile_picture: Profile Picture
 projects: Projects
@@ -557,7 +559,6 @@ view:
 
   opportunity_admin:
     inscriptions:
-      section: Inscriptions
       status:
         active: Active
         inactive: Inactive
