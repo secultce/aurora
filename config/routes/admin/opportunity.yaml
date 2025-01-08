@@ -1,3 +1,8 @@
+create:
+  path: /adicionar
+  controller: App\Controller\Web\Admin\OpportunityAdminController::create
+  methods: ['GET']
+
 list:
   path: /
   controller: App\Controller\Web\Admin\OpportunityAdminController::list
@@ -7,6 +12,11 @@ remove:
   path: /{id}/remove
   controller: App\Controller\Web\Admin\OpportunityAdminController::remove
   methods: ['GET']
+
+store:
+  path: /store
+  controller: App\Controller\Web\Admin\OpportunityAdminController::store
+  methods: ['POST']
 
 timeline:
   path: /{id}/timeline

@@ -11,6 +11,10 @@ return [
         'path' => './assets/js/authentication/user/register.js',
         'entrypoint' => true,
     ],
+    'opportunity-create' => [
+        'path' => './assets/js/opportunity/create.js',
+        'entrypoint' => true,
+    ],
     '@symfony/ux-translator' => [
         'path' => './vendor/symfony/ux-translator/assets/dist/translator_controller.js',
     ],
@@ -82,18 +86,18 @@ return [
         'type' => 'css',
     ],
     'intl-messageformat' => [
-        'version' => '10.7.6',
+        'version' => '10.7.11',
     ],
     'tslib' => [
         'version' => '2.8.1',
     ],
     '@formatjs/fast-memoize' => [
-        'version' => '2.2.3',
+        'version' => '2.2.6',
     ],
     '@formatjs/icu-messageformat-parser' => [
-        'version' => '2.9.3',
+        'version' => '2.9.8',
     ],
     '@formatjs/icu-skeleton-parser' => [
-        'version' => '1.8.7',
+        'version' => '1.8.12',
     ],
 ];

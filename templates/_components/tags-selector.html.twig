@@ -1,0 +1,60 @@
+{% if not required is defined %}
+    {% set isRequired = false %}
+{% else %}
+    {% set isRequired = required %}
+{% endif %}
+
+<div class="tags-selector">
+    <label for="add-{{ inputName }}-btn">{{ inputLabel }} <span class="text-danger">{{ isRequired ? '*' : '' }}</span></label>
+    <div id="tags-container-{{ inputName }}" class="my-1 d-flex flex-wrap gap-2">
+        {% for tag in tags %}
+            <div class="area-tag">
+                {{ tag.name }}
+                <input type="hidden" name="{{ inputName }}[]" value="{{ tag.value }}" {{ isRequired ? 'required' : '' }}/>
+                <span class="remove-tag" role="button">x</span>
+            </div>
+        {% endfor %}
+    </div>
+
+    <div class="dropdown" id="{{ inputName }}">
+        <button id="add-{{ inputName }}-btn" class="btn area-tag bg-primary text-white" type="button" data-bs-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
+            {{ 'add'|trans }}
+            <i class="material-icons fs-4 ms-2">add</i>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="add-{{ inputName }}-btn" style="position: absolute; inset: 0 auto auto 0; margin: 0; transform: translate(0, 38px);" data-popper-placement="bottom-start" role="listbox">
+            <div class="search-input-container">
+                <div class="input-wrapper">
+                    <input
+                        type="search"
+                        id="search-{{ inputName }}-items"
+                        incremental
+                        aria-label="Search through options"
+                        class="form-control custom-search-input"
+                        placeholder="{{ 'search'|trans }}"
+                        onsearch="handleTagsFilter(event, this)"
+                        name="{{ inputName }}-search"
+                    />
+                    <button type="button" class="btn custom-search-icon" onclick="handleTagsFilter(event, this)"><i class="material-icons">search</i></button>
+                </div>
+            </div>
+            <li class="new-tag-item">
+                <button type="button" class="dropdown-item justify-content-between" style="cursor: pointer" role="option" data-input-name="{{ inputName }}" data-label="" data-value="">
+                    <span id="new-tag-{{ inputName }}"></span>
+                    <i class="material-icons fs-4 ms-2">add</i>
+                </button>
+            </li>
+            {% for item in items %}
+                <li role="option">
+                    <button
+                        type="button"
+                        class="dropdown-item"
+                        style="cursor: pointer"
+                        data-input-name="{{ inputName }}"
+                        data-label="{{ item.label }}"
+                        data-value="{{ item.value }}"
+                    >{{ item.label }}</button>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

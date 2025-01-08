@@ -294,6 +294,7 @@ site: Site
 social_media: Redes sociais
 sort_by: Ordenar por
 social_name: Nome Social
+space: Espaço
 spaces: Espaços
 start_now: Comece agora
 state: Estado
@@ -516,15 +517,25 @@ view:
   opportunity:
     create: Criar oportunidade
     description: Nesta seção você pode adicionar e gerenciar as Oportunidades criadas por você.
+    error:
+      agent: Deve associar um agente responsável
+      areas_of_interest: Deve conter pelo menos uma área de interesse
+      entity: Vincule a oportunidade a uma entidade
+      opportunity_type: Selecione o tipo da oportunidade
+      title: O título deve ter entre 2 e 100 caracteres
     id: ID da oportunidade
+    labels:
+      choose_type: Selecione o tipo da oportunidade
+      choose_entity: Vincule a oportunidade a uma entidade
     message:
       deleted: A Oportunidade foi excluída
+      created: A oportunidade foi criada com sucesso
+    period: Período da oportunidade
     quantity:
       total: Oportunidades Encontradas
       finished: Oportunidades Finalizadas
       opened: Oportunidades em Andamento
       last_days: Registradas nos últimos 7 dias
-    period: Período da oportunidade
     type_of: Tipo de oportunidade
 
   opportunity_admin:

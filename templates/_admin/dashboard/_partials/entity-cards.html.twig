@@ -30,15 +30,15 @@
                 <span class="fw-bold fs-1">{{ totalOpportunities }}</span>
                 <span class="fw-bold">{{ "opportunities" | trans }}</span>
             </div>
-            <button class="d-flex align-items-center justify-content-center">
+            <a role="button" href="{{ path('admin_opportunity_create') }}" class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">add</i>
                 <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-            </button>
+            </a>
         </div>
     </div>
 
     {% if env.aurora.modules.events %}
-    <div class="col-md-3">
+        <div class="col-md-3">
             <div class="card-dashboard" data-cy="event-card-dashboard">
                 <div class="d-flex align-items-center">
                     <div class="bg-card-dashboard bg-event">
