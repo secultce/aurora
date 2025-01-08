@@ -5,6 +5,10 @@
                 <div class="d-flex">
                     <span class="icon material-icons align-self-start">check_circle</span>
                     <div class="toast-body">
+                        {% if error.propertyPath is defined %}
+                            {{ error.propertyPath | trans }}:
+                        {% endif %}
+
                         {{ error.message }}
                     </div>
                     <button type="button" class="btn-close me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
