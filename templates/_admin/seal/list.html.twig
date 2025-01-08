@@ -44,7 +44,7 @@
                                     <td>{{ seal.active ? 'view.seal.status.active'|trans : 'view.seal.status.inactive'|trans }}</td>
                                     <td>{{ seal.createdAt|date('d/m/Y H:i') }}</td>
                                     <td>
-                                        <a href="#" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
+                                        <a href="{{ path('admin_seal_edit', {'id': seal.id}) }}" class="btn btn-outline-warning btn-sm">{{ 'edit'|trans }}</a>
                                         <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm" onclick="confirmRemove(this)" data-href="{{ path('admin_seal_remove', {id: seal.id}) }}" class="btn btn-outline-danger btn-sm">{{ 'delete'|trans }}</button>
                                     </td>
                                 </tr>

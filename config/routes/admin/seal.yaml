@@ -17,3 +17,8 @@ remove:
   path: /{id}/remove
   controller: App\Controller\Web\Admin\SealAdminController::remove
   methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\SealAdminController::edit
+  methods: ['GET', 'POST']
