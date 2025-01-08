@@ -51,6 +51,8 @@ class AuthenticationWebController extends AbstractWebController
         $lastName = $request->request->get('last_name');
         $email = $request->request->get('email');
         $password = $request->request->get('password');
+        $cpf = str_replace(['.', '-'], '', $request->request->get('cpf'));
+        $phone = str_replace(['(', ')', '-', ' '], '', $request->request->get('phone'));
 
         try {
             $this->userService->create([
@@ -59,6 +61,8 @@ class AuthenticationWebController extends AbstractWebController
                 'lastname' => $lastName,
                 'email' => $email,
                 'password' => $password,
+                'cpf' => $cpf,
+                'phone' => $phone,
             ]);
 
             return $this->render('authentication/register_success.html.twig');

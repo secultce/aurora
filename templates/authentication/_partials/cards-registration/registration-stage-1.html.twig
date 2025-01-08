@@ -16,12 +16,12 @@
 
     <div class="mb-3">
         <label for="inputCPF" class="form-label text-uppercase">{{ 'cpf'|trans }}</label>
-        <input type="text" class="form-control" name="cpf" placeholder="Ex: 123.123.123-12" >
+        <input type="text" class="form-control" name="cpf" data-mask="cpf" placeholder="Ex: 123.123.123-12" maxlength="14">
     </div>
 
     <div class="mb-3">
         <label for="inputPhone" class="form-label">{{ 'phone'|trans }}</label>
-        <input type="tel" class="form-control" name="phone" placeholder="{{ 'phone'|trans }}" >
+        <input type="tel" class="form-control" name="phone" data-mask="phone" placeholder="{{ 'phone'|trans }}" maxlength="16">
     </div>
 
     <div class="mb-3">
