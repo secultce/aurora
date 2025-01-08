@@ -19,7 +19,7 @@ function createRow(field, fromValue, toValue) {
 }
 
 function formatValue(value) {
-    if (value == null) {
+    if (value == null || (Array.isArray(value) && value.length === 0)) {
         return 'N/A';
     }
 
