@@ -1,11 +1,13 @@
 add: Add
 account_privacy: Account and Privacy
+account_settings: User Account Settings
 access: Access
 accessibility: Accessibility
 access_main_agent: Access the main agent
 accountability: Accountability
 accompany: To accompany
 actions: Actions
+accept_terms: Accept the terms
 address: Address
 admin_options: Admin Options
 add_archive: Add
@@ -66,10 +68,13 @@ create_in_draft: Create in Draft
 create_account: Create Account
 created_at: Created at
 chain: Chain
+change_email: Change email
+change_password: Change password
 contact: Contact
 cultural_language: Cultural language
 cultural_languages: Cultural languages
 
+date_created: Date created
 dashboard: Dashboard
 draft: In draft
 delete: Delete
@@ -140,6 +145,7 @@ introduction: Introduction
 is_itinerant: Is it an itinerant agent?
 language: Language
 lastname: Last Name
+last_login: Last Login
 linked_with: Linked With
 link: Add Link
 list: List

@@ -204,6 +204,16 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
         return $this->email;
     }
 
+    public function isActive(): bool
+    {
+        return null === $this->deletedAt;
+    }
+
+    public function getLastLogin(): ?DateTime
+    {
+        return $this->updatedAt;
+    }
+
     public function toArray(): array
     {
         return [

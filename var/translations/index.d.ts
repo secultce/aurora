@@ -137,12 +137,14 @@ export declare const TOO_MANY_FAILED_LOGIN_ATTEMPTS_PLEASE_TRY_AGAIN_IN_MINUTES_
 export declare const TOO_MANY_FAILED_LOGIN_ATTEMPTS_PLEASE_TRY_AGAIN_IN_MINUTES_MINUTES: Message<{ 'security': { parameters: { '%minutes%': string } } }, 'en'|'es'|'af'|'ar'|'az'|'be'|'bg'|'bs'|'ca'|'cs'|'cy'|'da'|'de'|'el'|'et'|'eu'|'fa'|'fi'|'fr'|'gl'|'he'|'hr'|'hu'|'hy'|'id'|'it'|'ja'|'lb'|'lt'|'lv'|'mk'|'mn'|'my'|'nb'|'nl'|'nn'|'no'|'pl'|'pt'|'pt_BR'|'ro'|'ru'|'sk'|'sl'|'sq'|'sr_Cyrl'|'sr_Latn'|'sv'|'th'|'tl'|'tr'|'uk'|'ur'|'uz'|'vi'|'zh_CN'|'zh_TW'>;
 export declare const ADD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCOUNT_PRIVACY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const ACCOUNT_SETTINGS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCESS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCESSIBILITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCESS_MAIN_AGENT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCOUNTABILITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCOMPANY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const ACCEPT_TERMS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADDRESS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADMIN_OPTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADD_ARCHIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -200,9 +202,12 @@ export declare const CREATE_IN_DRAFT: Message<{ 'messages': { parameters: NoPara
 export declare const CREATE_ACCOUNT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const CREATED_AT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const CHAIN: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const CHANGE_EMAIL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const CHANGE_PASSWORD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const CONTACT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const CULTURAL_LANGUAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const CULTURAL_LANGUAGES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const DATE_CREATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const DASHBOARD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const DRAFT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const DELETE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -222,6 +227,7 @@ export declare const ENTER_OPPORTUNITY: Message<{ 'messages': { parameters: NoPa
 export declare const ENTER_ORGANIZATION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTER_INITIATIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTER_SPACE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const END_DATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EVENT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EVENTS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EVERYBODY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -241,6 +247,7 @@ export declare const FUTURE_REGISTRATION: Message<{ 'messages': { parameters: No
 export declare const FULL_NAME: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const FROM: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const FROM_TO: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const FROM_TO_DATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const GALLERY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const GENDER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const GENERAL_DATA: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -265,6 +272,7 @@ export declare const INTRODUCTION: Message<{ 'messages': { parameters: NoParamet
 export declare const IS_ITINERANT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const LANGUAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const LASTNAME: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const LAST_LOGIN: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const LINKED_WITH: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const LINK: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const LIST: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -304,10 +312,12 @@ export declare const NAME_EVENT: Message<{ 'messages': { parameters: NoParameter
 export declare const NAME_OPPORTUNITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NAME_ORGANIZATION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NAME_INITIATIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const NAME_PHASES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NEIGHBORHOOD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NOTIFICATIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NO: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NO_INFORM: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const NO_PHASE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NONE_AREA_SPECIFIED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NOT_INFORMED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NOT_SENT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -402,6 +412,7 @@ export declare const SENT: Message<{ 'messages': { parameters: NoParametersType 
 export declare const SEE_ALL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SEE_HOW: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SEE_MORE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const SEE_PHASE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SHORT_DESCRIPTION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SELECT_BANK: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SELECT_STATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -417,6 +428,7 @@ export declare const SHORT_PRESENTATION: Message<{ 'messages': { parameters: NoP
 export declare const SPACE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const SPACES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const START_NOW: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const START_DATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const STATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const STATUS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const STREET: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

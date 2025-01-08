@@ -1,11 +1,13 @@
 add: Añadir
 account_privacy: Cuenta y Privacidad
+account_settings: Configuración de la cuenta de usuario
 access: Acceder
 accessibility: Accesibilidad
 access_main_agent: Acceder al Agente Principal
 accountability: Rendición de Cuentas
 accompany: Acompañar
 actions: Acciones
+accept_terms: Aceite de los termos
 address: Dirección
 admin_options: Opciones del Administrador
 add_archive: Añadir
@@ -66,10 +68,13 @@ create_in_draft: Crear en borrador
 create_account: Crear Cuenta
 created_at: Creado en
 chain: Cadena
+change_email: Cambiar correo electrónico
+change_password: Cambiar la contraseña
 contact: Contacto
 cultural_language: Lenguaje cultural
 cultural_languages: Lenguajes culturales
 
+date_created: Fecha de creación
 dashboard: Panel de Control
 draft: En borrador
 delete: Eliminar
@@ -139,6 +144,7 @@ is_itinerant: ¿Es agente itinerante?
 
 language: Idioma
 lastname: Apellido
+last_login: Último inicio de sesión
 linked_with: Vinculado Con
 link: Añadir Enlace
 list: Lista

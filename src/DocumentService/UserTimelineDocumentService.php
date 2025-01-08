@@ -6,6 +6,7 @@ namespace App\DocumentService;
 
 use App\Document\UserTimeline;
 use App\DocumentService\Interface\TimelineDocumentServiceInterface;
+use DateTime;
 use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
 use Symfony\Component\Uid\Uuid;
 
@@ -23,5 +24,18 @@ final class UserTimelineDocumentService extends AbstractTimelineDocumentService 
         return $this->getDocumentRepository()->findBy([
             'resourceId' => $id,
         ]);
+    }
+
+    public function getLastLoginByUserId(Uuid $id): ?DateTime
+    {
+        $lastLogin = $this->getDocumentRepository()->findOneBy(
+            [
+                'resourceId' => $id,
+                'action' => 'login',
+            ],
+            ['createdAt' => 'DESC']
+        );
+
+        return $lastLogin ? $lastLogin->getCreatedAt() : null;
     }
 }
