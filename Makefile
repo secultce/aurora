@@ -22,9 +22,16 @@ install_dependencies:
 generate_proxies:
 	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:generate:proxies"
 
-# Executa as migrations do banco de dados
-migrate_database:
+# Executa as migrations no banco relacional e no não relacional
+migrate_database: migrate_orm migrate_odm
+
+# Executa as migrations no banco de dados relacional
+migrate_orm:
 	docker compose exec -T php bash -c "php bin/console doctrine:migrations:migrate -n"
+
+# Executa as migrations no banco de dados não relacional
+migrate_odm:
+	docker compose exec -T php bash -c "php bin/console app:mongo:migrations:execute"
 
 # Executa as fixtures de dados
 load_fixtures:
@@ -52,20 +59,17 @@ reset:
 
 # Limpa a cache e o banco
 reset-deep:
-	rm -rf var/storage/agents
-	rm -rf var/storage/initiatives
-	rm -rf var/storage/spaces
-	rm -rf var/storage/events
-	rm -rf var/storage/opportunities
-	rm -rf var/storage/organizations
+	rm -rf var/storage
 	rm -rf assets/vendor
 	rm -rf public/assets
 	rm -rf var/cache
 	rm -rf var/log
 	docker compose exec -T php bash -c "php bin/console cache:clear"
+	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop"
+	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:create"
 	docker compose exec -T php bash -c "php bin/console d:d:d -f"
 	docker compose exec -T php bash -c "php bin/console d:d:c"
-	docker compose exec -T php bash -c "php bin/console doctrine:migrations:migrate -n"
+	make migrate_database
 	docker compose exec -T php bash -c "php bin/console importmap:install"
 	docker compose exec -T php bash -c "php bin/console asset-map:compile"
 
