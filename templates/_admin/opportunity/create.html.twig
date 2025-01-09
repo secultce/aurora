@@ -1,0 +1,131 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/components/tags-selector.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/choose-entity.js') }}"></script>
+{% endblock %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'view.opportunity.create'|trans }}{% endblock %}
+
+{% block importmap %}
+    {{ importmap('opportunity-create') }}
+{% endblock %}
+
+{% block content %}
+    <div class="container d-grid justify-content-start mt-4">
+        <a
+            href="{{ app.request.headers.get('referer')|default(path('admin_opportunity_list')) }}"
+            class="nav-link centered-icon-text text-primary"
+        >
+            <i class="material-icons">arrow_back</i>
+            {{ 'back'|trans }}
+        </a>
+    </div>
+
+    <section class="d-flex">
+        <div class="management-content w-100 p-4">
+            {% for message in app.flashes('error') %}
+                <div class="alert alert-danger">
+                    {{ message }}
+                </div>
+            {% endfor %}
+
+            <div id="error-message" class="alert alert-danger d-none col-lg-6 mx-auto"></div>
+
+            <div class="row justify-content-center">
+                <div class="col-lg-6">
+                    <div class="card card-body shadow">
+                        <h2>{{ 'view.opportunity.create'|trans }}</h2>
+
+                        <hr>
+
+                        <p class="text-danger">{{ 'view.entities.message.required_fields'|trans }} (*)</p>
+
+                        <form action="{{ path('admin_opportunity_store') }}" method="post" id="create-opportunity-form">
+                            <input type="hidden" id="opportunityId" name="id" value="{{ id }}">
+                            <div class="mb-3">
+                                <label for="opportunityType">{{ 'view.opportunity.labels.choose_type'|trans }} <span class="text-danger">*</span></label>
+                                <select class="form-select" name="extraFields[opportunityType]" aria-label="{{ 'type_opportunity'|trans }}" id="opportunityType">
+                                    <option selected disabled hidden>{{ 'type_opportunity'|trans }}</option>
+                                    <option>Festival</option>
+                                    <option>Processo de Seleção</option>
+                                    <option>Abaixo-assinado</option>
+                                    <option>Curso</option>
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                <label for="opportunityTitle" class="mb-1">{{ 'title'|trans }} <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="opportunityTitle" name="name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="opportunityCreatedBy" class="mb-1">{{ 'responsible_agent'|trans }} <span class="text-danger">*</span></label>
+                                <select class="form-select" id="opportunityCreatedBy" name="createdBy">
+                                    <option disabled selected></option>
+                                    {% for item in agents %}
+                                        <option value="{{ item.id }}">{{ item.name }}</option>
+                                    {% endfor %}
+                                </select>
+                            </div>
+                            <div class="mb-3">
+                                {% include '_components/tags-selector.html.twig' with {
+                                    inputName: 'culturalArea',
+                                    inputLabel: 'areas_of_interest'|trans,
+                                    items: [
+                                        { value: 'Artesanato', label: 'Artesanato' },
+                                        { value: 'Cinema', label: 'Cinema' },
+                                        { value: 'Dança', label: 'Dança' },
+                                        { value: 'Fotografia', label: 'Fotografia' },
+                                        { value: 'Outros', label: 'Outros' },
+                                    ],
+                                    tags: [],
+                                    required: true,
+                                } %}
+                            </div>
+                            <div class="mb-3">
+                                <label for="opportunityCoverImage" class="mb-1">{{ 'cover_image'|trans }}</label>
+                                <input type="file" name="coverImage" class="form-control" id="opportunityCoverImage" accept="image/*">
+                                <input type="hidden" id="base64CoverImageOpportunity" name="extraFields[coverImage]" value="">
+                            </div>
+                            <div class="mb-3">
+                                <label for="entity-initiative">{{ 'view.opportunity.labels.choose_entity'|trans }} <span class="text-danger">*</span></label>
+                                {% include '_components/choose-entity.html.twig' with {
+                                    fieldName: 'entity',
+                                    entities: { type: 'initiative', values: initiatives },
+                                } %}
+                                {% include '_components/choose-entity.html.twig' with {
+                                    fieldName: 'entity',
+                                    entities: { type: 'event', values: events },
+                                } %}
+                                {% include '_components/choose-entity.html.twig' with {
+                                    fieldName: 'entity',
+                                    entities: { type: 'space', values: spaces },
+                                } %}
+                                {% include '_components/choose-entity.html.twig' with {
+                                    fieldName: 'entity',
+                                    entities: { type: 'agent', values: agents },
+                                } %}
+                            </div>
+                            <div class="mt-4">
+                                <button type="submit" name="status" value="1" class="btn btn-primary me-3">{{ 'create_and_publish'|trans }}</button>
+                                <button type="submit" name="status" value="0" class="btn btn-secondary me-3">{{ 'create_in_draft'|trans }}</button>
+                                <a href="{{ app.request.headers.get('referer') }}" class="btn">{{ 'cancel'|trans }}</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block footer %}{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/_components/tags-selector.js') }}"></script>
+{% endblock %}

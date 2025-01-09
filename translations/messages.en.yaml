@@ -295,6 +295,7 @@ site: Site
 sort_by: Sort by
 social_name: Social Name
 short_presentation: Short Presentation
+space: Space
 spaces: Spaces
 start_now: Start Now
 state: State
@@ -532,10 +533,20 @@ view:
 
   opportunity:
     create: Create Opportunity
-    description: En esta sección, usted visualiza y gestiona su opportunities.
+    description: In this section, you view and manage your opportunities.
+    error:
+      agent: Must associate a responsible agent
+      areas_of_interest: Must contain at least one area of interest
+      entity: Link the opportunity to an entity
+      opportunity_type: Choose the type of opportunity
+      title: The title must be between 2 and 100 characters
     id: Opportunity ID
+    labels:
+      choose_type: Select the type of the opportunity
+      choose_entity: Link the opportunity to an entity
     message:
       deleted: The opportunity has been deleted
+      created: The opportunity has been created
     quantity:
       total: Opportunities Found
       finished: Completed Opportunities

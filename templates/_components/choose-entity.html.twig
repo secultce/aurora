@@ -1,0 +1,50 @@
+{% block stylesheets %}
+    <style>
+        .radioEntity:not(:has(input:checked)) + button {
+            pointer-events: none;
+            opacity: var(--bs-btn-disabled-opacity);
+        }
+    </style>
+{% endblock %}
+
+<div class="mb-3 px-4 py-2 border rounded d-flex justify-content-between align-items-center">
+    <label class="radioEntity">
+        <input
+            type="radio"
+            name="{{ fieldName }}"
+            value="{{ entities.current is defined ? entities.type~entities.current : '' }}"
+            id="{{ fieldName }}-{{ entities.type }}"
+            data-type="{{ entities.type }}"
+            {{ required|default(null) ? 'required' : '' }}
+        />
+        {{ entities.type|trans }}<span class="entityName fw-bold"></span>
+    </label>
+    <button type="button" class="btn btn-link dropdown-toggle" data-bs-toggle="dropdown" data-bs-auto-close="outside" aria-expanded="false">{{ 'select'|trans }}</button>
+
+    <div class="dropdown-menu dropdown-menu-end">
+        <div class="search-input-container">
+            <div class="input-wrapper">
+                <label>
+                    <input class="form-control custom-search-input" oninput="searchEntity(this)" placeholder="{{ 'search'|trans }} {{ entities.type|trans }}" />
+                </label>
+                <span class="custom-search-icon">
+                    <i class="material-icons">search</i>
+                </span>
+            </div>
+        </div>
+
+        <ul id="entities-list" class="list-group list-group-flush">
+            {% for entity in entities.values %}
+                <li
+                    role="option"
+                    tabindex="{{ loop.index }}"
+                    class="list-group-item dropdown-item btn"
+                    onclick="selectEntity(this)"
+                    data-entity-id="{{ entity.id }}"
+                    data-entity-type="{{ entities.type }}"
+                    data-field-name="{{ fieldName }}"
+                >{{ entity.name }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>

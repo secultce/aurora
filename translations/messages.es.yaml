@@ -294,6 +294,7 @@ site: Sitio Web
 sort_by: Ordenar por
 social_name: Nombre Social
 short_presentation: Presentación Corta
+space: Espacio
 spaces: Espacios
 start_now: Comenzar Ahora
 state: Estado
@@ -538,15 +539,25 @@ view:
   opportunity:
     create: Crear Oportunidad
     description: In this section you will see and manage your opportunities.
+    error:
+      agent: Debe asociar un agente responsable
+      areas_of_interest: Debe contener al menos un área de interés
+      entity: Vincule la oportunidad a una entidad
+      opportunity_type: Seleccione el tipo de oportunidad
+      title: El título debe tener entre 2 y 100 caracteres
     id: ID de la oportunidad
+    labels:
+      choose_type: Seleccione el tipo de oportunidad
+      choose_entity: Vincule la oportunidad a una entidad
     message:
       deleted: La oportunidad ha sido eliminada
+      created: La oportunidad ha sido creada
+    period: Período de la oportunidad
     quantity:
       total: Oportunidades Encontradas
       finished: Oportunidades Finalizadas
       opened: Oportunidades en Curso
       last_days: Registradas en los últimos 7 días
-    period: Período de la oportunidad
     type_of: Tipo de la oportunidad
 
   opportunity_admin:
