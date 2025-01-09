@@ -41,6 +41,7 @@ package-lock.json
 
 ###> league/flysystem-bundle ###
 /storage
+/var/storage/
 ###> league/flysystem-bundle ###
 
 ###> lexik/jwt-authentication-bundle ###

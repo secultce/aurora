@@ -44,9 +44,27 @@ Gera os proxies do MongoDB.
 <summary>MIGRATE_DATABASE</summary>
 
 ### `migrate_database`
-Executa as migrações do banco de dados.
+Executa as migrações no banco relacional e do não relacional
 - **Uso:** `make migrate_database`
+- **Descrição:** Executa `make migration_orm` e `make migration_odm` dentro do contêiner, aplicando todas as migrações pendentes.
+</details>
+
+<details>
+<summary>MIGRATE_ORM</summary>
+
+### `migrate_orm`
+Executa as migrações no banco relacional
+- **Uso:** `make migrate_orm`
 - **Descrição:** Executa `php bin/console doctrine:migrations:migrate -n` dentro do contêiner, aplicando todas as migrações pendentes no banco de dados sem pedir confirmação adicional (`-n` significa *no interaction*).
+</details>
+
+<details>
+<summary>MIGRATE_ODM</summary>
+
+### `migrate_odm`
+Executa as migrações no banco não relacional
+- **Uso:** `make migrate_odm`
+- **Descrição:** Executa `php bin/console app:mongo:migrations:execute` dentro do contêiner, aplicando todas as migrações pendentes no banco de dados não relacional.
 </details>
 
 <details>
