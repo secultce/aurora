@@ -4,6 +4,7 @@
 
 {% block content %}
     {% include '_components/modal-confirm-remove.html.twig' %}
+    {% include "_components/modal-timeline.html.twig" %}
 
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
@@ -41,7 +42,12 @@
                                     <td>{{ item.device }}</td>
                                     <td></td>
                                     <td>
-                                        <a href="{{ path('admin_space_timeline', {id: space.id}) }}" class="btn btn-outline-dark btn-sm">{{ 'details'|trans }}</a>
+                                        <button type="button" class="btn btn-outline-dark btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modal-timeline"
+                                                onclick="openModal({{ item.from | json_encode() }}, {{ item.to | json_encode() }})">
+                                            {{ 'details' | trans }}
+                                        </button>
                                     </td>
                                 </tr>
                             {% endfor %}
@@ -52,4 +58,8 @@
             </div>
         </div>
     </section>
+{% endblock %}
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-timeline.js') }}"></script>
 {% endblock %}
