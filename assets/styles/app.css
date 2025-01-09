@@ -3,6 +3,7 @@
 
 :root {
     --WIDTH_DEFAULT: 78.2%;
+    --WIDTH_FULL: 100%;
 }
 
 body {
@@ -121,7 +122,8 @@ body {
     justify-content: center;
     gap: 0.15rem;
     width: var(--WIDTH_DEFAULT);
-    margin: 0 auto;
+    margin: auto !important;
+    --bs-gutter-x: 0 !important;
 }
 
 .lock-icon {
@@ -230,7 +232,10 @@ body {
     padding-top: 5px;
     cursor: pointer;
     width: var(--WIDTH_DEFAULT);
-    margin: auto;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 50px !important;
+    --bs-gutter-x: 0 !important;
 }
 
 .breadcrumb a {
@@ -257,7 +262,8 @@ body {
 
 .page-title {
     width: var(--WIDTH_DEFAULT);
-    margin: auto;
+    margin: auto !important;
+    --bs-gutter-x: 0 !important;
 }
 
 .page-title h2 {
