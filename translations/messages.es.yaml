@@ -130,6 +130,7 @@ indigenous: Indígena
 initiative: Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
+inscriptions: Inscripciones
 input_search: Buscar por palabras clave
 introduction: Presentación
 is_itinerant: ¿Es agente itinerante?
@@ -217,6 +218,7 @@ phone: Teléfono
 postgraduate: Posgrado
 photo: Foto
 phase: Fase
+phases: Fases
 postal_code: Código Postal
 profile_picture: Foto de Perfil
 projects: Proyectos
@@ -562,7 +564,6 @@ view:
 
   opportunity_admin:
     inscriptions:
-      section: Inscripciones
       status:
         active: Activo
         inactive: Inactivo

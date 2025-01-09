@@ -259,6 +259,7 @@ export declare const INDIGENOUS: Message<{ 'messages': { parameters: NoParameter
 export declare const INITIATIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const INITIATIVES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const IN_PROGRESS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const INSCRIPTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const INPUT_SEARCH: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const INTRODUCTION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const IS_ITINERANT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -341,6 +342,7 @@ export declare const PHONE: Message<{ 'messages': { parameters: NoParametersType
 export declare const POSTGRADUATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PHOTO: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PHASE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const PHASES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const POSTAL_CODE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PROFILE_PICTURE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PROJECTS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -609,7 +611,6 @@ export declare const VIEW_OPPORTUNITY_QUANTITY_OPENED: Message<{ 'messages': { p
 export declare const VIEW_OPPORTUNITY_QUANTITY_LAST_DAYS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_OPPORTUNITY_PERIOD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_OPPORTUNITY_TYPE_OF: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
-export declare const VIEW_OPPORTUNITY_ADMIN_INSCRIPTIONS_SECTION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_OPPORTUNITY_ADMIN_INSCRIPTIONS_STATUS_ACTIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_OPPORTUNITY_ADMIN_INSCRIPTIONS_STATUS_INACTIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_OPPORTUNITY_ADMIN_INSCRIPTIONS_SEE_INSCRIPTION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

@@ -131,6 +131,7 @@ initiative: Iniciativa
 initiatives: Iniciativas
 in_progress: Em andamento
 input_search: Busque por palavras-chave
+inscriptions: Inscrições
 introduction: Apresentação
 is_itinerant: É agente itinerante?
 
@@ -217,6 +218,7 @@ postgraduate: Pós-graduação
 phone: Telefone
 photo: Foto
 phase: Fase
+phases: Fases
 physical: Física
 postal_code: CEP
 profile_picture: Foto de Perfil
@@ -540,7 +542,6 @@ view:
 
   opportunity_admin:
     inscriptions:
-      section: Inscrições
       status:
         active: Ativo
         inactive: Inativo
