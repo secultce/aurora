@@ -4,7 +4,7 @@ describe('Painel de Controle - Página de timeline das Oportunidades', () => {
         cy.login('henriquelopeslima@example.com', 'Aurora@2024');
     });
 
-    it('Garante que a página de timeline existe', () => {
+    it('Garante que a página de timeline existe e que exibe os detalhes corretamente', () => {
         cy.visit('painel/oportunidades/');
 
         cy.contains('Timeline').click({force: true});
@@ -14,6 +14,12 @@ describe('Painel de Controle - Página de timeline das Oportunidades', () => {
         cy.get('tr > :nth-child(1) > a').contains('The resource was created').should('be.visible');
         cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
         cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
-        cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible')
+        cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible');
+
+        cy.get(':nth-child(1) > :nth-child(5) > .btn').click();
+        cy.get('.modal-body > .table > thead > tr > :nth-child(2)').contains('De');
+        cy.get('.modal-body > .table > thead > tr > :nth-child(3)').contains('Para');
+        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('N/A');
+        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(3)').contains('Chamada para Oficinas de Artesanato - Feira de Cultura Popular');
     });
 });
