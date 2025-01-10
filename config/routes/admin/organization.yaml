@@ -12,3 +12,8 @@ remove:
   path: /{id}/remove
   controller: App\Controller\Web\Admin\OrganizationAdminController::remove
   methods: ['GET']
+
+timeline:
+  path: /{id}/timeline
+  controller: App\Controller\Web\Admin\OrganizationAdminController::timeline
+  methods: ['GET']
