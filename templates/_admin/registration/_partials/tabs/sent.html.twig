@@ -20,16 +20,17 @@
     <hr>
 </div>
 
+{% for inscription in inscriptions %}
 <div class="resource-card mt-4">
     <div class="resource-card-header">
         <div class="resource-icon"></div>
-        <h4 class="resource-title">{{ 'view.registration.title-card' | trans }}</h4>
+        <h4 class="resource-title">{{ inscription.opportunity }}</h4>
     </div>
     <div class="resource-card-body">
         <div class="resource-details">
-            <p><strong>{{ 'phase' | trans }}</strong> {{ 'view.registration.merit' | trans }}</p>
-            <p><strong>{{ 'type' | trans }}</strong> {{ 'view.registration.data' | trans }}</p>
-            <p><strong>{{ 'analysis' | trans }}</strong> {{ 'view.registration.hour' | trans }}</p>
+            <p><strong>{{ 'phase' | trans }}</strong> {{ inscription.phase }}</p>
+            <p><strong>{{ 'type' | trans }}</strong> {{ inscription.phaseDescription }}</p>
+            <p><strong>{{ 'analysis' | trans }}</strong> {{ inscription.startDate | date('d/m/Y') }} {{ 'to'|trans }} {{ inscription.endDate | date('d/m/Y') }}</p>
         </div>
     </div>
     <div class="text-end mt-3">
@@ -38,6 +39,4 @@
         </button>
     </div>
 </div>
-
-
-
+{% endfor %}

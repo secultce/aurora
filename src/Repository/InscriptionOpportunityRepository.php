@@ -6,8 +6,10 @@ namespace App\Repository;
 
 use App\Entity\InscriptionOpportunity;
 use App\Entity\InscriptionPhase;
+use App\Entity\Phase;
 use App\Repository\Interface\InscriptionOpportunityRepositoryInterface;
 use Doctrine\Persistence\ManagerRegistry;
+use Symfony\Component\Uid\Uuid;
 
 class InscriptionOpportunityRepository extends AbstractRepository implements InscriptionOpportunityRepositoryInterface
 {
@@ -77,5 +79,23 @@ class InscriptionOpportunityRepository extends AbstractRepository implements Ins
             ->setMaxResults(1)
             ->getQuery()
             ->getOneOrNullResult();
+    }
+
+    public function findUserInscriptionsWithDetails(Uuid $agentId): iterable
+    {
+        $qb = $this->createQueryBuilder('i');
+
+        $subQuery = $this->getEntityManager()->createQueryBuilder()
+            ->select('MAX(p2.startDate)')
+            ->from(Phase::class, 'p2')
+            ->where('p2.opportunity = o.id');
+
+        return $qb->select('i', 'o', 'p')
+            ->join('i.opportunity', 'o')
+            ->join(Phase::class, 'p', 'WITH', 'p.opportunity = o.id AND p.startDate = ('.$subQuery->getDQL().')')
+            ->where('i.agent = :agentId')
+            ->setParameter('agentId', $agentId)
+            ->getQuery()
+            ->getResult();
     }
 }
