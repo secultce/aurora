@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\DocumentService\OrganizationTimelineDocumentService;
 use App\Exception\ValidatorException;
 use App\Service\Interface\OrganizationServiceInterface;
 use Exception;
@@ -16,10 +17,12 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class OrganizationAdminController extends AbstractAdminController
 {
     public const VIEW_ADD = 'organization/add.html.twig';
+    public const VIEW_TIMELINE = 'organization/timeline.html.twig';
 
     public function __construct(
         private OrganizationServiceInterface $service,
         private readonly TranslatorInterface $translator,
+        private readonly OrganizationTimelineDocumentService $documentService,
     ) {
     }
 
@@ -67,5 +70,15 @@ class OrganizationAdminController extends AbstractAdminController
         $this->addFlash('success', $this->translator->trans('view.organization.message.deleted'));
 
         return $this->redirectToRoute('admin_organization_list');
+    }
+
+    public function timeline(Uuid $id): Response
+    {
+        $events = $this->documentService->getEventsByEntityId($id);
+
+        return $this->render(self::VIEW_TIMELINE, [
+            'organization' => $this->service->get($id),
+            'events' => $events,
+        ]);
     }
 }
