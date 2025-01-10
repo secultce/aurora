@@ -113,6 +113,17 @@ Executa as fixtures de dados e os testes de backend.
 </details>
 
 <details>
+
+<summary>TESTS_BACK_COVERAGE</summary>
+
+### `tests_back_coverage`
+Executa as fixtures de dados, os testes de backend e gera um relatório sobre a atual cobertura de testes.
+- **Uso:** `make tests_back_coverage`
+- **Descrição:** Carrega os dados de fixtures e roda os testes backend usando PHPUnit, utiliza também o xdebug e a biblioteca phpunit/php-code-coverage.
+> O resultado da análise de cobertura pode ser visto no diretório coverage-html, ou no arquivo coverage.xml
+</details>
+
+<details>
 <summary>RESET</summary>
 
 ### `reset`

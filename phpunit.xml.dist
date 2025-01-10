@@ -26,4 +26,28 @@
     <extensions>
         <bootstrap class="DAMA\DoctrineTestBundle\PHPUnit\PHPUnitExtension"/>
     </extensions>
+
+    <source>
+        <include>
+            <directory>src</directory>
+        </include>
+        <exclude>
+            <directory>src/Command</directory>
+            <directory>src/DTO</directory>
+            <directory>src/Helper</directory>
+            <directory>src/Serializer</directory>
+        </exclude>
+    </source>
+
+    <coverage pathCoverage="true">
+        <report>
+            <html outputDirectory="coverage-html"/>
+            <clover outputFile="coverage.xml"/>
+        </report>
+    </coverage>
+
+    <logging>
+        <testdoxHtml outputFile="var/phpunit/tests.html"/>
+        <testdoxText outputFile="var/phpunit/tests.txt"/>
+    </logging>
 </phpunit>
