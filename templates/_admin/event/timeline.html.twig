@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-{#    {% include '_components/modal-confirm_remove.html.twig' %}#}
+    {% include '_components/modal-confirm-remove.html.twig' %}
+    {% include '_components/modal-timeline.html.twig' %}
 
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
@@ -15,9 +16,7 @@
                 <div class="col-12">
                     <div class="card card-body shadow">
                         <div class="d-flex justify-content-between">
-                            <h2>
-                                {{ 'event'|trans }} - {{ event.name }} - {{ 'Timeline'|trans }}
-                            </h2>
+                            <h2>{{ 'event'|trans }} - {{ event.name }} - {{ 'Timeline'|trans }}</h2>
                             <div>
                                 <a href="{{ path('admin_event_list') }}" class="btn btn-outline-primary">
                                     {{ 'back'|trans }}
@@ -40,28 +39,22 @@
                             <tbody>
                             {% for item in events %}
                                 <tr>
-                                    <td>
-                                        <a href="#">
-                                            {{ item.title is not empty ? item.title : 'Sem título' }}
-                                        </a>
-                                    </td>
-                                    <td>
-                                        {% if item.datetime is defined %}
-                                            {{ item.datetime.format('d/m/Y H:i:s') }}
-                                        {% else %}
-                                            --
-                                        {% endif %}
-                                    </td>
-                                    <td>
-                                        {{ item.device is not empty ? item.device : 'unknown' }}
-                                    </td>
+                                    <td><a href="#">{{ item.title }}</a></td>
+                                    <td>{{ item.datetime.format('d/m/Y H:i:s') }}</td>
+                                    <td>{{ item.device }}</td>
                                     <td></td>
                                     <td>
-                                        <a href="{{ path('admin_event_timeline', { id: event.id }) }}"
-                                           class="btn btn-outline-dark btn-sm">
+                                        <button type="button" class="btn btn-outline-dark btn-sm"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#modal-timeline"
+                                                onclick="openModal({{ item.from | json_encode() }}, {{ item.to | json_encode() }})">
                                             {{ 'details'|trans }}
-                                        </a>
+                                        </button>
                                     </td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center">{{ 'no_events_found'|trans }}</td>
                                 </tr>
                             {% endfor %}
                             </tbody>
@@ -71,4 +64,9 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-timeline.js') }}"></script>
 {% endblock %}
