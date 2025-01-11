@@ -65,7 +65,9 @@ reset-deep:
 	rm -rf var/cache
 	rm -rf var/log
 	docker compose exec -T php bash -c "php bin/console cache:clear"
-	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop"
+	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop --search-index"
+	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop --collection"
+	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop --db"
 	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:create"
 	docker compose exec -T php bash -c "php bin/console d:d:d -f"
 	docker compose exec -T php bash -c "php bin/console d:d:c"
