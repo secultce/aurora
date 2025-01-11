@@ -18,12 +18,12 @@
 
                 {% if phase.startDate and phase.endDate %}
                     <p class="timeline-description-custom">
-                        de {{ phase.startDate|date('d/m/Y \à\s H:i') }}
-                        até {{ phase.endDate|date('d/m/Y \à\s H:i') }}
+                        {{ 'from'|trans }} {{ phase.startDate|date('d/m/Y H:i') }}
+                        {{ 'from_to_date'|trans }} {{ phase.endDate|date('d/m/Y H:i') }}
                     </p>
                 {% elseif phase.startDate %}
                     <p class="timeline-description-custom">
-                        Início em {{ phase.startDate|date('d/m/Y \à\s H:i') }}
+                        {{ 'start_date'|trans }} {{ phase.startDate|date('d/m/Y H:i') }}
                     </p>
                 {% endif %}
 

@@ -90,6 +90,7 @@ enter_opportunity: Enter the opportunity name
 enter_organization: Enter the organization name
 enter_initiative: Enter the name of the initiative
 enter_space: Enter the name of the space
+end_date: End date
 event: Event
 events: Events
 everybody: Everybody
@@ -110,6 +111,7 @@ future_registration: Future registrations
 full_name: Full Name
 from: From
 from_to: To
+from_to_date: To
 
 gallery: Gallery
 gender: Select the Gender
@@ -179,6 +181,7 @@ name_event: Event Name
 name_opportunity: Opportunity Name
 name_organization: Organization name
 name_initiative: Nome gives initiative
+name_phases: Phase name
 neighborhood: Neighborhood
 notifications: Notifications
 no: No
@@ -286,6 +289,7 @@ sent: Sent
 see_all: see all
 see_how: See How
 see_more: See More
+see_phase: See phase
 short_description: Short description
 select_bank: Select the bank
 select_state: Select the State
@@ -301,6 +305,7 @@ short_presentation: Short Presentation
 space: Space
 spaces: Spaces
 start_now: Start Now
+start_date: Start date
 state: State
 status: Status
 street: Street
