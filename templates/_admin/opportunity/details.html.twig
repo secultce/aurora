@@ -31,7 +31,15 @@
                         </ul>
                         <div class="py-4">
                             <div class="tab-content">
-                                {% include "_admin/opportunity/_partials/details/inscriptions.html.twig" %}
+                                <div class="tab-pane fade show active" id="generalData">
+                                    {% include "_admin/opportunity/_partials/details/timeline-phases.html.twig" with { phases: phases } %}
+                                </div>
+                                <div class="tab-pane fade" id="inscriptions">
+                                    {% include "_admin/opportunity/_partials/details/inscriptions.html.twig" %}
+                                </div>
+                                <div class="tab-pane fade" id="phases"></div>
+                                <div class="tab-pane fade" id="calendar"></div>
+                                <div class="tab-pane fade" id="seals"></div>
                             </div>
                         </div>
                     </div>

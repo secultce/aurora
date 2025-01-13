@@ -589,6 +589,7 @@ export declare const VIEW_SEAL_DATE_OF_RECEIPT_OF_THE: Message<{ 'messages': { p
 export declare const VIEW_SEAL_EXPIRED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_MESSAGE_DELETED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_MESSAGE_UPDATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_SEAL_MESSAGE_CREATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_STATUS_ACTIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_STATUS_INACTIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_SEAL_SEAL_PICTURE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

@@ -1,0 +1,38 @@
+<div class="timeline-custom">
+    {% for phase in phases|sort((a, b) => a.sequence <=> b.sequence) %}
+        <div class="timeline-item-custom">
+            <div class="
+                timeline-icon-custom
+                {% if loop.first %}timeline-icon-top{% endif %}
+                {% if loop.last %}timeline-icon-bottom{% endif %}
+              "
+            ></div>
+            <div class="timeline-content-custom">
+                <h4 class="
+                    timeline-title-custom
+                    {% if loop.last %}timeline-title-custom-end{% endif %}
+                  "
+                >
+                    {{ phase.name }}
+                </h4>
+
+                {% if phase.startDate and phase.endDate %}
+                    <p class="timeline-description-custom">
+                        de {{ phase.startDate|date('d/m/Y \à\s H:i') }}
+                        até {{ phase.endDate|date('d/m/Y \à\s H:i') }}
+                    </p>
+                {% elseif phase.startDate %}
+                    <p class="timeline-description-custom">
+                        Início em {{ phase.startDate|date('d/m/Y \à\s H:i') }}
+                    </p>
+                {% endif %}
+
+                {% if phase.description %}
+                    <p class="timeline-description-custom">{{ phase.description }}</p>
+                {% endif %}
+            </div>
+        </div>
+    {% else %}
+        <p>{{ 'no_phase' | trans }}</p>
+    {% endfor %}
+</div>

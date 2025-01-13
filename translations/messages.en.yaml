@@ -183,6 +183,7 @@ neighborhood: Neighborhood
 notifications: Notifications
 no: No
 no_inform: Do Not Inform
+no_phase: No phase registered.
 none_area_specified: None area specified
 not_informed: Not informed
 not_sent: Not sent
