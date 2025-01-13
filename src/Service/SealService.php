@@ -29,6 +29,10 @@ readonly class SealService extends AbstractEntityService implements SealServiceI
 
     public function create(array $seal): Seal
     {
+        if (false === isset($seal['createdBy'])) {
+            $seal['createdBy'] = $this->getAgentsFromLoggedUser()[0]->getId()->toString();
+        }
+
         $seal = self::validateInput($seal, SealDto::CREATE);
 
         $sealObj = $this->serializer->denormalize($seal, Seal::class);
