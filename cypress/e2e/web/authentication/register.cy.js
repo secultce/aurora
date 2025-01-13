@@ -5,6 +5,7 @@ function clickOnContinueButton() {
 
 describe('Página de Cadastro', () => {
     beforeEach(() => {
+        cy.viewport(1920,1080);
         cy.visit('/cadastro');
 
         Cypress.on('uncaught:exception', (err, runnable) => {

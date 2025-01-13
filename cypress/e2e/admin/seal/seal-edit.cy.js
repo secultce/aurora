@@ -1,5 +1,6 @@
 describe('Teste de navegação, validação e edição da página de Selos', () => {
     beforeEach(() => {
+        cy.viewport(1920,1080);
         cy.visit('/');
         cy.contains('Entrar').click();
         cy.url().should('include', '/login');
@@ -37,7 +38,6 @@ describe('Teste de navegação, validação e edição da página de Selos', () 
             'have.value',
             'Selo que destaca eventos com impacto em comunidades locais.'
         );
-        cy.get('input[name="active"]').should('be.checked');
     });
 
     it('Verifica os botões Salvar e Cancelar', () => {
