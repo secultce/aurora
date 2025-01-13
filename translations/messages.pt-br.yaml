@@ -624,6 +624,7 @@ view:
     message:
       deleted: O selo foi excluído
       updated: O selo foi atualizado
+      created: O selo foi criado
     status:
       active: Ativo
       inactive: Inativo

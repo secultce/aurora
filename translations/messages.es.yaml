@@ -532,6 +532,7 @@ view:
     message:
       deleted: El sello ha sido eliminado
       updated: La insignia ha sido actualizada
+      created: La insignia ha sido creado
     status:
       active: Activo
       inactive: Inactivo

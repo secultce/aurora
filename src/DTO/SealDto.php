@@ -40,8 +40,7 @@ class SealDto
     public mixed $description;
 
     #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
-        new NotNull(groups: [self::UPDATE]),
+        new NotNull(groups: [self::UPDATE, self::CREATE]),
         new Type(Types::BOOLEAN, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $active;

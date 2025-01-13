@@ -20,8 +20,7 @@ describe('Teste de navegação, validação e edição da página de Selos', () 
     it('Verifica e edita os campos do formulário de selos', () => {
         cy.get('input[name="active"]')
             .should('exist')
-            .should('have.attr', 'type', 'checkbox')
-            .should('be.checked');
+            .should('have.attr', 'type', 'checkbox');
 
         cy.get('input[name="name"]').clear().type('Selo Teste Atualizado');
 

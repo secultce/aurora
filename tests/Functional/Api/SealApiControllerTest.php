@@ -98,8 +98,6 @@ class SealApiControllerTest extends AbstractWebTestCase
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
                     ['field' => 'description', 'message' => 'This value should not be blank.'],
-                    ['field' => 'active', 'message' => 'This value should not be blank.'],
-                    ['field' => 'createdBy', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [

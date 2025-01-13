@@ -527,6 +527,7 @@ view:
     message:
       deleted: The seal has been deleted
       updated: The seal has been updated
+      created: The seal has been created
     status:
       active: Active
       inactive: Inactive
