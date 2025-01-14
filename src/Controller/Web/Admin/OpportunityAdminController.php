@@ -105,10 +105,14 @@ class OpportunityAdminController extends AbstractAdminController
     public function get(Uuid $id): Response
     {
         $inscriptions = $this->inscriptionOpportunityService->list($id);
+        $opportunity = $this->service->get($id);
+        $phases = $opportunity->getPhases();
 
         return $this->render('opportunity/details.html.twig', [
             'opportunity' => $this->service->get($id),
+            'opportunity' => $opportunity,
             'inscriptions' => $inscriptions,
+            'phases' => $phases,
         ]);
     }
 }

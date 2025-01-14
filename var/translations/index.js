@@ -587,6 +587,7 @@ export const VIEW_SEAL_DATE_OF_RECEIPT_OF_THE = {"id":"view.seal.date_of_receipt
 export const VIEW_SEAL_EXPIRED = {"id":"view.seal.expired","translations":{"messages":{"en":"expired seal","pt-br":"selo expirado","es":"sello vencido"}}};
 export const VIEW_SEAL_MESSAGE_DELETED = {"id":"view.seal.message.deleted","translations":{"messages":{"en":"The seal has been deleted","pt-br":"O selo foi exclu\u00eddo","es":"El sello ha sido eliminado"}}};
 export const VIEW_SEAL_MESSAGE_UPDATED = {"id":"view.seal.message.updated","translations":{"messages":{"en":"The seal has been updated","pt-br":"O selo foi atualizado","es":"La insignia ha sido actualizada"}}};
+export const VIEW_SEAL_MESSAGE_CREATED = {"id":"view.seal.message.created","translations":{"messages":{"en":"The seal has been created","pt-br":"O selo foi criado","es":"La insignia ha sido creado"}}};
 export const VIEW_SEAL_STATUS_ACTIVE = {"id":"view.seal.status.active","translations":{"messages":{"en":"Active","pt-br":"Ativo","es":"Activo"}}};
 export const VIEW_SEAL_STATUS_INACTIVE = {"id":"view.seal.status.inactive","translations":{"messages":{"en":"Inactive","pt-br":"Inativo","es":"Inactivo"}}};
 export const VIEW_SEAL_SEAL_PICTURE = {"id":"view.seal.seal-picture","translations":{"messages":{"en":"Seal Picture","pt-br":"Foto do Selo","es":"Foto del Sello"}}};
