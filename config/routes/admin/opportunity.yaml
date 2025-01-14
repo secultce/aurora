@@ -27,3 +27,8 @@ get:
   path: /{id}
   controller: App\Controller\Web\Admin\OpportunityAdminController::get
   methods: ['GET']
+
+subscribe:
+  path: /{id}/subscribe
+  controller: App\Controller\Web\Admin\OpportunityAdminController::subscribe
+  methods: ['GET']

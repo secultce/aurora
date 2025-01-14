@@ -308,6 +308,7 @@ start_date: Fecha de inicio
 state: Estado
 status: Status
 suggestions: Sugerencias
+subscribe: Suscribir
 subsites: Subsitios
 street: Vía Pública
 
@@ -570,6 +571,11 @@ view:
       opened: Oportunidades en Curso
       last_days: Registradas en los últimos 7 días
     type_of: Tipo de la oportunidad
+    modal_confirm_registration: ¿Quieres registrarte?
+    registration_not_logged: Inicie sesión o regístrese antes de postularse a una oportunidad
+    registration_success: Registro completado exitosamente
+    registration_duplicated: Ya estás registrado para esta oportunidad
+    registration_unauthorized: No puedes aplicar a una oportunidad que tú mismo creaste
 
   opportunity_admin:
     inscriptions:

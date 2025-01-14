@@ -310,6 +310,7 @@ state: State
 status: Status
 street: Street
 suggestions: Suggestions
+subscribe: Subscribe
 subsites: Subsites
 your_name: Enter your name
 your_question: Write your question
@@ -565,6 +566,11 @@ view:
       last_days: Registered in the last 7 days
     period: Opportunity period
     type_of: Opportunity Type
+    modal_confirm_registration: Do you want to register?
+    registration_not_logged: Please log in or register before applying for an opportunity
+    registration_success: Registration completed successfully
+    registration_duplicated: You are already registered for this opportunity
+    registration_unauthorized: You cannot apply to an opportunity you created
 
   opportunity_admin:
     inscriptions:
