@@ -11,10 +11,10 @@
                 <span class="fw-bold fs-1">{{ totalAgents }}</span>
                 <span class="fw-bold">{{ "agents" | trans }}</span>
             </div>
-            <button class="d-flex align-items-center justify-content-center">
+            <a role="button" href="{{ path('admin_agent_create') }}" class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">add</i>
                 <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-            </button>
+            </a>
         </div>
     </div>
 
@@ -50,10 +50,10 @@
                     <span class="fw-bold fs-1">{{ totalEvents }}</span>
                     <span class="fw-bold">{{ "events" | trans }}</span>
                 </div>
-                <button class="d-flex align-items-center justify-content-center">
+                <a role="button" href="{{ path('admin_event_create') }}" class="d-flex align-items-center justify-content-center">
                     <i class="material-icons">add</i>
                     <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-                </button>
+                </a>
             </div>
         </div>
     {% endif %}
@@ -71,10 +71,10 @@
                     <span class="fw-bold fs-1">{{ totalSpaces }}</span>
                     <span class="fw-bold">{{ "spaces" | trans }}</span>
                 </div>
-                <button class="d-flex align-items-center justify-content-center">
+                <a role="button" href="{{ path('admin_space_create') }}" class="d-flex align-items-center justify-content-center">
                     <i class="material-icons">add</i>
                     <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-                </button>
+                </a>
             </div>
         </div>
     {% endif %}
@@ -91,10 +91,10 @@
                 <span class="fw-bold fs-1">{{ totalInitiatives }}</span>
                 <span class="fw-bold">{{ "initiatives" | trans }}</span>
             </div>
-            <button class="d-flex align-items-center justify-content-center">
+            <a role="button" href="{{ path('admin_initiative_create') }}" class="d-flex align-items-center justify-content-center">
                 <i class="material-icons">add</i>
                 <span class="fs-5 fw-bold">{{ "create" | trans }}</span>
-            </button>
+            </a>
         </div>
     </div>
 </section>

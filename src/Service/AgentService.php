@@ -6,6 +6,7 @@ namespace App\Service;
 
 use App\DTO\AgentDto;
 use App\Entity\Agent;
+use App\Entity\User;
 use App\Exception\Agent\AgentResourceNotFoundException;
 use App\Exception\Agent\CantRemoveUniqueAgentFromUserException;
 use App\Exception\ValidatorException;
@@ -37,11 +38,15 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         parent::__construct($security);
     }
 
-    public function count(): int
+    public function count(?User $user = null): int
     {
-        return $this->repository->count(
-            $this->getDefaultParams()
-        );
+        $criteria = $this->getDefaultParams();
+
+        if ($user) {
+            $criteria['user'] = $user;
+        }
+
+        return $this->repository->count($criteria);
     }
 
     public function create(array $agent): Agent

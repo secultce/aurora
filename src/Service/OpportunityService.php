@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\DTO\OpportunityDto;
+use App\Entity\Agent;
 use App\Entity\Opportunity;
 use App\Exception\Opportunity\OpportunityResourceNotFoundException;
 use App\Exception\ValidatorException;
@@ -34,11 +35,15 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
         parent::__construct($this->security);
     }
 
-    public function count(): int
+    public function count(?Agent $createdBy = null): int
     {
-        return $this->repository->count(
-            $this->getDefaultParams()
-        );
+        $criteria = $this->getDefaultParams();
+
+        if ($createdBy) {
+            $criteria['createdBy'] = $createdBy;
+        }
+
+        return $this->repository->count($criteria);
     }
 
     public function create(array $opportunity): Opportunity

@@ -24,13 +24,14 @@ class DashboardAdminController extends AbstractAdminController
 
     public function index(): Response
     {
-        $totalAgents = $this->agentService->count();
-        $totalOpportunities = $this->opportunityService->count();
-        $totalEvents = $this->eventService->count();
-        $totalSpaces = $this->spaceService->count();
-        $totalInitiatives = $this->initiativeService->count();
-
         $user = $this->getUser();
+        $createdBy = $this->agentService->getAgentsFromLoggedUser()[0];
+
+        $totalAgents = $this->agentService->count($user);
+        $totalOpportunities = $this->opportunityService->count($createdBy);
+        $totalEvents = $this->eventService->count($createdBy);
+        $totalSpaces = $this->spaceService->count($createdBy);
+        $totalInitiatives = $this->initiativeService->count($createdBy);
 
         return $this->render('dashboard/index.html.twig', [
             'user' => $user,
