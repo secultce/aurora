@@ -22,7 +22,7 @@ sidebar:
       admin_dashboard:
         icon: dashboard
         text: control_panel
-        color: text-info
+#        color: text-info
 
   my_opportunities:
     title: my_opportunities
