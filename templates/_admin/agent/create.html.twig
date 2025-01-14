@@ -9,14 +9,14 @@
 
 {% block content %}
     <section class="white-square d-flex flex-column">
-        {% include '_components/breadcrumb.html.twig' with {
-            items: [
-                {text: 'home'|trans, path: path('web_home_homepage')},
-                {text: 'agents'|trans, path: path('web_agent_list')},
-            ]
-        } %}
+        <div class="container d-grid justify-content-start mt-4">
+            <a href="{{ app.request.headers.get('referer')|default(path('web_agent_list')) }}" class="nav-link centered-icon-text text-primary">
+                <i class="material-icons">arrow_back</i>
+                {{ 'back'|trans }}
+            </a>
+        </div>
 
-        <div class="d-flex align-items-center agent-header-title">
+        <div class="d-flex align-items-center agent-header-title mt-4">
             <span class="agent-create-icon d-flex align-items-center justify-content-center">
                 <span class="iconify icon-people" data-icon="icon-park-solid:people"></span>
             </span>

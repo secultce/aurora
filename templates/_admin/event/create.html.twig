@@ -11,7 +11,7 @@
 
 {% block content %}
     <div class="container d-grid justify-content-start mt-4">
-        <a href="{{ path('web_event_list') }}" class="nav-link centered-icon-text text-primary">
+        <a href="{{ app.request.headers.get('referer')|default(path('web_event_list')) }}" class="nav-link centered-icon-text text-primary">
             <i class="material-icons">arrow_back</i>
             {{ 'back'|trans }}
         </a>

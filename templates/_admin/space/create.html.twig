@@ -7,6 +7,13 @@
         {% include "_components/side-bar.html.twig" %}
 
         <div class="management-content w-100 p-4">
+            <div class="container d-grid justify-content-start mt-4">
+                <a href="{{ app.request.headers.get('referer')|default(path('web_space_list')) }}" class="nav-link centered-icon-text text-primary">
+                    <i class="material-icons">arrow_back</i>
+                    {{ 'back'|trans }}
+                </a>
+            </div>
+
             <div class="row justify-content-center">
                 <div class="col-6">
                     <div class="card card-body shadow">

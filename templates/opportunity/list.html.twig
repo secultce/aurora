@@ -11,7 +11,10 @@
             ]
         } %}
 
-        {% include '_components/title.html.twig' with {title: 'opportunities'|trans} %}
+        {% include '_components/title.html.twig' with {
+            title: 'opportunities'|trans,
+            action: {path: path('admin_opportunity_create'), text: 'view.opportunity.create'|trans}
+        } %}
 
         {% include "_components/entity-dashboard.html.twig" with { 'dashboard': dashboard} %}
 
