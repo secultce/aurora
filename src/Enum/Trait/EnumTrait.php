@@ -8,14 +8,14 @@ use UnitEnum;
 
 trait EnumTrait
 {
-    public static function getName(int $value, string $capitalize = 'lowercase'): string
+    public static function getName(int|string $value, string $capitalize = 'lowercase'): string
     {
         $enum = self::from($value);
 
         return match ($capitalize) {
             'uppercase' => strtoupper(string: $enum->name),
             'lowercase' => strtolower(string: $enum->name),
-            'capitalize' => ucwords(string: $enum->name),
+            'capitalize' => ucwords(string: strtolower($enum->name)),
             default => $enum->name
         };
     }
@@ -26,7 +26,7 @@ trait EnumTrait
             fn (UnitEnum $enum) => match ($capitalize) {
                 'uppercase' => strtoupper(string: $enum->name),
                 'lowercase' => strtolower(string: $enum->name),
-                'capitalize' => ucwords(string: $enum->name),
+                'capitalize' => ucwords(string: strtolower($enum->name)),
                 default => $enum->name
             },
             self::cases()
@@ -35,7 +35,7 @@ trait EnumTrait
 
     public static function getValues(): array
     {
-        return array_column(self::cases(), 'values');
+        return array_column(self::cases(), 'value');
     }
 
     public static function fromName(string $name): ?static
