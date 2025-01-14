@@ -26,7 +26,13 @@ package-lock.json
 ###> phpunit/phpunit ###
 /phpunit.xml
 .phpunit.result.cache
+/var/phpunit
 ###< phpunit/phpunit ###
+
+###> phpunit/php-code-coverage ###
+/coverage-html
+coverage.xml
+###< phpunit/php-code-coverage ###
 
 ###> symfony/asset-mapper ###
 /public/assets/

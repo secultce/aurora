@@ -1,3 +1,5 @@
+[![codecov](https://codecov.io/gh/secultce/aurora/graph/badge.svg?token=CG2AH922DO)](https://codecov.io/gh/secultce/aurora)
+
 # Estrutura inicial Aurora
 
 Este repositório fornece uma configuração base de aplicação Symfony com Docker, Nginx e PostgreSQL para substituir o projeto Aurora utilizado no Ceará.
@@ -90,7 +92,7 @@ php bin/console doctrine:migrations:migrate -n
 php bin/console doctrine:fixtures:load -n
 ```
 
-5 - Instalação das dependêncis do frontend:
+5 - Instalação das dependências do frontend:
 ```bash
 php bin/console importmap:install
 ```
@@ -107,12 +109,12 @@ php bin/console lexik:jwt:generate-keypair
 
 ### Uso
 
-Depois que tudo estiver configurado e as dependências instaladas, você pode acessar sua aplicação Symfony em [http://localhost:8080](http://localhost:8080).
+Depois que tudo estiver configurado e as dependências instaladas, você pode acessar a sua aplicação Symfony em [http://localhost:8080](http://localhost:8080).
 
 Há também uma rota de teste para a API. Você pode acessá-la em [http://localhost:8080/api/example](http://localhost:8080/api/example). Esta rota está definida no controller `ExampleController` e retorna a mensagem de sucesso.
 
 #### Usuário padrão
-Há alguns usuarios que você pode utilizar para fins de teste:
+Há alguns usuários que você pode utilizar para fins de teste:
 
 <table>
 <tr>
@@ -140,7 +142,7 @@ Há alguns usuarios que você pode utilizar para fins de teste:
 <details>
 <summary>Arquitetura e Decisões técnicas</summary>
 
-Estamos utilizando o Symfony e o seu ecossistma de bibliotecas, porém a arquitetura é baseada em camadas e trata-se de um monolítico com a metodologia API First
+Estamos utilizando o Symfony e o seu ecossistema de bibliotecas, porém a arquitetura é baseada em camadas e trata-se de um monolítico com a metodologia API First
 
 ```mermaid
 flowchart TD
@@ -161,8 +163,8 @@ flowchart TD
     CW --HTML/CSS/JS--> B
 ```
 
-- Para saber mais sobre nossas decisões técnicas [acesse aqui](./help/TECHNICAL-DECISIONS.md)
-- Para entender nosso fluxo de desenvolvimento decisões técnicas [clique aqui](./help/DEV-FLOW.md)
+- Para saber mais sobre as nossas decisões técnicas [acesse aqui](./help/TECHNICAL-DECISIONS.md)
+- Para entender o nosso fluxo de desenvolvimento decisões técnicas [clique aqui](./help/DEV-FLOW.md)
 </details>
 
 ## Design UI/UX
