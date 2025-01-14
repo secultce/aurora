@@ -184,4 +184,9 @@ readonly class InscriptionOpportunityService extends AbstractEntityService imple
 
         return $params;
     }
+
+    public function findRecentByUser(Uuid $userId, int $limit = 4): array
+    {
+        return $this->repository->findRecentByUser($userId, $limit);
+    }
 }

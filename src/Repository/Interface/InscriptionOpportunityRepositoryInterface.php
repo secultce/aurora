@@ -16,5 +16,7 @@ interface InscriptionOpportunityRepositoryInterface
 
     public function findInscriptionsByOpportunity(string $opportunityId, array $agents, int $limit);
 
+    public function findRecentByUser(Uuid $userId, int $limit = 4): array;
+
     public function findUserInscriptionsWithDetails(Uuid $agentId): iterable;
 }

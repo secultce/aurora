@@ -81,6 +81,18 @@ class InscriptionOpportunityRepository extends AbstractRepository implements Ins
             ->getOneOrNullResult();
     }
 
+    public function findRecentByUser(Uuid $userId, int $limit = 4): array
+    {
+        return $this->createQueryBuilder('io')
+            ->join('io.agent', 'a')
+            ->where('a.user = :user')
+            ->setParameter('user', $userId)
+            ->orderBy('io.createdAt', 'DESC')
+            ->setMaxResults($limit)
+            ->getQuery()
+            ->getResult();
+    }
+
     public function findUserInscriptionsWithDetails(Uuid $agentId): iterable
     {
         $qb = $this->createQueryBuilder('i');

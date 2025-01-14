@@ -5,7 +5,7 @@ describe('Painel de Controle', () => {
         cy.visit('/painel');
     });
 
-    it('Garante que o Painel de Controle existe', () => {
+    it('Garante que o Painel de Controle existe.', () => {
         cy.get('.fs-2').contains('Painel de Controle').should('be.visible');
         cy.get('.user-info > .fs-4').contains('Talyson').should('be.visible');
 
@@ -15,12 +15,10 @@ describe('Painel de Controle', () => {
         cy.get('[data-cy=opportunity-card-dashboard]').contains('1 Oportunidades').should('be.visible');
         cy.get('[data-cy=initiative-card-dashboard]').contains('0 Iniciativas').should('be.visible');
 
-        cy.get('.mt-5 > .fs-4').contains('Inscrições recentes').should('be.visible');
-        cy.get('.registration-info').contains('Programa de Residências e Intercâmbios Porto Dragão - 2ª Edição // CONVOCATÓRIA 2022').should('be.visible');
-        cy.get('.recent-registrations-card > a').contains('Acompanhar').should('be.visible');
+
     });
 
-    it('Garante que os botões de "Criar" em cada entidade do dashboard estão funcionando e fazendo o redirecionamento correto', () => {
+    it('Garante que os botões de "Criar" em cada entidade do dashboard estão funcionando e fazendo o redirecionamento correto.', () => {
         const entities = [
             { dataCy: 'agent-card-dashboard', route: 'painel/agentes/adicionar' },
             { dataCy: 'event-card-dashboard', route: 'painel/eventos/adicionar' },
@@ -36,5 +34,21 @@ describe('Painel de Controle', () => {
                 .should('include', entity.route);
             cy.contains('Voltar').click();
         });
+    });
+
+    it('Garante que as inscrições recentes estão visiveis e que podem ser acessadas.', () => {
+        cy.get("div.recent-registrations-card.mt-3.col.mx-2")
+            .contains('Feira de Cultura Popular').should('be.visible');
+        cy.get('.recent-registrations-card > a').contains('Acompanhar').should('be.visible').click();
+    });
+
+    it('Quando não houver inscrições em nenhuma oportunidade, garante que o usuário saiba disso.', () => {
+
+        cy.get("a.text-danger.d-flex.align-items-center.nav-link").click();
+        cy.login('mariadebetania@example.com', 'Aurora@2024');
+        cy.visit('/painel');
+        
+        cy.contains("Nenhuma inscrição encontrada.").should('be.visible');
+        cy.contains("Ver Oportunidades").should('be.visible').click();
     });
 });

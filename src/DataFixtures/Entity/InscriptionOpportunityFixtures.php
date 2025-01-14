@@ -223,15 +223,6 @@ final class InscriptionOpportunityFixtures extends AbstractFixture implements De
             'deletedAt' => null,
         ],
         [
-            'id' => self::INSCRIPTION_OPPORTUNITY_ID_21,
-            'agent' => AgentFixtures::AGENT_ID_8,
-            'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_3,
-            'status' => InscriptionOpportunityStatusEnum::ACTIVE->name,
-            'createdAt' => '2024-08-14T21:00:00+00:00',
-            'updatedAt' => null,
-            'deletedAt' => null,
-        ],
-        [
             'id' => self::INSCRIPTION_OPPORTUNITY_ID_22,
             'agent' => AgentFixtures::AGENT_ID_9,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_3,
