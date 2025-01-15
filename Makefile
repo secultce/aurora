@@ -51,11 +51,11 @@ tests_front: load_fixtures
 
 # Executa as fixtures de dados e os testes de back-end
 tests_back: load_fixtures
-	docker compose exec -T php bash -c "php bin/phpunit --no-coverage"
+	docker compose exec -T php bash -c "php bin/paratest --no-coverage"
 
 # Executa as fixtures de dados e os testes de back-end
 tests_back_coverage: load_fixtures
-	docker compose exec -T php bash -c "php -d memory_limit=512M bin/phpunit"
+	docker compose exec -T php bash -c "php -d memory_limit=512M bin/paratest"
 
 # Limpa o cache do projeto
 reset:
