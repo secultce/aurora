@@ -9,7 +9,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\Types\Type;
 
 #[ODM\Document(collection: 'opportunity_timeline')]
-class OpportunityTimeline
+class OpportunityTimeline extends AbstractDocument
 {
     #[ODM\Id]
     private ?string $id = null;

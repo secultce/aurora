@@ -9,7 +9,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\Types\Type;
 
 #[ODM\Document(collection: 'seal_timeline')]
-class SealTimeline
+class SealTimeline extends AbstractDocument
 {
     #[ODM\Id]
     private ?string $id = null;

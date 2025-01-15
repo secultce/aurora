@@ -7,6 +7,7 @@ namespace App\Service;
 use App\DTO\InscriptionOpportunityDto;
 use App\Entity\InscriptionOpportunity;
 use App\Entity\InscriptionPhase;
+use App\Entity\Phase;
 use App\Enum\InscriptionPhaseStatusEnum;
 use App\Exception\InscriptionOpportunity\AlreadyInscriptionOpportunityException;
 use App\Exception\InscriptionOpportunity\InscriptionOpportunityResourceNotFoundException;
@@ -88,6 +89,30 @@ readonly class InscriptionOpportunityService extends AbstractEntityService imple
             $this->security->getUser()->getAgents()->getValues(),
             $limit
         );
+    }
+
+    public function findUserInscriptionsWithDetails(): array
+    {
+        $userParams = $this->getUserParams()['agent'][0];
+        $agent = $userParams->getId();
+
+        $inscriptionsWithDetails = $this->repository->findUserInscriptionsWithDetails($agent);
+
+        $phaseData = [];
+
+        foreach ($inscriptionsWithDetails as $inscription) {
+            if ($inscription instanceof Phase) {
+                $phaseData[] = [
+                    'opportunity' => $inscription->getOpportunity()->getName(),
+                    'phase' => $inscription->getName(),
+                    'phaseDescription' => $inscription->getDescription(),
+                    'startDate' => $inscription->getStartDate(),
+                    'endDate' => $inscription->getEndDate(),
+                ];
+            }
+        }
+
+        return $phaseData;
     }
 
     public function remove(Uuid $opportunity, Uuid $id): void

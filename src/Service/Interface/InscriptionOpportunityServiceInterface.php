@@ -15,6 +15,8 @@ interface InscriptionOpportunityServiceInterface
 
     public function list(Uuid $opportunity, int $limit = 50): array;
 
+    public function findUserInscriptionsWithDetails(): array;
+
     public function remove(Uuid $opportunity, Uuid $id): void;
 
     public function update(Uuid $opportunity, Uuid $identifier, array $inscriptionOpportunity): InscriptionOpportunity;

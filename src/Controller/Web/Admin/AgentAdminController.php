@@ -4,10 +4,12 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Document\AgentTimeline;
 use App\DocumentService\AgentTimelineDocumentService;
 use App\Enum\FlashMessageTypeEnum;
 use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
+use App\Service\Interface\UserServiceInterface;
 use Exception;
 use Lexik\Bundle\JWTAuthenticationBundle\Services\JWTTokenManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -27,6 +29,8 @@ class AgentAdminController extends AbstractAdminController
         private JWTTokenManagerInterface $jwtManager,
         private TranslatorInterface $translator,
         private Security $security,
+        private readonly UserServiceInterface $userService,
+        private readonly AgentTimeline $agent,
     ) {
     }
 
@@ -77,6 +81,8 @@ class AgentAdminController extends AbstractAdminController
     public function timeline(?Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
+
+        $events = $this->agent->getEvents($events);
 
         return $this->render('agent/timeline.html.twig', [
             'agent' => $this->service->get($id),
