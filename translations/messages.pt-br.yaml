@@ -90,6 +90,7 @@ enter_opportunity: Digite o nome da oportunidade
 enter_organization: Digite o nome da organização
 enter_initiative: Digite o nome da iniciativa
 enter_space: Digite o nome do espaço
+end_date: Data de término
 event: Evento
 events: Eventos
 everybody: Todos
@@ -110,6 +111,7 @@ future_registration: Inscrições futuras
 full_name: Nome completo
 from: De
 from_to: Para
+from_to_date: Até
 
 gallery: Galeria
 gender: Selecione o Gênero
@@ -178,11 +180,12 @@ name_event: Nome do evento
 name_opportunity: Nome da oportunidade
 name_organization: Nome da organização
 name_initiative: Nome da iniciativa
+name_phases: Nome da fase
 neighborhood: Bairro
 notifications: Notificações
 no: Não
 no_inform: Não Informar
-no_phase: Nenhuma fase cadastrada.
+no_phase: Nenhuma fase disponível
 none_area_specified: Nenhuma área especificada
 not_informed: Não informado
 not_sent: Não enviadas
@@ -292,6 +295,7 @@ sent: Enviadas
 see_all: ver tudo
 see_how: Visualizar como
 see_more: Ver mais
+see_phase: Ver fase
 short_description: Descrição curta
 site: Site
 social_media: Redes sociais
@@ -300,6 +304,7 @@ social_name: Nome Social
 space: Espaço
 spaces: Espaços
 start_now: Comece agora
+start_date: Data de início
 state: Estado
 status: Status
 street: Logradouro

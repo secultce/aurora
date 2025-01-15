@@ -1,6 +1,9 @@
+{# templates/opportunity/details.html.twig #}
 {% extends "_layouts/blank.html.twig" %}
 
-{% block title %} {{ 'control_panel'|trans }} - {{ 'opportunity'|trans }} | {{ opportunity.name }} {% endblock %}
+{% block title %}
+    {{ 'control_panel'|trans }} - {{ 'opportunity'|trans }} | {{ opportunity.name }}
+{% endblock %}
 
 {% block content %}
     <section class="d-flex">
@@ -14,32 +17,53 @@
 
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link active" data-bs-toggle="pill" href="#generalData">{{ 'general_data'|trans }}</a>
+                                <a class="nav-link active" data-bs-toggle="pill" href="#generalData">
+                                    {{ 'general_data'|trans }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#inscriptions">{{ 'inscriptions'|trans }}</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#inscriptions">
+                                    {{ 'inscriptions'|trans }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#phases">{{ 'phases'|trans }}</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#phases">
+                                    {{ 'phases'|trans }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#calendar">{{ 'calendar'|trans }}</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#calendar">
+                                    {{ 'calendar'|trans }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" data-bs-toggle="pill" href="#seals">{{ 'seals'|trans }}</a>
+                                <a class="nav-link" data-bs-toggle="pill" href="#seals">
+                                    {{ 'seals'|trans }}
+                                </a>
                             </li>
                         </ul>
+
                         <div class="py-4">
                             <div class="tab-content">
-                                <div class="tab-pane fade show active" id="generalData">
+                                <div class="tab-pane fade show active px-3" id="generalData">
                                     {% include "_admin/opportunity/_partials/details/timeline-phases.html.twig" with { phases: phases } %}
                                 </div>
+
                                 <div class="tab-pane fade" id="inscriptions">
                                     {% include "_admin/opportunity/_partials/details/inscriptions.html.twig" %}
                                 </div>
-                                <div class="tab-pane fade" id="phases"></div>
-                                <div class="tab-pane fade" id="calendar"></div>
-                                <div class="tab-pane fade" id="seals"></div>
+
+                                <div class="tab-pane fade" id="phases">
+                                    {% include "_admin/opportunity/_partials/details/phases.html.twig" %}
+                                </div>
+
+                                <div class="tab-pane fade" id="calendar">
+                                    <p>{{ 'calendar_content_example'|trans }}</p>
+                                </div>
+
+                                <div class="tab-pane fade" id="seals">
+                                    <p>{{ 'seals_content_example'|trans }}</p>
+                                </div>
                             </div>
                         </div>
                     </div>

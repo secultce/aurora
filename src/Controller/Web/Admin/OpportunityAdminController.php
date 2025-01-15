@@ -62,7 +62,6 @@ class OpportunityAdminController extends AbstractAdminController
     public function remove(?Uuid $id): Response
     {
         $this->service->remove($id);
-
         $this->addFlash('success', 'view.opportunity.message.deleted');
 
         return $this->redirectToRoute('admin_opportunity_list');
@@ -109,7 +108,6 @@ class OpportunityAdminController extends AbstractAdminController
         $phases = $opportunity->getPhases();
 
         return $this->render('opportunity/details.html.twig', [
-            'opportunity' => $this->service->get($id),
             'opportunity' => $opportunity,
             'inscriptions' => $inscriptions,
             'phases' => $phases,

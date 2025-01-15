@@ -90,6 +90,7 @@ enter_opportunity: Ingrese el nombre de la oportunidad
 enter_organization: Ingrese el nombre de la organización
 enter_initiative: Digite el nombre de la iniciativa
 enter_space: Introduce el nombre del espacio
+end_date: Fecha de finalización
 event: Evento
 events: Eventos
 everybody: Todos
@@ -110,6 +111,7 @@ future_registration: Inscripciones futuras
 full_name: Nombre Completo
 from: de
 from_to: A
+from_to_date: A
 
 gallery: Galería
 gender: Seleccione el Género
@@ -178,6 +180,7 @@ name_event: Nombre del evento
 name_opportunity: Nombre de la oportunidad
 name_organization: Nombre de la organización
 name_initiative: Nombre de la iniciativa
+name_phases: Nombre de la fase
 neighborhood: Barrio
 notifications: Notificaciones
 no: No
@@ -290,6 +293,7 @@ select_education: Seleccione su Nivel Educativo
 see_all: ver todo
 see_how: Ver Cómo
 see_more: Ver Más
+see_phase: Ver fase
 seal_name: Nombre del sello
 short_description: Breve descripción
 social_media: Redes sociales
@@ -300,6 +304,7 @@ short_presentation: Presentación Corta
 space: Espacio
 spaces: Espacios
 start_now: Comenzar Ahora
+start_date: Fecha de inicio
 state: Estado
 status: Status
 suggestions: Sugerencias
