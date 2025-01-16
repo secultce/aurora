@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Document\OpportunityTimeline;
 use App\DocumentService\OpportunityTimelineDocumentService;
 use App\Exception\InscriptionOpportunity\AlreadyInscriptionOpportunityException;
 use App\Exception\UnauthorizedException;
@@ -33,6 +34,7 @@ class OpportunityAdminController extends AbstractAdminController
         private readonly TranslatorInterface $translator,
         private readonly InscriptionOpportunityServiceInterface $inscriptionOpportunityService,
         private readonly Security $security,
+        private readonly OpportunityTimeline $opportunityTimeline,
     ) {
     }
 
@@ -98,6 +100,8 @@ class OpportunityAdminController extends AbstractAdminController
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
+
+        $events = $this->opportunityTimeline->getEvents($events);
 
         return $this->render('opportunity/timeline.html.twig', [
             'opportunity' => $this->service->get($id),

@@ -1,4 +1,4 @@
-<div class="modal fade" id="modal-timeline" tabindex="-1" aria-labelledby="modal-timeline" aria-hidden="true">
+<div class="modal fade" id="modal-timeline" tabindex="-1" aria-labelledby="modal-timeline-label" aria-hidden="true">
     <div class="modal-dialog modal-xl">
         <div class="modal-content">
             <div class="modal-header">
@@ -6,7 +6,27 @@
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-                <table class="table">
+                <div id="modal-timeline-extra-info" class="mb-4">
+                    <div class="card mb-3" id="extra-info-card">
+                        <div class="row">
+                            <div class="col">
+                                <div class="card-body">
+                                    <h5 class="card-title" id="author-name"></h5>
+                                    <p class="card-text">
+                                        <strong>{{ "email" | trans }}</strong> <span id="author-email"></span><br>
+                                        <strong>{{ "device" | trans }}:</strong> <span id="device"></span> (<span id="platform"></span>)<br>
+                                        <strong>{{ "date" | trans }}:</strong> <span id="datetime"></span><br>
+                                    </p>
+                                    <p class="alert alert-warning"><small class="text-muted" id="title"></small></p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="alert alert-info" role="alert" id="alert-info">
+                        <strong>{{ "modified_by" | trans }}:</strong> <span id="alert-author-name"></span>
+                    </div>
+                </div>
+                <table class="table table-striped">
                     <thead>
                     <tr>
                         <th>{{ "field" | trans }}</th>
@@ -14,9 +34,7 @@
                         <th>{{ "from_to" | trans }}</th>
                     </tr>
                     </thead>
-                    <tbody id="modal-timeline-table-body">
-
-                    </tbody>
+                    <tbody id="modal-timeline-table-body"></tbody>
                 </table>
             </div>
             <div class="modal-footer">

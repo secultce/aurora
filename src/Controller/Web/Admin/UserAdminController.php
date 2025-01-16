@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Document\UserTimeline;
 use App\DocumentService\UserTimelineDocumentService;
 use App\Service\Interface\UserServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -14,6 +15,7 @@ class UserAdminController extends AbstractAdminController
     public function __construct(
         private readonly UserTimelineDocumentService $documentService,
         private readonly UserServiceInterface $service,
+        private readonly UserTimeline $userTimeline,
     ) {
     }
 
@@ -29,6 +31,8 @@ class UserAdminController extends AbstractAdminController
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
+
+        $events = $this->userTimeline->getEvents($events);
 
         return $this->render('user/timeline.html.twig', [
             'user' => $this->service->get($id),

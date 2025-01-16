@@ -1,0 +1,6 @@
+<button type="button" class="btn btn-outline-dark btn-sm"
+        data-bs-toggle="modal"
+        data-bs-target="#modal-timeline"
+        onclick="openModal({{ item | json_encode() }})">
+    {{ 'details' | trans }}
+</button>

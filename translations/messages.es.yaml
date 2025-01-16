@@ -74,6 +74,7 @@ contact: Contacto
 cultural_language: Lenguaje cultural
 cultural_languages: Lenguajes culturales
 
+date: Fecha
 date_created: Fecha de creación
 dashboard: Panel de Control
 draft: En borrador
@@ -180,6 +181,7 @@ my_profile: Mi Perfil
 my_spaces: Mis Espacios
 my_subscriptions: Mis Suscripciones
 my_reviews: Mis Evaluaciones
+modified_by: Modificado por
 
 name: Nombre
 name_space: Nombre del espacio

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Document\OrganizationTimeline;
 use App\DocumentService\OrganizationTimelineDocumentService;
 use App\Exception\ValidatorException;
 use App\Service\Interface\OrganizationServiceInterface;
@@ -23,6 +24,7 @@ class OrganizationAdminController extends AbstractAdminController
         private OrganizationServiceInterface $service,
         private readonly TranslatorInterface $translator,
         private readonly OrganizationTimelineDocumentService $documentService,
+        private readonly OrganizationTimeline $organizationTimeline,
     ) {
     }
 
@@ -75,6 +77,8 @@ class OrganizationAdminController extends AbstractAdminController
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
+
+        $events = $this->organizationTimeline->getEvents($events);
 
         return $this->render(self::VIEW_TIMELINE, [
             'organization' => $this->service->get($id),
