@@ -22,7 +22,7 @@ describe('Painel de Controle - Página de timeline das Iniciativas', () => {
         cy.get(':nth-child(2) > :nth-child(5) > .btn').click();
         cy.get('.modal-body > .table > thead > tr > :nth-child(2)').contains('De');
         cy.get('.modal-body > .table > thead > tr > :nth-child(3)').contains('Para');
-        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('Vozes do Sertão');
+        cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('Voz');
         cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(3)').contains('Vozes do Sertão');
     });
 });

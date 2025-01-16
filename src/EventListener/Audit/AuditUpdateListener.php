@@ -43,7 +43,9 @@ class AuditUpdateListener extends AbstractAuditListener
         $document->setDatetime(new DateTime());
         $document->setDevice($this->getDevice());
         $document->setPlatform($this->getPlatform());
-        $document->setFrom($object->toArray());
+        $changeSet = $args->getEntityChangeSet();
+        $originalValues = array_map(fn ($change) => $change[0], $changeSet);
+        $document->setFrom($originalValues);
         $document->setTo($object->toArray());
 
         $this->documentManager->persist($document);
