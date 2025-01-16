@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Document\EventTimeline;
 use App\DocumentService\EventTimelineDocumentService;
 use App\Service\Interface\EventServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -19,7 +20,8 @@ class EventAdminController extends AbstractAdminController
     public function __construct(
         private EventServiceInterface $service,
         private readonly TranslatorInterface $translator,
-        private readonly EventTimelineDocumentService $documentService
+        private readonly EventTimelineDocumentService $documentService,
+        private readonly EventTimeline $eventTimeline,
     ) {
     }
 
@@ -36,9 +38,11 @@ class EventAdminController extends AbstractAdminController
     {
         $timelineEvents = $this->documentService->getEventsByEntityId($id);
 
+        $events = $this->eventTimeline->getEvents($timelineEvents);
+
         return $this->render('event/timeline.html.twig', [
             'event' => $this->service->get($id),
-            'events' => $timelineEvents,
+            'events' => $events,
         ]);
     }
 
