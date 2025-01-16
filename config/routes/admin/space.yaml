@@ -17,3 +17,8 @@ timeline:
   path: /{id}/timeline
   controller: App\Controller\Web\Admin\SpaceAdminController::timeline
   methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\SpaceAdminController::edit
+  methods: ['GET', 'POST']
