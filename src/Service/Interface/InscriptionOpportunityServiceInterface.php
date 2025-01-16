@@ -22,4 +22,6 @@ interface InscriptionOpportunityServiceInterface
     public function update(Uuid $opportunity, Uuid $identifier, array $inscriptionOpportunity): InscriptionOpportunity;
 
     public function findRecentByUser(Uuid $userId, int $limit = 4): array;
+
+    public function findInscriptionWithDetails(Uuid $identifier): array;
 }

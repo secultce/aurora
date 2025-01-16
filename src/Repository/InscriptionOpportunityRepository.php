@@ -8,6 +8,9 @@ use App\Entity\InscriptionOpportunity;
 use App\Entity\InscriptionPhase;
 use App\Entity\Phase;
 use App\Repository\Interface\InscriptionOpportunityRepositoryInterface;
+use Doctrine\DBAL\ArrayParameterType;
+use Doctrine\DBAL\Types\Types;
+use Doctrine\ORM\Query\ResultSetMappingBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Uid\Uuid;
 
@@ -109,5 +112,58 @@ class InscriptionOpportunityRepository extends AbstractRepository implements Ins
             ->setParameter('agentId', $agentId)
             ->getQuery()
             ->getResult();
+    }
+
+    public function findInscriptionWithDetails(Uuid $identifier, array $userAgents): ?array
+    {
+        $sql = <<<SQL
+                select
+                    inscription.id,
+                    json_build_object(
+                        'id', agent.id,
+                        'name', agent.name,
+                        'image', agent.image
+                    ) as "agent",
+                    json_build_object(
+                        'id', opportunity.id,
+                        'name', opportunity.name,
+                        'image', opportunity.image
+                    ) as "opportunity",
+                    (
+                        select
+                            json_build_object(
+                                'id', phase.id,
+                                'name', phase.name,
+                                'description', phase.description,
+                                'startDate', phase.start_date,
+                                'endDate', phase.end_date
+                            )
+                        from phase
+                        where phase.opportunity_id = inscription.opportunity_id
+                          and phase.deleted_at is null
+                        order by phase.start_date desc
+                        limit 1
+                    ) as "lastPhase"
+                from inscription_opportunity as inscription
+                inner join opportunity on opportunity.id = inscription.opportunity_id
+                inner join agent on agent.id = inscription.agent_id
+                where inscription.id = :identifier
+                  and inscription.deleted_at is null
+                  and opportunity.created_by_id in (:agents)
+            SQL;
+
+        $rsm = new ResultSetMappingBuilder($this->getEntityManager());
+        $rsm->addScalarResult('id', 'id');
+        $rsm->addScalarResult('agent', 'agent', Types::JSON);
+        $rsm->addScalarResult('opportunity', 'opportunity', Types::JSON);
+        $rsm->addScalarResult('lastPhase', 'lastPhase', Types::JSON);
+
+        $query = $this->getEntityManager()->createNativeQuery($sql, $rsm);
+        $query->setParameters([
+            'identifier' => $identifier,
+            'agents' => $userAgents,
+        ], ['agents' => ArrayParameterType::STRING]);
+
+        return $query->getOneOrNullResult();
     }
 }
