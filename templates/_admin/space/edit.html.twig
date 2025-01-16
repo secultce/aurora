@@ -1,0 +1,67 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}{{ 'edit_space' | trans }}{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card card-body">
+                        <h2>{{ 'edit_space' | trans }}</h2>
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">{{ 'name_space' | trans }}</label>
+                                <input
+                                        type="text"
+                                        id="name"
+                                        name="name"
+                                        class="form-control"
+                                        value="{{ space.name }}"
+                                        required
+                                >
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="description" class="form-label">{{ 'description' | trans }}</label>
+                                <textarea
+                                        id="description"
+                                        name="description"
+                                        class="form-control"
+                                        rows="3"
+                                        maxlength="500"
+                                >{{ space.extrafields.description }}</textarea>
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="date" class="form-label">{{ 'date' | trans }}</label>
+                                <input
+                                        type="datetime-local"
+                                        id="date"
+                                        name="date"
+                                        class="form-control"
+                                        value="{{ space.extrafields.date|default(null)|date('Y-m-d\\TH:i') }}"
+                                        required
+                                >
+                            </div>
+
+                            <button type="submit" class="btn btn-primary">
+                                {{ 'save' | trans }}
+                            </button>
+                            <a href="{{ path('admin_space_list') }}" class="btn btn-secondary">
+                                {{ 'cancel' | trans }}
+                            </a>
+                        </form>
+
+                        {% if error is defined and error %}
+                            <div class="alert alert-danger mt-3">
+                                {{ error }}
+                            </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
