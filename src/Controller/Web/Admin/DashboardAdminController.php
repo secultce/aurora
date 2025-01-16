@@ -7,6 +7,7 @@ namespace App\Controller\Web\Admin;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\EventServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
+use App\Service\Interface\InscriptionOpportunityServiceInterface;
 use App\Service\Interface\OpportunityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -19,12 +20,14 @@ class DashboardAdminController extends AbstractAdminController
         readonly private EventServiceInterface $eventService,
         readonly private SpaceServiceInterface $spaceService,
         readonly private InitiativeServiceInterface $initiativeService,
+        readonly private InscriptionOpportunityServiceInterface $inscriptionService,
     ) {
     }
 
     public function index(): Response
     {
         $user = $this->getUser();
+        $recentRegistrations = $this->inscriptionService->findRecentByUser($user->getId());
         $createdBy = $this->agentService->getAgentsFromLoggedUser()[0];
 
         $totalAgents = $this->agentService->count($user);
@@ -40,6 +43,7 @@ class DashboardAdminController extends AbstractAdminController
             'totalEvents' => $totalEvents,
             'totalSpaces' => $totalSpaces,
             'totalInitiatives' => $totalInitiatives,
+            'recentRegistrations' => $recentRegistrations,
         ]);
     }
 }

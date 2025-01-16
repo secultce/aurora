@@ -398,6 +398,8 @@ view:
     profile_change_history: Profile Change History
     report: Report
     roles_in_culture: Roles in Culture
+    view_opportunities: View Opportunities
+    no_registrations_message: No registrations found
 
   agent_create:
     creation_individual_agent: Creation of individual agent

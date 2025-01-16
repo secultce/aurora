@@ -397,6 +397,8 @@ view:
     profile_change_history: Histórico de alterações do perfil
     report: Denunciar
     roles_in_culture: Funções na Cultura
+    view_opportunities: Ver Oportunidades
+    no_registrations_message: Nenhuma inscrição encontrada.
 
   agent_create:
     creation_individual_agent: Criação de agente individual

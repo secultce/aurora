@@ -20,4 +20,6 @@ interface InscriptionOpportunityServiceInterface
     public function remove(Uuid $opportunity, Uuid $id): void;
 
     public function update(Uuid $opportunity, Uuid $identifier, array $inscriptionOpportunity): InscriptionOpportunity;
+
+    public function findRecentByUser(Uuid $userId, int $limit = 4): array;
 }

@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Services;
 
+use App\DataFixtures\Entity\AgentFixtures;
+use App\Entity\Agent;
 use App\Entity\InscriptionOpportunity;
 use App\Entity\InscriptionPhase;
 use App\Entity\Phase;
@@ -101,6 +103,37 @@ class InscriptionOpportunityServiceTest extends AbstractWebTestCase
             self::assertEquals($expectedItem['phaseDescription'], $actualItem['phaseDescription'], 'A descrição da fase não corresponde.');
             self::assertEquals($expectedItem['startDate'], $actualItem['startDate'], 'A data de início não corresponde.');
             self::assertEquals($expectedItem['endDate'], $actualItem['endDate'], 'A data de término não corresponde.');
+        }
+    }
+
+    public function testFindRecentByUser(): void
+    {
+        $agentId = Uuid::fromString(AgentFixtures::AGENT_ID_1);
+
+        $userId = $this->entityManager
+            ->find(Agent::class, $agentId)
+            ->getUser()
+            ->getId();
+
+        $limit = 4;
+
+        $result = $this->service->findRecentByUser($userId, $limit);
+
+        self::assertIsArray($result, 'O resultado deve ser um array');
+        self::assertLessThanOrEqual($limit, count($result), "O resultado deve conter no máximo $limit itens");
+
+        foreach ($result as $inscriptionOpportunity) {
+            self::assertInstanceOf(
+                InscriptionOpportunity::class,
+                $inscriptionOpportunity,
+                'Cada item deve ser uma instância de InscriptionOpportunity'
+            );
+
+            self::assertEquals(
+                $agentId->toRfc4122(),
+                $inscriptionOpportunity->getAgent()->getId()->toRfc4122(),
+                'O agente associado deve corresponder ao ID das fixtures'
+            );
         }
     }
 }
