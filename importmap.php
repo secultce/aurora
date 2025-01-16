@@ -100,4 +100,7 @@ return [
     '@formatjs/icu-skeleton-parser' => [
         'version' => '1.8.12',
     ],
+    '@iconify/iconify' => [
+        'version' => '3.1.1',
+    ],
 ];
