@@ -7,3 +7,9 @@ timeline:
   path: /{id}/timeline
   controller: App\Controller\Web\Admin\UserAdminController::timeline
   methods: ['GET']
+
+account_privacy:
+  path: /{id}/account-privacy
+  controller: App\Controller\Web\Admin\UserAdminController::accountPrivacy
+  methods: ['GET']
+

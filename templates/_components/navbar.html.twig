@@ -30,57 +30,57 @@
                     </li>
 
                     {% if (env.aurora.modules.opportunities != '' ) %}
-                    <li class="nav-item">
-                        <a class="nav-link opportunity" aria-current="page" href="{{ path('web_opportunity_list') }}">
-                            <i class="material-icons navbar-icons">lightbulb</i>
-                            <p>{{env.aurora.modules.opportunities ?? 'opportunities'|trans }}</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link opportunity" aria-current="page" href="{{ path('web_opportunity_list') }}">
+                                <i class="material-icons navbar-icons">lightbulb</i>
+                                <p>{{env.aurora.modules.opportunities ?? 'opportunities'|trans }}</p>
+                            </a>
+                        </li>
                     {% endif %}
 
                     {% if (env.aurora.modules.agents != '' ) %}
-                    <li class="nav-item">
-                        <a class="nav-link agent" aria-current="page" href="{{ path('web_agent_list') }}">
-                            <i class="material-icons navbar-icons">group</i>
-                            <p>{{ env.aurora.modules.agents ?? 'agents'|trans }}</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link agent" aria-current="page" href="{{ path('web_agent_list') }}">
+                                <i class="material-icons navbar-icons">group</i>
+                                <p>{{ env.aurora.modules.agents ?? 'agents'|trans }}</p>
+                            </a>
+                        </li>
                     {% endif %}
 
                     {% if (env.aurora.modules.organizations != '' ) %}
-                    <li class="nav-item">
-                        <a class="nav-link organization" aria-current="page" href="{{ path('web_organization_list') }}">
-                            <i class="material-icons navbar-icons">corporate_fare</i>
-                            <p>{{ env.aurora.modules.organizations ?? 'organizations'|trans }}</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link organization" aria-current="page" href="{{ path('web_organization_list') }}">
+                                <i class="material-icons navbar-icons">corporate_fare</i>
+                                <p>{{ env.aurora.modules.organizations ?? 'organizations'|trans }}</p>
+                            </a>
+                        </li>
                     {% endif %}
 
                     {% if (env.aurora.modules.events != '' ) %}
-                    <li class="nav-item">
-                        <a class="nav-link event" aria-current="page" href="{{ path('web_event_list') }}">
-                            <i class="material-icons navbar-icons">event</i>
-                            <p>{{ env.aurora.modules.events ?? 'events'|trans }}</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link event" aria-current="page" href="{{ path('web_event_list') }}">
+                                <i class="material-icons navbar-icons">event</i>
+                                <p>{{ env.aurora.modules.events ?? 'events'|trans }}</p>
+                            </a>
+                        </li>
                     {% endif %}
 
                     {% if (env.aurora.modules.spaces != '' ) %}
-                    <li class="nav-item">
-                        <a class="nav-link space" aria-current="page" href="{{ path('web_space_list') }}">
-                            <i class="material-icons navbar-icons">domain</i>
-                            <p>{{ env.aurora.modules.spaces ?? 'spaces'|trans }}</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link space" aria-current="page" href="{{ path('web_space_list') }}">
+                                <i class="material-icons navbar-icons">domain</i>
+                                <p>{{ env.aurora.modules.spaces ?? 'spaces'|trans }}</p>
+                            </a>
+                        </li>
                     {% endif %}
 
                     {% if (env.aurora.modules.initiatives != '' ) %}
-                    <li class="nav-item">
-                        <a class="nav-link project" aria-current="page" href="{{ path('web_initiative_list') }}">
-                            <i class="material-icons navbar-icons">article</i>
-                            <p>{{ env.aurora.modules.initiatives ?? 'initiatives'|trans }}</p>
-                        </a>
-                    </li>
+                        <li class="nav-item">
+                            <a class="nav-link project" aria-current="page" href="{{ path('web_initiative_list') }}">
+                                <i class="material-icons navbar-icons">article</i>
+                                <p>{{ env.aurora.modules.initiatives ?? 'initiatives'|trans }}</p>
+                            </a>
+                        </li>
                     {% endif %}
                 </ul>
 
@@ -123,7 +123,7 @@
                                 </div>
                                 <div class="menu-column">
                                     <div class="dropdown-header">{{ 'other_options' | trans }}</div>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="{{ path('admin_user_account_privacy', {id: app.user.id}) }}">
                                         <i class="material-icons">settings</i> {{ 'account_privacy' | trans }}
                                     </a>
                                     <a class="dropdown-item" href="{{ path('admin_dashboard') }}">

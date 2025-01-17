@@ -35,4 +35,28 @@ class UserAdminController extends AbstractAdminController
             'events' => $events,
         ]);
     }
+
+    public function accountPrivacy(Uuid $id): Response
+    {
+        $user = $this->service->get($id);
+
+        if (!$user) {
+            return $this->redirectToRoute('login');
+        }
+
+        $lastLogin = $this->documentService->getLastLoginByUserId($id);
+
+        return $this->render('user/account-privacy.html.twig', [
+            'user' => [
+                'name' => $user->getName(),
+                'id' => $user->getId(),
+                'isActive' => $user->isActive(),
+                'lastLogin' => $lastLogin,
+                'createdAt' => $user->getCreatedAt(),
+                'email' => $user->getEmail(),
+                'acceptedTerms' => null !== $user->getUpdatedAt(),
+                'acceptedTermsDate' => $user->getUpdatedAt(),
+            ],
+        ]);
+    }
 }
