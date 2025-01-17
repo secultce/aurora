@@ -37,10 +37,15 @@ describe('Página de Home do ambiente web', () => {
         cy.get('input[placeholder="Buscar"]').should('be.visible');
     });
 
-    it('Garante que a seção "Acontecendo agora" esteja visível', () => {
+    it('Garante que a seção "Acontecendo agora" esteja visível e funcionando', () => {
         cy.get('h1').contains('Acontecendo agora').should('be.visible');
         cy.get('button').contains('chevron_left').should('be.visible');
         cy.get('button').contains('chevron_right').should('be.visible');
+        cy.get('a[href="/agentes/d691f373-9ddf-4b1f-861a-3539c9df9e64"]').contains('Conferir').should('exist');
+        cy.get('a[href="/eventos/9f0e3630-f9e1-42ca-8e6b-b1dcaa006797"]').contains('Conferir').should('exist');
+        cy.get('a[href="/iniciativas/8c4c48bd-6e63-4b62-858b-066969c49f66"]').contains('Conferir').should('exist');
+        cy.get('a[href="/oportunidades/083ef392-4c63-4200-a57f-818a1a75211c"]').contains('Conferir').should('exist');
+        cy.get('a[href="/espacos/b4a49f4d-25ca-40f9-bac2-e72383b689ed"]').contains('Conferir').should('exist');
     });
 
     it('Garante que a seção "Contribua" esteja visível', () => {

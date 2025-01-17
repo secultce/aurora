@@ -44,7 +44,7 @@
 
     <div class="row mt-3">
         <div class="col-md position-relative">
-            <a href="{{ path('web_event_list') }}" class="btn btn-primary d-flex align-items-center justify-content-center">
+            <a href="{{ path('web_event_show', { id: event.id }) }}" class="btn btn-primary d-flex align-items-center justify-content-center">
                 <span class="fw-bold">{{ 'check'|trans }}</span>
                 <i class="material-icons ms-3">arrow_forward</i>
             </a>
