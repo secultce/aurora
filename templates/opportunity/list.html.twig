@@ -3,6 +3,9 @@
 {% block title %} {{ 'opportunities'|trans}} {% endblock %}
 
 {% block content %}
+    {% include '_components/modal-confirm-action.html.twig' with { message: 'view.opportunity.modal_confirm_registration'|trans } %}
+    {% include "_components/snackbar.html.twig" %}
+
     <section class="white-square">
         {% include '_components/breadcrumb.html.twig' with {
             items: [
@@ -36,5 +39,7 @@
 {% endblock %}
 
 {% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-confirm-action.js') }}"></script>
     <script type="module" src="{{ asset('js/side-filter.js') }}"></script>
 {% endblock %}

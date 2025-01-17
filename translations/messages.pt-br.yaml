@@ -314,8 +314,9 @@ start_date: Data de início
 state: Estado
 status: Status
 street: Logradouro
-suggestions: Sugestões
+subscribe: Inscreva-se
 subsites: Subsites
+suggestions: Sugestões
 
 your_name: Digite seu nome
 your_question: Escreva sua pergunta
@@ -553,6 +554,11 @@ view:
       opened: Oportunidades em Andamento
       last_days: Registradas nos últimos 7 dias
     type_of: Tipo de oportunidade
+    modal_confirm_registration: Deseja realizar a inscrição?
+    registration_not_logged: Por favor, faça login ou cadastre-se antes de se inscrever em uma oportunidade
+    registration_success: Inscrição realizada com sucesso
+    registration_duplicated: Você já está inscrito nesta oportunidade
+    registration_unauthorized: Você não pode se inscrever em uma oportunidade que você criou
 
   opportunity_admin:
     inscriptions:
