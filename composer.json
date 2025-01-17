@@ -95,6 +95,7 @@
         "friendsofphp/php-cs-fixer": "^3.62",
         "phpunit/php-code-coverage": "^11.0",
         "phpunit/phpunit": "^11.3",
+        "squizlabs/php_codesniffer": "*",
         "symfony/browser-kit": "7.1.*",
         "symfony/css-selector": "7.1.*",
         "symfony/maker-bundle": "^1.60",

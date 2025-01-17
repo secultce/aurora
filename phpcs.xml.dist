@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<ruleset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:noNamespaceSchemaLocation="vendor/squizlabs/php_codesniffer/phpcs.xsd">
+
+    <arg name="basepath" value="."/>
+    <arg name="cache" value=".phpcs-cache"/>
+    <arg name="colors"/>
+    <arg name="extensions" value="php"/>
+
+    <rule ref="PSR12">
+        <properties>
+            <property name="lineLength" value="200"/>
+        </properties>
+        <exclude name="PSR12.Operators.OperatorSpacing"/>
+    </rule>
+
+    <rule ref="Generic.Files.LineLength">
+        <properties>
+            <property name="lineLimit" value="250"/>
+            <property name="absoluteLineLimit" value="250"/>
+        </properties>
+    </rule>
+
+    <file>src/</file>
+    <file>tests/</file>
+
+</ruleset>

@@ -147,7 +147,7 @@ Faz um reset de tudo do diretório storage.
 ### `style`
 Executa o PHP CS Fixer.
 - **Uso:** `make style`
-- **Descrição:** Roda `php bin/console app:code-style` dentro do contêiner PHP para garantir que o código segue os padrões de estilo definidos pelo Aurora.
+- **Descrição:** Executa `php bin/console app:code-style` e `php vendor/bin/phpcs`  dentro do contêiner PHP para garantir que o código segue os padrões de estilo definidos pelo Aurora.
 </details>
 
 <details>

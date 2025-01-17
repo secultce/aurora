@@ -9,19 +9,6 @@ on:
       - main
 
 jobs:
-  code-style:
-    name: Run PHP-CS-Fixer
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Set up PHP
-        uses: erkenes/php-cs-fixer-action@main
-        with:
-          args: '--dry-run --diff -vvv'
-
   php-unit:
     name: Run PHPUnit
     runs-on: ubuntu-latest
@@ -55,7 +42,7 @@ jobs:
       - name: Start the PHPUnit
         run: docker compose exec php bin/paratest --no-coverage
 
-  cypress-run:
+  cypress:
     name: Run Cypress
     runs-on: ubuntu-latest
     steps:
