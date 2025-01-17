@@ -1,0 +1,34 @@
+OpportunityBase:
+  type: object
+  properties:
+    name:
+      type: string
+      maxLength: 100
+      description: "Nome da oportunidade"
+    parent:
+      description: "Identificado da oportunidade pai"
+      type: string
+      format: uuid
+    space:
+      description: "Identificador do espaço da oportunidade"
+      type: string
+      format: uuid
+    initiative:
+      description: "Identificador da iniciativa da oportunidade"
+      type: string
+      format: uuid
+    event:
+      description: "Identificador do evento da oportunidade"
+      type: string
+      format: uuid
+    createdBy:
+      description: "Identificador do agente criador da oportunidade"
+      type: string
+      format: uuid
+    extraFields:
+      type: object
+      description: "Os campos extras da oportunidade"
+      properties:
+        key:
+          type: string
+          description: 'Valor da chave'

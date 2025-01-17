@@ -1,0 +1,30 @@
+EventBase:
+  type: object
+  properties:
+    name:
+      type: string
+      maxLength: 100
+      description: "Nome do evento"
+    agentGroup:
+      type: string
+      format: uuid
+      description: "Grupo de agentes do evento"
+    space:
+      type: string
+      format: uuid
+      description: "Espaço do evento"
+    initiative:
+      type: string
+      format: uuid
+      description: "Iniciativa do evento"
+    parent:
+      type: string
+      format: uuid
+      description: "Evento pai"
+    extraFields:
+      type: object
+      nullable: true
+    createdBy:
+      type: string
+      format: uuid
+      description: "Identificador do agente criador do evento"

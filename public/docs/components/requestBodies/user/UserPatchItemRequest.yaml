@@ -1,5 +1,3 @@
 type: object
-properties:
-  image:
-    type: string
-    description: "Imagem do perfil do usuário codificada em Base64"
+allOf:
+  - $ref: './CommonDefinitions.yaml#/UserBase'

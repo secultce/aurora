@@ -1,17 +1,9 @@
 type: object
-properties:
-  id:
-    type: string
-    format: uuid
-    description: "Identificador da Faq"
-  question:
-    type: string
-    maxLength: 255
-    description: "Descrição da pergunta"
-  answer:
-    type: string
-    maxLength: 255
-    description: "Descrição da resposta"
-  active:
-    description: "Se a pergunta frequente está ativa ou não"
-    type: boolean
+allOf:
+  - type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        description: "Identificador da Faq"
+  - $ref: './CommonDefinitions.yaml#/FaqBase'

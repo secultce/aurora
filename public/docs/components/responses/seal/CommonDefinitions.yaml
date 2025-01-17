@@ -1,0 +1,53 @@
+SealBase:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "Identificador do selo"
+      example: "123e4567-e89b-12d3-a456-426614174000"
+    name:
+      type: string
+      maxLength: 100
+      description: "Nome do selo"
+      example: "Selo de reconhecimento"
+    description:
+      type: string
+      maxLength: 255
+      description: "Descrição do selo"
+      example: "Selo que destaca eventos com impacto em comunidades locais."
+    active:
+      type: boolean
+      description: "Identificador se o selo está ativo ou não"
+      example: false
+    createdBy:
+      type: object
+      description: "Usuário que criou o selo"
+      properties:
+        id:
+          type: string
+          format: uuid
+          example: "123e4567-e89b-12d3-a456-426614174000"
+          description: "Identificador do usuário"
+    expirationDate:
+      type: string
+      format: date-time
+      example: "2024-07-10T11:30:00+00:00"
+      description: "Data de expiração do selo"
+    createdAt:
+      type: string
+      format: date-time
+      example: "2024-07-10T11:30:00+00:00"
+      description: "Data e hora da criação da oportunidade"
+    updatedAt:
+      type: string
+      format: date-time
+      example: "2024-07-10T11:30:00+00:00"
+      nullable: true
+      description: "Data e hora da última atualização da oportunidade"
+    deletedAt:
+      type: string
+      format: date-time
+      example: "2024-07-10T11:30:00+00:00"
+      nullable: true
+      description: "Data e hora da exclusão da oportunidade"

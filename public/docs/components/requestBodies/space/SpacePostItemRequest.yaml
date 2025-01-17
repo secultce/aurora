@@ -1,29 +1,9 @@
 type: object
-properties:
-  id:
-    type: string
-    format: uuid
-    description: "Identificador do espaço"
-  name:
-    type: string
-    maxLength: 100
-    description: "Nome do espaço"
-  image:
-    type: string
-    format: base64url
-    description: "Imagem do perfil do espaço codificada em Base64"
-  createdBy:
-    description: "Identificador do agente criador do espaço"
-    type: string
-    format: uuid
-  parent:
-    description: "Identificador do espaço pai"
-    type: string
-    format: uuid
-  extraFields:
-    type: object
-    description: "Os campos extras do espaço"
+allOf:
+  - type: object
     properties:
-      key:
+      id:
         type: string
-        description: 'Valor da chave'
+        format: uuid
+        description: "Identificador do espaço"
+  - $ref: './CommonDefinitions.yaml#/SpaceBase'

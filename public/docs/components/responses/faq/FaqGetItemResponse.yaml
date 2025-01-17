@@ -1,26 +1,3 @@
 type: object
-properties:
-  id:
-    type: string
-    format: uuid
-    description: "Identificador da Faq"
-  question:
-    type: string
-    maxLength: 255
-    description: "Descrição da pergunta"
-  answer:
-    type: string
-    maxLength: 255
-    description: "Descrição da resposta"
-  active:
-    description: "Se a pergunta frequente está ativa ou não"
-    type: boolean
-  createdAt:
-    type: string
-    format: date-time
-    description: "Data e hora da criação da Faq"
-  updatedAt:
-    type: string
-    format: date-time
-    nullable: true
-    description: "Data e hora da última atualização da Faq"
+allOf:
+  - $ref: './CommonDefinitions.yaml#/FaqBase'
