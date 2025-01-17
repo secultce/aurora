@@ -81,6 +81,7 @@ delete: Delete
 details: Details
 deleted: Deleted
 description: Description
+device: Device
 discover: Discover
 does_not_expire: does not expire
 downloadable-files: Downloadable Files
@@ -262,6 +263,9 @@ transsexual: Transsexual
 transvestite: Transvestite
 title: Title
 theater: Theater
+The resource was created: The entity was created
+The resource was updated: The entity was updated
+The resource was deleted: The entity was deleted
 type: Type
 type_here: Type here
 type_agent: Agent type

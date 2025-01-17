@@ -8,7 +8,7 @@ describe('Painel de Controle - Página de timeline dos Eventos', () => {
 
         cy.get('h2').contains('Evento - Festival da Rapadura - Timeline').should('be.visible');
         cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
-        cy.get('tr > :nth-child(1) > a').contains('The resource was created').should('be.visible');
+        cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');
         cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
         cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
         cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible');
