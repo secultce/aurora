@@ -1,0 +1,5 @@
+<div class="border border-black rounded p-4">
+    <p><strong>{{ 'phase' | trans }}:</strong> {{ phase.name }}</p>
+    <p><strong>{{ 'type' | trans }}:</strong> {{ phase.description }}</p>
+    <p class="mb-0"><strong>{{ 'analysis' | trans }}:</strong> {{ phase.startDate | date('d/m/Y') }} {{ 'to'|trans }} {{ phase.endDate | date('d/m/Y') }}</p>
+</div>

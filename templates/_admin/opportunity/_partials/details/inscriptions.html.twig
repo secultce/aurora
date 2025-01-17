@@ -18,7 +18,7 @@
                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                     <td>{{ item.status ? 'view.opportunity_admin.inscriptions.status.active'|trans : 'view.opportunity_admin.inscriptions.status.inactive'|trans }}</td>
                     <td>
-                        <a href="#" class="btn btn-outline-info btn-sm">{{ 'view.opportunity_admin.inscriptions.see_inscription' | trans }}</a>
+                        <a href="{{ path('admin_registration_get', {id: item.id}) }}" class="btn btn-outline-info btn-sm">{{ 'view.opportunity_admin.inscriptions.see_inscription' | trans }}</a>
                     </td>
                 </tr>
             {% endfor %}

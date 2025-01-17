@@ -136,4 +136,16 @@ class InscriptionOpportunityServiceTest extends AbstractWebTestCase
             );
         }
     }
+
+    public function testFindInscriptionWithDetails(): void
+    {
+        $inscriptionId = '45353ecd-b034-41d7-9fd4-baa813d7db17';
+
+        $inscription = $this->service->findInscriptionWithDetails(Uuid::fromRfc4122($inscriptionId));
+
+        self::assertEquals($inscription['id'], $inscriptionId);
+        self::assertEquals($inscription['agent']['name'], 'Raquel');
+        self::assertEquals($inscription['opportunity']['name'], 'Inscrição para o Concurso de Cordelistas - Festival de Literatura Nordestina');
+        self::assertEquals($inscription['lastPhase']['name'], 'Fase de recurso');
+    }
 }

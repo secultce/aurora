@@ -189,4 +189,15 @@ readonly class InscriptionOpportunityService extends AbstractEntityService imple
     {
         return $this->repository->findRecentByUser($userId, $limit);
     }
+
+    public function findInscriptionWithDetails(Uuid $identifier): array
+    {
+        $inscription = $this->repository->findInscriptionWithDetails($identifier, $this->security->getUser()->getAgents()->getValues());
+
+        if (null === $inscription) {
+            throw new InscriptionOpportunityResourceNotFoundException();
+        }
+
+        return $inscription;
+    }
 }
