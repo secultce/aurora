@@ -81,6 +81,7 @@ delete: Excluir
 details: Detalhes
 deleted: Excluídos
 description: Descrição
+device: Dispositivo
 discover: Descubra
 does_not_expire: não expira
 downloadable-files: Arquivos para download
@@ -261,6 +262,9 @@ title: Titulo
 transsexual: Transexual
 transvestite: Travesti
 theater: Teatro
+The resource was created: A entidade foi criada
+The resource was updated: A entidade foi atualizada
+The resource was deleted: A entidade foi excluída
 type: Tipo
 type_here: Digite aqui
 type_agent: Tipo de agente

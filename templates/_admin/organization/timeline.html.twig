@@ -36,7 +36,7 @@
                             <tbody>
                             {% for item in events %}
                                 <tr>
-                                    <td><a href="#">{{ item.title }}</a></td>
+                                    <td><a href="#">{{ item.title | trans }}</a></td>
                                     <td>{{ item.datetime.format('d/m/Y H:i:s') }}</td>
                                     <td>{{ item.device }}</td>
                                     <td></td>
