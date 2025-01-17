@@ -75,6 +75,7 @@ cultural_language: Lenguaje cultural
 cultural_languages: Lenguajes culturales
 
 date_created: Fecha de creación
+date: Fecha
 dashboard: Panel de Control
 draft: En borrador
 delete: Eliminar
@@ -88,6 +89,7 @@ downloadable-files: Archivos Descargables
 edit: Editar
 edit_faq: Editar preguntas frecuentes
 edit_seals: Editar sellos
+edit_space: Editar espacio
 email: Correo Electrónico
 entity_banner: Banner de la Entidad
 entity: Entidad

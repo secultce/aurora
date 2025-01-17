@@ -498,6 +498,8 @@ export declare const VIEW_AGENT_PROFILE_ORGANIZATION_PHOTO: Message<{ 'messages'
 export declare const VIEW_AGENT_PROFILE_PROFILE_CHANGE_HISTORY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_PROFILE_REPORT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_PROFILE_ROLES_IN_CULTURE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_AGENT_PROFILE_VIEW_OPPORTUNITIES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_AGENT_PROFILE_NO_REGISTRATIONS_MESSAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_CREATE_CREATION_INDIVIDUAL_AGENT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_CREATE_AGENT_INFORMATION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_CREATE_MANDATORY_FIELDS_MESSAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
