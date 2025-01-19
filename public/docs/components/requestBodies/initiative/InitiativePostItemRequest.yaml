@@ -1,29 +1,9 @@
 type: object
-properties:
-  id:
-    type: string
-    format: uuid
-    description: "Identificador da iniciativa"
-  name:
-    type: string
-    maxLength: 100
-    description: "Nome do Iniciativa"
-  parent:
-    description: "Identificador da iniciativa pai"
-    type: string
-    format: uuid
-  space:
-    description: "Identificador do espaço ao qual a iniciativa pertence"
-    type: string
-    format: uuid
-  createdBy:
-    description: "Identificador do agente criador da iniciativa"
-    type: string
-    format: uuid
-  extraFields:
-    type: object
-    description: "Os campos extras da iniciativa"
+allOf:
+  - type: object
     properties:
-      key:
+      id:
         type: string
-        description: 'Valor da chave'
+        format: uuid
+        description: "Identificador da iniciativa"
+  - $ref: './CommonDefinitions.yaml#/InitiativeBase'

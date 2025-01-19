@@ -1,0 +1,14 @@
+FaqBase:
+  type: object
+  properties:
+    question:
+      type: string
+      maxLength: 255
+      description: "Descrição da pergunta"
+    answer:
+      type: string
+      maxLength: 255
+      description: "Descrição da resposta"
+    active:
+      description: "Se a pergunta frequente está ativa ou não"
+      type: boolean

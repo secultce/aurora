@@ -1,0 +1,25 @@
+SealBase:
+  type: object
+  properties:
+    name:
+      type: string
+      maxLength: 100
+      description: "Nome do selo"
+      example: "Selo de reconhecimento"
+    description:
+      type: string
+      maxLength: 255
+      description: "Descrição do selo"
+      example: "Selo que destaca eventos com impacto em comunidades locais."
+    active:
+      type: boolean
+      description: "Identificador se o selo está ativo ou não"
+      example: false
+    createdBy:
+      description: "Usuário que criou o selo"
+      type: string
+      format: uuid
+    expirationDate:
+      $ref: '../../common-types/date.yaml'
+      description: "Data de expiração do selo"
+

@@ -1,39 +1,9 @@
 type: object
-properties:
-  id:
-    type: string
-    format: uuid
-    description: "Identificador da fase"
-  name:
-    type: string
-    maxLength: 100
-    description: "Nome da fase"
-  description:
-    type: string
-    description: "Descrição da fase"
-  startDate:
-    type: string
-    format: date
-    description: "Data de começo da fase"
-  endDate:
-    type: string
-    format: date
-    description: "Data final da fase"
-  status:
-    type: boolean
-    description: "Valor boolean do status"
-    example: false
-  sequence:
-    type: integer
-    description: "Número de sequência"
-  createdBy:
-    type: string
-    format: uuid
-    description: "Identificador do agente"
-  extraFields:
-    type: object
-    description: "Os campos extras do espaço"
+allOf:
+  - type: object
     properties:
-      key:
+      id:
         type: string
-        description: 'Valor da chave'
+        format: uuid
+        description: "Identificador da fase"
+  - $ref: './CommonDefinitions.yaml#/PhaseBase'

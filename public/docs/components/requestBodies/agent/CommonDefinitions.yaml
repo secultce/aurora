@@ -1,0 +1,38 @@
+AgentBase:
+  type: object
+  properties:
+    name:
+      type: string
+      maxLength: 100
+      description: "Nome do agente"
+    image:
+      type: string
+      description: "Imagem do perfil do agente codificada em Base64"
+    shortBio:
+      type: string
+      maxLength: 100
+      description: "Descrição curta do agente"
+    longBio:
+      type: string
+      maxLength: 255
+      description: "Descrição longa do agente"
+    culture:
+      type: boolean
+      description: "Se o agente é cultural"
+    main:
+      type: boolean
+      description: "Se é o agente principal do usuario"
+    extraFields:
+      type: object
+      description: "Os campos extras do agente"
+      properties:
+        key:
+          type: string
+          description: 'Valor da chave'
+    organization:
+      type: array
+      items:
+        type: string
+        format: uuid
+        description: "Identificador da organização"
+      description: "Organização do agente"

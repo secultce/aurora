@@ -1,0 +1,40 @@
+UserBase:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "Identificador do usuário"
+    firstname:
+      type: string
+      maxLength: 50
+      description: "Primeiro nome do usuário"
+    lastname:
+      type: string
+      maxLength: 50
+      description: "Segundo nome do usuário"
+    socialName:
+      type: string
+      maxLength: 100
+      description: "Nome social do usuário"
+    image:
+      type: string
+      maxLength: 100
+      description: "URL da imagem do perfil do usuário"
+    agents:
+      type: array
+      description: "Agente padrão do usuário"
+    createdAt:
+      type: string
+      format: date-time
+      description: "Data e hora da criação do usuário"
+    updatedAt:
+      type: string
+      format: date-time
+      nullable: true
+      description: "Data e hora da última atualização do usuário"
+    deletedAt:
+      type: string
+      format: date-time
+      nullable: true
+      description: "Data e hora da exclusão do usuário"
