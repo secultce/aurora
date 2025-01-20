@@ -1,0 +1,22 @@
+label[for^=add-][for$=-btn] {
+    font-weight: bold;
+}
+
+.remove-button > .material-icons {
+    text-shadow: #000 0 0 4px;
+}
+
+#cover-image {
+    height: 200px;
+}
+#profile-image {
+    height: 120px;
+    width: 120px;
+    transform: translateY(-50%);
+    position: relative;
+    border-radius: 50% !important;
+    margin-left: 2rem;
+}
+#profile-image > img {
+    border-radius: 50% !important;
+}

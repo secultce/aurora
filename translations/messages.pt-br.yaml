@@ -34,6 +34,7 @@ areas_of_expertise: Áreas de Atuação
 areas_of_interest: Áreas de interesse
 analysis: Período de Análise
 auditory: Auditiva
+audio_description: Audiodescrição
 asian: Amarelo
 apply_filter: Aplicar Filtros
 attachments_and_links: Anexos e links
@@ -100,6 +101,7 @@ edit: Editar
 edit_faq: Editar FAQ
 edit_seals: Editar Selos
 edit_space: Editar Espaços
+edit_event: Editar Evento
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
@@ -506,10 +508,25 @@ view:
       error:
         user_not_logged: Para criar um evento é necessário estar logado.
       short_bio: Adicione uma breve descrição do evento.
+    edit:
+      about_event: Informações sobre o evento
+      event_subtitle: Subtítulo do evento
+      maximum_capacity: Capacidade máxima de pessoas
+      inscription_information: Informações sobre a inscrição
+      occurrence_title: Data, hora e local do evento
+      occurrence_description: Adicione data, hora e local da ocorrência do seu evento. Vocês pode criar várias ocorrências com informações diferentes. Os dados abaixo serão exibidos para todos os usuários da plataforma
+
+      phone_to_information: Telefone para informações
+      presentation: Informações de apresentação
+      presentation_description: Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
+      public_info:
+        presentation_info:
+          add_cover_image: adicionar imagem da capa
     format_datetime: d/m/Y \à\s h:i:s
     id: ID do evento
     message:
       deleted: O Evento foi excluído
+      updated: A oportunidade foi atualizada com sucesso
       without_initiative: Nenhuma iniciativa vinculada a este evento
     not_set_datetime: Data e hora não definidas
     quantity:

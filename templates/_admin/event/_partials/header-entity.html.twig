@@ -1,0 +1,25 @@
+<section class="white-square">
+    {% include '_components/breadcrumb.html.twig' with {
+        items: [
+            {text: 'control_panel'|trans, path: path('admin_dashboard')},
+            {text: 'my_events'|trans, path: path('admin_event_list')},
+            {text: event.name, path: path("admin_event_#{action}", {id: event.id})},
+        ]
+    } %}
+
+    <div class="pt-5 row m-auto page-title">
+        <h2>{{ event.name }}</h2>
+    </div>
+
+    <div class="entity-container pt-4 m-auto">
+        {% include '_components/tabs/tab.html.twig' with {
+            tabs: [
+                { id: 'general_info', title: 'general_data'|trans },
+                { id: 'seals', title: 'seals'|trans },
+                { id: 'people', title: 'peoples'|trans },
+                { id: 'initiatives', title: 'initiatives'|trans },
+                { id: 'evidences', title: 'evidences'|trans },
+            ]
+        } %}
+    </div>
+</section>

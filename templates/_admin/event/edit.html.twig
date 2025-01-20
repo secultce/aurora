@@ -1,0 +1,56 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'events'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href={{ asset('styles/pages/event-edit.css') }}>
+{% endblock %}
+
+{% block content %}
+    {% include '_admin/event/_partials/header-entity.html.twig' with {
+        event: event,
+        action: 'edit',
+    }%}
+
+
+    <form action="{{ path('admin_event_update', {'id' : event.id}) }}" method="POST" enctype="multipart/form-data">
+        {% include '_components/tabs/content-tabs.html.twig' with {
+            tabs: [
+                {
+                    id: 'general_info',
+                    content: include ('_admin/event/_partials/tabs/general-data.html.twig'),
+                },
+                {
+                    id: 'seals',
+                    content: include ('_admin/event/_partials/tabs/general-data.html.twig')
+                },
+            ],
+        } %}
+
+        <section class="bg-primary text-white mt-5 sticky-bottom">
+            <div class="entity-container mx-auto py-4 d-flex gap-3">
+                <button class="btn btn-outline-light" type="submit" name="deletedAt" value="now">
+                    <i class="material-icons">delete</i>
+                    Excluir
+                </button>
+                <button class="btn btn-outline-light" type="submit" name="status" value="-1">
+                    <i class="material-icons">archive</i>
+                    Arquivar
+                </button>
+                <button class="btn btn-outline-light" type="submit" name="status" value="0">Salvar como rascunho</button>
+                <button class="btn btn-outline-light" type="submit" name="status" value="1">Salvar e Publicar</button>
+            </div>
+        </section>
+    </form>
+
+
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-confirm-remove.js') }}"></script>
+    <script src="{{ asset('js/_components/tags-selector.js') }}"></script>
+    <script src="{{ asset('js/_components/forms/image-with-preview.js') }}"></script>
+    <script type="module" src="{{ asset('js/event/edit.js') }}"></script>
+{% endblock %}
