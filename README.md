@@ -24,6 +24,7 @@ A configuração já está dockerizada, então você só precisa ter o Docker Co
 - [Enums](./help/ENUM.md)
 - [Arquitetura da Aplicação](./help/README.md)
 - [Comandos do terminal](./help/COMMANDS.md)
+- [Regras de Negócio/Fluxo da Oportunidade](./help/business-rules/opportunity.md)
 
 ## Instalação 
 <details>
