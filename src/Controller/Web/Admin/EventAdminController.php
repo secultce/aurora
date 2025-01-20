@@ -15,6 +15,7 @@ use TypeError;
 class EventAdminController extends AbstractAdminController
 {
     private const VIEW_ADD = 'event/create.html.twig';
+    private const VIEW_EDIT = 'event/edit.html.twig';
 
     public function __construct(
         private EventServiceInterface $service,
@@ -84,5 +85,11 @@ class EventAdminController extends AbstractAdminController
         }
 
         return $this->list();
+    }
+
+    public function edit(?Uuid $id, Request $request): Response
+    {
+        $event = $this->service->get($id);
+        return $this->render(self::VIEW_EDIT, ['event' => $event]);
     }
 }

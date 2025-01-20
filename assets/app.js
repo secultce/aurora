@@ -25,6 +25,8 @@ import './js/navbar-dropdown.js';
 
 import 'aurora-user-interface/dist/js/bootstrap.min.js';
 
+import '@popperjs/core';
+
 import '@iconify/iconify';
 
 import { Toast } from 'aurora-user-interface';

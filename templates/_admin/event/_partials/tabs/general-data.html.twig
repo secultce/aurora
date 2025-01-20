@@ -1,0 +1,310 @@
+<section class="entity-container mx-auto">
+    <p class="mt-4">
+        Campos marcados com
+        <small class="text-danger">*</small>
+        são de preenchimento obrigatório.
+    </p>
+    <fieldset class="bg-white rounded-1">
+        <legend class="fw-bold m-4">{{'view.event.edit.presentation' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-4">
+            <p>
+                {{ 'view.event.edit.presentation_description' |trans}}
+            </p>
+
+            <hr class="mb-3">
+
+            <label class="border rounded-2 w-100 d-flex align-items-center justify-content-center position-relative btn" style="height: 200px">
+                <input type="file" name="coverImage" id="cover-image" class="d-none" onchange="previewImage(this)" accept="image/*" data-preview-classes="w-100 h-100 position-absolute object-fit-cover">
+                <span class="fw-bold text-primary d-flex justify-content-center align-items-center gap-1"><i class="material-icons">add_a_photo</i>{{ 'view.event.edit.public_info.presentaion_info.add_cover_image'|trans }}</span>
+
+                {% if event.extraFields.coverImage|default is not empty %}
+                    <img
+                            src="{{ event.extraFields.coverImage }}"
+                            class="image-preview w-100 h-100 position-absolute object-fit-cover rounded-circle"
+                            alt="{{ event.extraFields.coverImage }} | {{ 'cover_image'|trans }}"
+                    />
+                    <button type="button" class="remove-button btn text-danger position-absolute fs-6 z-3 py-0 px-1" onclick="removeImage(this.parentElement)" style="line-height: 1;">
+                        <i class="material-icons">backspace</i>
+                    </button>
+                {% endif %}
+            </label>
+
+            <label class="ms-3 mb-3 bg-white border rounded-circle d-flex align-items-center justify-content-center position-relative btn" style="width:120px;height: 120px;transform: translateY(-50%);">
+                <input type="file" name="image" id="profile-image" class="d-none" onchange="previewImage(this)" accept="image/*" data-preview-classes="w-100 h-100 position-absolute object-fit-cover rounded-circle">
+                <span class="fw-bold text-primary d-flex justify-content-center align-items-center gap-1"><i class="material-icons">add_a_photo</i></span>
+
+                {% if event.image is not empty %}
+                    <img
+                            src="{{ event.image }}"
+                            class="image-preview w-100 h-100 position-absolute object-fit-cover rounded-circle"
+                            alt="{{ event.name }} | {{ 'profile_picture'|trans }}"
+                    />
+                    <button type="button" class="remove-button btn text-danger position-absolute fs-6 z-3 py-0 px-1" onclick="removeImage(this.parentElement)" style="line-height: 1;">
+                        <i class="material-icons">backspace</i>
+                    </button>
+                {% endif %}
+            </label>
+
+            <div class="mt-0">
+                <label class="fw-bold d-block">
+                    {{ 'name_event'| trans }}
+                    <small class="text-danger">*</small>
+                </label>
+                <input class="form-control mt-2">
+            </div>
+
+            <div class="mt-4">
+                <label class="fw-bold d-block">
+                    {{ 'view.event.edit.event_subtitle'| trans }}
+                    <small class="text-danger">*</small>
+                </label>
+                <input class="form-control mt-2">
+            </div>
+
+            <div class="mt-4 fw-bold">
+                {% include '_components/tags-selector.html.twig' with {
+                    inputName: 'cuturalArea',
+                    inputLabel: 'cultural_languages' | trans,
+                    items: [
+                        { value: 'Artesanato', label: 'Artesanato' },
+                        { value: 'Cinema', label: 'Cinema' },
+                        { value: 'Dança', label: 'Dança' },
+                        { value: 'Fotografia', label: 'Fotografia' },
+                        { value: 'Outros', label: 'Outros' },
+                    ],
+                    tags:[],
+                    required: true,
+                }%}
+            </div>
+
+            <div class="mt-4 fw-bold">
+                {% include '_components/tags-selector.html.twig' with {
+                    inputName: 'tags',
+                    inputLabel: 'tags' | trans,
+                    items: [
+                        { value: 'Artesanato', label: 'Artesanato' },
+                        { value: 'Cinema', label: 'Cinema' },
+                        { value: 'Dança', label: 'Dança' },
+                        { value: 'Fotografia', label: 'Fotografia' },
+                        { value: 'Outros', label: 'Outros' },
+                    ],
+                    tags:[],
+                    required: true,
+                }%}
+            </div>
+
+            <div class="mt-4 mb-lg-1">
+                <label class="fw-bold d-block">
+                    {{ 'short_description'| trans }}
+
+                </label>
+                <textarea id="promotion-object" class="form-control mt-2" name="promotionObject" style="height: 100px" placeholder="Digite"></textarea>
+            </div>
+
+            <div class="mt-4">
+                <label class="fw-bold d-block">
+                    {{ 'long_description'| trans }}
+
+                </label>
+                <textarea id="promotion-object" class="form-control mt-2" name="promotionObject" style="height: 200px" placeholder="Digite"></textarea>
+            </div>
+
+            <h6 class="mt-5 fw-bold">{{ 'site'| trans }}</h6>
+
+            <div class="row mb-4">
+
+                <div class="col-md-6">
+                    <label>
+                        Link (URL):
+                    </label>
+                    <input class="form-control mt-2" placeholder="https://www.site.com">
+                </div>
+
+                <div class="col-md-6">
+                    <label>
+                        Descrição do link:
+                    </label>
+                    <input class="form-control mt-2" placeholder="Digite">
+                </div>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+
+    <fieldset class="bg-white rounded-1 mt-4">
+
+        <legend class="fw-bold m-4">{{'view.event.edit.about_event' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-4 mb-5">
+            <p>
+                Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
+            </p>
+
+            <hr>
+
+            <div class="row">
+
+                <div class="col-md-4">
+                    <label class="fw-bold d-block">
+                        {{ 'age_rating'| trans }}
+                        <small class="text-danger">*</small>
+                    </label>
+                    <select class="form-select"></select>
+                </div>
+
+                <div class="col-md-5">
+                    <label class="fw-bold d-block">
+                        {{ 'view.event.edit.maximum_capacity'| trans }}
+                    </label>
+                    <input class="form-control">
+                </div>
+
+                <div class="col-md-5">
+                    <label class="fw-bold d-block">
+                        {{ 'view.event.edit.phone_to_information'| trans }}
+                    </label>
+                    <input class="form-control">
+                </div>
+
+            </div>
+
+            <div class="col-md-12 mt-4">
+                <label class="fw-bold d-block">
+                    {{ 'age_rating'| trans }}
+                    <small class="text-danger">*</small>
+                </label>
+                <select class="form-select"></select>
+            </div>
+
+            <hr>
+
+            <h6 class="fw-bold mt-5">{{ 'accessibility'| trans }}</h6>
+
+            <div>
+                <h6 class="fw-bold mt-3">Libras</h6>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="libras_yes" class="form-check-input" name="libras">
+                    <label class="form-check-label" for="libras_yes">Sim</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio"  id="libras_no" class="form-check-input" name="libras">
+                    <label class="form-check-label" for="libra_no">Não</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="libras_not_informed" class="form-check-input" name="libras">
+                    <label class="form-check-label" for="libras_not_informed">Não informado</label>
+                </div>
+
+            </div>
+
+            <div>
+                <h6 class="fw-bold mt-3">{{ 'audio_description'| trans }}</h6>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="audio_descriptio_yes" class="form-check-input" name="audio_description">
+                    <label class="form-check-label" for="libras_yes">Sim</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio"  id="audio_descriptio_no" class="form-check-input" name="audio_description">
+                    <label class="form-check-label" for="libra_no">Não</label>
+                </div>
+
+                <div class="form-check form-check-inline">
+                    <input type="radio" id="audio_descriptio_not_informed" class="form-check-input" name="audio_description">
+                    <label class="form-check-label" for="libras_not_informed">Não informado</label>
+                </div>
+
+            </div>
+
+        </div>
+
+    </fieldset>
+
+    <fieldset class="bg-white rounded-1 mt-4">
+        <legend class="fw-bold m-4">{{'view.event.edit.occurrence_title' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-5 mb-5">
+            <p>{{ 'view.event.edit.occurrence_description'| trans }}</p>
+        </div>
+    </fieldset>
+
+    <fieldset class="bg-white rounded-1 mt-4">
+
+        <legend class="fw-bold m-4">{{'social_media' | trans}}</legend>
+
+        <hr>
+
+        <div class="px-4 mb-5">
+            <p>{{ 'social_media'| trans }}</p>
+
+            <div class="flex flex-wrap gap-2">
+
+                <div class="fit-content">
+                    <label class="fw-bold d-block">
+                        Instagram
+                    </label>
+                    <input class="form-control">
+                </div>
+
+                <div class="fit-content">
+                    <label class="fw-bold d-block">
+                        X(antigo twitter)
+                    </label>
+                    <input class="form-control">
+                </div>
+
+                <div class="fit-content">
+                    <label class="fw-bold d-block">
+                        Facebook
+                    </label>
+                    <input class="form-control">
+                </div>
+
+            </div>
+
+        </div>
+    </fieldset>
+
+</section>
+
+<script>
+    const previewImage = target => {
+        const [file] = target.files;
+        if (file) {
+            const previewImg = target.parentElement.querySelector('.image-preview') ?? document.createElement('img');
+            previewImg.src = URL.createObjectURL(file);
+            previewImg.className = "image-preview " + target.dataset.previewClasses;
+
+            const removeButton = target.parentElement.querySelector('.remove-button') ?? document.createElement('button');
+            removeButton.className = "btn text-danger position-absolute fs-6 z-3 py-0 px-1";
+            removeButton.style.lineHeight = 1;
+            removeButton.innerHTML = '<i class="material-icons">backspace</i>';
+            removeButton.addEventListener('click', function (evt) {
+                evt.preventDefault();
+                removeImage(removeButton.parentElement);
+            });
+
+            target.parentElement.appendChild(previewImg);
+            target.parentElement.appendChild(removeButton);
+        }
+    }
+
+    const removeImage = (label) => {
+        label.querySelector('input[type=file]').value = '';
+        label.querySelector('.image-preview').remove();
+        label.querySelector('.remove-button').remove();
+    }
+</script>
