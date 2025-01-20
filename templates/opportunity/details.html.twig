@@ -12,8 +12,9 @@
 {% block content %}
     <div class="container-fluid px-0 bg-white shadow position-relative">
         <img
-            class="img-fluid w-100"
-            src="{{ opportunity.extraFields.coverImage is defined ? opportunity.extraFields.coverImage : asset('img/entity-cover-image.png') }}"
+            class="w-100 object-fit-cover bg-white"
+            style="aspect-ratio: 5.65"
+            src="{{ opportunity.extraFields.coverImage ?? asset('img/entity-cover-image.png') }}"
             alt="{{ 'opportunity'|trans }} | {{ 'cover_image'|trans }}"
         >
 
@@ -27,7 +28,7 @@
 
         <div class="container position-relative">
             <div class="d-flex mb-3 entity-info-wrapper">
-                <img class="entity-image rounded-circle" src="{{ asset('img/entity-image.png') }}" alt="{{ 'opportunity'|trans }} | {{ 'image'|trans }}">
+                <img class="entity-image rounded-circle bg-white" src="{{ opportunity.image ?? asset('img/entity-image.png') }}" alt="{{ 'opportunity'|trans }} | {{ 'image'|trans }}">
 
                 <h2 class="name__entity-details fw-bold ms-2 mt-2 ms-sm-4 mt-sm-3">{{ opportunity.name }}</h2>
 

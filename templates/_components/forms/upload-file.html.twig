@@ -1,0 +1,9 @@
+<div id="{{ inputName }}-component">
+    <div class="container uploaded-files"></div>
+    <label for="{{ inputName }}" class="btn btn-outline-primary">
+        <i class="material-icons">upload</i>
+        {{ 'add'|trans }}
+        <input type="file" id="{{ inputName }}" class="d-none upload-file" data-input-name="{{ inputName }}" {{ acceptType is defined ? 'accept="'~acceptType~'"' : ''}} multiple/>
+    </label>
+    <input type="file" name="{{ inputName }}" class="d-none" {{ acceptType is defined ?  'accept="'~acceptType~'"' : ''}} multiple/>
+</div>

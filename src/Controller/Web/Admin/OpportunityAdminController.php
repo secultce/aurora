@@ -16,6 +16,7 @@ use App\Service\Interface\OpportunityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -63,6 +64,39 @@ class OpportunityAdminController extends AbstractAdminController
         ]);
     }
 
+    public function edit(?Uuid $id, Request $request): Response
+    {
+        if ('GET' === $request->getMethod()) {
+            $opportunity = $this->service->get($id);
+            return $this->render('opportunity/edit.html.twig', [
+                'opportunity' => $opportunity,
+            ]);
+        }
+
+        $data = $request->request->all();
+        $files = $request->files->all();
+
+        $data['extraFields']['links'] = array_filter(
+            $data['extraFields']['links'],
+            fn ($link) => '' !== $link['name'] || '' !== $link['url'],
+        );
+
+        $data['extraFields']['videos'] = array_filter(
+            $data['extraFields']['videos'],
+            fn ($video) => '' !== $video['name'] || '' !== $video['url'],
+        );
+
+        $this->service->update($id, $data);
+        if ($files['image'] instanceof UploadedFile) {
+            $this->service->updateImage($id, $files['image']);
+        }
+        if ($files['extraFields']['coverImage'] instanceof UploadedFile) {
+            $this->service->updateCoverImage($id, $files['extraFields']['coverImage']);
+        }
+
+        return $this->redirectToRoute('admin_opportunity_list');
+    }
+
     public function remove(?Uuid $id): Response
     {
         $this->service->remove($id);
@@ -75,8 +109,12 @@ class OpportunityAdminController extends AbstractAdminController
     {
         $data = $request->request->all();
 
-        $data['extraFields']['culturalArea'] = $data['culturalArea'] ?? null;
-        unset($data['culturalArea']);
+        [$entity ,$associatedEntity] = explode('_', $data['entity']);
+        $data[$entity] = $associatedEntity;
+        unset($data['entity']);
+
+        $data['extraFields']['areasOfActivity'] = $data['areasOfActivity'] ?? null;
+        unset($data['areasOfActivity']);
 
         try {
             $this->service->create($data);

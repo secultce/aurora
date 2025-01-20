@@ -3,10 +3,6 @@
     width: unset !important;
 }
 
-.navbar {
-    position: relative;
-}
-
 .navbar-icons {
     display: flex;
     justify-content: center;

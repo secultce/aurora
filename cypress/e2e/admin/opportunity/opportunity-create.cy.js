@@ -1,4 +1,4 @@
-describe('Painel de Controle - Página de criar Iniciativas', () => {
+describe('Painel de Controle - Página de criar Oportunidades', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('talysonsoares@example.com', 'Aurora@2024');
@@ -25,8 +25,8 @@ describe('Painel de Controle - Página de criar Iniciativas', () => {
         cy.get('label:contains("Agente Responsável")').should('be.visible');
         cy.get('select#opportunityCreatedBy').should('be.visible');
 
-        cy.get('label:contains("Áreas de interesse")').should('be.visible');
-        cy.get('button[id="add-culturalArea-btn"]').should('be.visible');
+        cy.get('label:contains("Áreas de Atuação")').should('be.visible');
+        cy.get('button[id="add-areasOfActivity-btn"]').should('be.visible');
 
         cy.get('label:contains("Imagem de capa")').should('be.visible');
         cy.get('input:file#opportunityCoverImage').should('be.visible');
