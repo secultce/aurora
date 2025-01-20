@@ -1,0 +1,4 @@
+timeline:
+  path: /{phaseId}/timeline
+  controller: App\Controller\Web\Admin\OpportunityPhaseAdminController::timeline
+  methods: ['GET']

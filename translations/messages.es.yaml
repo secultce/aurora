@@ -67,6 +67,8 @@ create_and_publish: Crear y publicar
 create_in_draft: Crear en borrador
 create_account: Crear Cuenta
 created_at: Creado en
+created_by: Creado por
+created_in: Creado en
 chain: Cadena
 change_email: Cambiar correo electrónico
 change_password: Cambiar la contraseña
@@ -147,6 +149,7 @@ is_itinerant: ¿Es agente itinerante?
 language: Idioma
 lastname: Apellido
 last_login: Último inicio de sesión
+last_updated: Última actualización
 linked_with: Vinculado Con
 link: Añadir Enlace
 list: Lista
@@ -232,6 +235,7 @@ postgraduate: Posgrado
 photo: Foto
 phase: Fase
 phases: Fases
+phase_timeline: Cronología de fases
 postal_code: Código Postal
 profile_picture: Foto de Perfil
 projects: Proyectos

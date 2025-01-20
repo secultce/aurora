@@ -23,6 +23,13 @@
                         <a href="#" class="btn btn-outline-info btn-sm">
                             {{ 'see_phase' | trans }}
                         </a>
+                        <a href="{{ path('admin_opportunity_phase_timeline', {
+                            opportunityId: opportunity.id,
+                            phaseId: phase.id
+                        }) }}"
+                           class="btn btn-outline-info btn-sm">
+                            Timeline
+                        </a>
                     </td>
                 </tr>
             {% else %}

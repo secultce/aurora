@@ -67,6 +67,8 @@ create_and_publish: Create and Publish
 create_in_draft: Create in Draft
 create_account: Create Account
 created_at: Created at
+created_by: Created by
+created_in: Created in
 chain: Chain
 change_email: Change email
 change_password: Change password
@@ -148,6 +150,7 @@ is_itinerant: Is it an itinerant agent?
 language: Language
 lastname: Last Name
 last_login: Last Login
+last_updated: Last update
 linked_with: Linked With
 link: Add Link
 list: List
@@ -233,6 +236,7 @@ postgraduate: Postgraduate
 photo: Photo
 phase: Phase
 phases: Phases
+phase_timeline: Phase Timeline
 postal_code: Postal Code
 profile_picture: Profile Picture
 projects: Projects
