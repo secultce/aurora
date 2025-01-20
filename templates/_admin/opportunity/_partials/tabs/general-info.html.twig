@@ -1,0 +1,108 @@
+<section class="entity-container mx-auto">
+    <p>Campos marcados com <small class="text-danger">*</small> são de preenchimento obrigatório.</p>
+    <fieldset class="bg-white p-5 rounded-1">
+        <legend class="fw-bold">{{ 'view.opportunity.general_info.modality_and_purpose.title'|trans }}</legend>
+
+        <hr>
+        <p>{{ 'view.opportunity.general_info.modality_and_purpose.description'|trans }}</p>
+
+        <div class="mt-5">
+            <label for="promotion-modality" class="fw-bold d-block">{{ 'view.opportunity.general_info.modality_and_purpose.modality.label'|trans }} <span class="text-danger">*</span></label>
+            <select name="extraFields[promotionModality]" id="promotion-modality" class="form-control mt-2">
+                {% for modality in ['Apoio a projetos culturais', 'Execução Cultural', 'Premiação Cultural', 'Bolsa Cultural', 'Apoio a espaços culturais', 'Termo de Ocupação Cultural', 'Termo de Cooperação Cultural'] %}
+                    <option {{ modality is same as opportunity.extraFields.promotionModality|default ? 'selected' : '' }}>{{ modality }}</option>
+                {% endfor %}
+            </select>
+            <p class="mt-2">{{ 'view.opportunity.general_info.modality_and_purpose.modality.description'|trans }}</p>
+        </div>
+
+        <div class="mt-4">
+            <label for="promotion-object" class="fw-bold">{{ 'view.opportunity.general_info.modality_and_purpose.object'|trans }} <span class="text-danger">*</span></label>
+            <textarea name="extraFields[promotionObject]" id="promotion-object" class="form-control" style="height: 100px" placeholder="{{ 'describe'|trans }}">{{ opportunity.extraFields.promotionObject|default }}</textarea>
+        </div>
+    </fieldset>
+
+    <fieldset class="bg-white p-5 rounded-1 mt-5">
+        <legend class="fw-bold">{{ 'view.opportunity.general_info.start_date.title'|trans }}</legend>
+
+        <hr>
+        <p>{{ 'view.opportunity.general_info.start_date.description'|trans }}</p>
+
+        <div class="mt-5 d-flex gap-3">
+            <span>
+                <label for="start-date" class="fw-bold d-block">{{ 'datetime'|trans }}</label>
+                <input type="datetime-local" name="extraFields[period][startDate]" id="start-date" class="form-control" style="width: fit-content;" value="{{ opportunity.extraFields.period.startDate|default }}">
+            </span>
+        </div>
+    </fieldset>
+
+    <fieldset class="bg-white p-5 rounded-1 mt-5">
+        <legend class="fw-bold">{{ 'view.opportunity.general_info.eligible_participants.title'|trans }}</legend>
+
+        <hr>
+        <p>{{ 'view.opportunity.general_info.number_of_proposals.description'|trans }}</p>
+
+        <div class="mt-5">
+            <label for="selected-limit" class="fw-bold">{{ 'view.opportunity.general_info.number_of_proposals.selected.label'|trans }}</label>
+            <p>{{ 'view.opportunity.general_info.number_of_proposals.selected.description'|trans }}</p>
+            <input type="number" name="extraFields[selectedLimit]" id="selected-limit" class="form-control" style="width: fit-content;" value="{{ opportunity.extraFields.selectedLimit|default }}">
+        </div>
+
+        <div class="mt-4">
+            <label for="inscriptions-per-agent" class="fw-bold">{{ 'view.opportunity.general_info.number_of_proposals.inscriptions_per_agent.label'|trans }}</label>
+            <p>{{ 'view.opportunity.general_info.number_of_proposals.inscriptions_per_agent.description'|trans }}</p>
+            <input type="number" name="extraFields[inscriptionsPerAgentLimit]" id="inscriptions-per-agent" class="form-control" style="width: fit-content;" value="{{ opportunity.extraFields.inscriptionsPerAgentLimit|default }}">
+        </div>
+
+        <div class="mt-4">
+            <label for="selected-per-agent-limit" class="fw-bold">{{ 'view.opportunity.general_info.number_of_proposals.selected_per_agent.label'|trans }}</label>
+            <p>{{ 'view.opportunity.general_info.number_of_proposals.selected_per_agent.description'|trans }}</p>
+            <input type="number" name="extraFields[selectedPerAgentLimit]" id="selected-per-agent-limit" class="form-control" style="width: fit-content;" value="{{ opportunity.extraFields.selectedPerAgentLimit|default(1) }}">
+        </div>
+    </fieldset>
+
+    <fieldset class="bg-white p-5 rounded-1 mt-5">
+        <p>{{ 'view.opportunity.general_info.attachments.description'|trans }}</p>
+        <hr>
+
+        <label for="container-files" class="fw-bold">{{ 'view.opportunity.general_info.attachments.label'|trans }} <span class="text-danger">*</span></label>
+        <div id="container-files"></div>
+        <input type="file" name="extraFields[attachments]" id="attachments" class="d-none" multiple>
+        <label role="button" class="btn btn-primary" for="attachments" tabindex="0">
+            <i class="material-icons">upload</i>
+            {{ 'add'|trans }}
+        </label>
+    </fieldset>
+
+    <fieldset class="bg-white p-5 rounded-1 mt-5">
+        <legend class="fw-bold">{{ 'view.opportunity.general_info.grant_amount.title'|trans }}</legend>
+
+        <hr>
+        <p>{{ 'view.opportunity.general_info.grant_amount.description'|trans }}</p>
+
+        <label for="grant-amount-yes">
+            <input type="radio" name="extraFields[grantAmount]" id="grant-amount-yes" value="true" checked>
+            {{ 'yes'|trans }}
+        </label>
+        <label for="grant-amount-no" class="ms-5">
+            <input type="radio" name="extraFields[grantAmount]" id="grant-amount-no" value="false">
+            {{ 'no'|trans }}
+        </label>
+    </fieldset>
+
+    <fieldset class="bg-white p-5 rounded-1 mt-5">
+        <legend class="fw-bold">{{ 'view.opportunity.general_info.cultural_categories.title'|trans }}</legend>
+
+        <hr>
+        <p>{{ 'view.opportunity.general_info.cultural_categories.description'|trans }}</p>
+        <button type="button" class="btn btn-primary d-block mx-auto d-flex align-items-center gap-1"><i class="material-icons">add</i>{{ 'category'|trans }}</button>
+    </fieldset>
+
+    <fieldset class="bg-white p-5 rounded-1 my-5">
+        <legend class="fw-bold">{{ 'view.opportunity.general_info.geographic_distribution.title'|trans }}</legend>
+
+        <hr>
+        <p>{{ 'view.opportunity.general_info.geographic_distribution.description'|trans }}</p>
+        <button type="button" class="btn btn-primary d-block mx-auto d-flex align-items-center gap-1"><i class="material-icons">settings</i> {{ 'configure'|trans }}</button>
+    </fieldset>
+</section>

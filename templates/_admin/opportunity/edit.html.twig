@@ -1,0 +1,78 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'opportunities'|trans }}{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('styles/components/tags-selector.css') }}" />
+    <link rel="stylesheet" href="{{ asset('styles/pages/opportunity-edit.css') }}" />
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/_components/tags-selector.js') }}"></script>
+    <script src="{{ asset('js/opportunity/edit.js') }}"></script>
+{% endblock %}
+
+{% block content %}
+    {% include '_components/modal-confirm-remove.html.twig' %}
+    {% include '_admin/opportunity/_partials/header-entity.html.twig' with {
+     opportunity: opportunity,
+     action: 'edit',
+    } %}
+
+    <div class="bg-white">
+        <div class="entity-container pt-4 m-auto">
+            {% include '_components/tabs/tab.html.twig' with {
+                tabs: [
+                    { id: 'general_info', title: 'general_information'|trans },
+                    { id: 'public_info', title: 'public_information'|trans },
+                    { id: 'phases', title: 'view.opportunity.phases'|trans },
+                    { id: 'inscriptions_and_results', title: 'view.opportunity.inscriptions_and_results'|trans },
+                    { id: 'people', title: 'view.opportunity.people'|trans },
+                ]
+            } %}
+        </div>
+    </div>
+
+    <form name="editForm" action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ opportunity.id }}" />
+        <section class="mt-5">
+            {% include '_components/tabs/content-tabs.html.twig' with {
+                tabs: [
+                    { id: 'general_info', content: include('_admin/opportunity/_partials/tabs/general-info.html.twig') },
+                    { id: 'public_info', content: include('_admin/opportunity/_partials/tabs/public-info.html.twig') },
+                    { id: 'phases', content: include('_admin/opportunity/_partials/tabs/phases.html.twig') },
+                    { id: 'inscriptions_and_results', content: include('_admin/opportunity/_partials/tabs/registrations.html.twig') },
+                    { id: 'people', content: include('_admin/opportunity/_partials/tabs/people.html.twig') },
+                ],
+            } %}
+        </section>
+
+        <section class="bg-primary text-white mt-5 sticky-bottom">
+            <div class="entity-container mx-auto py-4 d-flex gap-3">
+                <button
+                    type="button"
+                    class="btn btn-outline-light"
+                    onclick="confirmRemove(this)"
+                    data-href="{{ path('admin_opportunity_remove', {id: opportunity.id}) }}"
+                    data-bs-toggle="modal"
+                    data-bs-target="#modalRemoveConfirm"
+                >
+                    <i class="material-icons">delete</i> {{ 'delete'|trans }}
+                </button>
+                <button type="submit" class="btn btn-outline-light" name="status" value="-1"><i class="material-icons">archive</i> {{ 'archive'|trans }}</button>
+
+                <button type="submit" class="btn btn-outline-light ms-auto" name="status" value="0">{{ 'save_draft'|trans }}</button>
+                <button type="submit" class="btn btn-light text-primary" name="status" value="1">{{ 'save_and_publish' | trans }}</button>
+            </div>
+        </section>
+    </form>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-confirm-remove.js') }}"></script>
+    <script src="{{ asset('js/_components/forms/image-with-preview.js') }}"></script>
+    <script src="{{ asset('js/_components/forms/upload-file.js') }}"></script>
+{% endblock %}

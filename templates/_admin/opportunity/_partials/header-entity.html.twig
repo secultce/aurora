@@ -1,0 +1,43 @@
+<section class="white-square">
+    {% include '_components/breadcrumb.html.twig' with {
+        items: [
+            {text: 'control_panel'|trans, path: path('admin_dashboard')},
+            {text: 'my_opportunities'|trans, path: path('admin_opportunity_list')},
+            {text: opportunity.name, path: path("admin_opportunity_#{action}", {id: opportunity.id})},
+        ]
+    } %}
+
+    <div class="pt-5 row m-auto page-title">
+        <h2>{{ opportunity.name }}</h2>
+        <div class="d-flex align-content-between flex-column flex-lg-row">
+            <span>ID: <strong>116</strong></span>
+            <span class="offset-lg-1 offset-0">{{ t('TIPO')|trans }}: <strong style="color: var(--navlink-opportunity);">{{ opportunity.extraFields.type }}</strong></span>
+            {% set linkedEntity = opportunity.initiative ?? opportunity.event ?? opportunity.space ?? opportunity.agent %}
+            {% if opportunity.initiative is not empty %}
+                <span class="offset-lg-1 offset-0">{{ 'linked_with'|trans|upper }} {{ 'initiative'|trans|upper }}:
+                    <a href="{{ path("web_initiative_show", {id: linkedEntity.id}) }}">
+                        <strong style="color: var(--navlink-initiative);">{{ linkedEntity.name }}</strong>
+                    </a>
+                </span>
+            {% elseif opportunity.event is not empty %}
+                <span class="offset-lg-1 offset-0">{{ 'linked_with'|trans }} {{ 'event'|trans }}:
+                    <a href="{{ path("web_event_show", {id: linkedEntity.id}) }}">
+                        <strong style="color: var(--navlink-event);">{{ linkedEntity.name }}</strong>
+                    </a>
+                </span>
+            {% elseif opportunity.space is not empty %}
+                <span class="offset-lg-1 offset-0">{{ 'linked_with'|trans }} {{ 'space'|trans }}:
+                    <a href="{{ path("web_space_getOne", {id: linkedEntity.id}) }}">
+                        <strong style="color: var(--navlink-space);">{{ linkedEntity.name }}</strong>
+                    </a>
+                </span>
+            {% elseif opportunity.agent is not empty %}
+                <span class="offset-lg-1 offset-0">{{ 'linked_with'|trans }} {{ 'agent'|trans }}:
+                    <a href="{{ path("web_agent_getOne", {id: linkedEntity.id}) }}">
+                        <strong style="color: var(--navlink-agent);">{{ linkedEntity.name }}</strong>
+                    </a>
+                </span>
+            {% endif %}
+        </div>
+    </div>
+</section>

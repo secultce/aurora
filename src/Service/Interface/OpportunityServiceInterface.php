@@ -15,7 +15,7 @@ interface OpportunityServiceInterface
 
     public function get(Uuid $id): Opportunity;
 
-    public function findOneBy(array $params): Opportunity;
+    public function findOneBy(array $params): ?Opportunity;
 
     public function findBy(array $params = []): array;
 
