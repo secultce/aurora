@@ -43,5 +43,8 @@ jobs:
       - name: Create the phpcs.xml
         run: cp phpcs.xml.dist phpcs.xml
 
+      - name: Create the phpcs.xml
+        run: phpcs --config-set installed_paths src/Standards
+
       - name: Run PHP_CodeSniffer
         run: ~/.composer/vendor/bin/phpcs -n
