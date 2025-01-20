@@ -3,6 +3,8 @@
 {% block title %} {{ 'control_panel'|trans }} - {{ 'users'|trans }}{% endblock %}
 
 {% block content %}
+    {% include '_components/modal-photo.html.twig' %}
+
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
 
@@ -29,7 +31,18 @@
                                 <tr>
                                     <td><a href="#">{{ item.name }}</a></td>
                                     <td>{{ item.email }}</td>
-                                    <td><img src="{{ asset(item.image ?? '') }}"  width="50px" alt="{{ item.name }} Photo"></td>
+                                    <td>
+                                        <a
+                                            data-src="{{ asset(item.image ?? 'img/allan.png') }}"
+                                            data-alt="{{ item.name }} Photo"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modal-photo"
+                                            onclick="showPhoto(this)"
+                                            href="#"
+                                        >
+                                            <img src="{{ asset(item.image ?? 'img/allan.png') }}"  width="50px" alt="{{ item.name }} Photo">
+                                        </a>
+                                    </td>
                                     <td>{{ item.createdAt.format('d/m/Y H:i:s') }}</td>
                                     <td>
                                         <a href="{{ path('admin_user_timeline', {id: item.id}) }}" class="btn btn-outline-info btn-sm">{{ 'Timeline'|trans }}</a>
@@ -44,4 +57,9 @@
             </div>
         </div>
     </section>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-photo.js') }}"></script>
 {% endblock %}
