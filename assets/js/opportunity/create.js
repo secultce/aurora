@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     submitDraftBtn.disabled = true;
 
     const inputFields = {
-        type: form['extraFields[opportunityType]'],
+        type: form['extraFields[type]'],
         name: form.name,
         createdBy: form.createdBy,
         entity: form.entity,

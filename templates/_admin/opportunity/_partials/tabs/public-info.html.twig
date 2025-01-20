@@ -1,0 +1,155 @@
+{% set tagOptions = [
+    'Gratuito', 'Samba', 'Luau', 'Feira', 'Exposição', 'Workshop', 'Festival', 'Show', 'Teatro de Rua',
+    'Circo', 'Poesia', 'Poesia', 'Rap', 'Rock', 'Hip-Hop', 'MPB', 'Arte Urbana', 'Oficina', 'Debate',
+    'Gastronomia Local', 'Cultura Indígena', 'Improviso', 'Festa Junina', 'Roda de Conversa',
+] %}
+{% set tagItems = [] %}
+{% for option in tagOptions %}
+    {% set tagItems = tagItems|merge([{label: option, value: option}]) %}
+{% endfor %}
+
+{% set tags = [] %}
+{%  for tag in opportunity.extraFields.tags|default([]) %}
+    {% set tags = tags|merge([{ label: tag, value: tag }]) %}
+{% endfor %}
+
+{% set areasOfExpertise = [] %}
+{% for area in opportunity.extraFields.areasOfActivity|default([]) %}
+    {% set areasOfExpertise = areasOfExpertise|merge([{ label: area, value: area }]) %}
+{% endfor %}
+
+<section class="entity-container mx-auto">
+    <p>Campos marcados com <small class="text-danger">*</small> são de preenchimento obrigatório.</p>
+
+    <fieldset class="bg-white rounded-1 p-5">
+        <legend class="fw-bold mb-5">{{ 'view.opportunity.public_info.presentation_info.title'|trans }}</legend>
+
+        {% include '_components/forms/image-with-preview.html.twig' with {
+            id: 'cover-image',
+            label: 'add_cover_image'|trans,
+            inputName: 'extraFields[coverImage]',
+            defaultImage: opportunity.extraFields.coverImage|default,
+        } %}
+
+        {% include '_components/forms/image-with-preview.html.twig' with {
+            id: 'profile-image',
+            inputName: 'image',
+            defaultImage: opportunity.image|default,
+        } %}
+
+        <label class="fw-bold mb-2" for="title">{{ 'name_opportunity'|trans }} <span class="text-danger">*</span></label>
+        <input type="text" name="name" class="form-control" id="title" value="{{ opportunity.name }}">
+
+        <label class="fw-bold mb-2 mt-4" for="type">{{ 'type_opportunity'|trans }} <span class="text-danger">*</span></label>
+        <select name="extraFields[type]" id="type" class="form-control form-select">
+            {% for option in ['Festival', 'Processo de Seleção', 'Abaixo-assinado', 'Curso'] %}
+                <option value="{{ option }}" {{ option is same as opportunity.extraFields.type ? 'selected' : '' }}>{{ option }}</option>
+            {% endfor %}
+        </select>
+
+        <label class="fw-bold mb-2 mt-4" for="short-description">{{ 'short_description'|trans }} <span class="text-danger">*</span></label>
+        <textarea name="extraFields[shortDescription]" id="short-description" class="form-control" maxlength="400" oninput="document.getElementById('short-length').value = this.value.length">{{ opportunity.extraFields.shortDescription|default }}</textarea>
+        <div class="d-flex justify-content-end"><output id="short-length">{{ opportunity.extraFields.shortDescription|default|length }}</output>/400</div>
+
+        <label class="fw-bold my-2" for="long-description">{{ 'long_description'|trans }}</label>
+        <textarea name="extraFields[longDescription]" id="long-description" class="form-control" style="height:200px" oninput="document.getElementById('long-length').value = this.value.length">{{ opportunity.extraFields.longDescription|default }}</textarea>
+        <output id="long-length" class="d-flex justify-content-end">{{ opportunity.extraFields.longDescription|default|length }}</output>
+
+        <div class="my-2">
+            {% include '_components/tags-selector.html.twig' with {
+                inputName: 'extraFields[areasOfActivity]',
+                inputLabel: 'areas_of_expertise'|trans,
+                items: [
+                    { value: 'Artesanato', label: 'Artesanato' },
+                    { value: 'Cinema', label: 'Cinema' },
+                    { value: 'Dança', label: 'Dança' },
+                    { value: 'Fotografia', label: 'Fotografia' },
+                    { value: 'Outros', label: 'Outros' },
+                ],
+                tags: areasOfExpertise,
+                required: true,
+            } %}
+        </div>
+
+        <div class="my-4">
+            {% include '_components/tags-selector.html.twig' with {
+                inputName: 'extraFields[tags]',
+                inputLabel: 'tags'|trans,
+                items: tagItems,
+                tags: tags,
+                required: true,
+            } %}
+        </div>
+    </fieldset>
+
+    <fieldset class="bg-white rounded-1 p-5 mt-5 accordion-item">
+        <legend class="fw-bold"> {{ 'attachments_and_links'|trans }}</legend>
+
+        <hr>
+
+        <p class="fw-bold mt-4">{{ 'links'|trans }}</p>
+        <div class="d-flex gap-4">
+            <label class="flex-fill w-100 ms-1" for="link-name">{{ 'view.opportunity.public_info.attachments.link_name'|trans }}:</label>
+            <label class="flex-fill w-100" for="link-url">{{ 'view.opportunity.public_info.attachments.url'|trans }}:</label>
+            <button type="button" class="btn-close opacity-0" style="pointer-events: none"></button>
+        </div>
+
+        <div>
+            {% set index = 0 %}
+            {% for linkItem in opportunity.extraFields.links|default %}
+                <div class="d-flex gap-4 mt-1">
+                    <input class="form-control flex-fill" id="link-name" name="extraFields[links][{{ loop.index }}][name]" value="{{ linkItem.name }}" data-cy="link-name"/>
+                    <input class="form-control flex-fill" id="link-url" name="extraFields[links][{{ loop.index }}][url]" value="{{ linkItem.url }}" placeholder="https://www.site.com" data-cy="link-url"/>
+                    <button type="button" class="btn-close align-self-center" onclick="removeAttachmentElement(this.parentElement)"></button>
+                </div>
+                {% set index = loop.index + 1 %}
+            {% endfor %}
+
+            <div class="d-flex gap-4 mt-1">
+                <input class="form-control flex-fill" id="link-name" name="extraFields[links][{{ index }}][name]" data-cy="link-name"/>
+                <input class="form-control flex-fill" id="link-url" name="extraFields[links][{{ index }}][url]" data-cy="link-url" placeholder="https://www.site.com"/>
+                <button type="button" class="btn-close align-self-center mt-1" onclick="removeAttachmentElement(this.parentElement)"></button>
+            </div>
+
+            <span class="text-primary fw-bold d-inline-flex justify-content-center align-items-center btn" role="button" onclick="addAttachmentElement(this)">
+                <i class="material-icons">add_circle</i>
+                {{ 'view.opportunity.public_info.attachments.add_another_link'|trans }}
+            </span>
+        </div>
+
+        <p class="fw-bold mt-4">{{ 'Videos'|trans }}</p>
+        <div class="d-flex gap-4">
+            <label class="flex-fill w-100 ms-1" for="video-name">{{ 'view.opportunity.public_info.attachments.video_name'|trans }}:</label>
+            <label class="flex-fill w-100" for="video-url">{{ 'view.opportunity.public_info.attachments.url'|trans }}:</label>
+            <button type="button" class="btn-close opacity-0" style="pointer-events: none"></button>
+        </div>
+
+        <div>
+            {% set index = 0 %}
+            {% for video in opportunity.extraFields.videos|default %}
+                <div class="d-flex gap-4 mt-1">
+                    <input class="form-control flex-fill" id="video-name" name="extraFields[videos][{{ loop.index }}][name]" value="{{ video.name }}" data-cy="video-name"/>
+                    <input class="form-control flex-fill" id="video-url" name="extraFields[videos][{{ loop.index }}][url]" value="{{ video.url }}" placeholder="https://www.site.com" data-cy="video-url"/>
+                    <button type="button" class="btn-close align-self-center" onclick="removeAttachmentElement(this.parentElement)"></button>
+                </div>
+                {% set index = loop.index + 1 %}
+            {% endfor %}
+            <div class="d-flex gap-4 mt-1">
+                <input class="form-control flex-fill" id="video-name" name="extraFields[videos][{{ index }}][name]" data-cy="video-name"/>
+                <input class="form-control flex-fill" id="video-url" name="extraFields[videos][{{ index }}][url]" placeholder="https://www.site.com" data-cy="video-url"/>
+                <button type="button" class="btn-close align-self-center" onclick="removeAttachmentElement(this.parentElement)"></button>
+            </div>
+
+            <span class="text-primary fw-bold d-inline-flex justify-content-center align-items-center btn" role="button" onclick="addAttachmentElement(this)">
+                <i class="material-icons">add_circle</i>
+                {{ 'view.opportunity.public_info.attachments.add_another_video'|trans }}
+            </span>
+        </div>
+
+        <label for="extraFields[uploadImages]" class="mt-5 mb-2 d-block fw-bold">{{ 'images'|trans }}</label>
+        {% include '_components/forms/upload-file.html.twig' with { inputName: 'extraFields[uploadImages]', acceptType: '.jpg, .jpeg, .png, .webp' } %}
+
+        <label for="extraFields[uploadFiles]" class="mt-5 mb-2 d-block fw-bold">{{ 'other_files'|trans }}</label>
+        {% include '_components/forms/upload-file.html.twig' with { inputName: 'extraFields[uploadedFiles]' } %}
+    </fieldset>
+</section>

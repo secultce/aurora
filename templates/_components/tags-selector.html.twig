@@ -9,14 +9,14 @@
     <div id="tags-container-{{ inputName }}" class="my-1 d-flex flex-wrap gap-2">
         {% for tag in tags %}
             <div class="area-tag">
-                {{ tag.name }}
+                {{ tag.label }}
                 <input type="hidden" name="{{ inputName }}[]" value="{{ tag.value }}" {{ isRequired ? 'required' : '' }}/>
-                <span class="remove-tag" role="button">x</span>
+                <button type="button" class="remove-tag m-0 p-0 px-1 border-0 bg-transparent" onclick="removeTag(this, '{{ inputName }}', '{{ tag.value }}')">x</button>
             </div>
         {% endfor %}
     </div>
 
-    <div class="dropdown" id="{{ inputName }}">
+    <div class="dropdown position-static" id="{{ inputName }}">
         <button id="add-{{ inputName }}-btn" class="btn area-tag bg-primary text-white" type="button" data-bs-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
             {{ 'add'|trans }}
             <i class="material-icons fs-4 ms-2">add</i>
@@ -32,7 +32,6 @@
                         class="form-control custom-search-input"
                         placeholder="{{ 'search'|trans }}"
                         onsearch="handleTagsFilter(event, this)"
-                        name="{{ inputName }}-search"
                     />
                     <button type="button" class="btn custom-search-icon" onclick="handleTagsFilter(event, this)"><i class="material-icons">search</i></button>
                 </div>
@@ -47,7 +46,7 @@
                 <li role="option">
                     <button
                         type="button"
-                        class="dropdown-item"
+                        class="dropdown-item {{ item.value in tags|column('value') ? 'd-none disabled' : '' }}"
                         style="cursor: pointer"
                         data-input-name="{{ inputName }}"
                         data-label="{{ item.label }}"

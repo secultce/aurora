@@ -233,6 +233,7 @@ class Opportunity extends AbstractEntity
             'space' => $this->space?->toArray(),
             'initiative' => $this->initiative?->toArray(),
             'event' => $this->event?->toArray(),
+            'image' => $this->image,
             'createdBy' => $this->createdBy->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),

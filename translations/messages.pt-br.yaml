@@ -1,4 +1,5 @@
 add: Adicionar
+add_cover_image: Adicionar imagem de capa
 account_privacy: Conta e Privacidade
 account_settings: Configurações da conta do usuário
 access: Acessar
@@ -35,6 +36,7 @@ analysis: Período de Análise
 auditory: Auditiva
 asian: Amarelo
 apply_filter: Aplicar Filtros
+attachments_and_links: Anexos e links
 
 back: Voltar
 birth_date: Data de nascimento
@@ -42,6 +44,7 @@ black: Preta
 
 calendar: Calendário
 cancel: Cancelar
+category: Categoria
 change_details: Detalhes das Mudanças
 cep: CEP
 city: Cidade
@@ -59,9 +62,11 @@ continue: Continuar
 contribute: Contribua
 control_panel: Painel de Controle
 completed: Finalizados
+coming_soon: Em breve
 cover_image: Imagem de capa
 cpf: CPF
 cnpj: CNPJ (MEI)
+configure: Configurar
 create: Criar
 create_and_publish: Criar e Publicar
 create_in_draft: Criar em Rascunho
@@ -79,6 +84,8 @@ cultural_languages: Linguagens culturais
 date: Data
 date_created: Data de criação
 dashboard: Painel de Controle
+datetime: Data e hora
+describe: Descreva
 draft: Em rascunho
 delete: Excluir
 details: Detalhes
@@ -125,6 +132,7 @@ from_to_date: Até
 gallery: Galeria
 gender: Selecione o Gênero
 general_data: Dados gerais
+general_information: Informações gerais
 
 happening_now: Acontecendo agora
 help: Ajuda
@@ -152,7 +160,8 @@ last_login: Último Login
 last_updated: Última atualização
 linked_with: Vinculado com
 list: Lista
-link: Adicionar Link
+link: Adicionar link
+links: Links
 local: Local
 locate_yourself: Localize-se
 location: Localização
@@ -218,6 +227,7 @@ opportunities: Oportunidades
 organizations: Organizações
 organization_register: Criar uma Organização
 orientation: Selecione a Orientação Sexual
+other_files: Outros arquivos
 other_information: Outras informações
 
 pardo: Pardo
@@ -285,13 +295,14 @@ users: Usuários
 
 view_all: Ver todas
 view_file: ver arquivo
-video: Adicionar Vídeo
+video: vídeo
 visualization: Visual
 
-savings: Poupança
 save: Salvar
-save-and_publish: Salvar e Publicar
+save_and_publish: Salvar e Publicar
+save_draft: Salvar como rascunho
 save_share: Salvar e Compartilhar
+savings: Poupança
 share: Compartilhar
 short_presentation: Apresentação Curta
 seals: Selos
@@ -554,14 +565,66 @@ view:
       entity: Vincule a oportunidade a uma entidade
       opportunity_type: Selecione o tipo da oportunidade
       title: O título deve ter entre 2 e 100 caracteres
+    general_info:
+      modality_and_purpose:
+        title: Modalidade e Objeto do Fomento
+        description: Informe o propósito principal deste edital, descrevendo o que será apoiado ou financiado com base nos objetivos e resultados esperados.
+        modality:
+          label: Modalidade de Fomento
+          description: Modalidade de apoio a execução de ações culturais tipo projetos, que prevê ação futura no campo artístico-cultural e a apresentação de resultados e/ou prestação de contas
+        object: Objeto de Fomento
+      start_date:
+        title: Data de início
+        description: Informe a data de início do seu edital.
+      eligible_participants:
+        title: Quem poderá participar
+        description: Selecione abaixo os tipos de pessoa e as organizações que poderão participar da oportunidade.
+      number_of_proposals:
+        title: Quantidade de propostas
+        description: Informe a estimativa de propostas que serão selecionadas e os números de inscrições por agente.
+        selected:
+          label: Previsão de propostas selecionadas
+          description: Informe a previsão de propostas que serão selecionadas nessa oportunidade.
+        inscriptions_per_agent:
+          label: Limite de inscrições por agente
+          description: Informe a quantidade máxima de inscrições que um mesmo agente pode submeter nessa oportunidade.
+        selected_per_agent:
+          label: Propostas selecionadas por agente
+          description: Informe o máximo de propostas que poderão ser selecionadas por agente nessa oportunidade.
+      attachments:
+        description: Anexe abaixo documento oficial do Edital preenchido, analisado e validado pelo setor jurídico local e os seus respectivos anexos. Após publicada a oportunidade esses documentos ficarão públicos e disponíveis para download.
+        label: Documentos da Oportunidade
+      grant_amount:
+        title: Valor do Edital
+        description: Essa oportunidade irá trabalhar com recursos financeiros?
+      cultural_categories:
+        title: Categorias Culturais
+        description: Você pode configurar um grupo de categorias para organizar as inscrições da sua oportunidade. Selecione um Grupo de Categorias pré-definidas para garantir indicadores mais consistentes, ou configure outras categorias de sua escolha.
+      geographic_distribution:
+        title: Distribuição de vagas por território
+        description: Configure a distribuição de vagas com base em diferentes divisões territoriais.
     id: ID da oportunidade
+    inscriptions_and_results: Inscrições e Resultados
     labels:
       choose_type: Selecione o tipo da oportunidade
       choose_entity: Vincule a oportunidade a uma entidade
     message:
       deleted: A Oportunidade foi excluída
       created: A oportunidade foi criada com sucesso
+      updated: A oportunidade foi atualizada com sucesso
+    people: Pessoas
     period: Período da oportunidade
+    phases: Fases
+    public_info:
+      presentation_info:
+        title: Informações de apresentação
+      attachments:
+        add_another_link: Adicionar outro link
+        add_another_video: Adicionar outro vídeo
+        link_name: Descrição do link
+        other_files: Outros arquivos
+        url: Link (URL)
+        video_name: Descrição do vídeo
     quantity:
       total: Oportunidades Encontradas
       finished: Oportunidades Finalizadas
