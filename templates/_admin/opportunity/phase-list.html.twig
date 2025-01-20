@@ -1,0 +1,66 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'control_panel'|trans }} - {{ 'opportunities'|trans }} - {{ 'phases'|trans }}
+{% endblock %}
+
+{% block content %}
+    {% include '_components/modal-confirm-remove.html.twig' %}
+    {% include '_components/modal-timeline.html.twig' %}
+
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card card-body shadow">
+                        <div class="d-flex justify-content-between">
+                            <h2>
+                                {{ 'opportunity'|trans }} - {{ opportunity.name }} - {{ 'phases'|trans }}
+                            </h2>
+                            <div>
+                                <a href="{{ path('admin_opportunity_list') }}" class="btn btn-outline-primary">
+                                    {{ 'back' | trans }}
+                                </a>
+                            </div>
+                        </div>
+                        <hr>
+                        <table class="table table-hover table-striped">
+                            <thead class="table-dark">
+                            <tr>
+                                <th>{{ 'name_phases'|trans }}</th>
+                                <th>{{ 'description'|trans }}</th>
+                                <th>{{ 'start_date'|trans }}</th>
+                                <th>{{ 'end_date'|trans }}</th>
+                                <th>{{ 'status'|trans }}</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            {% for phase in phases %}
+                                <tr>
+                                    <td>{{ phase.name }}</td>
+                                    <td>{{ phase.description }}</td>
+                                    <td>{{ phase.startDate is not null ? phase.startDate|date('d/m/Y') : '' }}</td>
+                                    <td>{{ phase.endDate is not null ? phase.endDate|date('d/m/Y') : '' }}</td>
+                                    <td>{{ phase.status ? 'Ativo' : 'Inativo' }}</td>
+                                </tr>
+                            {% else %}
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        {{ 'no_phase'|trans }}
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-timeline.js') }}"></script>
+{% endblock %}

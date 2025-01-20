@@ -12,7 +12,7 @@ describe('Teste de navegação e validação da página de Selos', () => {
         cy.contains('Minhas Oportunidades', { timeout: 10000 })
             .should('be.visible')
             .click();
-        cy.url({ timeout: 10000 }).should('include', '/painel/oportunidades');
+        cy.url({ timeout: 10000 }).should('include', '/admin/opportunities/');
         cy.scrollTo('bottom');
         cy.contains('Selos', { timeout: 10000 })
             .should('be.visible')

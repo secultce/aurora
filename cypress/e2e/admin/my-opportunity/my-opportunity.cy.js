@@ -2,11 +2,11 @@ describe('Página de Minhas Oportunidades', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('talysonsoares@example.com', 'Aurora@2024');
-        cy.visit('/painel/oportunidades');
+        cy.visit('/admin/opportunities');
     });
 
     it('Deve verificar a URL da página de Minhas Oportunidades', () => {
-        cy.url().should('include', '/painel/oportunidades');
+        cy.url().should('include', '/admin/opportunities');
 
         cy.get('h2').contains('Minhas Oportunidades');
     });

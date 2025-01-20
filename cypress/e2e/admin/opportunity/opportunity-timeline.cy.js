@@ -5,7 +5,7 @@ describe('Painel de Controle - Página de timeline das Oportunidades', () => {
     });
 
     it('Garante que a página de timeline existe e que exibe os detalhes corretamente', () => {
-        cy.visit('painel/oportunidades/');
+        cy.visit('/admin/opportunities/');
 
         cy.contains('Timeline').click({force: true});
 

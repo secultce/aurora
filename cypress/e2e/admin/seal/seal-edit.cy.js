@@ -9,7 +9,7 @@ describe('Teste de navegação, validação e edição da página de Selos', () 
             }
         });
 
-        cy.visit('/painel/oportunidades');
+        cy.visit('/admin/opportunities/');
         cy.contains('Selos').should('be.visible').click();
         cy.url().should('include', '/painel/selos/');
         cy.contains('Editar').first().click();
