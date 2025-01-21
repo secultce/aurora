@@ -440,6 +440,7 @@ view:
 
   authentication:
     error:
+      already_logged_in: You are already logged in.
       age_rating_valid: You must select a valid age rating.
       email_in_use: This email is already in use.
       error_message: An error occurred while trying to create the account.
