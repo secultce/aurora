@@ -529,6 +529,7 @@ export declare const VIEW_AGENT_CREATE_RELATED_AGENTS: Message<{ 'messages': { p
 export declare const VIEW_AGENT_CREATE_ADD_NEW_AGENT_GROUP: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_CREATE_ADD_GROUP: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AGENT_CREATE_ERROR_LENGTH: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_AUTHENTICATION_ERROR_ALREADY_LOGGED_IN: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AUTHENTICATION_ERROR_AGE_RATING_VALID: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AUTHENTICATION_ERROR_EMAIL_IN_USE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_AUTHENTICATION_ERROR_ERROR_MESSAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
