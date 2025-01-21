@@ -110,6 +110,11 @@ Executa as fixtures de dados e os testes de frontend.
 Executa as fixtures de dados e os testes de backend.
 - **Uso:** `make tests_back`
 - **Descrição:** Carrega os dados de fixtures e roda os testes backend usando PHPUnit.
+
+### `tests_back filename=tests/tests.php fixtures=no`
+Executa apenas os testes para um arquivo especifico sem rodar as fixtures
+- **Uso:** `make tests_back filename=tests/tests.php fixtures=no`
+- **Descrição:** Roda um arquivo especifico do teste.
 </details>
 
 <details>

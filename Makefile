@@ -14,6 +14,10 @@ stop:
 down:
 	docker compose down
 
+# Para e remove os serviços Docker
+container_php:
+	docker compose exec php bash
+
 # Instala dependências dentro do contêiner PHP
 install_dependencies:
 	docker compose exec -T php bash -c "composer install"
@@ -50,8 +54,11 @@ tests_front: load_fixtures
 	docker compose up cypress
 
 # Executa as fixtures de dados e os testes de back-end
-tests_back: load_fixtures
-	docker compose exec -T php bash -c "php bin/paratest --no-coverage"
+tests_back:
+	if [ "$(fixtures)" != "no" ]; then \
+		make load_fixtures;\
+	fi;
+	docker compose exec -T php bash -c "php bin/paratest $(filename) --no-coverage"
 
 # Executa as fixtures de dados e os testes de back-end
 tests_back_coverage: load_fixtures
