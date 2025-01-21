@@ -63,6 +63,48 @@ direction BT
        timestamp(0) deleted_at
        id  /* (DC2Type:uuid) */ uuid
     }
+    class inscription_opportunity {
+       agent_id  /* (DC2Type:uuid) */ uuid
+       opportunity_id  /* (DC2Type:uuid) */ uuid
+       integer status
+       created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
+       timestamp(0) updated_at
+       timestamp(0) deleted_at
+       id  /* (DC2Type:uuid) */ uuid
+    }
+    class phase {
+       created_by_id  /* (DC2Type:uuid) */ uuid
+       opportunity_id  /* (DC2Type:uuid) */ uuid
+       varchar(100) name
+       varchar(255) description
+       timestamp(0) start_date
+       timestamp(0) end_date
+       boolean status
+       integer sequence
+       json extraFields
+       created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
+       timestamp(0) updated_at
+       timestamp(0) deleted_at
+       id  /* (DC2Type:uuid) */ uuid
+    }
+    class inscription_phase {
+       agent_id  /* (DC2Type:uuid) */ uuid
+       phase_id  /* (DC2Type:uuid) */ uuid
+       integer status
+       created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
+       timestamp(0) updated_at
+       timestamp(0) deleted_at
+       id  /* (DC2Type:uuid) */ uuid
+    }
+    class inscription_phase_review {
+       inscription_phase_id  /* (DC2Type:uuid) */ uuid
+       reviewer_id  /* (DC2Type:uuid) */ uuid
+       json result
+       created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
+       timestamp(0) updated_at
+       timestamp(0) deleted_at
+       id  /* (DC2Type:uuid) */ uuid
+    }
     class organization {
        owner_id  /* (DC2Type:uuid) */ uuid
        created_by_id  /* (DC2Type:uuid) */ uuid
@@ -106,10 +148,16 @@ direction BT
     organizations_agents  -->  organization : organization_id
     space  -->  agent : created_by_id
     space  -->  space : parent_id
+    inscription_opportunity --> agent : agent_id
+    inscription_opportunity --> opportunity : opportunity_id
+    phase --> agent : created_by_id
+    phase --> opportunity : opportunity_id
+    inscription_phase --> agent : agent_id
+    inscription_phase --> phase : phase_id
+    inscription_phase_review --> agent : reviewer_id
+    inscription_phase_review --> inscription_phase : inscription_phase_id
 ```
 > Esse diagrama serve como um diagrama de classes.
-
-<img src="img/aurora-db-psql.png" alt="Banco de dados relacional">
 
 ## Diagrama Entity Postgres X Document MongoDB
 
@@ -119,7 +167,6 @@ flowchart TD
     A[Agente] --> TLA[Timeline Agente]
     I[Iniciativa] --> TLI[Timeline Iniciativa]    
     OP[Oportunidade] --> TLOP[Timeline Oportunidade]
-
     E[Evento] --> TLE[Timeline Evento]
     S[Espaço] --> TLS[Timeline Espaço]
     EN[Entity] --> O
