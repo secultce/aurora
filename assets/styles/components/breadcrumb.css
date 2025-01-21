@@ -29,3 +29,12 @@
     padding-bottom: 5px;
     margin-bottom: 25px;
 }
+
+.entity-banner .breadcrumb {
+    top: 0;
+    left: 0;
+    position: absolute;
+    padding-top: 0 !important;
+    margin-left: 8.5rem !important;
+    margin-top: 1.438rem;
+}
