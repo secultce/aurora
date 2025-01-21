@@ -15,7 +15,7 @@ describe('Teste de navegação e validação da página de Minhas FAQs', () => {
 
         cy.contains('Minhas Oportunidades', { timeout: 10000 }).should('be.visible').click();
 
-        cy.url({ timeout: 10000 }).should('include', '/painel/oportunidades');
+        cy.url({ timeout: 10000 }).should('include', '/admin/opportunities');
 
         cy.scrollTo('bottom');
 

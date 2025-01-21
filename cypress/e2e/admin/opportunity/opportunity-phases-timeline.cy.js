@@ -2,28 +2,22 @@ describe('Painel de Controle - Página de detalhes de uma Oportunidade', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('henriquelopeslima@example.com', 'Aurora@2024');
-        cy.visit('/painel/oportunidades/378cc989-c2ae-4118-9f19-54bacb8718c4');
+        cy.visit('/admin/opportunities/39994097-41d8-463c-a7eb-7d9a0b40e953');
     });
 
-    it('Garante que a página de detalhes de uma oportunidade existe e funciona', () => {
+    it('Garante que a página de detalhes da oportunidade está funcionando corretamente', () => {
         cy.get('h2')
-            .contains('Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino')
+            .contains('Chamada para Oficinas de Artesanato - Feira de Cultura Popular')
             .should('be.visible');
 
-        cy.get('.nav-pills > li > a').contains('Dados gerais').should('be.visible');
-        cy.get('.nav-pills > li > a').contains('Inscrições').should('be.visible');
-        cy.get('.nav-pills > li > a').contains('Fases').should('be.visible');
-        cy.get('.nav-pills > li > a').contains('Calendário').should('be.visible');
-        cy.get('.nav-pills > li > a').contains('Selos').should('be.visible');
+        cy.get('.nav-pills > li > a').contains('Fases').click();
+        cy.get('#phases').should('be.visible');
 
-        cy.get('.nav-pills > li > a').contains('Dados gerais').click();
-
-        cy.get('.timeline-custom').should('be.visible');
-        cy.get('.timeline-title-custom').contains('Fase de submissão').should('be.visible');
-        cy.get('.timeline-title-custom').contains('Fase de documentação').should('be.visible');
-
-        cy.get('.timeline-description-custom').then((elements) => {
-            const descriptions = [...elements].map((el) => el.innerText);
+        cy.get('#phases table tbody tr').first().within(() => {
+            cy.get('a').contains('Timeline').click();
         });
+
+        cy.url().should('include', '/phases');
+        cy.get('h2').contains('Oportunidade - Chamada para Oficinas de Artesanato - Feira de Cultura Popular').should('be.visible');
     });
 });

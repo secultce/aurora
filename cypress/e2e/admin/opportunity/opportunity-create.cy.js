@@ -2,7 +2,7 @@ describe('Painel de Controle - Página de criar Iniciativas', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('talysonsoares@example.com', 'Aurora@2024');
-        cy.visit('/painel/oportunidades/adicionar');
+        cy.visit('/admin/opportunities/adicionar');
 
         Cypress.on('uncaught:exception', (err) => {
             if (err.message.includes('i.createPopper is not a function')) {
@@ -106,7 +106,7 @@ describe('Painel de Controle - Página de criar Iniciativas', () => {
             .click();
 
         cy.location('pathname')
-            .should('eq', '/painel/oportunidades/');
+            .should('eq', '/admin/opportunities/');
         cy.contains('A oportunidade foi criada com sucesso')
             .should('be.visible');
         cy.contains('Titulo da oportunidade para o teste')

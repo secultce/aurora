@@ -32,3 +32,8 @@ subscribe:
   path: /{id}/subscribe
   controller: App\Controller\Web\Admin\OpportunityAdminController::subscribe
   methods: ['GET']
+
+phase_timeline:
+  path: /{id}/phases/{phaseId}/timeline
+  controller: App\Controller\Web\Admin\OpportunityAdminController::phaseTimeline
+  methods: ['GET']

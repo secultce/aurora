@@ -2,7 +2,7 @@ describe('Painel de Controle - Página de listar Oportunidades', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
-        cy.visit('/painel/oportunidades');
+        cy.visit('/admin/opportunities/');
     });
 
     it('Garante que a página de listar Oportunidades existe e funciona', () => {
