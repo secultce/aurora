@@ -86,15 +86,6 @@
     object-fit: cover;
 }
 
-.entity-banner .breadcrumb {
-    top: 0;
-    left: 0;
-    position: absolute;
-    padding-top: 0 !important;
-    margin-left: 8.5rem;
-    margin-top: 1.438rem;
-}
-
 .entity-profile-bio {
     padding-left: 8.5rem;
     padding-right: 8.625rem;
