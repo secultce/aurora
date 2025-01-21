@@ -8,6 +8,7 @@ use App\Exception\ValidatorException;
 use App\Service\Interface\UserServiceInterface;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Exception;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
@@ -18,7 +19,8 @@ class AuthenticationWebController extends AbstractWebController
 {
     public function __construct(
         private readonly TranslatorInterface $translator,
-        private readonly UserServiceInterface $userService
+        private readonly UserServiceInterface $userService,
+        private readonly Security $security,
     ) {
     }
 
@@ -39,6 +41,12 @@ class AuthenticationWebController extends AbstractWebController
 
     public function register(Request $request): Response
     {
+        if (null !== $this->security->getUser()) {
+            $this->addFlash('error', 'view.authentication.error.already_logged_in');
+
+            return $this->redirectToRoute('web_home_homepage');
+        }
+
         $error = null;
 
         if (false === $request->isMethod('POST')) {

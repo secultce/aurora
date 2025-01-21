@@ -445,6 +445,7 @@ view:
 
   authentication:
     error:
+      already_logged_in: Ya has iniciado sesión.
       age_rating_valid: Debes seleccionar una clasificación de edad válida.
       email_in_use: Este correo electrónico ya está en uso.
       error_message: Ha ocurrido un error ao crear tu cuenta.
