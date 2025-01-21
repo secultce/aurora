@@ -50,7 +50,7 @@
                             <input type="hidden" id="opportunityId" name="id" value="{{ id }}">
                             <div class="mb-3">
                                 <label for="opportunityType">{{ 'view.opportunity.labels.choose_type'|trans }} <span class="text-danger">*</span></label>
-                                <select class="form-select" name="extraFields[opportunityType]" aria-label="{{ 'type_opportunity'|trans }}" id="opportunityType">
+                                <select class="form-select" name="extraFields[type]" aria-label="{{ 'type_opportunity'|trans }}" id="opportunityType">
                                     <option selected disabled hidden>{{ 'type_opportunity'|trans }}</option>
                                     <option>Festival</option>
                                     <option>Processo de Seleção</option>
@@ -73,8 +73,8 @@
                             </div>
                             <div class="mb-3">
                                 {% include '_components/tags-selector.html.twig' with {
-                                    inputName: 'culturalArea',
-                                    inputLabel: 'areas_of_interest'|trans,
+                                    inputName: 'areasOfActivity',
+                                    inputLabel: 'areas_of_expertise'|trans,
                                     items: [
                                         { value: 'Artesanato', label: 'Artesanato' },
                                         { value: 'Cinema', label: 'Cinema' },

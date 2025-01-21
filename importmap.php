@@ -86,7 +86,7 @@ return [
         'type' => 'css',
     ],
     'intl-messageformat' => [
-        'version' => '10.7.11',
+        'version' => '10.7.14',
     ],
     'tslib' => [
         'version' => '2.8.1',

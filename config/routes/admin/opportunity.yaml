@@ -8,6 +8,11 @@ list:
   controller: App\Controller\Web\Admin\OpportunityAdminController::list
   methods: ['GET']
 
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\OpportunityAdminController::edit
+  methods: ['GET', 'POST']
+
 remove:
   path: /{id}/remove
   controller: App\Controller\Web\Admin\OpportunityAdminController::remove

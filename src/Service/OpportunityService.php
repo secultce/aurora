@@ -14,6 +14,7 @@ use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\OpportunityServiceInterface;
 use DateTime;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\Exception\ParameterNotFoundException;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -158,12 +159,40 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
 
         $uploadedImage = $this->fileService->uploadImage(
             $this->parameterBag->get('app.dir.opportunity.profile'),
-            $uploadedFile
+            $uploadedFile,
         );
 
-        $opportunity->setImage($this->fileService->urlOfImage($uploadedImage->getFilename()));
+        $opportunity->setImage($this->fileService->getFileUrl($uploadedImage->getPathname()));
 
         $opportunity->setUpdatedAt(new DateTime());
+
+        $this->repository->save($opportunity);
+
+        return $opportunity;
+    }
+
+    public function updateCoverImage(UUid $id, UploadedFile $coverImage): Opportunity
+    {
+        $opportunity = $this->get($id);
+
+        $opportunityDto = new OpportunityDto();
+        $opportunityDto->image = $coverImage;
+
+        $violations = $this->validator->validate($opportunityDto, groups: [OpportunityDto::UPDATE]);
+
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        $uploadedImage = $this->fileService->uploadImage(
+            $this->parameterBag->get('app.dir.opportunity.cover'),
+            $coverImage,
+        );
+
+        $extraFields = $opportunity->getExtraFields();
+        $extraFields['coverImage'] = $this->fileService->getFileUrl($uploadedImage->getPathname());
+        $opportunity->setUpdatedAt(new DateTime());
+        $opportunity->setExtraFields($extraFields);
 
         $this->repository->save($opportunity);
 
