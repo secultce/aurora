@@ -74,6 +74,7 @@ contact: Contact
 cultural_language: Cultural language
 cultural_languages: Cultural languages
 
+date: Date
 date_created: Date created
 dashboard: Dashboard
 draft: In draft
@@ -180,6 +181,7 @@ my_organizations: My Organizations
 my_profile: My Profile
 my_spaces: My Spaces
 my_subscriptions: My Subscriptions
+modified_by: Modified by
 
 my_reviews: My Reviews
 name: Name

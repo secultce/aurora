@@ -43,7 +43,19 @@
                                         <button type="button" class="btn btn-outline-dark btn-sm"
                                                 data-bs-toggle="modal"
                                                 data-bs-target="#modal-timeline"
-                                                onclick="openModal({{ item.from | json_encode() }}, {{ item.to | json_encode() }})">
+                                                onclick="openModal({{ item.from | json_encode() }}, {{ item.to | json_encode() }}, {
+                                                        author: {
+                                                            firstname: '{{ item.author.firstname }}',
+                                                            lastname: '{{ item.author.lastname }}',
+                                                            socialName: '{{ item.author.socialName }}',
+                                                            email: '{{ item.author.email }}',
+                                                            image: '{{ item.author.image }}'
+                                                        },
+                                                        datetime: '{{ item.datetime.timestamp }}',
+                                                        device: '{{ item.device }}',
+                                                        platform: '{{ item.platform }}',
+                                                        title: '{{ item.title }}'
+                                                        })">
                                             {{ 'details' | trans }}
                                         </button>
                                     </td>
