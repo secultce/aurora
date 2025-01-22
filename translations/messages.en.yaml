@@ -195,6 +195,7 @@ name_organization: Organization name
 name_initiative: Nome gives initiative
 name_phases: Phase name
 neighborhood: Neighborhood
+new_phase: New phase
 notifications: Notifications
 no: No
 no_inform: Do Not Inform
@@ -236,6 +237,10 @@ postgraduate: Postgraduate
 photo: Photo
 phase: Phase
 phases: Phases
+phase_name: Phase name
+phase_description: Phase description
+phase_success: Phase created successfully
+phase_error: Error creating phase
 phase_timeline: Phase Timeline
 postal_code: Postal Code
 profile_picture: Profile Picture

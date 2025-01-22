@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
-use App\Entity\Agent;
 use App\Entity\Opportunity;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
@@ -64,14 +63,6 @@ class PhaseDto
         new Positive(groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $sequence;
-
-    #[Sequentially([
-        new NotBlank(groups: [self::CREATE]),
-        new NotNull(groups: [self::CREATE, self::UPDATE]),
-        new Uuid(groups: [self::CREATE, self::UPDATE]),
-        new Exists(Agent::class, groups: [self::CREATE, self::UPDATE]),
-    ])]
-    public mixed $createdBy;
 
     #[Sequentially([
         new NotBlank(groups: [self::CREATE]),

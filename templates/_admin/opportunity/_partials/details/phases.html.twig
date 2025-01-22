@@ -1,3 +1,14 @@
+{% for message in app.flashes('success') %}
+    <div class="alert alert-success" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+{% for message in app.flashes('error') %}
+    <div class="alert alert-danger" role="alert">
+        {{ message }}
+    </div>
+{% endfor %}
+
 <div class="tab-pane" id="phases">
     <div class="card card-body shadow">
         <table class="table table-hover table-striped">
@@ -16,19 +27,25 @@
                 <tr>
                     <td>{{ phase.name }}</td>
                     <td>{{ phase.description }}</td>
-                    <td>{{ phase.startDate is not null ? phase.startDate|date('d/m/Y') : '' }}</td>
-                    <td>{{ phase.endDate is not null ? phase.endDate|date('d/m/Y') : '' }}</td>
-                    <td>{{ phase.status }}</td>
+                    <td>{{ phase.startDate|date('d/m/Y') }}</td>
+                    <td>{{ phase.endDate|date('d/m/Y') }}</td>
                     <td>
-                        <a href="#" class="btn btn-outline-info btn-sm">
-                            {{ 'see_phase' | trans }}
+                        {% if phase.status == 1 %}
+                            <span class="badge bg-success">{{ 'Active'|trans }}</span>
+                        {% else %}
+                            <span class="badge bg-danger">{{ 'Inactive'|trans }}</span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <a href="#" class="btn btn-outline-primary btn-sm">
+                            {{ 'details'|trans }}
                         </a>
                         <a href="{{ path('admin_opportunity_phase_timeline', {
                             opportunityId: opportunity.id,
                             phaseId: phase.id
                         }) }}"
                            class="btn btn-outline-info btn-sm">
-                            Timeline
+                            {{ 'Timeline'|trans }}
                         </a>
                     </td>
                 </tr>
@@ -41,5 +58,59 @@
             {% endfor %}
             </tbody>
         </table>
+    </div>
+</div>
+
+<div class="d-flex justify-content-end mt-3">
+    <button
+            class="btn btn-teal btn-sm rounded px-3 py-2 shadow-sm text-white"
+            style="background-color: #008b8b; border: none;"
+            data-bs-toggle="modal"
+            data-bs-target="#createPhaseModal"
+    >
+        {{ 'new_phase' | trans }}
+    </button>
+</div>
+
+<div class="modal fade" id="createPhaseModal" tabindex="-1" aria-labelledby="createPhaseModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <form action="{{ path('admin_opportunity_phase_store', { 'opportunityId': opportunity.id }) }}" method="post">
+            <input type="hidden" name="opportunityId" value="{{ opportunity.id }}">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createPhaseModalLabel">{{ 'add_phase' | trans }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Fechar"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="phaseName" class="form-label">{{ 'Name'|trans }}</label>
+                        <input type="text" class="form-control" id="phaseName" name="name" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="phaseDescription" class="form-label">{{ 'description' | trans }}</label>
+                        <textarea class="form-control" id="phaseDescription" name="description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="startDate" class="form-label">{{ 'start_date' | trans }}</label>
+                        <input type="date" class="form-control" id="startDate" name="startDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="endDate" class="form-label"> {{ 'end_date' | trans}} </label>
+                        <input type="date" class="form-control" id="endDate" name="endDate" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="status" class="form-label"> {{ 'Status' | trans }} </label>
+                        <select class="form-control" id="status" name="status" required>
+                            <option value="1">Ativo</option>
+                            <option value="0">Inativo</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{{ 'Cancel' | trans }}</button>
+                    <button type="submit" class="btn btn-primary"> {{ 'save' | trans }} </button>
+                </div>
+            </div>
+        </form>
     </div>
 </div>

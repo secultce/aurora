@@ -45,7 +45,7 @@ class PhaseApiControllerTest extends AbstractWebTestCase
             'endDate' => null,
             'status' => true,
             'sequence' => 4,
-            'createdBy' => ['id' => $requestBody['createdBy']],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_2],
             'opportunity' => ['id' => $requestBody['opportunity']],
             'extraFields' => null,
             'createdAt' => $phase->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -78,7 +78,7 @@ class PhaseApiControllerTest extends AbstractWebTestCase
             'endDate' => $phase->getEndDate()->format(DateTimeInterface::ATOM),
             'status' => $requestBody['status'],
             'sequence' => 4,
-            'createdBy' => ['id' => $requestBody['createdBy']],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_2],
             'opportunity' => ['id' => $requestBody['opportunity']],
             'extraFields' => $requestBody['extraFields'],
             'createdAt' => $phase->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -113,7 +113,6 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                 'expectedErrors' => [
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
-                    ['field' => 'createdBy', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -140,12 +139,6 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
             ],
-            'createdBy should exist' => [
-                'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
-                'expectedErrors' => [
-                    ['field' => 'createdBy', 'message' => 'This id does not exist.'],
-                ],
-            ],
             'extraFields should be a valid JSON' => [
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
@@ -155,7 +148,7 @@ class PhaseApiControllerTest extends AbstractWebTestCase
         ];
     }
 
-    public function testGet(): void
+    public function testGetOnePhaseShouldBeSuccess(): void
     {
         $client = static::apiClient();
 
@@ -257,7 +250,7 @@ class PhaseApiControllerTest extends AbstractWebTestCase
         ]);
     }
 
-    public function testCanUpdate(): void
+    public function testCanUpdateAPhaseShouldBeSuccess(): void
     {
         $requestBody = PhaseTestFixtures::complete();
         unset($requestBody['id']);
@@ -280,7 +273,7 @@ class PhaseApiControllerTest extends AbstractWebTestCase
             'endDate' => $phase->getEndDate()->format(DateTimeInterface::ATOM),
             'status' => $requestBody['status'],
             'sequence' => 2,
-            'createdBy' => ['id' => $requestBody['createdBy']],
+            'createdBy' => ['id' => AgentFixtures::AGENT_ID_2],
             'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_2],
             'extraFields' => $requestBody['extraFields'],
             'createdAt' => $phase->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -331,12 +324,6 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['description' => 123]),
                 'expectedErrors' => [
                     ['field' => 'description', 'message' => 'This value should be of type string.'],
-                ],
-            ],
-            'createdBy should exist' => [
-                'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
-                'expectedErrors' => [
-                    ['field' => 'createdBy', 'message' => 'This id does not exist.'],
                 ],
             ],
             'extraFields should be a valid JSON' => [
