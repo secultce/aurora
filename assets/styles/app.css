@@ -194,10 +194,6 @@ body {
     align-self: center;
 }
 
-.access-profile {
-    background-color: var(--next-button-form);
-}
-
 .agent-options {
     text-wrap: nowrap;
 }
@@ -367,22 +363,6 @@ body {
     margin-top: 15px;
 }
 
-.access-profile {
-    background-color: var(--btn-publish-custom-color);
-    font-weight: bold;
-    color: var(--bg-color);
-    border-radius: 8px;
-    padding: 10px 20px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.access-profile:hover {
-    background-color: var(--btn-publish-custom-color);
-}
-
 .icon-circle {
     display: flex;
     justify-content: center;
@@ -413,19 +393,6 @@ body {
 .event-seals .seal {
     color: var(--main-font-color);
     margin-right: 0rem;
-}
-
-.access-event {
-    background-color: var(--next-button-form);
-    color: var(--card-bg-color);
-    font-family: var(--font-open-sans);
-    font-weight: bold;
-    border: none;
-    padding: 13px 55px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
 }
 
 .card-view-more  {
@@ -663,4 +630,11 @@ img.card-images__entity-details {
 
 .bs__bg-primary {
     background-color: var(--bs-blue);
+}
+
+.list-page__access-btn {
+    border-radius: 8px;
+    border-width: 2px;
+    padding: 10px 55px;
+    font-weight: bold;
 }

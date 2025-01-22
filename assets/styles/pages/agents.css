@@ -3,22 +3,6 @@
     margin-top: 15px;
 }
 
-.access-profile {
-    background-color: var(--btn-publish-custom-color);
-    font-weight: bold;
-    color: var(--bg-color);
-    border-radius: 8px;
-    padding: 10px 20px;
-    border: none;
-    font-size: 14px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.access-profile:hover {
-    background-color: var(--btn-publish-custom-color);
-}
-
 .card-view-more  {
     color: var(--deep-teal)
 }

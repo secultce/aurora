@@ -387,6 +387,7 @@ view:
     found_faq: No FAQ found.
 
   agent:
+    access: Access agent
     create: Create an Agent
     message:
       deleted: The agent has been deleted
@@ -476,6 +477,7 @@ view:
       required_fields: Fill in all required fields.
 
   event:
+    access: Access event
     create_event:
       create: Create an Event
       description: Create an event with basic information quickly.
@@ -555,6 +557,7 @@ view:
     validity: Seal validity
 
   opportunity:
+    access: Access opportunity
     create: Create Opportunity
     description: In this section, you view and manage your opportunities.
     error:
@@ -591,6 +594,7 @@ view:
       see_inscription: See Inscription
 
   organization:
+    access: Access organization
     date: Organization was created on
     message:
       deleted: The organization has been deleted
@@ -608,7 +612,7 @@ view:
     characters: Maximum of 500 characters
 
   space:
-    access_space: Access Space
+    access: Access Space
     create: Create Space
     message:
       deleted: The space has been deleted

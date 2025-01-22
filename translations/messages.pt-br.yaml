@@ -386,6 +386,7 @@ view:
     found_faq: Nenhuma FAQ encontrada.
 
   agent:
+    access: Acessar agente
     create: Criar um agente
     message:
       deleted: O Agente foi excluído
@@ -475,6 +476,7 @@ view:
       required_fields: Preencha todos os campos obrigatórios.
 
   event:
+    access: Acessar evento
     create_event:
       create: Criar um evento
       description: Crie um evento com informações básicas e de forma rápida.
@@ -537,6 +539,7 @@ view:
     info: Nesta seção você visualiza e gerência seu perfil de usuário e outros selos criados.
 
   opportunity:
+    access: Acessar oportunidade
     create: Criar oportunidade
     description: Nesta seção você pode adicionar e gerenciar as Oportunidades criadas por você.
     error:
@@ -573,6 +576,7 @@ view:
       see_inscription: Ver Inscrição
 
   organization:
+    access: Acessar organização
     date: Organização foi criada em
     message:
       deleted: A Organização foi excluída
@@ -590,7 +594,7 @@ view:
     characters: Máximo de 500 caracteres
 
   space:
-    access_space: Acessar espaço
+    access: Acessar espaço
     create: Criar espaço
     message:
       deleted: O Espaço foi excluído
