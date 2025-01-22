@@ -28,7 +28,7 @@
         <div class="badge bg-secondary text-white rounded-pill px-2 py-1">{{ badges|default('+0') }}</div>
     </div>
     <div class="col-md position-relative">
-        <a href="{{ link_url|default('#') }}" class="btn btn-primary mt-3 d-flex">
+        <a data-cy="show-opportunity-btn" href="{{ link_url|default('#') }}" class="btn btn-primary mt-3 d-flex">
             <span class="fw-bold">{{ 'check'|trans }}</span>
             <i class="material-icons ms-3">arrow_forward</i>
         </a>

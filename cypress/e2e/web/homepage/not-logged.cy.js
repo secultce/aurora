@@ -67,6 +67,12 @@ describe('Página de Home do ambiente web', () => {
         cy.get('.carousel-item').first().contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
     });
 
+    it('Garante que o botão "Conferir" da seção "Confira as Oportunidades" está redirecionando para a página correta', () => {
+        cy.get('.carousel-item [data-cy="show-opportunity-btn"]').first().click();
+
+        cy.get('.name__entity-details').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
+    });
+
     it('Garante que seção "Acontecendo agora" estão com os dados das fixtures', () => {
         cy.get('#happening-now').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
     });
