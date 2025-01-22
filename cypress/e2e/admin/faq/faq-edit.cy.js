@@ -5,7 +5,7 @@ describe('Teste de navegação, validação e edição da página de Minhas FAQs
         cy.url().should('include', '/login');
         cy.login('saracamilo@example.com', 'Aurora@2024');
         cy.url().should('include', '/');
-        cy.contains('Sara Jenifer Camilo').should('be.visible').click();
+        cy.contains('Sara').should('be.visible').click();
         cy.contains('Minhas Oportunidades').should('be.visible').click();
         cy.url().should('include', '/painel/oportunidades');
         cy.scrollTo('bottom');

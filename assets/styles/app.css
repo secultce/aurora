@@ -638,3 +638,7 @@ img.card-images__entity-details {
     padding: 10px 55px;
     font-weight: bold;
 }
+
+.google-maps iframe {
+    width: 100% !important;
+}

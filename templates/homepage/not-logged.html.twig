@@ -35,7 +35,7 @@
                 <div class="col-md-auto">
                     <h1 class="fw-bold mt-4">{{ 'create_account'|trans }}</h1>
                     <p class="lead mt-3">{{ 'view.homepage.registration_info'|trans }}</p>
-                    <a href="{{ path('web_auth_register') }}" class="col-5 mx-auto btn btn-light btn-lg text-green icon-link justify-content-between mt-5">
+                    <a href="{{ path('web_auth_register') }}" class="col-sm-5 mx-auto btn btn-light btn-lg text-green icon-link justify-content-between mt-5">
                         <h4 class="fw-bold mt-2 text-uppercase">{{ 'register'|trans }}</h4>
                         <span class="material-icons fs-2">arrow_forward</span>
                     </a>
@@ -55,8 +55,8 @@
                         <p class="lead mt-3">{{ 'view.homepage.discover_open_notice'|trans }}</p>
                     </div>
 
-                    <div class="mt-4">
-                        <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle me-2" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="prev">
+                    <div class="col-4 col-sm-3 text-end mt-4">
+                        <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle me-md-2" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="prev">
                             <i class="material-icons">chevron_left</i>
                         </button>
                         <button id="btn-carousel-homepage" class="btn btn-light text-primary rounded-circle" type="button" data-bs-target="#opportunitiesCarousel" data-bs-slide="next">
@@ -111,7 +111,7 @@
 {% endif %}
 
 {% if env.aurora.homepage.sections.modules.enabled == "true" %}
-<section class=" py-5">
+<section class="py-5">
     <div class="container pb-5">
         <div class="row text-start">
             <h1 class="fw-bold mt-4 text-dark">{{ 'view.homepage.entities'|trans }} {{ env.aurora.name }}</h1>
@@ -190,8 +190,8 @@
                         <p class="lead mt-3">{{ 'view.homepage.cultural_scene'|trans }}</p>
                     </div>
 
-                    <div class="mt-4">
-                        <button id="btn-card-prev" class="btn btn-light text-primary rounded-circle me-2 btn-carousel-homepage" type="button">
+                    <div class="col-4 col-sm-3 text-end mt-4">
+                        <button id="btn-card-prev" class="btn btn-light text-primary rounded-circle me-md-2 btn-carousel-homepage" type="button">
                             <i class="material-icons">chevron_left</i>
                         </button>
                         <button id="btn-card-next" class="btn btn-light text-primary rounded-circle btn-carousel-homepage" type="button">
@@ -374,8 +374,8 @@
                     <h1 class="fw-bold mt-4">{{ 'locate_yourself'|trans }}</h1>
                     <p class="lead mt-3">{{ 'view.homepage.find_nearby'|trans }}</p>
                 </div>
-                <div class="col-md-12 mt-5">
-                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19678.79535967018!2d-38.537474138432515!3d-3.727265727545027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1724612249783!5m2!1spt-BR!2sbr" width="1320" height="389" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <div class="google-maps col-md-12 mt-5">
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d19678.79535967018!2d-38.537474138432515!3d-3.727265727545027!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1spt-BR!2sbr!4v1724612249783!5m2!1spt-BR!2sbr" width="100%" height="389" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
                 </div>
             </div>
         </div>

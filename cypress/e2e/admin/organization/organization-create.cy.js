@@ -10,8 +10,8 @@ describe('Teste de navegação e validação da página de Organizações', () =
 
         cy.url().should('include', '/');
 
-        cy.contains('Sara Jenifer Camilo').should('be.visible');
-        cy.contains('Sara Jenifer Camilo').click();
+        cy.get('.navbar').contains('Sara').should('be.visible');
+        cy.get('.navbar').contains('Sara').click();
         cy.contains('Minhas Oportunidades', { timeout: 10000 }).should('be.visible').click();
         cy.url({ timeout: 10000 }).should('include', '/painel/oportunidades');
         cy.scrollTo('bottom');

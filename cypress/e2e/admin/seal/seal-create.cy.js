@@ -6,9 +6,9 @@ describe('Teste de navegação e validação da página de Selos', () => {
         cy.url().should('include', '/login');
         cy.login('saracamilo@example.com', 'Aurora@2024');
         cy.url().should('include', '/');
-        cy.contains('Sara Jenifer Camilo').should('be.visible');
+        cy.get('.navbar').contains('Sara').should('be.visible');
 
-        cy.contains('Sara Jenifer Camilo').click();
+        cy.get('.navbar').contains('Sara').click();
         cy.contains('Minhas Oportunidades', { timeout: 10000 })
             .should('be.visible')
             .click();

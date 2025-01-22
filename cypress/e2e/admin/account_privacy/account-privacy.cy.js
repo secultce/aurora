@@ -12,7 +12,7 @@ describe('Painel de Controle - Página de Conta e Privacidade', () => {
         cy.url().should('include', '/painel');
         cy.contains('Olá, Talyson Soares', { timeout: 10000 }).should('be.visible');
 
-        cy.contains('Talyson Soares', { timeout: 10000 })
+        cy.get('.navbar').contains('Talyson', { timeout: 10000 })
             .should('be.visible')
             .click();
 

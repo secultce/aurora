@@ -4,7 +4,7 @@
             <div id="scroll-container" class="d-flex flex-nowrap align-items-stretch overflow-x-auto overflow-y-hidden scroll-container-horizontal">
                 {% if tab.content is iterable %}
                     {% for content in tab.content %}
-                        <div class="m-2" style="min-width: 400px;">
+                        <div class="m-2" style="min-width: 360px;">
                             {{ content|raw }}
                         </div>
                     {% endfor %}
@@ -29,7 +29,7 @@
         });
     });
 
-    const scrollAmount = 300;
+    const scrollAmount = 376;
 
     function getActiveScrollContainer() {
         const activePane = document.querySelector('.tab-pane.show.active');

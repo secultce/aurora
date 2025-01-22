@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg bg-body-tertiary fixed-top px-4 py-4">
+<nav class="navbar navbar-expand-xxl bg-body-tertiary fixed-top px-4 py-4">
     <div class="container-fluid">
         <div class="navbar-brand-toogle">
             <button class="navbar-toggler" type="button"
@@ -87,7 +87,7 @@
                 {% if app.user.name is defined %}
                     <div class="dropdown notifications-login">
                         <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton">
-                            <span>{{ app.user.name }}</span>
+                            <span>{{ app.user.name|split(' ')|first }}</span>
                             <img src="{{ asset(app.user.image ?? 'img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
                         </button>
                         <div class="dropdown-menu dropdown-menu-end" id="customDropdown">
