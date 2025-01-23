@@ -76,12 +76,3 @@
     color: var(--color-subtitle-gray);
     margin-bottom: 10px;
 }
-
-.access-initiative {
-    font-weight: bold;
-    border: 2px solid var(--btn-publish-custom-color);
-    padding: 10px 60px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease, color 0.3s ease;
-}

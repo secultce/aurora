@@ -391,6 +391,7 @@ view:
     found_faq: No se encontraron preguntas frecuentes.
 
   agent:
+    access: Acceder agente
     create: Crear un Agente
     message:
       deleted: El agente ha sido eliminado
@@ -481,6 +482,7 @@ view:
       required_fields: Complete todos los campos obligatorios.
 
   event:
+    access: Acceder evento
     create_event:
       create: Crear un Evento
       description: Crea un evento con información básica rápidamente.
@@ -560,6 +562,7 @@ view:
     validity: Validez del sello
 
   opportunity:
+    access: Acceder oportunidad
     create: Crear Oportunidad
     description: In this section you will see and manage your opportunities.
     error:
@@ -596,6 +599,7 @@ view:
       see_inscription: Ver Inscripcione
 
   organization:
+    access: Acceder organización
     date: Organización fue creada en
     message:
       deleted: La organización ha sido eliminada
@@ -613,7 +617,7 @@ view:
     characters: Máximo de 500 caracteres
 
   space:
-    access_space: Acceder al Espacio
+    access: Acceder al Espacio
     create: Crear Espacio
     message:
       deleted: El espacio ha sido eliminado

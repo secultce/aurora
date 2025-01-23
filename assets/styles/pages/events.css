@@ -83,19 +83,6 @@
     margin-right: 0rem;
 }
 
-.access-event {
-    background-color: var(--next-button-form);
-    color: var(--card-bg-color);
-    font-family: var(--font-open-sans);
-    font-weight: bold;
-    border: none;
-    padding: 13px 55px;
-    border-radius: 8px;
-    cursor: pointer;
-    display: inline-block;
-    text-align: center;
-}
-
 .entity-container {
     transition: width 0.3s, transform 0.3s;
     width: var(--WIDTH_DEFAULT);
