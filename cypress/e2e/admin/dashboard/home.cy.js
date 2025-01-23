@@ -42,13 +42,14 @@ describe('Painel de Controle', () => {
         cy.get('.recent-registrations-card > a').contains('Acompanhar').should('be.visible').click();
     });
 
-    it('Quando não houver inscrições em nenhuma oportunidade, garante que o usuário saiba disso.', () => {
-
-        cy.get("a.text-danger.d-flex.align-items-center.nav-link").click();
-        cy.login('mariadebetania@example.com', 'Aurora@2024');
-        cy.visit('/painel');
-        
-        cy.contains("Nenhuma inscrição encontrada.").should('be.visible');
-        cy.contains("Ver Oportunidades").should('be.visible').click();
-    });
+    // Não existe um usuário que não esteja inscrito em nenhum oportunidade
+    // it('Quando não houver inscrições em nenhuma oportunidade, garante que o usuário saiba disso.', () => {
+    //
+    //     cy.get("a.text-danger.d-flex.align-items-center.nav-link").click();
+    //     cy.login('mariadebetania@example.com', 'Aurora@2024');
+    //     cy.visit('/painel');
+    //
+    //     cy.contains("Nenhuma inscrição encontrada.").should('be.visible');
+    //     cy.contains("Ver Oportunidades").should('be.visible').click();
+    // });
 });

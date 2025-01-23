@@ -22,12 +22,12 @@ class InscriptionPhaseReview
     #[Groups(['inscription-phase-review.get'])]
     private ?Uuid $id = null;
 
-    #[ORM\OneToOne(targetEntity: InscriptionPhase::class)]
+    #[ORM\ManyToOne(targetEntity: InscriptionPhase::class)]
     #[ORM\JoinColumn(name: 'inscription_phase_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['inscription-phase-review.get'])]
     private ?InscriptionPhase $inscriptionPhase = null;
 
-    #[ORM\OneToOne(targetEntity: Agent::class)]
+    #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'reviewer_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['inscription-phase-review.get'])]
     private ?Agent $reviewer = null;
