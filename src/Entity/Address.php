@@ -171,7 +171,7 @@ abstract class Address extends AbstractEntity
     {
         return [
             'id' => $this->id?->toRfc4122(),
-            'name' => $this->street,
+            'street' => $this->street,
             'number' => $this->number,
             'neighborhood' => $this->neighborhood,
             'complement' => $this->complement,
