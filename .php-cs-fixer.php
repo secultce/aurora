@@ -24,5 +24,6 @@ return (new Config())
         'yoda_style' => true,
         'increment_style' => ['style' => 'post'],
         'global_namespace_import' => true,
+        'new_with_parentheses' => false,
     ])
     ->setFinder($finder);

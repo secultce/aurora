@@ -88,7 +88,7 @@ reset-deep:
 
 # Executa o php cs fixer
 style:
-	docker compose exec -T php bash -c "php bin/console app:code-style"
+	docker compose exec -T -e PHP_CS_FIXER_IGNORE_ENV=1 php bash -c "php bin/console app:code-style"
 	docker compose exec -T php bash -c "php vendor/bin/phpcs"
 
 # Gera as chaves de autenticação JWT
