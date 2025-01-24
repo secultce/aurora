@@ -48,13 +48,7 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
 
     public function create(array $initiative): Initiative|ConstraintViolationList
     {
-        $initiativeDto = $this->serializer->denormalize($initiative, InitiativeDto::class);
-
-        $violations = $this->validator->validate($initiativeDto, groups: InitiativeDto::CREATE);
-
-        if ($violations->count() > 0) {
-            return $violations;
-        }
+        $initiative = self::validateInput($initiative, InitiativeDto::CREATE);
 
         $initiativeObj = $this->serializer->denormalize($initiative, Initiative::class);
 
