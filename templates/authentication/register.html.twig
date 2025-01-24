@@ -20,25 +20,28 @@
             </div>
         {% endif %}
     </div>
-    <div class="container d-grid justify-content-start mt-5">
-        <a href="{{ path('web_home_homepage') }}" class="mt-2 nav-link centered-icon-text text-primary">
-            <i class="material-icons">arrow_back</i>
-            {{ 'back'|trans }}
-        </a>
-    </div>
 
-    <div class="container d-grid justify-content-center mb-5 mw-0">
-        <h1 class="fw-bold fs-3">{{ 'create_account'|trans }}</h1>
-        <p>{{ 'view.authentication.register.paragraph'|trans }}.</p>
+    <div class="container my-5">
+        <div class="row mb-3">
+            <a href="{{ path('web_home_homepage') }}" class="nav-link text-primary">
+                <i class="material-icons align-middle">arrow_back</i>
+                {{ 'back'|trans }}
+            </a>
+        </div>
 
-        {% if error %}
-            <div class="alert alert-danger" id="error-message">{{ error }}</div>
-        {% else %}
-            <div class="alert alert-danger d-none" id="error-message"></div>
-        {% endif %}
+        <div class="row justify-content-md-center">
+            <div class="col-md-10 col-lg-8 col-xl-6">
+                <h1 class="fw-bold fs-3">{{ 'create_account'|trans }}</h1>
+                <p class="mb-4">{{ 'view.authentication.register.paragraph'|trans }}.</p>
 
-        <div class="form-container mt-3">
-            {% include 'authentication/_partials/form-stepper.html.twig' %}
+                {% if error %}
+                    <div class="alert alert-danger" id="error-message">{{ error }}</div>
+                {% else %}
+                    <div class="alert alert-danger d-none" id="error-message"></div>
+                {% endif %}
+
+                {% include 'authentication/_partials/form-stepper.html.twig' %}
+            </div>
         </div>
     </div>
 {% endblock %}
