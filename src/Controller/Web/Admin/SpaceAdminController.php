@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Document\SpaceTimeline;
 use App\DocumentService\SpaceTimelineDocumentService;
 use App\Service\Interface\SpaceServiceInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -23,6 +24,7 @@ class SpaceAdminController extends AbstractAdminController
         private readonly SpaceTimelineDocumentService $documentService,
         private readonly TranslatorInterface $translator,
         private readonly Security $security,
+        private readonly SpaceTimeline $spaceTimeline,
     ) {
     }
 
@@ -75,6 +77,8 @@ class SpaceAdminController extends AbstractAdminController
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
+
+        $events = $this->spaceTimeline->getEvents($events);
 
         return $this->render('space/timeline.html.twig', [
             'space' => $this->service->get($id),

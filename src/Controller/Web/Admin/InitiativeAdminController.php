@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
+use App\Document\SpaceTimeline;
 use App\DocumentService\InitiativeTimelineDocumentService;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
@@ -20,6 +21,7 @@ class InitiativeAdminController extends AbstractAdminController
         private readonly InitiativeTimelineDocumentService $documentService,
         private readonly AgentServiceInterface $agentService,
         private readonly TranslatorInterface $translator,
+        private readonly SpaceTimeline $spaceTimeline,
     ) {
     }
 
@@ -71,6 +73,8 @@ class InitiativeAdminController extends AbstractAdminController
     public function timeline(Uuid $id): Response
     {
         $events = $this->documentService->getEventsByEntityId($id);
+
+        $events = $this->spaceTimeline->getEvents($events);
 
         return $this->render('initiative/timeline.html.twig', [
             'initiative' => $this->service->get($id),

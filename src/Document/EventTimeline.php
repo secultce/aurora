@@ -9,7 +9,7 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\Types\Type;
 
 #[ODM\Document(collection: 'event_timeline')]
-class EventTimeline
+class EventTimeline extends AbstractDocument
 {
     #[ODM\Id]
     private ?string $id = null;
@@ -40,11 +40,6 @@ class EventTimeline
 
     #[ODM\Field(type: Type::HASH)]
     private array $to;
-
-    public function __construct()
-    {
-        $this->datetime = new DateTime();
-    }
 
     public function getId(): ?string
     {

@@ -44,12 +44,9 @@
                                     <td>{{ item.device }}</td>
                                     <td></td>
                                     <td>
-                                        <button type="button" class="btn btn-outline-dark btn-sm"
-                                                data-bs-toggle="modal"
-                                                data-bs-target="#modal-timeline"
-                                                onclick="openModal({{ item.from | json_encode() }}, {{ item.to | json_encode() }})">
-                                            {{ 'details'|trans }}
-                                        </button>
+                                        {% include '_components/button-modal.html.twig' with {
+                                            item: item
+                                        } %}
                                     </td>
                                 </tr>
                             {% else %}
@@ -68,5 +65,5 @@
 
 {% block extra_javascripts %}
     {{ parent() }}
-    <script src="{{ asset('js/modal-timeline.js') }}"></script>
+    <script src="{{ asset('js/modal-timeline.js') }}" type="module"></script>
 {% endblock %}

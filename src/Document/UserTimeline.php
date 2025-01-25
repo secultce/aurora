@@ -9,13 +9,13 @@ use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 use Doctrine\ODM\MongoDB\Types\Type;
 
 #[ODM\Document(collection: 'app_user_timeline')]
-class UserTimeline
+class UserTimeline extends AbstractDocument
 {
     #[ODM\Id]
     private ?string $id = null;
 
     #[ODM\Field]
-    private string $userId;
+    private ?string $userId = null;
 
     #[ODM\Field]
     private string $resourceId;
@@ -51,7 +51,7 @@ class UserTimeline
         $this->id = $id;
     }
 
-    public function getUserId(): string
+    public function getUserId(): ?string
     {
         return $this->userId;
     }
