@@ -6,22 +6,12 @@ namespace App\DocumentService;
 
 use App\Document\PhaseTimeline;
 use App\DocumentService\Interface\TimelineDocumentServiceInterface;
-use Doctrine\ODM\MongoDB\Repository\DocumentRepository;
-use Symfony\Component\Uid\Uuid;
+use Doctrine\ODM\MongoDB\DocumentManager;
 
 final class PhaseTimelineDocumentService extends AbstractTimelineDocumentService implements TimelineDocumentServiceInterface
 {
-    public function getDocumentRepository(): DocumentRepository
+    public function __construct(DocumentManager $documentManager)
     {
-        return $this
-            ->getDocumentManager()
-            ->getRepository(PhaseTimeline::class);
-    }
-
-    public function getEventsByEntityId(Uuid $id): array
-    {
-        return $this->getDocumentRepository()->findBy([
-            'resourceId' => $id,
-        ]);
+        parent::__construct($documentManager, PhaseTimeline::class);
     }
 }

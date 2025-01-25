@@ -209,6 +209,7 @@ export declare const CHANGE_PASSWORD: Message<{ 'messages': { parameters: NoPara
 export declare const CONTACT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const CULTURAL_LANGUAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const CULTURAL_LANGUAGES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const DATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const DATE_CREATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const DASHBOARD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const DRAFT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -309,6 +310,7 @@ export declare const MY_ORGANIZATIONS: Message<{ 'messages': { parameters: NoPar
 export declare const MY_PROFILE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const MY_SPACES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const MY_SUBSCRIPTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const MODIFIED_BY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const MY_REVIEWS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NAME: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const NAME_SPACE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
