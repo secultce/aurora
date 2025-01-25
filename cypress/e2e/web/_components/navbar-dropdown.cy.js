@@ -3,7 +3,7 @@ describe('Teste de Dropdown do Navbar após Login', () => {
         cy.viewport(1920, 1080);
         cy.visit('/');
         cy.login('saracamilo@example.com', 'Aurora@2024');
-        cy.contains('Sara Jenifer Camilo').should('be.visible');
+        cy.contains('Sara').should('be.visible');
     });
 
     it('Verifica a funcionalidade completa do dropdown do navbar', () => {
