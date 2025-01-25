@@ -33,6 +33,11 @@ admin_opportunity:
   prefix: /painel/oportunidades
   name_prefix: admin_opportunity_
 
+admin_opportunity_phase:
+  resource: 'admin/opportunity-phase.yaml'
+  prefix: /painel/oportunidades/{opportunityId}/phases
+  name_prefix: admin_opportunity_phase_
+
 admin_organization:
   resource: 'admin/organization.yaml'
   prefix: /painel/organizacoes

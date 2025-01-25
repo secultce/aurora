@@ -67,6 +67,8 @@ create_and_publish: Criar e Publicar
 create_in_draft: Criar em Rascunho
 create_account: Crie sua conta
 created_at: Criado em
+created_by: Criado por
+created_in: Criado em
 chain: Corrente
 change_email: Alterar email
 change_password: Alterar Senha
@@ -147,6 +149,7 @@ is_itinerant: É agente itinerante?
 language: Idioma
 lastname: Sobrenome
 last_login: Último Login
+last_updated: Última atualização
 linked_with: Vinculado com
 list: Lista
 link: Adicionar Link
@@ -232,6 +235,7 @@ phone: Telefone
 photo: Foto
 phase: Fase
 phases: Fases
+phase_timeline: Timeline da fase
 physical: Física
 postal_code: CEP
 profile_picture: Foto de Perfil

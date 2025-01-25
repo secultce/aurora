@@ -76,13 +76,11 @@ class OpportunityAdminController extends AbstractAdminController
     public function store(Request $request): Response
     {
         $data = $request->request->all();
-
         $data['extraFields']['culturalArea'] = $data['culturalArea'] ?? null;
         unset($data['culturalArea']);
 
         try {
             $this->service->create($data);
-
             $this->addFlash('success', $this->translator->trans('view.opportunity.message.created'));
         } catch (ValidatorException $exception) {
             return $this->render('_admin/opportunity/create.html.twig', [
@@ -125,13 +123,11 @@ class OpportunityAdminController extends AbstractAdminController
     public function subscribe(Uuid $id): Response
     {
         $user = $this->security->getUser();
-
         if (null === $user) {
             $this->addFlashError($this->translator->trans('view.opportunity.registration_not_logged'));
 
             return $this->redirectToRoute('web_auth_login');
         }
-
         $agent = $user->getAgents()->getValues()[0];
 
         try {
@@ -149,7 +145,6 @@ class OpportunityAdminController extends AbstractAdminController
 
             return $this->redirectToRoute('web_opportunity_list');
         }
-
         $this->addFlashSuccess($this->translator->trans('view.opportunity.registration_success'));
 
         return $this->redirectToRoute('admin_registration_list');
