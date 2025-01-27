@@ -42,6 +42,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_1,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_2,
+                AgentFixtures::AGENT_ID_3,
+            ],
             'createdAt' => '2024-09-01T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -57,6 +65,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_1,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_2,
+                AgentFixtures::AGENT_ID_3,
+            ],
             'createdAt' => '2024-09-02T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -72,6 +88,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_1,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_2,
+                AgentFixtures::AGENT_ID_3,
+            ],
             'createdAt' => '2024-09-03T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -87,6 +111,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_2,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_4,
+                AgentFixtures::AGENT_ID_6,
+            ],
             'createdAt' => '2024-09-04T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -102,6 +134,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_2,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_2,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_4,
+                AgentFixtures::AGENT_ID_6,
+            ],
             'createdAt' => '2024-09-05T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -117,6 +157,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_3,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_1,
+                AgentFixtures::AGENT_ID_5,
+            ],
             'createdAt' => '2024-09-06T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -132,6 +180,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_3,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_3,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_1,
+                AgentFixtures::AGENT_ID_5,
+            ],
             'createdAt' => '2024-09-07T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -147,6 +203,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_4,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_4,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_7,
+                AgentFixtures::AGENT_ID_8,
+            ],
             'createdAt' => '2024-09-08T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -162,6 +226,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_4,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_4,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_7,
+                AgentFixtures::AGENT_ID_8,
+            ],
             'createdAt' => '2024-09-08T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -177,6 +249,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_5,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_5,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_9,
+                AgentFixtures::AGENT_ID_11,
+            ],
             'createdAt' => '2024-09-10T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -192,6 +272,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_6,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_6,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_10,
+                AgentFixtures::AGENT_ID_11,
+            ],
             'createdAt' => '2024-09-11T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -207,6 +295,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_7,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_7,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_10,
+                AgentFixtures::AGENT_ID_11,
+            ],
             'createdAt' => '2024-09-12T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -222,6 +318,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_8,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_8,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_5,
+                AgentFixtures::AGENT_ID_7,
+            ],
             'createdAt' => '2024-09-13T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -237,6 +341,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_9,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_9,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_6,
+                AgentFixtures::AGENT_ID_8,
+            ],
             'createdAt' => '2024-09-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -252,6 +364,14 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'createdBy' => AgentFixtures::AGENT_ID_10,
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_10,
             'extraFields' => [],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_9,
+                AgentFixtures::AGENT_ID_11,
+            ],
             'createdAt' => '2024-09-11T15:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -271,6 +391,10 @@ final class PhaseFixtures extends AbstractFixture implements DependentFixtureInt
             'opportunity' => OpportunityFixtures::OPPORTUNITY_ID_1,
             'extraFields' => [
                 'description' => 'Nessa fase deve ser realizado as inscrições',
+            ],
+            'reviewers' => [
+                AgentFixtures::AGENT_ID_2,
+                AgentFixtures::AGENT_ID_3,
             ],
             'createdAt' => '2024-09-01T10:00:00+00:00',
             'updatedAt' => '2024-09-01T10:30:00+00:00',

@@ -82,6 +82,7 @@ direction BT
        boolean status
        integer sequence
        json extraFields
+       json criteria
        created_at  /* (DC2Type:datetime_immutable) */ timestamp(0)
        timestamp(0) updated_at
        timestamp(0) deleted_at
@@ -128,6 +129,10 @@ direction BT
        timestamp(0) deleted_at
        id  /* (DC2Type:uuid) */ uuid
     }
+    class phase_reviewers {
+       phase_id  /* (DC2Type:uuid) */ uuid
+       agent_id  /* (DC2Type:uuid) */ uuid
+    }
     
     event  -->  agent : created_by_id
     event  -->  agent : agent_group_id
@@ -152,6 +157,8 @@ direction BT
     inscription_opportunity --> opportunity : opportunity_id
     phase --> agent : created_by_id
     phase --> opportunity : opportunity_id
+    phase_reviewers --> phase : phase_id
+    phase_reviewers --> agent : agent_id
     inscription_phase --> agent : agent_id
     inscription_phase --> phase : phase_id
     inscription_phase_review --> agent : reviewer_id

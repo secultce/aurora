@@ -7,6 +7,7 @@ namespace App\Serializer\Denormalizer;
 use App\Entity\Agent;
 use App\Entity\Opportunity;
 use App\Entity\Phase;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\Serializer\Normalizer\DenormalizerInterface;
@@ -41,6 +42,15 @@ readonly class PhaseDenormalizer implements DenormalizerInterface
         if (true === array_key_exists('opportunity', $data)) {
             $data['opportunity'] = $this->entityManager->getRepository(Opportunity::class)->find($data['opportunity']);
             $phase->setOpportunity($data['opportunity']);
+        }
+
+        $reviewers = array_map(
+            fn (string $id) => $this->entityManager->getRepository(Agent::class)->findOneBy(['id' => $id]),
+            $data['reviewers'] ?? []
+        );
+
+        if (true === array_key_exists('reviewers', $data)) {
+            $phase->setReviewers(new ArrayCollection($reviewers));
         }
 
         return $phase;

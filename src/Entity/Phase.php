@@ -8,6 +8,7 @@ use App\Helper\DateFormatHelper;
 use App\Repository\PhaseRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
@@ -57,8 +58,17 @@ class Phase
     #[Groups(['phase.get'])]
     private ?Opportunity $opportunity = null;
 
-    #[ORM\OneToMany(targetEntity: InscriptionPhase::class, mappedBy: 'phase')]
+    #[ORM\OneToMany(targetEntity: InscriptionPhase::class, mappedBy: 'phases')]
     private Collection $inscriptions;
+
+    #[ORM\JoinTable(name: 'phase_reviewers')]
+    #[ORM\JoinColumn(name: 'phase_id', referencedColumnName: 'id')]
+    #[ORM\InverseJoinColumn(name: 'agent_id', referencedColumnName: 'id')]
+    #[ORM\ManyToMany(targetEntity: Agent::class, inversedBy: 'phases', cascade: ['persist'])]
+    private Collection $reviewers;
+
+    #[ORM\Column(type: Types::JSON, nullable: false)]
+    private array $criteria = [];
 
     #[ORM\Column(type: Types::JSON, nullable: true)]
     #[Groups(['phase.get.item'])]
@@ -78,6 +88,7 @@ class Phase
 
     public function __construct()
     {
+        $this->reviewers = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
     }
 
@@ -186,6 +197,38 @@ class Phase
         $this->inscriptions->add($inscription);
     }
 
+    public function getReviewers(): Collection
+    {
+        return $this->reviewers;
+    }
+
+    public function setReviewers(Collection $reviewers): void
+    {
+        $this->reviewers = $reviewers;
+    }
+
+    public function addReviewer(Agent $reviewer): void
+    {
+        if (!$this->reviewers->contains($reviewer)) {
+            $this->reviewers->add($reviewer);
+        }
+    }
+
+    public function removeReviewer(Agent $reviewer): void
+    {
+        $this->reviewers->removeElement($reviewer);
+    }
+
+    public function getCriteria(): array
+    {
+        return $this->criteria;
+    }
+
+    public function setCriteria(array $criteria): void
+    {
+        $this->criteria = $criteria;
+    }
+
     public function getExtraFields(): ?array
     {
         return $this->extraFields;
@@ -237,6 +280,8 @@ class Phase
             'sequence' => $this->sequence,
             'createdBy' => $this->createdBy->toArray(),
             'opportunity' => $this->getOpportunity()->toArray(),
+            'reviewers' => $this->getReviewers()->map(fn (Agent $agent) => $agent->toArray())->toArray(),
+            'criteria' => $this->criteria,
             'extraFields' => $this->getExtraFields(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
