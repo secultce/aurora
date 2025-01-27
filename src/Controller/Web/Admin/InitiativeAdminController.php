@@ -6,12 +6,12 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\SpaceTimeline;
 use App\DocumentService\InitiativeTimelineDocumentService;
+use App\Exception\ValidatorException;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class InitiativeAdminController extends AbstractAdminController
@@ -39,15 +39,29 @@ class InitiativeAdminController extends AbstractAdminController
     {
         $data = $request->request->all();
 
-        $initiative = $this->service->create($data);
+        try {
+            $this->service->create($data);
 
-        if ($initiative instanceof ConstraintViolationList) {
+            $this->addFlash('success', $this->translator->trans('view.initiative.message.created'));
+        } catch (ValidatorException $exception) {
             $this->addFlash('error', $this->translator->trans('view.entities.message.required_fields'));
 
-            return $this->redirectToRoute('admin_initiative_create');
-        }
+            $agents = $this->agentService->findBy();
 
-        $this->addFlash('success', $this->translator->trans('view.initiative.message.created'));
+            return $this->render('initiative/create.html.twig', [
+                'id' => Uuid::v4(),
+                'agents' => $agents,
+            ]);
+        } catch (Exception $exception) {
+            $this->addFlash('error', $this->translator->trans('view.entities.message.required_fields'));
+
+            $agents = $this->agentService->findBy();
+
+            return $this->render('initiative/create.html.twig', [
+                'id' => Uuid::v4(),
+                'agents' => $agents,
+            ]);
+        }
 
         return $this->redirectToRoute('admin_initiative_list');
     }
