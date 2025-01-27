@@ -80,3 +80,10 @@ jobs:
 
       - name: Run cypress
         run: docker compose run --rm cypress
+
+      - name: Upload cypress screenshots
+        if: failure()
+        uses: actions/upload-artifact@v4
+        with:
+          name: cypress-screenshots
+          path: ./cypress/screenshots
