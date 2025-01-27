@@ -201,18 +201,16 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
     }
 
     #[DataProvider('provideValidationCreateCases')]
-    public function testValidationCreate(array $requestBody, string $detail, array $violations): void
+    public function testValidationCreate(array $requestBody, array $expectedErrors): void
     {
         $client = static::apiClient();
 
         $client->request(Request::METHOD_POST, self::BASE_URL, content: json_encode($requestBody));
 
-        self::assertResponseStatusCodeSame(Response::HTTP_CREATED);
+        self::assertResponseStatusCodeSame(Response::HTTP_BAD_REQUEST);
         $this->assertResponseBodySame([
-            'type' => 'https://symfony.com/errors/validation',
-            'title' => 'Validation Failed',
-            'detail' => $detail,
-            'violations' => $violations,
+            'error_message' => 'not_valid',
+            'error_details' => $expectedErrors,
         ]);
     }
 
@@ -223,178 +221,117 @@ class InitiativeApiControllerTest extends AbstractWebTestCase
         return [
             'missing required fields' => [
                 'requestBody' => [],
-                'detail' => "id: This value should not be blank.\nname: This value should not be blank.\ncreatedBy: This value should not be blank.",
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'id',
-                        'title' => 'This value should not be blank.',
-                        'template' => 'This value should not be blank.',
-                        'parameters' => ['{{ value }}' => 'null'],
-                        'type' => 'urn:uuid:c1051bb4-d103-4f74-8988-acbcafc7fdc3',
+                        'field' => 'id',
+                        'message' => 'This value should not be blank.',
                     ],
                     [
-                        'propertyPath' => 'name',
-                        'title' => 'This value should not be blank.',
-                        'template' => 'This value should not be blank.',
-                        'parameters' => ['{{ value }}' => 'null'],
-                        'type' => 'urn:uuid:c1051bb4-d103-4f74-8988-acbcafc7fdc3',
+                        'field' => 'name',
+                        'message' => 'This value should not be blank.',
                     ],
                     [
-                        'propertyPath' => 'createdBy',
-                        'title' => 'This value should not be blank.',
-                        'template' => 'This value should not be blank.',
-                        'parameters' => ['{{ value }}' => 'null'],
-                        'type' => 'urn:uuid:c1051bb4-d103-4f74-8988-acbcafc7fdc3',
+                        'field' => 'createdBy',
+                        'message' => 'This value should not be blank.',
                     ],
                 ],
             ],
             'id is not a valid UUID' => [
                 'requestBody' => array_merge($requestBody, ['id' => 'invalid-uuid']),
-                'detail' => 'id: This value is not a valid UUID.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'id',
-                        'title' => 'This value is not a valid UUID.',
-                        'template' => 'This is not a valid UUID.',
-                        'parameters' => ['{{ value }}' => '"invalid-uuid"'],
-                        'type' => 'urn:uuid:51120b12-a2bc-41bf-aa53-cd73daf330d0',
+                        'field' => 'id',
+                        'message' => 'This value is not a valid UUID.',
                     ],
                 ],
             ],
             'name is not a string' => [
                 'requestBody' => array_merge($requestBody, ['name' => 123]),
-                'detail' => 'name: This value should be of type string.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'name',
-                        'title' => 'This value should be of type string.',
-                        'template' => 'This value should be of type {{ type }}.',
-                        'parameters' => [
-                            '{{ value }}' => '123',
-                            '{{ type }}' => 'string',
-                        ],
-                        'type' => 'urn:uuid:ba785a8c-82cb-4283-967c-3cf342181b40',
+                        'field' => 'name',
+                        'message' => 'This value should be of type string.',
                     ],
                 ],
             ],
             'name is too short' => [
                 'requestBody' => array_merge($requestBody, ['name' => 'a']),
-                'detail' => 'name: This value is too short. It should have 2 characters or more.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'name',
-                        'title' => 'This value is too short. It should have 2 characters or more.',
-                        'template' => 'This value is too short. It should have {{ limit }} character or more.|This value is too short. It should have {{ limit }} characters or more.',
-                        'parameters' => [
-                            '{{ value }}' => '"a"',
-                            '{{ limit }}' => '2',
-                            '{{ value_length }}' => '1',
-                        ],
-                        'type' => 'urn:uuid:9ff3fdc4-b214-49db-8718-39c315e33d45',
+                        'field' => 'name',
+                        'message' => 'This value is too short. It should have 2 characters or more.',
                     ],
                 ],
             ],
             'name is too long' => [
                 'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
-                'detail' => 'name: This value is too long. It should have 100 characters or less.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'name',
-                        'title' => 'This value is too long. It should have 100 characters or less.',
-                        'template' => 'This value is too long. It should have {{ limit }} character or less.|This value is too long. It should have {{ limit }} characters or less.',
-                        'parameters' => [
-                            '{{ value }}' => '"'.str_repeat('a', 101).'"',
-                            '{{ limit }}' => '100',
-                            '{{ value_length }}' => '101',
-                        ],
-                        'type' => 'urn:uuid:d94b19cc-114f-4f44-9cc4-4138e80a87b9',
+                        'field' => 'name',
+                        'message' => 'This value is too long. It should have 100 characters or less.',
                     ],
                 ],
             ],
             'createdBy should exist' => [
                 'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
-                'detail' => 'createdBy: This id does not exist.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'createdBy',
-                        'title' => 'This id does not exist.',
-                        'template' => 'This id does not exist.',
-                        'parameters' => [],
+                        'field' => 'createdBy',
+                        'message' => 'This id does not exist.',
                     ],
                 ],
             ],
             'createdBy is not a valid UUID' => [
                 'requestBody' => array_merge($requestBody, ['createdBy' => 'invalid-uuid']),
-                'detail' => 'createdBy: This value is not a valid UUID.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'createdBy',
-                        'title' => 'This value is not a valid UUID.',
-                        'template' => 'This is not a valid UUID.',
-                        'parameters' => ['{{ value }}' => '"invalid-uuid"'],
-                        'type' => 'urn:uuid:51120b12-a2bc-41bf-aa53-cd73daf330d0',
+                        'field' => 'createdBy',
+                        'message' => 'This value is not a valid UUID.',
                     ],
                 ],
             ],
             'parent should exist' => [
                 'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
-                'detail' => 'parent: This id does not exist.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'parent',
-                        'title' => 'This id does not exist.',
-                        'template' => 'This id does not exist.',
-                        'parameters' => [],
+                        'field' => 'parent',
+                        'message' => 'This id does not exist.',
                     ],
                 ],
             ],
             'parent is not a valid UUID' => [
                 'requestBody' => array_merge($requestBody, ['parent' => 'invalid-uuid']),
-                'detail' => 'parent: This value is not a valid UUID.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'parent',
-                        'title' => 'This value is not a valid UUID.',
-                        'template' => 'This is not a valid UUID.',
-                        'parameters' => ['{{ value }}' => '"invalid-uuid"'],
-                        'type' => 'urn:uuid:51120b12-a2bc-41bf-aa53-cd73daf330d0',
+                        'field' => 'parent',
+                        'message' => 'This value is not a valid UUID.',
                     ],
                 ],
             ],
             'space should exist' => [
                 'requestBody' => array_merge($requestBody, ['space' => Uuid::v4()->toRfc4122()]),
-                'detail' => 'space: This id does not exist.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'space',
-                        'title' => 'This id does not exist.',
-                        'template' => 'This id does not exist.',
-                        'parameters' => [],
+                        'field' => 'space',
+                        'message' => 'This id does not exist.',
                     ],
                 ],
             ],
             'space is not a valid UUID' => [
                 'requestBody' => array_merge($requestBody, ['space' => 'invalid-uuid']),
-                'detail' => 'space: This value is not a valid UUID.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'space',
-                        'title' => 'This value is not a valid UUID.',
-                        'template' => 'This is not a valid UUID.',
-                        'parameters' => ['{{ value }}' => '"invalid-uuid"'],
-                        'type' => 'urn:uuid:51120b12-a2bc-41bf-aa53-cd73daf330d0',
+                        'field' => 'space',
+                        'message' => 'This value is not a valid UUID.',
                     ],
                 ],
             ],
             'extraFields should be a valid JSON' => [
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
-                'detail' => 'extraFields: This value should be of type json object.',
-                'violations' => [
+                'expectedErrors' => [
                     [
-                        'propertyPath' => 'extraFields',
-                        'title' => 'This value should be of type json object.',
-                        'template' => 'This value should be of type {{ type }}.',
-                        'parameters' => ['{{ type }}' => 'json object'],
+                        'field' => 'extraFields',
+                        'message' => 'This value should be of type json object.',
                     ],
                 ],
             ],

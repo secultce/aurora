@@ -12,7 +12,7 @@ stop:
 
 # Para e remove os serviços Docker
 down:
-	docker compose down
+	docker compose --profile '*' down
 
 # Para e remove os serviços Docker
 container_php:
