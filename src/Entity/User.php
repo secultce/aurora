@@ -157,7 +157,9 @@ class User extends AbstractEntity implements UserInterface, PasswordAuthenticate
 
     public function addAgent(Agent $agent): void
     {
-        $this->agents->add($agent);
+        if (false == $this->agents->contains($agent)) {
+            $this->agents->add($agent);
+        }
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
