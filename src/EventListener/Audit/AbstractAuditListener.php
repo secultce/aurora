@@ -24,6 +24,7 @@ use App\Entity\Space;
 use App\Entity\User;
 use Doctrine\ODM\MongoDB\DocumentManager;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 
 abstract class AbstractAuditListener
@@ -39,21 +40,24 @@ abstract class AbstractAuditListener
 
     protected function getDevice(): string
     {
-        return self::UNKNOWN;
+        $request = $this->requestStack->getCurrentRequest();
+
+        if (null === $request) {
+            return self::UNKNOWN;
+        }
+
+        return $this->getBrowser($request);
     }
 
     protected function getPlatform(): string
     {
-        if (null === $this->requestStack->getCurrentRequest()) {
+        $request = $this->requestStack->getCurrentRequest();
+
+        if (null === $request) {
             return self::UNKNOWN;
         }
 
-        return $this->isApiRequest() ? 'api' : 'web';
-    }
-
-    protected function isApiRequest(): ?bool
-    {
-        return str_starts_with($this->requestStack->getCurrentRequest()->getPathInfo(), '/api');
+        return $this->getOperationalSystem($request);
     }
 
     protected function resolveNameDocument(string $class): ?string
@@ -69,6 +73,36 @@ abstract class AbstractAuditListener
             Space::class => SpaceTimeline::class,
             User::class => UserTimeline::class,
             default => null,
+        };
+    }
+
+    private function getBrowser(Request $request): string
+    {
+        $user_agent = $request->server->get('HTTP_USER_AGENT');
+
+        return match (1) {
+            preg_match('/msie/i', $user_agent) => 'Internet explorer',
+            preg_match('/firefox/i', $user_agent) => 'Firefox',
+            preg_match('/opr/i', $user_agent) => 'Opera',
+            preg_match('/edg/i', $user_agent) => 'Edge',
+            preg_match('/chrome/i', $user_agent) => 'Chrome',
+            preg_match('/safari/i', $user_agent) => 'Safari',
+            preg_match('/mobile/i', $user_agent) => 'Mobile browser',
+            default => self::UNKNOWN,
+        };
+    }
+
+    private function getOperationalSystem(Request $request): string
+    {
+        $user_agent = $request->server->get('HTTP_USER_AGENT');
+
+        return match (1) {
+            preg_match('/android/i', $user_agent) => 'Android',
+            preg_match('/linux/i', $user_agent) => 'Linux',
+            preg_match('/windows|win32/i', $user_agent) => 'Windows',
+            preg_match('/macintosh|mac os x/i', $user_agent) => 'MacOS',
+            preg_match('/iphone|ipad/i', $user_agent) => 'iOS',
+            default => self::UNKNOWN,
         };
     }
 }
