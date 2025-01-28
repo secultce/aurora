@@ -79,7 +79,7 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
         );
     }
 
-    public function findOneBy(array $params): Opportunity
+    public function findOneBy(array $params): ?Opportunity
     {
         return $this->repository->findOneBy(
             [...$params, ...$this->getDefaultParams()]

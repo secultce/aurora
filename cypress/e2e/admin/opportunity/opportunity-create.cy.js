@@ -26,7 +26,7 @@ describe('Painel de Controle - Página de criar Oportunidades', () => {
         cy.get('select#opportunityCreatedBy').should('be.visible');
 
         cy.get('label:contains("Áreas de Atuação")').should('be.visible');
-        cy.get('button[id="add-areasOfActivity-btn"]').should('be.visible');
+        cy.get('button[id="add-extraFields[areasOfActivity]-btn"]').should('be.visible');
 
         cy.get('label:contains("Imagem de capa")').should('be.visible');
         cy.get('input:file#opportunityCoverImage').should('be.visible');
@@ -104,7 +104,7 @@ describe('Painel de Controle - Página de criar Oportunidades', () => {
         cy.contains('Áreas de Atuação').click();
         cy.contains('Fotografia').click();
         cy.contains('Áreas de Atuação').click();
-        cy.get('#search-areasOfActivity-items')
+        cy.get('[id="search-extraFields[areasOfActivity]-items"]')
             .type('Pintura')
             .next()
             .click();

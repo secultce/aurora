@@ -29,11 +29,6 @@
 
     <section class="d-flex">
         <div class="management-content w-100 p-4">
-            {% for message in app.flashes('error') %}
-                <div class="alert alert-danger">
-                    {{ message }}
-                </div>
-            {% endfor %}
 
             <div id="error-message" class="alert alert-danger d-none col-lg-6 mx-auto"></div>
 
@@ -73,7 +68,7 @@
                             </div>
                             <div class="mb-3">
                                 {% include '_components/tags-selector.html.twig' with {
-                                    inputName: 'areasOfActivity',
+                                    inputName: 'extraFields[areasOfActivity]',
                                     inputLabel: 'areas_of_expertise'|trans,
                                     items: [
                                         { value: 'Artesanato', label: 'Artesanato' },

@@ -1,7 +1,7 @@
 create:
   path: /adicionar
   controller: App\Controller\Web\Admin\OpportunityAdminController::create
-  methods: ['GET']
+  methods: ['GET', 'POST']
 
 list:
   path: /

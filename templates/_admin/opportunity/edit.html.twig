@@ -35,7 +35,8 @@
         </div>
     </div>
 
-    <form name="editForm" action="#" method="post" enctype="multipart/form-data">
+    <form name="editForm" action="{{ path('admin_opportunity_store') }}" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{ opportunity.id }}" />
         <section class="mt-5">
             {% include '_components/tabs/content-tabs.html.twig' with {
                 tabs: [

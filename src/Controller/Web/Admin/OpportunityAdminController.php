@@ -20,6 +20,8 @@ use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Routing\Matcher\UrlMatcher;
+use Symfony\Component\Routing\RouterInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
@@ -37,6 +39,25 @@ class OpportunityAdminController extends AbstractAdminController
         private readonly Security $security,
         private readonly OpportunityTimeline $opportunityTimeline,
     ) {
+    }
+
+    private function hidrate(array $data): array
+    {
+        $externalLinks = ['links' => $data['extraFields']['links'] ?? [], 'videos' => $data['extraFields']['videos'] ?? []];
+        foreach ($externalLinks as $field => $values) {
+            $data['extraFields'][$field] = array_filter(
+                $values,
+                fn ($value) => '' !== $value['name'] || '' !== $value['url'],
+            );
+        }
+
+        if (isset($data['entity'])) {
+            [$entity ,$associatedEntity] = explode('_', $data['entity']);
+            $data[$entity] = $associatedEntity;
+            unset($data['entity']);
+        }
+
+        return $data;
     }
 
     public function create(): Response
@@ -68,48 +89,11 @@ class OpportunityAdminController extends AbstractAdminController
 
     public function edit(?Uuid $id, Request $request): Response
     {
-        if ('GET' === $request->getMethod()) {
-            $opportunity = $this->service->get($id);
+        $opportunity = $this->service->get($id);
 
-            return $this->render('opportunity/edit.html.twig', [
-                'opportunity' => $opportunity,
-            ]);
-        }
-
-        $data = $request->request->all();
-        $files = $request->files->all();
-
-        $data['extraFields']['links'] = array_filter(
-            $data['extraFields']['links'],
-            fn ($link) => '' !== $link['name'] || '' !== $link['url'],
-        );
-
-        $data['extraFields']['videos'] = array_filter(
-            $data['extraFields']['videos'],
-            fn ($video) => '' !== $video['name'] || '' !== $video['url'],
-        );
-
-        try {
-            $this->service->update($id, $data);
-            if ($files['image'] instanceof UploadedFile) {
-                $this->service->updateImage($id, $files['image']);
-            }
-            if ($files['extraFields']['coverImage'] instanceof UploadedFile) {
-                $this->service->updateCoverImage($id, $files['extraFields']['coverImage']);
-            }
-
-            $this->addFlash('success', $this->translator->trans('view.opportunity.message.updated'));
-        } catch (ValidatorException $exception) {
-            return $this->render('_admin/opportunity/edit.html.twig', [
-                'errors' => $exception->getConstraintViolationList(),
-            ]);
-        } catch (Exception $exception) {
-            return $this->render('_admin/opportunity/edit.html.twig', [
-                'errors' => [$exception->getMessage()],
-            ]);
-        }
-
-        return $this->redirectToRoute('admin_opportunity_list');
+        return $this->render('opportunity/edit.html.twig', [
+            'opportunity' => $opportunity,
+        ]);
     }
 
     public function remove(?Uuid $id): Response
@@ -120,31 +104,43 @@ class OpportunityAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_opportunity_list');
     }
 
-    public function store(Request $request): Response
+    public function store(Request $request, RouterInterface $router): Response
     {
         $data = $request->request->all();
-        $data['extraFields']['culturalArea'] = $data['culturalArea'] ?? null;
-        unset($data['culturalArea']);
+        $files = $request->files->all();
+        $opportunity = $this->service->findOneBy(['id' => $data['id'] ?? null]);
 
-        [$entity ,$associatedEntity] = explode('_', $data['entity']);
-        $data[$entity] = $associatedEntity;
-        unset($data['entity']);
+        $data = $this->hidrate($data);
 
-        $data['extraFields']['areasOfActivity'] = $data['areasOfActivity'] ?? null;
-        unset($data['areasOfActivity']);
+        $refererPath = Request::create($request->headers->get('referer'))->getPathInfo();
+        $matcher = new UrlMatcher($router->getRouteCollection(), $router->getContext());
+        $refererRoute = $matcher->match($refererPath)['_route'];
 
         try {
-            $this->service->create($data);
+            if (null !== $opportunity) {
+                $opportunity = $this->service->update($opportunity->getId(), $data);
+                $successMessage = 'view.opportunity.message.updated';
+            } else {
+                $opportunity = $this->service->create($data);
+                $successMessage = 'view.opportunity.message.created';
+            }
 
-            $this->addFlash('success', $this->translator->trans('view.opportunity.message.created'));
+            if ($files['image'] ?? null instanceof UploadedFile) {
+                $this->service->updateImage($opportunity->getId(), $files['image']);
+            }
+            if ($files['extraFields']['coverImage'] ?? null instanceof UploadedFile) {
+                $this->service->updateCoverImage($opportunity->getId(), $files['extraFields']['coverImage']);
+            }
+
+            $this->addFlash('success', $this->translator->trans($successMessage));
         } catch (ValidatorException $exception) {
-            return $this->render('_admin/opportunity/create.html.twig', [
-                'errors' => $exception->getConstraintViolationList(),
-            ]);
+            $this->addFlash('error', $exception->getConstraintViolationList());
+
+            return $this->redirectToRoute($refererRoute, ['id' => $opportunity->getId()]);
         } catch (Exception $exception) {
-            return $this->render('_admin/opportunity/create.html.twig', [
-                'errors' => [$exception->getMessage()],
-            ]);
+            $this->addFlash('error', $exception->getMessage());
+
+            return $this->redirectToRoute($refererRoute, ['id' => $opportunity->getId()]);
         }
 
         return $this->redirectToRoute('admin_opportunity_list');
