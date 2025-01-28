@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-between align-items-end">
     <p class="fw-bold">{{ totalInitiatives }} {{ 'view.initiative.quantity.total' | trans }}</p>
-    <div class="d-flex g-4 initiative-sort">
-        <label class="initiative-options" for="sort-options">{{ 'sort_by' | trans }}:</label>
-        <select id="sort-options" class="form-select">
+    <div class="d-flex initiative-sort">
+        <label class="initiative-options d-none d-md-block" for="sort-options">{{ 'sort_by' | trans }}:</label>
+        <select id="sort-options" class="form-select w-100">
             <option value="recent">{{ 'most_recent' | trans }}</option>
             <option value="old">{{ 'oldest' | trans }}</option>
         </select>
@@ -12,18 +12,17 @@
 {% for initiative in initiatives %}
     <div class="mw-100 initiative-card">
         <div class="initiative-card-header">
-            <div class="d-flex mt-1 mb-3 align-items-center">
-                <img src="{{ asset('img/img.png') }}" alt="{{ 'photo' | trans }}" class="rounded-circle">
-
+            <div class="d-flex mt-1 mb-3 align-items-center gap-2">
+                <img src="{{ asset('img/img.png') }}" alt="{{ 'photo' | trans }}" class="initiative-img">
                 <h5 class="initiative-name">{{ initiative.name }}</h5>
             </div>
             <div class="initiative-info">
-                <span class="agent-type bg-initiative">
+                <span class="bg-initiative">
                     <i class="material-icons fs-4 me-2">event</i> {{ 'in_progress' | trans }}
                 </span>
-            </div>
-            <div class="initiative-id">
-                ID: {{ initiative.id }}
+                <div class="initiative-id">
+                    ID: <span title="{{ initiative.id }}">{{ initiative.id|split('-')|first }}...</span>
+                </div>
             </div>
         </div>
 
@@ -57,11 +56,11 @@
                 {% endif %}
             </p>
 
-            <div class="d-flex initiative-seals">
+            <div class="initiative-seals">
                 <strong>{{ 'seals'| trans }}:</strong>
-                <p class="badge seal">Nome do selo</p>
-                <p class="badge seal">Nome do selo</p>
-                <p class="badge seal">Nome do selo</p>
+                <p class="seal-initiative">Nome do selo</p>
+                <p class="seal-initiative">Nome do selo</p>
+                <p class="seal-initiative">Nome do selo</p>
             </div>
 
             <p class="initiative-description">
@@ -72,7 +71,7 @@
                 {% endif %}
             </p>
 
-            <div class="text-end mt-3">
+            <div class="text-center text-xl-end mt-3">
                 <a href="{{ path('web_initiative_show', {id: initiative.id}) }}" class="btn btn-primary list-page__access-btn">{{ 'view.initiative.access' | trans }}</a>
             </div>
         </div>

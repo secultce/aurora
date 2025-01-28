@@ -3,6 +3,7 @@ const BTN_CLOSE_FILER = document.getElementById('close-filter');
 const BTN_CLEAR_FILTER = document.getElementById('clear-filters');
 const SIDEBAR = document.getElementById('filter-sidebar');
 const MAIN_CONTENT = document.querySelector('.entity-container');
+const ENTITY_WRAPPER = document.querySelector('.entity-wrapper');
 const FORM_FILTER_SIDEBAR = document.getElementById('filter-sidebar');
 
 BTN_OPEN_FILTER.addEventListener('click', toggleSidebar);
@@ -11,6 +12,7 @@ BTN_CLOSE_FILER.addEventListener('click', toggleSidebar);
 function toggleSidebar() {
     SIDEBAR.classList.toggle('open');
     MAIN_CONTENT.classList.toggle('shifted');
+    ENTITY_WRAPPER.classList.toggle('open');
 
     if (SIDEBAR.classList.contains('open')) {
         BTN_OPEN_FILTER.style.visibility = 'hidden';
