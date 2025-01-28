@@ -194,6 +194,7 @@ name_organization: Nome da organização
 name_initiative: Nome da iniciativa
 name_phases: Nome da fase
 neighborhood: Bairro
+new_phase: Nova Fase
 notifications: Notificações
 no: Não
 no_inform: Não Informar
@@ -235,6 +236,10 @@ phone: Telefone
 photo: Foto
 phase: Fase
 phases: Fases
+phase_name: Nome da fase
+phase_description: Descrição da fase
+phase_success: Fase criada com sucesso
+phase_error: Erro ao criar a fase
 phase_timeline: Timeline da fase
 physical: Física
 postal_code: CEP

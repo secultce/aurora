@@ -43,7 +43,11 @@ readonly class PhaseService extends AbstractEntityService implements PhaseServic
 
         $phaseObj = $this->serializer->denormalize($phase, Phase::class);
 
+        $phaseObj->setCreatedBy(
+            $this->getAgentsFromLoggedUser()[0]
+        );
         $phaseObj->setSequence($this->findSequenceNumber(Phase::class, $opportunity));
+        $phaseObj->setCriteria([]);
 
         return $this->repository->save($phaseObj);
     }

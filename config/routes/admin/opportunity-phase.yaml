@@ -2,3 +2,13 @@ timeline:
   path: /{phaseId}/timeline
   controller: App\Controller\Web\Admin\OpportunityPhaseAdminController::timeline
   methods: ['GET']
+
+create:
+  path: /adicionar
+  controller: App\Controller\Web\Admin\OpportunityPhaseAdminController::create
+  methods: ['GET']
+
+store:
+  path: /store
+  controller: App\Controller\Web\Admin\OpportunityPhaseAdminController::store
+  methods: ['POST']
