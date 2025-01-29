@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\DTO;
 
+use App\Entity\Agent;
 use App\Entity\Opportunity;
 use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
+use App\Validator\Constraints\NotInscribedReviewer;
 use App\Validator\Constraints\NotNull;
 use Doctrine\DBAL\Types\Types;
+use Symfony\Component\Validator\Constraints\All;
 use Symfony\Component\Validator\Constraints\Date;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
@@ -71,6 +74,24 @@ class PhaseDto
         new Exists(Opportunity::class, groups: [self::CREATE, self::UPDATE]),
     ])]
     public mixed $opportunity;
+
+    #[Sequentially([
+        new NotNull(groups: [self::CREATE, self::UPDATE]),
+        new Type('array', groups: [self::CREATE, self::UPDATE]),
+        new All([
+            new Type('string', groups: [self::CREATE, self::UPDATE]),
+            new Uuid(groups: [self::CREATE, self::UPDATE]),
+            new Exists(Agent::class, groups: [self::CREATE, self::UPDATE]),
+        ], groups: [self::CREATE, self::UPDATE]),
+        new NotInscribedReviewer(groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $reviewers = [];
+
+    #[Sequentially([
+        new Json(groups: [self::CREATE, self::UPDATE]),
+        new NotNull(groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $criteria;
 
     #[Sequentially([new Json(groups: [self::CREATE, self::UPDATE])])]
     public mixed $extraFields;

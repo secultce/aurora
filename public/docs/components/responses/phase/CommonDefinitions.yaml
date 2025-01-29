@@ -43,6 +43,23 @@ PhaseBase:
           type: string
           format: uuid
           description: "Identificador da oportunidade"
+    reviewers:
+      type: array
+      description: "Os revisores da fase"
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador do revisor"
+    criteria:
+      type: object
+      description: "Os critérios da fase"
+      properties:
+        key:
+          type: string
+          description: 'Valor da chave'
     extraFields:
       type: object
       description: "Os campos extras da fase"

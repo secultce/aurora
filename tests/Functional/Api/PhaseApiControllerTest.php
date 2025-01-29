@@ -47,6 +47,8 @@ class PhaseApiControllerTest extends AbstractWebTestCase
             'sequence' => 4,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_2],
             'opportunity' => ['id' => $requestBody['opportunity']],
+            'reviewers' => [],
+            'criteria' => [],
             'extraFields' => null,
             'createdAt' => $phase->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -80,6 +82,14 @@ class PhaseApiControllerTest extends AbstractWebTestCase
             'sequence' => 4,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_2],
             'opportunity' => ['id' => $requestBody['opportunity']],
+            'reviewers' => [
+                ['id' => AgentFixtures::AGENT_ID_3],
+                ['id' => AgentFixtures::AGENT_ID_4],
+            ],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
             'extraFields' => $requestBody['extraFields'],
             'createdAt' => $phase->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
@@ -145,6 +155,42 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
                 ],
             ],
+            'reviewers is not an array' => [
+                'requestBody' => array_merge($requestBody, ['reviewers' => 'not-an-array']),
+                'expectedErrors' => [
+                    ['field' => 'reviewers', 'message' => 'This value should be of type array.'],
+                ],
+            ],
+            'reviewers contains an invalid UUID' => [
+                'requestBody' => array_merge($requestBody, ['id' => 'invalid-uuid']),
+                'expectedErrors' => [
+                    ['field' => 'id', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'reviewers contains a non-existent agent' => [
+                'requestBody' => array_merge($requestBody, ['reviewers' => [Uuid::v4()->toRfc4122()]]),
+                'expectedErrors' => [
+                    ['field' => 'reviewers[0]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'reviewer is inscribed and cannot be assigned' => [
+                'requestBody' => array_merge($requestBody, ['reviewers' => [AgentFixtures::AGENT_ID_1]]),
+                'expectedErrors' => [
+                    ['field' => 'reviewers', 'message' => 'The agent 0cc8c682-b0cd-4cb3-bd9d-41a9161b3566 is registered on the opportunity and cannot be a reviewer.'],
+                ],
+            ],
+            'criteria is not a valid JSON' => [
+                'requestBody' => array_merge($requestBody, ['criteria' => 'invalid-json']),
+                'expectedErrors' => [
+                    ['field' => 'criteria', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'criteria is null' => [
+                'requestBody' => array_merge($requestBody, ['criteria' => null]),
+                'expectedErrors' => [
+                    ['field' => 'criteria', 'message' => 'This value should not be null.'],
+                ],
+            ],
         ];
     }
 
@@ -171,6 +217,14 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                 'sequence' => 1,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+                'reviewers' => [
+                    ['id' => AgentFixtures::AGENT_ID_2],
+                    ['id' => AgentFixtures::AGENT_ID_3],
+                ],
+                'criteria' => [
+                    'communication-skill' => '0 a 10',
+                    'post-graduate' => 'sim ou nao',
+                ],
                 'createdAt' => '2024-09-01T10:00:00+00:00',
                 'updatedAt' => '2024-09-01T10:30:00+00:00',
                 'deletedAt' => null,
@@ -185,6 +239,14 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                 'sequence' => 2,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+                'reviewers' => [
+                    ['id' => AgentFixtures::AGENT_ID_2],
+                    ['id' => AgentFixtures::AGENT_ID_3],
+                ],
+                'criteria' => [
+                    'communication-skill' => '0 a 10',
+                    'post-graduate' => 'sim ou nao',
+                ],
                 'createdAt' => '2024-09-02T10:00:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -199,6 +261,14 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                 'sequence' => 3,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
                 'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+                'reviewers' => [
+                    ['id' => AgentFixtures::AGENT_ID_2],
+                    ['id' => AgentFixtures::AGENT_ID_3],
+                ],
+                'criteria' => [
+                    'communication-skill' => '0 a 10',
+                    'post-graduate' => 'sim ou nao',
+                ],
                 'createdAt' => '2024-09-03T10:00:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -226,6 +296,14 @@ class PhaseApiControllerTest extends AbstractWebTestCase
             'sequence' => 3,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
             'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_1],
+            'reviewers' => [
+                ['id' => AgentFixtures::AGENT_ID_2],
+                ['id' => AgentFixtures::AGENT_ID_3],
+            ],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
             'extraFields' => [],
             'createdAt' => '2024-09-03T10:00:00+00:00',
             'updatedAt' => null,
@@ -275,6 +353,14 @@ class PhaseApiControllerTest extends AbstractWebTestCase
             'sequence' => 2,
             'createdBy' => ['id' => AgentFixtures::AGENT_ID_2],
             'opportunity' => ['id' => OpportunityFixtures::OPPORTUNITY_ID_2],
+            'reviewers' => [
+                ['id' => AgentFixtures::AGENT_ID_3],
+                ['id' => AgentFixtures::AGENT_ID_4],
+            ],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
             'extraFields' => $requestBody['extraFields'],
             'createdAt' => $phase->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $phase->getUpdatedAt()->format(DateTimeInterface::ATOM),
@@ -330,6 +416,36 @@ class PhaseApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'reviewers is not an array' => [
+                'requestBody' => array_merge($requestBody, ['reviewers' => 'not-an-array']),
+                'expectedErrors' => [
+                    ['field' => 'reviewers', 'message' => 'This value should be of type array.'],
+                ],
+            ],
+            'reviewers contains a non-existent agent' => [
+                'requestBody' => array_merge($requestBody, ['reviewers' => [Uuid::v4()->toRfc4122()]]),
+                'expectedErrors' => [
+                    ['field' => 'reviewers[0]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'reviewer is inscribed and cannot be assigned' => [
+                'requestBody' => array_merge($requestBody, ['reviewers' => [AgentFixtures::AGENT_ID_1]]),
+                'expectedErrors' => [
+                    ['field' => 'reviewers', 'message' => 'The agent 0cc8c682-b0cd-4cb3-bd9d-41a9161b3566 is registered on the opportunity and cannot be a reviewer.'],
+                ],
+            ],
+            'criteria is not a valid JSON' => [
+                'requestBody' => array_merge($requestBody, ['criteria' => 'invalid-json']),
+                'expectedErrors' => [
+                    ['field' => 'criteria', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'criteria is null' => [
+                'requestBody' => array_merge($requestBody, ['criteria' => null]),
+                'expectedErrors' => [
+                    ['field' => 'criteria', 'message' => 'This value should not be null.'],
                 ],
             ],
         ];

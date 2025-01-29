@@ -65,10 +65,12 @@ class Phase
     #[ORM\JoinColumn(name: 'phase_id', referencedColumnName: 'id')]
     #[ORM\InverseJoinColumn(name: 'agent_id', referencedColumnName: 'id')]
     #[ORM\ManyToMany(targetEntity: Agent::class, inversedBy: 'phases', cascade: ['persist'])]
+    #[Groups(['phase.get', 'phase.get.item'])]
     private Collection $reviewers;
 
     #[ORM\Column(type: Types::JSON, nullable: false)]
-    private array $criteria = [];
+    #[Groups(['phase.get', 'phase.get.item'])]
+    private ?array $criteria = [];
 
     #[ORM\Column(type: Types::JSON, nullable: true)]
     #[Groups(['phase.get.item'])]
