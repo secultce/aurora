@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Fixtures;
 
+use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OpportunityFixtures;
 use Symfony\Component\Uid\Uuid;
 
@@ -25,6 +26,11 @@ class PhaseTestFixtures implements TestFixtures
             'description' => 'Test phase description',
             'startDate' => '2024-07-01',
             'endDate' => '2024-08-01',
+            'reviewers' => [AgentFixtures::AGENT_ID_3, AgentFixtures::AGENT_ID_4],
+            'criteria' => [
+                'communication-skill' => '0 a 10',
+                'post-graduate' => 'sim ou nao',
+            ],
             'extraFields' => [
                 'Teste' => 'Extra fields',
             ],

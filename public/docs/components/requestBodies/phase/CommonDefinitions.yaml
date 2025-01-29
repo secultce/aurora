@@ -20,6 +20,15 @@ PhaseBase:
       type: boolean
       description: "Valor boolean do status"
       example: false
+    reviewers:
+        type: array
+        description: "Os revisores da fase"
+        example: [ "84a5b3d1-a7a4-49a6-aff8-902a325f97f9", "0da862ef-0dc7-45c4-9bed-751ff379e9d3" ]
+    criteria:
+      type: object
+      description: "Os critérios da fase"
+      example:
+        key: "Valor da chave"
     sequence:
       type: integer
       description: "Número de sequência"
