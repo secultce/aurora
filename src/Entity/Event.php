@@ -33,7 +33,7 @@ class Event extends AbstractEntity
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'agent_group_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
     #[Groups(['event.get'])]
-    private ?Agent $agentGroup;
+    private ?Agent $agentGroup = null;
 
     #[ORM\ManyToOne(targetEntity: Space::class)]
     #[ORM\JoinColumn(name: 'space_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
