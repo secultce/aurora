@@ -173,9 +173,9 @@ class Initiative extends AbstractEntity
         return [
             'id' => $this->id?->toRfc4122(),
             'name' => $this->name,
-            'parent' => $this->parent?->toArray(),
-            'space' => $this->space?->toArray(),
-            'createdBy' => $this->createdBy->toArray(),
+            'parent' => $this->parent?->getId()->toRfc4122(),
+            'space' => $this->space?->getId()->toRfc4122(),
+            'createdBy' => $this->createdBy->getId()->toRfc4122(),
             'extraFields' => $this->extraFields,
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
