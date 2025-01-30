@@ -1,0 +1,15 @@
+<label class="border rounded-2 bg-white d-flex align-items-center justify-content-center position-relative btn" {{ id ? 'id='~id : '' }}>
+    <input type="file" name="{{ inputName }}" id="{{ inputName }}" class="d-none" onchange="previewImage(this)" accept="image/*" data-preview-classes="w-100 h-100 bg-white position-absolute object-fit-cover">
+    <span class="fw-bold text-primary d-flex justify-content-center align-items-center gap-1"><i class="material-icons">add_a_photo</i>{{ label ?? ''}}</span>
+
+    {% if defaultImage is not empty %}
+        <img
+            src="{{ defaultImage }}"
+            class="image-preview w-100 h-100 bg-white position-absolute object-fit-cover"
+            alt="{{ defaultImage }} | {{ 'image'|trans }}"
+        />
+        <button type="button" class="remove-button btn text-danger position-absolute fs-6 z-3 py-0 px-1" onclick="removeImage(this.parentElement)" style="line-height: 1;">
+            <i class="material-icons">delete_forever</i>
+        </button>
+    {% endif %}
+</label>

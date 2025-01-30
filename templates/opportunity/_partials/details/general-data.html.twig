@@ -19,12 +19,8 @@
             <div class="row">
                 <div class="col">
                     <label class="fw-bold mb-2">{{ 'view.opportunity.type_of' | trans }}</label>
-                    <p class="text-opportunity fw-bold">
-                        {% if opportunity.extraFields.culturalLanguage is defined %}
-                            {{ opportunity.extraFields.culturalLanguage }}
-                        {% else %}
-                            {{ 'not_informed' | trans }}
-                        {% endif %}
+                    <p class="text-opportunity">
+                        {{ opportunity.extraFields.type ?? 'not_informed' | trans }}
                     </p>
                 </div>
             </div>
@@ -33,13 +29,11 @@
                 <div class="col">
                     <label class="fw-bold mb-2">{{ 'areas_of_expertise' | trans }}</label>
                     <p>
-                        {% if opportunity.extraFields.areasOfExpertise is defined %}
-                            {% for areaOfExpertise in opportunity.extraFields.areasOfExpertise %}
-                                <span class="text-opportunity fw-bold">{{ areaOfExpertise }}</span>{{ loop.last ? '' : ',' }}
-                            {% endfor %}
+                        {% for areaOfExpertise in opportunity.extraFields.areasOfActivity %}
+                            <span class="text-opportunity">{{ areaOfExpertise }}</span>{{ loop.last ? '' : ',' }}
                         {% else %}
                             {{ 'not_informed' | trans }}
-                        {% endif %}
+                        {% endfor %}
                     </p>
                 </div>
             </div>
@@ -60,7 +54,7 @@
                     <label class="fw-bold mb-2">{{ 'view.opportunity.period' | trans }}</label>
                     <p>
                         {% if opportunity.extraFields.period is defined %}
-                            {{ opportunity.extraFields.period.startDate | date('d/m/Y') }} {{ 'to' | trans }} {{ opportunity.extraFields.period.endDate | date('d/m/Y') }}
+                            {{ opportunity.extraFields.period.startDate | default('0') | date('d/m/Y') }} {{ 'to' | trans }} {{ opportunity.extraFields.period.endDate | default('0') | date('d/m/Y') }}
                         {% else %}
                             {{ 'not_informed' | trans }}
                         {% endif %}

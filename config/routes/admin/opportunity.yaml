@@ -1,12 +1,17 @@
 create:
   path: /adicionar
   controller: App\Controller\Web\Admin\OpportunityAdminController::create
-  methods: ['GET']
+  methods: ['GET', 'POST']
 
 list:
   path: /
   controller: App\Controller\Web\Admin\OpportunityAdminController::list
   methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\OpportunityAdminController::edit
+  methods: ['GET', 'POST']
 
 remove:
   path: /{id}/remove

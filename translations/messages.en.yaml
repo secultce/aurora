@@ -1,4 +1,5 @@
 add: Add
+add_cover_image: Add cover image
 account_privacy: Account and Privacy
 account_settings: User Account Settings
 access: Access
@@ -35,6 +36,7 @@ analysis: Analysis Period
 auditory: Auditory
 asian: Yellow
 apply_filter: Apply Filters
+attachments_and_links: Attachemnts and Links
 
 back: Back
 birth_date: Birth Date
@@ -42,6 +44,7 @@ black: Black
 
 calendar: Calendar
 cancel: Cancel
+category: Category
 change_details: Change Details
 cep: CEP
 cisgender: Cisgender
@@ -53,6 +56,7 @@ close: Close
 close_registration: Registration closed
 click_here: Click Here
 connections: Connections
+configure: Configure
 confirm: Confirm
 confirm_password: Confirm Password
 continue: Continue
@@ -72,17 +76,20 @@ created_in: Created in
 chain: Chain
 change_email: Change email
 change_password: Change password
+coming_soon: Coming soon
 contact: Contact
 cultural_language: Cultural language
 cultural_languages: Cultural languages
 
 date: Date
 date_created: Date created
+datetime: Date and time
 dashboard: Dashboard
+describe: Describe
 draft: In draft
 delete: Delete
-details: Details
 deleted: Deleted
+details: Details
 description: Description
 device: Device
 discover: Discover
@@ -126,6 +133,7 @@ from_to_date: To
 gallery: Gallery
 gender: Select the Gender
 general_data: General data
+general_information: General information
 
 happening_now: Happening Now
 help: Help
@@ -146,14 +154,15 @@ in_progress: In Progress
 inscriptions: Inscriptions
 input_search: Search for keywords
 introduction: Introduction
-
 is_itinerant: Is it an itinerant agent?
+
 language: Language
 lastname: Last Name
 last_login: Last Login
 last_updated: Last update
 linked_with: Linked With
 link: Add Link
+links: Links
 list: List
 local: Local
 locate_yourself: Locate Yourself
@@ -221,8 +230,9 @@ opportunities: Opportunities
 organizations: Organizations
 organization_register: Create an Organization
 orientation: Select the Sexual Orientation
-
+other_files: Other files
 other_information: Other information
+
 pardo: Mixed Race
 peoples: Peoples
 period: Period
@@ -292,14 +302,15 @@ user: User
 users: Users
 view_all: View All
 view_file: view file
-video: Add Video
-
+video: video
 visualization: Visual
-save-and_publish: Save and Publish
-savings: Savings
+
 save: Save
-share: Share
+save_and_publish: Save and Publish
+save_draft: Save as draft
 save_share: Save and Share
+savings: Savings
+share: Share
 seals: Seals
 seals_name: Seal name
 seals_description: Seal Description
@@ -578,19 +589,71 @@ view:
       entity: Link the opportunity to an entity
       opportunity_type: Choose the type of opportunity
       title: The title must be between 2 and 100 characters
+    general_info:
+      modality_and_purpose:
+        title: Modality and Purpose of the Funding
+        description: Inform the main purpose of this call for proposals, describing what will be supported or funded based on the expected objectives and results.
+        modality:
+          label: Funding Modality
+          description: Modality of support for the execution of cultural actions such as projects, which foresees future action in the artistic and cultural field and the presentation of results and/or accountability
+        object: Object of Funding
+      start_date:
+        title: Start date
+        description: Inform the start date of your call for proposals.
+      eligible_participants:
+        title: Who can participate
+        description: Select below the types of people and organizations that can participate in the opportunity.
+      number_of_proposals:
+        title: Number of proposals
+        description: Inform the estimated number of proposals that will be selected and the number of registrations per agent.
+        selected:
+          label: Forecast of selected proposals
+          description: Inform the forecast of proposals that will be selected in this opportunity.
+        inscriptions_per_agent:
+          label: Limit of registrations per agent
+          description: Inform the maximum number of registrations that the same agent can submit in this opportunity.
+        selected_per_agent:
+          label: Proposals selected per agent
+          description: Inform the maximum number of proposals that can be selected per agent in this opportunity.
+      attachments:
+        description: Attach below the official document of the Call for Proposals filled out, analyzed and validated by the local legal department and its respective annexes. After the opportunity is published, these documents will be public and available for download.
+        label: Opportunity Documents
+      grant_amount:
+        title: Call for Proposals Value
+        description: Will this opportunity work with financial resources?
+      cultural_categories:
+        title: Cultural Categories
+        description: You can configure a group of categories to organize the registrations of your opportunity. Select a predefined Category Group to ensure more consistent indicators, or configure other categories of your choice.
+      geographic_distribution:
+        title: Distribution of vacancies by territory
+        description: Configure the distribution of vacancies based on different territorial divisions.
     id: Opportunity ID
+    inscriptions_and_results: Inscriptions and results
     labels:
       choose_type: Select the type of the opportunity
       choose_entity: Link the opportunity to an entity
     message:
       deleted: The opportunity has been deleted
       created: The opportunity has been created
+      updated: The opportunity has been updated
+    people: People
+    period: Opportunity period
+    phases: Phases
+    public_info:
+      presentation_info:
+        title: Presentation Information
+      attachments:
+        add_another_link: Add another link
+        add_another_video: Add another video
+        link_name: Link description
+        other_files: Other files
+        url: Link (URL)
+        video_name: Video description
     quantity:
       total: Opportunities Found
       finished: Completed Opportunities
       opened: Ongoing Opportunities
       last_days: Registered in the last 7 days
-    period: Opportunity period
     type_of: Opportunity Type
     modal_confirm_registration: Do you want to register?
     registration_not_logged: Please log in or register before applying for an opportunity

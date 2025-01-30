@@ -1,4 +1,5 @@
 add: Añadir
+add_cover_image: Anãdir imagen de portada
 account_privacy: Cuenta y Privacidad
 account_settings: Configuración de la cuenta de usuario
 access: Acceder
@@ -35,6 +36,7 @@ analysis: Periodo de análisis
 auditory: Auditiva
 asian: Amarillo
 apply_filter: Aplicar filtros
+attachments_and_links: Archivos adjuntos y enlaces
 
 back: Volver
 birth_date: Fecha de Nacimiento
@@ -42,6 +44,7 @@ black: Negra
 
 calendar: Calendario
 cancel: Cancelar
+category: Categoría
 change_details: Cambiar Detalles
 cep: CEP
 cisgender: Cisgénero
@@ -53,6 +56,7 @@ close: Cerrar
 close_registration: Inscripciones cerradas
 click_here: Haz clic aquí
 connections: Conexiones
+configure: Configurar
 confirm: Confirmar
 confirm_password: Confirmar Contraseña
 continue: Continuar
@@ -72,13 +76,16 @@ created_in: Creado en
 chain: Cadena
 change_email: Cambiar correo electrónico
 change_password: Cambiar la contraseña
+coming_soon: Muy pronto
 contact: Contacto
 cultural_language: Lenguaje cultural
 cultural_languages: Lenguajes culturales
 
 date: Fecha
 date_created: Fecha de creación
+datetime: Fecha y hora
 dashboard: Panel de Control
+describe: Descreva
 draft: En borrador
 delete: Eliminar
 details: Detalles
@@ -126,6 +133,7 @@ from_to_date: A
 gallery: Galería
 gender: Seleccione el Género
 general_data: Datos generales
+general_information: Información general
 
 happening_now: Ocurriendo Ahora
 help: Ayuda
@@ -153,6 +161,7 @@ last_login: Último inicio de sesión
 last_updated: Última actualización
 linked_with: Vinculado Con
 link: Añadir Enlace
+links: Enlaces
 list: Lista
 local: Ubicación
 locate_yourself: Ubícate
@@ -220,6 +229,7 @@ opportunities: Oportunidades
 organizations: Organizaciones
 organization_register: Create an Organization
 orientation: Seleccione la Orientación Sexual
+other_files: Otros archivos
 other_information: Otra información
 
 pardo: Pardo
@@ -291,14 +301,15 @@ users: Usuarios
 
 view_all: Ver Todas
 view_file: ver archivo
-video: Añadir Vídeo
+video: vídeo
 visualization: Visual
 
-save-and_publish: Guardar y Publicar
-savings: Ahorro
 save: Guardar
-share: Compartir
+save_and_publish: Guardar y Publicar
+save_draft: Guardar como borrador
 save_share: Guardar y Compartir
+savings: Ahorro
+share: Compartir
 seals: Sellos
 seals_name: Nombre del sello
 seals_description: Descripción del sello
@@ -583,14 +594,66 @@ view:
       entity: Vincule la oportunidad a una entidad
       opportunity_type: Seleccione el tipo de oportunidad
       title: El título debe tener entre 2 y 100 caracteres
+    general_info:
+      modality_and_purpose:
+        title: Modalidad y Objeto del Fomento
+        description: Informe el propósito principal de esta convocatoria, describiendo lo que será apoyado o financiado con base en los objetivos y resultados esperados.
+        modality:
+          label: Modalidad de Fomento
+          description: Modalidad de apoyo a la ejecución de acciones culturales tipo proyectos, que prevé acción futura en el campo artístico-cultural y la presentación de resultados y/o rendición de cuentas
+        object: Objeto de Fomento
+      start_date:
+        title: Fecha de inicio
+        description: Informe la fecha de inicio de su convocatoria.
+      eligible_participants:
+        title: ¿Quién puede participar?
+        description: Seleccione a continuación los tipos de personas y organizaciones que podrán participar en la oportunidad.
+      number_of_proposals:
+        title: Cantidad de propuestas
+        description: Informe la estimación de propuestas que serán seleccionadas y el número de inscripciones por agente.
+        selected:
+          label: Previsión de propuestas seleccionadas
+          description: Informe la previsión de propuestas que serán seleccionadas en esta oportunidad.
+        inscriptions_per_agent:
+          label: Límite de inscripciones por agente
+          description: Informe la cantidad máxima de inscripciones que un mismo agente puede presentar en esta oportunidad.
+        selected_per_agent:
+          label: Propuestas seleccionadas por agente
+          description: Informe el máximo de propuestas que podrán ser seleccionadas por agente en esta oportunidad.
+      attachments:
+        description: Adjunte a continuación el documento oficial de la Convocatoria completado, analizado y validado por el departamento jurídico local y sus respectivos anexos. Una vez publicada la oportunidad, estos documentos serán públicos y estarán disponibles para descarga.
+        label: Documentos de la Oportunidad
+      grant_amount:
+        title: Valor de la Convocatoria
+        description: ¿Esta oportunidad trabajará con recursos financieros?
+      cultural_categories:
+        title: Categorías Culturales
+        description: Puede configurar un grupo de categorías para organizar las inscripciones de su oportunidad. Seleccione un Grupo de Categorías predefinido para garantizar indicadores más consistentes, o configure otras categorías de su elección.
+      geographic_distribution:
+        title: Distribución de vacantes por territorio
+        description: Configure la distribución de vacantes con base en diferentes divisiones territoriales.
     id: ID de la oportunidad
+    inscriptions_and_results: Inscripción y resultados
     labels:
       choose_type: Seleccione el tipo de oportunidad
       choose_entity: Vincule la oportunidad a una entidad
     message:
       deleted: La oportunidad ha sido eliminada
       created: La oportunidad ha sido creada
+      updated: La oportunidad ha sido cambiada
+    people: Gente
     period: Período de la oportunidad
+    phases: Fases
+    public_info:
+      presentation_info:
+        title: Información de presentación
+      attachments:
+        add_another_link: Agregar otro enlace
+        add_another_video: Agregar otro video
+        link_name: Descripción del enlace
+        other_files: Otros archivos
+        url: Enlace (URL)
+        video_name: Descripción del video
     quantity:
       total: Oportunidades Encontradas
       finished: Oportunidades Finalizadas

@@ -1,4 +1,4 @@
-describe('Painel de Controle - Página de criar Iniciativas', () => {
+describe('Painel de Controle - Página de criar Oportunidades', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
         cy.login('talysonsoares@example.com', 'Aurora@2024');
@@ -25,8 +25,8 @@ describe('Painel de Controle - Página de criar Iniciativas', () => {
         cy.get('label:contains("Agente Responsável")').should('be.visible');
         cy.get('select#opportunityCreatedBy').should('be.visible');
 
-        cy.get('label:contains("Áreas de interesse")').should('be.visible');
-        cy.get('button[id="add-culturalArea-btn"]').should('be.visible');
+        cy.get('label:contains("Áreas de Atuação")').should('be.visible');
+        cy.get('button[id="add-extraFields[areasOfActivity]-btn"]').should('be.visible');
 
         cy.get('label:contains("Imagem de capa")').should('be.visible');
         cy.get('input:file#opportunityCoverImage').should('be.visible');
@@ -100,6 +100,15 @@ describe('Painel de Controle - Página de criar Iniciativas', () => {
             .next().click();
         cy.contains('Nordeste Literário').should('be.visible')
             .click();
+
+        cy.contains('Áreas de Atuação').click();
+        cy.contains('Fotografia').click();
+        cy.contains('Áreas de Atuação').click();
+        cy.get('[id="search-extraFields[areasOfActivity]-items"]')
+            .type('Pintura')
+            .next()
+            .click();
+        cy.contains('Pintura').click();
 
         cy.get('button:contains(Criar em Rascunho)')
             .should('not.be.disabled')

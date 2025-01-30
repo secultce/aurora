@@ -17,6 +17,7 @@ use App\Service\Interface\OpportunityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -38,22 +39,67 @@ class OpportunityAdminController extends AbstractAdminController
     ) {
     }
 
-    public function create(): Response
+    private static function hidrate(array $data): array
     {
-        $opportunities = $this->service->findBy();
-        $agents = $this->agentService->findBy();
-        $events = $this->eventService->findBy();
-        $initiatives = $this->initiativeService->findBy();
-        $spaces = $this->spaceService->findBy();
+        $externalLinks = ['links' => $data['extraFields']['links'] ?? [], 'videos' => $data['extraFields']['videos'] ?? []];
+        foreach ($externalLinks as $field => $values) {
+            $data['extraFields'][$field] = array_filter(
+                $values,
+                fn ($value) => '' !== $value['name'] || '' !== $value['url'],
+            );
+        }
 
-        return $this->render('opportunity/create.html.twig', [
-            'id' => Uuid::v4()->toRfc4122(),
-            'opportunities' => $opportunities,
-            'agents' => $agents,
-            'events' => $events,
-            'initiatives' => $initiatives,
-            'spaces' => $spaces,
-        ]);
+        if (isset($data['entity'])) {
+            [$entity ,$associatedEntity] = explode('_', $data['entity']);
+            $data[$entity] = $associatedEntity;
+            unset($data['entity']);
+        }
+
+        return $data;
+    }
+
+    public function create(Request $request): Response
+    {
+        if ('POST' !== $request->getMethod()) {
+            $opportunities = $this->service->findBy();
+            $agents = $this->agentService->findBy();
+            $events = $this->eventService->findBy();
+            $initiatives = $this->initiativeService->findBy();
+            $spaces = $this->spaceService->findBy();
+
+            return $this->render('opportunity/create.html.twig', [
+                'id' => Uuid::v4()->toRfc4122(),
+                'opportunities' => $opportunities,
+                'agents' => $agents,
+                'events' => $events,
+                'initiatives' => $initiatives,
+                'spaces' => $spaces,
+            ]);
+        }
+
+        $data = $request->request->all();
+        $files = $request->files->all();
+
+        $data = $this->hidrate($data);
+
+        try {
+            $opportunity = $this->service->create($data);
+            if ($files['extraFields']['coverImage'] ?? null instanceof UploadedFile) {
+                $this->service->updateCoverImage($opportunity->getId(), $files['extraFields']['coverImage']);
+            }
+
+            $this->addFlash('success', $this->translator->trans('view.opportunity.message.created'));
+        } catch (ValidatorException $exception) {
+            $this->addFlash('error', $exception->getConstraintViolationList());
+
+            return $this->redirectToRoute('admin_opportunity_create');
+        } catch (Exception $exception) {
+            $this->addFlash('error', $exception->getMessage());
+
+            return $this->redirectToRoute('admin_opportunity_create');
+        }
+
+        return $this->redirectToRoute('admin_opportunity_list');
     }
 
     public function list(): Response
@@ -65,32 +111,46 @@ class OpportunityAdminController extends AbstractAdminController
         ]);
     }
 
-    public function remove(?Uuid $id): Response
+    public function edit(?Uuid $id, Request $request): Response
     {
-        $this->service->remove($id);
-        $this->addFlash('success', 'view.opportunity.message.deleted');
+        if ('POST' !== $request->getMethod()) {
+            $opportunity = $this->service->get($id);
+
+            return $this->render('opportunity/edit.html.twig', [
+                'opportunity' => $opportunity,
+            ]);
+        }
+
+        $data = self::hidrate($request->request->all());
+        $files = $request->files->all();
+
+        try {
+            $this->service->update($id, $data);
+            if ($files['image'] instanceof UploadedFile) {
+                $this->service->updateImage($id, $data['image']);
+            }
+            if ($files['extraFields']['coverImage'] instanceof UploadedFile) {
+                $this->service->updateCoverImage($id, $data['extraFields']['coverImage']);
+            }
+
+            $this->addFlash('success', $this->translator->trans('view.opportunity.message.updated'));
+        } catch (ValidatorException $exception) {
+            $this->addFlash('error', $exception->getConstraintViolationList());
+
+            return $this->redirectToRoute('admin_opportunity_edit', ['id' => $id]);
+        } catch (Exception $exception) {
+            $this->addFlash('error', [$exception->getMessage()]);
+
+            return $this->redirectToRoute('admin_opportunity_edit', ['id' => $id]);
+        }
 
         return $this->redirectToRoute('admin_opportunity_list');
     }
 
-    public function store(Request $request): Response
+    public function remove(?Uuid $id): Response
     {
-        $data = $request->request->all();
-        $data['extraFields']['culturalArea'] = $data['culturalArea'] ?? null;
-        unset($data['culturalArea']);
-
-        try {
-            $this->service->create($data);
-            $this->addFlash('success', $this->translator->trans('view.opportunity.message.created'));
-        } catch (ValidatorException $exception) {
-            return $this->render('_admin/opportunity/create.html.twig', [
-                'errors' => $exception->getConstraintViolationList(),
-            ]);
-        } catch (Exception $exception) {
-            return $this->render('_admin/opportunity/create.html.twig', [
-                'errors' => [$exception->getMessage()],
-            ]);
-        }
+        $this->service->remove($id);
+        $this->addFlash('success', 'view.opportunity.message.deleted');
 
         return $this->redirectToRoute('admin_opportunity_list');
     }
