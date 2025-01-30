@@ -7,7 +7,9 @@ accessibility: Accessibility
 access_main_agent: Access the main agent
 accountability: Accountability
 accompany: To accompany
+action: Action
 actions: Actions
+activity: Activity
 accept_terms: Accept the terms
 address: Address
 admin_options: Admin Options
@@ -34,6 +36,7 @@ areas_of_expertise: Areas of Expertise
 areas_of_interest: Areas of Interest
 analysis: Analysis Period
 auditory: Auditory
+auth: Authentication
 asian: Yellow
 apply_filter: Apply Filters
 attachments_and_links: Attachemnts and Links

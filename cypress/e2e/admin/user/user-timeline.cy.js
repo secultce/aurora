@@ -6,7 +6,6 @@ describe('Painel de Controle - Página de timeline dos Usuários', () => {
     });
 
     it('Garante que a página de timeline dos usuários existe e que exibe os detalhes corretamente', () => {
-
         cy.get('h2').contains('Usuário - Talyson Soares - Timeline').should('be.visible');
         cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
 
@@ -20,4 +19,28 @@ describe('Painel de Controle - Página de timeline dos Usuários', () => {
         cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(2)').contains('N/A');
         cy.get('#modal-timeline-table-body > :nth-child(2) > :nth-child(3)').contains('Talyson');
     });
+
+    it.only('Garante que a timeline de autenticação existe', () => {
+        cy.visit('/painel/admin/usuarios/2604e656-57dc-4e1c-9fa8-efdf4a00b203/timeline');
+
+        cy.contains('Autenticação')
+            .should('be.visible')
+            .click();
+
+        cy.get('[data-cy=auth-timeline] > thead > tr > :nth-child(1)')
+            .contains('Ação')
+            .should('be.visible');
+        cy.get('[data-cy=auth-timeline] > thead > tr > :nth-child(2)')
+            .contains('Atividade')
+            .should('be.visible');
+        cy.get('[data-cy=auth-timeline] > thead > tr > :nth-child(3)')
+            .contains('Dispositivo')
+            .should('be.visible');
+
+        cy.get('[data-cy=auth-timeline] > tbody > tr > :nth-child(1)')
+            .contains('login success')
+            .should('be.visible');
+        cy.get('[data-cy=auth-timeline] > tbody > tr > :nth-child(2)')
+            .contains(/\d{2}\/\d{2}\/\d{2,4} \d{1,2}:\d{2}:\d{2}/);
+    })
 });
