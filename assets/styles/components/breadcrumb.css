@@ -1,11 +1,12 @@
 .breadcrumb {
     font-family: var(--font-open-sans);
     font-weight: bold;
-    font-size: 14px;
-    padding-top: 5px;
+    font-size: 0.875rem;
+    padding-top: 0.3125rem;
     cursor: pointer;
     width: var(--WIDTH_DEFAULT);
     margin: auto;
+    --bs-gutter-x: 0;
 }
 
 .breadcrumb a {
@@ -21,13 +22,13 @@
 
 .breadcrumb a + a::before {
     content: " > ";
-    margin: 0 5px;
+    margin: 0 0.3125rem;
     color: var(--soft-gray);
 }
 
 .name-one{
-    padding-bottom: 5px;
-    margin-bottom: 25px;
+    padding-bottom: 0.3125rem;
+    margin-bottom: 1.5625rem;
 }
 
 .entity-banner .breadcrumb {
@@ -37,4 +38,10 @@
     padding-top: 0 !important;
     margin-left: 8.5rem !important;
     margin-top: 1.438rem;
+}
+
+@media (max-width: 768px) {
+    .breadcrumb {
+        width: var(--WIDTH_DEFAULT_MOBILE);
+    }
 }

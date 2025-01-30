@@ -4,39 +4,39 @@
     gap: 0.15rem;
     width: var(--WIDTH_DEFAULT);
     margin: 0 auto;
+    --bs-gutter-x: 0 !important;
 }
 
 .dashboard-card {
     background-color: var(--card-bg-color);
-    box-shadow: 0 2px 10px var(--box-shadow-color);
-    border-radius: 5px;
-    padding: 11px;
+    box-shadow: 0 0.125rem 0.625rem var(--box-shadow-color);
+    border-radius: 0.3125rem;
+    padding: 0.6875rem;
     margin: 0 auto;
 }
 
-.dashboard-card .top {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
 .dashboard-card .quantity {
-    font-size: 32px;
-    width: 199px;
-    height: 44px;
+    font-size: 2rem;
+    width: 12.4375rem;
+    height: 2.75rem;
     font-weight: bold;
     margin: 0;
 }
 
 .dashboard-card .content {
-    margin-top: 10px;
+    margin-top: 0.625rem;
 }
 
 .dashboard-card .text {
     font-size: 1rem;
     font-family: var(--font-open-sans);
     color: var(--color-subtitle-gray);
-    margin-top: -15px;
     display: block;
     text-align: left;
+}
+
+@media (max-width: 768px) {
+    .entity-dashboard {
+        width: var(--WIDTH_DEFAULT_MOBILE);
+    }
 }
