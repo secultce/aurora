@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Space;
@@ -62,11 +63,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Instituição Cultural',
                     'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                     'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'areasOfActivity' => [
-                        0 => 'Teatro',
-                        1 => 'Música',
-                        2 => 'Artes Visuais',
-                    ],
                     'accessibility' => [
                         0 => 'Banheiros adaptados',
                         1 => 'Rampa de acesso',
@@ -74,11 +70,26 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         3 => 'Sinalização tátil',
                     ],
                 ],
+                'activityAreas' => [
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                        'name' => 'Música',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                        'name' => 'Teatro',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
+                        'name' => 'Fotografia',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
             ],
             'extraFields' => null,
+            'activityAreas' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -115,16 +126,25 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Instituição Cultural',
                     'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                     'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'areasOfActivity' => [
-                        0 => 'Teatro',
-                        1 => 'Música',
-                        2 => 'Artes Visuais',
-                    ],
                     'accessibility' => [
                         0 => 'Banheiros adaptados',
                         1 => 'Rampa de acesso',
                         2 => 'Elevador adaptado',
                         3 => 'Sinalização tátil',
+                    ],
+                ],
+                'activityAreas' => [
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                        'name' => 'Música',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                        'name' => 'Teatro',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
+                        'name' => 'Fotografia',
                     ],
                 ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
@@ -136,16 +156,21 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
                 'location' => 'Recife, Pernambuco',
                 'capacity' => 100,
-                'areasOfActivity' => [
-                    0 => 'Teatro',
-                    1 => 'Música',
-                    2 => 'Artes Visuais',
-                ],
                 'accessibility' => [
                     0 => 'Banheiros adaptados',
                     1 => 'Rampa de acesso',
                     2 => 'Elevador adaptado',
                     3 => 'Sinalização tátil',
+                ],
+            ],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -250,6 +275,20 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
             'parent' => null,
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                    'name' => 'Teatro',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
+                    'name' => 'Fotografia',
+                ],
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
@@ -300,14 +339,23 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Centro Cultural',
                     'description' => 'O Sítio das Artes é um espaço dedicado à promoção de atividades culturais e oficinas artísticas, com uma vasta programação para todas as idades.',
                     'location' => 'Av. das Artes, 123 – Fortaleza/CE – CEP: 60123-123',
-                    'areasOfActivity' => [
-                        0 => 'Dança',
-                        1 => 'Pintura',
-                        2 => 'Escultura',
-                    ],
                     'accessibility' => [
                         0 => 'Banheiros adaptados',
                         1 => 'Rampa de acesso',
+                    ],
+                ],
+                'activityAreas' => [
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                        'name' => 'Artes Visuais',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                        'name' => 'Música',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
+                        'name' => 'Dança',
                     ],
                 ],
                 'createdAt' => '2024-07-11T10:49:00+00:00',
@@ -318,15 +366,24 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'type' => 'Galeria de Arte',
                 'description' => 'A Galeria Caatinga é especializada em exposições de artistas regionais, com foco na arte nordestina e obras inspiradas pela fauna e flora do sertão.',
                 'location' => 'Rua do Sertão, 123 – Fortaleza/CE – CEP: 60123-456',
-                'areasOfActivity' => [
-                    0 => 'Pintura',
-                    1 => 'Escultura',
-                    2 => 'Fotografia',
-                ],
                 'accessibility' => [
                     0 => 'Elevador adaptado',
                     1 => 'Sinalização tátil',
                     2 => 'Banheiros acessíveis',
+                ],
+            ],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
+                    'name' => 'Fotografia',
                 ],
             ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
@@ -422,16 +479,25 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Instituição Cultural',
                     'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                     'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'areasOfActivity' => [
-                        0 => 'Teatro',
-                        1 => 'Música',
-                        2 => 'Artes Visuais',
-                    ],
                     'accessibility' => [
                         0 => 'Banheiros adaptados',
                         1 => 'Rampa de acesso',
                         2 => 'Elevador adaptado',
                         3 => 'Sinalização tátil',
+                    ],
+                ],
+                'activityAreas' => [
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                        'name' => 'Música',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                        'name' => 'Teatro',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
+                        'name' => 'Fotografia',
                     ],
                 ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
@@ -443,16 +509,21 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
                 'location' => 'Recife, Pernambuco',
                 'capacity' => 100,
-                'areasOfActivity' => [
-                    0 => 'Teatro',
-                    1 => 'Música',
-                    2 => 'Artes Visuais',
-                ],
                 'accessibility' => [
                     0 => 'Banheiros adaptados',
                     1 => 'Rampa de acesso',
                     2 => 'Elevador adaptado',
                     3 => 'Sinalização tátil',
+                ],
+            ],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -496,16 +567,25 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'type' => 'Instituição Cultural',
                 'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                 'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                'areasOfActivity' => [
-                    0 => 'Teatro',
-                    1 => 'Música',
-                    2 => 'Artes Visuais',
-                ],
                 'accessibility' => [
                     0 => 'Banheiros adaptados',
                     1 => 'Rampa de acesso',
                     2 => 'Elevador adaptado',
                     3 => 'Sinalização tátil',
+                ],
+            ],
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                    'name' => 'Teatro',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
+                    'name' => 'Fotografia',
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),

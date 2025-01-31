@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Fixtures;
 
+use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use Symfony\Component\Uid\Uuid;
@@ -28,8 +29,11 @@ class SpaceTestFixtures implements TestFixtures
                 'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
                 'location' => 'Recife, Pernambuco',
                 'capacity' => 100,
-                'areasOfActivity' => ['Teatro', 'Música', 'Artes Visuais'],
                 'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
+            ],
+            'activityAreas' => [
+                ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
             ],
         ]);
     }
