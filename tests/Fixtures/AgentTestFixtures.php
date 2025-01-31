@@ -6,6 +6,7 @@ namespace App\Tests\Fixtures;
 
 use App\DataFixtures\Entity\OrganizationFixtures;
 use App\DataFixtures\Entity\UserFixtures;
+use App\Entity\Agent;
 use Symfony\Component\Uid\Uuid;
 
 class AgentTestFixtures implements TestFixtures
@@ -34,5 +35,20 @@ class AgentTestFixtures implements TestFixtures
                 'x' => '@test.agent',
             ],
         ]);
+    }
+
+    public static function objectAgent(): Agent
+    {
+        $agentData = self::partial();
+
+        $agent = new Agent();
+        $agent->setId(Uuid::fromString($agentData['id']));
+        $agent->setName($agentData['name']);
+        $agent->setShortBio($agentData['shortBio']);
+        $agent->setLongBio($agentData['longBio']);
+        $agent->setCulture($agentData['culture']);
+        $agent->setMain($agentData['main']);
+
+        return $agent;
     }
 }
