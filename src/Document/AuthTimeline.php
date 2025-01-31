@@ -8,7 +8,7 @@ use DateTime;
 use Doctrine\ODM\MongoDB\Mapping\Annotations as ODM;
 
 #[ODM\Document(collection: 'auth_timeline')]
-class AuthTimeline
+class AuthTimeline extends AbstractDocument
 {
     #[ODM\Id]
     private ?string $id = null;

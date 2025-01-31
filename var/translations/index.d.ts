@@ -144,7 +144,9 @@ export declare const ACCESSIBILITY: Message<{ 'messages': { parameters: NoParame
 export declare const ACCESS_MAIN_AGENT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCOUNTABILITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCOMPANY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const ACTION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const ACTIVITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCEPT_TERMS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADDRESS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADMIN_OPTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -231,6 +233,7 @@ export declare const DOWNLOADABLE_FILES: Message<{ 'messages': { parameters: NoP
 export declare const EDIT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EDIT_FAQ: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EDIT_SEALS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const EDIT_SPACE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const EMAIL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTITY_BANNER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

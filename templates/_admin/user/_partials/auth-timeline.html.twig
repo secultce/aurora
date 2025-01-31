@@ -1,0 +1,18 @@
+<table class="table table-hover table-striped" data-cy="auth-timeline">
+    <thead class="table-dark">
+    <tr>
+        <th>{{ 'action'|trans }}</th>
+        <th>{{ 'activity'|trans }}</th>
+        <th>{{ 'device'|trans }}</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for item in authEvents %}
+        <tr>
+            <td><a href="#">{{ item.action | trans }}</a></td>
+            <td>{{ item.datetime.format('d/m/Y H:i:s') }}</td>
+            <td>{{ item.device }} - {{ item.platform }}</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
