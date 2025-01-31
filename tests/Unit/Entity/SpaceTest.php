@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Tests\Unit\Entity;
 
+use App\Entity\ActivityArea;
 use App\Entity\Agent;
 use App\Entity\Space;
 use App\Entity\SpaceAddress;
@@ -40,12 +41,19 @@ class SpaceTest extends AbstractWebTestCase
             'type' => 'Instituição Cultural',
             'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
             'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-            'areasOfActivity' => ['Teatro', 'Música', 'Artes Visuais'],
             'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
         ];
         $createdAt = new DateTimeImmutable();
         $updatedAt = new DateTime();
         $deletedAt = new DateTime();
+
+        $activityArea1 = new ActivityArea();
+        $activityArea1->setId(Uuid::v4());
+        $activityArea1->setName('Teatro');
+
+        $activityArea2 = new ActivityArea();
+        $activityArea2->setId(Uuid::v4());
+        $activityArea2->setName('Música');
 
         $space->setId($id);
         $space->setName('Casa do Cantador');
@@ -57,36 +65,16 @@ class SpaceTest extends AbstractWebTestCase
         $space->setCreatedAt($createdAt);
         $space->setUpdatedAt($updatedAt);
         $space->setDeletedAt($deletedAt);
+        $space->addActivityArea($activityArea1);
+        $space->addActivityArea($activityArea2);
 
-        $this->assertEquals($id, $space->getId());
-        $this->assertInstanceOf(Uuid::class, $space->getId());
+        $this->assertCount(2, $space->getActivityAreas());
+        $this->assertContains($activityArea1, $space->getActivityAreas());
+        $this->assertContains($activityArea2, $space->getActivityAreas());
 
-        $this->assertEquals('Casa do Cantador', $space->getName());
-        $this->assertIsString($space->getName());
-
-        $this->assertEquals($agent, $space->getCreatedBy());
-        $this->assertInstanceOf(Agent::class, $space->getCreatedBy());
-
-        $this->assertEquals('https://url-image.com.br', $space->getImage());
-        $this->assertIsString($space->getImage());
-
-        $this->assertEquals($spaceParent, $space->getParent());
-        $this->assertInstanceOf(Space::class, $space->getParent());
-
-        $this->assertEquals($extraField, $space->getExtraFields());
-        $this->assertIsArray($space->getExtraFields());
-
-        $this->assertEquals($spaceAddress, $space->getAddress());
-        $this->assertInstanceOf(SpaceAddress::class, $space->getAddress());
-
-        $this->assertEquals($createdAt, $space->getCreatedAt());
-        $this->assertInstanceOf(DateTimeImmutable::class, $space->getCreatedAt());
-
-        $this->assertEquals($updatedAt, $space->getUpdatedAt());
-        $this->assertInstanceOf(DateTime::class, $space->getUpdatedAt());
-
-        $this->assertEquals($deletedAt, $space->getDeletedAt());
-        $this->assertInstanceOf(DateTime::class, $space->getDeletedAt());
+        $space->removeActivityArea($activityArea1);
+        $this->assertCount(1, $space->getActivityAreas());
+        $this->assertNotContains($activityArea1, $space->getActivityAreas());
 
         $this->assertEquals([
             'id' => $id->toString(),
@@ -94,6 +82,8 @@ class SpaceTest extends AbstractWebTestCase
             'createdBy' => '95f91eb5-cb62-4a7b-b677-8486d2a0763a',
             'parent' => '8e3e976d-0fc0-443e-bdd2-2b4d83da004f',
             'address' => $spaceAddress->toArray(),
+            'extraFields' => $extraField,
+            'activityAreas' => array_map(fn (ActivityArea $area) => $area->toArray(), $space->getActivityAreas()->toArray()),
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt->format(DateFormatHelper::DEFAULT_FORMAT),

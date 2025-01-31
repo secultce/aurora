@@ -4,9 +4,11 @@ declare(strict_types=1);
 
 namespace App\Serializer\Denormalizer;
 
+use App\Entity\ActivityArea;
 use App\Entity\Agent;
 use App\Entity\Space;
 use App\Service\Interface\FileServiceInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\File;
@@ -36,6 +38,7 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
             $this->uploadImage($data, $context['object_to_populate'] ?? null);
         }
 
+        /** @var Space $space */
         $space = $this->denormalizer->denormalize($data, $type, $format, $context);
 
         if (isset($data['createdBy'])) {
@@ -46,6 +49,15 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
         if (isset($data['parent'])) {
             $data['parent'] = $this->entityManager->getRepository(Space::class)->find($data['parent']);
             $space->setParent($data['parent']);
+        }
+
+        $activityAreas = array_map(
+            fn (string $id) => $this->entityManager->getRepository(ActivityArea::class)->findOneBy(['id' => $id]),
+            $data['activityAreas'] ?? []
+        );
+
+        if (true === array_key_exists('activityAreas', $data)) {
+            $space->setActivityAreas(new ArrayCollection($activityAreas));
         }
 
         return $space;

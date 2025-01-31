@@ -8,6 +8,8 @@ use App\Helper\DateFormatHelper;
 use App\Repository\SpaceRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -20,7 +22,7 @@ class Space extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['event.get', 'initiative.get', 'opportunity.get', 'space.get'])]
+    #[Groups(['event.get', 'initiative.get', 'opportunity.get', 'space.get', 'activity_area.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
@@ -50,6 +52,11 @@ class Space extends AbstractEntity
     #[Groups(['space.get.item'])]
     private ?array $extraFields = null;
 
+    #[ORM\ManyToMany(targetEntity: ActivityArea::class, inversedBy: 'spaces', cascade: ['persist'])]
+    #[ORM\JoinTable(name: 'activity_area_spaces')]
+    #[Groups(['space.get', 'space.get.item'])]
+    private Collection $activityAreas;
+
     #[ORM\Column]
     #[Groups('space.get')]
     private DateTimeImmutable $createdAt;
@@ -65,6 +72,7 @@ class Space extends AbstractEntity
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->activityAreas = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -137,6 +145,28 @@ class Space extends AbstractEntity
         $this->address = $address;
     }
 
+    public function getActivityAreas(): Collection
+    {
+        return $this->activityAreas;
+    }
+
+    public function setActivityAreas(Collection $activityAreas): void
+    {
+        $this->activityAreas = $activityAreas;
+    }
+
+    public function addActivityArea(ActivityArea $activityArea): void
+    {
+        if (!$this->activityAreas->contains($activityArea)) {
+            $this->activityAreas->add($activityArea);
+        }
+    }
+
+    public function removeActivityArea(ActivityArea $activityArea): void
+    {
+        $this->activityAreas->removeElement($activityArea);
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -175,6 +205,8 @@ class Space extends AbstractEntity
             'createdBy' => $this->createdBy->getId()->toRfc4122(),
             'parent' => $this->parent?->getId()->toRfc4122(),
             'address' => $this->address?->toArray(),
+            'extraFields' => $this->extraFields,
+            'activityAreas' => $this->activityAreas->map(fn (ActivityArea $activityArea) => $activityArea->toArray())->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
