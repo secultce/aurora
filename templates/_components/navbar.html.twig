@@ -15,7 +15,7 @@
         </div>
 
         <div class="offcanvas offcanvas-start text-white" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
-            <div class="offcanvas-header">
+            <div class="offcanvas-header shadow-sm">
                 <h5 class="offcanvas-title" id="offcanvasNavbarLabel">Offcanvas</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -90,9 +90,9 @@
                             <span>{{ app.user.name|split(' ')|first }}</span>
                             <img src="{{ asset(app.user.image ?? 'img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end" id="customDropdown">
-                            <div class="dropdown-content">
-                                <div class="menu-column">
+                        <div class="dropdown-menu dropdown-menu-end w-100" id="customDropdown">
+                            <div class="dropdown-content-wrap">
+                                <div class="menu-column w-100">
                                     <div class="dropdown-header">{{ 'control_panel' | trans }}</div>
                                     <a class="dropdown-item" href="{{ path('admin_dashboard') }}">
                                         <i class="material-icons">touch_app</i> {{ 'control_panel' | trans }}
@@ -121,7 +121,7 @@
                                         <i class="material-icons">article</i> {{ 'my_initiatives' | trans }}
                                     </a>
                                 </div>
-                                <div class="menu-column">
+                                <div class="menu-column w-100">
                                     <div class="dropdown-header">{{ 'other_options' | trans }}</div>
                                     <a class="dropdown-item" href="{{ path('admin_user_account_privacy', {id: app.user.id}) }}">
                                         <i class="material-icons">settings</i> {{ 'account_privacy' | trans }}
