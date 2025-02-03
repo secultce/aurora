@@ -3,6 +3,12 @@ api_example:
   prefix: /api
   name_prefix: api_example_
 
+api_activity_area:
+  resource: 'api/activity-area.yaml'
+  prefix: /api/activity-areas
+  name_prefix: api_activity_area_
+  trailing_slash_on_root: false
+
 api_agents:
   resource: 'api/agent.yaml'
   prefix: /api/agents
