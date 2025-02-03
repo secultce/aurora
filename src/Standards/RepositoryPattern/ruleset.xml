@@ -1,0 +1,4 @@
+<?xml version="1.0"?>
+<ruleset name="RepositoryPattern">
+    <description>A custom coding standard for repository pattern.</description>
+</ruleset>
