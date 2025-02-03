@@ -44,6 +44,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
             ],
+            'tags' => [
+                TagFixtures::TAG_ID_1,
+                TagFixtures::TAG_ID_2,
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -64,6 +68,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+            ],
+            'tags' => [
+                TagFixtures::TAG_ID_3,
+                TagFixtures::TAG_ID_4,
             ],
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
@@ -86,6 +94,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
             ],
+            'tags' => [
+                TagFixtures::TAG_ID_5,
+                TagFixtures::TAG_ID_6,
+            ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -106,6 +118,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_6,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+            ],
+            'tags' => [
+                TagFixtures::TAG_ID_7,
+                TagFixtures::TAG_ID_8,
             ],
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
@@ -128,6 +144,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
             ],
+            'tags' => [
+                TagFixtures::TAG_ID_9,
+                TagFixtures::TAG_ID_10,
+            ],
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -148,6 +168,11 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_9,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+            ],
+            'tags' => [
+                TagFixtures::TAG_ID_1,
+                TagFixtures::TAG_ID_2,
+                TagFixtures::TAG_ID_5,
             ],
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
@@ -170,6 +195,12 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
             ],
+            'tags' => [
+                TagFixtures::TAG_ID_5,
+                TagFixtures::TAG_ID_3,
+                TagFixtures::TAG_ID_9,
+                TagFixtures::TAG_ID_10,
+            ],
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -190,6 +221,13 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+            ],
+            'tags' => [
+                TagFixtures::TAG_ID_1,
+                TagFixtures::TAG_ID_2,
+                TagFixtures::TAG_ID_3,
+                TagFixtures::TAG_ID_4,
+                TagFixtures::TAG_ID_5,
             ],
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
@@ -212,6 +250,9 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
             ],
+            'tags' => [
+                TagFixtures::TAG_ID_10,
+            ],
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -232,6 +273,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_5,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+            ],
+            'tags' => [
+                TagFixtures::TAG_ID_2,
+                TagFixtures::TAG_ID_9,
             ],
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
@@ -277,6 +322,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
         return [
             AgentFixtures::class,
             ActivityAreaFixtures::class,
+            TagFixtures::class,
         ];
     }
 

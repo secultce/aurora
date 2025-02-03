@@ -57,6 +57,11 @@ class Space extends AbstractEntity
     #[Groups(['space.get', 'space.get.item'])]
     private Collection $activityAreas;
 
+    #[ORM\ManyToMany(targetEntity: Tag::class)]
+    #[ORM\JoinTable(name: 'space_tags')]
+    #[Groups(['space.get', 'space.get.item'])]
+    private Collection $tags;
+
     #[ORM\Column]
     #[Groups('space.get')]
     private DateTimeImmutable $createdAt;
@@ -71,6 +76,7 @@ class Space extends AbstractEntity
 
     public function __construct()
     {
+        $this->tags = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->activityAreas = new ArrayCollection();
     }
@@ -167,6 +173,28 @@ class Space extends AbstractEntity
         $this->activityAreas->removeElement($activityArea);
     }
 
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function setTags(Collection $tags): void
+    {
+        $this->tags = $tags;
+    }
+
+    public function addTag(Tag $tag): void
+    {
+        if (false === $this->tags->contains($tag)) {
+            $this->tags->add($tag);
+        }
+    }
+
+    public function removeTag(Tag $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -207,6 +235,7 @@ class Space extends AbstractEntity
             'address' => $this->address?->toArray(),
             'extraFields' => $this->extraFields,
             'activityAreas' => $this->activityAreas->map(fn (ActivityArea $activityArea) => $activityArea->toArray())->toArray(),
+            'tags' => $this->tags->map(fn (Tag $tag) => $tag->toArray())->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
