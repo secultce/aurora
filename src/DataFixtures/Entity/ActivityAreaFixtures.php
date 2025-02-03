@@ -85,7 +85,9 @@ final class ActivityAreaFixtures extends AbstractFixture
     {
         foreach (self::ACTIVITY_AREAS as $activityAreaData) {
             $activityArea = $this->serializer->denormalize($activityAreaData, ActivityArea::class);
-            $this->setReference(self::ACTIVITY_AREA_ID_PREFIX.$activityAreaData['id'], $activityArea);
+
+            $this->setReference(sprintf('%s-%s', self::ACTIVITY_AREA_ID_PREFIX, $activityAreaData['id']), $activityArea);
+
             $manager->persist($activityArea);
         }
 

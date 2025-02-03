@@ -1,0 +1,14 @@
+get:
+  path: /{id}
+  controller: App\Controller\Api\ActivityAreaApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\ActivityAreaApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\ActivityAreaApiController::remove
+  methods: ['DELETE']

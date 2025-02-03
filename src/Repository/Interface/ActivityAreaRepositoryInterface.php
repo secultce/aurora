@@ -9,4 +9,6 @@ use App\Entity\ActivityArea;
 interface ActivityAreaRepositoryInterface
 {
     public function save(ActivityArea $activityArea): ActivityArea;
+
+    public function remove(ActivityArea $activityArea);
 }
