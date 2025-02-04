@@ -1,0 +1,37 @@
+get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Áreas de Atividade
+  summary: Recupera uma única área de atividade
+  responses:
+    '200':
+      description: Área de atividade encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/activity-area/ActivityAreaGetItemResponse.yaml'
+    '404':
+      description: Área de atividade não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/activity-area/ActivityAreaNotFound.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Áreas de Atividade
+  summary: Remove uma única área de atividade
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Área de atividade não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/activity-area/ActivityAreaNotFound.yaml'

@@ -1,0 +1,13 @@
+ActivityAreaBase:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "Identificador único da área de atividade."
+      example: "123e4567-e89b-12d3-a456-426614174000"
+    name:
+      type: string
+      maxLength: 20
+      description: "Nome da área de atividade."
+      example: "Teatro"

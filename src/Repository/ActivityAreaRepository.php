@@ -22,4 +22,10 @@ class ActivityAreaRepository extends AbstractRepository implements ActivityAreaR
 
         return $activityArea;
     }
+
+    public function remove(ActivityArea $activityArea): void
+    {
+        $this->getEntityManager()->remove($activityArea);
+        $this->getEntityManager()->flush();
+    }
 }

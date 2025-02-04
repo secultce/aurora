@@ -60,7 +60,7 @@ class AuditAuthFailureListenerTest extends AbstractWebTestCase
         $user = $this->entityManager->getRepository(User::class)->findOneBy(['email' => $requestBody['username']]);
 
         $authTimeline = $this->documentManager->getRepository(AuthTimeline::class)
-            ->findOneBy(['action' => 'login failure', 'platform' => 'api', 'userId' => $user->getId()->toRfc4122()]);
+            ->findOneBy(['action' => 'login failure', 'platform' => 'unknown', 'userId' => $user->getId()->toRfc4122()]);
 
         self::assertNotNull($authTimeline, 'Audit document not found');
 
@@ -95,7 +95,7 @@ class AuditAuthFailureListenerTest extends AbstractWebTestCase
         ]);
 
         $authTimeline = $this->documentManager->getRepository(AuthTimeline::class)
-            ->findOneBy(['action' => 'user not found', 'platform' => 'api', 'userId' => null]);
+            ->findOneBy(['action' => 'user not found', 'platform' => 'unknown', 'userId' => null]);
 
         self::assertNotNull($authTimeline, 'Audit document not found');
 

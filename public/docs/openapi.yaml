@@ -4,6 +4,7 @@ info:
   description: |-
     API responsável por praticamente todas as funcionalidades de gerenciamento:
     - Agentes
+    - Áreas de atividade
     - Espaços
     - Eventos
     - Faqs
@@ -30,6 +31,8 @@ tags:
     description: Endpoints relacionados a autorização
   - name: Agentes
     description: Endpoints relacionados aos agentes
+  - name: Áreas de Atividade
+    description: Endpoints relacionados às áreas de atividade
   - name: Espaços
     description: Endpoints relacionados aos espaços
   - name: Eventos
@@ -53,6 +56,10 @@ tags:
   - name: Usuários
     description: Endpoints relacionados aos usuários
 paths:
+  /activity-areas:
+    $ref: './components/paths/activity-area/Collection.yaml'
+  /activity-areas/{id}:
+    $ref: './components/paths/activity-area/Item.yaml'
   /agents:
     $ref: './components/paths/agent/Collection.yaml'
   /agents/{id}:
@@ -117,6 +124,8 @@ paths:
     $ref: './components/paths/user/Item.yaml'
 components:
   schemas:
+    ActivityArea:
+      $ref: './components/schemas/activity-area.yaml'
     Agent:
       $ref: './components/schemas/agent.yaml'
     Event:
