@@ -7,6 +7,7 @@ namespace App\Serializer\Denormalizer;
 use App\Entity\ActivityArea;
 use App\Entity\Agent;
 use App\Entity\Space;
+use App\Entity\Tag;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -58,6 +59,15 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
 
         if (true === array_key_exists('activityAreas', $data)) {
             $space->setActivityAreas(new ArrayCollection($activityAreas));
+        }
+
+        if (true === array_key_exists('tags', $data)) {
+            $tags = array_map(
+                fn (string $id) => $this->entityManager->find(Tag::class, $id),
+                $data['tags']
+            );
+
+            $space->setTags(new ArrayCollection($tags));
         }
 
         return $space;
