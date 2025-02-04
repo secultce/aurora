@@ -6,9 +6,9 @@ describe('Painel de Controle - Página de timeline das Iniciativas', () => {
     });
 
     it('Garante que a página de timeline da Iniciativa existe', () => {
-        cy.contains('Timeline').click({force: true});
+        cy.get('[data-cy="f0774ecd-4860-4b8c-9607-32090dc31f71"]').contains('Timeline').click({force: true});
 
-        cy.get('h2').contains('Iniciativa - Baião de Dez - Timeline').should('be.visible');
+        cy.get('h2').contains('Iniciativa - Vozes do Sertão - Timeline').should('be.visible');
         cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
 
         cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');

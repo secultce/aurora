@@ -25,5 +25,6 @@ return (new Config())
         'increment_style' => ['style' => 'post'],
         'global_namespace_import' => true,
         'new_with_parentheses' => false,
+        'class_definition' => ['space_before_parenthesis' => true],
     ])
     ->setFinder($finder);
