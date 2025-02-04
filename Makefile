@@ -95,5 +95,9 @@ style:
 generate_keys:
 	docker compose exec -T php bash -c "php bin/console lexik:jwt:generate-keypair --overwrite -n"
 
+# Executa um teste específico
+test_file:
+	docker compose exec -T php bash -c "php bin/phpunit $(file)"
+
 # Comando para rodar todos os passos juntos
 setup: up install_dependencies reset-deep generate_proxies migrate_database load_fixtures install_frontend compile_frontend generate_keys

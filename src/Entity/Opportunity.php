@@ -181,12 +181,18 @@ class Opportunity extends AbstractEntity
 
     public function setPhases(Collection $phases): void
     {
-        $this->phases = $phases;
+        $filtrated = $phases->filter(function ($phase) {
+            return true == $phase instanceof Phase;
+        });
+        $unique = new ArrayCollection(array_unique($filtrated->toArray(), SORT_REGULAR));
+        $this->phases = $unique;
     }
 
     public function addPhase(Phase $phase): void
     {
-        $this->phases->add($phase);
+        if (false == $this->phases->contains($phase)) {
+            $this->phases->add($phase);
+        }
     }
 
     public function removePhase(Phase $phase): void
