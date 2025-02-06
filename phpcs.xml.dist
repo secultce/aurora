@@ -25,6 +25,6 @@
     <file>src/</file>
     <file>tests/</file>
 
-    <rule ref="RepositoryPattern.Controllers.DisallowRepositoryUsage"/>
+    <rule ref="RepositoryPattern"/>
 
 </ruleset>
