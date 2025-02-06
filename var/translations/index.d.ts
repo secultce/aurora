@@ -172,6 +172,7 @@ export declare const AREAS_OF_EXPERTISE: Message<{ 'messages': { parameters: NoP
 export declare const AREAS_OF_INTEREST: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ANALYSIS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const AUDITORY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const AUTH: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ASIAN: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const APPLY_FILTER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ATTACHMENTS_AND_LINKS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

@@ -170,6 +170,7 @@ export const AREAS_OF_EXPERTISE = {"id":"areas_of_expertise","translations":{"me
 export const AREAS_OF_INTEREST = {"id":"areas_of_interest","translations":{"messages":{"en":"Areas of Interest","pt-br":"\u00c1reas de interesse","es":"\u00c1reas de Inter\u00e9s"}}};
 export const ANALYSIS = {"id":"analysis","translations":{"messages":{"en":"Analysis Period","pt-br":"Per\u00edodo de An\u00e1lise","es":"Periodo de an\u00e1lisis"}}};
 export const AUDITORY = {"id":"auditory","translations":{"messages":{"en":"Auditory","pt-br":"Auditiva","es":"Auditiva"}}};
+export const AUTH = {"id":"auth","translations":{"messages":{"en":"Authentication","pt-br":"Autentica\u00e7\u00e3o","es":"Autenticaci\u00f3n"}}};
 export const ASIAN = {"id":"asian","translations":{"messages":{"en":"Yellow","pt-br":"Amarelo","es":"Amarillo"}}};
 export const APPLY_FILTER = {"id":"apply_filter","translations":{"messages":{"en":"Apply Filters","pt-br":"Aplicar Filtros","es":"Aplicar filtros"}}};
 export const ATTACHMENTS_AND_LINKS = {"id":"attachments_and_links","translations":{"messages":{"en":"Attachemnts and Links","pt-br":"Anexos e links","es":"Archivos adjuntos y enlaces"}}};
