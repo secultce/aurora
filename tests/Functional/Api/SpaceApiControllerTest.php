@@ -7,6 +7,7 @@ namespace App\Tests\Functional\Api;
 use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
+use App\DataFixtures\Entity\TagFixtures;
 use App\Entity\Space;
 use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\ImageTestFixtures;
@@ -84,12 +85,23 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Fotografia',
                     ],
                 ],
+                'tags' => [
+                    [
+                        'id' => TagFixtures::TAG_ID_1,
+                        'name' => 'Cultura',
+                    ],
+                    [
+                        'id' => TagFixtures::TAG_ID_2,
+                        'name' => 'Tecnologia',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
             ],
             'extraFields' => null,
             'activityAreas' => [],
+            'tags' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -147,6 +159,16 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Fotografia',
                     ],
                 ],
+                'tags' => [
+                    [
+                        'id' => TagFixtures::TAG_ID_1,
+                        'name' => 'Cultura',
+                    ],
+                    [
+                        'id' => TagFixtures::TAG_ID_2,
+                        'name' => 'Tecnologia',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -173,6 +195,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'name' => 'Música',
                 ],
             ],
+            'tags' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -289,6 +312,16 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'name' => 'Fotografia',
                 ],
             ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_1,
+                    'name' => 'Cultura',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_2,
+                    'name' => 'Tecnologia',
+                ],
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
@@ -358,6 +391,16 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Dança',
                     ],
                 ],
+                'tags' => [
+                    [
+                        'id' => TagFixtures::TAG_ID_3,
+                        'name' => 'Sustentabilidade',
+                    ],
+                    [
+                        'id' => TagFixtures::TAG_ID_4,
+                        'name' => 'Social',
+                    ],
+                ],
                 'createdAt' => '2024-07-11T10:49:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -384,6 +427,16 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 [
                     'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
                     'name' => 'Fotografia',
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_5,
+                    'name' => 'Educação',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_6,
+                    'name' => 'Tradição',
                 ],
             ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
@@ -500,6 +553,16 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Fotografia',
                     ],
                 ],
+                'tags' => [
+                    [
+                        'id' => TagFixtures::TAG_ID_1,
+                        'name' => 'Cultura',
+                    ],
+                    [
+                        'id' => TagFixtures::TAG_ID_2,
+                        'name' => 'Tecnologia',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -524,6 +587,16 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 [
                     'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
                     'name' => 'Música',
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_7,
+                    'name' => 'Juventude',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_8,
+                    'name' => 'Oficina',
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -586,6 +659,16 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 [
                     'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
                     'name' => 'Fotografia',
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_1,
+                    'name' => 'Cultura',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_2,
+                    'name' => 'Tecnologia',
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
