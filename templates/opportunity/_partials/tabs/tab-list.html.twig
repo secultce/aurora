@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-between align-items-end">
     <p class="fw-bold">{{ totalOpportunities}} {{ 'view.opportunity.quantity.total' | trans }}</p>
     <div class="d-flex g-4 agent-sort">
-        <label class="text-nowrap" for="sort-options">{{ 'sort_by' | trans }}</label>
-        <select id="sort-options" class="form-select">
+        <label class="text-nowrap d-none d-md-block" for="sort-options">{{ 'sort_by' | trans }}</label>
+        <select id="sort-options" class="form-select entity">
             <option value="recent">{{ 'most_recent' | trans }}</option>
             <option value="old">{{ 'oldest' | trans }}</option>
         </select>
@@ -10,72 +10,77 @@
 </div>
 
 {% for opportunity in opportunities %}
-<div class="opportunity-card">
-    <div class="opportunity-card-header">
-        <div class="d-flex align-items-center justify-content-end">
-            ID: <span class="fw-bold">45456</span>
+    <div class="opportunity-card p-3 border rounded">
+        <div class="opportunity-card-header">
+            <div class="d-flex flex-wrap align-items-center justify-content-between justify-content-md-end">
+                <div class="d-flex align-items-center gap-2">
+                    ID: <span class="fw-bold">45456</span>
+                </div>
+                <div class="d-flex flex-row-reverse flex-md-row align-items-center gap-2 ms-2">
+                    <i class="material-icons text-primary">check_circle</i>
+                    <span class="">{{ 'opened_registrations'|trans }}</span>
+                </div>
+            </div>
 
-            <i class="material-icons text-primary ms-2">check_circle</i>
-            <span>{{ 'opened_registrations'|trans }}</span>
+            <div class="d-flex flex-column flex-sm-row align-items-center mt-2 mb-3">
+                <img src="{{ opportunity.image }}" alt="Foto da oportunidade" class="rounded-circle">
+                <span class="fw-bold ps-md-3 text-center text-sm-start">{{ opportunity.name }}</span>
+            </div>
         </div>
 
-        <div class="d-flex mt-1 mb-3 align-items-center">
-            <img src="{{ opportunity.image }}" alt="Foto da oportunidade" class="rounded-circle">
+        <div class="d-flex flex-column flex-md-row justify-content-between">
+            <div class="opportunity-card-content">
+                <div class="fw-bold mb-2">
+                    {{ 'type'|trans }}: <span class="text-danger me-3">TESTE</span>
+                    {{ 'linked_with'|trans }}:
+                    <a class="text-primary fw-bold text-decoration-none" href="#">Associação dos Pescadores</a>
+                </div>
+                <p class="text-orange fw-bold">
+                    Inscrições de 01/01/2001 à 31/01/2001
+                </p>
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
+                </p>
+                <div class="additional-info mb-2">
+                    <span class="fw-bold text-uppercase">{{ 'areas_of_interest'|trans }}:</span>
+                    <br>
+                    <span class="text-orange">Pesca, Antropologia, Ciências Ocultas</span>
+                </div>
+                <div class="additional-info mb-2">
+                    <span class="fw-bold">TAGS:</span>
+                    <br>
+                    <span class="text-orange">Pesca, Antropologia, Ciências Ocultas</span>
+                </div>
+                <div class="additional-info">
+                    <span class="fw-bold text-uppercase">{{ 'seals'|trans }}:</span>
+                    <br>
+                    <div class="stamp-square mt-1"></div>
+                </div>
+            </div>
 
-            <span class="fw-bold ps-3">{{ opportunity.name }}</span>
-        </div>
-    </div>
-    <div class="d-flex flex-row justify-content-between">
-        <div class="opportunity-card-content">
-            <div class="fw-bold mb-2">
-                {{ 'type'|trans }}: <span class="text-danger me-3">TESTE</span>
-                {{ 'linked_with'|trans}}: <a class="text-primary fw-bold text-decoration-none" href="#">Associação dos Pescadores</a>
-            </div>
-            <p class="text-orange fw-bold">
-                Inscrições de 01/01/2001 à 31/01/2001
-            </p>
-            <p>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...
-            </p>
-            <div class="additional-info mb-2">
-                <span class="fw-bold text-uppercase">{{ 'areas_of_interest'|trans }}:</span>
-                <br>
-                <span class="text-orange">Pesca, Antropologia, Ciencias Ocultas</span>
-            </div>
-            <div class="additional-info mb-2">
-                <span class="fw-bold">TAGS:</span>
-                <br>
-                <span class="text-orange">Pesca, Antropologia, Ciencias Ocultas</span>
-            </div>
-            <div class="additional-info">
-                <span class="fw-bold text-uppercase">{{ 'seals'|trans }}:</span>
-                <br>
-                <div class="stamp-square mt-1"></div>
-            </div>
-        </div>
-        <div class="d-flex flex-column justify-content-end">
-            {% if app.user %}
-                <button
-                    data-bs-toggle="modal"
-                    data-bs-target="#modalActionConfirm"
-                    onclick="confirmAction(this)"
-                    data-href="{{ path('admin_opportunity_subscribe', {id: opportunity.id}) }}"
-                    class="btn btn-outline-primary btn-lg mb-2"
-                >
-                    {{ 'subscribe'|trans }}
-                </button>
-            {% else %}
-                <a href="{{ path('web_auth_login') }}" class="btn btn-outline-primary btn-lg mb-2">
-                    {{ 'subscribe'|trans }}
+            <div class="d-flex flex-column justify-content-end mt-3 mt-md-0">
+                {% if app.user %}
+                    <button
+                            data-bs-toggle="modal"
+                            data-bs-target="#modalActionConfirm"
+                            onclick="confirmAction(this)"
+                            data-href="{{ path('admin_opportunity_subscribe', {id: opportunity.id}) }}"
+                            class="btn btn-outline-primary btn-lg mb-2 w-100"
+                    >
+                        {{ 'subscribe'|trans }}
+                    </button>
+                {% else %}
+                    <a href="{{ path('web_auth_login') }}" class="btn btn-outline-primary btn-lg mb-2 w-100">
+                        {{ 'subscribe'|trans }}
+                    </a>
+                {% endif %}
+
+                <a href="{{ path('web_opportunity_details', {id: opportunity.id}) }}" class="btn btn-primary list-page__access-btn w-100">
+                    {{ 'view.opportunity.access' | trans }}
                 </a>
-            {% endif %}
-
-            <a href="{{ path('web_opportunity_details', {id: opportunity.id}) }}" class="btn btn-primary list-page__access-btn">
-                {{ 'view.opportunity.access' | trans }}
-            </a>
+            </div>
         </div>
     </div>
-</div>
 {% endfor %}
 
 {% if opportunities|length > 0 %}

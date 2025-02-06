@@ -44,15 +44,15 @@ describe('Página de listar Oportunidades', () => {
         cy.get('#sort-options').select('old').should('have.value', 'old');
 
 
-        cy.get(':nth-child(2) > .opportunity-card-header > .mt-1 > .fw-bold').should('be.visible');
-        cy.get(':nth-child(2) > .opportunity-card-header > .justify-content-end > :nth-child(3)').should('be.visible');
-        cy.get(':nth-child(2) > .opportunity-card-header > .mt-1 > .fw-bold').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
+        cy.get(':nth-child(2) > .opportunity-card-header > .flex-wrap > :nth-child(1) > .fw-bold').should('be.visible');
+        cy.get(':nth-child(2) > .opportunity-card-header > .flex-wrap > .flex-row-reverse > span').should('be.visible');
+        cy.get(':nth-child(2) > .opportunity-card-header > .flex-column > .fw-bold').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
         cy.get(':nth-child(2) .opportunity-card-content > .mb-2 > .text-danger').contains('TESTE').should('be.visible');
         cy.get(':nth-child(2) .opportunity-card-content > .mb-2 > .text-primary').contains('Associação dos Pescadores').should('be.visible');
         cy.get(':nth-child(2) .opportunity-card-content > .text-orange.fw-bold').contains('Inscrições de 01/01/2001 à 31/01/2001').should('be.visible');
         cy.get(':nth-child(2) .opportunity-card-content > p').contains('Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua...').should('be.visible');
-        cy.get(':nth-child(2) .opportunity-card-content > .mb-2 > .text-orange').contains('Pesca, Antropologia, Ciencias Ocultas').should('be.visible');
-        cy.get(':nth-child(2) .opportunity-card-content > .mb-2 > .text-orange').contains('Pesca, Antropologia, Ciencias Oculta').should('be.visible');
+        cy.get(':nth-child(2) > .flex-column.flex-md-row > .opportunity-card-content > :nth-child(4) > .text-orange').contains('Pesca, Antropologia, Ciências Ocultas').should('be.visible');
+        cy.get(':nth-child(2) > .flex-column.flex-md-row > .opportunity-card-content > :nth-child(5) > .text-orange').contains('Pesca, Antropologia, Ciências Oculta').should('be.visible');
         cy.get(':nth-child(2) > .justify-content-between > :nth-child(2) > .btn').contains('Acessar').should('be.visible');
     });
 
@@ -61,7 +61,7 @@ describe('Página de listar Oportunidades', () => {
         cy.get('#opportunity-name').type('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
         cy.get('#apply-filters').click();
         cy.get('.align-items-end > .fw-bold').contains('1 Oportunidades Encontradas').should('be.visible');
-        cy.get(':nth-child(2) > .opportunity-card-header > .mt-1 > .fw-bold').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
+        cy.get(':nth-child(2) > .opportunity-card-header > .flex-column > .fw-bold').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
     });
 
     it('Garante que o botão de limpar filtros funciona', () => {
