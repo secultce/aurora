@@ -1,3 +1,8 @@
+create:
+  path: /
+  controller: App\Controller\Api\ActivityAreaApiController::create
+  methods: ['POST']
+
 get:
   path: /{id}
   controller: App\Controller\Api\ActivityAreaApiController::get
@@ -12,3 +17,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\ActivityAreaApiController::remove
   methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\ActivityAreaApiController::update
+  methods: ['PATCH']
