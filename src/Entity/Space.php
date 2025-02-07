@@ -29,9 +29,41 @@ class Space extends AbstractEntity
     #[Groups('space.get')]
     private ?string $name = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('space.get')]
+    private ?string $shortDescription = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups('space.get')]
+    private ?string $longDescription = null;
+
     #[ORM\Column(nullable: true)]
     #[Groups('space.get')]
     private ?string $image = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('space.get')]
+    private ?string $coverImage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('space.get')]
+    private ?string $site = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups('space.get')]
+    private ?string $email = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    #[Groups('space.get')]
+    private ?string $phoneNumber = null;
+
+    #[ORM\Column(type: Types::INTEGER)]
+    #[Groups('space.get')]
+    private int $maxCapacity;
+
+    #[ORM\Column(type: Types::BOOLEAN)]
+    #[Groups('space.get')]
+    private bool $isAccessible;
 
     #[ORM\OneToOne(targetEntity: SpaceAddress::class, mappedBy: 'owner', cascade: ['persist', 'remove'])]
     #[Groups('space.get')]
@@ -96,6 +128,26 @@ class Space extends AbstractEntity
         return $this->name;
     }
 
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(?string $shortDescription): void
+    {
+        $this->shortDescription = $shortDescription;
+    }
+
+    public function getLongDescription(): ?string
+    {
+        return $this->longDescription;
+    }
+
+    public function setLongDescription(?string $longDescription): void
+    {
+        $this->longDescription = $longDescription;
+    }
+
     public function setName(string $name): void
     {
         $this->name = $name;
@@ -114,6 +166,66 @@ class Space extends AbstractEntity
     public function setImage(?string $image): void
     {
         $this->image = $image;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(?string $coverImage): void
+    {
+        $this->coverImage = $coverImage;
+    }
+
+    public function getSite(): ?string
+    {
+        return $this->site;
+    }
+
+    public function setSite(?string $site): void
+    {
+        $this->site = $site;
+    }
+
+    public function getEmail(): ?string
+    {
+        return $this->email;
+    }
+
+    public function setEmail(?string $email): void
+    {
+        $this->email = $email;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(?string $phoneNumber): void
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    public function getMaxCapacity(): int
+    {
+        return $this->maxCapacity;
+    }
+
+    public function setMaxCapacity(int $maxCapacity): void
+    {
+        $this->maxCapacity = $maxCapacity;
+    }
+
+    public function getIsAccessible(): bool
+    {
+        return $this->isAccessible;
+    }
+
+    public function setIsAccessible(bool $isAccessible): void
+    {
+        $this->isAccessible = $isAccessible;
     }
 
     public function setCreatedBy(Agent $createdBy): void
@@ -230,6 +342,15 @@ class Space extends AbstractEntity
         return [
             'id' => $this->id?->toRfc4122(),
             'name' => $this->name,
+            'shortDescription' => $this->shortDescription,
+            'longDescription' => $this->longDescription,
+            'image' => $this->image,
+            'coverImage' => $this->coverImage,
+            'site' => $this->site,
+            'email' => $this->email,
+            'phoneNumber' => $this->phoneNumber,
+            'maxCapacity' => $this->maxCapacity,
+            'isAccessible' => $this->isAccessible,
             'createdBy' => $this->createdBy->getId()->toRfc4122(),
             'parent' => $this->parent?->getId()->toRfc4122(),
             'address' => $this->address?->toArray(),

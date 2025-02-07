@@ -56,10 +56,14 @@ class SpaceAdminController extends AbstractAdminController
         }
 
         $name = $request->request->get('name');
+        $maxCapacity = (int) $request->request->get('maxCapacity');
+        $isAccessible = (bool) $request->request->get('isAccessible');
 
         $space = [
             'id' => Uuid::v4(),
             'name' => $name,
+            'maxCapacity' => $maxCapacity,
+            'isAccessible' => $isAccessible,
             'createdBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
         ];
 

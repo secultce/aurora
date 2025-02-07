@@ -27,6 +27,17 @@
                                 <input type="text" class="form-control" id="name" name="name" data-cy="name">
                             </div>
 
+                            <div class="mb-3">
+                                <label for="maxCapacity" class="mb-1">{{ 'max-capacity'|trans }}</label>
+                                <input type="number" class="form-control" id="maxCapacity" name="maxCapacity" min="0">
+                            </div>
+
+                            <div class="mb-3 form-check">
+                                <input type="checkbox" class="form-check-input" id="isAccessible" name="isAccessible" value="1">
+                                <label class="form-check-label" for="isAccessible">{{ 'is-accessible'|trans }}</label>
+                            </div>
+
+
                             <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_and_publish'|trans }}</button>
                             <button type="button" class="btn btn-secondary me-3">{{ 'create_in_draft'|trans }}</button>
                             <a href="{{ path('admin_space_list') }}" class="btn">{{ 'cancel'|trans }}</a>

@@ -18,12 +18,21 @@ class SpaceTestFixtures implements TestFixtures
             'name' => 'Test Space',
             'createdBy' => AgentFixtures::AGENT_ID_1,
             'parent' => SpaceFixtures::SPACE_ID_1,
+            'maxCapacity' => 100,
+            'isAccessible' => true,
         ];
     }
 
     public static function complete(): array
     {
         return array_merge(self::partial(), [
+            'shortDescription' => 'Test short description',
+            'longDescription' => 'Test long description',
+            'image' => null,
+            'coverImage' => 'test-cover-image.jpg',
+            'site' => 'https://test-site.com',
+            'email' => 'test@email.com',
+            'phoneNumber' => '+55 85 99999-9999',
             'extraFields' => [
                 'type' => 'Cultural',
                 'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
