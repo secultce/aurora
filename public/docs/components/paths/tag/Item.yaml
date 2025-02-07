@@ -1,0 +1,37 @@
+get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Tags
+  summary: Recupera uma única tag
+  responses:
+    '200':
+      description: tag encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/tag/TagGetItemResponse.yaml'
+    '404':
+      description: Tag não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/tag/TagNotFound.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Tags
+  summary: Remove uma única tag
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Tag não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/tag/TagNotFound.yaml'

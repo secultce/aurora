@@ -13,6 +13,7 @@ info:
     - Oportunidades
     - Organizações
     - Selos
+    - Tags
     - Usuários
 
     Links Importantes:
@@ -53,6 +54,8 @@ tags:
     description: Endpoints relacionados às organizações
   - name: Selos
     description: Endpoints relacionados aos selos
+  - name: Tags
+    description: Endpoints relacionados às tags
   - name: Usuários
     description: Endpoints relacionados aos usuários
 paths:
@@ -118,6 +121,10 @@ paths:
     $ref: './components/paths/space/Item.yaml'
   /spaces/{id}/images:
     $ref: './components/paths/space/UpdateImage.yaml'
+  /tags:
+    $ref: './components/paths/tag/Collection.yaml'
+  /tags/{id}:
+    $ref: './components/paths/tag/Item.yaml'
   /users:
     $ref: './components/paths/user/Collection.yaml'
   /users/{id}:
@@ -148,5 +155,7 @@ components:
       $ref: './components/schemas/seal.yaml'
     Space:
       $ref: './components/schemas/space.yaml'
+    Tag:
+      $ref: './components/schemas/tag.yaml'
     User:
       $ref: './components/schemas/user.yaml'

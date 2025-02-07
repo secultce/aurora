@@ -80,6 +80,12 @@ api_space:
   name_prefix: api_space_
   trailing_slash_on_root: false
 
+api_tag:
+  resource: 'api/tag.yaml'
+  prefix: /api/tags
+  name_prefix: api_tag_
+  trailing_slash_on_root: false
+
 api_users:
   resource: 'api/user.yaml'
   prefix: /api/users

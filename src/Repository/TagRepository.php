@@ -22,4 +22,10 @@ class TagRepository extends AbstractRepository implements TagRepositoryInterface
 
         return $tag;
     }
+
+    public function remove(Tag $tag): void
+    {
+        $this->getEntityManager()->remove($tag);
+        $this->getEntityManager()->flush();
+    }
 }

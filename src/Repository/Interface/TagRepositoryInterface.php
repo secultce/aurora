@@ -9,4 +9,6 @@ use App\Entity\Tag;
 interface TagRepositoryInterface
 {
     public function save(Tag $tag): Tag;
+
+    public function remove(Tag $tag): void;
 }
