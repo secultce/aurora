@@ -1,6 +1,5 @@
 add: Añadir
 add_cover_image: Anãdir imagen de portada
-add_phase: Añadir fase
 account_privacy: Cuenta y Privacidad
 account_settings: Configuración de la cuenta de usuario
 access: Acceder
@@ -15,7 +14,6 @@ activity_created: Se creó el área de actividad
 activity_deleted: Se ha excluido el área de actividad
 activity_updated: Se ha actualizado el área de actividad
 area_of_activity: Área de Actividad
-activity_area_register: Crear nueva área de actuación
 accept_terms: Aceite de los termos
 address: Dirección
 admin_options: Opciones del Administrador
@@ -749,11 +747,6 @@ view:
     report_role: Informe su función en la cultura
     traditional: Comunidades tradicionales
     traditional_find: ¿No encontró su comunidad tradicional?
-
-  tag:
-    create: Crear una Tag
-    message:
-      created: La Tag ha sido creada
 
   not-found:
     error-404: Error 404
