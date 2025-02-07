@@ -137,7 +137,6 @@ export declare const TOO_MANY_FAILED_LOGIN_ATTEMPTS_PLEASE_TRY_AGAIN_IN_MINUTES_
 export declare const TOO_MANY_FAILED_LOGIN_ATTEMPTS_PLEASE_TRY_AGAIN_IN_MINUTES_MINUTES: Message<{ 'security': { parameters: { '%minutes%': string } } }, 'en'|'es'|'af'|'ar'|'az'|'be'|'bg'|'bs'|'ca'|'cs'|'cy'|'da'|'de'|'el'|'et'|'eu'|'fa'|'fi'|'fr'|'gl'|'he'|'hr'|'hu'|'hy'|'id'|'it'|'ja'|'lb'|'lt'|'lv'|'mk'|'mn'|'my'|'nb'|'nl'|'nn'|'no'|'pl'|'pt'|'pt_BR'|'ro'|'ru'|'sk'|'sl'|'sq'|'sr_Cyrl'|'sr_Latn'|'sv'|'th'|'tl'|'tr'|'uk'|'ur'|'uz'|'vi'|'zh_CN'|'zh_TW'>;
 export declare const ADD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADD_COVER_IMAGE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
-export declare const ADD_PHASE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCOUNT_PRIVACY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCOUNT_SETTINGS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCESS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -152,7 +151,6 @@ export declare const ACTIVITY_CREATED: Message<{ 'messages': { parameters: NoPar
 export declare const ACTIVITY_DELETED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACTIVITY_UPDATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const AREA_OF_ACTIVITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
-export declare const ACTIVITY_AREA_REGISTER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCEPT_TERMS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADDRESS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADMIN_OPTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
