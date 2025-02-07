@@ -10,6 +10,10 @@ accompany: Acompañar
 action: Acción
 actions: Acciones
 activity: Actividad
+activity_created: Se creó el área de actividad
+activity_deleted: Se ha excluido el área de actividad
+activity_updated: Se ha actualizado el área de actividad
+area_of_activity: Área de Actividad
 accept_terms: Aceite de los termos
 address: Dirección
 admin_options: Opciones del Administrador

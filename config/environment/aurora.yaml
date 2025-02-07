@@ -81,6 +81,10 @@ sidebar:
       admin_role_list:
         icon: newspaper
         text: functions
+      admin_activity_area_list:
+        icon: category
+        text: area_of_activity
+        route: admin_activity_area_list
 
 homepage:
   sections:

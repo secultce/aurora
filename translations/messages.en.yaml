@@ -10,6 +10,10 @@ accompany: To accompany
 action: Action
 actions: Actions
 activity: Activity
+activity_created: Area of activity was created
+activity_deleted: Area of activity has been excluded
+activity_updated: Area of activity has been updated
+area_of_activity: Area of Activity
 accept_terms: Accept the terms
 address: Address
 admin_options: Admin Options
