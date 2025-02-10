@@ -1,8 +1,3 @@
-create:
-  path: /adicionar
-  controller: App\Controller\Web\Admin\TagAdminController::create
-  methods: ['GET', 'POST']
-
 list:
   path: /
   controller: App\Controller\Web\Admin\TagAdminController::list
