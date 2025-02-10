@@ -151,6 +151,7 @@ export declare const ACTIVITY_CREATED: Message<{ 'messages': { parameters: NoPar
 export declare const ACTIVITY_DELETED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACTIVITY_UPDATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const AREA_OF_ACTIVITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const ACTIVITY_AREA_REGISTER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ACCEPT_TERMS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADDRESS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ADMIN_OPTIONS: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

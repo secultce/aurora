@@ -1,0 +1,21 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %}
+    {{ 'control_panel'|trans }} - {{ 'activity_area' | trans }}
+{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-md-6 offset-md-3">
+                    <div class="card card-body">
+                        {% include '_admin/activity-area/_partials/form.html.twig' %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
