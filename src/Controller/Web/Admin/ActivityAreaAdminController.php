@@ -18,6 +18,7 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class ActivityAreaAdminController extends AbstractWebController
 {
     public const VIEW_LIST = '_admin/activity-area/list.html.twig';
+    public const VIEW_ADD = '_admin/activity-area/create.html.twig';
 
     public function __construct(
         private ActivityAreaServiceInterface $activityAreaService,
