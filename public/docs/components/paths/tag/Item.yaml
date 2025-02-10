@@ -1,8 +1,4 @@
 get:
-  parameters:
-    - $ref: '../../parameters/path/id.yaml'
-  tags:
-    - Tags
   summary: Recupera uma única tag
   responses:
     '200':
@@ -29,6 +25,26 @@ delete:
       description: Não possui conteúdo de resposta
       content:
           application/json: {}
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Tags
+  summary: Atualiza uma única tag
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/tag/TagPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Tag atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/tag/TagPatchItemResponse.yaml'
     '404':
       description: Tag não encontrada
       content:

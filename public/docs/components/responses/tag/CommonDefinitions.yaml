@@ -4,10 +4,9 @@ TagBase:
     id:
       type: string
       format: uuid
-      description: "Identificador único da tag."
-      example: "123e4567-e89b-12d3-a456-426614174000"
+      description: Identificador único da tag.
     name:
       type: string
       maxLength: 20
-      description: "Nome da tag."
-      example: "Tecnologia"
+      description: Nome da tag.
+      examples: [ Cultura ]
