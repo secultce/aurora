@@ -87,3 +87,8 @@ admin_activity_area:
   resource: 'admin/activity-area.yaml'
   prefix: /painel/area-atuacao
   name_prefix: admin_activity_area_
+
+admin_tags:
+  resource: 'admin/tag.yaml'
+  prefix: /painel/admin/tags
+  name_prefix: admin_tags_
