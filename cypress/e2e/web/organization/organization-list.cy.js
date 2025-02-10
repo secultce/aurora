@@ -41,14 +41,14 @@ describe('Página de Listar de Organizações', () => {
 
     it('Garante que os cards de organizações estão visíveis', () => {
         cy.get('.align-items-end > .fw-bold').contains(/^\d+ Organizações Encontradas/).should('be.visible');
-        cy.get('.agent-options').should('be.visible');
+        cy.get('.organization-options').should('be.visible');
         cy.get('#sort-options').select('recent').should('have.value', 'recent');
         cy.get('#sort-options').select('old').should('have.value', 'old');
 
-        cy.get(':nth-child(3) > .agent-card-header > .d-flex > .organization-name').contains('PHPeste').should('be.visible');
-        cy.get(':nth-child(3) > .flex-column > .agent-area > .organization-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
-        cy.get(':nth-child(3) > .flex-column > .mx-3').contains('Organização da Conferencia de PHP do Nordeste').should('be.visible');
-        cy.get(':nth-child(3) > .flex-column > .access-profile-container > .btn').contains('Acessar').should('be.visible');
+        cy.get(':nth-child(3) > .gap-3 > .d-flex > .organization-name').contains('PHPeste').should('be.visible');
+        cy.get(':nth-child(3) > .pt-3 > :nth-child(1) > .organization-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
+        cy.get(':nth-child(3) > .pt-3 > :nth-child(2)').contains('Organização da Conferencia de PHP do Nordeste').should('be.visible');
+        cy.get(':nth-child(2) > .pt-3 > .d-flex > .btn').contains('Acessar').should('be.visible');
     });
 
     it('Garante que o filtro funciona', () => {
