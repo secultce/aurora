@@ -21,7 +21,7 @@ class Event extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['event.get', 'opportunity.get', 'event-activity.get'])]
+    #[Groups(['event.get', 'opportunity.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
@@ -60,9 +60,6 @@ class Event extends AbstractEntity
     #[ORM\JoinColumn(name: 'created_by_id', referencedColumnName: 'id', nullable: false)]
     #[Groups(['event.get'])]
     private Agent $createdBy;
-
-    #[ORM\OneToMany(targetEntity: EventSchedule::class, mappedBy: 'event', orphanRemoval: true)]
-    private Collection $eventSchedules;
 
     #[ORM\Column]
     #[Groups(['event.get'])]
@@ -231,32 +228,6 @@ class Event extends AbstractEntity
 
         if ($eventActivity->getEvent() === $this) {
             $eventActivity->setEvent(null);
-        }
-    }
-
-    public function getEventSchedules(): Collection
-    {
-        return $this->eventSchedules;
-    }
-
-    public function addEventSchedule(EventSchedule $eventSchedule): void
-    {
-        if (false === $this->eventSchedules->contains($eventSchedule)) {
-            return;
-        }
-
-        $this->eventSchedules->add($eventSchedule);
-        $eventSchedule->setEvent($this);
-    }
-
-    public function removeEventSchedule(EventSchedule $eventSchedule): void
-    {
-        if (false === $this->eventSchedules->removeElement($eventSchedule)) {
-            return;
-        }
-
-        if ($eventSchedule->getEvent() === $this) {
-            $eventSchedule->setEvent(null);
         }
     }
 

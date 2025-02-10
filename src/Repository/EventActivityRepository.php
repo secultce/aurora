@@ -22,10 +22,4 @@ class EventActivityRepository extends AbstractRepository implements EventActivit
 
         return $eventActivity;
     }
-
-    public function remove(EventActivity $eventActivity): void
-    {
-        $this->getEntityManager()->remove($eventActivity);
-        $this->getEntityManager()->flush();
-    }
 }
