@@ -8,6 +8,8 @@ use App\Helper\DateFormatHelper;
 use App\Repository\EventRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -71,9 +73,16 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private ?DateTime $deletedAt = null;
 
+    /**
+     * @var Collection<int, EventActivity>
+     */
+    #[ORM\OneToMany(targetEntity: EventActivity::class, mappedBy: 'event', orphanRemoval: true)]
+    private Collection $eventActivities;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->eventActivities = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -194,6 +203,32 @@ class Event extends AbstractEntity
     public function setDeletedAt(?DateTime $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
+    }
+
+    public function getEventActivities(): Collection
+    {
+        return $this->eventActivities;
+    }
+
+    public function addEventActivity(EventActivity $eventActivity): void
+    {
+        if (false === $this->eventActivities->contains($eventActivity)) {
+            return;
+        }
+
+        $this->eventActivities->add($eventActivity);
+        $eventActivity->setEvent($this);
+    }
+
+    public function removeEventActivity(EventActivity $eventActivity): void
+    {
+        if (false === $this->eventActivities->removeElement($eventActivity)) {
+            return;
+        }
+
+        if ($eventActivity->getEvent() === $this) {
+            $eventActivity->setEvent(null);
+        }
     }
 
     public function toArray(): array

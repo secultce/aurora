@@ -29,7 +29,6 @@ describe('Painel de Controle - Página de detalhes de uma Oportunidade', () => {
         cy.get('select#status').select('1');
         cy.get('button[type="submit"]').click();
 
-        // TODO: Precisamos corrigir este teste
-        // cy.contains('Fase criada com sucesso', { timeout: 10000 }).should('be.visible');
+        cy.contains('Fase criada com sucesso').should('be.visible');
     });
 });
