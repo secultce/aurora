@@ -12,3 +12,21 @@ get:
             items:
               allOf:
                 - $ref: '../../responses/tag/TagCollectionResponse.yaml'
+
+post:
+  tags:
+    - Tags
+  summary: Cria uma nova tag
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/tag/TagPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Tag criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/tag/TagPostItemResponse.yaml'

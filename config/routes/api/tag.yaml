@@ -1,3 +1,13 @@
+create:
+  path: /
+  controller: App\Controller\Api\TagApiController::create
+  methods: ['POST']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\TagApiController::update
+  methods: ['PATCH']
+
 get:
   path: /{id}
   controller: App\Controller\Api\TagApiController::get
