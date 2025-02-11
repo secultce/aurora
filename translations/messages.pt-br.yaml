@@ -744,6 +744,11 @@ view:
     seal-picture: Foto do Selo
     validity: Validade do selo
 
+  tag:
+    create: Criar Tag
+    message:
+      created: A Tag foi criada
+
   not-found:
     error-404: Error 404
     error-text_first: Ops, página não encontrada.

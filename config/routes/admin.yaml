@@ -91,4 +91,4 @@ admin_activity_area:
 admin_tags:
   resource: 'admin/tag.yaml'
   prefix: /painel/admin/tags
-  name_prefix: admin_tags_
+  name_prefix: admin_tag_
