@@ -9,11 +9,50 @@ SpaceBase:
       type: string
       maxLength: 100
       description: "Nome do espaço"
+    shortDescription:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: "Descrição curta do espaço"
+    longDescription:
+      type: string
+      nullable: true
+      description: "Descrição longa do espaço"
     image:
       type: string
       format: uri
       nullable: true
       description: "Url da imagem do perfil do espaço"
+    coverImage:
+      type: string
+      format: uri
+      nullable: true
+      description: "Url da imagem de capa do espaço"
+    site:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: "Site do espaço"
+    email:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: "Email do espaço"
+    phoneNumber:
+      type: string
+      maxLength: 20
+      nullable: true
+      description: "Número de telefone do espaço"
+    maxCapacity:
+      type: integer
+      description: "Capacidade máxima do espaço"
+    isAccessible:
+      type: boolean
+      description: "Indica se o espaço é acessível"
+    address:
+      type: object
+      nullable: true
+      description: "Endereço do espaço"
     createdBy:
       description: "Agente criador do espaço"
       type: object
@@ -25,6 +64,7 @@ SpaceBase:
     parent:
       description: "Espaço pai"
       type: object
+      nullable: true
       properties:
         id:
           type: string
@@ -34,48 +74,38 @@ SpaceBase:
           type: string
           maxLength: 100
           description: "Nome do espaço"
-        createdBy:
-          type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-              description: "Identificador do espaço"
-        parent:
-          type: object
-          properties:
-            id:
-              type: string
-              format: uuid
-              description: "Identificador do espaço pai"
-        extraFields:
-          type: object
-          description: "Os campos extras do espaço"
-          properties:
-            key:
-              type: string
-              description: 'Valor da chave'
-        createdAt:
-          type: string
-          format: date-time
-          description: "Data e hora da criação do espaço"
-        updatedAt:
-          type: string
-          format: date-time
-          nullable: true
-          description: "Data e hora da última atualização do espaço"
-        deletedAt:
-          type: string
-          format: date-time
-          nullable: true
-          description: "Data e hora da exclusão do espaço"
     extraFields:
       type: object
+      nullable: true
       description: "Os campos extras do espaço"
       properties:
         key:
           type: string
           description: 'Valor da chave'
+    activityAreas:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador da área de atividade"
+          name:
+            type: string
+            description: "Nome da área de atividade"
+    tags:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+            description: "Identificador da tag"
+          name:
+            type: string
+            description: "Nome da tag"
     createdAt:
       type: string
       format: date-time

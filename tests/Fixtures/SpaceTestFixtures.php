@@ -29,7 +29,7 @@ class SpaceTestFixtures implements TestFixtures
             'shortDescription' => 'Test short description',
             'longDescription' => 'Test long description',
             'image' => null,
-            'coverImage' => 'test-cover-image.jpg',
+            'coverImage' => null,
             'site' => 'https://test-site.com',
             'email' => 'test@email.com',
             'phoneNumber' => '+55 85 99999-9999',
