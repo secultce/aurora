@@ -9,4 +9,6 @@ use App\Entity\EventActivity;
 interface EventActivityRepositoryInterface
 {
     public function save(EventActivity $eventActivity): EventActivity;
+
+    public function remove(EventActivity $eventActivity): void;
 }
