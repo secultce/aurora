@@ -26,6 +26,12 @@ api_events:
   name_prefix: api_event_
   trailing_slash_on_root: false
 
+api_event_activity:
+  resource: 'api/event-activity.yaml'
+  prefix: /api/events/{event}/activities
+  name_prefix: api_event_activity_
+  trailing_slash_on_root: false
+
 api_faq:
   resource: 'api/faq.yaml'
   prefix: /api/faqs

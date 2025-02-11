@@ -38,6 +38,8 @@ tags:
     description: Endpoints relacionados aos espaços
   - name: Eventos
     description: Endpoints relacionados aos eventos
+  - name: Atividade do evento
+    description: Endpoints relacionados as atividades dos eventos
   - name: Iniciativas
     description: Endpoints relacionados às iniciativas
   - name: Inscrição na oportunidade
@@ -73,6 +75,10 @@ paths:
     $ref: './components/paths/event/Collection.yaml'
   /events/{id}:
     $ref: './components/paths/event/Item.yaml'
+  /events/{event}/activities:
+    $ref: './components/paths/event-activity/Collection.yaml'
+  /events/{event}/activities/{activity}:
+    $ref: './components/paths/event-activity/Item.yaml'
   /events/{id}/images:
     $ref: './components/paths/event/UpdateImage.yaml'
   /faqs:

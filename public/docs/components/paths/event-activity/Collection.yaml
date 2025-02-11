@@ -1,0 +1,14 @@
+get:
+  tags:
+    - Atividade do evento
+  summary: Recupera uma lista das atividades do evento
+  responses:
+    '200':
+      description: Lista de atividades do evento
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              allOf:
+                - $ref: '../../responses/event-activity/EventActivityGetCollectionResponse.yaml'
