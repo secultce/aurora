@@ -750,6 +750,11 @@ view:
     traditional: Comunidades tradicionales
     traditional_find: ¿No encontró su comunidad tradicional?
 
+  tag:
+    create: Crear una Tag
+    message:
+      created: La Tag ha sido creada
+
   not-found:
     error-404: Error 404
     error-text_first: Vaya, página no encontrada.
