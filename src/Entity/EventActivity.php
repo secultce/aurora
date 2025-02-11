@@ -10,6 +10,7 @@ use DateTimeInterface;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
 #[ORM\Entity(repositoryClass: EventActivityRepository::class)]
@@ -17,22 +18,28 @@ class EventActivity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
+    #[Groups(['event-activity.get'])]
     private ?Uuid $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'eventActivities')]
     #[ORM\JoinColumn(nullable: false)]
+    #[Groups(['event-activity.get'])]
     private ?Event $event = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(['event-activity.get'])]
     private ?string $title = null;
 
     #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['event-activity.get'])]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE)]
+    #[Groups(['event-activity.get'])]
     private ?DateTimeInterface $startDate = null;
 
     #[ORM\Column(type: Types::DATETIME_MUTABLE, nullable: true)]
+    #[Groups(['event-activity.get'])]
     private ?DateTimeInterface $endDate = null;
 
     public function getId(): ?Uuid
