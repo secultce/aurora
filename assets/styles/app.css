@@ -547,6 +547,30 @@ img.card-images__entity-details {
     font-size: 2.5rem;
 }
 
+.entity-seals {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+}
+
+.seal-entity {
+    font-weight: bold;
+    font-size: 0.8125rem;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.seal-entity::before {
+    content: '';
+    display: inline-block;
+    width: 0.9375rem;
+    height: 0.9375rem;
+    border-radius: 50%;
+    background-color: var(--bg-color-images);
+}
+
 @media (min-width: 1400px) {
     .name__entity-details {
         max-width: 755px;
@@ -656,6 +680,13 @@ img.card-images__entity-details {
 
     .form-select.entity {
         width: 150px;
+    }
+
+    .entity-seals {
+        gap: 0.3rem;
+        align-items: start;
+        flex-direction: column;
+        margin-bottom: 1rem;
     }
 }
 

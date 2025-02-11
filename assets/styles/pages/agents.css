@@ -1,6 +1,7 @@
 .access-profile-container {
     text-align: right;
     margin-top: 15px;
+    margin-right: 0.625rem;
 }
 
 .card-view-more  {
@@ -9,24 +10,6 @@
 
 .entity-page-tabs {
     display: flex;
-    margin-left: 13rem;
-}
-
-.sidebar {
-    position: absolute;
-    top: 0;
-    left: -25.1875rem;
-    width: 25.1875rem;
-    height: 100%;
-    background-color: var(--snow-mist);
-    transition: left 0.3s ease;
-    padding: 20px;
-    margin-right: 50px;
-    padding: 13px 30px;
-}
-
-.sidebar.open {
-    left: 0;
 }
 
 .white-square {
@@ -41,24 +24,6 @@
     flex-direction: column;
     min-height: 100vh;
 }
-
-.entity-wrapper {
-    display: flex;
-    justify-content: center;
-    position: relative;
-    margin-top: 47px;
-}
-
-.entity-container {
-    transition: width 0.3s, transform 0.3s;
-    width: var(--WIDTH_DEFAULT);
-}
-
-.entity-container.shifted {
-    width: 78.125rem;
-    transform: translateX(118px);
-}
-
 
 .entity-banner {
     position: relative;
@@ -301,4 +266,55 @@
     gap: 10px;
     margin-left: -3px;
     margin-top: 5px;
+}
+
+.agent-description {
+    margin-top: 0.625rem;
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.agent-location strong, .agent-area strong, .agent-type {
+    margin-left: 0;
+}
+
+.agent-sub-area {
+    margin-left: 0;
+}
+
+.agent-card-body {
+    margin-left: 0.625rem;
+}
+
+@media (max-width: 768px) {
+    .agent-card-header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .agent-card-header img {
+        width: 4rem;
+        height: 4rem;
+        margin: 0 0 10px 0;
+    }
+
+    .agent-info {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .agent-card-body {
+        padding: 10px;
+    }
+
+    .agent-card-body {
+        margin-left: 0;
+    }
+
+    .access-profile-container {
+        text-align: center;
+        padding-right: 0;
+        margin-right: 0;
+    }
 }

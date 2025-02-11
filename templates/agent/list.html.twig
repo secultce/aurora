@@ -26,12 +26,12 @@
         {% include "agent/_partials/tabs/tabs.html.twig" %}
     </section>
 
+    <button id="open-filter" class="filter-btn">
+        <i class="material-icons">filter_alt</i>
+    </button>
+
     <section class="entity-wrapper">
         {% include "agent/_partials/side-filter.html.twig" %}
-
-        <button id="open-filter" class="filter-btn">
-            <i class="material-icons">filter_alt</i>
-        </button>
 
         <div class="entity-container">
             {% include 'agent/_partials/tabs/content-tabs.html.twig' %}
@@ -41,4 +41,5 @@
 
 {% block extra_javascripts %}
     <script type="module" src="{{ asset('js/agent/list.js') }}"></script>
+    <script type="module" src="{{ asset('js/side-filter.js') }}"></script>
 {% endblock %}
