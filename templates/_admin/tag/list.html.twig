@@ -8,7 +8,14 @@
 
         <div class="management-content w-100 p-4">
             <div class="card card-body shadow">
-                <h2>{{ 'tags'|trans }}</h2>
+                <div class="d-flex justify-content-between">
+                    <h2>{{ 'tags'|trans }}</h2>
+                    <div class="d-flex align-items-center">
+                        <a href="{{  path('admin_tag_create') }}" class="btn btn-primary">
+                            {{ 'create' | trans }}
+                        </a>
+                    </div>
+                </div>
                 <hr>
                 <div class="table-responsive">
                     <table class="table table-hover table-striped">

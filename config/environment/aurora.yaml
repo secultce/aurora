@@ -85,7 +85,7 @@ sidebar:
         icon: category
         text: area_of_activity
         route: admin_activity_area_list
-      admin_tags_list:
+      admin_tag_list:
         icon: label
         text: tags
 
