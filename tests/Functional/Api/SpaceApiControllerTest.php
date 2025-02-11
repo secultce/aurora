@@ -259,6 +259,8 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
                     ['field' => 'createdBy', 'message' => 'This value should not be blank.'],
+                    ['field' => 'maxCapacity', 'message' => 'This value should not be blank.'],
+                    ['field' => 'isAccessible', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -303,6 +305,84 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
                 ],
             ],
+            'shortDescription should be string' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'shortDescription too long' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'longDescription should be string' => [
+                'requestBody' => array_merge($requestBody, ['longDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'longDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'site should be string' => [
+                'requestBody' => array_merge($requestBody, ['site' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'site too long' => [
+                'requestBody' => array_merge($requestBody, ['site' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'email should be string' => [
+                'requestBody' => array_merge($requestBody, ['email' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'email', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'email too long' => [
+                'requestBody' => array_merge($requestBody, ['email' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'email', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'email should be valid' => [
+                'requestBody' => array_merge($requestBody, ['email' => 'invalid-email']),
+                'expectedErrors' => [
+                    ['field' => 'email', 'message' => 'This value is not a valid email address.'],
+                ],
+            ],
+            'phoneNumber should be string' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'phoneNumber too long' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => str_repeat('a', 21)]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value is too long. It should have 20 characters or less.'],
+                ],
+            ],
+            'maxCapacity should be integer' => [
+                'requestBody' => array_merge($requestBody, ['maxCapacity' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'maxCapacity', 'message' => 'This value should be of type integer.'],
+                ],
+            ],
+            'maxCapacity should be at least 1' => [
+                'requestBody' => array_merge($requestBody, ['maxCapacity' => 0]),
+                'expectedErrors' => [
+                    ['field' => 'maxCapacity', 'message' => 'This value should be 1 or more.'],
+                ],
+            ],
+            'isAccessible should be boolean' => [
+                'requestBody' => array_merge($requestBody, ['isAccessible' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'isAccessible', 'message' => 'This value should be of type boolean.'],
+                ],
+            ],
         ];
     }
 
@@ -325,19 +405,12 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'id' => SpaceFixtures::SPACE_ID_1,
             'name' => 'SECULT',
             'shortDescription' => $space->getShortDescription(),
-            'longDescription' => $space->getLongDescription(),
             'image' => $space->getImage(),
-            'coverImage' => null,
-            'site' => $space->getSite(),
-            'email' => $space->getEmail(),
-            'phoneNumber' => $space->getPhoneNumber(),
-            'maxCapacity' => $space->getMaxCapacity(),
             'isAccessible' => $space->getIsAccessible(),
             'address' => null,
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
-            'parent' => null,
             'activityAreas' => [
                 [
                     'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
@@ -794,13 +867,13 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
             ],
-            'parent should exists' => [
+            'parent should exist' => [
                 'requestBody' => array_merge($requestBody, ['parent' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
                     ['field' => 'parent', 'message' => 'This id does not exist.'],
                 ],
             ],
-            'createdBy should exists' => [
+            'createdBy should exist' => [
                 'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
                     ['field' => 'createdBy', 'message' => 'This id does not exist.'],
@@ -810,6 +883,84 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid-json']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'shortDescription should be string' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'shortDescription too long' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'longDescription should be string' => [
+                'requestBody' => array_merge($requestBody, ['longDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'longDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'site should be string' => [
+                'requestBody' => array_merge($requestBody, ['site' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'site too long' => [
+                'requestBody' => array_merge($requestBody, ['site' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'email should be string' => [
+                'requestBody' => array_merge($requestBody, ['email' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'email', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'email too long' => [
+                'requestBody' => array_merge($requestBody, ['email' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'email', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'email should be valid' => [
+                'requestBody' => array_merge($requestBody, ['email' => 'invalid-email']),
+                'expectedErrors' => [
+                    ['field' => 'email', 'message' => 'This value is not a valid email address.'],
+                ],
+            ],
+            'phoneNumber should be string' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'phoneNumber too long' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => str_repeat('a', 21)]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value is too long. It should have 20 characters or less.'],
+                ],
+            ],
+            'maxCapacity should be integer' => [
+                'requestBody' => array_merge($requestBody, ['maxCapacity' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'maxCapacity', 'message' => 'This value should be of type integer.'],
+                ],
+            ],
+            'maxCapacity should be at least 1' => [
+                'requestBody' => array_merge($requestBody, ['maxCapacity' => 0]),
+                'expectedErrors' => [
+                    ['field' => 'maxCapacity', 'message' => 'This value should be 1 or more.'],
+                ],
+            ],
+            'isAccessible should be boolean' => [
+                'requestBody' => array_merge($requestBody, ['isAccessible' => 'invalid']),
+                'expectedErrors' => [
+                    ['field' => 'isAccessible', 'message' => 'This value should be of type boolean.'],
                 ],
             ],
         ];
