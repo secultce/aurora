@@ -164,6 +164,7 @@ inscriptions: Inscripciones
 input_search: Buscar por palabras clave
 introduction: Presentación
 is_itinerant: ¿Es agente itinerante?
+is-accessible: ¿El espacio es accesible?
 
 language: Idioma
 lastname: Apellido
@@ -186,6 +187,7 @@ map: Mapa
 management: Gerenciamiento de Entidades
 masculine: Masculino
 maroons: Quilombola
+max-capacity: Capacidad máxima de espacio
 mei: MEI (CNPJ del MEI)
 menu: Menú del Panel de Control
 medium: Secundario
