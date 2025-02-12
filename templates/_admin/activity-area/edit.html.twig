@@ -1,0 +1,26 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'edit_activity_area'|trans }} {% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+        <div class="management-content w-100 p-4">
+            <div class="row">
+                <div class="col-md-8 offset-md-2">
+                    <div class="card card-body">
+                        <h2>{{ 'edit_activity_area'|trans }}</h2>
+                        <form method="POST">
+                            <div class="mb-3">
+                                <label for="name" class="form-label">{{ 'name'|trans }}</label>
+                                <input type="text" id="name" name="name" class="form-control" value="{{ activity_area.name }}" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">{{ 'save'|trans }}</button>
+                            <a href="{{ path('admin_activity_area_list') }}" class="btn btn-secondary">{{ 'cancel'|trans }}</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
