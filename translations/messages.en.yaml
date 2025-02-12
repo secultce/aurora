@@ -1,5 +1,6 @@
 add: Add
 add_cover_image: Add cover image
+add_phase: Add Phase
 account_privacy: Account and Privacy
 account_settings: User Account Settings
 access: Access
@@ -10,6 +11,11 @@ accompany: To accompany
 action: Action
 actions: Actions
 activity: Activity
+activity_created: Area of activity was created
+activity_deleted: Area of activity has been excluded
+activity_updated: Area of activity has been updated
+area_of_activity: Area of Activity
+activity_area_register: Create a new area of activity
 accept_terms: Accept the terms
 address: Address
 admin_options: Admin Options
@@ -739,6 +745,11 @@ view:
     report_role: Report your role in culture
     traditional: Traditional communities
     traditional_find: Didn't find your Traditional community?
+
+  tag:
+    create: Create a Tag
+    message:
+      created: The tag has been created
 
   not-found:
     error-404: Error 404

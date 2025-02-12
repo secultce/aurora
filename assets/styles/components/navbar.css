@@ -145,5 +145,14 @@
     border-color: transparent;
 }
 
+@media (max-width: 768px) {
+    .dropdown-menu {
+        width: 100%;
+    }
+
+    .dropdown-content {
+        flex-wrap: wrap;
+    }
+}
 
 

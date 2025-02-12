@@ -1,0 +1,19 @@
+add:
+  path: /adicionar
+  controller: App\Controller\Web\Admin\ActivityAreaAdminController::add
+  methods: ['GET', 'POST']
+
+list:
+  path: /
+  controller: App\Controller\Web\Admin\ActivityAreaAdminController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}/remover
+  controller: App\Controller\Web\Admin\ActivityAreaAdminController::remove
+  methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\ActivityAreaAdminController::edit
+  methods: ['GET', 'POST']

@@ -1,0 +1,8 @@
+ActivityAreaBase:
+  type: object
+  properties:
+    name:
+      type: string
+      maxLength: 20
+      description: "Nome da área de atividade."
+      example: "Teatro"

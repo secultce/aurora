@@ -35,3 +35,29 @@ delete:
         application/json:
           schema:
             $ref: '../../responses/activity-area/ActivityAreaNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Áreas de Atividade
+  summary: Atualiza uma única área de atividade
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/activity-area/ActivityAreaPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Área de atividade atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/activity-area/ActivityAreaPatchItemResponse.yaml'
+    '404':
+      description: Área de atividade não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/activity-area/ActivityAreaNotFound.yaml'

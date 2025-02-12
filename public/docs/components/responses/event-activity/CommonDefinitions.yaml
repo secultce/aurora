@@ -1,0 +1,32 @@
+EventActivityBase:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: "Identificador da atividade do evento"
+    title:
+      type: string
+      maxLength: 100
+      description: "Titulo da atividade do evento"
+    description:
+      type: string
+      description: "Descrição da atividade do evento"
+    event:
+      description: "Evento"
+      type: object
+      properties:
+        id:
+          type: string
+          format: uuid
+          description: "Identificador do evento"
+    startDate:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora do inicio da atividade do evento"
+    endDate:
+        type: string
+        format: date-time
+        nullable: true
+        description: "Data e hora do fim da atividade do evento"

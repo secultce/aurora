@@ -1,0 +1,14 @@
+get:
+  path: /{id}
+  controller: App\Controller\Api\EventActivityApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\EventActivityApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\EventActivityApiController::remove
+  methods: ['DELETE']

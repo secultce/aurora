@@ -1,0 +1,24 @@
+create:
+  path: /
+  controller: App\Controller\Api\TagApiController::create
+  methods: ['POST']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\TagApiController::update
+  methods: ['PATCH']
+
+get:
+  path: /{id}
+  controller: App\Controller\Api\TagApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\TagApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\TagApiController::remove
+  methods: ['DELETE']

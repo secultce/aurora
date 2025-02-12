@@ -1,0 +1,32 @@
+get:
+  tags:
+    - Tags
+  summary: Recupera uma lista de Tags
+  responses:
+    '200':
+      description: Lista de tags
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              allOf:
+                - $ref: '../../responses/tag/TagCollectionResponse.yaml'
+
+post:
+  tags:
+    - Tags
+  summary: Cria uma nova tag
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/tag/TagPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Tag criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/tag/TagPostItemResponse.yaml'

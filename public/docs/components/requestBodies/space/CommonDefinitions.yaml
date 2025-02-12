@@ -5,22 +5,76 @@ SpaceBase:
       type: string
       maxLength: 100
       description: "Nome do espaço"
+    shortDescription:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: "Descrição curta do espaço"
+    longDescription:
+      type: string
+      nullable: true
+      description: "Descrição longa do espaço"
     image:
       type: string
       format: base64url
+      nullable: true
       description: "Imagem do perfil do espaço codificada em Base64"
-    parent:
-      description: "Identificador do espaço pai"
+    coverImage:
       type: string
-      format: uuid
+      format: base64url
+      nullable: true
+      description: "Imagem de capa do espaço codificada em Base64"
+    site:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: "Site do espaço"
+    email:
+      type: string
+      maxLength: 255
+      nullable: true
+      description: "Email do espaço"
+    phoneNumber:
+      type: string
+      maxLength: 20
+      nullable: true
+      description: "Número de telefone do espaço"
+    maxCapacity:
+      type: integer
+      description: "Capacidade máxima do espaço"
+    isAccessible:
+      type: boolean
+      description: "Indica se o espaço é acessível"
+    address:
+      type: object
+      nullable: true
+      description: "Endereço do espaço"
     createdBy:
       description: "Identificador do agente criador do espaço"
       type: string
       format: uuid
+    parent:
+      description: "Identificador do espaço pai"
+      type: string
+      format: uuid
+      nullable: true
     extraFields:
       type: object
+      nullable: true
       description: "Os campos extras do espaço"
       properties:
         key:
           type: string
           description: 'Valor da chave'
+    activityAreas:
+      type: array
+      items:
+        type: string
+        format: uuid
+        description: "Identificador da área de atividade"
+    tags:
+      type: array
+      items:
+        type: string
+        format: uuid
+        description: "Identificador da tag"

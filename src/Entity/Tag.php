@@ -15,11 +15,11 @@ class Tag extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['space.get', 'space.get.item'])]
+    #[Groups(['space.get', 'space.get.item', 'tag.get', 'tag.get.item'])]
     private Uuid $id;
 
     #[ORM\Column(length: 20)]
-    #[Groups(['space.get', 'space.get.item'])]
+    #[Groups(['space.get', 'space.get.item', 'tag.get', 'tag.get.item'])]
     private string $name;
 
     public function getId(): Uuid

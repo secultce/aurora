@@ -7,6 +7,7 @@ namespace App\Controller\Api;
 use App\Helper\EntityIdNormalizerHelper;
 use App\Service\Interface\ActivityAreaServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Uid\Uuid;
@@ -16,6 +17,13 @@ class ActivityAreaApiController extends AbstractApiController
     public function __construct(
         private readonly ActivityAreaServiceInterface $service,
     ) {
+    }
+
+    public function create(Request $request): JsonResponse
+    {
+        $activityArea = $this->service->create($request->toArray());
+
+        return $this->json($activityArea, Response::HTTP_CREATED, context: ['groups' => ['activity-area.get', 'activity-area.get.item']]);
     }
 
     public function get(?Uuid $id): JsonResponse
@@ -40,5 +48,12 @@ class ActivityAreaApiController extends AbstractApiController
         $this->service->remove($id);
 
         return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
+    public function update(?Uuid $id, Request $request): JsonResponse
+    {
+        $activityArea = $this->service->update($id, $request->toArray());
+
+        return $this->json($activityArea, Response::HTTP_OK, context: ['groups' => ['activity-area.get', 'activity-area.get.item']]);
     }
 }

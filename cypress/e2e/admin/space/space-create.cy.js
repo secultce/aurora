@@ -13,8 +13,10 @@ describe('Painel de Controle - Página de listar Espaços', () => {
         cy.wait(100);
 
         cy.get('[data-cy="name"]').type('Espaço teste');
-        cy.get('[data-cy="submit"]').click();
+        cy.get('#maxCapacity').type(100);
+        cy.get('#isAccessible').click();
 
+        cy.get('[data-cy="submit"]').click();
         cy.wait(100);
 
         cy.contains('Novo Espaço criado');

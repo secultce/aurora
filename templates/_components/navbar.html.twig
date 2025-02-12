@@ -90,8 +90,8 @@
                             <span>{{ app.user.name|split(' ')|first }}</span>
                             <img src="{{ asset(app.user.image ?? 'img/allan.png') }}" alt="{{ 'profile-picture'|trans }}" class="profile-picture">
                         </button>
-                        <div class="dropdown-menu dropdown-menu-end w-100" id="customDropdown">
-                            <div class="dropdown-content-wrap">
+                        <div class="dropdown-menu dropdown-menu-end" id="customDropdown">
+                            <div class="dropdown-content">
                                 <div class="menu-column w-100">
                                     <div class="dropdown-header">{{ 'control_panel' | trans }}</div>
                                     <a class="dropdown-item" href="{{ path('admin_dashboard') }}">

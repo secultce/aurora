@@ -12,3 +12,21 @@ get:
             items:
               allOf:
                 - $ref: '../../responses/activity-area/ActivityAreaGetCollectionResponse.yaml'
+
+post:
+  tags:
+    - Áreas de Atividade
+  summary: Cria uma nova área de atividade
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/activity-area/ActivityAreaPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Área de atividade criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/activity-area/ActivityAreaPostItemResponse.yaml'

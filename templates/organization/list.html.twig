@@ -23,12 +23,12 @@
         {% include "organization/_partials/tabs/tabs.html.twig" %}
     </section>
 
+    <button id="open-filter" class="filter-btn">
+        <i class="material-icons">filter_alt</i>
+    </button>
+
     <section class="entity-wrapper">
         {% include "organization/_partials/side-filter.html.twig" %}
-
-        <button id="open-filter" class="filter-btn">
-            <i class="material-icons">filter_alt</i>
-        </button>
 
         <div class="entity-container">
             {% include 'organization/_partials/tabs/content-tabs.html.twig' %}

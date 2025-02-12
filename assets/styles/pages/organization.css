@@ -6,10 +6,55 @@
     font-weight: bold;
 }
 
+.organization-type {
+    font-family: var(--font-open-sans);
+    color: var(--main-font-color);
+    background-color: var(--btn-warning-bg-color);
+    padding: 0.25rem 0.625rem;
+    border-radius: 0.9375rem;
+    font-size: 0.9rem;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 0.9375rem;
+    margin-top: 0.125rem;
+}
+
+.organization-type.person {
+    background-color: var(--btn-warning-bg-color);
+}
+
 .organization-sub-area {
     color: var(--archive-icon-color);
     font-weight: bold;
     font-size: 0.9375rem;
     display: inline;
     margin-left: 0.3125rem;
+}
+
+.organization-calendar {
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    margin-left: 0.8rem;
+}
+
+@media (max-width: 768px) {
+    .organization-type {
+        margin: 0;
+    }
+
+    .organization-sub-area {
+        margin-left: 0;
+    }
+
+    .organization-created {
+        font-size: 0.880rem;
+    }
+
+    .organization-calendar {
+        margin-left: 0.3rem;
+        justify-content: center;
+    }
 }

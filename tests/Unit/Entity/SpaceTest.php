@@ -41,6 +41,12 @@ class SpaceTest extends AbstractWebTestCase
         $this->assertNull($space->getId());
         $this->assertNull($space->getName());
         $this->assertNull($space->getImage());
+        $this->assertNull($space->getCoverImage());
+        $this->assertNull($space->getShortDescription());
+        $this->assertNull($space->getLongDescription());
+        $this->assertNull($space->getSite());
+        $this->assertNull($space->getEmail());
+        $this->assertNull($space->getPhoneNumber());
         $this->assertNull($space->getAddress());
         $this->assertNull($space->getParent());
         $this->assertCount(0, $space->getTags());
@@ -74,6 +80,15 @@ class SpaceTest extends AbstractWebTestCase
         $space->setId($id);
         $space->setName('Casa do Cantador');
         $space->setImage('https://url-image.com.br');
+        $space->setCoverImage('https://url-cover.com.br');
+        $space->setShortDescription('Espaço cultural para eventos');
+        $space->setLongDescription('Um espaço dedicado à cultura popular, promovendo eventos musicais e teatrais.');
+        $space->setSite('https://casadocantador.com.br');
+        $space->setEmail('contato@casadocantador.com.br');
+        $space->setPhoneNumber('+55 85 99999-9999');
+        $space->setMaxCapacity(500);
+        $space->setIsAccessible(true);
+
         $space->setCreatedBy($agent);
         $space->setParent($spaceParent);
         $space->setAddress($spaceAddress);
@@ -84,6 +99,17 @@ class SpaceTest extends AbstractWebTestCase
         $space->setDeletedAt($deletedAt);
         $space->addActivityArea($activityArea1);
         $space->addActivityArea($activityArea2);
+
+        $this->assertEquals('Casa do Cantador', $space->getName());
+        $this->assertEquals('https://url-image.com.br', $space->getImage());
+        $this->assertEquals('https://url-cover.com.br', $space->getCoverImage());
+        $this->assertEquals('Espaço cultural para eventos', $space->getShortDescription());
+        $this->assertEquals('Um espaço dedicado à cultura popular, promovendo eventos musicais e teatrais.', $space->getLongDescription());
+        $this->assertEquals('https://casadocantador.com.br', $space->getSite());
+        $this->assertEquals('contato@casadocantador.com.br', $space->getEmail());
+        $this->assertEquals('+55 85 99999-9999', $space->getPhoneNumber());
+        $this->assertEquals(500, $space->getMaxCapacity());
+        $this->assertTrue($space->getIsAccessible());
 
         $this->assertCount(2, $space->getActivityAreas());
         $this->assertContains($activityArea1, $space->getActivityAreas());
@@ -126,6 +152,15 @@ class SpaceTest extends AbstractWebTestCase
         $this->assertEquals([
             'id' => $id->toString(),
             'name' => 'Casa do Cantador',
+            'image' => 'https://url-image.com.br',
+            'coverImage' => 'https://url-cover.com.br',
+            'shortDescription' => 'Espaço cultural para eventos',
+            'longDescription' => 'Um espaço dedicado à cultura popular, promovendo eventos musicais e teatrais.',
+            'site' => 'https://casadocantador.com.br',
+            'email' => 'contato@casadocantador.com.br',
+            'phoneNumber' => '+55 85 99999-9999',
+            'maxCapacity' => 500,
+            'isAccessible' => true,
             'createdBy' => '95f91eb5-cb62-4a7b-b677-8486d2a0763a',
             'parent' => '8e3e976d-0fc0-443e-bdd2-2b4d83da004f',
             'address' => $spaceAddress->toArray(),

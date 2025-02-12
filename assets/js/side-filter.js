@@ -1,6 +1,5 @@
 const BTN_OPEN_FILTER = document.getElementById('open-filter');
 const BTN_CLOSE_FILER = document.getElementById('close-filter');
-const BTN_CLEAR_FILTER = document.getElementById('clear-filters');
 const SIDEBAR = document.getElementById('filter-sidebar');
 const MAIN_CONTENT = document.querySelector('.entity-container');
 const ENTITY_WRAPPER = document.querySelector('.entity-wrapper');

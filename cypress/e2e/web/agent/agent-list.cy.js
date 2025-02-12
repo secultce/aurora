@@ -48,7 +48,7 @@ describe('Página de Listar de Agentes', () => {
         cy.get(':nth-child(2) > .agent-card-header > .agent-info > .agent-name').contains('Feitozo').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-area > .agent-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-location').contains('Goiânia (GO)').should('be.visible');
-        cy.get(':nth-child(2) > .agent-card-body > .agent-seals > .seals-area').should('be.visible');
+        cy.get('.entity-seals > :nth-child(3)').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-description').contains('Capoeirista apaixonado pela arte, com experiência em movimentos fluidos e percussão, buscando promover a cultura e a tradição da capoeira em cada performance.').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .access-profile-container > .btn').contains('Acessar').should('be.visible');
     });

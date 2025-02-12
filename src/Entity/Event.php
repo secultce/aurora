@@ -8,6 +8,8 @@ use App\Helper\DateFormatHelper;
 use App\Repository\EventRepository;
 use DateTime;
 use DateTimeImmutable;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
@@ -19,7 +21,7 @@ class Event extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['event.get', 'opportunity.get'])]
+    #[Groups(['event.get', 'opportunity.get', 'event-activity.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
@@ -59,6 +61,9 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private Agent $createdBy;
 
+    #[ORM\OneToMany(targetEntity: EventSchedule::class, mappedBy: 'event', orphanRemoval: true)]
+    private Collection $eventSchedules;
+
     #[ORM\Column]
     #[Groups(['event.get'])]
     private DateTimeImmutable $createdAt;
@@ -71,9 +76,16 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private ?DateTime $deletedAt = null;
 
+    /**
+     * @var Collection<int, EventActivity>
+     */
+    #[ORM\OneToMany(targetEntity: EventActivity::class, mappedBy: 'event', orphanRemoval: true)]
+    private Collection $eventActivities;
+
     public function __construct()
     {
         $this->createdAt = new DateTimeImmutable();
+        $this->eventActivities = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -194,6 +206,58 @@ class Event extends AbstractEntity
     public function setDeletedAt(?DateTime $deletedAt): void
     {
         $this->deletedAt = $deletedAt;
+    }
+
+    public function getEventActivities(): Collection
+    {
+        return $this->eventActivities;
+    }
+
+    public function addEventActivity(EventActivity $eventActivity): void
+    {
+        if (false === $this->eventActivities->contains($eventActivity)) {
+            return;
+        }
+
+        $this->eventActivities->add($eventActivity);
+        $eventActivity->setEvent($this);
+    }
+
+    public function removeEventActivity(EventActivity $eventActivity): void
+    {
+        if (false === $this->eventActivities->removeElement($eventActivity)) {
+            return;
+        }
+
+        if ($eventActivity->getEvent() === $this) {
+            $eventActivity->setEvent(null);
+        }
+    }
+
+    public function getEventSchedules(): Collection
+    {
+        return $this->eventSchedules;
+    }
+
+    public function addEventSchedule(EventSchedule $eventSchedule): void
+    {
+        if (false === $this->eventSchedules->contains($eventSchedule)) {
+            return;
+        }
+
+        $this->eventSchedules->add($eventSchedule);
+        $eventSchedule->setEvent($this);
+    }
+
+    public function removeEventSchedule(EventSchedule $eventSchedule): void
+    {
+        if (false === $this->eventSchedules->removeElement($eventSchedule)) {
+            return;
+        }
+
+        if ($eventSchedule->getEvent() === $this) {
+            $eventSchedule->setEvent(null);
+        }
     }
 
     public function toArray(): array

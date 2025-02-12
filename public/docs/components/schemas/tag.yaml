@@ -1,0 +1,11 @@
+type: object
+properties:
+  id:
+    type: string
+    format: uuid
+    description: Identificador único da tag.
+  name:
+    type: string
+    maxLength: 20
+    description: Nome da tag.
+    examples: [ Cultura ]

@@ -10,11 +10,7 @@ describe('Página de Detalhes da Organização', () => {
 
         cy.url().should('include', '/organizacoes');
 
-        cy.contains('Banda de Forró tô nem veno')
-            .parents('.agent-card')
-            .find('.access-profile-container > .btn')
-            .contains('Acessar')
-            .click();
+        cy.get(':nth-child(2) > .pt-3 > .d-flex > .btn').click();
 
         cy.contains('Apresentação').should('be.visible');
         cy.get('.agent-public').contains('DESIGN, ACESSIBILIDADE, DESIGNINCLUSIVO').should('be.visible');

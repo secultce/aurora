@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-between align-items-end">
     <p class="fw-bold">{{ totalOrganizations }} {{ 'view.organization.quantity.total' | trans }}</p>
     <div class="d-flex g-4 agent-sort">
-        <label class="agent-options" for="sort-options">{{ 'sort_by' | trans }}</label>
-        <select id="sort-options" class="form-select">
+        <label class="organization-options d-none d-md-block" for="sort-options">{{ 'sort_by' | trans }}</label>
+        <select id="sort-options" class="form-select entity">
             <option value="recent">{{ 'most_recent' | trans }}</option>
             <option value="old">{{ 'oldest' | trans }}</option>
         </select>
@@ -10,26 +10,26 @@
 </div>
 
 {% for organization in organizations %}
-    <div class="mw-100 agent-card">
-        <div class="agent-card-header">
-            <img src="{{ asset('img/home-agents.png') }}" alt="{{ 'photo' | trans }}" class="rounded-circle">
-            <div class="d-flex align-items-center gap-2">
-                <h5 class="organization-name">{{ organization.name }}</h5>
-                <span class="agent-type person">
-              <i class="material-icons">corporate_fare</i> {{ 'organization' | trans }}
+    <div class="mw-100 opportunity-card">
+        <div class="d-flex flex-column flex-md-row align-items-center gap-3">
+            <img src="{{ asset('img/home-agents.png') }}" alt="{{ 'photo' | trans }}" class="rounded-circle ms-0 ms-md-3">
+            <div class="d-flex flex-column flex-md-row align-items-center gap-2">
+                <h5 class="organization-name text-start text-md-start">{{ organization.name }}</h5>
+                <span class="organization-type person">
+                <i class="material-icons">corporate_fare</i> {{ 'organization' | trans }}
             </span>
             </div>
         </div>
 
         <div class="d-flex flex-column gap-2 pt-3">
-            <p class="agent-area"><strong>{{ 'areas_of_expertise' | trans}} (1):</strong> <span class="organization-sub-area">DESENVOLVIMENTO</span></p>
-            <p class="mx-3"><span class="fw-bold">{{ 'description'|trans }}: </span>{{ organization.description }}</p>
-            <div class="d-flex align-items-center gap-2 mx-2">
+            <p class="text-start ms-2 ms-md-3"><strong>{{ 'areas_of_expertise' | trans}} (1):</strong> <span class="organization-sub-area">DESENVOLVIMENTO</span></p>
+            <p class="text-start ms-2 ms-md-3"><span class="fw-bold">{{ 'description'|trans }}: </span>{{ organization.description }}</p>
+            <div class="organization-calendar gap-2 text-start">
                 <i class="material-icons">calendar_month</i>
-                <span class="fw-bold">{{ 'view.organization.date'|trans }}</span> {{ organization.createdAt|date('d/m/Y')}}
+                <span class="fw-bold organization-created text-nowrap">{{ 'view.organization.date'|trans }}</span> {{ organization.createdAt|date('d/m/Y')}}
             </div>
 
-            <div class="access-profile-container">
+            <div class="d-flex justify-content-center justify-content-md-end">
                 <a href="{{ path('web_organization_getOne', {'id': organization.id }) }}" class="btn btn-primary list-page__access-btn">{{ 'view.organization.access' | trans }}</a>
             </div>
         </div>

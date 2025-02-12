@@ -10,9 +10,11 @@ use App\Validator\Constraints\Exists;
 use App\Validator\Constraints\Json;
 use App\Validator\Constraints\NotNull;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints\Email;
 use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Validator\Constraints\Range;
 use Symfony\Component\Validator\Constraints\Sequentially;
 use Symfony\Component\Validator\Constraints\Type;
 use Symfony\Component\Validator\Constraints\Uuid;
@@ -56,4 +58,56 @@ class SpaceDto
 
     #[Sequentially([new Json(groups: [self::CREATE, self::UPDATE])])]
     public mixed $extraFields;
+
+    #[Image(
+        maxSize: (2000000),
+        mimeTypes: ['image/png', 'image/jpg', 'image/jpeg'],
+        groups: [self::CREATE, self::UPDATE]
+    )]
+    public ?File $coverImage = null;
+
+    #[Sequentially([
+        new Type('string', groups: [self::CREATE, self::UPDATE]),
+        new Length(max: 255, groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $shortDescription = null;
+
+    #[Sequentially([
+        new Type('string', groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $longDescription = null;
+
+    #[Sequentially([
+        new Type('string', groups: [self::CREATE, self::UPDATE]),
+        new Length(max: 255, groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $site = null;
+
+    #[Sequentially([
+        new Type('string', groups: [self::CREATE, self::UPDATE]),
+        new Length(max: 255, groups: [self::CREATE, self::UPDATE]),
+        new Email(groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $email = null;
+
+    #[Sequentially([
+        new Type('string', groups: [self::CREATE, self::UPDATE]),
+        new Length(max: 20, groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $phoneNumber = null;
+
+    #[Sequentially([
+        new NotBlank(groups: [self::CREATE]),
+        new NotNull(groups: [self::UPDATE]),
+        new Type('integer', groups: [self::CREATE, self::UPDATE]),
+        new Range(min: 1, groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $maxCapacity;
+
+    #[Sequentially([
+        new NotBlank(groups: [self::CREATE]),
+        new NotNull(groups: [self::UPDATE]),
+        new Type('boolean', groups: [self::CREATE, self::UPDATE]),
+    ])]
+    public mixed $isAccessible;
 }

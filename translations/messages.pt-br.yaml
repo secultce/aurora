@@ -1,5 +1,6 @@
 add: Adicionar
 add_cover_image: Adicionar imagem de capa
+add_phase: Adicionar Fase
 account_privacy: Conta e Privacidade
 account_settings: Configurações da conta do usuário
 access: Acessar
@@ -10,6 +11,11 @@ accompany: Acompanhar
 action: Ação
 actions: Ações
 activity: Atividade
+activity_created: Área de atuação foi criada
+activity_deleted: Área de atuação foi excluída
+activity_updated: Área de atuação foi atualizado
+area_of_activity: Área de Atuação
+activity_area_register: Criar nova Área de Atuação
 accept_terms: Aceite os termos
 address: Endereço
 administration: Administração
@@ -737,6 +743,11 @@ view:
       inactive: Inativo
     seal-picture: Foto do Selo
     validity: Validade do selo
+
+  tag:
+    create: Criar Tag
+    message:
+      created: A Tag foi criada
 
   not-found:
     error-404: Error 404
