@@ -81,3 +81,11 @@
     color:var(--color-subtitle-gray);
     line-height: 1.5;
 }
+
+@media (max-width: 768px) {
+    .space-img {
+        align-self: center;
+        width: 3.75rem;
+        height: 3.75rem;
+    }
+}
