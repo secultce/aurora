@@ -1,8 +1,8 @@
 <div class="d-flex justify-content-between align-items-end">
     <p class="fw-bold">{{ totalSpaces  }} {{ 'view.space.quantity.total' | trans }}</p>
     <div class="d-flex g-4 agent-sort">
-        <label class="text-nowrap" for="sort-options">{{ 'sort_by' | trans }}</label>
-        <select id="sort-options" class="form-select bg-transparent border-black">
+        <label class="text-nowrap d-none d-md-block" for="sort-options">{{ 'sort_by' | trans }}</label>
+        <select id="sort-options" class="form-select">
             <option value="recent">{{ 'most_recent' | trans }}</option>
             <option value="old">{{ 'oldest' | trans }}</option>
         </select>
@@ -10,44 +10,45 @@
 </div>
 
 {% for space in spaces %}
-<div class="space-card">
-    <img src="{{ asset('img/allan.png') }}" alt="{{ 'space.picture' | trans }}" class="">
+<div class="space-card d-flex flex-column flex-md-row">
+    <img src="{{ asset('img/allan.png') }}" alt="{{ 'space.picture' | trans }}" class="space-img">
     <div class="space-card__content">
-        <div class="d-flex justify-content-between mb-2">
+        <div class="d-flex justify-content-between mb-4 mb-md-2">
             <div class="d-flex flex-column gap-1">
                 <h1 class="space-card__title">{{ space.name }}</h1>
                 <span class="space-card__type">{{ space.extraFields.type ?? '' }}</span>
             </div>
             <span class="event-id">
-                ID: {{ space.id }}
+                ID: <span title="{{ space.id }}">{{ space.id|split('-')|first }}...</span>
             </span>
         </div>
 
         <div class="space-card__info">
-            <p class="mb-2">{{ space.extraFields.description ?? '' }}</p>
-            <div class="d-flex gap-1 mb-3">
-                <i class="material-icons">location_on</i>
-                <span class="align-self-center">{{ space.extraFields.location ?? '' }}</span>
+            <p class="mb-3 mb-md-2">{{ space.extraFields.description ?? '' }}</p>
+            <div class="d-flex gap-2 gap-md-1 mb-3 mb-md-3 align-items-center">
+                <i class="material-icons fs-3">location_on</i>
+                <span>{{ space.extraFields.location ?? '' }}</span>
             </div>
             <div class="mb-3">
                 <span class="fw-bold">{{ 'areas_of_expertise' | trans}} (3): </span>
                 <span class="fw-bold space-card__areas">{{ (space.extraFields.areasOfActivity ?? []) |join(', ') }}</span>
             </div>
-            <div class="d-flex gap-1 mb-3">
-                <i class="material-icons">accessibility_new</i>
+            <div class="d-flex align-items-center gap-2 mb-3">
+                <i class="material-icons fs-3">accessibility_new</i>
                 <div class="align-self-center">
-                    <span class="text-dark fw-bold">{{ 'accessibility' | trans }}</span>
+                    <span class="text-dark fw-bold">{{ 'accessibility' | trans }}:</span>
                     {{ (space.extraFields.accessibility ?? []) | join(', ') }}
                 </div>
             </div>
-            <div class="d-flex event-seals">
+
+            <div class="entity-seals">
                 <strong>{{ 'seals'| trans }}:</strong>
-                <p class="badge seal">Nome do selo</p>
-                <p class="badge seal">Nome do selo</p>
-                <p class="badge seal">Nome do selo</p>
+                <p class="seal-entity">Avaliador UFPR</p>
+                <p class="seal-entity">Avaliador UFC</p>
+                <p class="seal-entity">Selo Mapas</p>
             </div>
 
-            <div class="d-flex justify-content-end">
+            <div class="d-flex justify-content-center justify-content-md-end">
                 <a href="{{ path('web_space_getOne', {'id': space.id }) }}" class="btn btn-primary list-page__access-btn">{{ 'view.space.access' | trans }}</a>
             </div>
         </div>
