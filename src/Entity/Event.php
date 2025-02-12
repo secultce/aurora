@@ -61,6 +61,9 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private Agent $createdBy;
 
+    #[ORM\OneToMany(targetEntity: EventSchedule::class, mappedBy: 'event', orphanRemoval: true)]
+    private Collection $eventSchedules;
+
     #[ORM\Column]
     #[Groups(['event.get'])]
     private DateTimeImmutable $createdAt;
@@ -228,6 +231,32 @@ class Event extends AbstractEntity
 
         if ($eventActivity->getEvent() === $this) {
             $eventActivity->setEvent(null);
+        }
+    }
+
+    public function getEventSchedules(): Collection
+    {
+        return $this->eventSchedules;
+    }
+
+    public function addEventSchedule(EventSchedule $eventSchedule): void
+    {
+        if (false === $this->eventSchedules->contains($eventSchedule)) {
+            return;
+        }
+
+        $this->eventSchedules->add($eventSchedule);
+        $eventSchedule->setEvent($this);
+    }
+
+    public function removeEventSchedule(EventSchedule $eventSchedule): void
+    {
+        if (false === $this->eventSchedules->removeElement($eventSchedule)) {
+            return;
+        }
+
+        if ($eventSchedule->getEvent() === $this) {
+            $eventSchedule->setEvent(null);
         }
     }
 
