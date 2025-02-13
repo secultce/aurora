@@ -1,7 +1,12 @@
 .event-sort {
     align-items: center;
-    margin-bottom: 10px;
-    gap: 30px;
+    gap: 1.875rem;
+}
+
+.total-events {
+    font-weight: bold;
+    margin-bottom: 0;
+    align-self: center;
 }
 
 .event-options {
@@ -12,11 +17,13 @@
     border-radius: 10px;
     box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
     padding: 20px;
+    margin-bottom: 0.9375rem;
 }
 
 .event-card-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 .event-image {
@@ -71,6 +78,7 @@
     margin-right: 30px;
     display: flex;
     align-items: center;
+    gap: 0.4rem;
 }
 
 .entry-fee i, .participants i {
@@ -78,17 +86,47 @@
     margin-right: 5px;
 }
 
-.event-seals .seal {
-    color: var(--main-font-color);
-    margin-right: 0rem;
+@media (max-width: 768px) {
+    .event-card {
+        padding: 0.9375rem;
+    }
+
+    .event-card-header {
+        flex-direction: column-reverse;
+        text-align: center;
+    }
+
+    .event-image {
+        width: 4.375rem;
+        height: 4.375rem;
+    }
+
+    .event-date {
+        flex-direction: column;
+    }
+
+     .event-location {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .entry-fee, .participants {
+        gap: 0.4rem;
+        align-items: center;
+    }
+
+    .entry-fee i, .participants i {
+        font-size: 1.2rem;
+    }
+
+    .event-details {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .total-events {
+        font-size: 0.9rem;
+    }
 }
 
-.entity-container {
-    transition: width 0.3s, transform 0.3s;
-    width: var(--WIDTH_DEFAULT);
-}
 
-.entity-container.shifted {
-    width: 78.125rem;
-    transform: translateX(118px);
-}

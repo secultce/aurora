@@ -45,13 +45,13 @@ describe('Pagina de listar Eventos', () => {
         cy.get('#pills-list-tab').should('have.class', 'active');
         cy.get('#pills-list > #scroll-container > [data-cy=pills-list-content]').should('be.visible');
 
-        cy.get('[data-cy=pills-list-content]').contains(/^\d+ Eventos Encontrados/).should('be.visible');
-        cy.get('.align-content-center > .d-flex').contains('Ordenar por').should('be.visible');
+        cy.get('.total-events').contains(/^\d+ Eventos Encontrados/).should('be.visible');
+        cy.get('.justify-content-between > .d-flex').contains('Ordenar por').should('be.visible');
         cy.get('#sort-options').select('recent').should('have.value', 'recent');
         cy.get('#sort-options').select('old').should('have.value', 'old');
 
 
-        cy.get("div.card.mw-100.event-card.mt-3").should('be.visible');
+        cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-0 > .event-name').contains('Nordeste Literário').should('be.visible');
 
         // TODO: Aguardando uma issue para ajustar o teste
         // cy.get(':nth-child(2) > .event-card-header > .d-flex > .rounded-circle').should('be.visible');
@@ -71,18 +71,18 @@ describe('Pagina de listar Eventos', () => {
         cy.get('#open-filter').click();
         cy.get('#event-name').type('Festival da Rapadura');
         cy.get('#apply-filters').click();
-        cy.get('.align-content-center > .fw-bold').contains('1 Eventos Encontrados').should('be.visible');
+        cy.get('.total-events').contains('1 Eventos Encontrados').should('be.visible');
         cy.get('.event-name').contains('Festival da Rapadura').should('be.visible');
     });
 
     it('Garante que o botão de limpar filtros funciona', () => {
         cy.get('#open-filter').click();
         cy.get('#event-name').type('Festival da Rapadura');
-        cy.get('.align-content-center > .fw-bold').contains(/^\d+ Eventos Encontrados/).should('be.visible');
+        cy.get('.total-events').contains(/^\d+ Eventos Encontrados/).should('be.visible');
         cy.get('#apply-filters').click();
-        cy.get('.align-content-center > .fw-bold').contains('1 Eventos Encontrados').should('be.visible');
+        cy.get('.total-events').contains('1 Eventos Encontrados').should('be.visible');
         cy.get('#open-filter').click();
         cy.get('.btn-outline-primary').click();
-        cy.get('.align-content-center > .fw-bold').contains(/^\d+ Eventos Encontrados/).should('be.visible');
+        cy.get('.total-events').contains(/^\d+ Eventos Encontrados/).should('be.visible');
     });
 });

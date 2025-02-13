@@ -1,8 +1,8 @@
-<div class="d-flex align-content-center justify-content-between">
-    <p class="fw-bold">{{ totalEvents }} {{ 'view.event.quantity.total' | trans }}</p>
-    <div class="d-flex g-4 event-sort">
-        <label class="event-options" for="sort-options">{{ 'sort_by' | trans }}:</label>
-        <select id="sort-options" class="form-select">
+<div class="d-flex justify-content-between align-items-end">
+    <p class="total-events">{{ totalEvents }} {{ 'view.event.quantity.total' | trans }}</p>
+    <div class="d-flex">
+        <label class="d-none d-md-block text-nowrap align-self-center me-1" for="sort-options">{{ 'sort_by' | trans }}:</label>
+        <select id="sort-options" class="form-select w-100">
             <option value="recent">{{ 'most_recent' | trans }}</option>
             <option value="old">{{ 'oldest' | trans }}</option>
         </select>
@@ -10,23 +10,22 @@
 </div>
 
 {% for event in events %}
-    <div class="card mw-100 event-card mt-3">
-        <div class="event-card-header d-flex justify-content-between">
-
-            <div class="d-flex align-items-center">
+    <div class="card mw-100 event-card mt-1">
+        <div class="event-card-header">
+            <div class="d-flex flex-column flex-md-row align-items-center">
                 <img src="{{ asset('img/home-events.png') }}" alt="Foto do evento" class="rounded-circle event-image">
-                <div class="ms-3">
+                <div class="ms-0 ms-md-3 mt-2 mt-md-0">
                     <h5 class="event-name">{{ event.name }}</h5>
                     <p class="event-subtitle">Subtítulo do evento</p>
                 </div>
             </div>
-            <div class="event-id">
-                ID: {{ event.id }}
+            <div class="event-id mt-2 mt-md-0 align-self-end align-self-md-start">
+                ID: <span title="{{ event.id }}">{{ event.id|split('-')|first }}...</span>
             </div>
         </div>
 
-        <div class="event-card-body">
-            <p class="event-date fw-bold">
+        <div class="event-card-body ">
+            <p class="event-date fw-bold align-self-center">
                 <i class="material-icons">event</i>
                 {% set occurrence = (event.extraFields.occurrences ?? ['-2days'])|sort|find(o => date(o) > date('now')) %}
                 {% if occurrence is empty %}
@@ -45,32 +44,32 @@
                 {% endif %}
             </p>
 
-            <p class="event-languages">
+            <p class="event-languages text-center text-md-start">
                 <strong>{{ 'language' | trans }} (3):</strong>
                 <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
                 <a href="#" class="language-link fw-bold">LINGUAGEM</a>,
                 <a href="#" class="language-link fw-bold">LINGUAGEM</a>
             </p>
 
-            <div class="event-details d-flex align-items-center">
+            <div class="event-details d-flex align-items-start text-center text-md-start">
                 <p class="entry-fee">
                     <i class="material-icons">monetization_on</i>
                     <strong>Valor da entrada: </strong> Gratuito
                 </p>
                 <p class="participants">
                     <i class="material-icons">people</i>
-                    <strong>Número de participantes: </strong> 0 participantes
+                    <strong>Número de participantes: </strong> 0
                 </p>
             </div>
 
-            <div class="d-flex event-seals">
+            <div class="entity-seals">
                 <strong>{{ 'seals'| trans }}:</strong>
-                <p class="badge seal">Nome do selo</p>
-                <p class="badge seal">Nome do selo</p>
-                <p class="badge seal">Nome do selo</p>
+                <p class="seal-entity">Nome do selo</p>
+                <p class="seal-entity">Nome do selo</p>
+                <p class="seal-entity">Nome do selo</p>
             </div>
 
-            <div class="text-end mt-3">
+            <div class="text-center text-md-end mt-3">
                 <a href="{{ path('web_event_show', {id: event.id}) }}" class="btn btn-primary list-page__access-btn">{{ 'view.event.access' | trans }}</a>
             </div>
         </div>
