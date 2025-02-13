@@ -4,6 +4,7 @@ const SIDEBAR = document.getElementById('filter-sidebar');
 const MAIN_CONTENT = document.querySelector('.entity-container');
 const ENTITY_WRAPPER = document.querySelector('.entity-wrapper');
 const FORM_FILTER_SIDEBAR = document.getElementById('filter-sidebar');
+const ORDER_SELECT = document.getElementById('order-select');
 
 BTN_OPEN_FILTER.addEventListener('click', toggleSidebar);
 BTN_CLOSE_FILER.addEventListener('click', toggleSidebar);
@@ -40,3 +41,16 @@ FORM_FILTER_SIDEBAR.addEventListener('submit', function (event) {
 
     window.location.href = `${window.location.pathname}?${params.toString()}`;
 });
+
+if (ORDER_SELECT) {
+    ORDER_SELECT.addEventListener('change', () => {
+        const orderValue = ORDER_SELECT.value;
+
+        const url = new URL(window.location.href);
+        const params = url.searchParams;
+
+        params.set('order', orderValue);
+
+        window.location.href = `${window.location.pathname}?${params.toString()}`;
+    });
+}

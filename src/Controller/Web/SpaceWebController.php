@@ -23,7 +23,9 @@ class SpaceWebController extends AbstractWebController
     {
         $filters = $request->query->all();
 
-        $spaces = $this->service->list(params: $filters);
+        $filters = $this->getOrderParam($filters);
+
+        $spaces = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalSpaces = count($spaces);
 
         $dashboard = [
