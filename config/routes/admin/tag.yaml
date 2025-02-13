@@ -7,3 +7,8 @@ list:
   path: /
   controller: App\Controller\Web\Admin\TagAdminController::list
   methods: ['GET']
+
+remove:
+  path: /{id}/remover
+  controller: App\Controller\Web\Admin\TagAdminController::remove
+  methods: ['GET']

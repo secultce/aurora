@@ -5,6 +5,7 @@
 {% block content %}
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
+        {% include '_components/modal-confirm-remove.html.twig' %}
 
         <div class="management-content w-100 p-4">
             <div class="card card-body shadow">
@@ -23,6 +24,7 @@
                         <tr>
                             <th>{{ 'id'|trans }}</th>
                             <th>{{ 'name'|trans }}</th>
+                            <th>{{ 'actions'|trans }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -30,6 +32,16 @@
                             <tr>
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.name }}</td>
+                                <td>
+                                    <button data-cy="remove-{{ loop.index }}"
+                                            data-bs-toggle="modal"
+                                            data-bs-target="#modalRemoveConfirm"
+                                            onclick="confirmRemove(this)"
+                                            data-href="{{ path('admin_tag_remove', {id: item.id}) }}"
+                                            class="btn btn-outline-danger btn-sm">
+                                        {{ 'delete'|trans }}
+                                    </button>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>
@@ -39,4 +51,8 @@
         </div>
     </section>
 
+{% endblock %}
+{% block extra_javascripts %}
+    {{ parent() }}
+    <script src="{{ asset('js/modal-confirm-remove.js') }}"></script>
 {% endblock %}

@@ -8,6 +8,6 @@ describe('Painel de Controle - Página de listar Tags', () => {
     it('Garante que a página de Tags existe', () => {
         cy.get('h2').contains('Tags').should('be.visible');
 
-        cy.get('tbody > :nth-child(1) > :nth-child(2)').contains('Cultura').should('be.visible');
+        cy.get('tbody > :nth-child(1) > :nth-child(2)').contains('Educação').should('be.visible');
     });
 });

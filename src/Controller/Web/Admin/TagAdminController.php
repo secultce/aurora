@@ -58,4 +58,16 @@ class TagAdminController extends AbstractAdminController
 
         return $this->redirectToRoute('admin_tag_list');
     }
+
+    public function remove(string $id): Response
+    {
+        try {
+            $this->tagService->remove(Uuid::fromString($id));
+            $this->addFlashSuccess($this->translator->trans('view.tag.message.deleted'));
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
+        }
+
+        return $this->redirectToRoute('admin_tag_list');
+    }
 }

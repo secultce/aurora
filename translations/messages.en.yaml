@@ -753,6 +753,7 @@ view:
     create: Create a Tag
     message:
       created: The tag has been created
+      deleted: The tag has been deleted
 
   not-found:
     error-404: Error 404

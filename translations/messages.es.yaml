@@ -757,6 +757,7 @@ view:
     create: Crear una Tag
     message:
       created: La Tag ha sido creada
+      deleted: La Tag ha sido eliminada
 
   not-found:
     error-404: Error 404
