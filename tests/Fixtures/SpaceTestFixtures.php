@@ -7,6 +7,7 @@ namespace App\Tests\Fixtures;
 use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
+use App\DataFixtures\Entity\SpaceTypeFixtures;
 use Symfony\Component\Uid\Uuid;
 
 class SpaceTestFixtures implements TestFixtures
@@ -44,6 +45,7 @@ class SpaceTestFixtures implements TestFixtures
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
             ],
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ]);
     }
 }

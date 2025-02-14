@@ -7,6 +7,7 @@ namespace App\Serializer\Denormalizer;
 use App\Entity\ActivityArea;
 use App\Entity\Agent;
 use App\Entity\Space;
+use App\Entity\SpaceType;
 use App\Entity\Tag;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
@@ -68,6 +69,11 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
             );
 
             $space->setTags(new ArrayCollection($tags));
+        }
+
+        if (true === array_key_exists('spaceType', $data)) {
+            $spaceType = $this->entityManager->getRepository(SpaceType::class)->find($data['spaceType']);
+            $space->setSpaceType($spaceType);
         }
 
         return $space;
