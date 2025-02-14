@@ -100,11 +100,11 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
         return $opportunity;
     }
 
-    public function list(int $limit = 50, array $params = []): array
+    public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
         return $this->repository->findBy(
             [...$params, ...$this->getDefaultParams()],
-            ['createdAt' => 'DESC'],
+            ['createdAt' => $order],
             $limit
         );
     }

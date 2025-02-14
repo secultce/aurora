@@ -22,7 +22,9 @@ class OpportunityWebController extends AbstractWebController
     {
         $filters = $request->query->all();
 
-        $opportunities = $this->service->list(params: $filters);
+        $filters = $this->getOrderParam($filters);
+
+        $opportunities = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalOpportunities = count($opportunities);
 
         $dashboard = [
