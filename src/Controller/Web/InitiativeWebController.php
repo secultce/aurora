@@ -23,7 +23,9 @@ class InitiativeWebController extends AbstractWebController
     {
         $filters = $request->query->all();
 
-        $initiatives = $this->initiativeService->list(params: $filters);
+        $filters = $this->getOrderParam($filters);
+
+        $initiatives = $this->initiativeService->list(params: $filters['filters'], order: $filters['order']);
         $totalInitiatives = count($initiatives);
 
         $dashboard = [
