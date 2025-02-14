@@ -12,3 +12,8 @@ remove:
   path: /{id}/remover
   controller: App\Controller\Web\Admin\TagAdminController::remove
   methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\TagAdminController::edit
+  methods: ['GET', 'POST']

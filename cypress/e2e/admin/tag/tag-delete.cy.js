@@ -6,12 +6,13 @@ describe('Teste para Deletar Tag', () => {
     });
 
     it('Deletar uma tag', () => {
-        cy.get('tbody > :nth-child(1) > :nth-child(2)').contains('Cultura').should('exist');
-        cy.get('[data-cy="remove-1"]').click();
+        cy.get('tbody tr').contains('Tradição').parent().within(() => {
+            cy.get('[data-cy^="remove-"]').click();
+        });
 
         cy.get('.btn-danger').click();
 
         cy.get('.toast-body').contains('Tag foi excluída').should('be.visible');
-        cy.get('.card').contains('Cultura').should('not.exist');
+        cy.get('.table-responsive').contains('Tradição').should('not.exist');
     });
 });

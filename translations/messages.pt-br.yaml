@@ -749,7 +749,9 @@ view:
 
   tag:
     create: Criar Tag
+    edit: Editar Tag
     message:
+      updated: A Tag foi atualizada
       created: A Tag foi criada
       deleted: A Tag foi excluída
 
