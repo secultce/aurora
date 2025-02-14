@@ -20,9 +20,9 @@ class OrganizationWebController extends AbstractWebController
     public function list(Request $request): Response
     {
         $filters = $request->query->all();
+        $filters = $this->getOrderParam($filters);
 
-        $organizations = $this->service->list(params: $filters);
-
+        $organizations = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalOrganizations = count($organizations);
 
         $dashboard = [

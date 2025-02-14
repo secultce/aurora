@@ -11,7 +11,7 @@ describe('Página de Listar de Organizações', () => {
         cy.contains('Organizações Encontradas');
     });
 
-    it('Garante que o dashboard de orgnizações esteja presente', () => {
+    it('Garante que o dashboard de organizações esteja presente', () => {
         cy.get('.entity-dashboard').should('be.visible');
 
         const expectedTexts = [
@@ -28,9 +28,9 @@ describe('Página de Listar de Organizações', () => {
 
     it('Garante que as tabs estão funcionando', () => {
         const tabs = [
-            { tab: '#pills-list-tab'},
-            { tab: '#pills-map-tab'},
-            { tab: '#pills-indicators-tab'}
+            { tab: '#pills-list-tab' },
+            { tab: '#pills-map-tab' },
+            { tab: '#pills-indicators-tab' }
         ];
 
         tabs.forEach(({ tab }) => {
@@ -41,14 +41,17 @@ describe('Página de Listar de Organizações', () => {
 
     it('Garante que os cards de organizações estão visíveis', () => {
         cy.get('.align-items-end > .fw-bold').contains(/^\d+ Organizações Encontradas/).should('be.visible');
-        cy.get('.organization-options').should('be.visible');
-        cy.get('#sort-options').select('recent').should('have.value', 'recent');
-        cy.get('#sort-options').select('old').should('have.value', 'old');
+        cy.get('#order-select').should('exist').should('be.visible');
 
-        cy.get(':nth-child(3) > .gap-3 > .d-flex > .organization-name').contains('PHPeste').should('be.visible');
-        cy.get(':nth-child(3) > .pt-3 > :nth-child(1) > .organization-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
-        cy.get(':nth-child(3) > .pt-3 > :nth-child(2)').contains('Organização da Conferencia de PHP do Nordeste').should('be.visible');
-        cy.get(':nth-child(2) > .pt-3 > .d-flex > .btn').contains('Acessar').should('be.visible');
+        cy.get('.organization-name').first().should('be.visible');
+    });
+
+    it('Garante que o filtro de ordenação funciona', () => {
+        cy.get(':nth-child(2) > .gap-3 > .d-flex > .organization-name').contains('Banda de Forró tô nem veno').should('be.visible');
+        cy.get('#order-select').select('Mais Recente');
+        cy.get(':nth-child(2) > .gap-3 > .d-flex > .organization-name').contains('PHP com Rapadura').should('be.visible');
+        cy.get('#order-select').select('Mais Antigo');
+        cy.get(':nth-child(2) > .gap-3 > .d-flex > .organization-name').contains('Banda de Forró tô nem veno').should('be.visible');
     });
 
     it('Garante que o filtro funciona', () => {
@@ -60,13 +63,17 @@ describe('Página de Listar de Organizações', () => {
     });
 
     it('Garante que o botão de limpar filtros funciona', () => {
-        cy.get('.align-items-end > .fw-bold').contains('10 Organizações Encontradas').should('be.visible');
-        cy.get('#open-filter').click();
-        cy.get('#organization-name').type('PHPeste');
-        cy.get('#apply-filters').click();
-        cy.get('.align-items-end > .fw-bold').contains('1 Organizações Encontradas').should('be.visible');
-        cy.get('#open-filter').click();
-        cy.get('.btn-outline-primary').click();
-        cy.get('.align-items-end > .fw-bold').contains('10 Organizações Encontradas').should('be.visible');
+        cy.get('.align-items-end > .fw-bold').invoke('text').then((initialCount) => {
+            cy.get('#open-filter').click();
+            cy.get('#organization-name').type('PHPeste');
+            cy.get('#apply-filters').click();
+            cy.get('.align-items-end > .fw-bold').contains('1 Organizações Encontradas').should('be.visible');
+
+            cy.get('#open-filter').click();
+            cy.get('.btn-outline-primary').click();
+            cy.get('.align-items-end > .fw-bold').invoke('text').should((finalCount) => {
+                expect(finalCount).to.eq(initialCount);
+            });
+        });
     });
 });
