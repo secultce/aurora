@@ -21,7 +21,7 @@ interface AgentServiceInterface
 
     public function findBy(array $params = []): array;
 
-    public function list(int $limit = 50): array;
+    public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array;
 
     public function remove(Uuid $id): void;
 

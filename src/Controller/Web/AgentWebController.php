@@ -21,7 +21,9 @@ class AgentWebController extends AbstractWebController
     {
         $filters = $request->query->all();
 
-        $agents = $this->service->list(params: $filters);
+        $filters = $this->getOrderParam($filters);
+
+        $agents = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalAgents = count($agents);
 
         $dashboard = [
