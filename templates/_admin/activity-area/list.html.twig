@@ -35,10 +35,10 @@
                                 <tr>
                                     <td>{{ item.name }}</td>
                                     <td>
-                                        <a href="{{ path('admin_activity_area_edit', {'id': item.id}) }}" class="btn btn-outline-warning btn-sm">
+                                        <a href="{{ path('admin_activity_area_edit', {id: item.id}) }}" class="btn btn-outline-warning btn-sm">
                                             {{ 'edit'|trans }}
                                         </a>
-                                        <button data-cy="remove-{{ loop.index }}" data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm"
+                                        <button data-bs-toggle="modal" data-bs-target="#modalRemoveConfirm"
                                                 onclick="confirmRemove(this)" data-href="{{ path('admin_activity_area_remove', {id: item.id}) }}"
                                                 class="btn btn-outline-danger btn-sm">
                                             {{ 'delete'|trans }}

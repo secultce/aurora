@@ -41,9 +41,6 @@ describe('Página de Listar de Agentes', () => {
 
     it('Garante que os cards de agentes estão visíveis', () => {
         cy.get('.align-items-end > .fw-bold').contains(/^\d+ Agentes Encontrados/).should('be.visible');
-        cy.get('.agent-options').should('be.visible');
-        cy.get('#sort-options').select('recent').should('have.value', 'recent');
-        cy.get('#sort-options').select('old').should('have.value', 'old');
 
         cy.get(':nth-child(2) > .agent-card-header > .agent-info > .agent-name').contains('Feitozo').should('be.visible');
         cy.get(':nth-child(2) > .agent-card-body > .agent-area > .agent-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
@@ -59,5 +56,11 @@ describe('Página de Listar de Agentes', () => {
         cy.get('#apply-filters').click();
         cy.get('.justify-content-between > .fw-bold').contains('1 Agentes Encontrados').should('be.visible');
         cy.get('.agent-name').contains('Talyson').should('be.visible');
+    });
+
+    it('Garante que as opções de ordenar funcionam', () => {
+        cy.get('.agent-name').contains('Feitozo').should('be.visible');
+        cy.get('#order-select').select('Mais Recente');
+        cy.get('.agent-name').contains('Alessandro').should('be.visible');
     });
 });

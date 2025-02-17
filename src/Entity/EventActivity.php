@@ -30,7 +30,7 @@ class EventActivity
     #[Groups(['event-activity.get'])]
     private ?string $title = null;
 
-    #[ORM\Column(length: 255, nullable: true)]
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
     #[Groups(['event-activity.get'])]
     private ?string $description = null;
 

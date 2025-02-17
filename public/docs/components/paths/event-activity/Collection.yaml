@@ -12,3 +12,27 @@ get:
             items:
               allOf:
                 - $ref: '../../responses/event-activity/EventActivityGetCollectionResponse.yaml'
+
+post:
+  tags:
+    - Atividade do evento
+  summary: Cria uma nova atividade para o evento
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/event-activity/EventActivityPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Atividade criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event-activity/EventActivityGetItemResponse.yaml'
+    '404':
+      description: Evento não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event-activity/EventActivityNotFound.yaml'

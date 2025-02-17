@@ -15,9 +15,10 @@ describe('Página de Lista de Espaços', () => {
         cy.get('a').contains('Mapa').should('be.visible');
     });
 
-    it('Garante que o dropdown de ordenação está visível e funcional', () => {
-        cy.get('#sort-options').contains('Mais Recente');
-        cy.get('#sort-options').select('Mais Antigo').should('have.value', 'old'); // Change from 'oldest' to 'old'
+    it('Garante que as opções de ordenar funcionam', () => {
+        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
+        cy.get('#order-select').select('Mais Recente');
+        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('SECULT').should('be.visible');
     });
 
     it('Garante que as tabs estão funcionando', () => {

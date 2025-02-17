@@ -106,6 +106,11 @@ class Space extends AbstractEntity
     #[Groups(['space.get', 'space.get.item'])]
     private ?DateTime $deletedAt = null;
 
+    #[ORM\ManyToOne(targetEntity: SpaceType::class)]
+    #[ORM\JoinColumn(name: 'space_type_id', referencedColumnName: 'id', nullable: true, onDelete: 'SET NULL')]
+    #[Groups(['space.get', 'space.get.item'])]
+    private ?SpaceType $spaceType = null;
+
     public function __construct()
     {
         $this->tags = new ArrayCollection();
@@ -337,6 +342,16 @@ class Space extends AbstractEntity
         $this->deletedAt = $deletedAt;
     }
 
+    public function getSpaceType(): ?SpaceType
+    {
+        return $this->spaceType;
+    }
+
+    public function setSpaceType(?SpaceType $spaceType): void
+    {
+        $this->spaceType = $spaceType;
+    }
+
     public function toArray(): array
     {
         return [
@@ -360,6 +375,7 @@ class Space extends AbstractEntity
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
+            'spaceType' => $this->spaceType?->toArray(),
         ];
     }
 }

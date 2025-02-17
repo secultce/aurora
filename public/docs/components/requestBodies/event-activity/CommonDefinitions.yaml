@@ -1,0 +1,21 @@
+EventActivityBase:
+  type: object
+  properties:
+    title:
+      type: string
+      maxLength: 100
+      description: "Título da atividade do evento"
+    description:
+      type: string
+      maxLength: 500
+      description: "Descrição da atividade do evento"
+    startDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: "Data e hora do inicio da atividade do evento"
+    endDate:
+      type: string
+      format: date-time
+      nullable: true
+      description: "Data e hora do fim da atividade do evento"

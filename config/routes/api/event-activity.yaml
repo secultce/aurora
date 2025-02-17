@@ -1,3 +1,8 @@
+create:
+  path: /
+  controller: App\Controller\Api\EventActivityApiController::create
+  methods: ['POST']
+
 get:
   path: /{id}
   controller: App\Controller\Api\EventActivityApiController::get
@@ -12,3 +17,8 @@ remove:
   path: /{id}
   controller: App\Controller\Api\EventActivityApiController::remove
   methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\EventActivityApiController::update
+  methods: ['PATCH']

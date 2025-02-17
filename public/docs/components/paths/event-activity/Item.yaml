@@ -18,6 +18,32 @@ get:
           schema:
             $ref: '../../responses/event-activity/EventActivityNotFound.yaml'
 
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Atividade do evento
+  summary: Atualiza um único evento
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/event-activity/EventActivityPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Evento atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event-activity/EventActivityGetItemResponse.yaml'
+    '404':
+      description: Evento não encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/event-activity/EventActivityNotFound.yaml'
+
 delete:
   parameters:
     - $ref: '../../parameters/path/id.yaml'

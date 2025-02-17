@@ -114,6 +114,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
+                'spaceType' => $space->getParent()->getSpaceType()->toArray(),
             ],
             'extraFields' => null,
             'activityAreas' => [],
@@ -121,6 +122,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => null,
         ]);
     }
 
@@ -204,6 +206,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
+                'spaceType' => $space->getParent()->getSpaceType()->toArray(),
             ],
             'extraFields' => [
                 'type' => 'Cultural',
@@ -231,6 +234,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => $space->getSpaceType()->toArray(),
         ]);
     }
 
@@ -438,6 +442,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
+            'spaceType' => $space->getSpaceType()->toArray(),
         ]);
     }
 
@@ -533,6 +538,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'createdAt' => '2024-07-11T10:49:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
+                'spaceType' => $space->getParent()->getSpaceType()->toArray(),
             ],
             'extraFields' => [
                 'type' => 'Galeria de Arte',
@@ -571,6 +577,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => $space->getSpaceType()->toArray(),
         ]);
     }
 
@@ -711,6 +718,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
+                'spaceType' => $space->getParent()->getSpaceType()->toArray(),
             ],
             'extraFields' => [
                 'type' => 'Cultural',
@@ -747,6 +755,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $space->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
+            'spaceType' => $space->getSpaceType()->toArray(),
         ]);
     }
 
@@ -827,6 +836,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $space->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
+            'spaceType' => $space->getSpaceType()->toArray(),
         ]);
     }
 

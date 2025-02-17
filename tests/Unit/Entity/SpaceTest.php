@@ -8,6 +8,7 @@ use App\Entity\ActivityArea;
 use App\Entity\Agent;
 use App\Entity\Space;
 use App\Entity\SpaceAddress;
+use App\Entity\SpaceType;
 use App\Entity\Tag;
 use App\Helper\DateFormatHelper;
 use App\Tests\AbstractWebTestCase;
@@ -37,6 +38,10 @@ class SpaceTest extends AbstractWebTestCase
         $tag2 = new Tag();
         $tag2->setId(Uuid::v4());
         $tag2->setName('Test');
+
+        $spaceType = new SpaceType();
+        $spaceType->setId(Uuid::v4());
+        $spaceType->setName('Espaço Cultural');
 
         $this->assertNull($space->getId());
         $this->assertNull($space->getName());
@@ -94,6 +99,7 @@ class SpaceTest extends AbstractWebTestCase
         $space->setAddress($spaceAddress);
         $space->setExtraFields($extraField);
         $space->setTags($tags);
+        $space->setSpaceType($spaceType);
         $space->setCreatedAt($createdAt);
         $space->setUpdatedAt($updatedAt);
         $space->setDeletedAt($deletedAt);
@@ -139,6 +145,9 @@ class SpaceTest extends AbstractWebTestCase
         $this->assertEquals($tags, $space->getTags());
         $this->assertInstanceOf(Collection::class, $space->getTags());
 
+        $this->assertEquals($spaceType, $space->getSpaceType());
+        $this->assertInstanceOf(SpaceType::class, $space->getSpaceType());
+
         $this->assertEquals($createdAt, $space->getCreatedAt());
         $this->assertInstanceOf(DateTimeImmutable::class, $space->getCreatedAt());
 
@@ -170,6 +179,7 @@ class SpaceTest extends AbstractWebTestCase
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt->format(DateFormatHelper::DEFAULT_FORMAT),
+            'spaceType' => $spaceType->toArray(),
         ], $space->toArray());
     }
 }

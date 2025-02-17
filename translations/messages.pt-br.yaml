@@ -109,6 +109,7 @@ edit: Editar
 edit_faq: Editar FAQ
 edit_seals: Editar Selos
 edit_space: Editar Espaços
+edit_activity_area: Editar Área de Atuação
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
@@ -163,6 +164,7 @@ input_search: Busque por palavras-chave
 inscriptions: Inscrições
 introduction: Apresentação
 is_itinerant: É agente itinerante?
+is-accessible: O espaço é acessível?
 
 language: Idioma
 lastname: Sobrenome
@@ -185,6 +187,7 @@ map: Mapa
 management: Gerenciamento de Entidades
 masculine: Masculino
 maroons: Quilombola
+max-capacity: Capacidade máxima do espaço
 mei: MEI (CNPJ do MEI)
 menu: Menu do Painel de Controle
 medium: Médio
@@ -687,7 +690,7 @@ view:
       total: Espaços Encontrados
       finished: Espaços Fechados
       opened: Espaços Abertos
-      last_days: Registrados nos últimos 7 dias
+      last_days: Registrados nos últimos {days} dias
     picture: Foto do Espaço
 
   registration:
@@ -746,8 +749,11 @@ view:
 
   tag:
     create: Criar Tag
+    edit: Editar Tag
     message:
+      updated: A Tag foi atualizada
       created: A Tag foi criada
+      deleted: A Tag foi excluída
 
   not-found:
     error-404: Error 404

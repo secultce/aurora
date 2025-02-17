@@ -6,6 +6,7 @@ namespace App\Controller\Api;
 
 use App\Service\Interface\EventActivityServiceInterface;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
@@ -14,6 +15,13 @@ class EventActivityApiController extends AbstractApiController
     public function __construct(
         public readonly EventActivityServiceInterface $service,
     ) {
+    }
+
+    public function create(Uuid $event, Request $request): JsonResponse
+    {
+        $eventActivity = $this->service->create($event, $request->toArray());
+
+        return $this->json($eventActivity, status: Response::HTTP_CREATED, context: ['groups' => ['event-activity.get']]);
     }
 
     public function get(Uuid $event, Uuid $id): JsonResponse
@@ -33,5 +41,12 @@ class EventActivityApiController extends AbstractApiController
         $this->service->remove($event, $id);
 
         return $this->json(data: [], status: Response::HTTP_NO_CONTENT);
+    }
+
+    public function update(Uuid $event, Uuid $id, Request $request): JsonResponse
+    {
+        $eventActivity = $this->service->update($event, $id, $request->toArray());
+
+        return $this->json($eventActivity, Response::HTTP_OK, context: ['groups' => ['event-activity.get']]);
     }
 }

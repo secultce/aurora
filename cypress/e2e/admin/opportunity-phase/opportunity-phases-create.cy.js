@@ -7,13 +7,24 @@ describe('Painel de Controle - Página de detalhes de uma Oportunidade', () => {
 
     it('Criação de fase e verificação na tabela', () => {
         cy.get('h2').contains('Inscrição para o Festival de Danças Folclóricas - Encontro Nordestino').should('be.visible');
+        cy.get('.nav-pills > li > a').contains('Dados gerais').should('be.visible');
+        cy.get('.nav-pills > li > a').contains('Inscrições').should('be.visible');
+        cy.get('.nav-pills > li > a').contains('Fases').should('be.visible');
+        cy.get('.nav-pills > li > a').contains('Calendário').should('be.visible');
+        cy.get('.nav-pills > li > a').contains('Selos').should('be.visible');
+
         cy.get('.nav-pills > li > a').contains('Fases').click();
         cy.get('table').should('be.visible');
+        cy.get('table').contains('Fase de submissão').should('be.visible');
+        cy.get('table').contains('Fase de documentação').should('be.visible');
+        cy.get('table').contains('10/07/2024').should('be.visible');
+        cy.get('table').contains('12/07/2024').should('be.visible');
 
         cy.contains('Nova Fase').click();
         cy.get('#createPhaseModal').invoke('show');
         cy.get('input#phaseName').type('Fase de Teste');
-        cy.get('textarea#phaseDescription').type('Descrição da fase de teste');
+        cy.wait(250);
+        cy.get('#phaseDescription').type('Descrição da fase de teste');
         cy.get('input#startDate').type('2025-01-25');
         cy.get('input#endDate').type('2025-02-10');
         cy.get('select#status').select('1');

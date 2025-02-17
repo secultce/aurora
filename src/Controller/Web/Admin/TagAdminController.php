@@ -17,6 +17,7 @@ class TagAdminController extends AbstractAdminController
 {
     private const string ADD = 'tag/create.html.twig';
     private const string LIST = 'tag/list.html.twig';
+    private const string EDIT = 'tag/edit.html.twig';
 
     public function __construct(
         private readonly TagService $tagService,
@@ -57,5 +58,55 @@ class TagAdminController extends AbstractAdminController
         }
 
         return $this->redirectToRoute('admin_tag_list');
+    }
+
+    public function remove(string $id): Response
+    {
+        try {
+            $this->tagService->remove(Uuid::fromString($id));
+            $this->addFlashSuccess($this->translator->trans('view.tag.message.deleted'));
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
+        }
+
+        return $this->redirectToRoute('admin_tag_list');
+    }
+
+    public function edit(Request $request, string $id): Response
+    {
+        try {
+            $tag = $this->tagService->get(Uuid::fromString($id));
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
+
+            return $this->redirectToRoute('admin_tag_list');
+        }
+
+        if ($request->isMethod(Request::METHOD_GET)) {
+            return $this->render(self::EDIT, [
+                'tag' => $tag,
+            ]);
+        }
+
+        $errors = [];
+
+        try {
+            $this->tagService->update(Uuid::fromString($id), [
+                'name' => $request->request->get('name'),
+            ]);
+
+            $this->addFlashSuccess($this->translator->trans('view.tag.message.updated'));
+
+            return $this->redirectToRoute('admin_tag_list');
+        } catch (ValidatorException $exception) {
+            $errors = $exception->getConstraintViolationList();
+        } catch (Exception $exception) {
+            $errors = [$exception->getMessage()];
+        }
+
+        return $this->render(self::EDIT, [
+            'tag' => $tag,
+            'errors' => $errors,
+        ]);
     }
 }

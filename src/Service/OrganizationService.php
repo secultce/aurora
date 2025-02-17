@@ -12,6 +12,7 @@ use App\Repository\Interface\OrganizationRepositoryInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\OrganizationServiceInterface;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -30,8 +31,9 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($security);
+        parent::__construct($this->security, $this->entityManager, Organization::class);
     }
 
     public function count(): int
@@ -95,11 +97,11 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         return $organization;
     }
 
-    public function list(int $limit = 50, array $params = []): array
+    public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
         return $this->repository->findBy(
             [...$params, ...$this->getDefaultParams()],
-            ['createdAt' => 'DESC'],
+            ['createdAt' => $order],
             $limit
         );
     }

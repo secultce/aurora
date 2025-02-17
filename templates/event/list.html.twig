@@ -28,12 +28,12 @@
         {% include 'event/_partials/tabs/tabs.html.twig' %}
     </section>
 
+    <button id="open-filter" class="filter-btn">
+        <i class="material-icons">filter_alt</i>
+    </button>
+
     <section class="entity-wrapper">
         {% include "event/_partials/side-filter.html.twig" %}
-
-        <button id="open-filter" class="filter-btn">
-            <i class="material-icons">filter_alt</i>
-        </button>
 
         <div class="entity-container">
             {% include 'event/_partials/tabs/content-tabs.html.twig' %}

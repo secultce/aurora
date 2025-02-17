@@ -59,6 +59,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_2,
@@ -92,6 +93,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_3,
@@ -125,6 +127,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_4,
@@ -158,6 +161,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_5,
@@ -191,6 +195,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_6,
@@ -225,6 +230,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_7,
@@ -260,6 +266,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_8,
@@ -296,6 +303,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_9,
@@ -328,6 +336,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
         [
             'id' => self::SPACE_ID_10,
@@ -361,6 +370,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
+            'spaceType' => SpaceTypeFixtures::SPACE_TYPE_ID_1,
         ],
     ];
 
@@ -403,6 +413,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
             AgentFixtures::class,
             ActivityAreaFixtures::class,
             TagFixtures::class,
+            SpaceTypeFixtures::class,
         ];
     }
 

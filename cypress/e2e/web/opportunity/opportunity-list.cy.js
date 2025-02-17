@@ -39,10 +39,6 @@ describe('Página de listar Oportunidades', () => {
 
     it('Garante que os cards de oportunidades estão visíveis', () => {
         cy.get('.align-items-end > .fw-bold').contains('10 Oportunidades Encontradas').should('be.visible');
-        cy.get('.text-nowrap').contains('Ordenar por').should('be.visible');
-        cy.get('#sort-options').select('recent').should('have.value', 'recent');
-        cy.get('#sort-options').select('old').should('have.value', 'old');
-
 
         cy.get(':nth-child(2) > .opportunity-card-header > .flex-wrap > :nth-child(1) > .fw-bold').should('be.visible');
         cy.get(':nth-child(2) > .opportunity-card-header > .flex-wrap > .flex-row-reverse > span').should('be.visible');
@@ -73,5 +69,11 @@ describe('Página de listar Oportunidades', () => {
         cy.get('#open-filter').click();
         cy.get('#filter-sidebar .btn-outline-primary').contains('Limpar todos os filtros').click();
         cy.get('.align-items-end > .fw-bold').contains('10 Oportunidades Encontradas').should('be.visible');
+    });
+
+    it('Garante que as opções de ordenar funcionam', () => {
+        cy.get(':nth-child(2) > .opportunity-card-header > .flex-column > .fw-bold').contains('Artistas de Rua').should('be.visible');
+        cy.get('#order-select').select('Mais Recente');
+        cy.get(':nth-child(2) > .opportunity-card-header > .flex-column > .fw-bold').contains('Concurso de Cordelistas').should('be.visible');
     });
 })
