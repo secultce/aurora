@@ -10,12 +10,14 @@ use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SpaceWebController extends AbstractWebController
 {
     public function __construct(
         public readonly SpaceServiceInterface $service,
         public readonly AgentServiceInterface $agentService,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -28,13 +30,16 @@ class SpaceWebController extends AbstractWebController
         $spaces = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalSpaces = count($spaces);
 
+        $days = $request->get('days', 7);
+        $recentSpaces = $this->service->countRecentRecords($days);
+
         $dashboard = [
             'color' => '#088140',
             'items' => [
                 new CardItem(icon: 'description', quantity: $totalSpaces, text: 'view.space.quantity.total'),
                 new CardItem(icon: 'event_note', quantity: 10, text: 'view.space.quantity.opened'),
                 new CardItem(icon: 'event_available', quantity: 20, text: 'view.space.quantity.finished'),
-                new CardItem(icon: 'today', quantity: 30, text: 'view.space.quantity.last_days'),
+                new CardItem(icon: 'today', quantity: $recentSpaces, text: $this->translator->trans('view.space.quantity.last_days', ['{days}' => $days])),
             ],
         ];
 

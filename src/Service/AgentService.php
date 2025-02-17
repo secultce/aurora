@@ -15,6 +15,7 @@ use App\Repository\Interface\OpportunityRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -34,8 +35,9 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($security);
+        parent::__construct($security, $this->entityManager, Agent::class);
     }
 
     public function count(?User $user = null): int

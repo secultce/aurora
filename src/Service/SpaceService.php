@@ -13,6 +13,7 @@ use App\Repository\Interface\SpaceRepositoryInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -31,8 +32,9 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($security);
+        parent::__construct($this->security, $this->entityManager, Space::class);
     }
 
     public function count(?Agent $createdBy = null): int

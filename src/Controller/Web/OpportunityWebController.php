@@ -10,11 +10,13 @@ use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
+use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OpportunityWebController extends AbstractWebController
 {
     public function __construct(
-        public readonly OpportunityServiceInterface $service
+        public readonly OpportunityServiceInterface $service,
+        private readonly TranslatorInterface $translator,
     ) {
     }
 
@@ -27,13 +29,16 @@ class OpportunityWebController extends AbstractWebController
         $opportunities = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalOpportunities = count($opportunities);
 
+        $days = $request->get('days', 7);
+        $recentOpportunities = $this->service->countRecentRecords($days);
+
         $dashboard = [
             'color' => '#009874',
             'items' => [
                 new CardItem(icon: 'description', quantity: $totalOpportunities, text: 'view.opportunity.quantity.total'),
                 new CardItem(icon: 'event_note', quantity: 10, text: 'view.opportunity.quantity.opened'),
                 new CardItem(icon: 'event_available', quantity: 20, text: 'view.opportunity.quantity.finished'),
-                new CardItem(icon: 'today', quantity: 30, text: 'view.opportunity.quantity.last_days'),
+                new CardItem(icon: 'today', quantity: $recentOpportunities, text: $this->translator->trans('view.opportunity.quantity.last_days', ['{days}' => $days])),
             ],
         ];
 

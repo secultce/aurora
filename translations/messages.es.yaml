@@ -532,7 +532,7 @@ view:
     not_set_datetime: Fecha y hora no definidas
     quantity:
       finished: Eventos Finalizados
-      last_days: Registrados en los últimos 7 días
+      last_days: Registrados en los últimos {days} días
       opened: Eventos en Curso
       total: Eventos Encontrados
 

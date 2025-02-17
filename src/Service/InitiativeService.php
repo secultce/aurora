@@ -13,6 +13,7 @@ use App\Repository\Interface\InitiativeRepositoryInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\InitiativeServiceInterface;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
@@ -31,8 +32,9 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($this->security);
+        parent::__construct($this->security, $this->entityManager, Initiative::class);
     }
 
     public function count(?Agent $createdBy = null): int

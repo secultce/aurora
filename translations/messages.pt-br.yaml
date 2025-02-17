@@ -690,7 +690,7 @@ view:
       total: Espaços Encontrados
       finished: Espaços Fechados
       opened: Espaços Abertos
-      last_days: Registrados nos últimos 7 dias
+      last_days: Registrados nos últimos {days} dias
     picture: Foto do Espaço
 
   registration:

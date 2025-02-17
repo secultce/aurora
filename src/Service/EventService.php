@@ -13,6 +13,7 @@ use App\Repository\Interface\EventRepositoryInterface;
 use App\Service\Interface\EventServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -31,8 +32,9 @@ readonly class EventService extends AbstractEntityService implements EventServic
         private Security $security,
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
+        private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($this->security);
+        parent::__construct($this->security, $this->entityManager, Event::class);
     }
 
     public function count(?Agent $createdBy = null): int

@@ -431,7 +431,7 @@ view:
       total: Agents Found
       culture: Cultural Agents
       inactive: Inactive Agents
-      last_days: Registered in the last 7 days
+      last_days: Registered in the last {days} days
     areas_of_expertise: Areas of Expertise
     collective_agents: Collective Agents
     individual_agents: Individual Agents
