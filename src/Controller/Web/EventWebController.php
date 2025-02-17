@@ -21,7 +21,9 @@ class EventWebController extends AbstractWebController
     {
         $filters = $request->query->all();
 
-        $events = $this->service->list(params: $filters);
+        $filters = $this->getOrderParam($filters);
+
+        $events = $this->service->list(params: $filters['filters'], order: $filters['order']);
         $totalEvents = count($events);
 
         $dashboard = [

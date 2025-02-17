@@ -42,15 +42,13 @@ FORM_FILTER_SIDEBAR.addEventListener('submit', function (event) {
     window.location.href = `${window.location.pathname}?${params.toString()}`;
 });
 
-if (ORDER_SELECT) {
-    ORDER_SELECT.addEventListener('change', () => {
-        const orderValue = ORDER_SELECT.value;
+ORDER_SELECT.addEventListener('change', () => {
+    const orderValue = ORDER_SELECT.value;
 
-        const url = new URL(window.location.href);
-        const params = url.searchParams;
+    const url = new URL(window.location.href);
+    const params = url.searchParams;
 
-        params.set('order', orderValue);
+    params.set('order', orderValue);
 
-        window.location.href = `${window.location.pathname}?${params.toString()}`;
-    });
-}
+    window.location.href = `${window.location.pathname}?${params.toString()}`;
+});

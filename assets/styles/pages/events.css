@@ -1,21 +1,13 @@
-.event-sort {
-    align-items: center;
-    gap: 1.875rem;
-}
-
 .total-events {
     font-weight: bold;
     margin-bottom: 0;
     align-self: center;
-}
-
-.event-options {
-    text-wrap: nowrap;
+    height: 1.875rem;
 }
 
 .event-card {
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0 0.625rem rgba(0, 0, 0, 0.1);
     padding: 20px;
     margin-bottom: 0.9375rem;
 }
@@ -27,8 +19,8 @@
 }
 
 .event-image {
-    width: 50px;
-    height: 50px;
+    width: 3.125rem;
+    height: 3.125rem;
 }
 
 .event-name {

@@ -45,11 +45,7 @@ describe('Pagina de listar Eventos', () => {
         cy.get('#pills-list-tab').should('have.class', 'active');
         cy.get('#pills-list > #scroll-container > [data-cy=pills-list-content]').should('be.visible');
 
-        cy.get('.total-events').contains(/^\d+ Eventos Encontrados/).should('be.visible');
-        cy.get('.justify-content-between > .d-flex').contains('Ordenar por').should('be.visible');
-        cy.get('#sort-options').select('recent').should('have.value', 'recent');
-        cy.get('#sort-options').select('old').should('have.value', 'old');
-
+        cy.get('[data-cy=pills-list-content]').contains(/^\d+ Eventos Encontrados/).should('be.visible');
 
         cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-0 > .event-name').contains('Nordeste Literário').should('be.visible');
 
@@ -84,5 +80,11 @@ describe('Pagina de listar Eventos', () => {
         cy.get('#open-filter').click();
         cy.get('.btn-outline-primary').click();
         cy.get('.total-events').contains(/^\d+ Eventos Encontrados/).should('be.visible');
+    });
+
+    it('Garante que as opções de ordenar funcionam', () => {
+        cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-0 > .event-name').contains('Nordeste Literário').should('be.visible');
+        cy.get('#order-select').select('Mais Recente');
+        cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-0 > .event-name').contains('Festival Sertão Criativo').should('be.visible');
     });
 });

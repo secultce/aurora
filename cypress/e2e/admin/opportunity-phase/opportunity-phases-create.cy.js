@@ -23,7 +23,8 @@ describe('Painel de Controle - Página de detalhes de uma Oportunidade', () => {
         cy.contains('Nova Fase').click();
         cy.get('#createPhaseModal').invoke('show');
         cy.get('input#phaseName').type('Fase de Teste');
-        cy.get('textarea#phaseDescription').type('Descrição da fase de teste');
+        cy.wait(250);
+        cy.get('#phaseDescription').type('Descrição da fase de teste');
         cy.get('input#startDate').type('2025-01-25');
         cy.get('input#endDate').type('2025-02-10');
         cy.get('select#status').select('1');
