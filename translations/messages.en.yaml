@@ -11,6 +11,7 @@ accompany: To accompany
 action: Action
 actions: Actions
 activity: Activity
+activity_area: Area of activity
 activity_created: Area of activity was created
 activity_deleted: Area of activity has been excluded
 activity_updated: Area of activity has been updated
@@ -222,6 +223,12 @@ notifications: Notifications
 no: No
 no_inform: Do Not Inform
 no_phase: No phase registered.
+no_site: No Website
+no_type: No Type
+no_address: No address
+no_title: Untitled
+no_description: No description
+no_image: Image not available
 none_area_specified: None area specified
 not_informed: Not informed
 not_sent: Not sent

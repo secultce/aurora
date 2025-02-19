@@ -1,7 +1,9 @@
 <div class="item-card-home bg-white p-4 rounded shadow-sm mt-4">
     <div class="row align-items-center">
         <div class="col-md-3">
-            <img src="{{ image_url|default(asset('img/default-image.png')) }}" alt="{{ image_alt|default('space.image'|trans) }}" class="rounded-circle img-fluid profile-image">
+            <img src="{{ image_url|default(asset('img/default-image.png')) }}"
+                 alt="{{ image_alt|default('Imagem não disponível') }}"
+                 class="rounded-circle img-fluid profile-image">
         </div>
         <div class="col-md-9 position-relative">
             <div class="d-flex align-items-center justify-content-end">
@@ -13,28 +15,32 @@
 
     <div class="row align-items-start mt-1">
         <div class="d-flex justify-content-between align-items-start">
-            <h4 class="fw-bold">
-                {{ title|default('space.title'|trans) }}
-            </h4>
+            <h4 class="fw-bold">{{ title }}</h4>
         </div>
     </div>
 
     <p><span class="text-uppercase">{{ 'type'|trans }}:</span> <span class="text-green">{{ type }}</span></p>
     <p><span class="text-uppercase">{{ 'where'|trans }}:</span> <span class="text-info">{{ location }}</span></p>
+    <p>{{ description }}</p>
 
-    <p>{{ description|default('description') }}</p>
+    <h6 class="fw-bold">{{ 'activity_area'|trans }} ({{ interest_areas_count }}):</h6>
+    <p class="fw-bold text-info">{{ interest_areas }}</p>
 
-    <h6 class="fw-bold">{{ 'tags'|trans }} ({{ tags_count|default(0) }}):</h6>
+    <h6 class="fw-bold">{{ 'tags'|trans }} ({{ tags_count }}):</h6>
     <p class="fw-bold text-info">{{ tags }}</p>
 
-    <h6 class="fw-bold">{{ 'seals'|trans }} ({{ seals_count|default(0) }}):</h6>
-    <div class="d-flex">
-        <div class="badge bg-secondary text-white rounded-pill px-2 py-1">{{ seals|default('+0') }}</div>
-    </div>
+    <p><strong>Site:</strong>
+        {% if site != 'no_site'|trans %}
+            <a href="{{ site }}" target="_blank">{{ site }}</a>
+        {% else %}
+            {{ site }}
+        {% endif %}
+    </p>
 
     <div class="row mt-3">
         <div class="col-md position-relative">
-            <a href="{{ path('web_space_getOne', { id: space.id }) }}" class="btn btn-primary d-flex align-items-center justify-content-center">
+            <a href="{{ path('web_space_getOne', { id: space.id }) }}"
+               class="btn btn-primary d-flex align-items-center justify-content-center">
                 <span class="fw-bold">{{ 'check'|trans }}</span>
                 <i class="material-icons ms-3">arrow_forward</i>
             </a>

@@ -11,6 +11,7 @@ accompany: Acompanhar
 action: Ação
 actions: Ações
 activity: Atividade
+activity_area: Área de atuação
 activity_created: Área de atuação foi criada
 activity_deleted: Área de atuação foi excluída
 activity_updated: Área de atuação foi atualizado
@@ -221,6 +222,12 @@ notifications: Notificações
 no: Não
 no_inform: Não Informar
 no_phase: Nenhuma fase disponível
+no_site: Sem Site
+no_type: Sem Tipo
+no_address: Sem endereço
+no_title: Sem título
+no_description: Sem descrição
+no_image: Imagem não disponível
 none_area_specified: Nenhuma área especificada
 not_informed: Não informado
 not_sent: Não enviadas

@@ -97,6 +97,7 @@ class AddressTest extends AbstractWebTestCase
             'deletedAt' => $address->getDeletedAt()->format('Y-m-d H:i:s'),
             'owner' => null,
         ], $address->toArray());
+        $this->assertEquals("Rua Barca Velha, 623 - Quintino Cunha, Alta Floresta D'Oeste-RO, 60000-00", $address->getCompleteAddress());
         $this->assertIsArray($address->toArray());
     }
 }
