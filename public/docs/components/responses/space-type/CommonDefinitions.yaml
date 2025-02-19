@@ -1,0 +1,12 @@
+SpaceTypeBase:
+  type: object
+  properties:
+    id:
+      type: string
+      format: uuid
+      description: Identificador único do Tipo de espaço.
+    name:
+      type: string
+      maxLength: 20
+      description: Nome do tipo de espaço.
+      examples: [ Teatro ]

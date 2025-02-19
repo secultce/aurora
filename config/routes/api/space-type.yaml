@@ -1,0 +1,14 @@
+get:
+  path: /{id}
+  controller: App\Controller\Api\SpaceTypeApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\SpaceTypeApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\SpaceTypeApiController::remove
+  methods: ['DELETE']

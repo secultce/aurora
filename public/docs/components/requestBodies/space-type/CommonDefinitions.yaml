@@ -1,0 +1,8 @@
+TagBase:
+  type: object
+  properties:
+    name:
+      type: string
+      maxLength: 20
+      description: Nome do Tipo de Espaço.
+      examples: [ Laboratório ]

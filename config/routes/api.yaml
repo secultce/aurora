@@ -86,6 +86,12 @@ api_space:
   name_prefix: api_space_
   trailing_slash_on_root: false
 
+api_space_type:
+  resource: 'api/space-type.yaml'
+  prefix: /api/space-types
+  name_prefix: api_space_type_
+  trailing_slash_on_root: false
+
 api_tag:
   resource: 'api/tag.yaml'
   prefix: /api/tags

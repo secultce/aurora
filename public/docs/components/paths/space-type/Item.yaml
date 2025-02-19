@@ -1,0 +1,29 @@
+get:
+  summary: Recupera um único tipo de espaço
+  tags:
+    - Tipos de Espaço
+  responses:
+    '200':
+      description: tipo de espaço encontrado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space-type/SpaceTypeGetItemResponse.yaml'
+    '404':
+      description: Tipo de espaço não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space-type/SpaceTypeNotFound.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Tipos de Espaço
+  summary: Remove um único tipo de espaço
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+          application/json: {}

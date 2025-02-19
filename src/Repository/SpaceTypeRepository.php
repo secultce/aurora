@@ -5,10 +5,10 @@ declare(strict_types=1);
 namespace App\Repository;
 
 use App\Entity\SpaceType;
-use App\Repository\Interface\SpaceTypeInterface;
+use App\Repository\Interface\SpaceTypeRepositoryInterface;
 use Doctrine\Persistence\ManagerRegistry;
 
-class SpaceTypeRepository extends AbstractRepository implements SpaceTypeInterface
+class SpaceTypeRepository extends AbstractRepository implements SpaceTypeRepositoryInterface
 {
     public function __construct(ManagerRegistry $registry)
     {
@@ -21,5 +21,11 @@ class SpaceTypeRepository extends AbstractRepository implements SpaceTypeInterfa
         $this->getEntityManager()->flush();
 
         return $spaceType;
+    }
+
+    public function remove(SpaceType $spaceType): void
+    {
+        $this->getEntityManager()->remove($spaceType);
+        $this->getEntityManager()->flush();
     }
 }
