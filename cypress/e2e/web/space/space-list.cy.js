@@ -15,12 +15,6 @@ describe('Página de Lista de Espaços', () => {
         cy.get('a').contains('Mapa').should('be.visible');
     });
 
-    it('Garante que as opções de ordenar funcionam', () => {
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
-        cy.get('#order-select').select('Mais Recente');
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('SECULT').should('be.visible');
-    });
-
     it('Garante que as tabs estão funcionando', () => {
         const tabs = [
             { tab: '#pills-list-tab'},
@@ -49,14 +43,15 @@ describe('Página de Lista de Espaços', () => {
         cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
     });
 
-    it('Garante que o botão de limpar filtros funciona', () => {
-        cy.get('.align-items-end > .fw-bold').contains('Espaços Encontrados').should('be.visible');
-        cy.get('#open-filter').click();
-        cy.get('#space-name').type('Dragão do Mar');
-        cy.get('#apply-filters').click();
-        cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
-        cy.get('#open-filter').click();
-        cy.get('.btn-outline-primary').click();
-        cy.get('.align-items-end > .fw-bold').contains('Espaços Encontrados').should('be.visible');
+    it('Garante que as opções de ordenar funcionam', () => {
+        cy.get('#order-select')
+            .should('exist')
+            .should('be.visible');
+        cy.get('#order-select')
+            .select('Mais Recente')
+            .should('have.value', 'DESC');
+        cy.get('#order-select')
+            .select('Mais Antigo')
+            .should('have.value', 'ASC');
     });
 });

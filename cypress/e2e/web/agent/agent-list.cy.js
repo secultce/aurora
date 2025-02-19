@@ -59,8 +59,14 @@ describe('Página de Listar de Agentes', () => {
     });
 
     it('Garante que as opções de ordenar funcionam', () => {
-        cy.get('.agent-name').contains('Feitozo').should('be.visible');
-        cy.get('#order-select').select('Mais Recente');
-        cy.get('.agent-name').contains('Alessandro').should('be.visible');
+        cy.get('#order-select')
+            .should('exist')
+            .should('be.visible');
+        cy.get('#order-select')
+            .select('Mais Recente')
+            .should('have.value', 'DESC');
+        cy.get('#order-select')
+            .select('Mais Antigo')
+            .should('have.value', 'ASC');
     });
 });

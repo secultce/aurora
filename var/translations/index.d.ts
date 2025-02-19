@@ -767,6 +767,8 @@ export declare const VIEW_REGISTRATION_SPACE_REPORT_ROLE: Message<{ 'messages': 
 export declare const VIEW_REGISTRATION_SPACE_TRADITIONAL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_REGISTRATION_SPACE_TRADITIONAL_FIND: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_TAG_CREATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_TAG_EDIT: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const VIEW_TAG_MESSAGE_UPDATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_TAG_MESSAGE_CREATED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_TAG_MESSAGE_DELETED: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const VIEW_NOT_FOUND_ERROR404: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
