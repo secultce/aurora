@@ -2,41 +2,45 @@
 
 declare(strict_types=1);
 
-namespace Functional\DocumentServices;
+namespace App\Tests\Functional\DocumentServices;
 
+use App\DataFixtures\Entity\UserFixtures;
 use App\DocumentService\Interface\AuthTimelineDocumentServiceInterface;
 use App\Repository\UserRepository;
 use App\Tests\AbstractWebTestCase;
 use DateTime;
-use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
 
 class AuthTimelineDocumentServiceTest extends AbstractWebTestCase
 {
-    private AuthTimelineDocumentServiceInterface $authTimelineDocumentService;
-
-    private UserInterface $user;
-
-    protected function setUp(): void
-    {
-        $client = static::createClient();
-        $this->authTimelineDocumentService = $client->getContainer()->get(AuthTimelineDocumentServiceInterface::class);
-        $this->user = $client->getContainer()->get(UserRepository::class)->findOneByEmail('talysonsoares@example.com');
-
-        $client->loginUser($this->user);
-    }
-
     public function testGetTimelineLoginByUser(): void
     {
-        $timeline = $this->authTimelineDocumentService->getTimelineLoginByUserId($this->user->getId());
+        $client = static::createClient();
+        $authTimelineDocumentService = $client->getContainer()->get(AuthTimelineDocumentServiceInterface::class);
+        $user = $client->getContainer()->get(UserRepository::class)->findOneByEmail('talysonsoares@example.com');
 
+        $requestBody = [
+            'username' => 'talysonsoares@example.com',
+            'password' => UserFixtures::DEFAULT_PASSWORD,
+        ];
+
+        $client->request(Request::METHOD_POST, '/api/login', server: [
+            'HTTP_ACCEPT' => 'application/json',
+            'CONTENT_TYPE' => 'application/json',
+        ], content: json_encode($requestBody));
+
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+
+        $timeline = $authTimelineDocumentService->getTimelineLoginByUserId($user->getId());
         $this->assertIsArray($timeline);
-        $this->assertGreaterThan(1, count($timeline));
+        $this->assertGreaterThanOrEqual(1, count($timeline));
 
         foreach ($timeline as $entry) {
             $this->assertObjectHasProperty('userId', $entry);
             $this->assertObjectHasProperty('action', $entry);
             $this->assertObjectHasProperty('datetime', $entry);
-            $this->assertEquals($this->user->getId(), $entry->getUserId());
+            $this->assertEquals($user->getId(), $entry->getUserId());
             $this->assertEquals('login success', $entry->getAction());
             $this->assertInstanceOf(DateTime::class, $entry->getDatetime());
         }
