@@ -45,7 +45,12 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Instituição Cultural',
                 'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                 'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
@@ -79,7 +84,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Centro Cultural',
                 'description' => 'O Sítio das Artes é um espaço dedicado à promoção de atividades culturais e oficinas artísticas, com uma vasta programação para todas as idades.',
                 'location' => 'Av. das Artes, 123 – Fortaleza/CE – CEP: 60123-123',
-                'accessibility' => ['Banheiros adaptados', 'Rampa de acesso'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
@@ -113,7 +121,11 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Galeria de Arte',
                 'description' => 'A Galeria Caatinga é especializada em exposições de artistas regionais, com foco na arte nordestina e obras inspiradas pela fauna e flora do sertão.',
                 'location' => 'Rua do Sertão, 123 – Fortaleza/CE – CEP: 60123-456',
-                'accessibility' => ['Elevador adaptado', 'Sinalização tátil', 'Banheiros acessíveis'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
@@ -147,7 +159,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Centro de Literatura',
                 'description' => 'O Recanto do Cordel é um ponto de encontro para escritores e leitores de literatura de cordel, com eventos de declamação e oficinas.',
                 'location' => 'Rua das Letras, 456 – Fortaleza/CE – CEP: 60123-789',
-                'accessibility' => ['Banheiros adaptados', 'Rampa de acesso'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_6,
@@ -181,7 +196,11 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Centro Musical',
                 'description' => 'O Ritmos do Mundo promove eventos musicais de várias partes do mundo, com foco na diversidade e na fusão de estilos.',
                 'location' => 'Av. das Nações, 234 – Fortaleza/CE – CEP: 60123-987',
-                'accessibility' => ['Rampa de acesso', 'Banheiros acessíveis', 'Sinalização em braile'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
@@ -215,7 +234,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Museu',
                 'description' => 'A Casa do Sertão é um museu dedicado à história e cultura do sertão nordestino, com exposições interativas e oficinas educativas.',
                 'location' => 'Praça do Sertão, 567 – Fortaleza/CE – CEP: 60123-654',
-                'accessibility' => ['Elevador adaptado', 'Rampas de acesso'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
@@ -250,7 +272,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Centro de Música',
                 'description' => 'A Vila do Baião é um espaço dedicado à preservação e promoção do forró e de outros ritmos nordestinos, com aulas, ensaios e apresentações.',
                 'location' => 'Rua do Baião, 678 – Fortaleza/CE – CEP: 60123-321',
-                'accessibility' => ['Banheiros adaptados', 'Rampa de acesso'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
@@ -286,7 +311,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Centro Cultural',
                 'description' => 'O Centro Cultural Asa Branca oferece uma programação diversificada com exposições, apresentações teatrais e oficinas de arte.',
                 'location' => 'Av. Asa Branca, 789 – Fortaleza/CE – CEP: 60123-852',
-                'accessibility' => ['Elevador adaptado', 'Rampas de acesso'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
@@ -323,7 +351,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Centro de Capoeira',
                 'description' => 'A Casa da Capoeira é um espaço onde são realizadas aulas, rodas de capoeira e eventos culturais ligados à arte e história da capoeira.',
                 'location' => 'Rua da Luta, 432 – Fortaleza/CE – CEP: 60123-432',
-                'accessibility' => ['Banheiros adaptados', 'Rampas de acesso'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_4,
@@ -356,7 +387,11 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Complexo Cultural',
                 'description' => 'O Dragão do Mar é um dos maiores complexos culturais da região, com teatros, cinemas e galerias de arte que promovem a cultura local e internacional.',
                 'location' => 'Rua do Dragão, 987 – Fortaleza/CE – CEP: 60123-111',
-                'accessibility' => ['Banheiros adaptados', 'Rampas de acesso', 'Elevador adaptado'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
@@ -384,7 +419,12 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
                 'type' => 'Instituição Cultural',
                 'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                 'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
+            ],
+            'accessibilities' => [
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
             ],
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
@@ -412,6 +452,7 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
         return [
             AgentFixtures::class,
             ActivityAreaFixtures::class,
+            ArchitecturalAccessibilityFixtures::class,
             TagFixtures::class,
             SpaceTypeFixtures::class,
         ];

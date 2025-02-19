@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Entity;
 
 use App\Entity\ActivityArea;
 use App\Entity\Agent;
+use App\Entity\ArchitecturalAccessibility;
 use App\Entity\Space;
 use App\Entity\SpaceAddress;
 use App\Entity\SpaceType;
@@ -39,6 +40,15 @@ class SpaceTest extends AbstractWebTestCase
         $tag2->setId(Uuid::v4());
         $tag2->setName('Test');
 
+        $accessibility1 = new ArchitecturalAccessibility();
+        $accessibility1->setId(Uuid::v4());
+        $accessibility1->setName('Rampas');
+        $accessibility1->setDescription('Rampas de acesso para cadeirantes');
+        $accessibility2 = new ArchitecturalAccessibility();
+        $accessibility2->setId(Uuid::v4());
+        $accessibility2->setName('Elevadores');
+        $accessibility2->setDescription('Elevadores adaptados para acessibilidade');
+
         $spaceType = new SpaceType();
         $spaceType->setId(Uuid::v4());
         $spaceType->setName('Espaço Cultural');
@@ -64,12 +74,17 @@ class SpaceTest extends AbstractWebTestCase
             'type' => 'Instituição Cultural',
             'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
             'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-            'accessibility' => ['Banheiros adaptados', 'Rampa de acesso', 'Elevador adaptado', 'Sinalização tátil'],
         ];
         $tags = new ArrayCollection([
             $tag1,
             $tag2,
         ]);
+
+        $accessibilities = new ArrayCollection([
+            $accessibility1,
+            $accessibility2,
+        ]);
+
         $createdAt = new DateTimeImmutable();
         $updatedAt = new DateTime();
         $deletedAt = new DateTime();
@@ -99,6 +114,7 @@ class SpaceTest extends AbstractWebTestCase
         $space->setAddress($spaceAddress);
         $space->setExtraFields($extraField);
         $space->setTags($tags);
+        $space->setAccessibilities($accessibilities);
         $space->setSpaceType($spaceType);
         $space->setCreatedAt($createdAt);
         $space->setUpdatedAt($updatedAt);
@@ -145,6 +161,9 @@ class SpaceTest extends AbstractWebTestCase
         $this->assertEquals($tags, $space->getTags());
         $this->assertInstanceOf(Collection::class, $space->getTags());
 
+        $this->assertEquals($accessibilities, $space->getAccessibilities());
+        $this->assertInstanceOf(Collection::class, $space->getAccessibilities());
+
         $this->assertEquals($spaceType, $space->getSpaceType());
         $this->assertInstanceOf(SpaceType::class, $space->getSpaceType());
 
@@ -176,6 +195,7 @@ class SpaceTest extends AbstractWebTestCase
             'extraFields' => $extraField,
             'activityAreas' => array_map(fn (ActivityArea $area) => $area->toArray(), $space->getActivityAreas()->toArray()),
             'tags' => array_map(fn (Tag $tag) => $tag->toArray(), $tags->toArray()),
+            'accessibilities' => array_map(fn (ArchitecturalAccessibility $accessibility) => $accessibility->toArray(), $accessibilities->toArray()),
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt->format(DateFormatHelper::DEFAULT_FORMAT),
