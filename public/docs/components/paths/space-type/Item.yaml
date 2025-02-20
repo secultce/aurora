@@ -16,6 +16,33 @@ get:
           schema:
             $ref: '../../responses/space-type/SpaceTypeNotFound.yaml'
 
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Tipos de Espaço
+  summary: Atualiza um único tipo de espaço
+  requestBody:
+    description: Tipo de espaço
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/space-type/SpaceTypePatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Tipo de espaço atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space-type/SpaceTypePatchItemResponse.yaml'
+    '400':
+      description: Dados inválidos, tipo de espaço não atualizado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
+
 delete:
   parameters:
     - $ref: '../../parameters/path/id.yaml'

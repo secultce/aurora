@@ -1,4 +1,4 @@
-TagBase:
+SpaceTypeBase:
   type: object
   properties:
     name:

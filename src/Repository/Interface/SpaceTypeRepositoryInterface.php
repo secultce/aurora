@@ -9,4 +9,6 @@ use App\Entity\SpaceType;
 interface SpaceTypeRepositoryInterface
 {
     public function save(SpaceType $spaceType): SpaceType;
+
+    public function remove(SpaceType $spaceType): void;
 }

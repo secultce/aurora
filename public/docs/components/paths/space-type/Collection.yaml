@@ -12,3 +12,29 @@ get:
             items:
               allOf:
                 - $ref: '../../responses/space-type/SpaceTypeCollectionResponse.yaml'
+
+post:
+  tags:
+    - Tipos de Espaço
+  summary: Cria um novo tipo de espaço
+  requestBody:
+    description: Tipo de espaço
+    required: true
+    content:
+      application/json:
+        schema:
+          allOf:
+            - $ref: '../../requestBodies/space-type/SpaceTypePostItemRequest.yaml'
+  responses:
+    '201':
+      description: Tipo de espaço criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/space-type/SpaceTypePostItemResponse.yaml'
+    '400':
+      description: Dados inválidos, tipo de espaço não criado
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/InvalidResponse.yaml'
