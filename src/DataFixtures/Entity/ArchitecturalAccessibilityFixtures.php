@@ -81,7 +81,6 @@ final class ArchitecturalAccessibilityFixtures extends AbstractFixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(ArchitecturalAccessibility::class);
         $this->createArchitecturalAccessibilities($manager);
     }
 

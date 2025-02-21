@@ -460,7 +460,6 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(Space::class);
         $this->createSpaces($manager);
         $this->updateSpaces($manager);
         $this->manualLogout();

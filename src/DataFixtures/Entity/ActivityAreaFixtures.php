@@ -77,7 +77,6 @@ final class ActivityAreaFixtures extends AbstractFixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(ActivityArea::class);
         $this->createActivityAreas($manager);
     }
 

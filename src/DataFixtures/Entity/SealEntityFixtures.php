@@ -130,7 +130,6 @@ final class SealEntityFixtures extends AbstractFixture implements DependentFixtu
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(SealEntity::class);
         $this->createSealEntities($manager);
         $this->manualLogout();
     }

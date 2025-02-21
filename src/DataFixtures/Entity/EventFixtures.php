@@ -462,7 +462,6 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(Event::class);
         $this->createEvents($manager);
         $this->updateEvents($manager);
         $this->manualLogout();

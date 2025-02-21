@@ -84,7 +84,6 @@ final class TagFixtures extends AbstractFixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(Tag::class);
         $this->createTags($manager);
         $this->updateTags($manager);
         $this->manualLogout();

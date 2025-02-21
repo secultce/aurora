@@ -235,7 +235,6 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(Organization::class);
         $this->createOrganizations($manager);
         $this->updateOrganizations($manager);
         $this->manualLogout();

@@ -308,7 +308,6 @@ final class InscriptionPhaseReviewFixtures extends AbstractFixture implements De
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(InscriptionPhaseReview::class);
         $this->createInscriptionPhaseReview($manager);
         $this->updateInscriptionPhaseReview($manager);
         $this->manualLogout();

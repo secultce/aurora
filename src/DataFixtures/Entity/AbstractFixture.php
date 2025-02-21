@@ -36,14 +36,4 @@ abstract class AbstractFixture extends Fixture
     {
         $this->tokenStorage->setToken(null);
     }
-
-    public function truncateTable(string $entity): void
-    {
-        $classMetadata = $this->entityManager->getClassMetadata($entity);
-        $tableName = $classMetadata->getTableName();
-
-        $conn = $this->entityManager->getConnection();
-
-        $conn->executeStatement(sprintf('TRUNCATE TABLE %s CASCADE', $tableName));
-    }
 }

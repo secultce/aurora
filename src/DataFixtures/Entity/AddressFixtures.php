@@ -181,7 +181,6 @@ class AddressFixtures extends AbstractFixture implements DependentFixtureInterfa
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(Address::class);
         $this->createAddresses($manager);
         $this->updateAddresses($manager);
     }

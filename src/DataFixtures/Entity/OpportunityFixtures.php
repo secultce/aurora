@@ -308,7 +308,6 @@ final class OpportunityFixtures extends AbstractFixture implements DependentFixt
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(Opportunity::class);
         $this->createOpportunities($manager);
         $this->updateOpportunities($manager);
         $this->manualLogout();

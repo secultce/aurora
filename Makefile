@@ -39,7 +39,7 @@ migrate_odm:
 
 # Executa as fixtures de dados
 load_fixtures:
-	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n --append --purge-exclusions=city --purge-exclusions=state"
+	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n --purge-exclusions=city --purge-exclusions=state"
 
 # Instala dependências do frontend
 install_frontend:
