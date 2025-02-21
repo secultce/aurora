@@ -124,7 +124,6 @@ class AgentTest extends TestCase
         ];
 
         $actualArray = $agent->toArray();
-        $actualArray['organizations'] = $actualArray['organizations']->toArray();
 
         $this->assertSame($expectedArray, $actualArray);
     }

@@ -4,11 +4,14 @@ declare(strict_types=1);
 
 namespace App\Serializer\Denormalizer;
 
+use App\Entity\ActivityArea;
 use App\Entity\Agent;
 use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
+use App\Entity\Tag;
 use App\Service\Interface\FileServiceInterface;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\DependencyInjection\Attribute\Autowire;
 use Symfony\Component\HttpFoundation\File\File;
@@ -64,6 +67,24 @@ readonly class EventDenormalizer implements DenormalizerInterface
         if (isset($data['createdBy'])) {
             $data['createdBy'] = $this->entityManager->getRepository(Agent::class)->find($data['createdBy']);
             $event->setCreatedBy($data['createdBy']);
+        }
+
+        if (true === array_key_exists('activityAreas', $data)) {
+            $activityAreas = array_map(
+                fn (string $id) => $this->entityManager->find(ActivityArea::class, $id),
+                $data['activityAreas']
+            );
+
+            $event->setActivityAreas(new ArrayCollection($activityAreas));
+        }
+
+        if (true === array_key_exists('tags', $data)) {
+            $tags = array_map(
+                fn (string $id) => $this->entityManager->find(Tag::class, $id),
+                $data['tags']
+            );
+
+            $event->setTags(new ArrayCollection($tags));
         }
 
         return $event;
