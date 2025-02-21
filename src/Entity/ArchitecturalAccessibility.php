@@ -4,26 +4,27 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Repository\ArchitecturalAccessibilityRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity]
-class ArchitecturalAccessibility
+#[ORM\Entity(repositoryClass: ArchitecturalAccessibilityRepository::class)]
+class ArchitecturalAccessibility extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['space.get', 'space.get.item', 'architectural_accessibility.get', 'architectural_accessibility.get.item'])]
+    #[Groups(['space.get', 'space.get.item', 'architectural-accessibility.get'])]
     private Uuid $id;
 
     #[ORM\Column(type: Types::STRING, length: 50)]
-    #[Groups(['space.get', 'space.get.item', 'architectural_accessibility.get', 'architectural_accessibility.get.item'])]
+    #[Groups(['space.get', 'space.get.item', 'architectural-accessibility.get'])]
     private string $name;
 
     #[ORM\Column(type: Types::STRING, length: 255, nullable: true)]
-    #[Groups(['space.get', 'space.get.item', 'architectural_accessibility.get', 'architectural_accessibility.get.item'])]
+    #[Groups(['space.get', 'space.get.item', 'architectural-accessibility.get'])]
     private ?string $description = null;
 
     public function getId(): Uuid

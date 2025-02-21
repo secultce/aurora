@@ -1,0 +1,24 @@
+create:
+  path: /
+  controller: App\Controller\Api\ArchitecturalAccessibilityApiController::create
+  methods: ['POST']
+
+get:
+  path: /{id}
+  controller: App\Controller\Api\ArchitecturalAccessibilityApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\ArchitecturalAccessibilityApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\ArchitecturalAccessibilityApiController::remove
+  methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\ArchitecturalAccessibilityApiController::update
+  methods: ['PATCH']

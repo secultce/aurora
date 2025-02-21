@@ -1,0 +1,63 @@
+get:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Acessibilidade arquitetônica
+  summary: Recupera uma única acessibilidade arquitetônica
+  responses:
+    '200':
+      description: Acessibilidade arquitetônica encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityGetItemResponse.yaml'
+    '404':
+      description: Acessibilidade arquitetônica não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityNotFound.yaml'
+
+patch:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Acessibilidade arquitetônica
+  summary: Atualiza uma única acessibilidade arquitetônica
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/architectural-accessibility/ArchitecturalAccessibilityPatchItemRequest.yaml'
+  responses:
+    '200':
+      description: Acessibilidade arquitetônica atualizada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityPatchItemResponse.yaml'
+    '404':
+      description: Acessibilidade arquitetônica não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityNotFound.yaml'
+
+delete:
+  parameters:
+    - $ref: '../../parameters/path/id.yaml'
+  tags:
+    - Acessibilidade arquitetônica
+  summary: Remove uma única acessibilidade arquitetônica
+  responses:
+    '204':
+      description: Não possui conteúdo de resposta
+      content:
+          application/json: {}
+    '404':
+      description: Acessibilidade arquitetônica não encontrada
+      content:
+          application/json:
+            schema:
+              $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityNotFound.yaml'

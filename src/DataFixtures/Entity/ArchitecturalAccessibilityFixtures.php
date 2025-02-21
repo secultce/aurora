@@ -17,7 +17,7 @@ final class ArchitecturalAccessibilityFixtures extends AbstractFixture
     public const string ARCHITECTURAL_ACCESSIBILITY_ID_2 = 'a15f2534-425e-433e-b62e-bc17f8a00cb5';
     public const string ARCHITECTURAL_ACCESSIBILITY_ID_3 = '5c1d63c8-b41d-4d82-894c-b594ff7f75f4';
     public const string ARCHITECTURAL_ACCESSIBILITY_ID_4 = 'c6acee35-9dbe-478d-8be9-23bc3387e4c4';
-    public const string ARCHITECTURAL_ACCESSIBILITY_ID_5 = '55555555-5555-5555-5555-555555555555';
+    public const string ARCHITECTURAL_ACCESSIBILITY_ID_5 = '28f2835d-4186-4cda-8043-c940afd9dad0';
     public const string ARCHITECTURAL_ACCESSIBILITY_ID_6 = 'be565350-c6dc-4d72-93a6-42a0a1860bdd';
     public const string ARCHITECTURAL_ACCESSIBILITY_ID_7 = '637db28b-5183-4e5d-8d5a-829e8ab5472a';
     public const string ARCHITECTURAL_ACCESSIBILITY_ID_8 = '84b3082a-8497-484b-b648-bf19deadfce7';

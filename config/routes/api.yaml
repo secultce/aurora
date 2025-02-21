@@ -15,6 +15,12 @@ api_agents:
   name_prefix: api_agent_
   trailing_slash_on_root: false
 
+api_architectural_accessibility:
+  resource: 'api/architectural-accessibility.yaml'
+  prefix: /api/architectural-accessibilities
+  name_prefix: api_architectural_accessibility_
+  trailing_slash_on_root: false
+
 api_auth:
   resource: 'api/authentication.yaml'
   prefix: /api

@@ -3,6 +3,7 @@ info:
   title: API Aurora
   description: |-
     API responsável por praticamente todas as funcionalidades de gerenciamento:
+    - Acessibilidade Arquitetônica
     - Agentes
     - Áreas de atividade
     - Espaços
@@ -29,6 +30,8 @@ externalDocs:
 servers:
   - url: /api
 tags:
+  - name: Acessibilidade arquitetônica
+    description: Endpoints relacionados a acessibilidade arquitetônica
   - name: Autorização
     description: Endpoints relacionados a autorização
   - name: Agentes
@@ -72,6 +75,10 @@ paths:
     $ref: './components/paths/agent/Item.yaml'
   /agents/{id}/images:
     $ref: './components/paths/agent/UpdateImage.yaml'
+  /architectural-accessibilities:
+    $ref: './components/paths/architectural-accessibility/Collection.yaml'
+  /architectural-accessibilities/{id}:
+    $ref: './components/paths/architectural-accessibility/Item.yaml'
   /events:
     $ref: './components/paths/event/Collection.yaml'
   /events/{id}:
@@ -146,6 +153,8 @@ components:
       $ref: './components/schemas/activity-area.yaml'
     Agent:
       $ref: './components/schemas/agent.yaml'
+    ArchitecturalAccessibility:
+      $ref: './components/schemas/architectural-accessibility.yaml'
     Event:
       $ref: './components/schemas/event.yaml'
     Faq:
