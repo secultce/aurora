@@ -32,7 +32,7 @@ class AuditUpdateListenerTest extends AbstractWebTestCase
 
         /* @var SpaceTimeline[] $spaceTimelinesPreUpdate */
         $spaceTimelinesPreUpdate = $this->documentManager->getRepository(SpaceTimeline::class)
-            ->findBy(['resourceId' => SpaceFixtures::SPACE_ID_4, 'userId' => UserFixtures::USER_ID_2]);
+            ->findBy(['title' => 'The resource was updated', 'resourceId' => SpaceFixtures::SPACE_ID_4, 'userId' => UserFixtures::USER_ID_2]);
 
         $url = sprintf('%s/%s', self::BASE_URL, SpaceFixtures::SPACE_ID_4);
 
@@ -40,26 +40,36 @@ class AuditUpdateListenerTest extends AbstractWebTestCase
 
         $client->request(Request::METHOD_PATCH, $url, content: json_encode($requestBody));
 
-        self::assertResponseStatusCodeSame(Response::HTTP_OK);
+        $this->documentManager->flush();
+        $this->documentManager->clear();
 
-        if (null !== static::$kernel) {
-            static::ensureKernelShutdown();
-        }
+        self::assertResponseStatusCodeSame(Response::HTTP_OK);
 
         /** @var SpaceTimeline[] $spaceTimelinesPostUpdate */
         $spaceTimelinesPostUpdate = $this->documentManager->getRepository(SpaceTimeline::class)
-            ->findBy(['resourceId' => SpaceFixtures::SPACE_ID_4, 'userId' => UserFixtures::USER_ID_2]);
+            ->findBy(['title' => 'The resource was updated', 'resourceId' => SpaceFixtures::SPACE_ID_4, 'userId' => UserFixtures::USER_ID_2]);
 
         self::assertEquals('The resource was updated', $spaceTimelinesPostUpdate[0]->getTitle());
         self::assertSame(count($spaceTimelinesPostUpdate), count($spaceTimelinesPreUpdate) + 1);
 
-        $spaceTimelineUpdateArray = array_udiff($spaceTimelinesPostUpdate, $spaceTimelinesPreUpdate, function ($a, $b) {
-            return $a->getId() <=> $b->getId();
-        });
+        $preUpdateMap = array_combine(
+            array_map(fn ($item) => $item->getId(), $spaceTimelinesPreUpdate),
+            $spaceTimelinesPreUpdate
+        );
 
-        $spaceTimelineUpdate = reset($spaceTimelineUpdateArray);
+        $postUpdateMap = array_combine(
+            array_map(fn ($item) => $item->getId(), $spaceTimelinesPostUpdate),
+            $spaceTimelinesPostUpdate
+        );
 
-        $this->documentManager->remove($spaceTimelineUpdate);
+        $spaceTimelineUpdateArray = array_diff_key($postUpdateMap, $preUpdateMap);
+
+        foreach ($spaceTimelineUpdateArray as $document) {
+            if ($requestBody['name'] === $document->getTo()['name']) {
+                $this->documentManager->remove($document);
+            }
+        }
+
         $this->documentManager->flush();
     }
 }
