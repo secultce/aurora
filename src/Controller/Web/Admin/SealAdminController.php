@@ -19,6 +19,9 @@ class SealAdminController extends AbstractAdminController
     public const VIEW_ADD = 'seal/add.html.twig';
     public const VIEW_EDIT = 'seal/edit.html.twig';
 
+    public const CREATE_FORM_ID = 'add-seal';
+    public const EDIT_FORM_ID = 'edit-seal';
+
     public function __construct(
         private SealServiceInterface $sealService,
         private readonly TranslatorInterface $translator
@@ -50,8 +53,12 @@ class SealAdminController extends AbstractAdminController
     public function add(Request $request, ValidatorInterface $validator): Response
     {
         if ('POST' !== $request->getMethod()) {
-            return $this->render(self::VIEW_ADD);
+            return $this->render(self::VIEW_ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         try {
             $this->sealService->create([
@@ -63,12 +70,12 @@ class SealAdminController extends AbstractAdminController
         } catch (ValidatorException $exception) {
             return $this->render(self::VIEW_ADD, [
                 'errors' => $exception->getConstraintViolationList(),
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         } catch (Exception $exception) {
             return $this->render(self::VIEW_ADD, [
-                'errors' => [
-                    $exception->getMessage(),
-                ],
+                'errors' => [$exception->getMessage()],
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         }
 
@@ -99,8 +106,11 @@ class SealAdminController extends AbstractAdminController
         if (Request::METHOD_POST !== $request->getMethod()) {
             return $this->render(self::VIEW_EDIT, [
                 'seal' => $seal,
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         try {
             $this->sealService->update(Uuid::fromString($id), [
@@ -116,13 +126,13 @@ class SealAdminController extends AbstractAdminController
             return $this->render(self::VIEW_EDIT, [
                 'seal' => $seal,
                 'errors' => $exception->getConstraintViolationList(),
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         } catch (Exception $exception) {
             return $this->render(self::VIEW_EDIT, [
                 'seal' => $seal,
-                'errors' => [
-                    $exception->getMessage(),
-                ],
+                'errors' => [$exception->getMessage()],
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
     }

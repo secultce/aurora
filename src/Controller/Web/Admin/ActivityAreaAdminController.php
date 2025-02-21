@@ -21,6 +21,9 @@ class ActivityAreaAdminController extends AbstractWebController
     public const VIEW_ADD = '_admin/activity-area/create.html.twig';
     public const VIEW_EDIT = '_admin/activity-area/edit.html.twig';
 
+    public const CREATE_FORM_ID = 'add-activity-area';
+    public const EDIT_FORM_ID = 'edit-activity-area';
+
     public function __construct(
         private ActivityAreaServiceInterface $activityAreaService,
         private readonly TranslatorInterface $translator
@@ -30,8 +33,12 @@ class ActivityAreaAdminController extends AbstractWebController
     public function add(Request $request): Response
     {
         if (!$request->isMethod(Request::METHOD_POST)) {
-            return $this->render(self::VIEW_ADD);
+            return $this->render(self::VIEW_ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $errors = [];
 
@@ -52,7 +59,10 @@ class ActivityAreaAdminController extends AbstractWebController
         }
 
         if (!empty($errors)) {
-            return $this->render(self::VIEW_ADD, ['errors' => $errors]);
+            return $this->render(self::VIEW_ADD, [
+                'errors' => $errors,
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
 
         return $this->redirectToRoute('admin_activity_area_list');
@@ -95,8 +105,11 @@ class ActivityAreaAdminController extends AbstractWebController
         if (!$request->isMethod(Request::METHOD_POST)) {
             return $this->render(self::VIEW_EDIT, [
                 'activity_area' => $activityArea,
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         try {
             $this->activityAreaService->update(Uuid::fromString($id), [
@@ -113,6 +126,7 @@ class ActivityAreaAdminController extends AbstractWebController
             return $this->render(self::VIEW_EDIT, [
                 'activity_area' => $activityArea,
                 'errors' => $exception->getConstraintViolationList(),
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
     }

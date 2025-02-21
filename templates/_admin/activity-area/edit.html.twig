@@ -11,6 +11,7 @@
                     <div class="card card-body">
                         <h2>{{ 'edit_activity_area'|trans }}</h2>
                         <form method="POST">
+                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
                             <div class="mb-3">
                                 <label for="name" class="form-label">{{ 'name'|trans }}</label>
                                 <input type="text" id="name" name="name" class="form-control" value="{{ activity_area.name }}" required>

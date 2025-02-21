@@ -16,6 +16,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class InitiativeAdminController extends AbstractAdminController
 {
+    public const CREATE_FORM_ID = 'add-initiative';
+
     public function __construct(
         private readonly InitiativeServiceInterface $service,
         private readonly InitiativeTimelineDocumentService $documentService,
@@ -32,11 +34,14 @@ class InitiativeAdminController extends AbstractAdminController
         return $this->render('initiative/create.html.twig', [
             'id' => Uuid::v4()->toRfc4122(),
             'agents' => $agents,
+            'form_id' => self::CREATE_FORM_ID,
         ]);
     }
 
     public function store(Request $request): Response
     {
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
+
         $data = $request->request->all();
 
         try {
@@ -51,6 +56,7 @@ class InitiativeAdminController extends AbstractAdminController
             return $this->render('initiative/create.html.twig', [
                 'id' => Uuid::v4(),
                 'agents' => $agents,
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         } catch (Exception $exception) {
             $this->addFlash('error', $this->translator->trans('view.entities.message.required_fields'));
@@ -60,6 +66,7 @@ class InitiativeAdminController extends AbstractAdminController
             return $this->render('initiative/create.html.twig', [
                 'id' => Uuid::v4(),
                 'agents' => $agents,
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         }
 

@@ -17,6 +17,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class AuthenticationWebController extends AbstractWebController
 {
+    public const REGISTER_FORM_ID = 'add-user';
+
     public function __construct(
         private readonly TranslatorInterface $translator,
         private readonly UserServiceInterface $userService,
@@ -52,8 +54,11 @@ class AuthenticationWebController extends AbstractWebController
         if (false === $request->isMethod('POST')) {
             return $this->render('authentication/register.html.twig', [
                 'error' => $error,
+                'form_id' => self::REGISTER_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::REGISTER_FORM_ID, $request);
 
         $firstName = $request->request->get('first_name');
         $lastName = $request->request->get('last_name');
@@ -87,6 +92,7 @@ class AuthenticationWebController extends AbstractWebController
 
         return $this->render('authentication/register.html.twig', [
             'error' => $error,
+            'form_id' => self::REGISTER_FORM_ID,
         ]);
     }
 }

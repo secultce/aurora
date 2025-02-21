@@ -22,6 +22,7 @@
                         <hr>
 
                         <form action="{{ path('admin_space_create') }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
                             <div class="mb-3">
                                 <label for="name" class="mb-1">{{ 'name'|trans }}</label>
                                 <input type="text" class="form-control" id="name" name="name" data-cy="name">

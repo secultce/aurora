@@ -75,6 +75,7 @@
 <div class="modal fade" id="createPhaseModal" tabindex="-1" aria-labelledby="createPhaseModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <form action="{{ path('admin_opportunity_phase_store', { 'opportunityId': opportunity.id }) }}" method="post">
+            <input type="hidden" name="token" value="{{ csrf_token(create_phase_form_id) }}">
             <input type="hidden" name="opportunityId" value="{{ opportunity.id }}">
             <div class="modal-content">
                 <div class="modal-header">

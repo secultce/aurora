@@ -22,6 +22,9 @@ class SpaceAdminController extends AbstractAdminController
     private const VIEW_ADD = 'space/create.html.twig';
     private const VIEW_EDIT = 'space/edit.html.twig';
 
+    public const CREATE_FORM_ID = 'add-space';
+    public const EDIT_FORM_ID = 'edit-space';
+
     public function __construct(
         private readonly SpaceServiceInterface $service,
         private readonly SpaceTimelineDocumentService $documentService,
@@ -52,8 +55,12 @@ class SpaceAdminController extends AbstractAdminController
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
-            return $this->render(self::VIEW_ADD);
+            return $this->render(self::VIEW_ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $name = $request->request->get('name');
         $maxCapacity = (int) $request->request->get('maxCapacity');
@@ -75,6 +82,7 @@ class SpaceAdminController extends AbstractAdminController
 
             return $this->render(self::VIEW_ADD, [
                 'error' => $exception->getMessage(),
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         }
 
@@ -106,8 +114,11 @@ class SpaceAdminController extends AbstractAdminController
         if (Request::METHOD_POST !== $request->getMethod()) {
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         $name = $request->request->get('name');
         $description = $request->request->get('extraFields')['description'] ?? null;
@@ -132,6 +143,7 @@ class SpaceAdminController extends AbstractAdminController
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
                 'error' => $exception->getMessage(),
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
     }

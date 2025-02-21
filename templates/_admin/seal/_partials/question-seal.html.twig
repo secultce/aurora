@@ -2,6 +2,7 @@
     <h2 class="form-title">{{ 'view.seal.create' | trans }}</h2>
 
     <form method="POST" action="{{ path('admin_seal_add') }}">
+        <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
         <div class="mb-3">
             <label for="name" class="form-label">{{ 'seal_name' | trans }}</label>
             <input type="text" class="form-control" id="name" name="name" placeholder={{ 'name' | trans}} required>

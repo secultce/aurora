@@ -16,6 +16,8 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OpportunityPhaseAdminController extends AbstractAdminController
 {
+    public const CREATE_FORM_ID = 'add-opportunity-phase';
+
     public function __construct(
         private readonly PhaseServiceInterface $phaseService,
         private readonly PhaseTimelineDocumentService $documentService,
@@ -48,6 +50,8 @@ class OpportunityPhaseAdminController extends AbstractAdminController
 
     public function store(Request $request): Response
     {
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
+
         $data = $request->request->all();
 
         try {

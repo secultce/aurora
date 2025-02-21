@@ -19,6 +19,9 @@ class TagAdminController extends AbstractAdminController
     private const string LIST = 'tag/list.html.twig';
     private const string EDIT = 'tag/edit.html.twig';
 
+    public const CREATE_FORM_ID = 'add-tag';
+    public const EDIT_FORM_ID = 'edit-tag';
+
     public function __construct(
         private readonly TagService $tagService,
         private readonly TranslatorInterface $translator,
@@ -35,8 +38,12 @@ class TagAdminController extends AbstractAdminController
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
-            return $this->render(self::ADD);
+            return $this->render(self::ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $errors = [];
 
@@ -54,7 +61,10 @@ class TagAdminController extends AbstractAdminController
         }
 
         if (false === empty($errors)) {
-            return $this->render(self::ADD, ['errors' => $errors]);
+            return $this->render(self::ADD, [
+                'errors' => $errors,
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
 
         return $this->redirectToRoute('admin_tag_list');
@@ -85,8 +95,11 @@ class TagAdminController extends AbstractAdminController
         if ($request->isMethod(Request::METHOD_GET)) {
             return $this->render(self::EDIT, [
                 'tag' => $tag,
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         $errors = [];
 
@@ -107,6 +120,7 @@ class TagAdminController extends AbstractAdminController
         return $this->render(self::EDIT, [
             'tag' => $tag,
             'errors' => $errors,
+            'form_id' => self::EDIT_FORM_ID,
         ]);
     }
 }
