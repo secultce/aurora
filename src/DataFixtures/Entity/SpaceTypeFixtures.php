@@ -42,7 +42,6 @@ final class SpaceTypeFixtures extends AbstractFixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(SpaceType::class);
         $this->createSpaceTypes($manager);
         $this->manualLogout();
     }

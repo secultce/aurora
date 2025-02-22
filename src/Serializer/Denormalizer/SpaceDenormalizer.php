@@ -6,6 +6,7 @@ namespace App\Serializer\Denormalizer;
 
 use App\Entity\ActivityArea;
 use App\Entity\Agent;
+use App\Entity\ArchitecturalAccessibility;
 use App\Entity\Space;
 use App\Entity\SpaceType;
 use App\Entity\Tag;
@@ -60,6 +61,15 @@ readonly class SpaceDenormalizer implements DenormalizerInterface
 
         if (true === array_key_exists('activityAreas', $data)) {
             $space->setActivityAreas(new ArrayCollection($activityAreas));
+        }
+
+        $accessibilities = array_map(
+            fn (string $id) => $this->entityManager->getRepository(ArchitecturalAccessibility::class)->findOneBy(['id' => $id]),
+            $data['accessibilities'] ?? []
+        );
+
+        if (true === array_key_exists('accessibilities', $data)) {
+            $space->setAccessibilities(new ArrayCollection($accessibilities));
         }
 
         if (true === array_key_exists('tags', $data)) {

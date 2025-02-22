@@ -20,6 +20,8 @@ class OrganizationAdminController extends AbstractAdminController
     public const VIEW_ADD = 'organization/add.html.twig';
     public const VIEW_TIMELINE = 'organization/timeline.html.twig';
 
+    public const CREATE_FORM_ID = 'add-organization';
+
     public function __construct(
         private OrganizationServiceInterface $service,
         private readonly TranslatorInterface $translator,
@@ -40,8 +42,12 @@ class OrganizationAdminController extends AbstractAdminController
     public function add(Request $request, ValidatorInterface $validator): Response
     {
         if ('POST' !== $request->getMethod()) {
-            return $this->render(self::VIEW_ADD);
+            return $this->render(self::VIEW_ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         try {
             $this->service->create([
@@ -51,12 +57,12 @@ class OrganizationAdminController extends AbstractAdminController
         } catch (ValidatorException $exception) {
             return $this->render(self::VIEW_ADD, [
                 'errors' => $exception->getConstraintViolationList(),
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         } catch (Exception $exception) {
             return $this->render(self::VIEW_ADD, [
-                'errors' => [
-                    $exception->getMessage(),
-                ],
+                'errors' => [$exception->getMessage()],
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         }
 

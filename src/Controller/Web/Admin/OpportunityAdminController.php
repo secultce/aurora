@@ -25,6 +25,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 
 class OpportunityAdminController extends AbstractAdminController
 {
+    public const CREATE_FORM_ID = 'add-opportunity';
+    public const EDIT_FORM_ID = 'edit-opportunity';
+    public const CREATE_PHASE_FORM_ID = 'add-opportunity-phase';
+
     public function __construct(
         private readonly OpportunityServiceInterface $service,
         private readonly OpportunityTimelineDocumentService $documentService,
@@ -74,8 +78,11 @@ class OpportunityAdminController extends AbstractAdminController
                 'events' => $events,
                 'initiatives' => $initiatives,
                 'spaces' => $spaces,
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $data = $request->request->all();
         $files = $request->files->all();
@@ -118,8 +125,11 @@ class OpportunityAdminController extends AbstractAdminController
 
             return $this->render('opportunity/edit.html.twig', [
                 'opportunity' => $opportunity,
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         $data = self::hidrate($request->request->all());
         $files = $request->files->all();
@@ -177,6 +187,7 @@ class OpportunityAdminController extends AbstractAdminController
             'opportunity' => $opportunity,
             'inscriptions' => $inscriptions,
             'phases' => $phases,
+            'create_phase_form_id' => self::CREATE_PHASE_FORM_ID,
         ]);
     }
 

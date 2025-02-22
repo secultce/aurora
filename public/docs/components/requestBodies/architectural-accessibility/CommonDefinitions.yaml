@@ -1,0 +1,13 @@
+ArchitecturalAccessibilityBase:
+  type: object
+  properties:
+    name:
+      type: string
+      maxLength: 50
+      example: "Rampa de acesso"
+      description: "Nome da acessibilidade arquitetônica"
+    description:
+      type: string
+      maxLength: 255
+      example: "Rampa de acesso para cadeirantes"
+      description: "Descrição da acessibilidade arquitetônica"

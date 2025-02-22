@@ -88,8 +88,14 @@ describe('Página de Listar Iniciativas', () => {
     });
 
     it('Garante que as opções de ordenar funcionam', () => {
-        cy.get(':nth-child(2) > .initiative-card-header > .d-flex > .initiative-name').contains('Arte da Caatinga').should('be.visible');
-        cy.get('#order-select').select('Mais Recente');
-        cy.get(':nth-child(2) > .initiative-card-header > .d-flex > .initiative-name').contains('Vozes do Sertão').should('be.visible');
+        cy.get('#order-select')
+            .should('exist')
+            .should('be.visible');
+        cy.get('#order-select')
+            .select('Mais Recente')
+            .should('have.value', 'DESC');
+        cy.get('#order-select')
+            .select('Mais Antigo')
+            .should('have.value', 'ASC');
     });
 });

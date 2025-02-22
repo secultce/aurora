@@ -4,11 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Api;
 
+use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\EventFixtures;
 use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
+use App\DataFixtures\Entity\TagFixtures;
 use App\Entity\Event;
+use App\Enum\AccessibilityInfoEnum;
+use App\Enum\EventTypeEnum;
 use App\Tests\AbstractWebTestCase;
 use App\Tests\Fixtures\EventTestFixtures;
 use App\Tests\Fixtures\ImageTestFixtures;
@@ -46,6 +50,20 @@ class EventApiControllerTest extends AbstractWebTestCase
             'parent' => null,
             'extraFields' => null,
             'createdBy' => ['id' => self::getLoggedAgentId()],
+            'coverImage' => null,
+            'subtitle' => null,
+            'shortDescription' => null,
+            'longDescription' => null,
+            'type' => EventTypeEnum::IN_PERSON->value,
+            'endDate' => '2025-04-01T00:00:00+00:00',
+            'activityAreas' => [],
+            'tags' => [],
+            'site' => null,
+            'phoneNumber' => null,
+            'maxCapacity' => 5000,
+            'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'free' => true,
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -82,6 +100,33 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'parent' => null,
                 'extraFields' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'coverImage' => null,
+                'subtitle' => 'Subtítulo de exemplo',
+                'shortDescription' => null,
+                'longDescription' => 'Uma descrição mais longa',
+                'type' => EventTypeEnum::ONLINE->value,
+                'endDate' => '2024-09-10T11:30:00+00:00',
+                'activityAreas' => [
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                        'name' => 'Artes Visuais',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                        'name' => 'Teatro',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_5,
+                        'name' => 'Cinema',
+                    ],
+                ],
+                'tags' => [],
+                'site' => 'evento.com.br',
+                'phoneNumber' => '8585998585',
+                'maxCapacity' => 1000,
+                'accessibleAudio' => AccessibilityInfoEnum::YES->value,
+                'accessibleLibras' => AccessibilityInfoEnum::YES->value,
+                'free' => false,
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T11:35:00+00:00',
                 'deletedAt' => null,
@@ -97,6 +142,42 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'instagram' => '@mytestevent',
             ],
             'createdBy' => ['id' => self::getLoggedAgentId()],
+            'coverImage' => 'coverimage.jpg',
+            'subtitle' => 'Subtítulo de exemplo',
+            'shortDescription' => 'Descrição curta',
+            'longDescription' => 'Uma descrição mais longa',
+            'type' => EventTypeEnum::HYBRID->value,
+            'endDate' => '2025-04-01T00:00:00+00:00',
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_9,
+                    'name' => 'Artesanato',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_3,
+                    'name' => 'Sustentabilidade',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_4,
+                    'name' => 'Social',
+                ],
+            ],
+            'site' => 'evento.com.br',
+            'phoneNumber' => '8585998585',
+            'maxCapacity' => 5000,
+            'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'free' => true,
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -242,6 +323,33 @@ class EventApiControllerTest extends AbstractWebTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
+            'coverImage' => null,
+            'subtitle' => 'Subtítulo de exemplo',
+            'shortDescription' => null,
+            'longDescription' => 'Uma descrição mais longa',
+            'type' => EventTypeEnum::ONLINE->value,
+            'endDate' => '2024-09-10T11:30:00+00:00',
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                    'name' => 'Teatro',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_5,
+                    'name' => 'Cinema',
+                ],
+            ],
+            'tags' => [],
+            'site' => 'evento.com.br',
+            'phoneNumber' => '8585998585',
+            'maxCapacity' => 1000,
+            'accessibleAudio' => AccessibilityInfoEnum::YES->value,
+            'accessibleLibras' => AccessibilityInfoEnum::YES->value,
+            'free' => false,
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T11:35:00+00:00',
             'deletedAt' => null,
@@ -263,7 +371,7 @@ class EventApiControllerTest extends AbstractWebTestCase
             ->find(Event::class, EventFixtures::EVENT_ID_6);
 
         $this->assertResponseBodySame([
-            'id' => '64f6d8a0-6326-4c15-bec1-d4531720f578',
+            'id' => EventFixtures::EVENT_ID_6,
             'name' => 'Cores do Sertão',
             'image' => null,
             'agentGroup' => null,
@@ -289,6 +397,38 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'createdBy' => [
                     'id' => AgentFixtures::AGENT_ID_2,
                 ],
+                'coverImage' => 'coverimage.jpg',
+                'subtitle' => null,
+                'shortDescription' => 'Descrição curta',
+                'longDescription' => 'Uma descrição mais longa',
+                'type' => EventTypeEnum::HYBRID->value,
+                'endDate' => '2024-07-18T11:30:00+00:00',
+                'activityAreas' => [
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                        'name' => 'Artes Visuais',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                        'name' => 'Música',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_10,
+                        'name' => 'Fotografia',
+                    ],
+                ],
+                'tags' => [
+                    [
+                        'id' => TagFixtures::TAG_ID_10,
+                        'name' => 'Feira',
+                    ],
+                ],
+                'site' => 'evento.com.br',
+                'phoneNumber' => '8585998585',
+                'maxCapacity' => 300,
+                'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
+                'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
+                'free' => true,
                 'createdAt' => '2024-07-16T17:22:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -301,6 +441,42 @@ class EventApiControllerTest extends AbstractWebTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_3,
             ],
+            'coverImage' => 'coverimage.jpg',
+            'subtitle' => 'Subtítulo de exemplo',
+            'shortDescription' => 'Descrição curta',
+            'longDescription' => null,
+            'type' => EventTypeEnum::HYBRID->value,
+            'endDate' => '2024-08-10T18:30:00+00:00',
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_9,
+                    'name' => 'Artesanato',
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_3,
+                    'name' => 'Sustentabilidade',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_4,
+                    'name' => 'Social',
+                ],
+            ],
+            'site' => 'evento.com.br',
+            'phoneNumber' => '8585998585',
+            'maxCapacity' => 600,
+            'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'free' => true,
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -386,12 +562,75 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'parent' => null,
                 'extraFields' => null,
                 'createdBy' => ['id' => AgentFixtures::AGENT_ID_1],
+                'coverImage' => null,
+                'subtitle' => 'Subtítulo de exemplo',
+                'shortDescription' => null,
+                'longDescription' => 'Uma descrição mais longa',
+                'type' => EventTypeEnum::ONLINE->value,
+                'endDate' => '2024-09-10T11:30:00+00:00',
+                'activityAreas' => [
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                        'name' => 'Artes Visuais',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                        'name' => 'Teatro',
+                    ],
+                    [
+                        'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_5,
+                        'name' => 'Cinema',
+                    ],
+                ],
+                'tags' => [],
+                'site' => 'evento.com.br',
+                'phoneNumber' => '8585998585',
+                'maxCapacity' => 1000,
+                'accessibleAudio' => AccessibilityInfoEnum::YES->value,
+                'accessibleLibras' => AccessibilityInfoEnum::YES->value,
+                'free' => false,
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T11:35:00+00:00',
                 'deletedAt' => null,
             ],
             'extraFields' => $requestBody['extraFields'],
             'createdBy' => ['id' => self::getLoggedAgentId()],
+            'coverImage' => 'coverimage.jpg',
+            'subtitle' => 'Subtítulo de exemplo',
+            'shortDescription' => 'Descrição curta',
+            'longDescription' => 'Uma descrição mais longa',
+            'type' => EventTypeEnum::HYBRID->value,
+            'endDate' => '2025-04-01T00:00:00+00:00',
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_9,
+                    'name' => 'Artesanato',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_3,
+                    'name' => 'Sustentabilidade',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_4,
+                    'name' => 'Social',
+                ],
+            ],
+            'site' => 'evento.com.br',
+            'phoneNumber' => '8585998585',
+            'maxCapacity' => 5000,
+            'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'free' => true,
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $event->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -542,6 +781,42 @@ class EventApiControllerTest extends AbstractWebTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_4,
             ],
+            'coverImage' => 'coverimage.jpg',
+            'subtitle' => 'Subtítulo de exemplo',
+            'shortDescription' => 'Descrição curta',
+            'longDescription' => null,
+            'type' => EventTypeEnum::IN_PERSON->value,
+            'endDate' => '2024-08-13T11:30:00+00:00',
+            'activityAreas' => [
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
+                    'name' => 'Artes Visuais',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_2,
+                    'name' => 'Música',
+                ],
+                [
+                    'id' => ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+                    'name' => 'Teatro',
+                ],
+            ],
+            'tags' => [
+                [
+                    'id' => TagFixtures::TAG_ID_7,
+                    'name' => 'Juventude',
+                ],
+                [
+                    'id' => TagFixtures::TAG_ID_8,
+                    'name' => 'Oficina',
+                ],
+            ],
+            'site' => 'evento.com.br',
+            'phoneNumber' => '8585998585',
+            'maxCapacity' => 800,
+            'accessibleAudio' => AccessibilityInfoEnum::NO->value,
+            'accessibleLibras' => AccessibilityInfoEnum::NO->value,
+            'free' => false,
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $event->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,

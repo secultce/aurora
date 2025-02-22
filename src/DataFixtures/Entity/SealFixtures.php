@@ -169,7 +169,6 @@ final class SealFixtures extends AbstractFixture implements DependentFixtureInte
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(Seal::class);
         $this->createSeals($manager);
         $this->updateSeals($manager);
         $this->manualLogout();

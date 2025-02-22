@@ -6,6 +6,7 @@ namespace App\Tests\Functional\Api;
 
 use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
+use App\DataFixtures\Entity\ArchitecturalAccessibilityFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\DataFixtures\Entity\TagFixtures;
 use App\Entity\Space;
@@ -80,12 +81,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Instituição Cultural',
                     'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                     'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'accessibility' => [
-                        0 => 'Banheiros adaptados',
-                        1 => 'Rampa de acesso',
-                        2 => 'Elevador adaptado',
-                        3 => 'Sinalização tátil',
-                    ],
                 ],
                 'activityAreas' => [
                     [
@@ -111,6 +106,28 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Tecnologia',
                     ],
                 ],
+                'accessibilities' => [
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                        'name' => 'Rampas',
+                        'description' => 'Rampas de acesso para cadeirantes',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                        'name' => 'Elevadores',
+                        'description' => 'Elevadores adaptados para acessibilidade',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                        'name' => 'Banheiros adaptados',
+                        'description' => 'Banheiros com adaptações para pessoas com deficiência',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
+                        'name' => 'Sinalização tátil',
+                        'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -119,6 +136,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
             'extraFields' => null,
             'activityAreas' => [],
             'tags' => [],
+            'accessibilities' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -172,12 +190,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Instituição Cultural',
                     'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                     'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'accessibility' => [
-                        0 => 'Banheiros adaptados',
-                        1 => 'Rampa de acesso',
-                        2 => 'Elevador adaptado',
-                        3 => 'Sinalização tátil',
-                    ],
                 ],
                 'activityAreas' => [
                     [
@@ -203,6 +215,28 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Tecnologia',
                     ],
                 ],
+                'accessibilities' => [
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                        'name' => 'Rampas',
+                        'description' => 'Rampas de acesso para cadeirantes',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                        'name' => 'Elevadores',
+                        'description' => 'Elevadores adaptados para acessibilidade',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                        'name' => 'Banheiros adaptados',
+                        'description' => 'Banheiros com adaptações para pessoas com deficiência',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
+                        'name' => 'Sinalização tátil',
+                        'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -213,12 +247,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
                 'location' => 'Recife, Pernambuco',
                 'capacity' => 100,
-                'accessibility' => [
-                    0 => 'Banheiros adaptados',
-                    1 => 'Rampa de acesso',
-                    2 => 'Elevador adaptado',
-                    3 => 'Sinalização tátil',
-                ],
             ],
             'activityAreas' => [
                 [
@@ -231,6 +259,7 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 ],
             ],
             'tags' => [],
+            'accessibilities' => [],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -439,6 +468,28 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'name' => 'Tecnologia',
                 ],
             ],
+            'accessibilities' => [
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                    'name' => 'Rampas',
+                    'description' => 'Rampas de acesso para cadeirantes',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                    'name' => 'Elevadores',
+                    'description' => 'Elevadores adaptados para acessibilidade',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                    'name' => 'Banheiros adaptados',
+                    'description' => 'Banheiros com adaptações para pessoas com deficiência',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
+                    'name' => 'Sinalização tátil',
+                    'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
+                ],
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T12:20:00+00:00',
             'deletedAt' => null,
@@ -506,10 +557,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Centro Cultural',
                     'description' => 'O Sítio das Artes é um espaço dedicado à promoção de atividades culturais e oficinas artísticas, com uma vasta programação para todas as idades.',
                     'location' => 'Av. das Artes, 123 – Fortaleza/CE – CEP: 60123-123',
-                    'accessibility' => [
-                        0 => 'Banheiros adaptados',
-                        1 => 'Rampa de acesso',
-                    ],
                 ],
                 'activityAreas' => [
                     [
@@ -535,6 +582,18 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Social',
                     ],
                 ],
+                'accessibilities' => [
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                        'name' => 'Rampas',
+                        'description' => 'Rampas de acesso para cadeirantes',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                        'name' => 'Banheiros adaptados',
+                        'description' => 'Banheiros com adaptações para pessoas com deficiência',
+                    ],
+                ],
                 'createdAt' => '2024-07-11T10:49:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -544,11 +603,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'type' => 'Galeria de Arte',
                 'description' => 'A Galeria Caatinga é especializada em exposições de artistas regionais, com foco na arte nordestina e obras inspiradas pela fauna e flora do sertão.',
                 'location' => 'Rua do Sertão, 123 – Fortaleza/CE – CEP: 60123-456',
-                'accessibility' => [
-                    0 => 'Elevador adaptado',
-                    1 => 'Sinalização tátil',
-                    2 => 'Banheiros acessíveis',
-                ],
             ],
             'activityAreas' => [
                 [
@@ -572,6 +626,23 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 [
                     'id' => TagFixtures::TAG_ID_6,
                     'name' => 'Tradição',
+                ],
+            ],
+            'accessibilities' => [
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                    'name' => 'Elevadores',
+                    'description' => 'Elevadores adaptados para acessibilidade',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                    'name' => 'Banheiros adaptados',
+                    'description' => 'Banheiros com adaptações para pessoas com deficiência',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
+                    'name' => 'Sinalização tátil',
+                    'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
                 ],
             ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
@@ -684,12 +755,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                     'type' => 'Instituição Cultural',
                     'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                     'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                    'accessibility' => [
-                        0 => 'Banheiros adaptados',
-                        1 => 'Rampa de acesso',
-                        2 => 'Elevador adaptado',
-                        3 => 'Sinalização tátil',
-                    ],
                 ],
                 'activityAreas' => [
                     [
@@ -715,6 +780,28 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                         'name' => 'Tecnologia',
                     ],
                 ],
+                'accessibilities' => [
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                        'name' => 'Rampas',
+                        'description' => 'Rampas de acesso para cadeirantes',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                        'name' => 'Elevadores',
+                        'description' => 'Elevadores adaptados para acessibilidade',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                        'name' => 'Banheiros adaptados',
+                        'description' => 'Banheiros com adaptações para pessoas com deficiência',
+                    ],
+                    [
+                        'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
+                        'name' => 'Sinalização tátil',
+                        'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T12:20:00+00:00',
                 'deletedAt' => null,
@@ -725,12 +812,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'description' => 'É um espaço cultural que reúne artesãos de todo o Brasil para celebrar a cultura nordestina.',
                 'location' => 'Recife, Pernambuco',
                 'capacity' => 100,
-                'accessibility' => [
-                    0 => 'Banheiros adaptados',
-                    1 => 'Rampa de acesso',
-                    2 => 'Elevador adaptado',
-                    3 => 'Sinalização tátil',
-                ],
             ],
             'activityAreas' => [
                 [
@@ -750,6 +831,18 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 [
                     'id' => TagFixtures::TAG_ID_8,
                     'name' => 'Oficina',
+                ],
+            ],
+            'accessibilities' => [
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                    'name' => 'Rampas',
+                    'description' => 'Rampas de acesso para cadeirantes',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                    'name' => 'Banheiros adaptados',
+                    'description' => 'Banheiros com adaptações para pessoas com deficiência',
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),
@@ -802,12 +895,6 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 'type' => 'Instituição Cultural',
                 'description' => 'A Secretaria da Cultura (SECULT) é responsável por fomentar a arte e a cultura no estado, organizando eventos e oferecendo apoio a iniciativas locais.',
                 'location' => 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                'accessibility' => [
-                    0 => 'Banheiros adaptados',
-                    1 => 'Rampa de acesso',
-                    2 => 'Elevador adaptado',
-                    3 => 'Sinalização tátil',
-                ],
             ],
             'activityAreas' => [
                 [
@@ -831,6 +918,28 @@ class SpaceApiControllerTest extends AbstractWebTestCase
                 [
                     'id' => TagFixtures::TAG_ID_2,
                     'name' => 'Tecnologia',
+                ],
+            ],
+            'accessibilities' => [
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_1,
+                    'name' => 'Rampas',
+                    'description' => 'Rampas de acesso para cadeirantes',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_2,
+                    'name' => 'Elevadores',
+                    'description' => 'Elevadores adaptados para acessibilidade',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_4,
+                    'name' => 'Banheiros adaptados',
+                    'description' => 'Banheiros com adaptações para pessoas com deficiência',
+                ],
+                [
+                    'id' => ArchitecturalAccessibilityFixtures::ARCHITECTURAL_ACCESSIBILITY_ID_9,
+                    'name' => 'Sinalização tátil',
+                    'description' => 'Sinalização tátil para orientação de pessoas com deficiência visual',
                 ],
             ],
             'createdAt' => $space->getCreatedAt()->format(DateTimeInterface::ATOM),

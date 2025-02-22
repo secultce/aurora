@@ -21,6 +21,9 @@ class FaqAdminController extends AbstractWebController
     public const VIEW_ADD = '_admin/faq/add.html.twig';
     public const VIEW_EDIT = '_admin/faq/edit.html.twig';
 
+    public const CREATE_FORM_ID = 'add-faq';
+    public const EDIT_FORM_ID = 'edit-faq';
+
     public function __construct(
         private FaqServiceInterface $faqService,
         private readonly TranslatorInterface $translator
@@ -30,8 +33,12 @@ class FaqAdminController extends AbstractWebController
     public function add(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
-            return $this->render(self::VIEW_ADD);
+            return $this->render(self::VIEW_ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $errors = [];
 
@@ -50,7 +57,10 @@ class FaqAdminController extends AbstractWebController
         }
 
         if (false === empty($errors)) {
-            return $this->render(self::VIEW_ADD, ['errors' => $errors]);
+            return $this->render(self::VIEW_ADD, [
+                'errors' => $errors,
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
 
         return $this->redirectToRoute('admin_faq_list');
@@ -90,8 +100,11 @@ class FaqAdminController extends AbstractWebController
         if (false === $request->isMethod(Request::METHOD_POST)) {
             return $this->render(self::VIEW_EDIT, [
                 'faq' => $faq,
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
+
+        $this->validCsrfToken(self::EDIT_FORM_ID, $request);
 
         try {
             $this->faqService->update(Uuid::fromString($id), [
@@ -106,6 +119,7 @@ class FaqAdminController extends AbstractWebController
             return $this->render(self::VIEW_EDIT, [
                 'faq' => $faq,
                 'errors' => $exception->getConstraintViolationList(),
+                'form_id' => self::EDIT_FORM_ID,
             ]);
         }
     }

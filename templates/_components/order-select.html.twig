@@ -1,8 +1,11 @@
 <div class="d-flex align-items-center mb-2 gap-3">
     <label class="text-nowrap d-none d-md-block" for="order-select">{{ 'sort_by' | trans }}:</label>
     <select id="order-select" class="form-select">
-        <option disabled {% if not app.request.query.get('order') %}selected{% endif %}>{{ 'select' | trans }}</option>
-        <option value="ASC" {% if app.request.query.get('order') == 'ASC' %}selected{% endif %}>{{ 'most_recent' | trans }}</option>
-        <option value="DESC" {% if app.request.query.get('order') == 'DESC' %}selected{% endif %}>{{ 'oldest' | trans }}</option>
+        <option value="DESC" {% if not app.request.query.get('order') or app.request.query.get('order') == 'DESC' %}selected{% endif %}>
+            {{ 'most_recent' | trans }}
+        </option>
+        <option value="ASC" {% if app.request.query.get('order') == 'ASC' %}selected{% endif %}>
+            {{ 'oldest' | trans }}
+        </option>
     </select>
 </div>

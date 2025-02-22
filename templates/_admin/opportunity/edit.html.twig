@@ -36,6 +36,7 @@
     </div>
 
     <form name="editForm" action="#" method="post" enctype="multipart/form-data">
+        <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
         <input type="hidden" name="id" value="{{ opportunity.id }}" />
         <section class="mt-5">
             {% include '_components/tabs/content-tabs.html.twig' with {

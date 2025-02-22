@@ -167,6 +167,16 @@ abstract class Address extends AbstractEntity
         $this->deletedAt = $deletedAt;
     }
 
+    public function getCompleteAddress(): string
+    {
+        $city = $this->city->getName();
+        $state = $this->city->getState()->acronym;
+
+        return trim(" 
+            {$this->street}, {$this->number} - {$this->neighborhood}, {$city}-{$state}, {$this->zipcode}
+        ");
+    }
+
     public function toArray(): array
     {
         return [

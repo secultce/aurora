@@ -22,6 +22,8 @@ class AgentAdminController extends AbstractAdminController
 {
     private const string VIEW_ADD = 'agent/create.html.twig';
 
+    public const CREATE_FORM_ID = 'add-agent';
+
     public function __construct(
         private AgentServiceInterface $service,
         private AgentTimelineDocumentService $documentService,
@@ -47,8 +49,12 @@ class AgentAdminController extends AbstractAdminController
     public function create(Request $request): Response
     {
         if (false === $request->isMethod(Request::METHOD_POST)) {
-            return $this->render(self::VIEW_ADD);
+            return $this->render(self::VIEW_ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $errors = [];
 
@@ -70,7 +76,10 @@ class AgentAdminController extends AbstractAdminController
         }
 
         if (false === empty($errors)) {
-            return $this->render(self::VIEW_ADD, ['errors' => $errors]);
+            return $this->render(self::VIEW_ADD, [
+                'errors' => $errors,
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
 
         return $this->redirectToRoute('admin_agent_list');

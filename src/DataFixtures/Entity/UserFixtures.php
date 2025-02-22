@@ -173,7 +173,6 @@ final class UserFixtures extends AbstractFixture
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(User::class);
         $this->createUsers($manager);
         $this->updateUsers($manager);
         $this->manualLogout();

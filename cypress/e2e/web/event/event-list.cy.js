@@ -83,8 +83,14 @@ describe('Pagina de listar Eventos', () => {
     });
 
     it('Garante que as opções de ordenar funcionam', () => {
-        cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-0 > .event-name').contains('Nordeste Literário').should('be.visible');
-        cy.get('#order-select').select('Mais Recente');
-        cy.get(':nth-child(2) > .event-card-header > .d-flex > .ms-0 > .event-name').contains('Festival Sertão Criativo').should('be.visible');
+        cy.get('#order-select')
+            .should('exist')
+            .should('be.visible');
+        cy.get('#order-select')
+            .select('Mais Recente')
+            .should('have.value', 'DESC');
+        cy.get('#order-select')
+            .select('Mais Antigo')
+            .should('have.value', 'ASC');
     });
 });

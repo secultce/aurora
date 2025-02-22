@@ -20,6 +20,7 @@
     <div class="container d-grid justify-content-center mt-5 mb-5 mw-0">
 
         <form action="{{ path('admin_event_create') }}" method="post" class="form-stepper">
+            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
             <h2 class="fw-bold fs-3">{{ 'view.event.create_event.create'|trans }}</h2>
             <p>{{ 'view.event.create_event.description'|trans }}</p>
             <div class="mb-4">

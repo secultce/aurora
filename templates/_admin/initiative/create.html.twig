@@ -24,6 +24,7 @@
                         <hr>
 
                         <form action="{{ path('admin_initiative_store') }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
                             <input type="hidden" id="idInitiative" name="id" value="{{ id }}">
                             <div class="mb-3">
                                 <label for="nameInitiative" class="mb-1">{{ 'name'|trans }}</label>

@@ -278,7 +278,7 @@ class Agent extends AbstractEntity
             'longBio' => $this->longBio,
             'culture' => $this->culture,
             'extraFields' => $this->extraFields,
-            'organizations' => $this->organizations->map(fn ($organization) => $organization->getId()->toRfc4122()),
+            'organizations' => $this->organizations->map(fn ($organization) => $organization->getId()->toRfc4122())->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),

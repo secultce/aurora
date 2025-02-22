@@ -1,0 +1,24 @@
+create:
+  path: /
+  controller: App\Controller\Api\SpaceTypeApiController::create
+  methods: ['POST']
+
+get:
+  path: /{id}
+  controller: App\Controller\Api\SpaceTypeApiController::get
+  methods: ['GET']
+
+list:
+  path: /
+  controller: App\Controller\Api\SpaceTypeApiController::list
+  methods: ['GET']
+
+remove:
+  path: /{id}
+  controller: App\Controller\Api\SpaceTypeApiController::remove
+  methods: ['DELETE']
+
+update:
+  path: /{id}
+  controller: App\Controller\Api\SpaceTypeApiController::update
+  methods: ['PATCH']

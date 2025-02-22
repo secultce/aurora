@@ -1,0 +1,38 @@
+get:
+  tags:
+    - Acessibilidade arquitetônica
+  summary: Recupera uma lista das acessibilidades arquitetônicas
+  responses:
+    '200':
+      description: Lista de acessibilidades arquitetônicas
+      content:
+        application/json:
+          schema:
+            type: array
+            items:
+              allOf:
+                - $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityGetCollectionResponse.yaml'
+
+post:
+  tags:
+    - Acessibilidade arquitetônica
+  summary: Cria uma nova acessibilidade arquitetônica
+  requestBody:
+    required: true
+    content:
+      application/json:
+        schema:
+          $ref: '../../requestBodies/architectural-accessibility/ArchitecturalAccessibilityPostItemRequest.yaml'
+  responses:
+    '201':
+      description: Acessibilidade arquitetônica criada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityPostItemResponse.yaml'
+    '404':
+      description: Acessibilidade arquitetônica não encontrada
+      content:
+        application/json:
+          schema:
+            $ref: '../../responses/architectural-accessibility/ArchitecturalAccessibilityNotFound.yaml'

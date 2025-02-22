@@ -42,6 +42,7 @@
                         <p class="text-danger">{{ 'view.entities.message.required_fields'|trans }} (*)</p>
 
                         <form action="#" method="post" id="create-opportunity-form">
+                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
                             <input type="hidden" id="opportunityId" name="id" value="{{ id }}">
                             <div class="mb-3">
                                 <label for="opportunityType">{{ 'view.opportunity.labels.choose_type'|trans }} <span class="text-danger">*</span></label>

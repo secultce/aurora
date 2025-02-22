@@ -268,21 +268,21 @@
                     })
                 ) %}
 
-                {% set spaces_content = spaces|map(
-                    space => include('homepage/_partials/cards/item-space.html.twig', {
-                        'image_url': asset('img/allan.png'),
-                        'image_alt': 'Imagem não disponível',
-                        'title': space.name ?? 'Sem título',
-                        'type': 'CICLO',
-                        'location': 'Complexo Estação das Artes - R. Dr. João Moreira, 540 - Centro, Fortaleza - CE, 60030-000',
-                        'registration_period': 'Inscrições de 10/08/2024 até 20/08/2024 às 23:59',
-                        'description': 'Sem descrição',
-                        'interest_areas_count': 3,
-                        'interest_areas': 'Música, Cultura Popular, Tradições Locais',
-                        'tags_count': 4,
-                        'tags': 'Festival, Música, Cultura, Edição 2024',
-                        'seals_count': 2,
-                        'seals': '+2',
+                {% set spaces_content = spaces|map(space =>
+                    include('homepage/_partials/cards/item-space.html.twig', {
+                        'space': space,
+                        'image_url': space.image ?: asset('img/default-image.png'),
+                        'image_alt':  'no_image' | trans ,
+                        'title': space.name ?? 'no_titlçe' | trans,
+                        'type': space.spaceType ? space.spaceType.name : 'no_type' | trans ,
+                        'location': space.address ? space.address.getCompleteAddress() : 'no_address' | trans,
+                        'description': space.shortDescription ?? 'no_description' | trans,
+                        'interest_areas_count': space.activityAreas|length,
+                        'interest_areas': space.activityAreas|map(a => a.name)|join(', '),
+                        'tags_count': space.tags|length,
+                        'tags': space.tags|map(t => t.name)|join(', '),
+                        'site': space.site ?? 'no_site' | trans,
+                        'status_icon': 'public'
                     })
                 ) %}
 

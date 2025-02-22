@@ -1,0 +1,10 @@
+type: object
+allOf:
+  - type: object
+    properties:
+      id:
+        type: string
+        format: uuid
+        example: 123e4567-e89b-12d3-a456-426614174000
+        description: Identificador único do tipo de espaço.
+  - $ref: './CommonDefinitions.yaml#/SpaceTypeBase'

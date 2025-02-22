@@ -439,7 +439,6 @@ final class InscriptionPhaseFixtures extends AbstractFixture implements Dependen
 
     public function load(ObjectManager $manager): void
     {
-        $this->truncateTable(InscriptionPhase::class);
         $this->createInscriptionPhases($manager);
         $this->updateInscriptionPhases($manager);
         $this->manualLogout();

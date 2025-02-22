@@ -17,6 +17,8 @@ class EventAdminController extends AbstractAdminController
 {
     private const VIEW_ADD = 'event/create.html.twig';
 
+    public const CREATE_FORM_ID = 'add-event';
+
     public function __construct(
         private EventServiceInterface $service,
         private readonly TranslatorInterface $translator,
@@ -58,8 +60,12 @@ class EventAdminController extends AbstractAdminController
     public function create(Request $request): Response
     {
         if (false === $request->isMethod('POST')) {
-            return $this->render(self::VIEW_ADD);
+            return $this->render(self::VIEW_ADD, [
+                'form_id' => self::CREATE_FORM_ID,
+            ]);
         }
+
+        $this->validCsrfToken(self::CREATE_FORM_ID, $request);
 
         $name = $request->request->get('name');
         $description = $request->request->get('description');
@@ -84,6 +90,7 @@ class EventAdminController extends AbstractAdminController
 
             return $this->render(self::VIEW_ADD, [
                 'error' => $exception->getMessage(),
+                'form_id' => self::CREATE_FORM_ID,
             ]);
         }
 

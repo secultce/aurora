@@ -27,6 +27,7 @@
                     </p>
                     <hr>
                     <form action="{{ path('web_auth_login') }}" method="post">
+                        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
                         <label for="email">{{ 'email'|trans }}</label>
                         <input value="{{ last_username }}" data-cy="email" class="form-control mb-3" type="text" name="email" id="email">
 

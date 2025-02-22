@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Enum\AccessibilityInfoEnum;
+use App\Enum\EventTypeEnum;
 use App\Helper\DateFormatHelper;
 use App\Repository\EventRepository;
 use DateTime;
@@ -64,6 +66,64 @@ class Event extends AbstractEntity
     #[ORM\OneToMany(targetEntity: EventSchedule::class, mappedBy: 'event', orphanRemoval: true)]
     private Collection $eventSchedules;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['event.get'])]
+    private ?string $coverImage = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['event.get'])]
+    private ?string $subtitle = null;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['event.get'])]
+    private ?string $shortDescription = null;
+
+    #[ORM\Column(type: Types::TEXT, nullable: true)]
+    #[Groups(['event.get'])]
+    private ?string $longDescription = null;
+
+    #[ORM\Column()]
+    #[Groups(['event.get'])]
+    private int $type = EventTypeEnum::IN_PERSON->value;
+
+    #[ORM\Column]
+    #[Groups(['event.get'])]
+    private ?DateTime $endDate = null;
+
+    #[ORM\ManyToMany(targetEntity: ActivityArea::class)]
+    #[ORM\JoinTable(name: 'activity_area_events')]
+    #[Groups(['event.get', 'event.get.item'])]
+    private Collection $activityAreas;
+
+    #[ORM\ManyToMany(targetEntity: Tag::class)]
+    #[ORM\JoinTable(name: 'tag_events')]
+    #[Groups(['event.get', 'event.get.item'])]
+    private Collection $tags;
+
+    #[ORM\Column(length: 255, nullable: true)]
+    #[Groups(['event.get'])]
+    private ?string $site = null;
+
+    #[ORM\Column(length: 20, nullable: true)]
+    #[Groups(['event.get'])]
+    private ?string $phoneNumber = null;
+
+    #[ORM\Column]
+    #[Groups(['event.get'])]
+    private ?int $maxCapacity = null;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    #[Groups(['event.get'])]
+    private int $accessibleAudio = AccessibilityInfoEnum::NOT_INFORMED->value;
+
+    #[ORM\Column(type: Types::SMALLINT)]
+    #[Groups(['event.get'])]
+    private int $accessibleLibras = AccessibilityInfoEnum::NOT_INFORMED->value;
+
+    #[ORM\Column]
+    #[Groups(['event.get'])]
+    private bool $free = true;
+
     #[ORM\Column]
     #[Groups(['event.get'])]
     private DateTimeImmutable $createdAt;
@@ -86,6 +146,8 @@ class Event extends AbstractEntity
     {
         $this->createdAt = new DateTimeImmutable();
         $this->eventActivities = new ArrayCollection();
+        $this->activityAreas = new ArrayCollection();
+        $this->tags = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -176,6 +238,174 @@ class Event extends AbstractEntity
     public function setExtraFields(?array $extraFields): void
     {
         $this->extraFields = $extraFields;
+    }
+
+    public function getCoverImage(): ?string
+    {
+        return $this->coverImage;
+    }
+
+    public function setCoverImage(?string $coverImage): void
+    {
+        $this->coverImage = $coverImage;
+    }
+
+    public function getSubtitle(): ?string
+    {
+        return $this->subtitle;
+    }
+
+    public function setSubtitle(?string $subtitle): void
+    {
+        $this->subtitle = $subtitle;
+    }
+
+    public function getShortDescription(): ?string
+    {
+        return $this->shortDescription;
+    }
+
+    public function setShortDescription(?string $shortDescription): void
+    {
+        $this->shortDescription = $shortDescription;
+    }
+
+    public function getLongDescription(): ?string
+    {
+        return $this->longDescription;
+    }
+
+    public function setLongDescription(?string $longDescription): void
+    {
+        $this->longDescription = $longDescription;
+    }
+
+    public function getType(): int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): void
+    {
+        $this->type = $type;
+    }
+
+    public function getEndDate(): ?DateTime
+    {
+        return $this->endDate;
+    }
+
+    public function setEndDate(?DateTime $endDate): void
+    {
+        $this->endDate = $endDate;
+    }
+
+    public function getActivityAreas(): Collection
+    {
+        return $this->activityAreas;
+    }
+
+    public function setActivityAreas(Collection $activityAreas): Collection
+    {
+        return $this->activityAreas = $activityAreas;
+    }
+
+    public function addActivityArea(ActivityArea $activityArea): void
+    {
+        if (false === $this->activityAreas->contains($activityArea)) {
+            return;
+        }
+
+        $this->activityAreas->add($activityArea);
+    }
+
+    public function removeActivityArea(ActivityArea $activityArea): void
+    {
+        $this->activityAreas->removeElement($activityArea);
+    }
+
+    public function getTags(): Collection
+    {
+        return $this->tags;
+    }
+
+    public function setTags(Collection $tags): Collection
+    {
+        return $this->tags = $tags;
+    }
+
+    public function addTag(Tag $tag): void
+    {
+        if (false === $this->tags->contains($tag)) {
+            return;
+        }
+
+        $this->tags->add($tag);
+    }
+
+    public function removeTag(Tag $tag): void
+    {
+        $this->tags->removeElement($tag);
+    }
+
+    public function getSite(): ?string
+    {
+        return $this->site;
+    }
+
+    public function setSite(?string $site): void
+    {
+        $this->site = $site;
+    }
+
+    public function getPhoneNumber(): ?string
+    {
+        return $this->phoneNumber;
+    }
+
+    public function setPhoneNumber(?string $phoneNumber): void
+    {
+        $this->phoneNumber = $phoneNumber;
+    }
+
+    public function getMaxCapacity(): int
+    {
+        return $this->maxCapacity;
+    }
+
+    public function setMaxCapacity(int $maxCapacity): void
+    {
+        $this->maxCapacity = $maxCapacity;
+    }
+
+    public function getAccessibleAudio(): int
+    {
+        return $this->accessibleAudio;
+    }
+
+    public function setAccessibleAudio(int $accessibleAudio): void
+    {
+        $this->accessibleAudio = $accessibleAudio;
+    }
+
+    public function getAccessibleLibras(): int
+    {
+        return $this->accessibleLibras;
+    }
+
+    public function setAccessibleLibras(int $accessibleLibras): void
+    {
+        $this->accessibleLibras = $accessibleLibras;
+    }
+
+    public function isFree(): bool
+    {
+        return $this->free;
+    }
+
+    public function setFree(bool $free): void
+    {
+        $this->free = $free;
     }
 
     public function getCreatedAt(): ?DateTimeImmutable
@@ -270,6 +500,20 @@ class Event extends AbstractEntity
             'initiative' => $this->initiative?->toArray(),
             'parent' => $this->parent?->toArray(),
             'createdBy' => $this->createdBy->toArray(),
+            'coverImage' => $this->coverImage,
+            'subtitle' => $this->subtitle,
+            'shortDescription' => $this->shortDescription,
+            'longDescription' => $this->longDescription,
+            'type' => $this->type,
+            'endDate' => $this->endDate?->format(DateFormatHelper::DEFAULT_FORMAT),
+            'activityAreas' => $this->activityAreas->toArray(),
+            'tags' => $this->tags->toArray(),
+            'site' => $this->site,
+            'phoneNumber' => $this->phoneNumber,
+            'maxCapacity' => $this->maxCapacity,
+            'accessibleAudio' => $this->accessibleAudio,
+            'accessibleLibras' => $this->accessibleLibras,
+            'free' => $this->free,
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),

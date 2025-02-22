@@ -1,5 +1,6 @@
 <section class="main-form-content mb-3">
     <form action="" method="POST" enctype="multipart/form-data" id="agent-create-form">
+        <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
         <section class="presentation-info">
             <div>
                 <h2 class="fw-bold fs-4">{{ "view.agent_create.agent_information" | trans }}</h2>

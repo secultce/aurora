@@ -1,5 +1,7 @@
 get:
   summary: Recupera uma única tag
+  tags:
+    - Tags
   responses:
     '200':
       description: tag encontrada

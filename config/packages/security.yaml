@@ -30,6 +30,7 @@ security:
                 username_parameter: email
                 password_parameter: password
                 default_target_path: web_home_homepage
+                enable_csrf: true
             logout:
                 path: /logout
                 clear_site_data:

@@ -39,7 +39,7 @@ migrate_odm:
 
 # Executa as fixtures de dados
 load_fixtures:
-	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n --append --purge-exclusions=city --purge-exclusions=state"
+	docker compose exec -T php bash -c "php bin/console doctrine:fixtures:load -n --purge-exclusions=city --purge-exclusions=state"
 
 # Instala dependências do frontend
 install_frontend:
@@ -89,11 +89,17 @@ reset-deep:
 # Executa o php cs fixer
 style:
 	docker compose exec -T -e PHP_CS_FIXER_IGNORE_ENV=1 php bash -c "php bin/console app:code-style"
+	docker compose exec -T php bash -c "php vendor/bin/phpcs --config-set installed_paths src/Standards"
 	docker compose exec -T php bash -c "php vendor/bin/phpcs"
 
 # Gera as chaves de autenticação JWT
 generate_keys:
 	docker compose exec -T php bash -c "php bin/console lexik:jwt:generate-keypair --overwrite -n"
 
+# Copiar arquivos de configurações locais dos pacotes utilizados
+copy_dist:
+	cp phpcs.xml.dist phpcs.xml
+	cp phpunit.xml.dist phpunit.xml
+
 # Comando para rodar todos os passos juntos
-setup: up install_dependencies reset-deep generate_proxies migrate_database load_fixtures install_frontend compile_frontend generate_keys
+setup: up install_dependencies copy_dist reset-deep generate_proxies migrate_database load_fixtures install_frontend compile_frontend generate_keys

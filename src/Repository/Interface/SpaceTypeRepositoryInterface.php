@@ -6,7 +6,9 @@ namespace App\Repository\Interface;
 
 use App\Entity\SpaceType;
 
-interface SpaceTypeInterface
+interface SpaceTypeRepositoryInterface
 {
     public function save(SpaceType $spaceType): SpaceType;
+
+    public function remove(SpaceType $spaceType): void;
 }

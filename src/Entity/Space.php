@@ -94,6 +94,11 @@ class Space extends AbstractEntity
     #[Groups(['space.get', 'space.get.item'])]
     private Collection $tags;
 
+    #[ORM\ManyToMany(targetEntity: ArchitecturalAccessibility::class, inversedBy: 'spaces')]
+    #[ORM\JoinTable(name: 'spaces_accessibilities')]
+    #[Groups(['space.get', 'space.get.item'])]
+    private Collection $accessibilities;
+
     #[ORM\Column]
     #[Groups(['space.get', 'space.get.item'])]
     private DateTimeImmutable $createdAt;
@@ -116,6 +121,7 @@ class Space extends AbstractEntity
         $this->tags = new ArrayCollection();
         $this->createdAt = new DateTimeImmutable();
         $this->activityAreas = new ArrayCollection();
+        $this->accessibilities = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -312,6 +318,28 @@ class Space extends AbstractEntity
         $this->tags->removeElement($tag);
     }
 
+    public function getAccessibilities(): Collection
+    {
+        return $this->accessibilities;
+    }
+
+    public function setAccessibilities(Collection $accessibilities): void
+    {
+        $this->accessibilities = $accessibilities;
+    }
+
+    public function addAccessibility(ArchitecturalAccessibility $accessibility): void
+    {
+        if (!$this->accessibilities->contains($accessibility)) {
+            $this->accessibilities->add($accessibility);
+        }
+    }
+
+    public function removeAccessibility(ArchitecturalAccessibility $accessibility): void
+    {
+        $this->accessibilities->removeElement($accessibility);
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -372,6 +400,7 @@ class Space extends AbstractEntity
             'extraFields' => $this->extraFields,
             'activityAreas' => $this->activityAreas->map(fn (ActivityArea $activityArea) => $activityArea->toArray())->toArray(),
             'tags' => $this->tags->map(fn (Tag $tag) => $tag->toArray())->toArray(),
+            'accessibilities' => $this->accessibilities->map(fn (ArchitecturalAccessibility $accessibility) => $accessibility->toArray())->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
