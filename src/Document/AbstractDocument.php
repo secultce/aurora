@@ -25,7 +25,7 @@ abstract class AbstractDocument
     public function getEvents(array $events): array
     {
         return array_map(
-            function ($event) {
+            function (AbstractDocument $event) {
                 if (null !== $event->getUserId()) {
                     $user = $this->userService->get(Uuid::fromString($event->getUserId()));
                     $event->assignAuthor($user);
