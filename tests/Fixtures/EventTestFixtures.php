@@ -10,8 +10,6 @@ use App\DataFixtures\Entity\EventFixtures;
 use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\DataFixtures\Entity\TagFixtures;
-use App\Enum\AccessibilityInfoEnum;
-use App\Enum\EventTypeEnum;
 use Symfony\Component\Uid\Uuid;
 
 class EventTestFixtures implements TestFixtures
@@ -24,6 +22,7 @@ class EventTestFixtures implements TestFixtures
             'agentGroup' => AgentFixtures::AGENT_ID_1,
             'space' => SpaceFixtures::SPACE_ID_1,
             'initiative' => InitiativeFixtures::INITIATIVE_ID_1,
+            'type' => 'hybrid',
             'endDate' => '2025-04-01',
             'maxCapacity' => 5000,
         ];
@@ -47,7 +46,6 @@ class EventTestFixtures implements TestFixtures
             'subtitle' => 'Subtítulo de exemplo',
             'shortDescription' => 'Descrição curta',
             'longDescription' => 'Uma descrição mais longa',
-            'type' => EventTypeEnum::HYBRID->value,
             'activityAreas' => [
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_1,
                 ActivityAreaFixtures::ACTIVITY_AREA_ID_9,
@@ -59,8 +57,8 @@ class EventTestFixtures implements TestFixtures
             ],
             'site' => 'evento.com.br',
             'phoneNumber' => '8585998585',
-            'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
-            'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
+            'accessibleAudio' => 'not_informed',
+            'accessibleLibras' => 'not_informed',
             'free' => true,
         ]);
     }

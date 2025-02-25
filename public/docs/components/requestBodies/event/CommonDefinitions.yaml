@@ -1,30 +1,103 @@
 EventBase:
   type: object
+  required:
+   - name
+   - agentGroup
+   - space
+   - initiative
+   - parent
+   - createdBy
+   - endDate
+   - activityAreas
+   - tags
+   - maxCapacity
   properties:
     name:
       type: string
       maxLength: 100
-      description: "Nome do evento"
+      description: Nome do evento
     agentGroup:
       type: string
       format: uuid
-      description: "Grupo de agentes do evento"
+      description: Grupo de agentes do evento
     space:
       type: string
       format: uuid
-      description: "Espaço do evento"
+      description: Espaço do evento
     initiative:
       type: string
       format: uuid
-      description: "Iniciativa do evento"
+      description: Iniciativa do evento
     parent:
       type: string
       format: uuid
-      description: "Evento pai"
+      description: Evento pai
     extraFields:
       type: object
-      nullable: true
-    createdBy:
+    coverImage:
       type: string
-      format: uuid
-      description: "Identificador do agente criador do evento"
+      maxLength: 255
+      description: Imagem de capa
+    subtitle:
+      type: string
+      maxLength: 255
+      description: Subtítulo
+    shortDescription:
+      type: string
+      maxLength: 255
+      description: Descrição curta
+    longDescription:
+      type: string
+      description: Descrição longa
+    type:
+      type: integer
+      enum:
+        - in_person
+        - online
+        - hybrid
+      description: Tipo de evento
+    endDate:
+      type: string
+      format: date
+      description: Data do fim do evento
+    activityAreas:
+      type: array
+      items:
+        type: string
+        format: uuid
+        description: Áreas de atuação relacionadas ao eventos
+    tags:
+      type: array
+      items:
+        type: string
+        format: uuid
+        description: Tags relacionadas ao eventos
+    site:
+      type: string
+      maxLength: 255
+      description: Site do evento
+    phoneNumber:
+      type: string
+      maxLength: 20
+      description: número de telefone
+    maxCapacity:
+      type: integer
+      description: Capacidade máxima
+      example: 100
+    accessibleAudio:
+      type: integer
+      enum:
+        - yes
+        - no
+        - not_informed
+      description: Se há acessibilidade para cegos através de áudio
+    accessibleLibras:
+      type: integer
+      enum:
+        - yes
+        - no
+        - not_informed
+      description: Se há acessibilidade para surdos mudos através de LIBRAS
+    free:
+      type: boolean
+      description: Se a entrada é livre

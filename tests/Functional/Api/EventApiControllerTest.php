@@ -54,7 +54,7 @@ class EventApiControllerTest extends AbstractWebTestCase
             'subtitle' => null,
             'shortDescription' => null,
             'longDescription' => null,
-            'type' => EventTypeEnum::IN_PERSON->value,
+            'type' => EventTypeEnum::HYBRID->value,
             'endDate' => '2025-04-01T00:00:00+00:00',
             'activityAreas' => [],
             'tags' => [],
@@ -208,6 +208,9 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'expectedErrors' => [
                     ['field' => 'id', 'message' => 'This value should not be blank.'],
                     ['field' => 'name', 'message' => 'This value should not be blank.'],
+                    ['field' => 'type', 'message' => 'This value should not be blank.'],
+                    ['field' => 'endDate', 'message' => 'This value should not be blank.'],
+                    ['field' => 'maxCapacity', 'message' => 'This value should not be blank.'],
                 ],
             ],
             'id is not a valid UUID' => [
@@ -229,7 +232,7 @@ class EventApiControllerTest extends AbstractWebTestCase
                 ],
             ],
             'name is too long' => [
-                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 256)]),
+                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
@@ -292,6 +295,198 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['createdBy' => Uuid::v4()->toRfc4122()]),
                 'expectedErrors' => [
                     ['field' => 'createdBy', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'coverImage should be a string' => [
+                'requestBody' => array_merge($requestBody, ['coverImage' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'coverImage', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'coverImage is too short' => [
+                'requestBody' => array_merge($requestBody, ['coverImage' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'coverImage', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'coverImage is too long' => [
+                'requestBody' => array_merge($requestBody, ['coverImage' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'coverImage', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'subtitle should be a string' => [
+                'requestBody' => array_merge($requestBody, ['subtitle' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'subtitle', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'subtitle is too short' => [
+                'requestBody' => array_merge($requestBody, ['subtitle' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'subtitle', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'subtitle is too long' => [
+                'requestBody' => array_merge($requestBody, ['subtitle' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'subtitle', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'shortDescription should be a string' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'shortDescription is too short' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'shortDescription is too long' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'longDescription should be a string' => [
+                'requestBody' => array_merge($requestBody, ['longDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'longDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'type should be a string' => [
+                'requestBody' => array_merge($requestBody, ['type' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'type', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'type should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['type' => 'invalid-choice']),
+                'expectedErrors' => [
+                    ['field' => 'type', 'message' => 'The value you selected is not a valid choice.'],
+                ],
+            ],
+            'endDate should be a string' => [
+                'requestBody' => array_merge($requestBody, ['endDate' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'endDate', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'endDate should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['endDate' => 'invalid-date']),
+                'expectedErrors' => [
+                    ['field' => 'endDate', 'message' => 'This value is not a valid datetime.'],
+                ],
+            ],
+            'activityAreas should be an array' => [
+                'requestBody' => array_merge($requestBody, ['activityAreas' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'activityAreas', 'message' => 'This value should be of type iterable.'],
+                ],
+            ],
+            'activityAreas item should be a uuid' => [
+                'requestBody' => array_merge($requestBody, ['activityAreas' => ['invalid-uuid']]),
+                'expectedErrors' => [
+                    ['field' => 'activityAreas[0]', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'activityAreas should exists' => [
+                'requestBody' => array_merge($requestBody, ['activityAreas' => [Uuid::v4()->toRfc4122()]]),
+                'expectedErrors' => [
+                    ['field' => 'activityAreas[0]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'tags should be an array' => [
+                'requestBody' => array_merge($requestBody, ['tags' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'tags', 'message' => 'This value should be of type iterable.'],
+                ],
+            ],
+            'tags item should be a uuid' => [
+                'requestBody' => array_merge($requestBody, ['tags' => ['invalid-uuid']]),
+                'expectedErrors' => [
+                    ['field' => 'tags[0]', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'tags should exists' => [
+                'requestBody' => array_merge($requestBody, ['tags' => [Uuid::v4()->toRfc4122()]]),
+                'expectedErrors' => [
+                    ['field' => 'tags[0]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'site should be a string' => [
+                'requestBody' => array_merge($requestBody, ['site' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'site is too short' => [
+                'requestBody' => array_merge($requestBody, ['site' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'site is too long' => [
+                'requestBody' => array_merge($requestBody, ['site' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'phoneNumber should be a string' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'phoneNumber is too short' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'phoneNumber is too long' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => str_repeat('a', 21)]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value is too long. It should have 20 characters or less.'],
+                ],
+            ],
+            'maxCapacity should be an integer' => [
+                'requestBody' => array_merge($requestBody, ['maxCapacity' => '123']),
+                'expectedErrors' => [
+                    ['field' => 'maxCapacity', 'message' => 'This value should be of type integer.'],
+                ],
+            ],
+            'accessibleAudio should be a string' => [
+                'requestBody' => array_merge($requestBody, ['accessibleAudio' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'accessibleAudio', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'accessibleAudio should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['accessibleAudio' => 'invalid-choice']),
+                'expectedErrors' => [
+                    ['field' => 'accessibleAudio', 'message' => 'The value you selected is not a valid choice.'],
+                ],
+            ],
+            'accessibleLibras should be a string' => [
+                'requestBody' => array_merge($requestBody, ['accessibleLibras' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'accessibleLibras', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'accessibleLibras should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['accessibleLibras' => 'invalid-choice']),
+                'expectedErrors' => [
+                    ['field' => 'accessibleLibras', 'message' => 'The value you selected is not a valid choice.'],
+                ],
+            ],
+            'free should be a boolean' => [
+                'requestBody' => array_merge($requestBody, ['free' => 'true']),
+                'expectedErrors' => [
+                    ['field' => 'free', 'message' => 'This value should be of type boolean.'],
                 ],
             ],
         ];
@@ -670,7 +865,7 @@ class EventApiControllerTest extends AbstractWebTestCase
                 ],
             ],
             'name is too long' => [
-                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 256)]),
+                'requestBody' => array_merge($requestBody, ['name' => str_repeat('a', 101)]),
                 'expectedErrors' => [
                     ['field' => 'name', 'message' => 'This value is too long. It should have 100 characters or less.'],
                 ],
@@ -739,6 +934,198 @@ class EventApiControllerTest extends AbstractWebTestCase
                 'requestBody' => array_merge($requestBody, ['extraFields' => 'invalid']),
                 'expectedErrors' => [
                     ['field' => 'extraFields', 'message' => 'This value should be of type json object.'],
+                ],
+            ],
+            'coverImage should be a string' => [
+                'requestBody' => array_merge($requestBody, ['coverImage' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'coverImage', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'coverImage is too short' => [
+                'requestBody' => array_merge($requestBody, ['coverImage' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'coverImage', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'coverImage is too long' => [
+                'requestBody' => array_merge($requestBody, ['coverImage' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'coverImage', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'subtitle should be a string' => [
+                'requestBody' => array_merge($requestBody, ['subtitle' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'subtitle', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'subtitle is too short' => [
+                'requestBody' => array_merge($requestBody, ['subtitle' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'subtitle', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'subtitle is too long' => [
+                'requestBody' => array_merge($requestBody, ['subtitle' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'subtitle', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'shortDescription should be a string' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'shortDescription is too short' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'shortDescription is too long' => [
+                'requestBody' => array_merge($requestBody, ['shortDescription' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'shortDescription', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'longDescription should be a string' => [
+                'requestBody' => array_merge($requestBody, ['longDescription' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'longDescription', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'type should be a string' => [
+                'requestBody' => array_merge($requestBody, ['type' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'type', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'type should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['type' => 'invalid-choice']),
+                'expectedErrors' => [
+                    ['field' => 'type', 'message' => 'The value you selected is not a valid choice.'],
+                ],
+            ],
+            'endDate should be a string' => [
+                'requestBody' => array_merge($requestBody, ['endDate' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'endDate', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'endDate should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['endDate' => 'invalid-date']),
+                'expectedErrors' => [
+                    ['field' => 'endDate', 'message' => 'This value is not a valid datetime.'],
+                ],
+            ],
+            'activityAreas should be an array' => [
+                'requestBody' => array_merge($requestBody, ['activityAreas' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'activityAreas', 'message' => 'This value should be of type iterable.'],
+                ],
+            ],
+            'activityAreas item should be a uuid' => [
+                'requestBody' => array_merge($requestBody, ['activityAreas' => ['invalid-uuid']]),
+                'expectedErrors' => [
+                    ['field' => 'activityAreas[0]', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'activityAreas should exists' => [
+                'requestBody' => array_merge($requestBody, ['activityAreas' => [Uuid::v4()->toRfc4122()]]),
+                'expectedErrors' => [
+                    ['field' => 'activityAreas[0]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'tags should be an array' => [
+                'requestBody' => array_merge($requestBody, ['tags' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'tags', 'message' => 'This value should be of type iterable.'],
+                ],
+            ],
+            'tags item should be a uuid' => [
+                'requestBody' => array_merge($requestBody, ['tags' => ['invalid-uuid']]),
+                'expectedErrors' => [
+                    ['field' => 'tags[0]', 'message' => 'This value is not a valid UUID.'],
+                ],
+            ],
+            'tags should exists' => [
+                'requestBody' => array_merge($requestBody, ['tags' => [Uuid::v4()->toRfc4122()]]),
+                'expectedErrors' => [
+                    ['field' => 'tags[0]', 'message' => 'This id does not exist.'],
+                ],
+            ],
+            'site should be a string' => [
+                'requestBody' => array_merge($requestBody, ['site' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'site is too short' => [
+                'requestBody' => array_merge($requestBody, ['site' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'site is too long' => [
+                'requestBody' => array_merge($requestBody, ['site' => str_repeat('a', 256)]),
+                'expectedErrors' => [
+                    ['field' => 'site', 'message' => 'This value is too long. It should have 255 characters or less.'],
+                ],
+            ],
+            'phoneNumber should be a string' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'phoneNumber is too short' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => 'a']),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value is too short. It should have 2 characters or more.'],
+                ],
+            ],
+            'phoneNumber is too long' => [
+                'requestBody' => array_merge($requestBody, ['phoneNumber' => str_repeat('a', 21)]),
+                'expectedErrors' => [
+                    ['field' => 'phoneNumber', 'message' => 'This value is too long. It should have 20 characters or less.'],
+                ],
+            ],
+            'maxCapacity should be an integer' => [
+                'requestBody' => array_merge($requestBody, ['maxCapacity' => '123']),
+                'expectedErrors' => [
+                    ['field' => 'maxCapacity', 'message' => 'This value should be of type integer.'],
+                ],
+            ],
+            'accessibleAudio should be a string' => [
+                'requestBody' => array_merge($requestBody, ['accessibleAudio' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'accessibleAudio', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'accessibleAudio should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['accessibleAudio' => 'invalid-choice']),
+                'expectedErrors' => [
+                    ['field' => 'accessibleAudio', 'message' => 'The value you selected is not a valid choice.'],
+                ],
+            ],
+            'accessibleLibras should be a string' => [
+                'requestBody' => array_merge($requestBody, ['accessibleLibras' => 123]),
+                'expectedErrors' => [
+                    ['field' => 'accessibleLibras', 'message' => 'This value should be of type string.'],
+                ],
+            ],
+            'accessibleLibras should be a valid choice' => [
+                'requestBody' => array_merge($requestBody, ['accessibleLibras' => 'invalid-choice']),
+                'expectedErrors' => [
+                    ['field' => 'accessibleLibras', 'message' => 'The value you selected is not a valid choice.'],
+                ],
+            ],
+            'free should be a boolean' => [
+                'requestBody' => array_merge($requestBody, ['free' => 'true']),
+                'expectedErrors' => [
+                    ['field' => 'free', 'message' => 'This value should be of type boolean.'],
                 ],
             ],
         ];
