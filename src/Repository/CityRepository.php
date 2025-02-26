@@ -18,21 +18,25 @@ class CityRepository extends AbstractRepository implements CityRepositoryInterfa
 
     public function findByState(State|string $state): array
     {
+        if ($state instanceof State) {
+            return $this->findBy(
+                ['state' => $state],
+                ['name' => 'ASC']
+            );
+        }
+
         if (2 === strlen($state)) {
             return $this->getEntityManager()->createQueryBuilder()
                 ->select('c')
                 ->from(City::class, 'c')
                 ->join('c.state', 's')
                 ->where('s.acronym = :acronym')
-                ->setParameter('acronym', $state)
+                ->setParameter('acronym', strtoupper($state))
                 ->orderBy('c.name', 'ASC')
                 ->getQuery()
                 ->getResult();
         }
 
-        return $this->findBy(
-            ['state' => $state],
-            ['name' => 'ASC']
-        );
+        return [];
     }
 }
