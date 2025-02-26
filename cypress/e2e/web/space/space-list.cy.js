@@ -29,10 +29,15 @@ describe('Página de Lista de Espaços', () => {
     });
 
     it('Garante que os cards de espaços estão visíveis', () => {
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__type').contains('Complexo Cultural').should('be.visible');
-        cy.get('.space-card__info > .mb-md-2').contains('O Dragão do Mar é um dos maiores complexos culturais da região, com teatros, cinemas e galerias de arte que promovem a cultura local e internacional.').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .space-card__info > .justify-content-center > .btn').contains('Acessar espaço').should('be.visible');
+        cy.get('.space-card').should('have.length.greaterThan', 0);
+        cy.get('.space-card__title').should(($titles) => {
+            const found = Cypress._.some($titles, (el) => el.innerText.includes('Dragão do Mar'));
+            expect(found).to.be.true;
+        });
+
+        cy.get('.space-card__type').contains('Complexo Cultural').should('be.visible');
+        cy.get('.space-card__info > .mb-md-2').contains('O Dragão do Mar é um dos maiores complexos culturais da região').should('be.visible');
+        cy.get('.space-card__info > .justify-content-center > .btn').contains('Acessar espaço').should('be.visible');
     });
 
     it('Garante que o filtro funciona', () => {
@@ -40,7 +45,11 @@ describe('Página de Lista de Espaços', () => {
         cy.get('#space-name').type('Dragão do Mar');
         cy.get('#apply-filters').click();
         cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
-        cy.get(':nth-child(2) > .space-card__content > .justify-content-between > .d-flex > .space-card__title').contains('Dragão do Mar').should('be.visible');
+
+        cy.get('.space-card__title').should(($titles) => {
+            const found = Cypress._.some($titles, (el) => el.innerText.includes('Dragão do Mar'));
+            expect(found).to.be.true;
+        });
     });
 
     it('Garante que as opções de ordenar funcionam', () => {

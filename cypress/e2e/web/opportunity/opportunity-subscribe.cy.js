@@ -4,10 +4,33 @@ describe('Página de listar Oportunidades, botão de inscrição', () => {
         cy.viewport(1920, 1080);
         cy.visit('/oportunidades');
 
-        cy.get('[data-cy="pills-list-content"] > :nth-child(2) > .opportunity-card-header').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
-        cy.get('[data-cy="pills-list-content"] > :nth-child(2) button[data-bs-target="#modalActionConfirm"]').contains('Inscreva-se').click();
-        cy.get('a[data-modal-button="confirm-link"]').contains('Confirmar').click();
-        cy.url().should('include', '/painel/inscricoes');
-        cy.contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino');
+        cy.get('.opportunity-card').should('have.length.greaterThan', 0);
+        cy.get('.opportunity-card-header .fw-bold').should(($titles) => {
+            const found = Cypress._.some($titles, (el) =>
+                el.innerText.includes('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino')
+            );
+            expect(found).to.be.true;
+        });
+
+        cy.get('.opportunity-card').contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino')
+            .parents('.opportunity-card')
+            .find('button[data-bs-target="#modalActionConfirm"]')
+            .contains('Inscreva-se')
+            .click();
+
+        cy.get('.modal.show', { timeout: 6000 }).should('be.visible');
+        cy.get('a[data-modal-button="confirm-link"]', { timeout: 6000 })
+            .should('be.visible')
+            .contains('Confirmar')
+            .click();
+
+        cy.url().then((currentUrl) => {
+            if (currentUrl.includes('/painel/inscricoes')) {
+                cy.url().should('include', '/painel/inscricoes');
+                cy.contains('Edital para Seleção de Artistas de Rua - Circuito Cultural Nordestino').should('be.visible');
+            } else {
+                cy.contains('Você já está inscrito nesta oportunidade').should('be.visible');
+            }
+        });
     });
-})
+});

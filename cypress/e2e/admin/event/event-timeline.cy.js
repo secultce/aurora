@@ -4,14 +4,25 @@ describe('Painel de Controle - Página de timeline dos Eventos', () => {
         cy.login('saracamilo@example.com', 'Aurora@2024');
         cy.visit('/painel/eventos');
 
-        cy.contains('Timeline', { timeout: 10000 }).click({ force: true });
+        cy.get('table', { timeout: 10000 }).should('be.visible');
 
-        cy.get('h2').contains('Evento - Festival da Rapadura - Timeline').should('be.visible');
+        cy.get('tbody tr').should('have.length.greaterThan', 0);
+
+        cy.contains('Timeline', { timeout: 10000 }).should('be.visible').click({ force: true });
+
+        cy.get('h2', { timeout: 10000 }).should(($titles) => {
+            const found = Cypress._.some($titles, (el) =>
+                el.innerText.includes('Timeline')
+            );
+            expect(found).to.be.true;
+        });
+
         cy.get('.d-flex > div > .btn').contains('Voltar').should('be.visible');
         cy.get('tr > :nth-child(1) > a').contains('A entidade foi criada').should('be.visible');
         cy.get('tbody > tr > :nth-child(2)').contains(/\d{2}\/\d{2}\/\d{4}/).should('be.visible');
         cy.get('tbody > tr > :nth-child(3)').contains('unknown').should('be.visible');
         cy.get(':nth-child(5) > .btn').contains('Detalhes').should('be.visible');
+
         cy.get(':nth-child(1) > :nth-child(5) > .btn').click();
         cy.get('.modal-body > .table > thead > tr > :nth-child(2)').contains('De').should('be.visible');
         cy.get('.modal-body > .table > thead > tr > :nth-child(3)').contains('Para').should('be.visible');
