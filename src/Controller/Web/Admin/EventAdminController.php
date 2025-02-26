@@ -71,6 +71,9 @@ class EventAdminController extends AbstractAdminController
         $description = $request->request->get('description');
         $ageRating = $request->request->get('age_rating');
         $culturalLanguage = $request->request->get('cultural_language');
+        $type = $request->request->get('type');
+        $endDate = $request->request->get('end_date');
+        $maxCapacity = (int) $request->request->get('max_capacity');
 
         $event = [
             'id' => Uuid::v4(),
@@ -81,6 +84,9 @@ class EventAdminController extends AbstractAdminController
                 'cultural_language' => $culturalLanguage,
             ],
             'agentGroup' => null,
+            'type' => $type,
+            'endDate' => $endDate,
+            'maxCapacity' => $maxCapacity,
         ];
 
         try {

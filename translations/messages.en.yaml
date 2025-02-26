@@ -121,6 +121,10 @@ enter_space: Enter the name of the space
 end_date: End date
 event: Event
 events: Events
+event_types:
+  in_person: In Person
+  online: Online
+  hybrid: Hybrid
 everybody: Everybody
 evidences: Evidences
 elderly_person: Elderly Person
@@ -190,6 +194,7 @@ management: Management of Entities
 masculine: Masculine
 maroons: Maroon
 max-capacity: Maximum space capacity
+max_capacity: Maximum capacity
 mei: MEI (CNPJ of MEI)
 menu: Control Panel Menu
 medium: High School

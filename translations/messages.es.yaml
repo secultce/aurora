@@ -121,6 +121,10 @@ enter_space: Introduce el nombre del espacio
 end_date: Fecha de finalización
 event: Evento
 events: Eventos
+event_types:
+  in_person: En persona
+  online: En línea
+  hybrid: Híbrido
 everybody: Todos
 evidences: Evidencias
 elderly_person: Persona mayor
@@ -189,6 +193,7 @@ management: Gerenciamiento de Entidades
 masculine: Masculino
 maroons: Quilombola
 max-capacity: Capacidad máxima de espacio
+max_capacity: Capacidad máxima
 mei: MEI (CNPJ del MEI)
 menu: Menú del Panel de Control
 medium: Secundario
