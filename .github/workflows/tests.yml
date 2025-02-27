@@ -27,8 +27,8 @@ jobs:
       - name: Give permissions for var
         run: sudo chmod -R 777 var/
 
-      - name: Give permissions for assets/uploads
-        run: chmod -R 777 assets/uploads
+      - name: Create assets/uploads directory and give permissions
+        run: mkdir -p assets/uploads && chmod -R 777 assets/uploads
 
       - name: Create the phpunit.xml
         run: docker compose exec --user root php cp phpunit.xml.dist phpunit.xml
@@ -71,6 +71,9 @@ jobs:
 
       - name: Run fixtures
         run: docker compose exec --user root php bin/console d:f:l -n --purge-exclusions=city --purge-exclusions=state
+
+      - name: Give permissions for assets/uploads
+        run: docker compose exec --user root php chmod -R 777 assets/uploads
 
       - name: Install frontend dependencies
         run: docker compose exec --user root php bin/console importmap:install

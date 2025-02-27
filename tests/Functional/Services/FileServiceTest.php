@@ -46,6 +46,19 @@ class FileServiceTest extends KernelTestCase
         $this->fileService->readFile(self::FILE);
     }
 
+    public function testDeleteFileByUrl(): void
+    {
+        $this->fileService->uploadFile(self::FILE, self::CONTENT);
+
+        $storageUrl = $this->fileService->getFileUrl('');
+        $fileUrl = $storageUrl.'/'.self::FILE;
+        $filePath = dirname(__DIR__, 2).'/assets/'.self::FILE;
+
+        $this->fileService->deleteFileByUrl($fileUrl);
+
+        $this->assertFalse(file_exists($filePath));
+    }
+
     public function testUploadImage(): void
     {
         $uploadedFile = ImageTestFixtures::getImageValid();

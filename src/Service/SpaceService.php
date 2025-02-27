@@ -123,6 +123,10 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 
         $space->setDeletedAt(new DateTime());
 
+        if ($space->getImage()) {
+            $this->fileService->deleteFileByUrl($space->getImage());
+        }
+
         $this->repository->save($space);
     }
 

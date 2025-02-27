@@ -118,6 +118,10 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
 
         $organization->setDeletedAt(new DateTime());
 
+        if ($organization->getImage()) {
+            $this->fileService->deleteFileByUrl($organization->getImage());
+        }
+
         $this->repository->save($organization);
     }
 

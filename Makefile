@@ -71,6 +71,7 @@ reset:
 # Limpa a cache e o banco
 reset-deep:
 	rm -rf var/storage
+	rm -rf assets/uploads
 	rm -rf assets/vendor
 	rm -rf public/assets
 	rm -rf var/cache
