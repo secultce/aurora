@@ -1,5 +1,8 @@
 add: Añadir
+address_complement: Complemento
+address_data: Datos de Dirección
 add_cover_image: Anãdir imagen de portada
+add_opening_hours: Añadir horario de apertura
 add_phase: Añadir fase
 account_privacy: Cuenta y Privacidad
 account_settings: Configuración de la cuenta de usuario
@@ -34,8 +37,11 @@ ages_rating:
   eighteen: 18 años
 agent_name: Nombre del Agente
 all: Todo
-allowed: Con permiso
+allow_free_linking: Permitir enlace libre
+allowed: Con permiso con
 answer: Respuesta
+architectural: Arquitectónica
+architectural_accessibility: Ofrece accesibilidad física
 archive: Archivar
 archives: Archivos
 archived: Archivados
@@ -54,6 +60,7 @@ black: Negra
 
 calendar: Calendario
 cancel: Cancelar
+capacity_accessibility: Capacidad y Accesibilidad
 category: Categoría
 change_details: Cambiar Detalles
 cep: CEP
@@ -63,6 +70,7 @@ check: Comprobar
 claim-ownership: Reclamar Propiedad
 clean_filter: Limpiar todos los filtros
 close: Cerrar
+closes_at: Cierra en
 close_registration: Inscripciones cerradas
 click_here: Haz clic aquí
 connections: Conexiones
@@ -177,6 +185,7 @@ last_login: Último inicio de sesión
 last_updated: Última actualización
 linked_with: Vinculado Con
 link: Añadir Enlace
+link_description: Descripción del enlace
 links: Enlaces
 list: Lista
 local: Ubicación
@@ -248,6 +257,8 @@ order: Ordenar por
 organization: Organización
 other_options: Otras opciones
 opened_registrations: Inscripciones Abiertas
+opens_at: Abre en
+opening-hours: Horário de funcionamento
 opportunity: Oportunidad
 opportunities: Oportunidades
 organizations: Organizaciones
@@ -257,8 +268,10 @@ other_files: Otros archivos
 other_information: Otra información
 
 pardo: Pardo
-peoples: Gente
+people: Gente
+people_capacity: Capacidad de personas
 period: Período
+permissions: Permisos
 portfolio: Portafolio
 privacy: Privacidad
 profile: Perfil
@@ -266,6 +279,7 @@ password: Contraseña
 password_strength: Fuerza de la Contraseña
 personal_data: Datos Personales
 person_disabled: Persona con Discapacidad
+presentation_information: Información de presentación
 phone: Teléfono
 postgraduate: Posgrado
 photo: Foto
@@ -280,8 +294,11 @@ postal_code: Código Postal
 profile_picture: Foto de Perfil
 projects: Proyectos
 physical: Física
+physical_accessibility: Recursos de accesibilidad física
 project_value: Valor del proyecto
 public: Público
+public_data_notice: Los datos ingresados a continuación se mostrarán a todos los usuarios de la plataforma.
+public_email: Correo electrónico público
 public_information: Información pública
 public_phone: telefono publico
 published: Publicados
@@ -321,6 +338,7 @@ type_space: Tipo de espacio
 to: hasta
 
 user: Usuario
+user_name: Nombre de usuario
 users: Usuarios
 
 view_all: Ver Todas
@@ -375,6 +393,7 @@ your_name: Ingrese su nombre
 your_question: Escriba su pregunta
 
 welcome: Bienvenido
+week_days: Días de la semana
 where: Donde
 white: Blanca
 work_plan: Plan de trabajo
@@ -727,6 +746,10 @@ view:
       opened: Espacios Abiertos
       last_days: Registrados en los últimos 7 días
     picture: Foto del Espacio
+
+  space-edit:
+    edit-space: Editar Espacio
+    mandatory_fields: Campos marcados con asterisco son obligatorios.
 
   registration:
     available: Recursos abiertos y disponibles

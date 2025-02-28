@@ -1,5 +1,8 @@
 add: Add
+address_complement: Address Complement
+address_data: Address Data
 add_cover_image: Add cover image
+add_opening_hours: Add Opening Hours
 add_phase: Add Phase
 account_privacy: Account and Privacy
 account_settings: User Account Settings
@@ -21,6 +24,8 @@ accept_terms: Accept the terms
 address: Address
 admin_options: Admin Options
 add_archive: Add
+architectural: Architectural
+architectural_accessibility: Offers physical accessibility
 administration: Administration
 agent: Agent
 agents: Agents
@@ -34,6 +39,7 @@ ages_rating:
   sixteen: 16 years
   eighteen: 18 years
 all: All
+allow_free_linking: Allow free linking with
 allowed: Allowed
 answer: Answer
 archive: Archive
@@ -54,6 +60,7 @@ black: Black
 
 calendar: Calendar
 cancel: Cancel
+capacity_accessibility: Capacity and Accessibility
 category: Category
 change_details: Change Details
 cep: CEP
@@ -63,6 +70,7 @@ check: Check
 claim-ownership: Claim Ownership
 clean_filter: Clean Filter
 close: Close
+closes_at: Closes at
 close_registration: Registration closed
 click_here: Click Here
 connections: Connections
@@ -179,6 +187,7 @@ last_updated: Last update
 linked_with: Linked With
 link: Add Link
 links: Links
+link_description: Link Description
 list: List
 local: Local
 locate_yourself: Locate Yourself
@@ -250,6 +259,8 @@ organization: Organization
 other_options: Other Options
 opportunity: Opportunity
 opened_registrations: Open Registrations
+opens_at: Opens at
+opening-hours: Opening Hours
 opportunities: Opportunities
 organizations: Organizations
 organization_register: Create an Organization
@@ -258,8 +269,10 @@ other_files: Other files
 other_information: Other information
 
 pardo: Mixed Race
-peoples: Peoples
+people: People
+people_capacity: People Capacity
 period: Period
+permissions: Permissions
 portfolio: Portfolio
 privacy: Privacy
 profile: Profile
@@ -267,6 +280,7 @@ password: Password
 password_strength: Password Strength
 personal_data: Personal Data
 person_disabled: Person with Disability
+presentation_information: Presentation Information
 phone: Phone
 postgraduate: Postgraduate
 photo: Photo
@@ -281,9 +295,12 @@ postal_code: Postal Code
 profile_picture: Profile Picture
 projects: Projects
 physical: Physical
+physical_accessibility: Physical accessibility features
 project_value: Project value
 public: Public
+public_data_notice: The data entered below will be displayed to all users on the platform.
 public_information: Public Information
+public_email: Public Email
 public_phone: Public Telephone
 published: Published
 
@@ -322,8 +339,9 @@ type_space: Space type
 
 to: to
 user: User
-
+user_name: User Name
 users: Users
+
 view_all: View All
 view_file: view file
 video: video
@@ -373,6 +391,7 @@ your_name: Enter your name
 your_question: Write your question
 
 welcome: Welcome
+week_days: Week Days
 where: Where
 white: White
 work_plan: Work plan
@@ -723,6 +742,9 @@ view:
       last_days: Registered in the last 7 days
     picture: Space Picture
 
+  space-edit:
+    edit-space: Edit Space
+    mandatory_fields: Fields marked with asterisco are mandatory.
 
   registration:
       available: Open and available resources

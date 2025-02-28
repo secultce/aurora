@@ -35,7 +35,7 @@ describe('Página de detalhes do evento', () => {
         cy.get('.tab-content .card__entity-details [data-cy="seal-creator"]').should('exist');
         cy.get('.tab-content .card__entity-details [data-cy="seal-validity"]').should('exist');
 
-        cy.get('.nav-pills [href="#peoples"]').click();
+        cy.get('.nav-pills [href="#people"]').click();
         cy.get('.tab-content .card__entity-details .card-title__entity-details').contains('Pessoas').should('be.visible');
         cy.get('.tab-content .card__entity-details [data-cy="createdBy-name"]').contains('Henrique').should('be.visible');
 

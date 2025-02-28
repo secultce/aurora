@@ -1,55 +1,55 @@
 describe('Teste de navegação, validação e edição da página de Espaços', () => {
     beforeEach(() => {
         cy.viewport(1920, 1080);
-        cy.visit('/');
-        cy.contains('Entrar').click();
-        cy.url().should('include', '/login');
-        cy.login('henriquelopeslima@example.com', 'Aurora@2024');
-        cy.url().should('include', '/');
-        cy.contains('Henrique').should('be.visible').click();
-        cy.contains('Meus Espaços').should('be.visible').click();
-        cy.url().should('include', '/painel/espacos');
-        cy.scrollTo('bottom');
+        cy.login('alessandrofeitoza@example.com', 'Aurora@2024');
+        cy.visit('/painel/espacos');
         cy.contains('Editar').first().click();
-        cy.url().should('include', '/editar');
-
-        cy.get('form').invoke('attr', 'novalidate', true);
+        cy.url().should('include', '/editar')
     });
 
-    it('Verifica e edita os campos do formulário de espaços', () => {
-        cy.get('input[name="name"]')
-            .should('exist')
-            .clear()
-            .type('Galeria Teste Atualizada');
+    it('Garante que a página de editar espaços funciona', () => {
+        cy.get(':nth-child(1) > .accordion-header > .accordion-button').contains('Informações de apresentação').should('be.visible');
+        cy.get('[for="name"]').contains('Nome do espaço').should('be.visible');
+        cy.get('[for="short-description"]').contains('Descrição curta').should('be.visible');
+        cy.get('[for="long-description"]').contains('Descrição longa').should('be.visible');
+        cy.get(':nth-child(9) > :nth-child(1) > label').contains('Site').should('be.visible');
+        cy.get(':nth-child(9) > :nth-child(2) > label').contains('Descrição do link').should('be.visible');
+        cy.get('.entity-introduction-data > .mt-1 > :nth-child(1) > label').contains('Email público').should('be.visible');
+        cy.get('.entity-introduction-data > .mt-1 > :nth-child(2) > label').contains('Telefone Público').should('be.visible');
 
-        cy.get('textarea[name="description"]')
-            .should('exist')
-            .clear()
-            .type('Descrição atualizada para Galeria Teste.');
+        cy.get(':nth-child(2) > .accordion-header > .accordion-button').contains('Dados de endereço').should('be.visible');
+        cy.get(':nth-child(2) > .accordion-header > .accordion-button').click();
+        cy.get('.entity-address-data > :nth-child(1) > .col-md-4 > .form-label').contains('CEP').should('be.visible');
+        cy.get('.col-md-8 > .form-label').contains('Logradouro').should('be.visible');
+        cy.get('.col-md-2 > .form-label').contains('Número').should('be.visible');
+        cy.get(':nth-child(2) > .col-md-3 > .form-label').contains('Bairro').should('be.visible');
+        cy.get('.col-md-7 > .form-label').contains('Complemento').should('be.visible');
+        cy.get('.entity-address-data > :nth-child(3) > :nth-child(1) > .form-label').contains('Estado').should('be.visible');
+        cy.get('.entity-address-data > :nth-child(3) > :nth-child(2) > .form-label').contains('Município').should('be.visible');
+        cy.get('.col-12 > .form-label').contains('Localização').should('be.visible');
 
-        cy.get('input[name="date"]')
-            .should('exist')
-            .clear()
-            .type('2025-01-20T10:30');
+        cy.get(':nth-child(3) > .accordion-header > .accordion-button').contains('Capacidade e Acessibilidade').should('be.visible');
+        cy.get(':nth-child(3) > .accordion-header > .accordion-button').click();
+        cy.get('.entity-accessibility > :nth-child(1) > .col-md-4 > .form-label').contains('Capacidade de pessoas').should('be.visible');
+        cy.get('.col > .form-label').contains('Recursos de acessibilidade física').should('be.visible');
 
-        cy.contains('Salvar').click();
-        cy.url().should('include', '/painel/espacos/');
+        cy.get(':nth-child(4) > .accordion-header > .accordion-button').contains('Horário de funcionamento').should('be.visible');
+        cy.get(':nth-child(4) > .accordion-header > .accordion-button').click();
+        cy.get('.g-2 > .col-md-6 > .form-label').contains('Dias da semana').should('be.visible');
+        cy.get('.g-2 > :nth-child(2) > .form-label').contains('Abre às').should('be.visible');
+        cy.get('.g-2 > :nth-child(3) > .form-label').contains('Fecha às').should('be.visible');
 
-        cy.contains('Galeria Teste Atualizada').should('be.visible');
-        cy.contains('td', 'Galeria Teste Atualizada')
-    });
+        cy.get(':nth-child(5) > .accordion-header > .accordion-button').contains('Permissões').should('be.visible');
+        cy.get(':nth-child(5) > .accordion-header > .accordion-button').click();
+        cy.get('.mb-3 > .form-label').contains('Permitir livre vinculação com').should('be.visible');
+        cy.get('.mb-3 > :nth-child(2) > .form-check-label').contains('Pessoas').should('be.visible');
+        cy.get(':nth-child(3) > .form-check-label').contains('Organizações').should('be.visible');
+        cy.get(':nth-child(4) > .form-check-label').contains('Eventos').should('be.visible');
+        cy.get(':nth-child(5) > .form-check-label').contains('Espaços').should('be.visible');
 
-    it('Verifica os botões Salvar e Cancelar', () => {
-        cy.contains('Salvar')
-            .should('exist')
-            .should('have.attr', 'type', 'submit');
-
-        cy.contains('Cancelar')
-            .should('exist')
-            .should('have.attr', 'href', '/painel/espacos/')
-            .should('be.visible');
-
-        cy.contains('Cancelar').click();
-        cy.url().should('include', '/painel/espacos/');
+        cy.get(':nth-child(6) > .accordion-header > .accordion-button').contains('Redes sociais').should('be.visible');
+        cy.get(':nth-child(6) > .accordion-header > .accordion-button').click();
+        cy.get('.container-fluid > :nth-child(2) > :nth-child(1) > .form-label').contains('Instagram').should('be.visible');
+        cy.get(':nth-child(4) > :nth-child(3) > .form-label').contains('TikTok').should('be.visible');
     });
 });

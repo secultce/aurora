@@ -7,7 +7,7 @@ describe('Painel de Controle - Página de timeline dos Espaços', () => {
 
     it('Garante que a página de timeline dos espaços existe e que exibe os detalhes corretamente', () => {
         cy.get('h2')
-            .should('contain', 'Espaços - Galeria Teste Atualizada - Timeline')
+            .should('contain', 'Espaços - Galeria Caatinga - Timeline')
             .should('be.visible');
 
         cy.get('.btn')

@@ -1,0 +1,28 @@
+<div class="container-fluid opening-hours p-0">
+    <div class="row g-2 g-md-3 align-items-end">
+        <div class="col-md-6">
+            <label for="week_days" class="form-label">{{ 'week_days' | trans }}</label>
+            <select class="form-select" id="week_days">
+                <option selected>{{ 'select' | trans }}</option>
+            </select>
+        </div>
+
+        <div class="col-md-3">
+            <label for="opens_at" class="form-label">{{ 'opens_at' | trans }}</label>
+            <input type="time" class="form-control" id="opens_at" placeholder="00:00">
+        </div>
+
+        <div class="col-md-3">
+            <label for="closes_at" class="form-label">{{ 'closes_at' | trans}}</label>
+            <input type="time" class="form-control" id="closes_at" placeholder="00:00">
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col">
+            <a href="#" class="text-primary fw-bold text-decoration-none">
+                <i class="iconify fs-3" data-icon="gridicons:add"></i>
+                {{ 'add_opening_hours' | trans }}
+            </a>
+        </div>
+    </div>
+</div>

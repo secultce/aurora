@@ -30,7 +30,7 @@ describe('Página de detalhes da iniciativa', () => {
         cy.get('.tab-content [data-cy="change-history-btn"]').contains('histórico de alterações').should('be.visible');
         cy.get('.tab-content [data-cy="report-btn"]').contains('denunciar').should('be.visible');
 
-        cy.get('.nav-pills [href="#peoples"]').click();
+        cy.get('.nav-pills [href="#people"]').click();
         cy.get('.tab-content .card__entity-details .card-title__entity-details').contains('Pessoas').should('be.visible');
         cy.get('.tab-content .card__entity-details [data-cy="createdBy-name"]').contains('Alessandro').should('be.visible');
 

@@ -5,64 +5,37 @@
 {% block content %}
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
-        <div class="management-content w-100 p-4">
-            <div class="row">
-                <div class="col-md-8 offset-md-2">
-                    <div class="card card-body">
-                        <h2>{{ 'edit_space' | trans }}</h2>
-                        <form method="POST">
-                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
-                            <div class="mb-3">
-                                <label for="name" class="form-label">{{ 'name_space' | trans }}</label>
-                                <input
-                                        type="text"
-                                        id="name"
-                                        name="name"
-                                        class="form-control"
-                                        value="{{ space.name }}"
-                                        required
-                                >
-                            </div>
+        <div class="entity-edit">
+            {% include "_admin/space/_partials/space-edit-header.html.twig" %}
+            <section class="entity-edit-content mt-4">
+                {% set asterisk = '<span class="text-danger">*</span>' %}
+                <span class="entity-mandatory-fields">{{ 'view.space-edit.mandatory_fields'|trans({'asterisco': asterisk})|raw }}</span>
 
-                            <div class="mb-3">
-                                <label for="description" class="form-label">{{ 'description' | trans }}</label>
-                                <textarea
-                                        id="description"
-                                        name="description"
-                                        class="form-control"
-                                        rows="3"
-                                        maxlength="500"
-                                >{{ space.extrafields.description }}</textarea>
-                            </div>
+                {% include "_admin/space/_partials/forms/entity-edit-form.html.twig" %}
+            </section>
 
-                            <div class="mb-3">
-                                <label for="date" class="form-label">{{ 'date' | trans }}</label>
-                                <input
-                                        type="datetime-local"
-                                        id="date"
-                                        name="date"
-                                        class="form-control"
-                                        value="{{ space.extrafields.date|default(null)|date('Y-m-d\\TH:i') }}"
-                                        required
-                                >
-                            </div>
-
-                            <button type="submit" class="btn btn-primary">
-                                {{ 'save' | trans }}
-                            </button>
-                            <a href="{{ path('admin_space_list') }}" class="btn btn-secondary">
-                                {{ 'cancel' | trans }}
-                            </a>
-                        </form>
-
-                        {% if error is defined and error %}
-                            <div class="alert alert-danger mt-3">
-                                {{ error }}
-                            </div>
-                        {% endif %}
-                    </div>
+            <div class="entity-edit-submit">
+                <div class="delete-archive">
+                    <button class="btn btn-outline-light">
+                        <i class="iconify fs-3" data-icon="mynaui:trash"></i>
+                        {{ 'delete' | trans }}
+                    </button>
+                    <button class="btn btn-outline-light">
+                        <i class="iconify fs-3" data-icon="mingcute:box-2-line"></i>
+                        {{ 'archive' | trans }}
+                    </button>
+                </div>
+                <div class="logout-submit">
+                    <button class="btn btn-outline-light">{{ 'logout' | trans }}</button>
+                    <button type="submit" class="btn btn-light">{{ 'save' | trans}}</button>
                 </div>
             </div>
+
+            {% if error is defined and error %}
+                <div class="alert alert-danger mt-3">
+                    {{ error }}
+                </div>
+            {% endif %}
         </div>
     </section>
 {% endblock %}

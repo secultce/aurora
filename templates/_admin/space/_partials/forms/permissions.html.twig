@@ -1,0 +1,26 @@
+<div class="mb-3 mt-0 permissions">
+    <label class="form-label">
+        {{ 'allow_free_linking' | trans}}
+        <span class="iconify entity-edit-icon me-2" data-icon="material-symbols:info-rounded"></span>
+    </label>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="people">
+        <label class="form-check-label fw-bold" for="people">{{ 'people' | trans }}</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="organizations">
+        <label class="form-check-label fw-bold" for="organizations">{{ 'organizations' | trans  }}</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="events">
+        <label class="form-check-label fw-bold" for="events">{{ 'events' | trans }}</label>
+    </div>
+
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" id="spaces">
+        <label class="form-check-label fw-bold" for="spaces">{{ 'spaces' | trans }}</label>
+    </div>
+</div>

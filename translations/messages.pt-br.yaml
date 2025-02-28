@@ -1,5 +1,8 @@
 add: Adicionar
+address_complement: Complemento
+address_data: Dados de endereço
 add_cover_image: Adicionar imagem de capa
+add_opening_hours: Adicionar horário de funcionamento
 add_phase: Adicionar Fase
 account_privacy: Conta e Privacidade
 account_settings: Configurações da conta do usuário
@@ -33,10 +36,13 @@ ages_rating:
     sixteen: 16 anos
     eighteen: 18 anos
 all: Tudo
+allow_free_linking: Permitir livre vinculação com
 allowed: Com permissão
 admin_options: Opções do Administrador
 add_archive: Adicione
 archive: Arquivar
+architectural: Arquitetônica
+architectural_accessibility: Oferece acessibilidade física
 archives: Arquivos
 archived: Arquivados
 areas_of_expertise: Áreas de Atuação
@@ -54,6 +60,7 @@ black: Preta
 
 calendar: Calendário
 cancel: Cancelar
+capacity_accessibility: Capacidade e Acessibilidade
 category: Categoria
 change_details: Detalhes das Mudanças
 cep: CEP
@@ -63,6 +70,7 @@ check: Conferir
 claim-ownership: Reivindicar Propriedade
 clean_filter: Limpar todos os filtros
 close: Fechar
+closes_at: Fecha às
 close_registration: Inscrições encerradas
 click_here: Clique aqui
 connections: Conexões
@@ -178,6 +186,7 @@ last_updated: Última atualização
 linked_with: Vinculado com
 list: Lista
 link: Adicionar link
+link_description: Descrição do link
 links: Links
 local: Local
 locate_yourself: Localize-se
@@ -199,7 +208,7 @@ menu: Menu do Painel de Controle
 medium: Médio
 months: meses
 most_recent: Mais Recente
-municipality: Municipio
+municipality: Município
 my_account: Minha Conta
 my_agents: Meus Agentes
 my_apps: Meus Aplicativos
@@ -248,6 +257,8 @@ order: Ordenar por
 organization: Organização
 other_options: Outras Opções
 opened_registrations: Inscrições abertas
+opens_at: Abre às
+opening-hours: Horário de funcionamento
 opportunity: Oportunidade
 opportunities: Oportunidades
 organizations: Organizações
@@ -257,8 +268,10 @@ other_files: Outros arquivos
 other_information: Outras informações
 
 pardo: Pardo
-peoples: Pessoas
+people: Pessoas
+people_capacity: Capacidade de pessoas
 period: Período
+permissions: Permissões
 portfolio: Portfólio
 privacy: Privacidade
 profile: Perfil
@@ -266,6 +279,7 @@ password: Senha
 password_strength: Força da senha
 personal_data: Dados pessoais
 person_disabled: Pessoa com Deficiência
+presentation_information: Informações de apresentação
 postgraduate: Pós-graduação
 phone: Telefone
 photo: Foto
@@ -277,11 +291,14 @@ phase_success: Fase criada com sucesso
 phase_error: Erro ao criar a fase
 phase_timeline: Timeline da fase
 physical: Física
+physical_accessibility: Recursos de acessibilidade física
 postal_code: CEP
 profile_picture: Foto de Perfil
 projects: Projetos
 project_value: Valor do projeto
 public: Público
+public_data_notice: Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
+public_email: Email público
 public_information: Informações públicas
 public_phone: Telefone Público
 published: Publicados
@@ -321,6 +338,7 @@ type_space: Tipo do espaço
 to: até
 
 user: Usuário
+user_name: Nome do Usuário
 users: Usuários
 
 view_all: Ver todas
@@ -375,6 +393,7 @@ your_question: Escreva sua pergunta
 higher: Superior
 
 welcome: Olá
+week_days: Dias da semana
 where: Onde
 white: Branca
 work_plan: Plano de trabalho
@@ -704,6 +723,11 @@ view:
       opened: Espaços Abertos
       last_days: Registrados nos últimos {days} dias
     picture: Foto do Espaço
+
+  space-edit:
+    edit-space: Edição de Espaço
+    mandatory_fields: Campos marcados com asterisco são de preenchimento obrigatório.
+
 
   registration:
     available: Recursos abertos e disponíveis
