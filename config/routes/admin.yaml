@@ -92,3 +92,13 @@ admin_tags:
   resource: 'admin/tag.yaml'
   prefix: /painel/admin/tags
   name_prefix: admin_tag_
+
+admin_space_type:
+  resource: 'admin/space-type.yaml'
+  prefix: /painel/admin/tipo-de-espaco
+  name_prefix: admin_space_type_
+
+admin_architectural_accessibility:
+  resource: 'admin/architectural-accessibility.yaml'
+  prefix: /painel/admin/acessibilidade
+  name_prefix: admin_architectural_accessibility_

@@ -116,6 +116,10 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         $initiative = $this->get($id);
         $initiative->setDeletedAt(new DateTime());
 
+        if ($initiative->getImage()) {
+            $this->fileService->deleteFileByUrl($initiative->getImage());
+        }
+
         $this->repository->save($initiative);
     }
 

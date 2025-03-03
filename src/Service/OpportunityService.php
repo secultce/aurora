@@ -123,6 +123,10 @@ readonly class OpportunityService extends AbstractEntityService implements Oppor
 
         $opportunity->setDeletedAt(new DateTime());
 
+        if ($opportunity->getImage()) {
+            $this->fileService->deleteFileByUrl($opportunity->getImage());
+        }
+
         $this->repository->save($opportunity);
     }
 

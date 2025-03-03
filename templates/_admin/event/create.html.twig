@@ -70,6 +70,29 @@
                 </select>
             </div>
 
+            <div class="mb-4">
+                <label class="form-label" for="event-type">{{ 'type'|trans }}</label>
+                <span class="text-danger">*</span>
+                <select class="form-select mt-1" id="event-type" name="type" required>
+                    <option selected disabled value="">{{ 'select'|trans }}</option>
+                    <option value="in_person">{{ 'event_types.in_person'|trans }}</option>
+                    <option value="online">{{ 'event_types.online'|trans }}</option>
+                    <option value="hybrid">{{ 'event_types.hybrid'|trans }}</option>
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="end-date" class="form-label"> {{ 'end_date' | trans}} </label>
+                <span class="text-danger">*</span>
+                <input type="date" class="form-control" id="end-date" name="end_date" required>
+            </div>
+
+            <div class="mb-4">
+                <label for="max-capacity" class="form-label"> {{ 'max_capacity' | trans}} </label>
+                <span class="text-danger">*</span>
+                <input type="number" min="0" step="1" class="form-control" id="max-capacity" name="max_capacity" required>
+            </div>
+
             <div class="btn-form-group mt-5">
                 <button type="submit" class="btn btn-primary">{{ 'create_and_publish'|trans }}</button>
                 <button class="btn btn-secondary">{{ 'create_in_draft'|trans }}</button>

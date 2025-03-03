@@ -13,16 +13,16 @@ use Symfony\Component\Serializer\SerializerInterface;
 final class ActivityAreaFixtures extends AbstractFixture
 {
     public const string ACTIVITY_AREA_ID_PREFIX = 'activity_area';
-    public const string ACTIVITY_AREA_ID_1 = 'a1b2c3d4-e5f6-7890-1234-56789abcdef0';
-    public const string ACTIVITY_AREA_ID_2 = 'b2c3d4e5-f678-9012-3456-789abcdef012';
-    public const string ACTIVITY_AREA_ID_3 = 'c3d4e5f6-7890-1234-5678-9abcdef01234';
-    public const string ACTIVITY_AREA_ID_4 = 'd4e5f678-9012-3456-789a-bcdef0123456';
-    public const string ACTIVITY_AREA_ID_5 = 'e5f67890-1234-5678-9abc-def012345678';
-    public const string ACTIVITY_AREA_ID_6 = 'f6789012-3456-789a-bcde-f01234567890';
-    public const string ACTIVITY_AREA_ID_7 = '67890123-4567-89ab-cdef-012345678901';
-    public const string ACTIVITY_AREA_ID_8 = '78901234-5678-9abc-def0-123456789012';
-    public const string ACTIVITY_AREA_ID_9 = '89012345-6789-abcd-ef01-234567890123';
-    public const string ACTIVITY_AREA_ID_10 = '90123456-789a-bcde-f012-345678901234';
+    public const string ACTIVITY_AREA_ID_1 = '3b90f7c7-5105-4727-b223-b4471139d153';
+    public const string ACTIVITY_AREA_ID_2 = '7e76954d-d9e2-4e5c-867f-dbf2cff763af';
+    public const string ACTIVITY_AREA_ID_3 = '857937f7-2b75-46e2-9e22-e24e120214c1';
+    public const string ACTIVITY_AREA_ID_4 = 'e691ee02-fa5b-4da9-9db3-b5beeec5ee3a';
+    public const string ACTIVITY_AREA_ID_5 = 'b8b715fe-d9e9-4231-8257-ff1944d220d0';
+    public const string ACTIVITY_AREA_ID_6 = 'b1068e28-91e0-4847-8dfd-14bcc23c0a8f';
+    public const string ACTIVITY_AREA_ID_7 = 'e14008c9-cb10-4bd9-b9a2-bc5285993b85';
+    public const string ACTIVITY_AREA_ID_8 = '3a4036d8-e283-446d-8402-017af0a33ce7';
+    public const string ACTIVITY_AREA_ID_9 = '4787ac47-492d-4ce3-b46d-f72713212493';
+    public const string ACTIVITY_AREA_ID_10 = 'd72e117e-a1cd-4a88-8656-5bf37a7296f8';
 
     public const array ACTIVITY_AREAS = [
         [

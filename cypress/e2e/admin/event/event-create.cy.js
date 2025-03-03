@@ -35,6 +35,9 @@ describe('Pagina de Cadastrar Eventos', () => {
         cy.get("a[data-value='area0']").click()
         cy.get('#description').type('Este é um evento teste.');
         cy.get('#age-rating').select('Livre');
+        cy.get('#event-type').select('Presencial');
+        cy.get('#end-date').type('2025-03-10');
+        cy.get('#max-capacity').type('100');
 
         cy.contains('button', 'Criar e Publicar').click();
 

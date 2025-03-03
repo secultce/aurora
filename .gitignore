@@ -36,6 +36,7 @@ coverage.xml
 
 ###> symfony/asset-mapper ###
 /public/assets/
+/assets/uploads/
 /assets/vendor/
 ###< symfony/asset-mapper ###
 

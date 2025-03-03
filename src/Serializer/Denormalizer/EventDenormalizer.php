@@ -10,6 +10,8 @@ use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
 use App\Entity\Tag;
+use App\Enum\AccessibilityInfoEnum;
+use App\Enum\EventTypeEnum;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManagerInterface;
@@ -39,6 +41,18 @@ readonly class EventDenormalizer implements DenormalizerInterface
 
         if (true === array_key_exists('image', $data)) {
             $this->uploadImage($data, $context['object_to_populate'] ?? null);
+        }
+
+        if (true === array_key_exists('type', $data)) {
+            $data['type'] = $this->denormalizeEventType($data['type']);
+        }
+
+        if (true === array_key_exists('accessibleAudio', $data)) {
+            $data['accessibleAudio'] = $this->denormalizeAccessibilityInfo($data['accessibleAudio']);
+        }
+
+        if (true === array_key_exists('accessibleLibras', $data)) {
+            $data['accessibleLibras'] = $this->denormalizeAccessibilityInfo($data['accessibleLibras']);
         }
 
         /** @var Event $event */
@@ -113,5 +127,35 @@ readonly class EventDenormalizer implements DenormalizerInterface
             '*' => false,
             Event::class => true,
         ];
+    }
+
+    private function denormalizeEventType(mixed $eventType): int
+    {
+        if (true === is_string($eventType)) {
+            $choice = EventTypeEnum::fromName($eventType);
+
+            return $choice->value;
+        }
+
+        if ($eventType instanceof EventTypeEnum) {
+            return $eventType->value;
+        }
+
+        return (int) $eventType;
+    }
+
+    private function denormalizeAccessibilityInfo(mixed $accessibilityInfo): int
+    {
+        if (true === is_string($accessibilityInfo)) {
+            $choice = AccessibilityInfoEnum::fromName($accessibilityInfo);
+
+            return $choice->value;
+        }
+
+        if ($accessibilityInfo instanceof AccessibilityInfoEnum) {
+            return $accessibilityInfo->value;
+        }
+
+        return (int) $accessibilityInfo;
     }
 }

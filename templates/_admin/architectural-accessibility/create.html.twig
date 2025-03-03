@@ -1,0 +1,41 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'view.architectural_accessibility.create'|trans }}{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+
+        <div class="management-content w-100 p-4">
+            <div class="container d-grid justify-content-start mt-4">
+                <a href="{{ app.request.headers.get('referer')|default(path('admin_architectural_accessibility_list')) }}" class="nav-link centered-icon-text text-primary">
+                    <i class="material-icons">arrow_back</i>
+                    {{ 'back'|trans }}
+                </a>
+            </div>
+
+            <div class="row justify-content-center">
+                <div class="col-6">
+                    <div class="card card-body shadow">
+                        <h2>{{ 'view.architectural_accessibility.create'|trans }}</h2>
+
+                        <hr>
+
+                        <form action="{{ path('admin_architectural_accessibility_add') }}" method="post">
+                            <input type="hidden" name="token" value="{{ csrf_token(form_id) }}">
+                            <div class="mb-3">
+                                <label for="name" class="mb-1">{{ 'name'|trans }}</label>
+                                <input type="text" class="form-control" id="name" name="name" data-cy="name" required>
+                            </div>
+
+                            <button type="submit" class="btn btn-primary me-3" data-cy="submit">{{ 'create_and_publish'|trans }}</button>
+                            <button type="button" class="btn btn-secondary me-3">{{ 'create_in_draft'|trans }}</button>
+                            <a href="{{ path('admin_architectural_accessibility_list') }}" class="btn">{{ 'cancel'|trans }}</a>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
+

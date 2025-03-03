@@ -4,75 +4,75 @@ EventBase:
     id:
       type: string
       format: uuid
-      description: "Identificador do evento"
+      description: Identificador do evento
     name:
       type: string
       maxLength: 100
-      description: "Nome do evento"
+      description: Nome do evento
     image:
       type: string
       format: uri
-      description: "Imagem do evento"
+      description: Imagem do evento
     agentGroup:
-      description: "Grupo de agentes do evento"
+      description: Grupo de agentes do evento
       type: object
       properties:
         id:
           type: string
           format: uuid
-          description: "Identificador do grupo de agentes"
+          description: Identificador do grupo de agentes
     space:
-      description: "Espaço do evento"
+      description: Espaço do evento
       type: object
       properties:
         id:
           type: string
           format: uuid
-          description: "Identificador do espaço"
+          description: Identificador do espaço
     initiative:
-      description: "Iniciativa do evento"
+      description: Iniciativa do evento
       type: object
       properties:
         id:
           type: string
           format: uuid
-          description: "Identificador da iniciativa"
+          description: Identificador da iniciativa
     parent:
-      description: "Evento pai"
+      description: Evento pai
       type: object
       properties:
         id:
           type: string
           format: uuid
-          description: "Identificador do evento"
+          description: Identificador do evento
         name:
           type: string
           maxLength: 100
-          description: "Nome do evento"
+          description: Nome do evento
         agentGroup:
-          description: "Grupo de agentes do evento"
+          description: Grupo de agentes do evento
           type: object
           properties:
             id:
               type: string
               format: uuid
-              description: "Identificador do grupo de agentes"
+              description: Identificador do grupo de agentes
         space:
-          description: "Espaço do evento"
+          description: Espaço do evento
           type: object
           properties:
             id:
               type: string
               format: uuid
-              description: "Identificador do espaço"
+              description: Identificador do espaço
         initiative:
-          description: "Iniciativa do evento"
+          description: Iniciativa do evento
           type: object
           properties:
             id:
               type: string
               format: uuid
-              description: "Identificador da iniciativa"
+              description: Identificador da iniciativa
         parent:
           type: object
           nullable: true
@@ -80,54 +80,208 @@ EventBase:
         extraFields:
           type: object
           nullable: true
-          description: "Campos extras do evento"
+          description: Campos extras do evento
           example: null
         createdBy:
-          description: "Identificador do agente criador do evento"
+          description: Identificador do agente criador do evento
           type: object
           properties:
             id:
               type: string
               format: uuid
-              description: "Identificador do criador do agente"
+              description: Identificador do criador do agente
+        coverImage:
+          type: string
+          maxLength: 255
+          description: Imagem de capa
+        subtitle:
+          type: string
+          maxLength: 255
+          description: Subtítulo
+        shortDescription:
+          type: string
+          maxLength: 255
+          description: Descrição curta
+        longDescription:
+          type: string
+          description: Descrição longa
+        type:
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+          description: 1 - Presencial, 2 - Online, 3 - Híbrido
+        endDate:
+          type: string
+          format: date
+          description: Data do fim do evento
+        activityAreas:
+          type: array
+          description: Áreas de atuação relacionadas ao eventos
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+        tags:
+          type: array
+          description: Tags relacionadas ao eventos
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                format: uuid
+              name:
+                type: string
+        site:
+          type: string
+          maxLength: 255
+          description: Site do evento
+        phoneNumber:
+          type: string
+          maxLength: 20
+          description: número de telefone
+        maxCapacity:
+          type: integer
+          description: Capacidade máxima
+          example: 100
+        accessibleAudio:
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+          description: 1 - Sim, 2 - Não, 3 - Não Informado
+        accessibleLibras:
+          type: integer
+          enum:
+            - 1
+            - 2
+            - 3
+          description: 1 - Sim, 2 - Não, 3 - Não Informado
+        free:
+          type: boolean
+          description: Se a entrada é livre
         createdAt:
           type: string
           format: date-time
-          description: "Data e hora da criação do evento"
+          description: Data e hora da criação do evento
         updatedAt:
           type: string
           format: date-time
           nullable: true
-          description: "Data e hora da última atualização do evento"
+          description: Data e hora da última atualização do evento
         deletedAt:
           type: string
           format: date-time
           nullable: true
-          description: "Data e hora da exclusão do evento"
+          description: Data e hora da exclusão do evento
     extraFields:
       type: object
       nullable: true
-      description: "Campos extras do evento"
-      example: { "occurrences": [ '2025-12-25T15:30-03:00' ] }
+      description: Campos extras do evento
+      example: { occurrences: [ '2025-12-25T15:30-03:00' ] }
     createdBy:
-      description: "Agente criador do evento"
+      description: Agente criador do evento
       type: object
       properties:
         id:
           type: string
           format: uuid
-          description: "Identificador do criador do agente"
+          description: Identificador do criador do agente
+    coverImage:
+      type: string
+      maxLength: 255
+      description: Imagem de capa
+    subtitle:
+      type: string
+      maxLength: 255
+      description: Subtítulo
+    shortDescription:
+      type: string
+      maxLength: 255
+      description: Descrição curta
+    longDescription:
+      type: string
+      description: Descrição longa
+    type:
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+      description: 1 - Presencial, 2 - Online, 3 - Híbrido
+    endDate:
+      type: string
+      format: date
+      description: Data do fim do evento
+    activityAreas:
+      type: array
+      description: Áreas de atuação relacionadas ao eventos
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          name:
+            type: string
+    tags:
+      type: array
+      description: Tags relacionadas ao eventos
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+            format: uuid
+          name:
+            type: string
+    site:
+      type: string
+      maxLength: 255
+      description: Site do evento
+    phoneNumber:
+      type: string
+      maxLength: 20
+      description: número de telefone
+    maxCapacity:
+      type: integer
+      description: Capacidade máxima
+      example: 100
+    accessibleAudio:
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+      description: 1 - Sim, 2 - Não, 3 - Não Informado
+    accessibleLibras:
+      type: integer
+      enum:
+        - 1
+        - 2
+        - 3
+      description: 1 - Sim, 2 - Não, 3 - Não Informado
+    free:
+      type: boolean
+      description: Se a entrada é livre
     createdAt:
         type: string
         format: date-time
-        description: "Data e hora da criação do evento"
+        description: Data e hora da criação do evento
     updatedAt:
         type: string
         format: date-time
         nullable: true
-        description: "Data e hora da última atualização do evento"
+        description: Data e hora da última atualização do evento
     deletedAt:
         type: string
         format: date-time
         nullable: true
-        description: "Data e hora da exclusão do evento"
+        description: Data e hora da exclusão do evento

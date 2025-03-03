@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Functional\DocumentServices;
+namespace App\Tests\Functional\DocumentService;
 
 use App\DataFixtures\Entity\UserFixtures;
 use App\DocumentService\Interface\AuthTimelineDocumentServiceInterface;

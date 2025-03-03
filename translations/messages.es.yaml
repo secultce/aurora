@@ -1,5 +1,8 @@
 add: Añadir
+address_complement: Complemento
+address_data: Datos de Dirección
 add_cover_image: Anãdir imagen de portada
+add_opening_hours: Añadir horario de apertura
 add_phase: Añadir fase
 account_privacy: Cuenta y Privacidad
 account_settings: Configuración de la cuenta de usuario
@@ -17,6 +20,7 @@ activity_deleted: Se ha excluido el área de actividad
 activity_updated: Se ha actualizado el área de actividad
 area_of_activity: Área de Actividad
 activity_area_register: Crear nueva área de actuación
+architectural_accessibility: Accesibilidad arquitectónica
 accept_terms: Aceite de los termos
 address: Dirección
 admin_options: Opciones del Administrador
@@ -34,8 +38,11 @@ ages_rating:
   eighteen: 18 años
 agent_name: Nombre del Agente
 all: Todo
-allowed: Con permiso
+allow_free_linking: Permitir enlace libre
+allowed: Con permiso con
 answer: Respuesta
+architectural: Arquitectónica
+architectural_accessibility_offers: Ofrece accesibilidad física
 archive: Archivar
 archives: Archivos
 archived: Archivados
@@ -54,6 +61,7 @@ black: Negra
 
 calendar: Calendario
 cancel: Cancelar
+capacity_accessibility: Capacidad y Accesibilidad
 category: Categoría
 change_details: Cambiar Detalles
 cep: CEP
@@ -63,6 +71,7 @@ check: Comprobar
 claim-ownership: Reclamar Propiedad
 clean_filter: Limpiar todos los filtros
 close: Cerrar
+closes_at: Cierra en
 close_registration: Inscripciones cerradas
 click_here: Haz clic aquí
 connections: Conexiones
@@ -121,6 +130,10 @@ enter_space: Introduce el nombre del espacio
 end_date: Fecha de finalización
 event: Evento
 events: Eventos
+event_types:
+  in_person: En persona
+  online: En línea
+  hybrid: Híbrido
 everybody: Todos
 evidences: Evidencias
 elderly_person: Persona mayor
@@ -173,6 +186,7 @@ last_login: Último inicio de sesión
 last_updated: Última actualización
 linked_with: Vinculado Con
 link: Añadir Enlace
+link_description: Descripción del enlace
 links: Enlaces
 list: Lista
 local: Ubicación
@@ -189,6 +203,7 @@ management: Gerenciamiento de Entidades
 masculine: Masculino
 maroons: Quilombola
 max-capacity: Capacidad máxima de espacio
+max_capacity: Capacidad máxima
 mei: MEI (CNPJ del MEI)
 menu: Menú del Panel de Control
 medium: Secundario
@@ -243,6 +258,8 @@ order: Ordenar por
 organization: Organización
 other_options: Otras opciones
 opened_registrations: Inscripciones Abiertas
+opens_at: Abre en
+opening-hours: Horário de funcionamento
 opportunity: Oportunidad
 opportunities: Oportunidades
 organizations: Organizaciones
@@ -252,8 +269,11 @@ other_files: Otros archivos
 other_information: Otra información
 
 pardo: Pardo
-peoples: Gente
+participants: Participantes
+people: Gente
+people_capacity: Capacidad de personas
 period: Período
+permissions: Permisos
 portfolio: Portafolio
 privacy: Privacidad
 profile: Perfil
@@ -261,6 +281,7 @@ password: Contraseña
 password_strength: Fuerza de la Contraseña
 personal_data: Datos Personales
 person_disabled: Persona con Discapacidad
+presentation_information: Información de presentación
 phone: Teléfono
 postgraduate: Posgrado
 photo: Foto
@@ -275,8 +296,11 @@ postal_code: Código Postal
 profile_picture: Foto de Perfil
 projects: Proyectos
 physical: Física
+physical_accessibility: Recursos de accesibilidad física
 project_value: Valor del proyecto
 public: Público
+public_data_notice: Los datos ingresados a continuación se mostrarán a todos los usuarios de la plataforma.
+public_email: Correo electrónico público
 public_information: Información pública
 public_phone: telefono publico
 published: Publicados
@@ -316,6 +340,7 @@ type_space: Tipo de espacio
 to: hasta
 
 user: Usuario
+user_name: Nombre de usuario
 users: Usuarios
 
 view_all: Ver Todas
@@ -354,6 +379,7 @@ sort_by: Ordenar por
 social_name: Nombre Social
 short_presentation: Presentación Corta
 space: Espacio
+space_type: Tipo de Espacio
 spaces: Espacios
 start_now: Comenzar Ahora
 start_date: Fecha de inicio
@@ -370,6 +396,7 @@ your_name: Ingrese su nombre
 your_question: Escriba su pregunta
 
 welcome: Bienvenido
+week_days: Días de la semana
 where: Donde
 white: Blanca
 work_plan: Plan de trabajo
@@ -723,6 +750,10 @@ view:
       last_days: Registrados en los últimos 7 días
     picture: Foto del Espacio
 
+  space-edit:
+    edit-space: Editar Espacio
+    mandatory_fields: Campos marcados con asterisco son obligatorios.
+
   registration:
     available: Recursos abiertos y disponibles
     data: Recolección de datos
@@ -767,6 +798,14 @@ view:
       updated: Actualizada la Tag
       created: La Tag ha sido creada
       deleted: La Tag ha sido eliminada
+
+  architectural_accessibility:
+    create: Crear Accesibilidad fisica
+    edit: Editar Accesibilidad fisica
+    message:
+      updated: La Accesibilidad fisica ha sido actualizada
+      created: La Accesibilidad fisica ha sido creada
+      deleted: La Accesibilidad fisica ha sido eliminada
 
   not-found:
     error-404: Error 404

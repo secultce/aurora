@@ -166,6 +166,11 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         }
 
         $agent->setDeletedAt(new DateTime());
+
+        if ($agent->getImage()) {
+            $this->fileService->deleteFileByUrl($agent->getImage());
+        }
+
         $this->repository->save($agent);
     }
 

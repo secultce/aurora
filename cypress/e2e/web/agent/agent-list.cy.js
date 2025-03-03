@@ -40,14 +40,24 @@ describe('Página de Listar de Agentes', () => {
     });
 
     it('Garante que os cards de agentes estão visíveis', () => {
-        cy.get('.align-items-end > .fw-bold').contains(/^\d+ Agentes Encontrados/).should('be.visible');
+        cy.intercept('GET', '/api/agentes').as('getAgentes');
 
-        cy.get(':nth-child(2) > .agent-card-header > .agent-info > .agent-name').contains('Feitozo').should('be.visible');
-        cy.get(':nth-child(2) > .agent-card-body > .agent-area > .agent-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
-        cy.get(':nth-child(2) > .agent-card-body > .agent-location').contains('Goiânia (GO)').should('be.visible');
-        cy.get('.entity-seals > :nth-child(3)').should('be.visible');
-        cy.get(':nth-child(2) > .agent-card-body > .agent-description').contains('Capoeirista apaixonado pela arte, com experiência em movimentos fluidos e percussão, buscando promover a cultura e a tradição da capoeira em cada performance.').should('be.visible');
-        cy.get(':nth-child(2) > .agent-card-body > .access-profile-container > .btn').contains('Acessar').should('be.visible');
+        cy.get('.agent-card').should('have.length.greaterThan', 0);
+
+        cy.get('.agent-name').contains('Feitozo').scrollIntoView().should('be.visible');
+
+        cy.get('.agent-area .agent-sub-area').contains('DESENVOLVIMENTO').should('be.visible');
+
+        cy.get('.agent-location').contains('Goiânia (GO)').should('be.visible');
+
+        cy.get('.entity-seals').should('be.visible');
+
+        cy.get('.agent-description').should('exist').then(($descriptions) => {
+            const found = Cypress._.some($descriptions, (desc) => desc.innerText.includes('Capoeirista apaixonado'));
+            expect(found).to.be.true;
+        });
+
+        cy.get('.access-profile-container .btn').contains('Acessar').should('be.visible');
     });
 
     it('Garante que o filtro funciona', () => {

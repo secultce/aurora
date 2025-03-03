@@ -53,7 +53,9 @@ readonly class FileService implements FileServiceInterface
     {
         $filename = str_replace($this->storageUrl, '', $url);
 
-        $this->filesystem->delete($filename);
+        $path = dirname(__DIR__, 2)."/assets{$filename}";
+
+        unlink($path);
     }
 
     public function getFileUrl(string $path): string

@@ -127,6 +127,10 @@ readonly class EventService extends AbstractEntityService implements EventServic
 
         $event->setDeletedAt(new DateTime());
 
+        if ($event->getImage()) {
+            $this->fileService->deleteFileByUrl($event->getImage());
+        }
+
         $this->repository->save($event);
     }
 
