@@ -88,6 +88,9 @@ sidebar:
       admin_tag_list:
         icon: label
         text: tags
+      admin_space_type_list:
+        icon: room_preferences
+        text: space_type
 
 homepage:
   sections:

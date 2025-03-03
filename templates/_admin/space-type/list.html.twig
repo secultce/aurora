@@ -1,0 +1,37 @@
+{% extends "_layouts/blank.html.twig" %}
+
+{% block title %} {{ 'control_panel'|trans }} - {{ 'space_type'|trans }}{% endblock %}
+
+{% block content %}
+    <section class="d-flex">
+        {% include "_components/side-bar.html.twig" %}
+        {% include '_components/modal-confirm-remove.html.twig' %}
+
+        <div class="management-content w-100 p-4">
+            <div class="card card-body shadow">
+                <div class="d-flex justify-content-between">
+                    <h2>{{ 'space_type'|trans }}</h2>
+                </div>
+                <hr>
+                <div class="table-responsive">
+                    <table class="table table-hover table-striped">
+                        <thead class="table-dark">
+                        <tr>
+                            <th>{{ 'id'|trans }}</th>
+                            <th>{{ 'name'|trans }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for item in spaceTypes %}
+                            <tr>
+                                <td>{{ item.id }}</td>
+                                <td>{{ item.name }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endblock %}
