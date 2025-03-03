@@ -19,7 +19,8 @@ describe('Página de Lista de Espaços', () => {
         const tabs = [
             { tab: '#pills-list-tab'},
             { tab: '#pills-map-tab'},
-            { tab: '#pills-indicators-tab'}
+            { tab: '#pills-indicators-tab'},
+            { tab: '#pills-events-tab'}
         ];
 
         tabs.forEach(({ tab }) => {
