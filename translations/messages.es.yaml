@@ -20,6 +20,7 @@ activity_deleted: Se ha excluido el área de actividad
 activity_updated: Se ha actualizado el área de actividad
 area_of_activity: Área de Actividad
 activity_area_register: Crear nueva área de actuación
+architectural_accessibility: Accesibilidad arquitectónica
 accept_terms: Aceite de los termos
 address: Dirección
 admin_options: Opciones del Administrador
@@ -41,7 +42,7 @@ allow_free_linking: Permitir enlace libre
 allowed: Con permiso con
 answer: Respuesta
 architectural: Arquitectónica
-architectural_accessibility: Ofrece accesibilidad física
+architectural_accessibility_offers: Ofrece accesibilidad física
 archive: Archivar
 archives: Archivos
 archived: Archivados
@@ -797,6 +798,14 @@ view:
       updated: Actualizada la Tag
       created: La Tag ha sido creada
       deleted: La Tag ha sido eliminada
+
+  architectural_accessibility:
+    create: Crear Accesibilidad fisica
+    edit: Editar Accesibilidad fisica
+    message:
+      updated: La Accesibilidad fisica ha sido actualizada
+      created: La Accesibilidad fisica ha sido creada
+      deleted: La Accesibilidad fisica ha sido eliminada
 
   not-found:
     error-404: Error 404

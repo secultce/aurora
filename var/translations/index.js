@@ -155,6 +155,7 @@ export const ACTIVITY_DELETED = {"id":"activity_deleted","translations":{"messag
 export const ACTIVITY_UPDATED = {"id":"activity_updated","translations":{"messages":{"en":"Area of activity has been updated","pt-br":"\u00c1rea de atua\u00e7\u00e3o foi atualizado","es":"Se ha actualizado el \u00e1rea de actividad"}}};
 export const AREA_OF_ACTIVITY = {"id":"area_of_activity","translations":{"messages":{"en":"Area of Activity","pt-br":"\u00c1rea de Atua\u00e7\u00e3o","es":"\u00c1rea de Actividad"}}};
 export const ACTIVITY_AREA_REGISTER = {"id":"activity_area_register","translations":{"messages":{"en":"Create a new area of activity","pt-br":"Criar nova \u00c1rea de Atua\u00e7\u00e3o","es":"Crear nueva \u00e1rea de actuaci\u00f3n"}}};
+export const ARCHITECTURAL_ACCESSIBILITY = {"id":"architectural_accessibility","translations":{"messages":{"en":"Architectural Accessibility","pt-br":"Acessibilidade Arquitet\u00f4nica","es":"Accesibilidad arquitect\u00f3nica"}}};
 export const ACCEPT_TERMS = {"id":"accept_terms","translations":{"messages":{"en":"Accept the terms","pt-br":"Aceite os termos","es":"Aceite de los termos"}}};
 export const ADDRESS = {"id":"address","translations":{"messages":{"en":"Address","pt-br":"Endere\u00e7o","es":"Direcci\u00f3n"}}};
 export const ADMIN_OPTIONS = {"id":"admin_options","translations":{"messages":{"en":"Admin Options","pt-br":"Op\u00e7\u00f5es do Administrador","es":"Opciones del Administrador"}}};

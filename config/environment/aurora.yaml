@@ -84,13 +84,15 @@ sidebar:
       admin_activity_area_list:
         icon: category
         text: area_of_activity
-        route: admin_activity_area_list
       admin_tag_list:
         icon: label
         text: tags
       admin_space_type_list:
         icon: room_preferences
         text: space_type
+      admin_architectural_accessibility_list:
+        icon: accessibility
+        text: architectural_accessibility
 
 homepage:
   sections:

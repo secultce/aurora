@@ -20,6 +20,7 @@ activity_deleted: Área de atuação foi excluída
 activity_updated: Área de atuação foi atualizado
 area_of_activity: Área de Atuação
 activity_area_register: Criar nova Área de Atuação
+architectural_accessibility: Acessibilidade Arquitetônica
 accept_terms: Aceite os termos
 address: Endereço
 administration: Administração
@@ -42,7 +43,7 @@ admin_options: Opções do Administrador
 add_archive: Adicione
 archive: Arquivar
 architectural: Arquitetônica
-architectural_accessibility: Oferece acessibilidade física
+architectural_accessibility_offers: Oferece acessibilidade física
 archives: Arquivos
 archived: Arquivados
 areas_of_expertise: Áreas de Atuação
@@ -792,6 +793,14 @@ view:
       updated: A Tag foi atualizada
       created: A Tag foi criada
       deleted: A Tag foi excluída
+
+  architectural_accessibility:
+    create: Criar Acessibilidade Arquitetônica
+    edit: Editar Acessibilidade Arquitetônica
+    message:
+      updated: A Acessibilidade Arquitetônica foi atualizada
+      created: A Acessibilidade Arquitetônica foi criada
+      deleted: A Acessibilidade Arquitetônica foi excluída
 
   not-found:
     error-404: Error 404
