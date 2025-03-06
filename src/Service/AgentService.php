@@ -18,15 +18,15 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class AgentService extends AbstractEntityService implements AgentServiceInterface
 {
+    private const string DIR_AGENT_PROFILE = 'app.dir.agent.profile';
+
     public function __construct(
         private AgentRepositoryInterface $repository,
         private FileServiceInterface $fileService,
@@ -37,7 +37,16 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         private ValidatorInterface $validator,
         private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($security, $this->entityManager, Agent::class);
+        parent::__construct(
+            $this->security,
+            $this->serializer,
+            $this->validator,
+            $this->entityManager,
+            Agent::class,
+            $this->fileService,
+            $this->parameterBag,
+            self::DIR_AGENT_PROFILE,
+        );
     }
 
     public function count(?User $user = null): int
@@ -53,7 +62,7 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
 
     public function create(array $agent): Agent
     {
-        $agent = self::validateInput($agent, AgentDto::CREATE);
+        $agent = $this->validateInput($agent, AgentDto::class, AgentDto::CREATE);
 
         $agentObj = $this->serializer->denormalize($agent, Agent::class);
 
@@ -62,27 +71,12 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
 
     public function createFromUser(array $user): void
     {
-        $agent = self::organizeDefaultAgentData($user);
-        $agent = self::validateInput($agent, AgentDto::CREATE);
+        $agent = $this->organizeDefaultAgentData($user);
+        $agent = $this->validateInput($agent, AgentDto::class, AgentDto::CREATE);
 
         $agentObj = $this->serializer->denormalize($agent, Agent::class);
 
         $this->repository->save($agentObj);
-    }
-
-    private function denormalizeDto(array $data): AgentDto
-    {
-        return $this->serializer->denormalize($data, AgentDto::class, context: [
-            AbstractNormalizer::CALLBACKS => [
-                'image' => function () use ($data): ?File {
-                    if (false === isset($data['image'])) {
-                        return null;
-                    }
-
-                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.agent.profile'), $data['image']);
-                },
-            ],
-        ]);
     }
 
     public function findBy(array $params = [], int $limit = 50): array
@@ -178,7 +172,7 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
     {
         $agentObj = $this->get($id);
 
-        $agent = self::validateInput($agent, AgentDto::UPDATE);
+        $agent = $this->validateInput($agent, AgentDto::class, AgentDto::UPDATE);
 
         $agentObj = $this->serializer->denormalize($agent, Agent::class, context: [
             'object_to_populate' => $agentObj,
@@ -207,7 +201,7 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         }
 
         $uploadedImage = $this->fileService->uploadImage(
-            $this->parameterBag->get('app.dir.agent.profile'),
+            $this->parameterBag->get(self::DIR_AGENT_PROFILE),
             $uploadedFile
         );
 
@@ -216,19 +210,6 @@ readonly class AgentService extends AbstractEntityService implements AgentServic
         $agent->setUpdatedAt(new DateTime());
 
         $this->repository->save($agent);
-
-        return $agent;
-    }
-
-    private function validateInput(array $agent, string $group): array
-    {
-        $agentDto = self::denormalizeDto($agent);
-
-        $violations = $this->validator->validate($agentDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
 
         return $agent;
     }

@@ -16,15 +16,15 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class SpaceService extends AbstractEntityService implements SpaceServiceInterface
 {
+    private const string DIR_SPACE_PROFILE = 'app.dir.space.profile';
+
     public function __construct(
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
@@ -34,7 +34,16 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         private ValidatorInterface $validator,
         private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($this->security, $this->entityManager, Space::class);
+        parent::__construct(
+            $this->security,
+            $this->serializer,
+            $this->validator,
+            $this->entityManager,
+            Space::class,
+            $this->fileService,
+            $this->parameterBag,
+            self::DIR_SPACE_PROFILE,
+        );
     }
 
     public function count(?Agent $createdBy = null): int
@@ -50,26 +59,11 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 
     public function create(array $space): Space
     {
-        $space = self::validateInput($space, SpaceDto::CREATE);
+        $space = $this->validateInput($space, SpaceDto::class, SpaceDto::CREATE);
 
         $spaceObj = $this->serializer->denormalize($space, Space::class);
 
         return $this->repository->save($spaceObj);
-    }
-
-    private function denormalizeDto(array $data): SpaceDto
-    {
-        return $this->serializer->denormalize($data, SpaceDto::class, context: [
-            AbstractNormalizer::CALLBACKS => [
-                'image' => function () use ($data): ?File {
-                    if (false === isset($data['image'])) {
-                        return null;
-                    }
-
-                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.space.profile'), $data['image']);
-                },
-            ],
-        ]);
     }
 
     public function findBy(array $params = [], int $limit = 50): array
@@ -134,7 +128,7 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
     {
         $spaceFromDB = $this->get($identifier);
 
-        $spaceDto = self::validateInput($space, SpaceDto::UPDATE);
+        $spaceDto = $this->validateInput($space, SpaceDto::class, SpaceDto::UPDATE);
 
         $spaceObj = $this->serializer->denormalize($spaceDto, Space::class, context: [
             'object_to_populate' => $spaceFromDB,
@@ -163,7 +157,7 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         }
 
         $uploadedImage = $this->fileService->uploadImage(
-            $this->parameterBag->get('app.dir.space.profile'),
+            $this->parameterBag->get(self::DIR_SPACE_PROFILE),
             $uploadedFile
         );
 
@@ -172,19 +166,6 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
         $space->setUpdatedAt(new DateTime());
 
         $this->repository->save($space);
-
-        return $space;
-    }
-
-    private function validateInput(array $space, string $group): array
-    {
-        $spaceDto = self::denormalizeDto($space);
-
-        $violations = $this->validator->validate($spaceDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
 
         return $space;
     }

@@ -7,7 +7,6 @@ namespace App\Service;
 use App\DTO\ArchitecturalAccessibilityDto;
 use App\Entity\ArchitecturalAccessibility;
 use App\Exception\ArchitecturalAccessibility\ArchitecturalAccessibilityResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\ArchitecturalAccessibilityRepositoryInterface;
 use App\Service\Interface\ArchitecturalAccessibilityServiceInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -23,12 +22,12 @@ readonly class ArchitecturalAccessibilityService extends AbstractEntityService i
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($this->security);
+        parent::__construct($this->security, $this->serializer, $this->validator);
     }
 
     public function create(array $architecturalAccessibility): ArchitecturalAccessibility
     {
-        $architecturalAccessibility = self::validateInput($architecturalAccessibility, ArchitecturalAccessibilityDto::CREATE);
+        $architecturalAccessibility = $this->validateInput($architecturalAccessibility, ArchitecturalAccessibilityDto::class, ArchitecturalAccessibilityDto::CREATE);
 
         $architecturalAccessibilityObj = $this->serializer->denormalize($architecturalAccessibility, ArchitecturalAccessibility::class);
 
@@ -75,25 +74,12 @@ readonly class ArchitecturalAccessibilityService extends AbstractEntityService i
     {
         $architecturalAccessibilityFromDB = $this->getOne($id);
 
-        $architecturalAccessibilityDto = self::validateInput($architecturalAccessibility, ArchitecturalAccessibilityDto::UPDATE);
+        $architecturalAccessibilityDto = $this->validateInput($architecturalAccessibility, ArchitecturalAccessibilityDto::class, ArchitecturalAccessibilityDto::UPDATE);
 
         $architecturalAccessibilityObj = $this->serializer->denormalize($architecturalAccessibilityDto, ArchitecturalAccessibility::class, context: [
             'object_to_populate' => $architecturalAccessibilityFromDB,
         ]);
 
         return $this->repository->save($architecturalAccessibilityObj);
-    }
-
-    private function validateInput(array $architecturalAccessibility, string $group): array
-    {
-        $architecturalAccessibilityDto = $this->serializer->denormalize($architecturalAccessibility, ArchitecturalAccessibilityDto::class);
-
-        $violations = $this->validator->validate($architecturalAccessibilityDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        return $architecturalAccessibility;
     }
 }

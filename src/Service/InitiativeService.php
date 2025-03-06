@@ -17,14 +17,14 @@ use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\ConstraintViolationList;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class InitiativeService extends AbstractEntityService implements InitiativeServiceInterface
 {
+    private const string DIR_INITIATIVE_PROFILE = 'app.dir.initiative.profile';
+
     public function __construct(
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
@@ -34,7 +34,16 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         private ValidatorInterface $validator,
         private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($this->security, $this->entityManager, Initiative::class);
+        parent::__construct(
+            $this->security,
+            $this->serializer,
+            $this->validator,
+            $this->entityManager,
+            Initiative::class,
+            $this->fileService,
+            $this->parameterBag,
+            self::DIR_INITIATIVE_PROFILE,
+        );
     }
 
     public function count(?Agent $createdBy = null): int
@@ -48,28 +57,13 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         return $this->repository->count($criteria);
     }
 
-    public function create(array $initiative): Initiative|ConstraintViolationList
+    public function create(array $initiative): Initiative
     {
-        $initiative = self::validateInput($initiative, InitiativeDto::CREATE);
+        $initiative = $this->validateInput($initiative, InitiativeDto::class, InitiativeDto::CREATE);
 
         $initiativeObj = $this->serializer->denormalize($initiative, Initiative::class);
 
         return $this->repository->save($initiativeObj);
-    }
-
-    private function denormalizeDto(array $data): InitiativeDto
-    {
-        return $this->serializer->denormalize($data, InitiativeDto::class, context: [
-            AbstractNormalizer::CALLBACKS => [
-                'image' => function () use ($data) {
-                    if (false === isset($data['image'])) {
-                        return null;
-                    }
-
-                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.initiative.profile'), $data['image']);
-                },
-            ],
-        ]);
     }
 
     public function findBy(array $params = [], int $limit = 50): array
@@ -127,11 +121,13 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
     {
         $initiativeFromDB = $this->get($id);
 
-        $initiativeDto = self::validateInput($initiative, InitiativeDto::UPDATE);
+        $initiativeDto = $this->validateInput($initiative, InitiativeDto::class, InitiativeDto::UPDATE);
 
-        $initiativeObj = $this->serializer->denormalize($initiativeDto, Initiative::class, context: [
-            'object_to_populate' => $initiativeFromDB,
-        ]);
+        $initiativeObj = $this->serializer->denormalize(
+            $initiativeDto,
+            Initiative::class,
+            context: ['object_to_populate' => $initiativeFromDB]
+        );
 
         $initiativeObj->setUpdatedAt(new DateTime());
 
@@ -156,7 +152,7 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         }
 
         $uploadedImage = $this->fileService->uploadImage(
-            $this->parameterBag->get('app.dir.initiative.profile'),
+            $this->parameterBag->get(self::DIR_INITIATIVE_PROFILE),
             $uploadedFile
         );
 
@@ -165,19 +161,6 @@ readonly class InitiativeService extends AbstractEntityService implements Initia
         $initiative->setUpdatedAt(new DateTime());
 
         $this->repository->save($initiative);
-
-        return $initiative;
-    }
-
-    private function validateInput(array $initiative, string $group): array
-    {
-        $initiativeDto = self::denormalizeDto($initiative);
-
-        $violations = $this->validator->validate($initiativeDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
 
         return $initiative;
     }

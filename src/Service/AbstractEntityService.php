@@ -5,8 +5,14 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\Exception\EntityManagerAndEntityClassNotSetException;
+use App\Exception\ValidatorException;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 abstract readonly class AbstractEntityService
 {
@@ -16,8 +22,13 @@ abstract readonly class AbstractEntityService
 
     public function __construct(
         private Security $security,
+        private ?SerializerInterface $serializer = null,
+        private ?ValidatorInterface $validator = null,
         private ?EntityManagerInterface $entityManager = null,
         private ?string $entityClass = null,
+        private ?FileServiceInterface $fileService = null,
+        private ?ParameterBagInterface $parameterBag = null,
+        private ?string $imagePath = null
     ) {
     }
 
@@ -62,5 +73,38 @@ abstract readonly class AbstractEntityService
         $statement = $this->entityManager->getConnection()->prepare($sql);
 
         return (int) $statement->executeQuery()->fetchAssociative()['count'];
+    }
+
+    public function denormalizeDto(array $data, string $dtoClass): object
+    {
+        $callbacks = [];
+        if (
+            null !== $this->imagePath
+            && isset($data['image'])
+            && null !== $this->fileService
+            && null !== $this->parameterBag
+        ) {
+            $callbacks['image'] = function () use ($data) {
+                return $this->fileService->uploadImage(
+                    $this->parameterBag->get($this->imagePath),
+                    $data['image']
+                );
+            };
+        }
+
+        return $this->serializer->denormalize($data, $dtoClass, context: [
+            AbstractNormalizer::CALLBACKS => $callbacks,
+        ]);
+    }
+
+    public function validateInput(array $data, string $dtoClass, string $group): array
+    {
+        $dto = $this->denormalizeDto($data, $dtoClass);
+        $violations = $this->validator->validate($dto, groups: $group);
+        if ($violations->count() > 0) {
+            throw new ValidatorException(violations: $violations);
+        }
+
+        return $data;
     }
 }

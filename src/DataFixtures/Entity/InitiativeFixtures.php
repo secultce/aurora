@@ -273,7 +273,7 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
 
         foreach (self::INITIATIVES as $initiativeData) {
             if (5 > $counter) {
-                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.initiative.profile'), ImageTestFixtures::getInitiativeImage());
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.initiative.profile'), ImageFixtures::getInitiativeImage());
                 $initiativeData['image'] = $file;
             }
 

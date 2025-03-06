@@ -7,7 +7,6 @@ namespace App\Service;
 use App\DTO\ActivityAreaDto;
 use App\Entity\ActivityArea;
 use App\Exception\ActivityArea\ActivityAreaResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\ActivityAreaRepositoryInterface;
 use App\Service\Interface\ActivityAreaServiceInterface;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -23,12 +22,16 @@ readonly class ActivityAreaService extends AbstractEntityService implements Acti
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($this->security);
+        parent::__construct(
+            $this->security,
+            $this->serializer,
+            $this->validator
+        );
     }
 
     public function create(array $activityArea): ActivityArea
     {
-        $activityArea = self::validateInput($activityArea, ActivityAreaDto::CREATE);
+        $activityArea = $this->validateInput($activityArea, ActivityAreaDto::class, ActivityAreaDto::CREATE);
 
         $activityAreaObj = $this->serializer->denormalize($activityArea, ActivityArea::class);
 
@@ -75,25 +78,14 @@ readonly class ActivityAreaService extends AbstractEntityService implements Acti
     {
         $activityAreaFromDB = $this->get($id);
 
-        $activityAreaDto = self::validateInput($activityArea, ActivityAreaDto::UPDATE);
+        $activityAreaDto = $this->validateInput($activityArea, ActivityAreaDto::class, ActivityAreaDto::UPDATE);
 
-        $activityAreaObj = $this->serializer->denormalize($activityAreaDto, ActivityArea::class, context: [
-            'object_to_populate' => $activityAreaFromDB,
-        ]);
+        $activityAreaObj = $this->serializer->denormalize(
+            $activityAreaDto,
+            ActivityArea::class,
+            context: ['object_to_populate' => $activityAreaFromDB]
+        );
 
         return $this->repository->save($activityAreaObj);
-    }
-
-    public function validateInput(array $activityArea, string $group): array
-    {
-        $activityAreaDto = $this->serializer->denormalize($activityArea, ActivityAreaDto::class);
-
-        $violations = $this->validator->validate($activityAreaDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        return $activityArea;
     }
 }

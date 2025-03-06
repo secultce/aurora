@@ -7,7 +7,6 @@ namespace App\Service;
 use App\DTO\PhaseDto;
 use App\Entity\Phase;
 use App\Exception\Phase\PhaseResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\PhaseRepositoryInterface;
 use App\Service\Interface\PhaseServiceInterface;
 use DateTime;
@@ -26,20 +25,14 @@ readonly class PhaseService extends AbstractEntityService implements PhaseServic
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($security);
+        parent::__construct($this->security, $serializer, $validator);
     }
 
     public function create(Uuid $opportunity, array $phase): Phase
     {
         $phase['opportunity'] = $opportunity->toRfc4122();
 
-        $phaseDto = $this->serializer->denormalize($phase, PhaseDto::class);
-
-        $violations = $this->validator->validate($phaseDto, groups: PhaseDto::CREATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $phase = $this->validateInput($phase, PhaseDto::class, PhaseDto::CREATE);
 
         $phaseObj = $this->serializer->denormalize($phase, Phase::class);
 
@@ -92,15 +85,9 @@ readonly class PhaseService extends AbstractEntityService implements PhaseServic
 
         $phaseFromDB = $this->get($opportunity, $identifier);
 
-        $phaseDto = $this->serializer->denormalize($phase, PhaseDto::class);
+        $phaseDto = $this->validateInput($phase, PhaseDto::class, PhaseDto::UPDATE);
 
-        $violations = $this->validator->validate($phaseDto, groups: PhaseDto::UPDATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        $phaseObj = $this->serializer->denormalize($phase, Phase::class, context: [
+        $phaseObj = $this->serializer->denormalize($phaseDto, Phase::class, context: [
             'object_to_populate' => $phaseFromDB,
         ]);
 

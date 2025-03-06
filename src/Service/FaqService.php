@@ -7,7 +7,6 @@ namespace App\Service;
 use App\DTO\FaqDto;
 use App\Entity\Faq;
 use App\Exception\Faq\FaqResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\FaqRepositoryInterface;
 use App\Service\Interface\FaqServiceInterface;
 use DateTime;
@@ -24,18 +23,12 @@ readonly class FaqService extends AbstractEntityService implements FaqServiceInt
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($security);
+        parent::__construct($this->security, $this->serializer, $this->validator);
     }
 
     public function create(array $faq): Faq
     {
-        $faqDto = $this->serializer->denormalize($faq, FaqDto::class);
-
-        $violations = $this->validator->validate($faqDto, groups: FaqDto::CREATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $faq = $this->validateInput($faq, FaqDto::class, FaqDto::CREATE);
 
         $faqObj = $this->serializer->denormalize($faq, Faq::class);
 
@@ -57,15 +50,9 @@ readonly class FaqService extends AbstractEntityService implements FaqServiceInt
     {
         $faqFromDB = $this->get($identifier);
 
-        $faqDto = $this->serializer->denormalize($faq, FaqDto::class);
+        $faqDto = $this->validateInput($faq, FaqDto::class, FaqDto::UPDATE);
 
-        $violations = $this->validator->validate($faqDto, groups: FaqDto::UPDATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        $faqObj = $this->serializer->denormalize($faq, Faq::class, context: [
+        $faqObj = $this->serializer->denormalize($faqDto, Faq::class, context: [
             'object_to_populate' => $faqFromDB,
         ]);
 
