@@ -51,6 +51,10 @@ areas_of_interest: Areas of Interest
 analysis: Analysis Period
 auditory: Auditory
 auth: Authentication
+available_name: Name not available
+available_type: Type not specified
+available_description: Description not available
+available_address: Address not available
 asian: Yellow
 apply_filter: Apply Filters
 attachments_and_links: Attachemnts and Links
@@ -83,6 +87,7 @@ contribute: Contribute
 control_panel: Control Panel
 completed: Completed
 cover_image: Cover image
+copy_id: Copy ID
 cpf: CPF
 cnpj: CNPJ (MEI)
 create: Create
@@ -244,6 +249,9 @@ no_address: No address
 no_title: Untitled
 no_description: No description
 no_image: Image not available
+no_areas: No registered areas
+no_accessibility: No accessibility registered
+no_seals: No seals registered
 none_area_specified: None area specified
 not_informed: Not informed
 not_sent: Not sent

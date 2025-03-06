@@ -560,6 +560,12 @@ img.card-images__entity-details {
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    background: var(--deep-teal);
+    color: white;
+    padding: 5px 12px;
+    border-radius: 20px;
+    text-transform: uppercase;
+    box-shadow: 2px 5px rgba(0, 0, 0, 0.15);
 }
 
 .seal-entity::before {

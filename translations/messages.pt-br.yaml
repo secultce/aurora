@@ -51,6 +51,10 @@ areas_of_interest: Áreas de interesse
 analysis: Período de Análise
 auditory: Auditiva
 auth: Autenticação
+available_name: Nome não disponível
+available_type: Tipo não informado
+available_description: Descrição não disponível
+available_address: Endereço não informado
 asian: Amarelo
 apply_filter: Aplicar Filtros
 attachments_and_links: Anexos e links
@@ -83,6 +87,7 @@ control_panel: Painel de Controle
 completed: Finalizados
 coming_soon: Em breve
 cover_image: Imagem de capa
+copy_id: Copiar ID
 cpf: CPF
 cnpj: CNPJ (MEI)
 configure: Configurar
@@ -243,6 +248,9 @@ no_address: Sem endereço
 no_title: Sem título
 no_description: Sem descrição
 no_image: Imagem não disponível
+no_areas: Nenhuma área cadastrada
+no_accessibility: Nenhuma acessibilidade registrada
+no_seals: Nenhum selo registrado
 none_area_specified: Nenhuma área especificada
 not_informed: Não informado
 not_sent: Não enviadas
