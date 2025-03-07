@@ -7,3 +7,8 @@ list:
   path: /
   controller: App\Controller\Web\Admin\SpaceTypeAdminController::list
   methods: ['GET']
+
+edit:
+  path: /editar/{id}
+  controller: App\Controller\Web\Admin\SpaceTypeAdminController::edit
+  methods: ['GET', 'POST']

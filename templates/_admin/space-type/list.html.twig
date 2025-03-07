@@ -24,6 +24,7 @@
                         <tr>
                             <th>{{ 'id'|trans }}</th>
                             <th>{{ 'name'|trans }}</th>
+                            <th>{{ 'actions'|trans }}</th>
                         </tr>
                         </thead>
                         <tbody>
@@ -31,6 +32,11 @@
                             <tr>
                                 <td>{{ item.id }}</td>
                                 <td>{{ item.name }}</td>
+                                <td>
+                                    <a href="{{ path('admin_space_type_edit', {'id': item.id}) }}" class="btn btn-outline-warning btn-sm">
+                                        {{ 'edit'|trans }}
+                                    </a>
+                                </td>
                             </tr>
                         {% endfor %}
                         </tbody>

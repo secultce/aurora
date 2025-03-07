@@ -17,6 +17,8 @@ class SpaceTypeAdminController extends AbstractAdminController
     private const string LIST = 'space-type/list.html.twig';
     private const string CREATE = 'space-type/create.html.twig';
     private const string CREATE_FORM_ID = 'add-space-type';
+    private const string EDIT = 'space-type/edit.html.twig';
+    private const string EDIT_FORM_ID = 'edit-space-type';
 
     public function __construct(
         private readonly SpaceTypeServiceInterface $service,
@@ -64,5 +66,45 @@ class SpaceTypeAdminController extends AbstractAdminController
         }
 
         return $this->redirectToRoute('admin_space_type_list');
+    }
+
+    public function edit(Request $request, string $id): Response
+    {
+        try {
+            $spaceType = $this->service->get(Uuid::fromString($id));
+        } catch (Exception $exception) {
+            $this->addFlashError($exception->getMessage());
+
+            return $this->redirectToRoute('admin_space_type_list');
+        }
+
+        if ($request->isMethod(Request::METHOD_GET)) {
+            return $this->render(self::EDIT, [
+                'spaceType' => $spaceType,
+                'form_id' => self::EDIT_FORM_ID,
+            ]);
+        }
+
+        $erros = [];
+
+        try {
+            $this->service->update(Uuid::fromString($id), [
+                'name' => $request->get('name'),
+            ]);
+
+            $this->addFlashSuccess($this->translator->trans('view.space_type.message.updated'));
+
+            return $this->redirectToRoute('admin_space_type_list');
+        } catch (ValidatorException $exception) {
+            $errors = $exception->getConstraintViolationList();
+        } catch (Exception $exception) {
+            $errors = [$exception->getMessage()];
+        }
+
+        return $this->render(self::EDIT, [
+            'errors' => $errors,
+            'spaceType' => $spaceType,
+            'form_id' => self::EDIT_FORM_ID,
+        ]);
     }
 }

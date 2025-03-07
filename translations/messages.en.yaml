@@ -758,8 +758,10 @@ view:
     mandatory_fields: Fields marked with asterisco are mandatory.
   space_type:
     create: Create a Space Type
+    edit: Edit Space Type
     message:
       created: The space type has been created
+      updated: The space type has been updated
 
 
   registration:

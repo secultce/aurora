@@ -742,8 +742,10 @@ view:
 
   space_type:
     create: Criar Tipo de Espaço
+    edit: Editar Tipo de Espaço
     message:
       created: O Tipo de Espaço foi criado
+      updated: O Tipo de Espaço foi atualizado
 
   registration:
     available: Recursos abertos e disponíveis
