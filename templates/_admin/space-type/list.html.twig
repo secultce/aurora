@@ -11,6 +11,11 @@
             <div class="card card-body shadow">
                 <div class="d-flex justify-content-between">
                     <h2>{{ 'space_type'|trans }}</h2>
+                    <div class="d-flex align-items-center">
+                        <a href="{{  path('admin_space_type_create') }}" class="btn btn-primary">
+                            {{ 'create' | trans }}
+                        </a>
+                    </div>
                 </div>
                 <hr>
                 <div class="table-responsive">

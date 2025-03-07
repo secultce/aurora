@@ -756,6 +756,11 @@ view:
   space-edit:
     edit-space: Edit Space
     mandatory_fields: Fields marked with asterisco are mandatory.
+  space_type:
+    create: Create a Space Type
+    message:
+      created: The space type has been created
+
 
   registration:
       available: Open and available resources

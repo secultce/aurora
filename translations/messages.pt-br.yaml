@@ -740,6 +740,11 @@ view:
     mandatory_fields: Campos marcados com asterisco são de preenchimento obrigatório.
 
 
+  space_type:
+    create: Criar Tipo de Espaço
+    message:
+      created: O Tipo de Espaço foi criado
+
   registration:
     available: Recursos abertos e disponíveis
     data: Coleta de dados

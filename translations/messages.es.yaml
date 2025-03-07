@@ -762,6 +762,11 @@ view:
     edit-space: Editar Espacio
     mandatory_fields: Campos marcados con asterisco son obligatorios.
 
+  space_type:
+    create: Crear un Tipo de Espacio
+    message:
+      created: El tipo de espacio ha sido creado
+
   registration:
     available: Recursos abiertos y disponibles
     data: Recolección de datos
