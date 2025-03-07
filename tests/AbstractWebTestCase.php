@@ -92,4 +92,22 @@ abstract class AbstractWebTestCase extends WebTestCase
 
         return self::createClient($options, $server);
     }
+
+    protected static function webClient(array $options = [], array $server = [], ?string $user = null): KernelBrowser
+    {
+        $token = self::getToken($user);
+
+        if (null !== static::$kernel) {
+            static::ensureKernelShutdown();
+        }
+
+        if ([] === $server) {
+            $server = [
+                'HTTP_ACCEPT' => ['text/html'],
+                'HTTP_AUTHORIZATION' => $token,
+            ];
+        }
+
+        return self::createClient($options, $server);
+    }
 }
