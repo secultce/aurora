@@ -695,23 +695,41 @@ img.card-images__entity-details {
 .entity-address-data label,
 .entity-accessibility label,
 .opening-hours label,
-.entity-social-media label {
+.entity-social-media label,
+.execution-period label,
+.contacts label,
+.initiative-data label {
     font-weight: bold;
-    margin-top: 1.5rem;
+    margin-top: 1.3rem;
+}
+
+.initiative-data .initiative-radio {
+    font-weight: normal;
+    margin-top: 0;
 }
 
 .entity-introduction-data input,
 .entity-introduction-data textarea,
+.entity-introduction-data select,
 .entity-address-data input,
 .entity-address-data select,
 .entity-accessibility input,
 .entity-accessibility select,
 .opening-hours input,
 .opening-hours select,
-.entity-social-media input{
+.entity-social-media input,
+.contacts input,
+.initiative-data input,
+.initiative-data textarea,
+.initiative-data select {
     border: 1px solid var(--border-gray);
     margin-top: 0.625rem;
     padding: 0.7rem;
+}
+
+.initiative-data .initiative-input-radio {
+    margin-top: 0.24rem;
+    padding: 0;
 }
 
 .entity-input-tags {
@@ -774,7 +792,8 @@ img.card-images__entity-details {
     padding: 0;
 }
 
-.entity-social-media .input-group {
+.entity-social-media .input-group,
+.execution-period .input-group {
     border: 1px solid var(--border-gray);
     display: flex;
     align-items: center;
@@ -783,7 +802,8 @@ img.card-images__entity-details {
 }
 
 
-.entity-social-media input {
+.entity-social-media input,
+.execution-period input{
     border: none;
     margin-top: 0;
 }
@@ -839,6 +859,19 @@ img.card-images__entity-details {
 .required::after {
     content: " *";
     color: var(--bs-red);
+}
+
+.entity-edit-info {
+    margin-top: 1.875rem;
+    padding: 1.875rem 1.25rem;
+    background-color: var(--bs-white);
+    border-radius: 0.3125rem;
+    box-shadow: 0 0.25rem 0.375rem -0.0625rem rgba(0, 0, 0, 0.1);
+}
+
+.initiative-space-img {
+    width: 3.125rem;
+    height: 3.125rem;
 }
 
 @media (min-width: 1400px) {

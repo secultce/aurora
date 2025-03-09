@@ -1,9 +1,12 @@
+actions_in_priority_territory: ¿Habrá acciones de la iniciativa en algún territorio prioritario?
 add: Add
 address_complement: Address Complement
 address_data: Address Data
+add_alternative_address: Add Alternative Address
 add_cover_image: Add cover image
 add_opening_hours: Add Opening Hours
 add_phase: Add Phase
+add_specific_objective: Add Specific Objective
 account_privacy: Account and Privacy
 account_settings: User Account Settings
 access: Access
@@ -58,6 +61,7 @@ available_address: Address not available
 asian: Yellow
 apply_filter: Apply Filters
 attachments_and_links: Attachemnts and Links
+attitudinal_accessibility: Attitudinal Accessibility
 
 back: Back
 birth_date: Birth Date
@@ -101,7 +105,9 @@ chain: Chain
 change_email: Change email
 change_password: Change password
 coming_soon: Coming soon
+communicational_accessibility: Communicational accessibility
 contact: Contact
+contacts: Contacts
 cultural_language: Cultural language
 cultural_languages: Cultural languages
 
@@ -122,6 +128,7 @@ downloadable-files: Downloadable Files
 
 edit: Edit
 edit_faq: Edit FAQ
+edit_initiative: Edit Initiative
 edit_seals: Edit Seals
 edit_space: Edit Space
 edit_activity_area: Edit Area of Activity
@@ -142,6 +149,7 @@ event_types:
 everybody: Everybody
 evidences: Evidences
 elderly_person: Elderly Person
+execution_period: Execution Period
 explore_repository: Explore Repository
 
 faq: FaQ
@@ -149,6 +157,7 @@ file: Attach file
 filter: Filters
 field: Field
 first_name: First Name
+financial: Financial
 last_name: Last Name
 feminine: Feminine
 functions: Manage functions
@@ -163,13 +172,16 @@ gallery: Gallery
 gender: Select the Gender
 general_data: General data
 general_information: General information
+general_objective: General Objective
+general_objective_description: General Objective Description
 
 happening_now: Happening Now
 help: Help
 help_privacy: Help and Privacy
 higher: Higher Education
-
 home: Home
+how_measures_will_be_implemented: How will these accessibility measures be implemented or made available according to the proposed project
+
 identification_number: Identification Number
 illustration: Illustration
 image: Image
@@ -178,6 +190,7 @@ image_gallery: Add photos to the gallery
 indicators: Indicators
 indigenous: Indigenous
 initiative: Initiative
+initiative_data: Initiative Data
 initiatives: Initiatives
 in_progress: In Progress
 inscriptions: Inscriptions
@@ -256,8 +269,9 @@ none_area_specified: None area specified
 not_informed: Not informed
 not_sent: Not sent
 notice: PUBLIC NOTICE
-
 number_address: Number
+
+offers_architectural_accessibility: Offers physical accessibility
 official_events: Official Events
 official_spaces: Official Spaces
 official_registration: You edit official
@@ -302,11 +316,17 @@ phase_success: Phase created successfully
 phase_error: Error creating phase
 phase_timeline: Phase Timeline
 postal_code: Postal Code
+private_email: Private Email
+private_phone: Private Telephone (with area code)
 profile_picture: Profile Picture
+profile_of_public: Profile of the public
 projects: Projects
+promotion: Promotion
+promotion_strategy: Promotion Strategy
 physical: Physical
 physical_accessibility: Physical accessibility features
 project_value: Project value
+project_information: Project Information
 public: Public
 public_data_notice: The data entered below will be displayed to all users on the platform.
 public_information: Public Information
@@ -339,6 +359,7 @@ theater: Theater
 The resource was created: The entity was created
 The resource was updated: The entity was updated
 The resource was deleted: The entity was deleted
+to: to
 type: Type
 type_here: Type here
 type_agent: Agent type
@@ -346,8 +367,8 @@ type_opportunity: Opportunity Type
 type_organization: Organization Type
 type_initiative: Type of initiative
 type_space: Space type
+total_value: Total Value
 
-to: to
 user: User
 user_name: User Name
 users: Users
@@ -390,6 +411,9 @@ short_presentation: Short Presentation
 space: Space
 space_type: Space Type
 spaces: Spaces
+specific_objective: Specific Objective
+specific_objective_description: Specific Objective Description
+specify_priority_territory: Specify the priority territory
 start_now: Start Now
 start_date: Start date
 state: State
@@ -597,17 +621,24 @@ view:
     access: Access Initiative
     create: Create an Initiative
     id: Initiative ID
+    link_platform_space: Link to a platform space
     linked_parent: This project is at the initiative of
     message:
       created: The Initiative was successfully created
       deleted: The initiative has been deleted
+    project_linked_program: This project is linked to the programa-nome and was selected through the Opportunity oportunidade-nome.
     quantity:
       total: Initiatives Found
       finished: Completed Initiatives
       opened: Ongoing Initiatives
       last_days: Registered in the last 7 days
     period: Initiative period
+    priority_audience_profiles: Priority Audience Profiles
+    register_new_location: Register a location
     type_of: Type of initiative
+    target_public_profile: Profile of the audience to be reached by the project
+    where_initiative_executed: Places where the initiative will be carried out
+
 
   management:
     management_of: Gestión de

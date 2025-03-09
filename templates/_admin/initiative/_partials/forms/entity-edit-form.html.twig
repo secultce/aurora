@@ -1,0 +1,106 @@
+<form class="entity-edit-form">
+    <div class="accordion accordion-flush accordion-cards mt-4" id="accordionPanelsStayOpenExample">
+        <div class="accordion-item">
+            <h2 class="accordion-header">
+                <button class="accordion-button" type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseOne"
+                        aria-expanded="true"
+                        aria-controls="panelsStayOpen-collapseOne">
+                    {{ 'presentation_information' | trans }}
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show">
+                <div class="accordion-body">
+                    <span class="responsive-size">{{ 'public_data_notice' | trans }}</span>
+                    <hr>
+                    {% include "_admin/initiative/_partials/forms/introduction.html.twig" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mt-4 mb-4">
+            <h2 class="accordion-header">
+                <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseTwo"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseTwo">
+                    {{ 'execution_period' | trans }}
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <span class="responsive-size">{{ 'public_data_notice' | trans }}</span>
+                    <hr>
+                    {% include "_admin/initiative/_partials/forms/execution-period.html.twig" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mt-4 mb-4">
+            <h2 class="accordion-header">
+                <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseThree"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseThree">
+                    {{ 'initiative_data' | trans }}
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <span class="responsive-size">{{ 'public_data_notice' | trans }}</span>
+                    <hr>
+                    {% include "_admin/initiative/_partials/forms/initiative-data.html.twig" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mt-4 mb-4">
+            <h2 class="accordion-header">
+                <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseFour"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseFour">
+                    {{ 'contacts' | trans }}
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <span class="responsive-size">{{ 'public_data_notice' | trans }}</span>
+                    <hr>
+                    {% include "_admin/initiative/_partials/forms/contacts.html.twig" %}
+                </div>
+            </div>
+        </div>
+
+        <div class="accordion-item mt-4 mb-4">
+            <h2 class="accordion-header">
+                <button
+                        class="accordion-button collapsed"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#panelsStayOpen-collapseFive"
+                        aria-expanded="false"
+                        aria-controls="panelsStayOpen-collapseFive">
+                    {{ 'social_media' | trans }}
+                </button>
+            </h2>
+            <div id="panelsStayOpen-collapseFive" class="accordion-collapse collapse">
+                <div class="accordion-body">
+                    <span class="responsive-size">{{ 'public_data_notice' | trans }}</span>
+                    <hr>
+                    {% include "_admin/initiative/_partials/forms/social-media.html.twig" %}
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

@@ -1,9 +1,12 @@
+actions_in_priority_territory: Will there be initiative actions in any priority territory?
 add: Añadir
 address_complement: Complemento
 address_data: Datos de Dirección
+add_alternative_address: Añadir dirección alternativa
 add_cover_image: Anãdir imagen de portada
 add_opening_hours: Añadir horario de apertura
 add_phase: Añadir fase
+add_specific_objective: Añadir objetivo específico
 account_privacy: Cuenta y Privacidad
 account_settings: Configuración de la cuenta de usuario
 access: Acceder
@@ -58,6 +61,7 @@ available_address: Dirección no disponible
 asian: Amarillo
 apply_filter: Aplicar filtros
 attachments_and_links: Archivos adjuntos y enlaces
+attitudinal_accessibility: Accesibilidad Actitudinal
 
 back: Volver
 birth_date: Fecha de Nacimiento
@@ -101,7 +105,9 @@ chain: Cadena
 change_email: Cambiar correo electrónico
 change_password: Cambiar la contraseña
 coming_soon: Muy pronto
+communicational_accessibility: Accesibilidad comunicacional
 contact: Contacto
+contacts: Contactos
 cultural_language: Lenguaje cultural
 cultural_languages: Lenguajes culturales
 
@@ -122,6 +128,7 @@ downloadable-files: Archivos Descargables
 
 edit: Editar
 edit_faq: Editar preguntas frecuentes
+edit_initiative: Editar Iniciativa
 edit_seals: Editar sellos
 edit_space: Editar espacio
 edit_activity_area: Editar Área de Actividad
@@ -142,6 +149,7 @@ event_types:
 everybody: Todos
 evidences: Evidencias
 elderly_person: Persona mayor
+execution_period: Período de ejecución
 explore_repository: Explorar Repositorio
 
 faq: FaQ
@@ -149,6 +157,7 @@ file: Adjuntar archivo
 filter: Filtros
 field: Campo
 first_name: Nombre
+financial: Financiero
 last_name: Apellido
 feminine: Femenino
 functions: Gerenciar funciones
@@ -163,11 +172,14 @@ gallery: Galería
 gender: Seleccione el Género
 general_data: Datos generales
 general_information: Información general
+general_objective: Objetivo General
+general_objective_description: Descripción del objetivo general
 
 happening_now: Ocurriendo Ahora
 help: Ayuda
 help_privacy: Ayuda y Privacidad
 home: Inicio
+how_measures_will_be_implemented: Cómo se implementarán o se pondrán a disposición estas medidas de accesibilidad según el proyecto propuesto
 
 identification_number: Número Identificador
 illustration: Ilustración
@@ -177,6 +189,7 @@ image_gallery: Añadir fotos a la galería
 indicators: Indicadores
 indigenous: Indígena
 initiative: Iniciativa
+initiative_data: Datos de la Iniciativa
 initiatives: Iniciativas
 in_progress: En Progreso
 inscriptions: Inscripciones
@@ -257,6 +270,7 @@ not_sent: No enviado
 notice: AVISO PUBLICO
 number_address: Número
 
+offers_architectural_accessibility: Ofrece accesibilidad física
 official_events: Eventos oficiales
 official_spaces: Espacios Oficiales
 official_registration: Ediciones oficiales
@@ -301,11 +315,17 @@ phase_success: Fase creada con éxito
 phase_error: Error al crear fase
 phase_timeline: Cronología de fases
 postal_code: Código Postal
+private_email: Correo electrónico privado
+private_phone: Teléfono privado (con DDD)
 profile_picture: Foto de Perfil
+profile_of_public: Perfil del público
 projects: Proyectos
+promotion: Divulgación
+promotion_strategy: Estrategia de divulgación
 physical: Física
 physical_accessibility: Recursos de accesibilidad física
 project_value: Valor del proyecto
+project_information: Información del proyecto
 public: Público
 public_data_notice: Los datos ingresados a continuación se mostrarán a todos los usuarios de la plataforma.
 public_email: Correo electrónico público
@@ -338,6 +358,7 @@ theater: Teatro
 The resource was created: La entidad fue creada
 The resource was updated: La entidad fue actualizada
 The resource was deleted: La entidad fue eliminada
+to: hasta
 type: Tipo
 type_here: Escriba aquí
 type_agent: Tipo de agente
@@ -345,7 +366,7 @@ type_opportunity: Tipo de oportunidad
 type_initiative: Tipo de iniciativa
 type_organization: Tipo de organización
 type_space: Tipo de espacio
-to: hasta
+total_value: Valor total
 
 user: Usuario
 user_name: Nombre de usuario
@@ -389,6 +410,9 @@ short_presentation: Presentación Corta
 space: Espacio
 space_type: Tipo de Espacio
 spaces: Espacios
+specific_objective: Objetivo Específico
+specific_objective_description: Descripción del objetivo específico
+specify_priority_territory: Especifique el territorio prioritario
 start_now: Comenzar Ahora
 start_date: Fecha de inicio
 state: Estado
@@ -602,17 +626,23 @@ view:
     access: Acceder Iniciativa
     create: Crear una Iniciativa
     id: ID de la iniciativa
+    link_platform_space: Vincular a un espacio de la plataforma
     linked_parent: Este proyecto es una iniciativa
     message:
       created: La Iniciativa fue creada con éxito
       deleted: La iniciativa ha sido eliminada
+    project_linked_program: Este proyecto está vinculado al programa-nome y fue seleccionado a través de la oportunidad oportunidade-nome.
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas
       opened: Iniciativas en Curso
       last_days: Registradas en los últimos 7 días
     period: Período de la iniciativa
+    priority_audience_profiles: Perfiles de público prioritario
+    register_new_location: Registrar un lugar
     type_of: Tipo de iniciativa
+    target_public_profile: Perfil del público objetivo del proyecto
+    where_initiative_executed: Lugares donde se ejecutará la iniciativa
 
   management:
     management_of: Management of

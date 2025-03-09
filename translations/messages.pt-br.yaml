@@ -1,9 +1,12 @@
+actions_in_priority_territory: Haverão ações da iniciativa em algum território prioritário?
 add: Adicionar
 address_complement: Complemento
 address_data: Dados de endereço
+add_alternative_address: Adicionar endereço alternativo
 add_cover_image: Adicionar imagem de capa
 add_opening_hours: Adicionar horário de funcionamento
 add_phase: Adicionar Fase
+add_specific_objective: Adicionar Objetivo Específico
 account_privacy: Conta e Privacidade
 account_settings: Configurações da conta do usuário
 access: Acessar
@@ -58,6 +61,7 @@ available_address: Endereço não informado
 asian: Amarelo
 apply_filter: Aplicar Filtros
 attachments_and_links: Anexos e links
+attitudinal_accessibility: Acessibilidade atitudinal
 
 back: Voltar
 birth_date: Data de nascimento
@@ -101,7 +105,9 @@ created_in: Criado em
 chain: Corrente
 change_email: Alterar email
 change_password: Alterar Senha
+communicational_accessibility: Acessibilidade comunicacional
 contact: Contato
+contacts: Contatos
 cultural_language: Linguagem cultural
 cultural_languages: Linguagens culturais
 
@@ -122,6 +128,7 @@ downloadable-files: Arquivos para download
 
 edit: Editar
 edit_faq: Editar FAQ
+edit_initiative: Editar Iniciativa
 edit_seals: Editar Selos
 edit_space: Editar Espaços
 edit_activity_area: Editar Área de Atuação
@@ -142,12 +149,14 @@ event_types:
 everybody: Todos
 evidences: Evidências
 elderly_person: Pessoa idosa
+execution_period: Período de execução
 explore_repository: Conheça o repositório
 
 faq: FaQ
 file: Anexar arquivo
 filter: Filtros
 field: Campo
+financial: Financeiro
 first_name: Nome
 last_name: Sobrenome
 feminine: Feminino
@@ -163,11 +172,14 @@ gallery: Galeria
 gender: Selecione o Gênero
 general_data: Dados gerais
 general_information: Informações gerais
+general_objective: Objetivo Geral
+general_objective_description: Descrição do Objetivo Geral
 
 happening_now: Acontecendo agora
 help: Ajuda
 help_privacy: Ajuda e privacidade
 home: Início
+how_measures_will_be_implemented: Como essas medidas de acessibilidades serão implementadas ou disponibilizadas de acordo com o projeto proposto
 
 identification_number: Número identificador
 illustration: Ilustração
@@ -177,6 +189,7 @@ image_gallery: Adicionar fotos na galeria
 indicators: Indicadores
 indigenous: Indígena
 initiative: Iniciativa
+initiative_data: Dados da Iniciativa
 initiatives: Iniciativas
 in_progress: Em andamento
 input_search: Busque por palavras-chave
@@ -257,6 +270,7 @@ not_sent: Não enviadas
 notice: EDITAL
 number_address: Número
 
+offers_architectural_accessibility: Oferece acessibilidade física
 official_events: Eventos Oficiais
 official_spaces: Espaços Oficiais
 official_registration: Editais oficiais
@@ -303,9 +317,15 @@ phase_timeline: Timeline da fase
 physical: Física
 physical_accessibility: Recursos de acessibilidade física
 postal_code: CEP
+private_email: Email privado
+private_phone: Telefone privado (com DDD)
 profile_picture: Foto de Perfil
+profile_of_public: Perfil do Público
 projects: Projetos
 project_value: Valor do projeto
+project_information: Informações do Projeto
+promotion: Divulgação
+promotion_strategy: Estratégia de divulgação
 public: Público
 public_data_notice: Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
 public_email: Email público
@@ -338,6 +358,7 @@ theater: Teatro
 The resource was created: A entidade foi criada
 The resource was updated: A entidade foi atualizada
 The resource was deleted: A entidade foi excluída
+to: até
 type: Tipo
 type_here: Digite aqui
 type_agent: Tipo de agente
@@ -345,7 +366,7 @@ type_opportunity: Tipo da oportunidade
 type_initiative: Tipo da iniciativa
 type_organization: Tipo da organização
 type_space: Tipo do espaço
-to: até
+total_value: Valor total
 
 user: Usuário
 user_name: Nome do Usuário
@@ -389,6 +410,9 @@ social_name: Nome Social
 space: Espaço
 space_type: Tipo de Espaço
 spaces: Espaços
+specific_objective: Objetivo Específico
+specific_objective_description: Descrição do Objetivo Específico
+specify_priority_territory: Especifique o território prioritário
 start_now: Comece agora
 start_date: Data de início
 state: Estado
@@ -596,17 +620,23 @@ view:
     access: Acessar Iniciativa
     create: Criar uma iniciativa
     id: ID da iniciativa
+    link_platform_space: Vincular à um espaço da plataforma
     linked_parent: Este projeto está à iniciativa
     message:
       created: A Iniciativa foi criada com sucesso
       deleted: A Iniciativa foi excluída
+    project_linked_program: Este projeto está vinculado ao programa programa-nome e foi selecionado por meio da oportunidade oportunidade-nome.
     quantity:
       total: Iniciativas Encontradas
       finished: Iniciativas Finalizadas
       opened: Iniciativas em Andamento
       last_days: Registradas nos últimos 7 dias
     period: Período da iniciativa
+    priority_audience_profiles: Perfis de público prioritário
+    register_new_location: Cadastrar um local
+    target_public_profile: Perfil do público a ser atingido pelo projeto
     type_of: Tipo de iniciativa
+    where_initiative_executed: locais onde a iniciativa será executada
 
   my-opportunity:
     title_opportunity: PNAB - Fomento à Execução de Ações Culturais

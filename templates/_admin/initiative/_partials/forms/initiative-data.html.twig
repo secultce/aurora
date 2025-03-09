@@ -1,0 +1,261 @@
+<div class="container-fluid initiative-data p-0">
+    <h5 class="fw-bold">{{ 'project_information' | trans }}</h5>
+
+    <div class="row">
+        <div class="col">
+            <label for="general-objective" class="form-label required">
+                {{ 'general_objective' | trans }}
+            </label>
+            <span class="iconify entity-edit-icon mb-1" data-icon="material-symbols:info-rounded"></span>
+            <input
+                    id="general-objective"
+                    class="form-control"
+                    placeholder="{{ 'general_objective_description' | trans }}"
+            >
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <label for="specific-objective1" class="form-label required">
+                {{ 'specific_objective' | trans }}
+            </label>
+            <span class="iconify entity-edit-icon mb-1" data-icon="material-symbols:info-rounded"></span>
+            <input
+                    id="specific-objective1"
+                    class="form-control"
+                    placeholder="{{ 'specific_objective_description' | trans }}"
+            >
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <input
+                    id="specific-objective2"
+                    class="form-control"
+                    placeholder="{{ 'specific_objective_description' | trans }}"
+            >
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <input
+                    id="specific-objective3"
+                    class="form-control"
+                    placeholder="{{ 'specific_objective_description' | trans }}"
+            >
+        </div>
+    </div>
+
+    <div class="row mt-4 mb-5">
+        <div class="col">
+            <a href="#" class="text-primary fw-bold text-decoration-none d-flex align-items-center">
+                <i class="iconify fs-3" data-icon="gridicons:add"></i>
+                {{ 'add_specific_objective' | trans }}
+            </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5 class="fw-bold mt-5">{{ 'profile_of_public' | trans }}</h5>
+    <div class="row mb-2">
+        <div class="col">
+            <label for="target-public-profile" class="form-label required">
+                {{ 'view.initiative.target_public_profile' | trans }}
+            </label>
+            <span class="iconify entity-edit-icon mb-1" data-icon="material-symbols:info-rounded"></span>
+            <textarea
+                    id="target-public-profile"
+                    class="form-control"
+                    rows="4"
+                    placeholder="{{ 'type_here' | trans }}"
+                    maxlength="400"
+            ></textarea>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col">
+            <label for="priority-public" class="form-label required">
+                {{ 'view.initiative.priority_audience_profiles' | trans }}
+            </label>
+            <select id="priority-public" class="form-select">
+                <option selected>Selecione</option>
+            </select>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5 class="fw-bold mt-5">{{ 'accessibility' | trans }}</h5>
+    <div class="row mb-2">
+        <div class="col">
+            <label for="accessibility-architectural" class="form-label required">
+                {{ 'architectural_accessibility' | trans }}
+            </label>
+            <span class="iconify entity-edit-icon mb-1" data-icon="material-symbols:info-rounded"></span>
+            <select id="accessibility-architectural" class="form-select mt-1">
+                <option selected>Selecione</option>
+                <option>Acessibilidade 1</option>
+                <option>Acessibilidade 2</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="accessibility-communication" class="form-label required">
+                {{ 'communicational_accessibility' | trans }}
+            </label>
+            <span class="iconify entity-edit-icon mb-1" data-icon="material-symbols:info-rounded"></span>
+            <select id="accessibility-communication" class="form-select mt-1">
+                <option selected>Selecione</option>
+                <option>Acessibilidade 1</option>
+                <option>Acessibilidade 2</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-2">
+        <div class="col">
+            <label for="accessibility-attitudinal" class="form-label required">
+                {{ 'attitudinal_accessibility' | trans }}
+            </label>
+            <span class="iconify entity-edit-icon mb-1" data-icon="material-symbols:info-rounded"></span>
+            <select id="accessibility-attitudinal" class="form-select mt-1">
+                <option selected>Selecione</option>
+                <option>Acessibilidade 1</option>
+                <option>Acessibilidade 2</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col">
+            <label for="how-accessibility" class="form-label">
+                {{ 'how_measures_will_be_implemented' | trans }}
+            </label>
+            <textarea
+                    id="how-accessibility"
+                    class="form-control"
+                    rows="6"
+                    placeholder="{{ 'type_here' | trans }}"
+            ></textarea>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5 class="fw-bold mt-5">{{ 'promotion' | trans }}</h5>
+    <div class="row mb-5">
+        <div class="col">
+            <label for="promotion-strategy" class="form-label required">
+                {{ 'promotion_strategy' | trans }}
+            </label>
+            <textarea
+                    id="promotion-strategy"
+                    class="form-control"
+                    rows="3"
+                    placeholder="{{ 'type_here' | trans }}"
+            ></textarea>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5 class="fw-bold mt-5 mb-4">{{ 'local' | trans }}</h5>
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label mt-0 required">
+                {{ 'view.initiative.where_initiative_executed' | trans }}
+            </label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input initiative-input-radio" type="radio" id="link-platform-space" checked>
+                    <label class="form-check-label initiative-radio" for="link-platform-space">
+                        {{ 'view.initiative.link_platform_space' | trans }}
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input initiative-input-radio" type="radio" id="new-location">
+                    <label class="form-check-label initiative-radio" for="new-location">
+                        {{ 'view.initiative.register_new_location' | trans }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col">
+            <div class="border p-3 rounded d-flex align-items-center">
+                <img
+                        src="https://placehold.jp/3d4070/ffffff/50x50.png"
+                        alt="{{ 'space' | trans }}"
+                        class="rounded-circle me-2 initiative-space-img"
+                >
+                <span class="text-primary fw-bold">Nome do espaço</span>
+            </div>
+            <a href="#" class="text-primary d-flex align-items-center mt-4 gap-0 text-decoration-none fw-bold">
+                <i class="iconify fs-5 me-1" data-icon="gridicons:add"></i>
+                {{ 'add_alternative_address' | trans }}
+            </a>
+        </div>
+    </div>
+
+    <hr>
+
+    <div class="row mb-3">
+        <div class="col">
+            <label class="form-label required">
+                {{ 'actions_in_priority_territory' | trans }}
+            </label>
+            <div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input initiative-input-radio" type="radio" id="initiative-yes" checked>
+                    <label class="form-check-label initiative-radio" for="initiative-yes">
+                        {{ 'yes' | trans }}
+                    </label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input initiative-input-radio" type="radio" id="initiative-no">
+                    <label class="form-check-label initiative-radio" for="initiative-no">
+                        {{ 'no' | trans }}
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mb-5">
+        <div class="col">
+            <label for="priority-territory" class="form-label required">
+                {{ 'specify_priority_territory' | trans }}
+            </label>
+            <select id="priority-territory" class="form-select">
+                <option selected>Território 1</option>
+                <option>Território 2</option>
+                <option>Território 3</option>
+            </select>
+        </div>
+    </div>
+
+    <hr>
+
+    <h5 class="fw-bold mt-4">{{ 'financial' | trans }}</h5>
+    <div class="row">
+        <div class="col">
+            <label for="total_value" class="form-label required">
+                {{ 'total_value' | trans }}
+            </label>
+            <input
+                    id="total_value"
+                    class="form-control"
+                    placeholder="{{ 'type_here' | trans }}"
+            >
+        </div>
+    </div>
+</div>

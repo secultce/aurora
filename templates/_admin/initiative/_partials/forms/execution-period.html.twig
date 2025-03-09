@@ -1,0 +1,33 @@
+<div class="container-fluid execution-period p-0">
+    <div class="row g-2 g-md-3">
+        <div class="col-md-3">
+            <label for="startDate" class="form-label required">
+                {{ 'start_date' | trans }}
+            </label>
+            <div class="input-group py-2">
+                <i class="iconify fs-3" data-icon="bx:calendar"></i>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="startDate"
+                        placeholder="00/00/0000"
+                >
+            </div>
+        </div>
+
+        <div class="col-md-3">
+            <label for="endDate" class="form-label required">
+                {{ 'end_date' | trans }}
+            </label>
+            <div class="input-group py-2">
+                <i class="iconify fs-3" data-icon="bx:calendar"></i>
+                <input
+                        type="text"
+                        class="form-control"
+                        id="endDate"
+                        placeholder="00/00/0000"
+                >
+            </div>
+        </div>
+    </div>
+</div>

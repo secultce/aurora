@@ -22,3 +22,8 @@ timeline:
   path: /{id}/timeline
   controller: App\Controller\Web\Admin\InitiativeAdminController::timeline
   methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\InitiativeAdminController::edit
+  methods: ['GET', 'POST']
