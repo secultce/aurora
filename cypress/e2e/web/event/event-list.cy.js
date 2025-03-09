@@ -72,7 +72,6 @@ describe('Pagina de listar Eventos', () => {
         cy.get('#apply-filters').click();
         cy.get('.total-events').contains('1 Eventos Encontrados').should('be.visible');
         cy.get('#open-filter').click();
-        cy.get('.btn-outline-primary').click();
         cy.get('.total-events').contains(/^\d+ Eventos Encontrados/).should('be.visible');
     });
 

@@ -291,7 +291,6 @@ other_files: Outros arquivos
 other_information: Outras informações
 
 pardo: Pardo
-participants: Participantes
 people: Pessoas
 people_capacity: Capacidade de pessoas
 period: Período
@@ -301,6 +300,7 @@ privacy: Privacidade
 profile: Perfil
 password: Senha
 password_strength: Força da senha
+participants: Participantes
 personal_data: Dados pessoais
 person_disabled: Pessoa com Deficiência
 presentation_information: Informações de apresentação
