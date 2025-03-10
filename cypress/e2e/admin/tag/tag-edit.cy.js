@@ -6,7 +6,7 @@ describe('Teste para Editar Tag', () => {
     });
 
     it('Editar uma tag existente', () => {
-        cy.get(':nth-child(4) > :nth-child(3) > .btn-outline-warning').click();
+        cy.get(':nth-child(4) > :nth-child(2) > .btn-outline-warning').click();
 
         cy.get('[data-cy="name"]').should('exist').and('have.value', 'Juventude');
 
@@ -20,7 +20,7 @@ describe('Teste para Editar Tag', () => {
     });
 
     it('Tenta editar com um nome inválido', () => {
-        cy.get(':nth-child(4) > :nth-child(3) > .btn-outline-warning').click();
+        cy.get(':nth-child(4) > :nth-child(2) > .btn-outline-warning').click();
 
         cy.get('[data-cy="name"]').clear()
         cy.get('[data-cy="name"]').type('P');
