@@ -7,7 +7,6 @@ namespace App\Service;
 use App\DTO\SealDto;
 use App\Entity\Seal;
 use App\Exception\Seal\SealResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\SealRepositoryInterface;
 use App\Service\Interface\SealServiceInterface;
 use DateTime;
@@ -24,7 +23,7 @@ readonly class SealService extends AbstractEntityService implements SealServiceI
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($this->security);
+        parent::__construct($this->security, $this->serializer, $this->validator);
     }
 
     public function create(array $seal): Seal
@@ -33,7 +32,7 @@ readonly class SealService extends AbstractEntityService implements SealServiceI
             $seal['createdBy'] = $this->getAgentsFromLoggedUser()[0]->getId()->toString();
         }
 
-        $seal = self::validateInput($seal, SealDto::CREATE);
+        $seal = $this->validateInput($seal, SealDto::class, SealDto::CREATE);
 
         $sealObj = $this->serializer->denormalize($seal, Seal::class);
 
@@ -98,7 +97,7 @@ readonly class SealService extends AbstractEntityService implements SealServiceI
     {
         $sealFromDB = $this->get($identifier);
 
-        $sealDto = self::validateInput($seal, SealDto::UPDATE);
+        $sealDto = $this->validateInput($seal, SealDto::class, SealDto::UPDATE);
 
         $sealObj = $this->serializer->denormalize($sealDto, Seal::class, context: [
             'object_to_populate' => $sealFromDB,
@@ -107,18 +106,5 @@ readonly class SealService extends AbstractEntityService implements SealServiceI
         $sealObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($sealObj);
-    }
-
-    private function validateInput(array $seal, string $group): array
-    {
-        $sealDto = $this->serializer->denormalize($seal, SealDto::class);
-
-        $violations = $this->validator->validate($sealDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        return $seal;
     }
 }

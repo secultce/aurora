@@ -321,7 +321,7 @@ final class OpportunityFixtures extends AbstractFixture implements DependentFixt
             if (5 > $counter) {
                 $file = $this->fileService->uploadImage(
                     $this->parameterBag->get('app.dir.opportunity.profile'),
-                    ImageTestFixtures::getOpportunityImage()
+                    ImageFixtures::getOpportunityImage()
                 );
                 $opportunityData['image'] = $file;
             }

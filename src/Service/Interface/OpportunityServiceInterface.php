@@ -25,7 +25,7 @@ interface OpportunityServiceInterface
 
     public function remove(Uuid $id): void;
 
-    public function update(Uuid $identifier, array $opportunity): Opportunity;
+    public function update(Uuid $id, array $opportunity): Opportunity;
 
     public function updateImage(Uuid $id, UploadedFile $uploadedFile): Opportunity;
 }

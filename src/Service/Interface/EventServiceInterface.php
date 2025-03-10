@@ -25,7 +25,7 @@ interface EventServiceInterface
 
     public function remove(Uuid $id): void;
 
-    public function update(Uuid $identifier, array $event): Event;
+    public function update(Uuid $id, array $event): Event;
 
     public function updateImage(Uuid $id, UploadedFile $uploadedFile): Event;
 }

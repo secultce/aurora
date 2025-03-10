@@ -15,15 +15,15 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class OrganizationService extends AbstractEntityService implements OrganizationServiceInterface
 {
+    private const string DIR_ORGANIZATION_PROFILE = 'app.dir.organization.profile';
+
     public function __construct(
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
@@ -33,7 +33,16 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         private ValidatorInterface $validator,
         private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($this->security, $this->entityManager, Organization::class);
+        parent::__construct(
+            $this->security,
+            $this->serializer,
+            $this->validator,
+            $this->entityManager,
+            Organization::class,
+            $this->fileService,
+            $this->parameterBag,
+            self::DIR_ORGANIZATION_PROFILE,
+        );
     }
 
     public function count(): int
@@ -45,26 +54,11 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
 
     public function create(array $organization): Organization
     {
-        $organization = self::validateInput($organization, OrganizationDto::CREATE);
+        $organization = $this->validateInput($organization, OrganizationDto::class, OrganizationDto::CREATE);
 
         $organizationObj = $this->serializer->denormalize($organization, Organization::class);
 
         return $this->repository->save($organizationObj);
-    }
-
-    private function denormalizeDto(array $data): OrganizationDto
-    {
-        return $this->serializer->denormalize($data, OrganizationDto::class, context: [
-            AbstractNormalizer::CALLBACKS => [
-                'image' => function () use ($data): ?File {
-                    if (false === isset($data['image'])) {
-                        return null;
-                    }
-
-                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.organization.profile'), $data['image']);
-                },
-            ],
-        ]);
     }
 
     public function findBy(array $params = [], int $limit = 50): array
@@ -129,7 +123,7 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
     {
         $organizationFromDB = $this->get($identifier);
 
-        $organizationDto = self::validateInput($organization, OrganizationDto::UPDATE);
+        $organizationDto = $this->validateInput($organization, OrganizationDto::class, OrganizationDto::UPDATE);
 
         $organizationObj = $this->serializer->denormalize($organizationDto, Organization::class, context: [
             'object_to_populate' => $organizationFromDB,
@@ -158,7 +152,7 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         }
 
         $uploadedImage = $this->fileService->uploadImage(
-            $this->parameterBag->get('app.dir.organization.profile'),
+            $this->parameterBag->get(self::DIR_ORGANIZATION_PROFILE),
             $uploadedFile
         );
 
@@ -167,19 +161,6 @@ readonly class OrganizationService extends AbstractEntityService implements Orga
         $organization->setUpdatedAt(new DateTime());
 
         $this->repository->save($organization);
-
-        return $organization;
-    }
-
-    private function validateInput(array $organization, string $group): array
-    {
-        $organizationDto = self::denormalizeDto($organization);
-
-        $violations = $this->validator->validate($organizationDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
 
         return $organization;
     }

@@ -184,7 +184,7 @@ final class UserFixtures extends AbstractFixture
 
         foreach (self::USERS as $userData) {
             if (5 > $counter) {
-                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.user.profile'), ImageTestFixtures::getUserImage());
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.user.profile'), ImageFixtures::getUserImage());
                 $userData['image'] = $file;
             }
 

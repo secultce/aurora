@@ -13,6 +13,6 @@ describe('Teste para Deletar Tag', () => {
         cy.get('.btn-danger').click();
 
         cy.get('.toast-body').contains('Tag foi excluída').should('be.visible');
-        cy.get('.table-responsive').contains('Tradição').should('not.exist');
+        cy.get('.table').contains('Tradição').should('not.exist');
     });
 });

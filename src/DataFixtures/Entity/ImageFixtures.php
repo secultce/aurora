@@ -7,7 +7,7 @@ namespace App\DataFixtures\Entity;
 use RuntimeException;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
-final class ImageTestFixtures
+final class ImageFixtures
 {
     public static function getAgentImage(): UploadedFile
     {

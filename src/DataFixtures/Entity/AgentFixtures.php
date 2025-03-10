@@ -267,7 +267,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
 
         foreach (self::AGENTS as $agentData) {
             if (5 > $counter) {
-                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.agent.profile'), ImageTestFixtures::getAgentImage());
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.agent.profile'), ImageFixtures::getAgentImage());
                 $agentData['image'] = $file;
             }
 

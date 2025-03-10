@@ -266,7 +266,7 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
 
         foreach (self::ORGANIZATIONS as $organizationData) {
             if (5 > $counter) {
-                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.organization.profile'), ImageTestFixtures::getOrganizationImage());
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.organization.profile'), ImageFixtures::getOrganizationImage());
                 $organizationData['image'] = $file;
             }
 

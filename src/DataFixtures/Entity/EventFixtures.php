@@ -473,7 +473,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
 
         foreach (self::EVENTS as $eventData) {
             if (5 > $counter) {
-                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.event.profile'), ImageTestFixtures::getEventImage());
+                $file = $this->fileService->uploadImage($this->parameterBag->get('app.dir.event.profile'), ImageFixtures::getEventImage());
                 $eventData['image'] = $file;
             }
 

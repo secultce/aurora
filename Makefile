@@ -62,7 +62,7 @@ tests_back:
 
 # Executa as fixtures de dados e os testes de back-end
 tests_back_coverage: load_fixtures
-	docker compose exec -T php bash -c "php -d memory_limit=512M bin/paratest"
+	docker compose exec -T php bash -c "php -d memory_limit=512M bin/paratest $(filename)"
 
 # Limpa o cache do projeto
 reset:

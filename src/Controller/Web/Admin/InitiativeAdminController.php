@@ -102,4 +102,13 @@ class InitiativeAdminController extends AbstractAdminController
             'events' => $events,
         ]);
     }
+
+    public function edit(Uuid $id): Response
+    {
+        $initiative = $this->service->get($id);
+
+        return $this->render('initiative/edit.html.twig', [
+            'initiative' => $initiative,
+        ]);
+    }
 }

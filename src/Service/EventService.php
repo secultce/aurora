@@ -16,15 +16,15 @@ use DateTime;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
 readonly class EventService extends AbstractEntityService implements EventServiceInterface
 {
+    private const string DIR_EVENT_PROFILE = 'app.dir.event.profile';
+
     public function __construct(
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
@@ -34,7 +34,16 @@ readonly class EventService extends AbstractEntityService implements EventServic
         private ValidatorInterface $validator,
         private EntityManagerInterface $entityManager,
     ) {
-        parent::__construct($this->security, $this->entityManager, Event::class);
+        parent::__construct(
+            $this->security,
+            $this->serializer,
+            $this->validator,
+            $this->entityManager,
+            Event::class,
+            $this->fileService,
+            $this->parameterBag,
+            self::DIR_EVENT_PROFILE,
+        );
     }
 
     public function count(?Agent $createdBy = null): int
@@ -50,7 +59,7 @@ readonly class EventService extends AbstractEntityService implements EventServic
 
     public function create(array $event): Event
     {
-        $event = self::validateInput($event, EventDto::CREATE);
+        $event = $this->validateInput($event, EventDto::class, EventDto::CREATE);
 
         $eventObj = $this->serializer->denormalize($event, Event::class);
 
@@ -59,21 +68,6 @@ readonly class EventService extends AbstractEntityService implements EventServic
         );
 
         return $this->repository->save($eventObj);
-    }
-
-    private function denormalizeDto(array $data): EventDto
-    {
-        return $this->serializer->denormalize($data, EventDto::class, context: [
-            AbstractNormalizer::CALLBACKS => [
-                'image' => function () use ($data): ?File {
-                    if (false === isset($data['image'])) {
-                        return null;
-                    }
-
-                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.event.profile'), $data['image']);
-                },
-            ],
-        ]);
     }
 
     public function findBy(array $params = [], int $limit = 50): array
@@ -134,11 +128,11 @@ readonly class EventService extends AbstractEntityService implements EventServic
         $this->repository->save($event);
     }
 
-    public function update(Uuid $identifier, array $event): Event
+    public function update(Uuid $id, array $event): Event
     {
-        $eventFromDB = $this->get($identifier);
+        $eventFromDB = $this->get($id);
 
-        $eventDto = self::validateInput($event, EventDto::UPDATE);
+        $eventDto = $this->validateInput($event, EventDto::class, EventDto::UPDATE);
 
         $eventObj = $this->serializer->denormalize($eventDto, Event::class, context: [
             'object_to_populate' => $eventFromDB,
@@ -167,7 +161,7 @@ readonly class EventService extends AbstractEntityService implements EventServic
         }
 
         $uploadedImage = $this->fileService->uploadImage(
-            $this->parameterBag->get('app.dir.event.profile'),
+            $this->parameterBag->get(self::DIR_EVENT_PROFILE),
             $uploadedFile
         );
 
@@ -176,19 +170,6 @@ readonly class EventService extends AbstractEntityService implements EventServic
         $event->setUpdatedAt(new DateTime());
 
         $this->repository->save($event);
-
-        return $event;
-    }
-
-    private function validateInput(array $event, string $group): array
-    {
-        $eventDto = self::denormalizeDto($event);
-
-        $violations = $this->validator->validate($eventDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
 
         return $event;
     }

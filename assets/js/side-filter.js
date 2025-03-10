@@ -26,7 +26,6 @@ function toggleSidebar() {
     }, 300);
 }
 
-
 FORM_FILTER_SIDEBAR.addEventListener('submit', function (event) {
     event.preventDefault();
 

@@ -7,7 +7,6 @@ namespace App\Service;
 use App\DTO\EventActivityDto;
 use App\Entity\EventActivity;
 use App\Exception\EventActivity\EventActivityResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\EventActivityRepositoryInterface;
 use App\Repository\Interface\EventRepositoryInterface;
 use App\Service\Interface\EventActivityServiceInterface;
@@ -25,12 +24,12 @@ readonly class EventActivityService extends AbstractEntityService implements Eve
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($this->security);
+        parent::__construct($this->security, $this->serializer, $this->validator);
     }
 
     public function create(Uuid $event, array $eventActivity): EventActivity
     {
-        $eventActivity = self::validateInput($eventActivity, EventActivityDto::CREATE);
+        $eventActivity = $this->validateInput($eventActivity, EventActivityDto::class, EventActivityDto::CREATE);
 
         $eventActivityObj = $this->serializer->denormalize($eventActivity, EventActivity::class);
 
@@ -97,7 +96,7 @@ readonly class EventActivityService extends AbstractEntityService implements Eve
     {
         $eventActivityFromDB = $this->get($event, $id);
 
-        $eventActivityDto = self::validateInput($eventActivity, EventActivityDto::UPDATE);
+        $eventActivityDto = $this->validateInput($eventActivity, EventActivityDto::class, EventActivityDto::UPDATE);
 
         $eventActivityObj = $this->serializer->denormalize($eventActivityDto, EventActivity::class, context: [
             'object_to_populate' => $eventActivityFromDB,
@@ -106,18 +105,5 @@ readonly class EventActivityService extends AbstractEntityService implements Eve
         $eventActivityObj->setEvent($eventActivityFromDB->getEvent());
 
         return $this->repository->save($eventActivityObj);
-    }
-
-    public function validateInput(array $event, string $group): array
-    {
-        $eventActivityDto = $this->serializer->denormalize($event, EventActivityDto::class);
-
-        $violations = $this->validator->validate($eventActivityDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
-
-        return $event;
     }
 }

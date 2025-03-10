@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Controller;
+namespace App\Tests\Unit\Controller\Web;
 
 use App\Controller\Web\AbstractWebController;
 use App\Tests\AbstractWebTestCase;
 
 class AbstractWebControllerTest extends AbstractWebTestCase
 {
-    private $controller;
+    private AbstractWebController $controller;
 
     protected function setUp(): void
     {

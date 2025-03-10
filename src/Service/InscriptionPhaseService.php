@@ -10,7 +10,6 @@ use App\Exception\InscriptionPhase\AgentNotInscribedInPreviousPhasesException;
 use App\Exception\InscriptionPhase\AlreadyInscriptionPhaseException;
 use App\Exception\Phase\PhaseResourceNotFoundException;
 use App\Exception\UnauthorizedException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\InscriptionPhaseRepositoryInterface;
 use App\Service\Interface\InscriptionPhaseServiceInterface;
 use App\Service\Interface\OpportunityServiceInterface;
@@ -31,20 +30,14 @@ readonly class InscriptionPhaseService extends AbstractEntityService implements 
         private SerializerInterface $serializer,
         private ValidatorInterface $validator,
     ) {
-        parent::__construct($security);
+        parent::__construct($this->security, $this->serializer, $this->validator);
     }
 
     public function create(Uuid $opportunity, Uuid $phase, array $inscriptionPhase): InscriptionPhase
     {
         $inscriptionPhase['phase'] = $phase->toRfc4122();
 
-        $inscriptionPhaseDto = $this->serializer->denormalize($inscriptionPhase, InscriptionPhaseDto::class);
-
-        $violations = $this->validator->validate($inscriptionPhaseDto, groups: InscriptionPhaseDto::CREATE);
-
-        if ($violations->count() > 0) {
-            throw new ValidatorException(violations: $violations);
-        }
+        $inscriptionPhase = $this->validateInput($inscriptionPhase, InscriptionPhaseDto::class, InscriptionPhaseDto::CREATE);
 
         $this->opportunityShouldNotBelongsToAgent($opportunity, Uuid::fromString($inscriptionPhase['agent']));
         $this->phaseShouldBelongsToOpportunity($opportunity, $phase);

@@ -4,35 +4,55 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Services;
 
+use App\DataFixtures\Entity\AgentFixtures;
+use App\DTO\SpaceDto;
 use App\Entity\Space;
 use App\Entity\User;
 use App\Exception\EntityManagerAndEntityClassNotSetException;
+use App\Exception\ValidatorException;
 use App\Service\AbstractEntityService;
+use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\DBAL\Connection;
 use Doctrine\DBAL\Result;
 use Doctrine\DBAL\Statement;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\ORM\Mapping\ClassMetadata;
-use PHPUnit\Framework\TestCase;
+use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Bundle\SecurityBundle\Security;
+use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
+use Symfony\Component\Serializer\SerializerInterface;
+use Symfony\Component\Uid\Uuid;
+use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-class AbstractEntityServiceTest extends TestCase
+class AbstractEntityServiceTest extends KernelTestCase
 {
-    private EntityManagerInterface $entityManager;
     private Security $security;
-    private AbstractEntityService $entityService;
+    private SerializerInterface $serializer;
+    private ValidatorInterface $validator;
+    private EntityManagerInterface $entityManager;
+    private FileServiceInterface $fileService;
+    private ParameterBagInterface $parameterBag;
+    private $entityService;
+    private string $imagePath;
 
     protected function setUp(): void
     {
+        self::bootKernel();
+
         $this->entityManager = $this->createMock(EntityManagerInterface::class);
         $this->security = $this->createMock(Security::class);
+        $this->serializer = self::getContainer()->get(SerializerInterface::class);
+        $this->validator = self::getContainer()->get(ValidatorInterface::class);
+        $this->fileService = $this->createMock(FileServiceInterface::class);
+        $this->parameterBag = $this->createMock(ParameterBagInterface::class);
+        $this->imagePath = 'app.dir.space.profile';
         $user = $this->createMock(User::class);
 
         $user->method('getAgents')->willReturn(new ArrayCollection());
         $this->security->method('getUser')->willReturn($user);
 
-        $this->entityService = new readonly class ($this->security, $this->entityManager, Space::class) extends AbstractEntityService {
+        $this->entityService = new readonly class ($this->security, $this->serializer, $this->validator, $this->entityManager, Space::class, $this->fileService, $this->parameterBag, $this->imagePath) extends AbstractEntityService {
         };
     }
 
@@ -89,5 +109,46 @@ class AbstractEntityServiceTest extends TestCase
         };
 
         $entityServiceWithoutEntityManager->countRecentRecords(7);
+    }
+
+    public function testValidateInput(): void
+    {
+        $data = [
+            'id' => Uuid::v4()->toRfc4122(),
+            'name' => 'Space',
+            'createdBy' => AgentFixtures::AGENT_ID_1,
+            'maxCapacity' => 10,
+            'isAccessible' => true,
+        ];
+        $dtoClass = SpaceDto::class;
+        $group = 'create';
+
+        $result = $this->entityService->validateInput($data, $dtoClass, $group);
+
+        $this->assertEquals($data, $result);
+    }
+
+    public function testValidateInputThrowsException(): void
+    {
+        $this->expectException(ValidatorException::class);
+
+        $data = ['name' => ''];
+        $dtoClass = SpaceDto::class;
+        $group = 'create';
+
+        $this->entityService->validateInput($data, $dtoClass, $group);
+
+        $this->expectExceptionMessage('Validation failed: field: This value should not be blank.');
+    }
+
+    public function testDenormalizeDto(): void
+    {
+        $data = ['name' => 'Space'];
+        $dtoClass = SpaceDto::class;
+
+        $this->serializer->denormalize($data, $dtoClass);
+
+        $result = $this->entityService->denormalizeDto($data, $dtoClass);
+        $this->assertInstanceOf($dtoClass, $result);
     }
 }

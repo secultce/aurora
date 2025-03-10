@@ -7,41 +7,50 @@ namespace App\Service;
 use App\DTO\UserDto;
 use App\Entity\User;
 use App\Exception\User\UserResourceNotFoundException;
-use App\Exception\ValidatorException;
 use App\Repository\Interface\UserRepositoryInterface;
 use App\Service\Interface\AgentServiceInterface;
 use App\Service\Interface\FileServiceInterface;
 use App\Service\Interface\UserServiceInterface;
 use DateTime;
+use Doctrine\ORM\EntityManagerInterface;
 use Exception;
+use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
-use Symfony\Component\HttpFoundation\File\File;
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactoryInterface;
-use Symfony\Component\Serializer\Normalizer\AbstractNormalizer;
 use Symfony\Component\Serializer\SerializerInterface;
 use Symfony\Component\Uid\Uuid;
 use Symfony\Component\Validator\Validator\ValidatorInterface;
 
-readonly class UserService implements UserServiceInterface
+readonly class UserService extends AbstractEntityService implements UserServiceInterface
 {
-    private const array DEFAULT_FILTERS = [
-        'deletedAt' => null,
-    ];
+    private const string DIR_USER_PROFILE = 'app.dir.user.profile';
 
     public function __construct(
         private AgentServiceInterface $agentService,
         private UserRepositoryInterface $repository,
+        private Security $security,
         private SerializerInterface $serializer,
         private FileServiceInterface $fileService,
         private ParameterBagInterface $parameterBag,
         private ValidatorInterface $validator,
+        private EntityManagerInterface $entityManager,
         private PasswordHasherFactoryInterface $passwordHasherFactory,
     ) {
+        parent::__construct(
+            $this->security,
+            $this->serializer,
+            $this->validator,
+            $this->entityManager,
+            User::class,
+            $this->fileService,
+            $this->parameterBag,
+            self::DIR_USER_PROFILE,
+        );
     }
 
     public function create(array $user): User
     {
-        $user = self::validateInput($user, UserDto::CREATE);
+        $user = $this->validateInput($user, UserDto::class, UserDto::CREATE);
 
         $password = $this->passwordHasherFactory->getPasswordHasher(User::class)->hash($user['password']);
 
@@ -85,7 +94,7 @@ readonly class UserService implements UserServiceInterface
     {
         $userObj = $this->get($id);
 
-        $user = self::validateInput($user, UserDto::UPDATE);
+        $user = $this->validateInput($user, UserDto::class, UserDto::UPDATE);
 
         $userObj = $this->serializer->denormalize($user, User::class, context: [
             'object_to_populate' => $userObj,
@@ -94,40 +103,5 @@ readonly class UserService implements UserServiceInterface
         $userObj->setUpdatedAt(new DateTime());
 
         return $this->repository->save($userObj);
-    }
-
-    private function validateInput(array $user, string $group): array
-    {
-        $userDto = self::denormalizeDto($user);
-
-        $violations = $this->validator->validate($userDto, groups: $group);
-
-        if ($violations->count() > 0) {
-            if ($userDto->image instanceof File) {
-                $this->fileService->deleteFile($userDto->image->getRealPath());
-            }
-            throw new ValidatorException(violations: $violations);
-        }
-
-        if ($userDto->image instanceof File) {
-            $user = array_merge($user, ['image' => $userDto->image]);
-        }
-
-        return $user;
-    }
-
-    private function denormalizeDto(array $data): UserDto
-    {
-        return $this->serializer->denormalize($data, UserDto::class, context: [
-            AbstractNormalizer::CALLBACKS => [
-                'image' => function () use ($data): ?File {
-                    if (false === isset($data['image'])) {
-                        return null;
-                    }
-
-                    return $this->fileService->uploadImage($this->parameterBag->get('app.dir.user.profile'), $data['image']);
-                },
-            ],
-        ]);
     }
 }
