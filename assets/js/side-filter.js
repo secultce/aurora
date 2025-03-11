@@ -1,3 +1,7 @@
+import {getLocale} from "@symfony/ux-translator";
+import AirDatepicker from 'air-datepicker';
+const datepickerLocale = await import('air-datepicker/locale/'+getLocale()+'.js');
+
 const BTN_OPEN_FILTER = document.getElementById('open-filter');
 const BTN_CLOSE_FILER = document.getElementById('close-filter');
 const SIDEBAR = document.getElementById('filter-sidebar');
@@ -16,13 +20,13 @@ function toggleSidebar() {
 
     if (SIDEBAR.classList.contains('open')) {
         BTN_OPEN_FILTER.style.visibility = 'hidden';
-        BTN_OPEN_FILTER.style.opacity = 0;
+        BTN_OPEN_FILTER.style.opacity = '0';
         return;
     }
 
     setTimeout(() => {
         BTN_OPEN_FILTER.style.visibility = 'visible';
-        BTN_OPEN_FILTER.style.opacity = 1;
+        BTN_OPEN_FILTER.style.opacity = '1';
     }, 300);
 }
 
@@ -51,3 +55,24 @@ ORDER_SELECT.addEventListener('change', () => {
 
     window.location.href = `${window.location.pathname}?${params.toString()}`;
 });
+
+const datepicker = new AirDatepicker(document.getElementById('datepicker'), {
+    range: true,
+    multipleDates: true,
+    locale: await datepickerLocale.default.default,
+    onSelect: function ({ date, formattedDate }) {
+        const customPeriod = document.querySelector('#period option[data-name=custom]');
+        customPeriod.classList.remove('d-none');
+        customPeriod.innerText = formattedDate.join(' - ');
+        customPeriod.value = date.map(d => d.getTime()).join(',');
+        customPeriod.selected = 'selected';
+    },
+});
+
+document.querySelector('#period')
+    .addEventListener('change', function () {
+        datepicker.clear({silent: true});
+        const customPeriod = document.querySelector('#period option[data-name=custom]');
+        customPeriod.classList.add('d-none');
+        customPeriod.innerText = '';
+    });

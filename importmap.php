@@ -45,4 +45,19 @@ return [
     '@iconify/iconify' => [
         'version' => '3.1.1',
     ],
+    'air-datepicker' => [
+        'version' => '3.5.3',
+    ],
+    'air-datepicker/locale/en.js' => [
+        'version' => '3.5.3',
+    ],
+    'air-datepicker/locale/es.js' => [
+        'version' => '3.5.3',
+    ],
+    'air-datepicker/locale/pt-BR.js' => [
+        'version' => '3.5.3',
+    ],
+    'air-datepicker/locale/pt-br.js' => [
+        'path' => 'vendor/air-datepicker/locale/pt-BR.js',
+    ],
 ];
