@@ -16,6 +16,8 @@ class FaqWebControllerTest extends AbstractWebTestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->controller = static::getContainer()->get(FaqWebController::class);
         $this->translator = static::getContainer()->get(TranslatorInterface::class);
     }
@@ -27,8 +29,7 @@ class FaqWebControllerTest extends AbstractWebTestCase
 
     public function testFaqPageRenderHTMLWithSuccess(): void
     {
-        $client = static::apiClient();
-        $client->request('GET', '/faq');
+        $this->client->request('GET', '/faq');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', $this->translator->trans('view.faq.title'));

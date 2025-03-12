@@ -20,15 +20,15 @@ class InitiativeWebControllerTest extends AbstractWebTestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->controller = static::getContainer()->get(InitiativeWebController::class);
         $this->translator = static::getContainer()->get(TranslatorInterface::class);
     }
 
     public function testInitiativePageShowRenderHTMLWithSuccess(): void
     {
-        $client = self::webClient();
-
-        $client->request('GET', '/iniciativas/'.InitiativeFixtures::INITIATIVE_ID_1);
+        $this->client->request('GET', '/iniciativas/'.InitiativeFixtures::INITIATIVE_ID_1);
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', 'Vozes do Sertão');
@@ -52,9 +52,7 @@ class InitiativeWebControllerTest extends AbstractWebTestCase
 
     public function testInitiativePageListRenderHTMLWithSuccess(): void
     {
-        $client = self::webClient();
-
-        $client->request('GET', '/iniciativas');
+        $this->client->request('GET', '/iniciativas');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h2', $this->translator->trans('initiatives'));

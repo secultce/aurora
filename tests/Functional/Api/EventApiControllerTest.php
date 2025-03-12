@@ -13,7 +13,7 @@ use App\DataFixtures\Entity\TagFixtures;
 use App\Entity\Event;
 use App\Enum\AccessibilityInfoEnum;
 use App\Enum\EventTypeEnum;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\EventTestFixtures;
 use App\Tests\Fixtures\ImageTestFixtures;
 use DateTimeInterface;
@@ -23,7 +23,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
-class EventApiControllerTest extends AbstractWebTestCase
+class EventApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/events';
 

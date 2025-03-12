@@ -6,13 +6,13 @@ namespace App\Tests\Unit\Entity;
 
 use App\Entity\Agent;
 use App\Entity\User;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Symfony\Component\Uid\Uuid;
 
-class UserEntityTest extends AbstractWebTestCase
+class UserEntityTest extends AbstractApiTestCase
 {
     public function testGettersAndSettersFromUserEntityShouldBeSuccessful(): void
     {

@@ -15,32 +15,29 @@ class AgentWebControllerTest extends AbstractWebTestCase
 {
     protected function setUp(): void
     {
-        parent::setUp();
+        $this->client = self::createClient();
     }
 
     public function testListRouteRendersHTMLSuccessfully(): void
     {
-        $client = static::createClient();
-        $client->request('GET', '/agentes');
+        $this->client->request('GET', '/agentes');
         $this->assertResponseIsSuccessful();
         $this->assertSelectorExists('.agent-card');
     }
 
     public function testGetOneRouteNotFound(): void
     {
-        $client = static::createClient();
-        $client->request('GET', '/agentes/'.Uuid::v4()->toRfc4122());
+        $this->client->request('GET', '/agentes/'.Uuid::v4()->toRfc4122());
         $this->assertResponseStatusCodeSame(Response::HTTP_NOT_FOUND);
     }
 
     public function testGetOneRouteForExistingAgent(): void
     {
-        $client = static::createClient();
         $existingUuid = AgentFixtures::AGENT_ID_1;
-        $client->request('GET', '/agentes/'.$existingUuid);
+        $this->client->request('GET', '/agentes/'.$existingUuid);
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', 'Alessandro');
-        $this->assertStringContainsString($existingUuid, $client->getResponse()->getContent());
+        $this->assertStringContainsString($existingUuid, $this->client->getResponse()->getContent());
     }
 
     public function testControllerGetOneMethodDirectly(): void

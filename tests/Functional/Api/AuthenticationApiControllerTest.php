@@ -5,11 +5,11 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Api;
 
 use App\DataFixtures\Entity\UserFixtures;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthenticationApiControllerTest extends AbstractWebTestCase
+class AuthenticationApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/login';
     private const string AGENT_URL = '/api/agents';

@@ -7,7 +7,7 @@ namespace App\Tests\Functional\Api;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\SealFixtures;
 use App\Entity\Seal;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\SealTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
-class SealApiControllerTest extends AbstractWebTestCase
+class SealApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/seals';
 

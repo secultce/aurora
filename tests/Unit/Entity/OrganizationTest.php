@@ -6,13 +6,13 @@ namespace App\Tests\Unit\Entity;
 
 use App\Entity\Organization;
 use App\Helper\DateFormatHelper;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\AgentTestFixtures;
 use DateTime;
 use DateTimeImmutable;
 use Symfony\Component\Uid\Uuid;
 
-final class OrganizationTest extends AbstractWebTestCase
+final class OrganizationTest extends AbstractApiTestCase
 {
     public function testGettersAndSettersFromOrganizationEntityShouldBeSuccessful(): void
     {

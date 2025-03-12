@@ -10,7 +10,7 @@ use App\DataFixtures\Entity\ArchitecturalAccessibilityFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\DataFixtures\Entity\TagFixtures;
 use App\Entity\Space;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\SpaceTestFixtures;
 use DateTimeInterface;
@@ -21,7 +21,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
-class SpaceApiControllerTest extends AbstractWebTestCase
+class SpaceApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/spaces';
 

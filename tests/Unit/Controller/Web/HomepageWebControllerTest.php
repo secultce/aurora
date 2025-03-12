@@ -16,6 +16,8 @@ class HomepageWebControllerTest extends AbstractWebTestCase
 
     protected function setUp(): void
     {
+        parent::setUp();
+
         $this->controller = static::getContainer()->get(HomepageWebController::class);
         $this->translator = static::getContainer()->get(TranslatorInterface::class);
     }
@@ -27,8 +29,7 @@ class HomepageWebControllerTest extends AbstractWebTestCase
 
     public function testHomePageRenderHTMLWithSuccess(): void
     {
-        $client = static::webClient();
-        $client->request('GET', '/');
+        $this->client->request('GET', '/');
 
         $this->assertResponseIsSuccessful();
         $this->assertSelectorTextContains('h1', $this->translator->trans('view.homepage.title'));

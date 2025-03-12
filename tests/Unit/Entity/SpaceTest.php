@@ -12,14 +12,14 @@ use App\Entity\SpaceAddress;
 use App\Entity\SpaceType;
 use App\Entity\Tag;
 use App\Helper\DateFormatHelper;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Symfony\Component\Uid\Uuid;
 
-class SpaceTest extends AbstractWebTestCase
+class SpaceTest extends AbstractApiTestCase
 {
     public function testGettersAndSettersFromSpaceEntityShouldBeSuccessful(): void
     {

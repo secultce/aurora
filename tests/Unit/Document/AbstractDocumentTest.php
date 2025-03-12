@@ -8,11 +8,11 @@ use App\DataFixtures\Entity\UserFixtures;
 use App\Document\AbstractDocument;
 use App\Document\AgentTimeline;
 use App\Service\Interface\UserServiceInterface;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use DateTime;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
-class AbstractDocumentTest extends AbstractWebTestCase
+class AbstractDocumentTest extends AbstractApiTestCase
 {
     private DocumentManager $documentManager;
 

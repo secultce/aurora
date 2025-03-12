@@ -7,7 +7,7 @@ namespace App\Tests\Functional\Api;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\UserFixtures;
 use App\Entity\User;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\UserTestFixtures;
 use DateTimeInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -16,7 +16,7 @@ use Symfony\Component\DependencyInjection\ParameterBag\ParameterBagInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class UserApiControllerTest extends AbstractWebTestCase
+class UserApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/users';
 

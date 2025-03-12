@@ -9,7 +9,7 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
 use App\DataFixtures\Entity\UserFixtures;
 use App\Entity\Agent;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\AgentTestFixtures;
 use App\Tests\Fixtures\ImageTestFixtures;
 use DateTimeInterface;
@@ -20,7 +20,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
-class AgentApiControllerTest extends AbstractWebTestCase
+class AgentApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/agents';
 

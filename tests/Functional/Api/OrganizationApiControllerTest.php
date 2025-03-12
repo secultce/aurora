@@ -7,7 +7,7 @@ namespace App\Tests\Functional\Api;
 use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
 use App\Entity\Organization;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\OrganizationTestFixtures;
 use DateTimeInterface;
@@ -17,7 +17,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
-class OrganizationApiControllerTest extends AbstractWebTestCase
+class OrganizationApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/organizations';
 

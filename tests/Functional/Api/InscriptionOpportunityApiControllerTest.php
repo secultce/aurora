@@ -8,7 +8,7 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\InscriptionOpportunityFixtures;
 use App\DataFixtures\Entity\OpportunityFixtures;
 use App\Entity\InscriptionOpportunity;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\InscriptionOpportunityTestFixtures;
 use App\Tests\Fixtures\OpportunityTestFixtures;
 use DateTimeInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
-class InscriptionOpportunityApiControllerTest extends AbstractWebTestCase
+class InscriptionOpportunityApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/opportunities/{opportunity}/inscriptions';
 

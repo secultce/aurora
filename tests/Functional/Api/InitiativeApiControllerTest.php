@@ -8,7 +8,7 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
 use App\Entity\Initiative;
-use App\Tests\AbstractWebTestCase;
+use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\ImageTestFixtures;
 use App\Tests\Fixtures\InitiativeTestFixtures;
 use DateTimeInterface;
@@ -18,7 +18,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
 
-class InitiativeApiControllerTest extends AbstractWebTestCase
+class InitiativeApiControllerTest extends AbstractApiTestCase
 {
     private const string BASE_URL = '/api/initiatives';
 
