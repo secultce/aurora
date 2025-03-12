@@ -17,6 +17,7 @@ accompany: To accompany
 action: Action
 actions: Actions
 activity: Activity
+active: Active
 activity_area: Area of activity
 activity_created: Area of activity was created
 activity_deleted: Area of activity has been excluded
@@ -198,6 +199,7 @@ in_progress: In Progress
 inscriptions: Inscriptions
 input_search: Search for keywords
 introduction: Introduction
+inactive: Inactive
 is_itinerant: Is it an itinerant agent?
 is-accessible: Is the space accessible?
 

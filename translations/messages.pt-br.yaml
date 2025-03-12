@@ -17,6 +17,7 @@ accompany: Acompanhar
 action: Ação
 actions: Ações
 activity: Atividade
+active: Ativo
 activity_area: Área de atuação
 activity_created: Área de atuação foi criada
 activity_deleted: Área de atuação foi excluída
@@ -195,6 +196,7 @@ in_progress: Em andamento
 input_search: Busque por palavras-chave
 inscriptions: Inscrições
 introduction: Apresentação
+inactive: Inativo
 is_itinerant: É agente itinerante?
 is-accessible: O espaço é acessível?
 

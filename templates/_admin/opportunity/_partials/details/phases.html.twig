@@ -31,9 +31,9 @@
                     <td>{{ phase.endDate|date('d/m/Y') }}</td>
                     <td>
                         {% if phase.status == 1 %}
-                            <span class="badge bg-success">{{ 'Active'|trans }}</span>
+                            <span class="badge bg-success">{{ 'active'|trans }}</span>
                         {% else %}
-                            <span class="badge bg-danger">{{ 'Inactive'|trans }}</span>
+                            <span class="badge bg-danger">{{ 'inactive'|trans }}</span>
                         {% endif %}
                     </td>
                     <td>
