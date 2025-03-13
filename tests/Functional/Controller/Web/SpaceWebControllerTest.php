@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Controller\Web;
+namespace App\tests\Functional\Controller\Web;
 
 use App\Controller\Web\SpaceWebController;
 use App\DataFixtures\Entity\SpaceFixtures;
@@ -13,11 +13,6 @@ use Symfony\Component\Uid\Uuid;
 
 class SpaceWebControllerTest extends AbstractWebTestCase
 {
-    protected function setUp(): void
-    {
-        $this->client = self::createClient();
-    }
-
     public function testListRouteRendersHTMLSuccessfully(): void
     {
         $this->client->request('GET', '/espacos');

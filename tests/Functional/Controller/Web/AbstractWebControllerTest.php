@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Controller\Web;
+namespace App\tests\Functional\Controller\Web;
 
 use App\Controller\Web\AbstractWebController;
 use App\Tests\AbstractWebTestCase;

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\Tests\Unit\Controller\Web;
+namespace App\tests\Functional\Controller\Web;
 
 use App\Controller\Web\AgentWebController;
 use App\DataFixtures\Entity\AgentFixtures;
@@ -13,11 +13,6 @@ use Symfony\Component\Uid\Uuid;
 
 class AgentWebControllerTest extends AbstractWebTestCase
 {
-    protected function setUp(): void
-    {
-        $this->client = self::createClient();
-    }
-
     public function testListRouteRendersHTMLSuccessfully(): void
     {
         $this->client->request('GET', '/agentes');
