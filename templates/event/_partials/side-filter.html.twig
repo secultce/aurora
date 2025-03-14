@@ -12,8 +12,8 @@
             <label for="period" class="filter-label">{{ 'period' | trans }}</label>
             <select class="filter-form mb-3" id="period" name="period">
                 <option value="">{{ 'select' | trans }}</option>
-                <option value="today">{{ 'today'|trans }}</option>
-                <option value="30">{{ 'next_30_days'|trans }}</option>
+                <option value="{{ date()|date('Y-m-d') }},{{ date()|date('Y-m-d') }}">{{ 'today'|trans }}</option>
+                <option value="{{ date()|date('Y-m-d') }},{{ date('+30days')|date('Y-m-d') }}">{{ 'next_30_days'|trans }}</option>
                 <option class="d-none" disabled data-name="custom" value="">{{ 'customized'|trans }}</option>
             </select>
 
@@ -31,7 +31,7 @@
                     <label class="fw-bold" for="datepicker">{{ 'calendar'|trans }}</label>
 
                     <div id="datepicker" class="mt-3" style="width: fit-content"></div>
-                    <button type="button" class="btn btn-primary mx-auto d-block m-3">{{ 'apply_filter'|trans }}</button>
+                    <button type="button" class="btn btn-primary mx-auto d-block m-3" id="apply-period-filter">{{ 'apply_filter'|trans }}</button>
                 </div>
             </div>
         </div>

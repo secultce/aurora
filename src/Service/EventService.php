@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Service;
 
 use App\DTO\EventDto;
+use App\DTO\EventFiltersDTO;
 use App\Entity\Agent;
 use App\Entity\Event;
 use App\Exception\Event\EventResourceNotFoundException;
@@ -72,6 +73,7 @@ readonly class EventService extends AbstractEntityService implements EventServic
 
     public function findBy(array $params = [], int $limit = 50): array
     {
+
         return $this->repository->findBy(
             [...$params, ...$this->getUserParams()],
             ['createdAt' => 'DESC'],
@@ -102,7 +104,9 @@ readonly class EventService extends AbstractEntityService implements EventServic
 
     public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
-        return $this->repository->findBy(
+        $params = $this->validateInput($params, EventFiltersDto::class, EventFiltersDto::VALIDATE);
+
+        return $this->repository->findByFilters(
             [...$params, ...$this->getDefaultParams()],
             ['createdAt' => $order],
             $limit

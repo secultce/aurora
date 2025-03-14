@@ -4,8 +4,10 @@ declare(strict_types=1);
 
 namespace App\Controller\Web;
 
+use App\Exception\ValidatorException;
 use App\Service\Interface\EventServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -24,8 +26,15 @@ class EventWebController extends AbstractWebController
         $filters = $request->query->all();
 
         $filters = $this->getOrderParam($filters);
+        $filters['filters'] = $this->hidratePeriodParam($filters['filters']);
 
-        $events = $this->service->list(params: $filters['filters'], order: $filters['order']);
+        $errors = [];
+        try {
+            $events = $this->service->list(params: $filters['filters'], order: $filters['order']);
+        } catch (ValidatorException $ex) {
+            $errors = $ex->getConstraintViolationList();
+        }
+
         $totalEvents = count($events);
 
         $days = $request->get('days', 7);
@@ -42,6 +51,7 @@ class EventWebController extends AbstractWebController
         ];
 
         return $this->render('event/list.html.twig', [
+            'errors' => $errors,
             'dashboard' => $dashboard,
             'events' => $events,
             'totalEvents' => $totalEvents,
@@ -53,5 +63,20 @@ class EventWebController extends AbstractWebController
         $event = $this->service->get($id);
 
         return $this->render('event/show.html.twig', ['event' => $event]);
+    }
+
+    public function hidratePeriodParam(array $filters): array
+    {
+        if (!isset($filters['period'])) {
+            return $filters;
+        }
+
+        $period = explode(',', $filters['period']);
+        $filters['period'] = [];
+
+        $filters['period']['start'] = DateTimeImmutable::createFromFormat('Y-m-d', $period[0]);
+        $filters['period']['end'] = DateTimeImmutable::createFromFormat('Y-m-d', $period[1]);
+
+        return $filters;
     }
 }
