@@ -8,7 +8,7 @@ use App\Document\SpaceTimeline;
 use App\DocumentService\Interface\TimelineDocumentServiceInterface;
 use Doctrine\ODM\MongoDB\DocumentManager;
 
-final class SpaceTimelineDocumentService extends AbstractTimelineDocumentService implements TimelineDocumentServiceInterface
+class SpaceTimelineDocumentService extends AbstractTimelineDocumentService implements TimelineDocumentServiceInterface
 {
     public function __construct(DocumentManager $documentManager)
     {

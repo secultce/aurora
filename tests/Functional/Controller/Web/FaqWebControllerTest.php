@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace App\tests\Functional\Controller\Web;
+namespace App\Tests\Functional\Controller\Web;
 
 use App\Controller\Web\FaqWebController;
 use App\Tests\AbstractWebTestCase;

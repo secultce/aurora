@@ -18,12 +18,12 @@ use TypeError;
 
 class SpaceAdminController extends AbstractAdminController
 {
-    private const VIEW_LIST = 'space/list.html.twig';
-    private const VIEW_ADD = 'space/create.html.twig';
-    private const VIEW_EDIT = 'space/edit.html.twig';
+    private const string VIEW_LIST = 'space/list.html.twig';
+    private const string VIEW_ADD = 'space/create.html.twig';
+    private const string VIEW_EDIT = 'space/edit.html.twig';
 
-    public const CREATE_FORM_ID = 'add-space';
-    public const EDIT_FORM_ID = 'edit-space';
+    public const string CREATE_FORM_ID = 'add-space';
+    public const string EDIT_FORM_ID = 'edit-space';
 
     public function __construct(
         private readonly SpaceServiceInterface $service,
@@ -77,7 +77,7 @@ class SpaceAdminController extends AbstractAdminController
         try {
             $this->service->create($space);
             $this->addFlashSuccess($this->translator->trans('view.space.message.created'));
-        } catch (TypeError $exception) {
+        } catch (Exception|TypeError $exception) {
             $this->addFlashError($exception->getMessage());
 
             return $this->render(self::VIEW_ADD, [

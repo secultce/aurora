@@ -3,7 +3,7 @@
         <p class="font-subtitle">{{ menu.title | trans }}</p>
         <ul class="nav flex-column mb-3">
             {% for key, item in menu.items %}
-                <li class="nav-item{% if app.request.attributes.get('_route') == key %} active{% endif %}">
+                <li class="nav-item{% if not app.request or not app.request.attributes.get('_route') == key %} active{% endif %}">
                     <a href="{{ path(key) }}" class="{{ item.color ?? '' }} nav-link d-flex align-items-center">
                         <i class="material-icons icon-size-1">{{ item.icon }}</i>
                         <span class="font-title">{{ item.text | trans }}</span>
