@@ -29,15 +29,35 @@ class State extends AbstractEntity
     #[ORM\OneToOne(targetEntity: City::class)]
     #[ORM\JoinColumn(name: 'capital_id', referencedColumnName: 'id')]
     #[Groups(['state.get'])]
-    public readonly ?City $capital;
+    public readonly City $capital;
+
+    public function getId(): Uuid
+    {
+        return $this->id;
+    }
+
+    public function getName(): string
+    {
+        return $this->name;
+    }
+
+    public function getAcronym(): string
+    {
+        return $this->acronym;
+    }
+
+    public function getCapital(): City
+    {
+        return $this->capital;
+    }
 
     public function toArray(): array
     {
         return [
-            'id' => $this->id,
+            'id' => $this->id->toRfc4122(),
             'name' => $this->name,
             'acronym' => $this->acronym,
-            'capital' => $this->capital?->toArray(),
+            'capital' => $this->capital->getId()->toRfc4122(),
         ];
     }
 }

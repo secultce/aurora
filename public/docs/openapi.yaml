@@ -7,6 +7,7 @@ info:
     - Agentes
     - Áreas de atividade
     - Espaços
+    - Estados
     - Eventos
     - Faqs
     - Fases
@@ -40,6 +41,8 @@ tags:
     description: Endpoints relacionados às áreas de atividade
   - name: Espaços
     description: Endpoints relacionados aos espaços
+  - name: Estados
+    description: Endpoints relacionados aos estados
   - name: Eventos
     description: Endpoints relacionados aos eventos
   - name: Atividade do evento
@@ -139,6 +142,10 @@ paths:
     $ref: './components/paths/space-type/Collection.yaml'
   /space-types/{id}:
     $ref: './components/paths/space-type/Item.yaml'
+  /states:
+    $ref: './components/paths/state/Collection.yaml'
+  /states/{id}/cities:
+    $ref: './components/paths/state/Cities.yaml'
   /tags:
     $ref: './components/paths/tag/Collection.yaml'
   /tags/{id}:
@@ -155,6 +162,8 @@ components:
       $ref: './components/schemas/agent.yaml'
     ArchitecturalAccessibility:
       $ref: './components/schemas/architectural-accessibility.yaml'
+    City:
+      $ref: './components/schemas/city.yaml'
     Event:
       $ref: './components/schemas/event.yaml'
     Faq:
@@ -177,6 +186,8 @@ components:
       $ref: './components/schemas/space.yaml'
     SpaceType:
       $ref: './components/schemas/space-type.yaml'
+    State:
+      $ref: './components/schemas/state.yaml'
     Tag:
       $ref: './components/schemas/tag.yaml'
     User:
