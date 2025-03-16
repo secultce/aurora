@@ -7,9 +7,17 @@ describe('Página de listar eventos por espaço', () => {
     });
 
     it('Garante a grade de eventos', () => {
-        cy.get('[data-cy="pills-list-content"] > .justify-content-between > h2').should('be.visible');
-        cy.get('[data-cy="pills-list-content"] > .row > :nth-child(1) > .card').should('be.visible');
-        cy.get(':nth-child(1) > .card > .p-3 > .text-white').contains('0 participantes');
+        cy.get('[data-cy="pills-list-content"] h2').should('be.visible');
+
+        cy.get('#pills-list-sublist-tab').should('have.class', 'active');
+        cy.get('#sublist-list').should('have.class', 'active');
+        cy.get('#sublist-list .event-card').should('be.visible');
+
+        cy.get('#pills-cards-sublist-tab').click();
+        cy.get('#sublist-cards').should('be.visible');
+        cy.get('#sublist-cards > .row > .col-md-4').should('be.visible');
+
+        cy.get('#pills-calendar-sublist-tab').should('be.visible');
     });
 
     it('Garante que as opções de visualização estão presentes', () => {

@@ -143,6 +143,7 @@ enter_space: Digite o nome do espaço
 end_date: Data de término
 event: Evento
 events: Eventos
+events_month_year: Eventos de {month} de {year}
 event_types:
   in_person: Presencial
   online: Online
@@ -437,6 +438,20 @@ white: Branca
 work_plan: Plano de trabalho
 
 yes: Sim
+
+#months
+January: Janeiro
+February: Fevereiro
+March: Março
+April: Abril
+May: Maio
+June: Junho
+July: Julho
+August: Agosto
+September: Setembro
+October: Outubro
+November: Novembro
+December: Dezembro
 
 #components
 
