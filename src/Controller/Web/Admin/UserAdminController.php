@@ -34,8 +34,6 @@ class UserAdminController extends AbstractAdminController
     {
         $events = $this->documentService->getEventsByEntityId($id);
 
-        $events = $this->userTimeline->getEvents($events);
-
         $authEvents = $this->authDocumentService->getTimelineLoginByUserId($id);
 
         return $this->render('user/timeline.html.twig', [

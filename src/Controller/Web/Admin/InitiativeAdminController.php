@@ -95,8 +95,6 @@ class InitiativeAdminController extends AbstractAdminController
     {
         $events = $this->documentService->getEventsByEntityId($id);
 
-        $events = $this->spaceTimeline->getEvents($events);
-
         return $this->render('initiative/timeline.html.twig', [
             'initiative' => $this->service->get($id),
             'events' => $events,

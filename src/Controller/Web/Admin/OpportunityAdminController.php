@@ -169,8 +169,6 @@ class OpportunityAdminController extends AbstractAdminController
     {
         $events = $this->documentService->getEventsByEntityId($id);
 
-        $events = $this->opportunityTimeline->getEvents($events);
-
         return $this->render('opportunity/timeline.html.twig', [
             'opportunity' => $this->service->get($id),
             'events' => $events,

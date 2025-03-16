@@ -84,8 +84,6 @@ class OrganizationAdminController extends AbstractAdminController
     {
         $events = $this->documentService->getEventsByEntityId($id);
 
-        $events = $this->organizationTimeline->getEvents($events);
-
         return $this->render(self::VIEW_TIMELINE, [
             'organization' => $this->service->get($id),
             'events' => $events,

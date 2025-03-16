@@ -4,7 +4,6 @@ declare(strict_types=1);
 
 namespace App\Controller\Web\Admin;
 
-use App\Document\PhaseTimeline;
 use App\DocumentService\PhaseTimelineDocumentService;
 use App\Service\Interface\OpportunityServiceInterface;
 use App\Service\Interface\PhaseServiceInterface;
@@ -21,7 +20,6 @@ class OpportunityPhaseAdminController extends AbstractAdminController
     public function __construct(
         private readonly PhaseServiceInterface $phaseService,
         private readonly PhaseTimelineDocumentService $documentService,
-        private readonly PhaseTimeline $phaseTimeline,
         private readonly OpportunityServiceInterface $opportunityService,
         private readonly TranslatorInterface $translator
     ) {
@@ -29,9 +27,7 @@ class OpportunityPhaseAdminController extends AbstractAdminController
 
     public function timeline(Uuid $opportunityId, Uuid $phaseId): Response
     {
-        $events = $this->phaseTimeline->getEvents(
-            $this->documentService->getEventsByEntityId($phaseId)
-        );
+        $events = $this->documentService->getEventsByEntityId($phaseId);
 
         return $this->render('opportunity-phase/timeline.html.twig', [
             'phase' => $this->phaseService->get($opportunityId, $phaseId),

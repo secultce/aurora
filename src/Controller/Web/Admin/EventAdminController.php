@@ -38,9 +38,7 @@ class EventAdminController extends AbstractAdminController
 
     public function timeline(?Uuid $id): Response
     {
-        $timelineEvents = $this->documentService->getEventsByEntityId($id);
-
-        $events = $this->eventTimeline->getEvents($timelineEvents);
+        $events = $this->documentService->getEventsByEntityId($id);
 
         return $this->render('event/timeline.html.twig', [
             'event' => $this->service->get($id),

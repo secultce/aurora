@@ -89,8 +89,6 @@ class AgentAdminController extends AbstractAdminController
     {
         $events = $this->documentService->getEventsByEntityId($id);
 
-        $events = $this->agentTimeline->getEvents($events);
-
         return $this->render('agent/timeline.html.twig', [
             'agent' => $this->service->get($id),
             'events' => $events,

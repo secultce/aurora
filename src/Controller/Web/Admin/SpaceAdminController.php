@@ -93,8 +93,6 @@ class SpaceAdminController extends AbstractAdminController
     {
         $events = $this->documentService->getEventsByEntityId($id);
 
-        $events = $this->spaceTimeline->getEvents($events);
-
         return $this->render('space/timeline.html.twig', [
             'space' => $this->service->get($id),
             'events' => $events,
