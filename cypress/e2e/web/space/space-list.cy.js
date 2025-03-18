@@ -19,8 +19,7 @@ describe('Página de Lista de Espaços', () => {
         const tabs = [
             '#pills-list-tab',
             '#pills-map-tab',
-            '#pills-indicators-tab',
-            '#pills-events-tab'
+            '#pills-indicators-tab'
         ];
 
         tabs.forEach((tab) => {

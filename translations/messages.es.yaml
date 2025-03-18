@@ -140,6 +140,7 @@ enter_opportunity: Ingrese el nombre de la oportunidad
 enter_organization: Ingrese el nombre de la organización
 enter_initiative: Digite el nombre de la iniciativa
 enter_space: Introduce el nombre del espacio
+entry_fee: Tarifa de inscripción
 end_date: Fecha de finalización
 event: Evento
 events: Eventos
@@ -298,6 +299,7 @@ other_files: Otros archivos
 other_information: Otra información
 
 pardo: Pardo
+paid: Pagado
 people: Gente
 people_capacity: Capacidad de personas
 period: Período

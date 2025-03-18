@@ -140,6 +140,7 @@ enter_opportunity: Digite o nome da oportunidade
 enter_organization: Digite o nome da organização
 enter_initiative: Digite o nome da iniciativa
 enter_space: Digite o nome do espaço
+entry_fee: Taxa de Inscrição
 end_date: Data de término
 event: Evento
 events: Eventos
@@ -166,6 +167,7 @@ functions: Gerenciar funções
 fundamental: Fundamental
 future_registration: Inscrições futuras
 full_name: Nome completo
+free: Grátis
 from: De
 from_to: Para
 from_to_date: Até
@@ -295,6 +297,7 @@ other_files: Outros arquivos
 other_information: Outras informações
 
 pardo: Pardo
+paid: Pago
 people: Pessoas
 people_capacity: Capacidade de pessoas
 period: Período

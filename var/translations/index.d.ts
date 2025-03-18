@@ -268,7 +268,7 @@ export declare const EDIT_ACTIVITY_AREA: Message<{ 'messages': { parameters: NoP
 export declare const EMAIL: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTITY_BANNER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
-export declare const ENTRY_FEE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'>;
+export declare const ENTRY_FEE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTER_OPPORTUNITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTER_ORGANIZATION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const ENTER_INITIATIVE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -300,7 +300,7 @@ export declare const FULL_NAME: Message<{ 'messages': { parameters: NoParameters
 export declare const FROM: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const FROM_TO: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const FROM_TO_DATE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
-export declare const FREE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'es'>;
+export declare const FREE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const GALLERY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const GENDER: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const GENERAL_DATA: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
@@ -422,6 +422,7 @@ export declare const ORIENTATION: Message<{ 'messages': { parameters: NoParamete
 export declare const OTHER_FILES: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const OTHER_INFORMATION: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PARDO: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
+export declare const PAID: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PEOPLE: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PEOPLE_CAPACITY: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;
 export declare const PERIOD: Message<{ 'messages': { parameters: NoParametersType } }, 'en'|'pt-br'|'es'>;

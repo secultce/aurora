@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Controller\Web;
 
 use App\Service\Interface\AgentServiceInterface;
+use App\Service\Interface\EventServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
 use Symfony\Component\HttpFoundation\Request;
@@ -15,9 +16,10 @@ use Symfony\Contracts\Translation\TranslatorInterface;
 class SpaceWebController extends AbstractWebController
 {
     public function __construct(
-        public readonly SpaceServiceInterface $service,
-        public readonly AgentServiceInterface $agentService,
+        private readonly SpaceServiceInterface $service,
+        private readonly AgentServiceInterface $agentService,
         private readonly TranslatorInterface $translator,
+        private readonly EventServiceInterface $eventService,
     ) {
     }
 
@@ -54,10 +56,12 @@ class SpaceWebController extends AbstractWebController
     {
         $space = $this->service->get($id);
         $owner = $this->agentService->get($space->getCreatedBy()->getId());
+        $events = $this->eventService->findBy(['space' => $space]);
 
         return $this->render('space/one.html.twig', [
             'space' => $space,
             'owner' => $owner,
+            'events' => $events,
         ]);
     }
 }
