@@ -1,5 +1,6 @@
 actions_in_priority_territory: Will there be initiative actions in any priority territory?
 add: Añadir
+add_occurrence: Añadir ocurrencia
 address_complement: Complemento
 address_data: Datos de Dirección
 add_alternative_address: Añadir dirección alternativa
@@ -63,6 +64,7 @@ asian: Amarillo
 apply_filter: Aplicar filtros
 attachments_and_links: Archivos adjuntos y enlaces
 attitudinal_accessibility: Accesibilidad Actitudinal
+audio_description: Audiodescripción
 
 back: Volver
 birth_date: Fecha de Nacimiento
@@ -127,7 +129,8 @@ discover: Descubrir
 does_not_expire: no caduca
 downloadable-files: Archivos Descargables
 
-edit: Editar
+edit: Editar evento
+edit_event: Editar
 edit_faq: Editar preguntas frecuentes
 edit_initiative: Editar Iniciativa
 edit_seals: Editar sellos
@@ -136,9 +139,10 @@ edit_activity_area: Editar Área de Actividad
 email: Correo Electrónico
 entity_banner: Banner de la Entidad
 entity: Entidad
+enter_event: Digite el nombre del evento
+enter_initiative: Digite el nombre de la iniciativa
 enter_opportunity: Ingrese el nombre de la oportunidad
 enter_organization: Ingrese el nombre de la organización
-enter_initiative: Digite el nombre de la iniciativa
 enter_space: Introduce el nombre del espacio
 entry_fee: Tarifa de inscripción
 end_date: Fecha de finalización
@@ -207,6 +211,7 @@ language: Idioma
 lastname: Apellido
 last_login: Último inicio de sesión
 last_updated: Última actualización
+libras: Lengua de Señas Brasileña (Libras)
 linked_with: Vinculado Con
 link: Añadir Enlace
 link_description: Descripción del enlace
@@ -223,8 +228,10 @@ long_description: Descripción larga
 
 map: Mapa
 management: Gerenciamiento de Entidades
+mandatory_fields: Campos marcados con asterisco son obligatorios.
 masculine: Masculino
 maroons: Quilombola
+maximum_capacity: Capacidad máxima de personas
 max-capacity: Capacidad máxima de espacio
 max_capacity: Capacidad máxima
 mei: MEI (CNPJ del MEI)
@@ -314,6 +321,7 @@ personal_data: Datos Personales
 person_disabled: Persona con Discapacidad
 presentation_information: Información de presentación
 phone: Teléfono
+phone_for_information: Teléfono para información
 postgraduate: Posgrado
 photo: Foto
 phase: Fase
@@ -352,6 +360,7 @@ recently_modified: Modificados recientemente
 reference_point: Complemento o punto de referencia
 register: Registro
 registration_date: Fecha de Inscripción
+registration_info: Información sobre la inscripción
 related-agents: Agentes Relacionados
 required_field: Campo obligatorio
 report: Reportar
@@ -613,6 +622,11 @@ view:
       error:
         user_not_logged: Para crear un evento debes estar registrado.
       short_bio: Añade una breve descripción del evento.
+    edit:
+      subtitle: Subtítulo del evento
+      add_occurrence_details: Agrega la fecha, hora y ubicación de la ocurrencia de tu evento. Puedes crear múltiples ocurrencias con información diferente. Los datos ingresados a continuación se mostrarán a todos los usuarios de la plataforma.
+      event_date_time_location: Fecha, hora y ubicación del evento
+      event_information: Información sobre el evento
     format_datetime: d/m/Y \a \l\a\s H:i:s
     id: ID de evento
     message:
@@ -813,7 +827,6 @@ view:
 
   space-edit:
     edit-space: Editar Espacio
-    mandatory_fields: Campos marcados con asterisco son obligatorios.
 
   space_type:
     create: Crear un Tipo de Espacio

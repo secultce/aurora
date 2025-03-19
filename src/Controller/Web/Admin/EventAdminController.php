@@ -100,4 +100,13 @@ class EventAdminController extends AbstractAdminController
 
         return $this->list();
     }
+
+    public function edit(Uuid $id): Response
+    {
+        $event = $this->service->get($id);
+
+        return $this->render('event/edit.html.twig', [
+            'event' => $event,
+        ]);
+    }
 }

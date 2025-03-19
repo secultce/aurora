@@ -698,12 +698,14 @@ img.card-images__entity-details {
 .entity-social-media label,
 .execution-period label,
 .contacts label,
-.initiative-data label {
+.initiative-data label,
+.event-information label{
     font-weight: bold;
     margin-top: 1.3rem;
 }
 
-.initiative-data .initiative-radio {
+.initiative-data .initiative-radio,
+.event-information .form-check-label {
     font-weight: normal;
     margin-top: 0;
 }
@@ -721,13 +723,16 @@ img.card-images__entity-details {
 .contacts input,
 .initiative-data input,
 .initiative-data textarea,
-.initiative-data select {
+.initiative-data select,
+.event-information input,
+.event-information select {
     border: 1px solid var(--border-gray);
     margin-top: 0.625rem;
     padding: 0.7rem;
 }
 
-.initiative-data .initiative-input-radio {
+.initiative-data .initiative-input-radio,
+.event-information input[type="radio"] {
     margin-top: 0.24rem;
     padding: 0;
 }
@@ -872,6 +877,10 @@ img.card-images__entity-details {
 .initiative-space-img {
     width: 3.125rem;
     height: 3.125rem;
+}
+
+.accordion-button:focus {
+    border-bottom: 1px solid var(--bs-accordion-border-color);
 }
 
 @media (min-width: 1400px) {

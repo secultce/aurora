@@ -1,5 +1,6 @@
 actions_in_priority_territory: Haverão ações da iniciativa em algum território prioritário?
 add: Adicionar
+add_occurrence: Adicionar Ocorrência
 address_complement: Complemento
 address_data: Dados de endereço
 add_alternative_address: Adicionar endereço alternativo
@@ -63,6 +64,7 @@ asian: Amarelo
 apply_filter: Aplicar Filtros
 attachments_and_links: Anexos e links
 attitudinal_accessibility: Acessibilidade atitudinal
+audio_description: Áudio descrição
 
 back: Voltar
 birth_date: Data de nascimento
@@ -128,6 +130,7 @@ does_not_expire: não expira
 downloadable-files: Arquivos para download
 
 edit: Editar
+edit_event: Editar Evento
 edit_faq: Editar FAQ
 edit_initiative: Editar Iniciativa
 edit_seals: Editar Selos
@@ -136,9 +139,10 @@ edit_activity_area: Editar Área de Atuação
 email: Email
 entity_banner: Banner da Entidade
 entity: Entidade
+enter_event: Digite o nome do evento
+enter_initiative: Digite o nome da iniciativa
 enter_opportunity: Digite o nome da oportunidade
 enter_organization: Digite o nome da organização
-enter_initiative: Digite o nome da iniciativa
 enter_space: Digite o nome do espaço
 entry_fee: Taxa de Inscrição
 end_date: Data de término
@@ -207,6 +211,7 @@ language: Idioma
 lastname: Sobrenome
 last_login: Último Login
 last_updated: Última atualização
+libras: Libras
 linked_with: Vinculado com
 list: Lista
 link: Adicionar link
@@ -223,8 +228,10 @@ long_description: Descrição longa
 
 map: Mapa
 management: Gerenciamento de Entidades
+mandatory_fields: Campos marcados com asterisco são de preenchimento obrigatório.
 masculine: Masculino
 maroons: Quilombola
+maximum_capacity: Capacidade máxima de pessoas
 max-capacity: Capacidade máxima do espaço
 max_capacity: Capacidade máxima
 mei: MEI (CNPJ do MEI)
@@ -313,6 +320,7 @@ person_disabled: Pessoa com Deficiência
 presentation_information: Informações de apresentação
 postgraduate: Pós-graduação
 phone: Telefone
+phone_for_information: Telefone para informações
 photo: Foto
 phase: Fase
 phases: Fases
@@ -350,6 +358,7 @@ recently_modified: Modificados recentemente
 reference_point: Complemento ou ponto de referência
 register: Cadastro
 registration_date: Data de inscrição
+registration_info: Informações sobre a inscrição
 related-agents: Agentes Relacionados
 required_field: Este campo é obrigatório.
 report: Denúncia
@@ -605,6 +614,11 @@ view:
       error:
         user_not_logged: Para criar um evento é necessário estar logado.
       short_bio: Adicione uma breve descrição do evento.
+    edit:
+      subtitle: Subtítulo do evento
+      add_occurrence_details: Adicione data, hora e local da ocorrência do seu evento. Você pode criar várias ocorrências com informações diferentes. Os dados inseridos abaixo serão exibidos para todos os usuários da plataforma.
+      event_date_time_location: Data, hora e local do evento
+      event_information: Informações sobre o evento
     format_datetime: d/m/Y \à\s h:i:s
     id: ID do evento
     message:
@@ -788,8 +802,6 @@ view:
 
   space-edit:
     edit-space: Edição de Espaço
-    mandatory_fields: Campos marcados com asterisco são de preenchimento obrigatório.
-
 
   space_type:
     create: Criar Tipo de Espaço

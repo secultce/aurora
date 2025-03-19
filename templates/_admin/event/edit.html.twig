@@ -1,17 +1,18 @@
 {% extends "_layouts/blank.html.twig" %}
 
-{% block title %}{{ 'edit_space' | trans }}{% endblock %}
+{% block title %}{{ 'edit_event' | trans }}{% endblock %}
 
 {% block content %}
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
         <div class="entity-edit">
-            {% include "_admin/space/_partials/space-edit-header.html.twig" %}
+            {% include "_admin/event/_partials/event-edit-header.html.twig" %}
+
             <section class="entity-edit-content mt-4">
                 {% set asterisk = '<span class="text-danger">*</span>' %}
                 <span class="entity-mandatory-fields">{{ 'mandatory_fields'|trans({'asterisco': asterisk})|raw }}</span>
 
-                {% include "_admin/space/_partials/forms/entity-edit-form.html.twig" %}
+                {% include "_admin/event/_partials/forms/entity-edit-form.html.twig" %}
             </section>
 
             <div class="entity-edit-submit">
@@ -27,7 +28,7 @@
                 </div>
                 <div class="logout-submit">
                     <button class="btn btn-outline-light">{{ 'logout' | trans }}</button>
-                    <button form="space-edit-form" type="submit" class="btn btn-light">{{ 'save' | trans}}</button>
+                    <button form="event-edit-form" type="submit" class="btn btn-light">{{ 'save' | trans}}</button>
                 </div>
             </div>
 

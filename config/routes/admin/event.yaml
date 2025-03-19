@@ -17,3 +17,8 @@ timeline:
   path: /{id}/timeline
   controller: App\Controller\Web\Admin\EventAdminController::timeline
   methods: ['GET']
+
+edit:
+  path: /{id}/editar
+  controller: App\Controller\Web\Admin\EventAdminController::edit
+  methods: ['GET', 'POST']

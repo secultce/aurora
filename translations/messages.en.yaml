@@ -1,5 +1,6 @@
 actions_in_priority_territory: ¿Habrá acciones de la iniciativa en algún territorio prioritario?
 add: Add
+add_occurrence: Add Occurrence
 address_complement: Address Complement
 address_data: Address Data
 add_alternative_address: Add Alternative Address
@@ -63,6 +64,7 @@ asian: Yellow
 apply_filter: Apply Filters
 attachments_and_links: Attachemnts and Links
 attitudinal_accessibility: Attitudinal Accessibility
+audio_description: Audio Description
 
 back: Back
 birth_date: Birth Date
@@ -128,6 +130,7 @@ does_not_expire: does not expire
 downloadable-files: Downloadable Files
 
 edit: Edit
+edit_event: Edit Event
 edit_faq: Edit FAQ
 edit_initiative: Edit Initiative
 edit_seals: Edit Seals
@@ -137,9 +140,10 @@ email: Email
 entity_banner: Entity Banner
 entity: Entity
 entry_fee: Entry fee
+enter_event: Enter the event name
+enter_initiative: Enter the name of the initiative
 enter_opportunity: Enter the opportunity name
 enter_organization: Enter the organization name
-enter_initiative: Enter the name of the initiative
 enter_space: Enter the name of the space
 end_date: End date
 event: Event
@@ -208,6 +212,7 @@ language: Language
 lastname: Last Name
 last_login: Last Login
 last_updated: Last update
+libras: Brazilian Sign Language (Libras)
 linked_with: Linked With
 link: Add Link
 links: Links
@@ -220,12 +225,14 @@ login: Login
 login-account: Log in to my account
 logo: Logo
 logout: Logout
-
 long_description: Long description
+
 map: Map
 management: Management of Entities
+mandatory_fields: Fields marked with asterisco are mandatory.
 masculine: Masculine
 maroons: Maroon
+maximum_capacity: Maximum Capacity
 max-capacity: Maximum space capacity
 max_capacity: Maximum capacity
 mei: MEI (CNPJ of MEI)
@@ -246,8 +253,8 @@ my_profile: My Profile
 my_spaces: My Spaces
 my_subscriptions: My Subscriptions
 modified_by: Modified by
-
 my_reviews: My Reviews
+
 name: Name
 name_space: Space name
 name_event: Event Name
@@ -315,6 +322,7 @@ personal_data: Personal Data
 person_disabled: Person with Disability
 presentation_information: Presentation Information
 phone: Phone
+phone_for_information: Phone for information
 postgraduate: Postgraduate
 photo: Photo
 phase: Phase
@@ -353,6 +361,7 @@ recently_modified: Recently modified
 reference_point: Complement or reference point
 register: Register
 registration_date: Registration Date
+registration_info: Information about registration
 related-agents: Related Agents
 required_field: Required Field
 report: Report
@@ -608,6 +617,11 @@ view:
       error:
         user_not_logged: To create an event you must be logged in.
       short_bio: Add a brief description of the event.
+    edit:
+      subtitle: Event Subtitle
+      add_occurrence_details: Add the date, time, and location of your event occurrence. You can create multiple occurrences with different information. The data entered below will be displayed to all users on the platform.
+      event_date_time_location: Date, time, and location of the event
+      event_information: Event information
     format_datetime: d/m/Y \a\t h:i:s
     id: Event ID
     message:
@@ -809,7 +823,7 @@ view:
 
   space-edit:
     edit-space: Edit Space
-    mandatory_fields: Fields marked with asterisco are mandatory.
+
   space_type:
     create: Create a Space Type
     edit: Edit Space Type
