@@ -7,6 +7,7 @@ namespace App\Tests\Unit\Entity;
 use App\Entity\ActivityArea;
 use App\Entity\Agent;
 use App\Entity\ArchitecturalAccessibility;
+use App\Entity\EntityAssociation;
 use App\Entity\Space;
 use App\Entity\SpaceAddress;
 use App\Entity\SpaceType;
@@ -52,6 +53,10 @@ class SpaceTest extends AbstractApiTestCase
         $spaceType = new SpaceType();
         $spaceType->setId(Uuid::v4());
         $spaceType->setName('Espaço Cultural');
+
+        $entityAssociation = new EntityAssociation();
+        $entityAssociation->setId(Uuid::v4());
+        $entityAssociation->setSpace($space);
 
         $this->assertNull($space->getId());
         $this->assertNull($space->getName());
@@ -116,6 +121,7 @@ class SpaceTest extends AbstractApiTestCase
         $space->setTags($tags);
         $space->setAccessibilities($accessibilities);
         $space->setSpaceType($spaceType);
+        $space->setEntityAssociation($entityAssociation);
         $space->setCreatedAt($createdAt);
         $space->setUpdatedAt($updatedAt);
         $space->setDeletedAt($deletedAt);
@@ -158,6 +164,9 @@ class SpaceTest extends AbstractApiTestCase
         $this->assertEquals($spaceAddress, $space->getAddress());
         $this->assertInstanceOf(SpaceAddress::class, $space->getAddress());
 
+        $this->assertEquals($entityAssociation, $space->getEntityAssociation());
+        $this->assertInstanceOf(EntityAssociation::class, $space->getEntityAssociation());
+
         $this->assertEquals($tags, $space->getTags());
         $this->assertInstanceOf(Collection::class, $space->getTags());
 
@@ -194,12 +203,13 @@ class SpaceTest extends AbstractApiTestCase
             'address' => $spaceAddress->toArray(),
             'extraFields' => $extraField,
             'activityAreas' => array_map(fn (ActivityArea $area) => $area->toArray(), $space->getActivityAreas()->toArray()),
+            'entityAssociation' => $entityAssociation->toArray(),
             'tags' => array_map(fn (Tag $tag) => $tag->toArray(), $tags->toArray()),
             'accessibilities' => array_map(fn (ArchitecturalAccessibility $accessibility) => $accessibility->toArray(), $accessibilities->toArray()),
+            'spaceType' => $spaceType->toArray(),
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt->format(DateFormatHelper::DEFAULT_FORMAT),
-            'spaceType' => $spaceType->toArray(),
         ], $space->toArray());
     }
 }

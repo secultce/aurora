@@ -89,6 +89,9 @@ class Space extends AbstractEntity
     #[Groups(['space.get', 'space.get.item'])]
     private Collection $activityAreas;
 
+    #[ORM\OneToOne(targetEntity: EntityAssociation::class, mappedBy: 'space', cascade: ['persist'])]
+    private ?EntityAssociation $entityAssociation = null;
+
     #[ORM\ManyToMany(targetEntity: Tag::class)]
     #[ORM\JoinTable(name: 'space_tags')]
     #[Groups(['space.get', 'space.get.item'])]
@@ -340,6 +343,16 @@ class Space extends AbstractEntity
         $this->accessibilities->removeElement($accessibility);
     }
 
+    public function getEntityAssociation(): ?EntityAssociation
+    {
+        return $this->entityAssociation;
+    }
+
+    public function setEntityAssociation(EntityAssociation $entityAssociation): void
+    {
+        $this->entityAssociation = $entityAssociation;
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -399,12 +412,13 @@ class Space extends AbstractEntity
             'address' => $this->address?->toArray(),
             'extraFields' => $this->extraFields,
             'activityAreas' => $this->activityAreas->map(fn (ActivityArea $activityArea) => $activityArea->toArray())->toArray(),
+            'entityAssociation' => $this->entityAssociation?->toArray(),
             'tags' => $this->tags->map(fn (Tag $tag) => $tag->toArray())->toArray(),
             'accessibilities' => $this->accessibilities->map(fn (ArchitecturalAccessibility $accessibility) => $accessibility->toArray())->toArray(),
+            'spaceType' => $this->spaceType?->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
-            'spaceType' => $this->spaceType?->toArray(),
         ];
     }
 }

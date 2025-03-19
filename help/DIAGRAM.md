@@ -134,6 +134,22 @@ direction BT
        agent_id  /* (DC2Type:uuid) */ uuid
     }
     
+    class entity_association {
+        id  /* (DC2Type:uuid) */ uuid
+        agent_id  /* (DC2Type:uuid) */ uuid
+        event_id  /* (DC2Type:uuid) */ uuid
+        initiative_id  /* (DC2Type:uuid) */ uuid
+        opportunity_id  /* (DC2Type:uuid) */ uuid
+        organization_id  /* (DC2Type:uuid) */ uuid
+        space_id  /* (DC2Type:uuid) */ uuid
+        boolean with_agent
+        boolean with_event
+        boolean with_initiative
+        boolean with_opportunity
+        boolean with_organization
+        boolean with_space
+    }
+
     event  -->  agent : created_by_id
     event  -->  agent : agent_group_id
     event  -->  event : parent_id

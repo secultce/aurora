@@ -33,9 +33,13 @@ class SpaceApiController extends AbstractApiController
         return $this->json($space, context: ['groups' => ['space.get', 'space.get.item']]);
     }
 
-    public function list(): JsonResponse
+    public function list(Request $request): JsonResponse
     {
-        return $this->json($this->service->list(), context: [
+        $params = $request->query->all();
+
+        $spaces = $this->service->list(params: $params);
+
+        return $this->json($spaces, context: [
             'groups' => 'space.get',
             AbstractNormalizer::CALLBACKS => [
                 'parent' => [EntityIdNormalizerHelper::class, 'normalizeEntityId'],

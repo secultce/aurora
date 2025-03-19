@@ -7,6 +7,7 @@ namespace App\Service;
 use App\DTO\SpaceDto;
 use App\Entity\Agent;
 use App\Entity\Space;
+use App\Enum\EntityEnum;
 use App\Exception\Space\SpaceResourceNotFoundException;
 use App\Exception\ValidatorException;
 use App\Repository\Interface\SpaceRepositoryInterface;
@@ -98,6 +99,14 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
 
     public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
+        if (true === array_key_exists('associationWith', $params)) {
+            return $this->repository->findByNameAndEntityAssociation(
+                name: $params['name'] ?? null,
+                entityAssociation: EntityEnum::fromName($params['associationWith']),
+                limit: $limit
+            );
+        }
+
         return $this->repository->findBy(
             [...$params, ...$this->getDefaultParams()],
             ['createdAt' => $order],
