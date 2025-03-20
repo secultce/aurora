@@ -63,6 +63,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => true,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -113,6 +116,10 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => true,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_4,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_5,
+            ],
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -146,6 +153,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
+            ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -180,6 +190,10 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => true,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_7,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_8,
+            ],
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -219,6 +233,10 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => true,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
+            ],
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -258,6 +276,10 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_8,
+            ],
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -292,6 +314,12 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_4,
+            ],
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -326,6 +354,11 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => false,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_4,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
+            ],
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -366,6 +399,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => false,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+            ],
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -401,6 +437,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
+            ],
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -436,6 +475,11 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'culturalLanguages' => [
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
+            ],
             'updatedAt' => '2024-07-10T11:35:00+00:00',
             'deletedAt' => null,
         ],
@@ -457,6 +501,7 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             AgentFixtures::class,
             SpaceFixtures::class,
             InitiativeFixtures::class,
+            CulturalLanguageFixtures::class,
         ];
     }
 

@@ -6,6 +6,7 @@ namespace App\Serializer\Denormalizer;
 
 use App\Entity\ActivityArea;
 use App\Entity\Agent;
+use App\Entity\CulturalLanguage;
 use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
@@ -99,6 +100,15 @@ readonly class EventDenormalizer implements DenormalizerInterface
             );
 
             $event->setTags(new ArrayCollection($tags));
+        }
+
+        if (true === array_key_exists('culturalLanguages', $data)) {
+            $culturalLanguages = array_map(
+                fn (string $id) => $this->entityManager->find(CulturalLanguage::class, $id),
+                $data['culturalLanguages']
+            );
+
+            $event->setCulturalLanguages(new ArrayCollection($culturalLanguages));
         }
 
         return $event;

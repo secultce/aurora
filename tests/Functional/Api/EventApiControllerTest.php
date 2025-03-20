@@ -6,6 +6,7 @@ namespace App\Tests\Functional\Api;
 
 use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\AgentFixtures;
+use App\DataFixtures\Entity\CulturalLanguageFixtures;
 use App\DataFixtures\Entity\EventFixtures;
 use App\DataFixtures\Entity\InitiativeFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
@@ -64,6 +65,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'culturalLanguages' => [],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -127,6 +129,23 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'accessibleAudio' => AccessibilityInfoEnum::YES->value,
                 'accessibleLibras' => AccessibilityInfoEnum::YES->value,
                 'free' => false,
+                'culturalLanguages' => [
+                    [
+                        'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+                        'name' => 'Arte e Música',
+                        'description' => 'Pintura, escultura, literatura, dança, teatro, música e outras formas artísticas que comunicam ideias, histórias e sentimentos.',
+                    ],
+                    [
+                        'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                        'name' => 'Costumes e Rituais',
+                        'description' => 'Celebrações, festivais, cerimônias religiosas e ritos de passagem que expressam identidades culturais.',
+                    ],
+                    [
+                        'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
+                        'name' => 'Moda e Vestuário',
+                        'description' => 'Estilos de vestir que comunicam status social, afiliação cultural, crenças ou até protestos.',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T11:35:00+00:00',
                 'deletedAt' => null,
@@ -178,6 +197,7 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'culturalLanguages' => [],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -545,6 +565,23 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::YES->value,
             'accessibleLibras' => AccessibilityInfoEnum::YES->value,
             'free' => false,
+            'culturalLanguages' => [
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+                    'name' => 'Arte e Música',
+                    'description' => 'Pintura, escultura, literatura, dança, teatro, música e outras formas artísticas que comunicam ideias, histórias e sentimentos.',
+                ],
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                    'name' => 'Costumes e Rituais',
+                    'description' => 'Celebrações, festivais, cerimônias religiosas e ritos de passagem que expressam identidades culturais.',
+                ],
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
+                    'name' => 'Moda e Vestuário',
+                    'description' => 'Estilos de vestir que comunicam status social, afiliação cultural, crenças ou até protestos.',
+                ],
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => '2024-07-10T11:35:00+00:00',
             'deletedAt' => null,
@@ -624,6 +661,13 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
                 'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
                 'free' => true,
+                'culturalLanguages' => [
+                    [
+                        'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
+                        'name' => 'Sistemas de Simbolismo',
+                        'description' => 'Símbolos, gestos, mitos e narrativas que comunicam significados compartilhados.',
+                    ],
+                ],
                 'createdAt' => '2024-07-16T17:22:00+00:00',
                 'updatedAt' => null,
                 'deletedAt' => null,
@@ -672,6 +716,18 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'culturalLanguages' => [
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+                    'name' => 'Arte e Música',
+                    'description' => 'Pintura, escultura, literatura, dança, teatro, música e outras formas artísticas que comunicam ideias, histórias e sentimentos.',
+                ],
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_8,
+                    'name' => 'Oralidade e Tradição Popular',
+                    'description' => 'Histórias, provérbios, músicas e conhecimentos transmitidos verbalmente entre gerações.',
+                ],
+            ],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -784,6 +840,23 @@ class EventApiControllerTest extends AbstractApiTestCase
                 'accessibleAudio' => AccessibilityInfoEnum::YES->value,
                 'accessibleLibras' => AccessibilityInfoEnum::YES->value,
                 'free' => false,
+                'culturalLanguages' => [
+                    [
+                        'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
+                        'name' => 'Arte e Música',
+                        'description' => 'Pintura, escultura, literatura, dança, teatro, música e outras formas artísticas que comunicam ideias, histórias e sentimentos.',
+                    ],
+                    [
+                        'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                        'name' => 'Costumes e Rituais',
+                        'description' => 'Celebrações, festivais, cerimônias religiosas e ritos de passagem que expressam identidades culturais.',
+                    ],
+                    [
+                        'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_3,
+                        'name' => 'Moda e Vestuário',
+                        'description' => 'Estilos de vestir que comunicam status social, afiliação cultural, crenças ou até protestos.',
+                    ],
+                ],
                 'createdAt' => '2024-07-10T11:30:00+00:00',
                 'updatedAt' => '2024-07-10T11:35:00+00:00',
                 'deletedAt' => null,
@@ -826,6 +899,13 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'accessibleLibras' => AccessibilityInfoEnum::NOT_INFORMED->value,
             'free' => true,
+            'culturalLanguages' => [
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
+                    'name' => 'Sistemas de Simbolismo',
+                    'description' => 'Símbolos, gestos, mitos e narrativas que comunicam significados compartilhados.',
+                ],
+            ],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $event->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -1204,6 +1284,23 @@ class EventApiControllerTest extends AbstractApiTestCase
             'accessibleAudio' => AccessibilityInfoEnum::NO->value,
             'accessibleLibras' => AccessibilityInfoEnum::NO->value,
             'free' => false,
+            'culturalLanguages' => [
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_2,
+                    'name' => 'Costumes e Rituais',
+                    'description' => 'Celebrações, festivais, cerimônias religiosas e ritos de passagem que expressam identidades culturais.',
+                ],
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_4,
+                    'name' => 'Gastronomia',
+                    'description' => 'Pratos e modos de preparo que refletem tradições, identidades e até histórias de resistência ou adaptação cultural.',
+                ],
+                [
+                    'id' => CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_6,
+                    'name' => 'Sistemas de Simbolismo',
+                    'description' => 'Símbolos, gestos, mitos e narrativas que comunicam significados compartilhados.',
+                ],
+            ],
             'createdAt' => $event->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $event->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,

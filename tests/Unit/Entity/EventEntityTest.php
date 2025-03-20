@@ -6,6 +6,7 @@ namespace App\Tests\Unit\Entity;
 
 use App\Entity\ActivityArea;
 use App\Entity\Agent;
+use App\Entity\CulturalLanguage;
 use App\Entity\Event;
 use App\Entity\Initiative;
 use App\Entity\Space;
@@ -54,6 +55,10 @@ class EventEntityTest extends TestCase
         $accessibleAudio = AccessibilityInfoEnum::YES->value;
         $accessibleLibras = AccessibilityInfoEnum::YES->value;
         $isFree = true;
+        $culturalLanguages = new ArrayCollection([
+            new CulturalLanguage(),
+            new CulturalLanguage(),
+        ]);
         $createdAt = new DateTimeImmutable();
         $updatedAt = new DateTime();
         $deletedAt = new DateTime();
@@ -81,6 +86,7 @@ class EventEntityTest extends TestCase
         $event->setAccessibleAudio($accessibleAudio);
         $event->setAccessibleLibras($accessibleLibras);
         $event->setFree($isFree);
+        $event->setCulturalLanguages($culturalLanguages);
         $event->setCreatedAt($createdAt);
         $event->setUpdatedAt($updatedAt);
         $event->setDeletedAt($deletedAt);
@@ -108,6 +114,7 @@ class EventEntityTest extends TestCase
         $this->assertSame($accessibleAudio, $event->getAccessibleAudio());
         $this->assertSame($accessibleLibras, $event->getAccessibleLibras());
         $this->assertSame($isFree, $event->isFree());
+        $this->assertSame($culturalLanguages, $event->getCulturalLanguages());
         $this->assertSame($createdAt, $event->getCreatedAt());
         $this->assertSame($updatedAt, $event->getUpdatedAt());
         $this->assertSame($deletedAt, $event->getDeletedAt());
@@ -155,20 +162,38 @@ class EventEntityTest extends TestCase
         $longDescription = 'longdescription';
         $type = EventTypeEnum::HYBRID->value;
         $endDate = new DateTime();
-        $activityAreas = new ArrayCollection([
-            new ActivityArea(),
-            new ActivityArea(),
-        ]);
-        $tags = new ArrayCollection([
-            new Tag(),
-            new Tag(),
-        ]);
+
+        $activityAreaUuid1 = Uuid::v4();
+        $activityArea1 = new ActivityArea();
+        $activityArea1->setId($activityAreaUuid1);
+        $activityAreaUuid2 = Uuid::v4();
+        $activityArea2 = new ActivityArea();
+        $activityArea2->setId($activityAreaUuid2);
+
+        $tagUuid1 = Uuid::v4();
+        $tag1 = new Tag();
+        $tag1->setId($tagUuid1);
+        $tag1->setName('tag1');
+        $tagUuid2 = Uuid::v4();
+        $tag2 = new Tag();
+        $tag2->setId($tagUuid2);
+        $tag2->setName('tag2');
+
         $site = 'evento.com';
         $phoneNumber = '0123456789';
         $maxCapacity = 100;
         $accessibleAudio = AccessibilityInfoEnum::YES->value;
         $accessibleLibras = AccessibilityInfoEnum::YES->value;
         $free = true;
+
+        $culturalLanguageUuid1 = Uuid::v4();
+        $culturalLanguage1 = new CulturalLanguage();
+        $culturalLanguage1->setId($culturalLanguageUuid1);
+        $culturalLanguage1->setName('Cultural Language 1');
+        $culturalLanguageUuid2 = Uuid::v4();
+        $culturalLanguage2 = new CulturalLanguage();
+        $culturalLanguage2->setId($culturalLanguageUuid2);
+
         $createdAt = new DateTimeImmutable();
         $updatedAt = new DateTime();
         $deletedAt = new DateTime();
@@ -188,14 +213,21 @@ class EventEntityTest extends TestCase
         $event->setLongDescription($longDescription);
         $event->setType($type);
         $event->setEndDate($endDate);
-        $event->setActivityAreas($activityAreas);
-        $event->setTags($tags);
+        $event->addActivityArea($activityArea1);
+        $event->addActivityArea($activityArea2);
+        $event->removeActivityArea($activityArea2);
+        $event->addTag($tag1);
+        $event->addTag($tag2);
+        $event->removeTag($tag2);
         $event->setSite($site);
         $event->setPhoneNumber($phoneNumber);
         $event->setMaxCapacity($maxCapacity);
         $event->setAccessibleAudio($accessibleAudio);
         $event->setAccessibleLibras($accessibleLibras);
         $event->setFree($free);
+        $event->addCulturalLanguage($culturalLanguage1);
+        $event->addCulturalLanguage($culturalLanguage2);
+        $event->removeCulturalLanguage($culturalLanguage2);
         $event->setCreatedAt($createdAt);
         $event->setUpdatedAt($updatedAt);
         $event->setDeletedAt($deletedAt);
@@ -215,19 +247,26 @@ class EventEntityTest extends TestCase
             'longDescription' => $longDescription,
             'type' => $type,
             'endDate' => $endDate->format(DateFormatHelper::DEFAULT_FORMAT),
-            'activityAreas' => $activityAreas->toArray(),
-            'tags' => $tags->toArray(),
+            'activityAreas' => [
+                $activityArea1->toArray(),
+            ],
+            'tags' => [
+                $tag1->toArray(),
+            ],
             'site' => $site,
             'phoneNumber' => $phoneNumber,
             'maxCapacity' => $maxCapacity,
             'accessibleAudio' => $accessibleAudio,
             'accessibleLibras' => $accessibleLibras,
             'free' => $free,
+            'culturalLanguages' => [
+                $culturalLanguage1->toArray(),
+            ],
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
         ];
 
-        $this->assertSame($expectedArray, $actualArray);
+        $this->assertEquals($expectedArray, $actualArray);
     }
 }

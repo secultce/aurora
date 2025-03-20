@@ -124,6 +124,11 @@ class Event extends AbstractEntity
     #[Groups(['event.get'])]
     private bool $free = true;
 
+    #[ORM\ManyToMany(targetEntity: CulturalLanguage::class)]
+    #[ORM\JoinTable(name: 'event_cultural_languages')]
+    #[Groups(['event.get', 'event.get.item'])]
+    private Collection $culturalLanguages;
+
     #[ORM\Column]
     #[Groups(['event.get'])]
     private DateTimeImmutable $createdAt;
@@ -148,6 +153,7 @@ class Event extends AbstractEntity
         $this->eventActivities = new ArrayCollection();
         $this->activityAreas = new ArrayCollection();
         $this->tags = new ArrayCollection();
+        $this->culturalLanguages = new ArrayCollection();
     }
 
     public function getId(): ?Uuid
@@ -312,7 +318,7 @@ class Event extends AbstractEntity
 
     public function addActivityArea(ActivityArea $activityArea): void
     {
-        if (false === $this->activityAreas->contains($activityArea)) {
+        if (true === $this->activityAreas->contains($activityArea)) {
             return;
         }
 
@@ -336,7 +342,7 @@ class Event extends AbstractEntity
 
     public function addTag(Tag $tag): void
     {
-        if (false === $this->tags->contains($tag)) {
+        if (true === $this->tags->contains($tag)) {
             return;
         }
 
@@ -490,6 +496,28 @@ class Event extends AbstractEntity
         }
     }
 
+    public function getCulturalLanguages(): Collection
+    {
+        return $this->culturalLanguages;
+    }
+
+    public function setCulturalLanguages(Collection $culturalLanguages): void
+    {
+        $this->culturalLanguages = $culturalLanguages;
+    }
+
+    public function addCulturalLanguage(CulturalLanguage $culturalLanguage): void
+    {
+        if (!$this->culturalLanguages->contains($culturalLanguage)) {
+            $this->culturalLanguages->add($culturalLanguage);
+        }
+    }
+
+    public function removeCulturalLanguage(CulturalLanguage $culturalLanguage): void
+    {
+        $this->culturalLanguages->removeElement($culturalLanguage);
+    }
+
     public function toArray(): array
     {
         return [
@@ -506,14 +534,15 @@ class Event extends AbstractEntity
             'longDescription' => $this->longDescription,
             'type' => $this->type,
             'endDate' => $this->endDate?->format(DateFormatHelper::DEFAULT_FORMAT),
-            'activityAreas' => $this->activityAreas->toArray(),
-            'tags' => $this->tags->toArray(),
+            'activityAreas' => $this->activityAreas->map(fn ($activityArea) => $activityArea->toArray())->toArray(),
+            'tags' => $this->tags->map(fn ($tag) => $tag->toArray())->toArray(),
             'site' => $this->site,
             'phoneNumber' => $this->phoneNumber,
             'maxCapacity' => $this->maxCapacity,
             'accessibleAudio' => $this->accessibleAudio,
             'accessibleLibras' => $this->accessibleLibras,
             'free' => $this->free,
+            'culturalLanguages' => $this->culturalLanguages->map(fn ($culturalLanguage) => $culturalLanguage->toArray())->toArray(),
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
