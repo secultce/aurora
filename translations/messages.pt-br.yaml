@@ -409,6 +409,7 @@ select_education: Selecione a sua Escolaridade
 select_state: Selecione o Estado
 select_municipality: Selecione o Municipio
 select_race: Selecione a Raça/Cor
+select_day: Selecione o dia
 select: Selecione
 seal_name: Nome do Selo
 send: Enviar
@@ -464,6 +465,15 @@ September: Setembro
 October: Outubro
 November: Novembro
 December: Dezembro
+
+#days
+sunday: Domingo
+monday: Segunda-feira
+tuesday: Terça-feira
+wednesday: Quarta-feira
+thursday: Quinta-feira
+friday: Sexta-feira
+saturday: Sábado
 
 #components
 

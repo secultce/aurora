@@ -420,6 +420,7 @@ select_state: Select the State
 select_municipality: Select the Municipality
 select_race: Select the Race/Color
 select_education: Select Your Education Level
+select_day: Select the day
 seal_name: Seal Name
 social_media: Social media
 site: Site
@@ -464,6 +465,15 @@ September: September
 October: October
 November: November
 December: December
+
+#days
+sunday: Sunday
+monday: Monday
+tuesday: Tuesday
+wednesday: Wednesday
+thursday: Thursday
+friday: Friday
+saturday: Saturday
 
 #components
 

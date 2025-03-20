@@ -414,6 +414,7 @@ select_state: Seleccione el Estado
 select_municipality: Seleccione el Municipio
 select_race: Seleccione la Raza/Color
 select_education: Seleccione su Nivel Educativo
+select_day: Seleccione el Día
 see_all: ver todo
 see_how: Ver Cómo
 see_more: Ver Más
@@ -466,6 +467,15 @@ September: Septiembre
 October: Octubre
 November: Noviembre
 December: Diciembre
+
+#days
+sunday: Domingo
+monday: Lunes
+tuesday: Martes
+wednesday: Miércoles
+thursday: Jueves
+friday: Viernes
+saturday: Sábado
 
 #components
 
