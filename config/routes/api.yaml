@@ -50,6 +50,12 @@ api_initiative:
   name_prefix: api_initiative_
   trailing_slash_on_root: false
 
+api_inscription_event:
+  resource: 'api/inscription-event.yaml'
+  prefix: /api/events/{event}/inscriptions
+  name_prefix: api_inscription_event_
+  trailing_slash_on_root: false
+
 api_inscription_opportunity:
   resource: 'api/inscription-opportunity.yaml'
   prefix: /api/opportunities/{opportunity}/inscriptions

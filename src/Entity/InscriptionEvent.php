@@ -5,38 +5,47 @@ declare(strict_types=1);
 namespace App\Entity;
 
 use App\Helper\DateFormatHelper;
+use App\Repository\InscriptionEventRepository;
 use DateTime;
 use DateTimeImmutable;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
+use Symfony\Component\Serializer\Attribute\Groups;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: InscriptionEventRepository::class)]
 class InscriptionEvent
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
+    #[Groups(['inscription-event.get'])]
     private Uuid $id;
 
     #[ORM\ManyToOne(targetEntity: Agent::class)]
     #[ORM\JoinColumn(name: 'agent_id', referencedColumnName: 'id', nullable: false)]
+    #[Groups(['inscription-event.get'])]
     private Agent $agent;
 
     #[ORM\ManyToOne(targetEntity: Event::class)]
     #[ORM\JoinColumn(name: 'event_id', referencedColumnName: 'id', nullable: false)]
+    #[Groups(['inscription-event.get'])]
     private Event $event;
 
     #[ORM\Column(type: Types::SMALLINT)]
+    #[Groups(['inscription-event.get'])]
     private int $status;
 
     #[ORM\Column]
+    #[Groups(['inscription-event.get'])]
     private DateTimeImmutable $createdAt;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['inscription-event.get'])]
     private ?DateTime $updatedAt = null;
 
     #[ORM\Column(nullable: true)]
+    #[Groups(['inscription-event.get'])]
     private ?DateTime $deletedAt = null;
 
     public function __construct()

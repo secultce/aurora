@@ -49,6 +49,8 @@ tags:
     description: Endpoints relacionados as atividades dos eventos
   - name: Iniciativas
     description: Endpoints relacionados às iniciativas
+  - name: Inscrição no evento
+    description: Endpoints relacionados as inscrições no evento
   - name: Inscrição na oportunidade
     description: Endpoints relacionados as inscrições na oportunidade
   - name: Inscrição na fase
@@ -90,6 +92,10 @@ paths:
     $ref: './components/paths/event-activity/Collection.yaml'
   /events/{event}/activities/{activity}:
     $ref: './components/paths/event-activity/Item.yaml'
+  /events/{event}/inscriptions:
+    $ref: './components/paths/inscription-event/Collection.yaml'
+  /events/{event}/inscriptions/{inscription}:
+    $ref: './components/paths/inscription-event/Item.yaml'
   /events/{id}/images:
     $ref: './components/paths/event/UpdateImage.yaml'
   /faqs:
@@ -170,6 +176,8 @@ components:
       $ref: './components/schemas/faq.yaml'
     Initiative:
       $ref: './components/schemas/initiative.yaml'
+    InscriptionEvent:
+      $ref: './components/schemas/inscription-event.yaml'
     InscriptionOpportunity:
       $ref: './components/schemas/inscription-opportunity.yaml'
     InscriptionPhase:

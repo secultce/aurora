@@ -23,7 +23,7 @@ class Event extends AbstractEntity
 {
     #[ORM\Id]
     #[ORM\Column(type: UuidType::NAME)]
-    #[Groups(['event.get', 'opportunity.get', 'event-activity.get'])]
+    #[Groups(['event.get', 'opportunity.get', 'event-activity.get', 'inscription-event.get'])]
     private ?Uuid $id = null;
 
     #[ORM\Column(length: 100)]
