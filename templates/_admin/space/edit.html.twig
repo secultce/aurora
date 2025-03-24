@@ -2,6 +2,11 @@
 
 {% block title %}{{ 'edit_space' | trans }}{% endblock %}
 
+{% block stylesheets %}
+    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('vendor/tom-select/dist/css/tom-select.default.min.css') }}">
+{% endblock %}
+
 {% block content %}
     <section class="d-flex">
         {% include "_components/side-bar.html.twig" %}
@@ -43,5 +48,6 @@
 {% block javascripts %}
     {{ parent() }}
     <script type="module" src="{{ asset('js/space/opening-hours.js') }}"></script>
+    <script type="module" src="{{ asset('js/_components/forms/space-accessibility.js') }}"></script>
 {% endblock %}
 

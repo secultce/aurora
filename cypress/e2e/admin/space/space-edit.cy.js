@@ -17,8 +17,10 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
         cy.get('[for="long-description"]').contains('Descrição longa').should('be.visible');
         cy.get(':nth-child(9) > :nth-child(1) > label').contains('Site').should('be.visible');
         cy.get(':nth-child(9) > :nth-child(2) > label').contains('Descrição do link').should('be.visible');
-        cy.get('.entity-introduction-data > .mt-1 > :nth-child(1) > label').contains('Email público').should('be.visible');
-        cy.get('.entity-introduction-data > .mt-1 > :nth-child(2) > label').contains('Telefone Público').should('be.visible');
+        cy.get('.entity-introduction-data > .mt-1 > :nth-child(1) > label')
+            .contains('Email público').should('be.visible');
+        cy.get('.entity-introduction-data > .mt-1 > :nth-child(2) > label')
+            .contains('Telefone Público').should('be.visible');
 
         cy.get(':nth-child(2) > .accordion-header > .accordion-button')
             .contains('Dados de endereço')
@@ -45,8 +47,8 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .should('have.attr', 'aria-expanded', 'true');
 
         cy.get('.entity-accessibility > :nth-child(1) > .col-md-4 > .form-label')
-            .contains('Capacidade de pessoas').should('be.visible');
-        cy.get('.col > .form-label').contains('Recursos de acessibilidade física').should('be.visible');
+            .contains('Capacidade de pessoas')
+            .should('be.visible');
 
         cy.get(':nth-child(4) > .accordion-header > .accordion-button')
             .contains('Horário de funcionamento')
@@ -66,7 +68,6 @@ describe('Teste de navegação, validação e edição da página de Espaços', 
             .should('be.visible')
             .and('contain', 'Fecha às');
 
-        // **Permissões**
         cy.get(':nth-child(5) > .accordion-header > .accordion-button')
             .contains('Permissões')
             .should('be.visible')

@@ -8,11 +8,13 @@ add_cover_image: Add cover image
 add_opening_hours: Add Opening Hours
 add_phase: Add Phase
 add_specific_objective: Add Specific Objective
+adapted_bathroom: Adapted bathroom
 account_privacy: Account and Privacy
 account_settings: User Account Settings
 access: Access
 accessibility: Accessibility
 access_main_agent: Access the main agent
+access_ramp: Ramp access
 accountability: Accountability
 accompany: To accompany
 action: Action
@@ -158,6 +160,7 @@ evidences: Evidences
 elderly_person: Elderly Person
 execution_period: Execution Period
 explore_repository: Explore Repository
+elevator: Elevator
 
 faq: FaQ
 file: Attach file
@@ -433,6 +436,7 @@ spaces: Spaces
 specific_objective: Specific Objective
 specific_objective_description: Specific Objective Description
 specify_priority_territory: Specify the priority territory
+special_handrail: Special handrail
 start_now: Start Now
 start_date: Start date
 state: State

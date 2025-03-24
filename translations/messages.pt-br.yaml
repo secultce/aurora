@@ -8,11 +8,13 @@ add_cover_image: Adicionar imagem de capa
 add_opening_hours: Adicionar horário de funcionamento
 add_phase: Adicionar Fase
 add_specific_objective: Adicionar Objetivo Específico
+adapted_bathroom: Banheiro adaptado
 account_privacy: Conta e Privacidade
 account_settings: Configurações da conta do usuário
 access: Acessar
 accessibility: Acessibilidade
 access_main_agent: Acesse agente principal
+access_ramp: Rampas de acesso
 accountability: Prestações de Conta
 accompany: Acompanhar
 action: Ação
@@ -158,6 +160,7 @@ evidences: Evidências
 elderly_person: Pessoa idosa
 execution_period: Período de execução
 explore_repository: Conheça o repositório
+elevator: Elevador
 
 faq: FaQ
 file: Anexar arquivo
@@ -430,6 +433,7 @@ spaces: Espaços
 specific_objective: Objetivo Específico
 specific_objective_description: Descrição do Objetivo Específico
 specify_priority_territory: Especifique o território prioritário
+special_handrail: Corrimão especial
 start_now: Comece agora
 start_date: Data de início
 state: Estado

@@ -6,6 +6,7 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\SpaceTimeline;
 use App\DocumentService\SpaceTimelineDocumentService;
+use App\Service\Interface\ArchitecturalAccessibilityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
 use DateTime;
 use Exception;
@@ -31,6 +32,7 @@ class SpaceAdminController extends AbstractAdminController
         private readonly TranslatorInterface $translator,
         private readonly Security $security,
         private readonly SpaceTimeline $spaceTimeline,
+        private ArchitecturalAccessibilityServiceInterface $architecturalAccessibilityService,
     ) {
     }
 
@@ -110,9 +112,12 @@ class SpaceAdminController extends AbstractAdminController
         }
 
         if (Request::METHOD_POST !== $request->getMethod()) {
+            $accessibilities = $this->architecturalAccessibilityService->list();
+
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
                 'form_id' => self::EDIT_FORM_ID,
+                'accessibilities' => $accessibilities,
             ]);
         }
 
