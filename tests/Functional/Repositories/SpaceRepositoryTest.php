@@ -4,12 +4,15 @@ declare(strict_types=1);
 
 namespace App\Tests\Functional\Repositories;
 
+use App\DataFixtures\Entity\SpaceTypeFixtures;
 use App\Entity\Agent;
 use App\Entity\EntityAssociation;
 use App\Entity\Space;
 use App\Entity\User;
 use App\Enum\EntityEnum;
 use App\Repository\SpaceRepository;
+use App\Service\Interface\SpaceTypeServiceInterface;
+use App\Service\Interface\StateServiceInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use Symfony\Component\Security\Core\Authentication\Token\Storage\TokenStorageInterface;
@@ -22,6 +25,8 @@ class SpaceRepositoryTest extends KernelTestCase
     private EntityManagerInterface $entityManager;
     private SpaceRepository $spaceRepository;
     private UserInterface $mockUser;
+    private StateServiceInterface $stateService;
+    private SpaceTypeServiceInterface $spaceType;
 
     protected function setUp(): void
     {
@@ -37,6 +42,10 @@ class SpaceRepositoryTest extends KernelTestCase
 
         $token = new UsernamePasswordToken($this->mockUser, 'main');
         $tokenStorage->setToken($token);
+
+        $this->stateService = static::getContainer()->get(StateServiceInterface::class);
+
+        $this->spaceType = static::getContainer()->get(SpaceTypeServiceInterface::class);
     }
 
     public function testSaveSpace(): void
@@ -104,5 +113,45 @@ class SpaceRepositoryTest extends KernelTestCase
         $this->entityManager->flush();
 
         return $agent;
+    }
+
+    public function testFindByFilters(): void
+    {
+        $filters = ['name' => 'Dragão'];
+        $orderBy = ['createdAt' => 'ASC'];
+        $limit = 10;
+
+        $foundSpaces = $this->spaceRepository->findByFilters($filters, $orderBy, $limit);
+
+        $this->assertCount(1, $foundSpaces);
+        $this->assertEquals('Dragão do Mar', $foundSpaces[0]->getName());
+    }
+
+    public function testFindByFiltersWithSpaceType(): void
+    {
+        $spaceType = $this->spaceType->get(Uuid::fromString(SpaceTypeFixtures::SPACE_TYPE_ID_1));
+
+        $filters = ['spaceType' => $spaceType->getId()];
+        $orderBy = ['createdAt' => 'ASC'];
+        $limit = 10;
+
+        $foundSpaces = $this->spaceRepository->findByFilters($filters, $orderBy, $limit);
+
+        $this->assertCount(10, $foundSpaces);
+        $this->assertEquals('SECULT', $foundSpaces[0]->getName());
+    }
+
+    public function testFindByFiltersWithState(): void
+    {
+        $state = $this->stateService->findBy(['name' => 'Ceará'])[0];
+
+        $filters = ['state' => $state];
+        $orderBy = ['createdAt' => 'ASC'];
+        $limit = 10;
+
+        $foundSpaces = $this->spaceRepository->findByFilters($filters, $orderBy, $limit);
+
+        $this->assertCount(3, $foundSpaces);
+        $this->assertEquals('Sítio das Artes', $foundSpaces[0]->getName());
     }
 }

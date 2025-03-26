@@ -107,10 +107,10 @@ readonly class SpaceService extends AbstractEntityService implements SpaceServic
             );
         }
 
-        return $this->repository->findBy(
-            [...$params, ...$this->getDefaultParams()],
-            ['createdAt' => $order],
-            $limit
+        return $this->repository->findByFilters(
+            filters: $params,
+            orderBy: ['createdAt' => $order],
+            limit: $limit
         );
     }
 

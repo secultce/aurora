@@ -48,4 +48,74 @@ class SpaceRepository extends AbstractRepository implements SpaceRepositoryInter
 
         return $query->getResult();
     }
+
+    public function findByFilters(array $filters, array $orderBy, int $limit): array
+    {
+        $qb = $this->createQueryBuilder('s')
+            ->orderBy('s.createdAt', $orderBy['createdAt'])
+            ->setMaxResults($limit);
+
+        $this->applyFilters($qb, $filters);
+
+        return $qb->getQuery()->getResult();
+    }
+
+    private function applyFilters($qb, array $filters): void
+    {
+        $filterMappings = $this->getFilterMappings();
+
+        foreach ($filters as $key => $value) {
+            if (true === empty($value)) {
+                continue;
+            }
+
+            $map = $filterMappings[$key];
+
+            if (true === isset($map['join'])) {
+                $joins = is_array($map['join'][0]) ? $map['join'] : [$map['join']];
+                foreach ($joins as $join) {
+                    $qb->join($join[0], $join[1]);
+                }
+            }
+
+            $map['condition']($qb, $value);
+        }
+    }
+
+    private function getFilterMappings(): array
+    {
+        return [
+            'name' => [
+                'condition' => fn ($qb, $value) => $qb->andWhere('s.name LIKE :name')->setParameter('name', "%$value%"),
+            ],
+            'spaceType' => [
+                'join' => ['s.spaceType', 'st'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('st.id = :spaceTypeId')->setParameter('spaceTypeId', $value),
+            ],
+            'accessibilities' => [
+                'join' => ['s.accessibilities', 'a'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('a.id = :accessibilityId')->setParameter('accessibilityId', $value),
+            ],
+            'activityAreas' => [
+                'join' => ['s.activityAreas', 'aa'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('aa.id = :activityAreaId')->setParameter('activityAreaId', $value),
+            ],
+            'tags' => [
+                'join' => ['s.tags', 't'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('t.id = :tagId')->setParameter('tagId', $value),
+            ],
+            'state' => [
+                'join' => [
+                    ['s.address', 'a'],
+                    ['a.city', 'c'],
+                    ['c.state', 'ast'],
+                ],
+                'condition' => fn ($qb, $value) => $qb->andWhere('ast.id = :stateId')->setParameter('stateId', $value),
+            ],
+            'address' => [
+                'join' => ['s.address', 'ac'],
+                'condition' => fn ($qb, $value) => $qb->andWhere('ac.city = :city')->setParameter('city', $value),
+            ],
+        ];
+    }
 }

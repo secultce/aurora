@@ -8,7 +8,7 @@
         <div class="card-body row g-3 align-items-start">
 
             <div class="col-auto d-flex align-items-start">
-                <img src="{{ space.image ? asset(space.image) : asset('img/default.png') }}"
+                <img src="{{ space.image }}"
                      alt="{{ space.name }}" class="rounded-circle space-img">
             </div>
 
@@ -80,5 +80,5 @@
         </div>
     </div>
 {% else %}
-    <p class="text-center text-muted mt-4">{{ 'no_spaces_available' | trans }}</p>
+    <p class="text-center text-muted mt-4">{{ 'view.space.no_spaces_found' | trans }}</p>
 {% endfor %}

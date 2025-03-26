@@ -41,15 +41,6 @@ describe('Página de Lista de Espaços', () => {
         });
     });
 
-    it('Garante que o filtro funciona', () => {
-        cy.get('#open-filter').click();
-        cy.get('#space-name').type('Dragão do Mar');
-        cy.get('#apply-filters').click();
-
-        cy.get('.align-items-end > .fw-bold').contains('1 Espaços Encontrados').should('be.visible');
-        cy.get('.space-card__title').contains('Dragão do Mar').should('be.visible');
-    });
-
     it('Garante que as opções de ordenação funcionam', () => {
         cy.get('#order-select')
             .should('exist')

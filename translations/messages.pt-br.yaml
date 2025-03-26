@@ -813,6 +813,7 @@ view:
       opened: Espaços Abertos
       last_days: Registrados nos últimos {days} dias
     picture: Foto do Espaço
+    no_spaces_found: Nenhum espaço encontrado
 
   space-edit:
     edit-space: Edição de Espaço

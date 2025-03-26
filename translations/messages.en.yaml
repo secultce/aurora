@@ -1,4 +1,4 @@
-actions_in_priority_territory: ¿Habrá acciones de la iniciativa en algún territorio prioritario?
+actions_in_priority_territory: Will there be initiative actions in any priority territory?
 add: Add
 add_occurrence: Add Occurrence
 address_complement: Address Complement
@@ -834,6 +834,7 @@ view:
       opened: Open Spaces
       last_days: Registered in the last 7 days
     picture: Space Picture
+    no_spaces_found: No spaces found
 
   space-edit:
     edit-space: Edit Space
