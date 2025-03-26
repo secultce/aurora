@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Initiative;
+use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -42,6 +43,9 @@ final class InitiativeFixtures extends AbstractFixture implements DependentFixtu
                     'endDate' => '2024-08-31',
                 ],
                 'shortDescription' => 'Vozes do Sertão é um festival de música que reúne artistas de todo o Brasil para celebrar a cultura nordestina.',
+            ],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'vozdosertao',
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,

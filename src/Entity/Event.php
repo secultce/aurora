@@ -6,6 +6,7 @@ namespace App\Entity;
 
 use App\Enum\AccessibilityInfoEnum;
 use App\Enum\EventTypeEnum;
+use App\Enum\SocialNetworkEnum;
 use App\Helper\DateFormatHelper;
 use App\Repository\EventRepository;
 use DateTime;
@@ -128,6 +129,12 @@ class Event extends AbstractEntity
     #[ORM\JoinTable(name: 'event_cultural_languages')]
     #[Groups(['event.get', 'event.get.item'])]
     private Collection $culturalLanguages;
+
+    /**
+     * @var array<string, string>
+     */
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private array $socialNetworks = [];
 
     #[ORM\Column]
     #[Groups(['event.get'])]
@@ -414,6 +421,29 @@ class Event extends AbstractEntity
         $this->free = $free;
     }
 
+    public function getSocialNetworks(): array
+    {
+        return $this->socialNetworks;
+    }
+
+    public function setSocialNetworks(array $socialNetworks): void
+    {
+        foreach ($socialNetworks as $key => $username) {
+            $socialNetworksEnum = SocialNetworkEnum::from($key);
+            $this->addSocialNetwork($socialNetworksEnum->value, $username);
+        }
+    }
+
+    public function addSocialNetwork(string $socialNetworksEnum, $username): void
+    {
+        $this->socialNetworks[$socialNetworksEnum] = $username;
+    }
+
+    public function removeSocialNetwork(SocialNetworkEnum $socialNetwork): void
+    {
+        unset($this->socialNetworks[$socialNetwork->name]);
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -543,6 +573,7 @@ class Event extends AbstractEntity
             'accessibleLibras' => $this->accessibleLibras,
             'free' => $this->free,
             'culturalLanguages' => $this->culturalLanguages->map(fn ($culturalLanguage) => $culturalLanguage->toArray())->toArray(),
+            'socialNetworks' => $this->socialNetworks,
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),

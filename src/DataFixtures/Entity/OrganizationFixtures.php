@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Organization;
+use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -38,8 +39,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'agents' => [],
             'parent' => null,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@phpcomrapadura',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'phpcomrapadura',
             ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
@@ -58,8 +60,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             ],
             'parent' => null,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@capoeiraaxezumbi',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'capoeiraaxezumbi',
             ],
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,
@@ -74,8 +77,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'owner' => AgentFixtures::AGENT_ID_3,
             'parent' => null,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@devsdosertao',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'devsdosertao',
             ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
@@ -90,8 +94,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@sertaodev',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'sertaodev',
             ],
             'createdAt' => '2024-07-17T15:12:00+00:00',
             'updatedAt' => null,
@@ -106,8 +111,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'owner' => AgentFixtures::AGENT_ID_3,
             'parent' => null,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@grupoderapente',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'grupoderapente',
             ],
             'createdAt' => '2024-07-22T16:20:00+00:00',
             'updatedAt' => null,
@@ -123,11 +129,13 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'parent' => null,
             'space' => null,
             'extraFields' => [
-                'instagram' => '@comunidadevidacomcristo',
                 'locations' => [
                     'R. Principal, 100, Centro, Fortaleza-CE, 60100-000',
                     'R. Secondária, 200, Aldeota, Fortaleza-CE, 60200-000',
                 ],
+            ],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'comunidadevidacomcristo',
             ],
             'createdAt' => '2024-08-10T11:26:00+00:00',
             'updatedAt' => null,
@@ -142,8 +150,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@candombleraizesdobrasil',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'candombleraizesdobrasil',
             ],
             'createdAt' => '2024-08-11T15:54:00+00:00',
             'updatedAt' => null,
@@ -158,8 +167,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => null,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@baiaodedev',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'baiaodedev',
             ],
             'createdAt' => '2024-08-12T14:24:00+00:00',
             'updatedAt' => null,
@@ -174,8 +184,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => self::ORGANIZATION_ID_8,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@phpeste',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'phpeste',
             ],
             'createdAt' => '2024-08-13T20:25:00+00:00',
             'updatedAt' => null,
@@ -190,8 +201,9 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
             'owner' => AgentFixtures::AGENT_ID_1,
             'parent' => self::ORGANIZATION_ID_9,
             'space' => null,
-            'extraFields' => [
-                'instagram' => '@forrotonemveno',
+            'extraFields' => [],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'forrotonemveno',
             ],
             'createdAt' => '2024-08-14T10:00:00+00:00',
             'updatedAt' => null,

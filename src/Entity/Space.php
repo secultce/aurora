@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Enum\SocialNetworkEnum;
 use App\Helper\DateFormatHelper;
 use App\Repository\SpaceRepository;
 use DateTime;
@@ -101,6 +102,12 @@ class Space extends AbstractEntity
     #[ORM\JoinTable(name: 'spaces_accessibilities')]
     #[Groups(['space.get', 'space.get.item'])]
     private Collection $accessibilities;
+
+    /**
+     * @var array<string, string>
+     */
+    #[ORM\Column(type: Types::JSON, nullable: true)]
+    private array $socialNetworks = [];
 
     #[ORM\Column]
     #[Groups(['space.get', 'space.get.item'])]
@@ -353,6 +360,29 @@ class Space extends AbstractEntity
         $this->entityAssociation = $entityAssociation;
     }
 
+    public function getSocialNetworks(): array
+    {
+        return $this->socialNetworks;
+    }
+
+    public function setSocialNetworks(array $socialNetworks): void
+    {
+        foreach ($socialNetworks as $key => $username) {
+            $socialNetworksEnum = SocialNetworkEnum::from($key);
+            $this->addSocialNetwork($socialNetworksEnum->value, $username);
+        }
+    }
+
+    public function addSocialNetwork(string $socialNetworksEnum, $username): void
+    {
+        $this->socialNetworks[$socialNetworksEnum] = $username;
+    }
+
+    public function removeSocialNetwork(SocialNetworkEnum $socialNetwork): void
+    {
+        unset($this->socialNetworks[$socialNetwork->name]);
+    }
+
     public function getCreatedAt(): ?DateTimeImmutable
     {
         return $this->createdAt;
@@ -416,6 +446,7 @@ class Space extends AbstractEntity
             'tags' => $this->tags->map(fn (Tag $tag) => $tag->toArray())->toArray(),
             'accessibilities' => $this->accessibilities->map(fn (ArchitecturalAccessibility $accessibility) => $accessibility->toArray())->toArray(),
             'spaceType' => $this->spaceType?->toArray(),
+            'socialNetworks' => $this->socialNetworks,
             'createdAt' => $this->createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $this->updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $this->deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),

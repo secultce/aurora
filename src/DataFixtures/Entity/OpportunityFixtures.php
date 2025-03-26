@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Opportunity;
+use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -47,6 +48,9 @@ final class OpportunityFixtures extends AbstractFixture implements DependentFixt
                 'description' => 'O Festival de Literatura Nordestina é um evento cultural que reúne escritores, poetas, cordelistas e artistas populares para celebrar a literatura e a cultura do Nordeste.',
                 'areasOfActivity' => ['Literatura', 'Cultura popular'],
                 'tags' => ['Literatura', 'Cordel', 'Nordeste'],
+            ],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'concursodecordelistas',
             ],
             'createdAt' => '2024-09-01T10:00:00+00:00',
             'updatedAt' => null,

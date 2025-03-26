@@ -7,6 +7,7 @@ namespace App\DataFixtures\Entity;
 use App\Entity\Event;
 use App\Enum\AccessibilityInfoEnum;
 use App\Enum\EventTypeEnum;
+use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -66,6 +67,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_1,
             ],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'modo.criativo',
+            ],
             'createdAt' => '2024-07-10T11:30:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -119,6 +123,9 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
             'culturalLanguages' => [
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_4,
                 CulturalLanguageFixtures::CULTURAL_LANGUAGE_ID_5,
+            ],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'phpcomrapadura',
             ],
             'createdAt' => '2024-07-11T10:49:00+00:00',
             'updatedAt' => null,

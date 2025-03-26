@@ -207,6 +207,7 @@ class SpaceTest extends AbstractApiTestCase
             'tags' => array_map(fn (Tag $tag) => $tag->toArray(), $tags->toArray()),
             'accessibilities' => array_map(fn (ArchitecturalAccessibility $accessibility) => $accessibility->toArray(), $accessibilities->toArray()),
             'spaceType' => $spaceType->toArray(),
+            'socialNetworks' => [],
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt->format(DateFormatHelper::DEFAULT_FORMAT),

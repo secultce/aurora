@@ -262,6 +262,7 @@ class EventEntityTest extends TestCase
             'culturalLanguages' => [
                 $culturalLanguage1->toArray(),
             ],
+            'socialNetworks' => [],
             'createdAt' => $createdAt->format(DateFormatHelper::DEFAULT_FORMAT),
             'updatedAt' => $updatedAt?->format(DateFormatHelper::DEFAULT_FORMAT),
             'deletedAt' => $deletedAt?->format(DateFormatHelper::DEFAULT_FORMAT),

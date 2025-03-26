@@ -222,9 +222,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_3,
             ],
-            'extraFields' => [
-                'instagram' => '@devsdosertao',
-            ],
+            'extraFields' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -429,9 +427,7 @@ class OrganizationApiControllerTest extends AbstractApiTestCase
             'createdBy' => [
                 'id' => AgentFixtures::AGENT_ID_1,
             ],
-            'extraFields' => [
-                'instagram' => '@forrotonemveno',
-            ],
+            'extraFields' => [],
             'createdAt' => $organization->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $organization->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,

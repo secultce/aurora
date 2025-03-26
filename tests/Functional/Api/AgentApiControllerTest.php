@@ -9,6 +9,7 @@ use App\DataFixtures\Entity\AgentFixtures;
 use App\DataFixtures\Entity\OrganizationFixtures;
 use App\DataFixtures\Entity\UserFixtures;
 use App\Entity\Agent;
+use App\Enum\SocialNetworkEnum;
 use App\Tests\AbstractApiTestCase;
 use App\Tests\Fixtures\AgentTestFixtures;
 use App\Tests\Fixtures\ImageTestFixtures;
@@ -59,6 +60,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
             'user' => ['id' => $requestBody['user']],
             'organizations' => [],
             'addresses' => null,
+            'socialNetworks' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -98,6 +100,7 @@ class AgentApiControllerTest extends AbstractApiTestCase
                 ['id' => OrganizationFixtures::ORGANIZATION_ID_1],
             ],
             'addresses' => null,
+            'socialNetworks' => [],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => null,
             'deletedAt' => null,
@@ -304,6 +307,9 @@ class AgentApiControllerTest extends AbstractApiTestCase
                     'zipcode' => '01002000',
                 ],
             ],
+            'socialNetworks' => [
+                SocialNetworkEnum::INSTAGRAM->value => 'https://instagram.com/anamouraab',
+            ],
             'createdAt' => '2024-07-16T17:22:00+00:00',
             'updatedAt' => null,
             'deletedAt' => null,
@@ -423,6 +429,9 @@ class AgentApiControllerTest extends AbstractApiTestCase
                     'zipcode' => '30330110',
                 ],
             ],
+            'socialNetworks' => [
+                'instagram' => 'talysonsoares_',
+            ],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $agent->getUpdatedAt()->format(DateTimeInterface::ATOM),
             'deletedAt' => null,
@@ -481,6 +490,9 @@ class AgentApiControllerTest extends AbstractApiTestCase
                     ],
                     'zipcode' => '01002000',
                 ],
+            ],
+            'socialNetworks' => [
+                'instagram' => 'anamouraab',
             ],
             'createdAt' => $agent->getCreatedAt()->format(DateTimeInterface::ATOM),
             'updatedAt' => $agent->getUpdatedAt()->format(DateTimeInterface::ATOM),
