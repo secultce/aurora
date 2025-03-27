@@ -276,6 +276,8 @@ no_address: Sem endereço
 no_title: Sem título
 no_description: Sem descrição
 no_image: Imagem não disponível
+no_languages: Nenhum idioma cadastrado
+no_cultural_languages: Nenhuma linguagem cultural cadastrada.
 no_areas: Nenhuma área cadastrada
 no_accessibility: Nenhuma acessibilidade registrada
 no_seals: Nenhum selo registrado
@@ -638,6 +640,8 @@ view:
     message:
       deleted: O Evento foi excluído
       without_initiative: Nenhuma iniciativa vinculada a este evento
+      created: O Evento foi criado
+      updated: O Evento foi atualizado
     not_set_datetime: Data e hora não definidas
     quantity:
       finished: Eventos Finalizados

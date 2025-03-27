@@ -277,6 +277,7 @@ no_title: Intitulado
 no_description: Sin descripción
 no_image: Imagen no disponible
 no_languages: No hay idioma disponible
+no_cultural_languages: No hay lenguajes culturales disponibles
 no_seals: Sin sello
 no_subtitle: Sin subtítulos
 no_areas: Sin áreas
@@ -646,6 +647,8 @@ view:
     message:
       deleted: El evento ha sido eliminado
       without_initiative: Ninguno iniciativa vinculada a este evento
+      created: El evento ha sido creado
+      updated: El evento ha sido actualizado
     not_set_datetime: Fecha y hora no definidas
     quantity:
       finished: Eventos Finalizados

@@ -31,11 +31,11 @@
 
             <p class="event-languages d-flex align-items-center gap-2">
                 <i class="material-icons text-primary">language</i>
-                <strong class="text-dark">{{ 'language' | trans }} ({{ event.tags|length }}):</strong>
-                {% for tag in event.tags %}
-                    <span class="badge bg-light text-dark px-3 py-2">{{ tag.name }}</span>
+                <strong class="text-dark">{{ 'cultural_language' | trans }}:</strong>
+                {% for culturalLanguages in event.culturalLanguages %}
+                    <span class="badge bg-light text-dark px-3 py-2">{{ culturalLanguages.name }}</span>
                 {% else %}
-                    <span class="text-primary">{{ 'no_languages' | trans }}</span>
+                    <span class="text-primary">{{ 'no_cultural_languages' | trans }}</span>
                 {% endfor %}
             </p>
 

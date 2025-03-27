@@ -7,7 +7,7 @@
 <div class="tags-selector">
     <label for="add-{{ inputName }}-btn">{{ inputLabel }} <span class="text-danger">{{ isRequired ? '*' : '' }}</span></label>
     {{ questionFill ? '<span class="iconify entity-edit-icon me-2" data-icon="ri:question-fill" ></span>' : '' }}
-    <div id="tags-container-{{ inputName }}" class="my-3 d-flex flex-wrap gap-2">
+    <div id="tags-container-{{ inputName }}" class="my-2 d-flex flex-wrap gap-2">
         {% for tag in tags %}
             <div class="area-tag">
                 {{ tag.label }}

@@ -36,26 +36,37 @@
         >
     </div>
 
-    <div class="entity-input-tags">
-        <label>
-            {{ 'cultural_language' | trans }}
-            <span class="iconify entity-edit-icon me-2" data-icon="ri:question-fill"></span>
-        </label>
-        <span class="d-flex align-items-center gap-3">
-            {{ 'view.registration-space.add_new' | trans }}
-            <span class="iconify fs-5" data-icon="material-symbols:add"></span>
-        </span>
+    <div class="my-2">
+        {% include '_components/tags-selector.html.twig' with {
+            inputName: 'culturalLanguages',
+            inputLabel: 'cultural_language'|trans,
+            items: culturalLanguageItems|map(culturalLanguage => { 'label': culturalLanguage.name, 'value': culturalLanguage.id }),
+            tags: event.culturalLanguages ? event.culturalLanguages|map(culturalLanguage => { 'label': culturalLanguage.name, 'value': culturalLanguage.id }) : [],
+            required: false,
+            questionFill: true,
+        } %}
     </div>
 
-    <div class="entity-input-tags">
-        <label>
-            Tags
-            <span class="iconify entity-edit-icon me-2" data-icon="ri:question-fill"></span>
-        </label>
-        <span class="d-flex align-items-center gap-3">
-            {{ 'view.registration-space.add_new' | trans }}
-            <span class="iconify fs-5" data-icon="material-symbols:add"></span>
-        </span>
+    <div class="my-4">
+        {% include '_components/tags-selector.html.twig' with {
+            inputName: 'tags',
+            inputLabel: 'tags'|trans,
+            items: tagItems|map(tag => { 'label': tag.name, 'value': tag.id }),
+            tags: event.tags ? event.tags|map(tag => { 'label': tag.name, 'value': tag.id }) : [],
+            required: false,
+            questionFill: true,
+        } %}
+    </div>
+
+    <div class="mb-4">
+        <label class="form-label" for="event-type">{{ 'type'|trans }}</label>
+        <span class="text-danger">*</span>
+        <select class="form-select mt-1" id="event-type" name="type" required>
+            <option selected disabled value="">{{ 'select'|trans }}</option>
+            <option value="in_person">{{ 'event_types.in_person'|trans }}</option>
+            <option value="online">{{ 'event_types.online'|trans }}</option>
+            <option value="hybrid">{{ 'event_types.hybrid'|trans }}</option>
+        </select>
     </div>
 
     <label for="short-description">{{ 'short_description' | trans }}</label>
@@ -83,3 +94,6 @@
         </div>
     </div>
 </div>
+{% block extra_javascripts %}
+    <script src="{{ asset('js/_components/tags-selector.js') }}"></script>
+{% endblock %}

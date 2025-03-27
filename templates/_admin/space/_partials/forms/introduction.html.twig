@@ -33,7 +33,7 @@
             inputName: 'activityAreas',
             inputLabel: 'areas_of_expertise'|trans,
             items: activityAreaItems|map(area => { 'label': area.name, 'value': area.id }),
-            tags: space.activityAreas|map(area => { 'label': area.name, 'value': area.id }),
+            tags: space.activityAreas ? space.activityAreas|map(area => { 'label': area.name, 'value': area.id }) : [],
             required: false,
             questionFill: true,
         } %}
@@ -44,7 +44,7 @@
             inputName: 'tags',
             inputLabel: 'tags'|trans,
             items: tagItems|map(tag => { 'label': tag.name, 'value': tag.id }),
-            tags: space.tags|map(tag => { 'label': tag.name, 'value': tag.id }),
+            tags: space.tags ? space.tags|map(tag => { 'label': tag.name, 'value': tag.id }) : [],
             required: false,
             questionFill: true,
         } %}

@@ -134,8 +134,8 @@ class SpaceAdminController extends AbstractAdminController
         $name = $request->request->get('name');
         $description = $request->request->get('extraFields')['description'] ?? null;
         $date = $request->request->get('date') ?? null;
-        $tags = $request->get('tags') ?? null;
-        $activityAreas = $request->get('activityAreas') ?? null;
+        $tags = $request->get('tags') ?? [];
+        $activityAreas = $request->get('activityAreas') ?? [];
 
         $dataToUpdate = [
             'name' => $name,

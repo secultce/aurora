@@ -4,13 +4,14 @@ declare(strict_types=1);
 
 namespace App\Entity;
 
+use App\Repository\CulturalLanguageRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UuidType;
 use Symfony\Component\Serializer\Annotation\Groups;
 use Symfony\Component\Uid\Uuid;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: CulturalLanguageRepository::class)]
 class CulturalLanguage extends AbstractEntity
 {
     #[ORM\Id]

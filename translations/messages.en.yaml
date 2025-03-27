@@ -278,6 +278,7 @@ no_title: Untitled
 no_description: No description
 no_image: Image not available
 no_languages: No language available
+no_cultural_languages: No cultural language available
 no_seals: No seal
 no_subtitle: No subtitle
 no_areas: No area registered
@@ -641,6 +642,8 @@ view:
     message:
       deleted: The event has been deleted
       without_initiative: No initiatives linked to this event
+      created: The event has been created
+      updated: The event has been updated
     not_set_datetime: Date and time not set
     quantity:
       finished: Completed Events
