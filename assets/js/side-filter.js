@@ -1,5 +1,5 @@
 const BTN_OPEN_FILTER = document.getElementById('open-filter');
-const BTN_CLOSE_FILER = document.getElementById('close-filter');
+const BTN_CLOSE_FILTER = document.getElementById('close-filter');
 const SIDEBAR = document.getElementById('filter-sidebar');
 const MAIN_CONTENT = document.querySelector('.entity-container');
 const ENTITY_WRAPPER = document.querySelector('.entity-wrapper');
@@ -7,7 +7,7 @@ const FORM_FILTER_SIDEBAR = document.getElementById('filter-sidebar');
 const ORDER_SELECT = document.getElementById('order-select');
 
 BTN_OPEN_FILTER.addEventListener('click', toggleSidebar);
-BTN_CLOSE_FILER.addEventListener('click', toggleSidebar);
+BTN_CLOSE_FILTER.addEventListener('click', toggleSidebar);
 
 function toggleSidebar() {
     SIDEBAR.classList.toggle('open');
@@ -16,13 +16,13 @@ function toggleSidebar() {
 
     if (SIDEBAR.classList.contains('open')) {
         BTN_OPEN_FILTER.style.visibility = 'hidden';
-        BTN_OPEN_FILTER.style.opacity = 0;
+        BTN_OPEN_FILTER.style.opacity = '0';
         return;
     }
 
     setTimeout(() => {
         BTN_OPEN_FILTER.style.visibility = 'visible';
-        BTN_OPEN_FILTER.style.opacity = 1;
+        BTN_OPEN_FILTER.style.opacity = '1';
     }, 300);
 }
 

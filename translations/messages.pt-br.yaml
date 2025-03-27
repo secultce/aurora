@@ -110,6 +110,7 @@ contact: Contato
 contacts: Contatos
 cultural_language: Linguagem cultural
 cultural_languages: Linguagens culturais
+customized: Personalizado
 
 date: Data
 date_created: Data de criação
@@ -251,6 +252,7 @@ name_initiative: Nome da iniciativa
 name_phases: Nome da fase
 neighborhood: Bairro
 new_phase: Nova Fase
+next_30_days: Próximos 30 dias
 notifications: Notificações
 no: Não
 no_inform: Não Informar
@@ -264,6 +266,7 @@ no_image: Imagem não disponível
 no_areas: Nenhuma área cadastrada
 no_accessibility: Nenhuma acessibilidade registrada
 no_seals: Nenhum selo registrado
+no_events_available: Nenhum evento encontrado
 none_area_specified: Nenhuma área especificada
 not_informed: Não informado
 not_sent: Não enviadas
@@ -360,6 +363,7 @@ The resource was created: A entidade foi criada
 The resource was updated: A entidade foi atualizada
 The resource was deleted: A entidade foi excluída
 to: até
+today: Hoje
 type: Tipo
 type_here: Digite aqui
 type_agent: Tipo de agente
@@ -403,8 +407,9 @@ see_all: ver tudo
 see_how: Visualizar como
 see_more: Ver mais
 see_phase: Ver fase
-short_description: Descrição curta
 site: Site
+short_description: Descrição curta
+show_calendar: Ver calendário
 social_media: Redes sociais
 sort_by: Ordenar por
 social_name: Nome Social

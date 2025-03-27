@@ -102,7 +102,7 @@ readonly class EventService extends AbstractEntityService implements EventServic
 
     public function list(int $limit = 50, array $params = [], string $order = 'DESC'): array
     {
-        return $this->repository->findBy(
+        return $this->repository->findByFilters(
             [...$params, ...$this->getDefaultParams()],
             ['createdAt' => $order],
             $limit

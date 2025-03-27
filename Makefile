@@ -20,7 +20,7 @@ container_php:
 
 # Instala dependências dentro do contêiner PHP
 install_dependencies:
-	docker compose exec -T php bash -c "composer install"
+	docker compose exec -T php bash -c "COMPOSER_MEMORY_LIMIT=-1 composer install"
 
 # Gera os arquivos de Proxies do MongoDB
 generate_proxies:
@@ -71,12 +71,12 @@ reset:
 # Limpa a cache e o banco
 reset-deep:
 	rm -rf var/storage
-	rm -rf assets/uploads
+	docker compose exec -T php bash -c "rm -rf assets/uploads"
 	rm -rf assets/vendor
 	rm -rf public/assets
-	rm -rf var/cache
-	rm -rf var/log
-	docker compose exec -T php bash -c "php bin/console cache:clear"
+	docker compose exec -T php bash -c "rm -rf var/cache"
+	docker compose exec -T php bash -c "rm -rf var/log"
+	docker compose exec -T php bash -c "php -d memory_limit=-1 bin/console cache:clear"
 	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop --search-index"
 	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop --collection"
 	docker compose exec -T php bash -c "php bin/console doctrine:mongodb:schema:drop --db"
