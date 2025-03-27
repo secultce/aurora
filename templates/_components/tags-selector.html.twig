@@ -6,7 +6,8 @@
 
 <div class="tags-selector">
     <label for="add-{{ inputName }}-btn">{{ inputLabel }} <span class="text-danger">{{ isRequired ? '*' : '' }}</span></label>
-    <div id="tags-container-{{ inputName }}" class="my-1 d-flex flex-wrap gap-2">
+    {{ questionFill ? '<span class="iconify entity-edit-icon me-2" data-icon="ri:question-fill" ></span>' : '' }}
+    <div id="tags-container-{{ inputName }}" class="my-3 d-flex flex-wrap gap-2">
         {% for tag in tags %}
             <div class="area-tag">
                 {{ tag.label }}
@@ -16,7 +17,7 @@
         {% endfor %}
     </div>
 
-    <div class="dropdown position-static" id="{{ inputName }}">
+    <div class="dropdown position-static mt-2" id="{{ inputName }}">
         <button id="add-{{ inputName }}-btn" class="btn area-tag bg-primary text-white" type="button" data-bs-toggle="dropdown" aria-expanded="true" aria-haspopup="true">
             {{ 'add'|trans }}
             <i class="material-icons fs-4 ms-2">add</i>

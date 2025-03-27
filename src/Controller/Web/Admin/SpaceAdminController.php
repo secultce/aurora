@@ -6,8 +6,10 @@ namespace App\Controller\Web\Admin;
 
 use App\Document\SpaceTimeline;
 use App\DocumentService\SpaceTimelineDocumentService;
+use App\Service\Interface\ActivityAreaServiceInterface;
 use App\Service\Interface\ArchitecturalAccessibilityServiceInterface;
 use App\Service\Interface\SpaceServiceInterface;
+use App\Service\Interface\TagServiceInterface;
 use DateTime;
 use Exception;
 use Symfony\Bundle\SecurityBundle\Security;
@@ -33,6 +35,8 @@ class SpaceAdminController extends AbstractAdminController
         private readonly Security $security,
         private readonly SpaceTimeline $spaceTimeline,
         private ArchitecturalAccessibilityServiceInterface $architecturalAccessibilityService,
+        private readonly ActivityAreaServiceInterface $activityAreaService,
+        private readonly TagServiceInterface $tagService,
     ) {
     }
 
@@ -113,11 +117,15 @@ class SpaceAdminController extends AbstractAdminController
 
         if (Request::METHOD_POST !== $request->getMethod()) {
             $accessibilities = $this->architecturalAccessibilityService->list();
+            $activityAreaItems = $this->activityAreaService->list();
+            $tagItems = $this->tagService->list();
 
             return $this->render(self::VIEW_EDIT, [
                 'space' => $space,
                 'form_id' => self::EDIT_FORM_ID,
                 'accessibilities' => $accessibilities,
+                'activityAreaItems' => $activityAreaItems,
+                'tagItems' => $tagItems,
             ]);
         }
 
@@ -126,10 +134,14 @@ class SpaceAdminController extends AbstractAdminController
         $name = $request->request->get('name');
         $description = $request->request->get('extraFields')['description'] ?? null;
         $date = $request->request->get('date') ?? null;
+        $tags = $request->get('tags') ?? null;
+        $activityAreas = $request->get('activityAreas') ?? null;
 
         $dataToUpdate = [
             'name' => $name,
             'description' => $description,
+            'tags' => $tags,
+            'activityAreas' => $activityAreas,
             'date' => $date ? new DateTime($date) : null,
             'updatedBy' => $this->security->getUser()->getAgents()->getValues()[0]->getId(),
         ];

@@ -828,6 +828,7 @@ view:
     message:
       deleted: The space has been deleted
       created: A new space has been created
+      updated: The space has been updated
     quantity:
       total: Spaces Found
       finished: Closed Spaces

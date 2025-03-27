@@ -832,6 +832,7 @@ view:
     message:
       deleted: El espacio ha sido eliminado
       created: Nuevo espacio ha sido creado
+      updated: El espacio ha sido actualizado
     quantity:
       total: Espacios Encontrados
       finished: Espacios Cerrados

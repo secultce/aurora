@@ -807,6 +807,7 @@ view:
     message:
       deleted: O Espaço foi excluído
       created: Novo Espaço criado
+      updated: O Espaço foi atualizado
     quantity:
       total: Espaços Encontrados
       finished: Espaços Fechados

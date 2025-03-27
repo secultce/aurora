@@ -5,7 +5,10 @@ declare(strict_types=1);
 namespace App\Tests\Functional\Controller\Web\Admin;
 
 use App\Controller\Web\Admin\SpaceAdminController;
+use App\DataFixtures\Entity\ActivityAreaFixtures;
 use App\DataFixtures\Entity\SpaceFixtures;
+use App\DataFixtures\Entity\TagFixtures;
+use App\Service\Interface\SpaceServiceInterface;
 use App\Tests\AbstractAdminWebTestCase;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -15,11 +18,14 @@ class SpaceAdminWebControllerTest extends AbstractAdminWebTestCase
 {
     private SpaceAdminController $controller;
 
+    private SpaceServiceInterface $service;
+
     protected function setUp(): void
     {
         parent::setUp();
 
         $this->controller = static::getContainer()->get(SpaceAdminController::class);
+        $this->service = static::getContainer()->get(SpaceServiceInterface::class);
     }
 
     public function testListPageRenderHTMLWithSuccess(): void
@@ -119,6 +125,36 @@ class SpaceAdminWebControllerTest extends AbstractAdminWebTestCase
         $this->client->request(Request::METHOD_GET, $editUrl);
 
         $this->assertResponseIsSuccessful();
+    }
+
+    public function testEditWithFormData(): void
+    {
+        $editUrl = $this->router->generate('admin_space_edit', [
+            'id' => Uuid::fromString(SpaceFixtures::SPACE_ID_3),
+        ]);
+
+        $request = $this->client->request(Request::METHOD_GET, $editUrl);
+
+        $token = $request->filter('input[name="token"]')->attr('value');
+
+        $formData = [
+            'token' => $token,
+            'name' => 'Space World',
+            'maxCapacity' => 33,
+            'isAccessible' => true,
+            'activityAreas' => [
+                ActivityAreaFixtures::ACTIVITY_AREA_ID_3,
+            ],
+            'tags' => [
+                TagFixtures::TAG_ID_2,
+            ],
+        ];
+
+        $this->client->request(Request::METHOD_POST, $editUrl, $formData);
+
+        $listUrl = $this->router->generate('admin_space_list');
+
+        $this->assertResponseRedirects($listUrl, Response::HTTP_FOUND);
     }
 
     public function testEditWithoutSpace(): void
