@@ -6,6 +6,8 @@ namespace App\Controller\Web;
 
 use App\Service\Interface\EventServiceInterface;
 use App\ValueObject\DashboardCardItemValueObject as CardItem;
+use DateInterval;
+use DateTimeImmutable;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
@@ -23,9 +25,11 @@ class EventWebController extends AbstractWebController
     {
         $filters = $request->query->all();
 
+        $filters = $this->hidratePeriodParam($filters);
         $filters = $this->getOrderParam($filters);
 
         $events = $this->service->list(params: $filters['filters'], order: $filters['order']);
+
         $totalEvents = count($events);
 
         $days = $request->get('days', 7);
@@ -37,7 +41,11 @@ class EventWebController extends AbstractWebController
                 new CardItem(icon: 'description', quantity: $totalEvents, text: 'view.event.quantity.total'),
                 new CardItem(icon: 'event_note', quantity: 10, text: 'view.event.quantity.opened'),
                 new CardItem(icon: 'event_available', quantity: 20, text: 'view.event.quantity.finished'),
-                new CardItem(icon: 'today', quantity: $recentEvents, text: $this->translator->trans('view.event.quantity.last_days', ['{days}' => $days])),
+                new CardItem(
+                    icon: 'today',
+                    quantity: $recentEvents,
+                    text: $this->translator->trans('view.event.quantity.last_days', ['{days}' => $days]),
+                ),
             ],
         ];
 
@@ -53,5 +61,25 @@ class EventWebController extends AbstractWebController
         $event = $this->service->get($id);
 
         return $this->render('event/show.html.twig', ['event' => $event]);
+    }
+
+    private function hidratePeriodParam(array $filters): array
+    {
+        if (empty($filters['period'])) {
+            unset($filters['period']);
+
+            return $filters;
+        }
+
+        $dates = explode(',', (string) $filters['period']);
+        unset($filters['period']);
+        if (2 !== count($dates)) {
+            return $filters;
+        }
+
+        [$start, $end] = array_map(fn ($date) => DateTimeImmutable::createFromFormat('Y-m-d', $date) ?: null, $dates);
+        $end = $end->add(new DateInterval('PT23H59M59S'));
+
+        return ($start && $end) ? array_merge($filters, ['period' => ['start' => $start, 'end' => $end]]) : $filters;
     }
 }
