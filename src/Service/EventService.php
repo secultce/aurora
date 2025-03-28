@@ -173,4 +173,9 @@ readonly class EventService extends AbstractEntityService implements EventServic
 
         return $event;
     }
+
+    public function findByAgent(string $agentId): array
+    {
+        return $this->repository->findByAgent($agentId);
+    }
 }

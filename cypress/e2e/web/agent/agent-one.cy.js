@@ -72,4 +72,21 @@ describe('Página de Perfil de Agentes', () => {
         cy.get('.agent-events > .content-wrapper > :nth-child(2) > .text-truncate').contains('III Festival de Coros de Brasília').should('be.visible');
         cy.get('.agent-events > .content-wrapper > :nth-child(3) > .text-truncate').contains('III Festival de Coros de Brasília').should('be.visible');
     });
+
+    it('Garante que os eventos do agente estão visíveis', () => {
+        cy.get('#pills-events-tab').click();
+        cy.get('#pills-events-tab').should('have.class', 'active');
+
+        cy.get('#pills-list-sublist-tab').should('have.class', 'active');
+        cy.get('#sublist-list').should('have.class', 'active');
+        cy.get('#sublist-list .event-card').contains('Vozes do Interior').should('be.visible');
+        cy.get('#sublist-list .event-card').contains('Encontro de Saberes').should('be.visible');
+
+        cy.get('#pills-cards-sublist-tab').click();
+        cy.get('#sublist-cards').should('be.visible');
+        cy.get('#sublist-cards > .row > .col-md-4').contains('Vozes do Interior').should('be.visible');
+        cy.get('#sublist-cards > .row > .col-md-4').contains('Encontro de Saberes').should('be.visible');
+
+        cy.get('#pills-calendar-sublist-tab').should('be.visible');
+    });
 });
