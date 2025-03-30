@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Entity;
 
+use App\Entity\Agent;
 use App\Entity\Event;
+use App\Entity\Initiative;
+use App\Entity\Space;
 use App\Enum\AccessibilityInfoEnum;
 use App\Enum\EventTypeEnum;
 use App\Enum\SocialNetworkEnum;
@@ -562,25 +565,25 @@ final class EventFixtures extends AbstractFixture implements DependentFixtureInt
         /** @var Event $event */
         $event = $this->serializer->denormalize($eventData, Event::class, context: $context);
 
-        $event->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['createdBy'])));
+        $event->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['createdBy']), Agent::class));
 
         if (null !== $eventData['agentGroup']) {
-            $agentGroup = $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['agentGroup']));
+            $agentGroup = $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $eventData['agentGroup']), Agent::class);
             $event->setAgentGroup($agentGroup);
         }
 
         if (null !== $eventData['space']) {
-            $space = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $eventData['space']));
+            $space = $this->getReference(sprintf('%s-%s', SpaceFixtures::SPACE_ID_PREFIX, $eventData['space']), Space::class);
             $event->setSpace($space);
         }
 
         if (null !== $eventData['initiative']) {
-            $initiative = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $eventData['initiative']));
+            $initiative = $this->getReference(sprintf('%s-%s', InitiativeFixtures::INITIATIVE_ID_PREFIX, $eventData['initiative']), Initiative::class);
             $event->setInitiative($initiative);
         }
 
         if (null !== $eventData['parent']) {
-            $parent = $this->getReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['parent']));
+            $parent = $this->getReference(sprintf('%s-%s', self::EVENT_ID_PREFIX, $eventData['parent']), Event::class);
             $event->setParent($parent);
         }
 

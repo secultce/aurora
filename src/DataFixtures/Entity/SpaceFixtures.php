@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Entity;
 
+use App\Entity\Agent;
 use App\Entity\Space;
 use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
@@ -539,10 +540,10 @@ final class SpaceFixtures extends AbstractFixture implements DependentFixtureInt
         /** @var Space $space */
         $space = $this->serializer->denormalize($spaceData, Space::class, context: $context);
 
-        $space->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $spaceData['createdBy'])));
+        $space->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $spaceData['createdBy']), Agent::class));
 
         if (null !== $spaceData['parent']) {
-            $parent = $this->getReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['parent']));
+            $parent = $this->getReference(sprintf('%s-%s', self::SPACE_ID_PREFIX, $spaceData['parent']), Space::class);
             $space->setParent($parent);
         }
 

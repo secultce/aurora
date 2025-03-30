@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Entity;
 
+use App\Entity\Agent;
+use App\Entity\Event;
 use App\Entity\InscriptionEvent;
 use App\Enum\InscriptionEventStatusEnum;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
@@ -339,8 +341,8 @@ final class InscriptionEventFixtures extends AbstractFixture implements Dependen
         /** @var InscriptionEvent $inscriptionEvent */
         $inscriptionEvent = $this->serializer->denormalize($inscriptionEventData, InscriptionEvent::class, context: $context);
 
-        $inscriptionEvent->setAgent($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $inscriptionEventData['agent'])));
-        $inscriptionEvent->setEvent($this->getReference(sprintf('%s-%s', EventFixtures::EVENT_ID_PREFIX, $inscriptionEventData['event'])));
+        $inscriptionEvent->setAgent($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $inscriptionEventData['agent']), Agent::class));
+        $inscriptionEvent->setEvent($this->getReference(sprintf('%s-%s', EventFixtures::EVENT_ID_PREFIX, $inscriptionEventData['event']), Event::class));
 
         return $inscriptionEvent;
     }

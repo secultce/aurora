@@ -292,7 +292,7 @@ final class AgentFixtures extends AbstractFixture implements DependentFixtureInt
             $agent = $this->serializer->denormalize($agentData, Agent::class);
 
             /** @var User $user */
-            $user = $this->getReference(sprintf('%s-%s', UserFixtures::USER_ID_PREFIX, $agentData['user']));
+            $user = $this->getReference(sprintf('%s-%s', UserFixtures::USER_ID_PREFIX, $agentData['user']), User::class);
             $agent->setUser($user);
 
             $this->manualLogin($user->getId()->toRfc4122());

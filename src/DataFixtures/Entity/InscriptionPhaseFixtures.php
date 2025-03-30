@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Entity;
 
+use App\Entity\Agent;
 use App\Entity\InscriptionPhase;
+use App\Entity\Phase;
 use App\Enum\InscriptionPhaseStatusEnum;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
@@ -479,8 +481,8 @@ final class InscriptionPhaseFixtures extends AbstractFixture implements Dependen
         /** @var InscriptionPhase $inscriptionPhase */
         $inscriptionPhase = $this->serializer->denormalize($inscriptionPhaseData, InscriptionPhase::class, context: $context);
 
-        $inscriptionPhase->setAgent($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $inscriptionPhaseData['agent'])));
-        $inscriptionPhase->setPhase($this->getReference(sprintf('%s-%s', PhaseFixtures::PHASE_ID_PREFIX, $inscriptionPhaseData['phase'])));
+        $inscriptionPhase->setAgent($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $inscriptionPhaseData['agent']), Agent::class));
+        $inscriptionPhase->setPhase($this->getReference(sprintf('%s-%s', PhaseFixtures::PHASE_ID_PREFIX, $inscriptionPhaseData['phase']), Phase::class));
 
         return $inscriptionPhase;
     }

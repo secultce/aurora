@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\DataFixtures\Entity;
 
+use App\Entity\Agent;
 use App\Entity\Organization;
 use App\Enum\SocialNetworkEnum;
 use App\Service\Interface\FileServiceInterface;
@@ -262,12 +263,12 @@ final class OrganizationFixtures extends AbstractFixture implements DependentFix
 
         foreach ($agents ?? [] as $agentId) {
             $organization->addAgent(
-                $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $agentId))
+                $this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $agentId), Agent::class)
             );
         }
 
-        $organization->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $organizationData['createdBy'])));
-        $organization->setOwner($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $organizationData['owner'])));
+        $organization->setCreatedBy($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $organizationData['createdBy']), Agent::class));
+        $organization->setOwner($this->getReference(sprintf('%s-%s', AgentFixtures::AGENT_ID_PREFIX, $organizationData['owner']), Agent::class));
 
         return $organization;
     }

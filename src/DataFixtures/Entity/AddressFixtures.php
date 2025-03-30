@@ -5,7 +5,9 @@ declare(strict_types=1);
 namespace App\DataFixtures\Entity;
 
 use App\Entity\Address;
+use App\Entity\AgentAddress;
 use App\Entity\City;
+use App\Entity\SpaceAddress;
 use Doctrine\Common\DataFixtures\DependentFixtureInterface;
 use Doctrine\ORM\EntityManagerInterface;
 use Doctrine\Persistence\ObjectManager;
@@ -201,7 +203,12 @@ class AddressFixtures extends AbstractFixture implements DependentFixtureInterfa
     private function updateAddresses(ObjectManager $manager): void
     {
         foreach (self::UPDATED_ADDRESSES as $addressData) {
-            $addressObj = $this->getReference(sprintf('%s-%s', self::ADDRESS_ID_PREFIX, $addressData['id']));
+            $className = match ($addressData['ownerType']) {
+                'agent' => AgentAddress::class,
+                'space' => SpaceAddress::class,
+            };
+
+            $addressObj = $this->getReference(sprintf('%s-%s', self::ADDRESS_ID_PREFIX, $addressData['id']), $className);
             $address = $this->mountAddress($addressData, ['object_to_populate' => $addressObj]);
 
             $manager->persist($address);
