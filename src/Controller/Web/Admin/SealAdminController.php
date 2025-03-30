@@ -11,7 +11,6 @@ use Exception;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Uid\Uuid;
-use Symfony\Component\Validator\Validator\ValidatorInterface;
 use Symfony\Contracts\Translation\TranslatorInterface;
 
 class SealAdminController extends AbstractAdminController
@@ -50,7 +49,7 @@ class SealAdminController extends AbstractAdminController
         ]);
     }
 
-    public function add(Request $request, ValidatorInterface $validator): Response
+    public function add(Request $request): Response
     {
         if ('POST' !== $request->getMethod()) {
             return $this->render(self::VIEW_ADD, [
@@ -93,7 +92,7 @@ class SealAdminController extends AbstractAdminController
         return $this->redirectToRoute('admin_seal_list');
     }
 
-    public function edit(string $id, Request $request, ValidatorInterface $validator): Response
+    public function edit(string $id, Request $request): Response
     {
         try {
             $seal = $this->sealService->get(Uuid::fromString($id));

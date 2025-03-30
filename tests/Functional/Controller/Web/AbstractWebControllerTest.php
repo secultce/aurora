@@ -6,6 +6,7 @@ namespace App\Tests\Functional\Controller\Web;
 
 use App\Controller\Web\AbstractWebController;
 use App\Tests\AbstractWebTestCase;
+use App\Tests\Utils\CsrfTokenHelper;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
@@ -76,7 +77,7 @@ class AbstractWebControllerTest extends AbstractWebTestCase
         self::ensureKernelShutdown();
         $client = self::createClient();
 
-        $token = $this->getValidToken($tokenId, $client);
+        $token = CsrfTokenHelper::getValidToken($tokenId, $client);
 
         $request = new Request(request: ['token' => $token]);
         $request->setMethod(Request::METHOD_POST);
@@ -101,7 +102,7 @@ class AbstractWebControllerTest extends AbstractWebTestCase
         self::ensureKernelShutdown();
         $client = self::createClient();
 
-        $token = $this->getValidToken($wrongTokenid, $client);
+        $token = CsrfTokenHelper::getValidToken($wrongTokenid, $client);
 
         $request = new Request(request: ['token' => $token]);
         $request->setMethod(Request::METHOD_POST);
@@ -146,7 +147,7 @@ class AbstractWebControllerTest extends AbstractWebTestCase
         $this->controller->validCsrfToken($tokenId, $request);
     }
 
-    private function getValidToken(string $tokenId, KernelBrowser $client): string
+    public function getValidToken(string $tokenId, KernelBrowser $client): string
     {
         $client->request(Request::METHOD_GET, '/');
 
