@@ -97,6 +97,9 @@ control_panel: Control Panel
 completed: Completed
 cover_image: Cover image
 copy_id: Copy ID
+copy_success: Copied to clipboard
+copy_error: Error copying to clipboard
+copy_again: Failed to copy ID. Try again.
 cpf: CPF
 cnpj: CNPJ (MEI)
 create: Create

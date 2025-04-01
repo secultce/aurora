@@ -97,6 +97,9 @@ completed: Finalizados
 coming_soon: Em breve
 cover_image: Imagem de capa
 copy_id: Copiar ID
+copy_success: ID copiado com sucesso
+copy_error: Erro ao copiar ID
+copy_again: Erro ao copiar ID. Tente novamente
 cpf: CPF
 cnpj: CNPJ (MEI)
 configure: Configurar

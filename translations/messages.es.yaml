@@ -97,6 +97,9 @@ control_panel: Panel de control
 completed: Finalizado
 cover_image: Imagen de portada
 copy_id: Copiar ID
+copy_success: ID copiado con éxito
+copy_error: Error al copiar ID
+copy_again: Error al copiar ID. Tente nuevamente.
 cpf: CPF
 cnpj: CNPJ (MEI)
 create: Crear
