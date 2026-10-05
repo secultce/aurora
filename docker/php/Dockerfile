@@ -23,7 +23,7 @@ RUN rm -rf /var/www/html && apt-get update && apt-get install -y \
     && docker-php-ext-install pdo_pgsql zip mbstring exif \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd \
-    && pecl install mongodb \
+    && pecl install mongodb-1.21.10 \
     && docker-php-ext-enable mongodb \
     && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
